@@ -1,0 +1,14 @@
+# 两个纯 Kd 颜色材质：InnoVault 的 MtlParser 支持 newmtl / Kd / map_Kd / d / Tr，
+# 纯色材质不需要贴图——BasicEffect 会直接用 Kd 做漫反射色。
+#
+# Two flat Kd color materials. InnoVault's MtlParser understands
+# newmtl / Kd / map_Kd / d / Tr; with color-only materials no texture is needed,
+# BasicEffect just uses Kd as the diffuse color.
+
+# 主体：淡冰蓝 / body: icy blue
+newmtl CrystalBody
+Kd 0.62 0.86 1.0
+
+# 中段棱带：亮紫 / girdle band: bright violet
+newmtl CrystalGirdle
+Kd 0.52 0.36 0.98

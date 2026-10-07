@@ -1,0 +1,646 @@
+﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using Terraria.ModLoader;
+using Terraria.ModLoader.IO;
+
+namespace InnoVault.GameSystem
+{
+    /// <summary>
+    /// 提供对 NBT 数据的路径映射缓存，用于避免重复的磁盘 I/O 操作
+    /// </summary>
+    /// <remarks>
+    /// 此类仅供框架保存系统使用通过维护路径与 <see cref="TagCompound"/> 的映射，
+    /// 可显著提升读取性能，尤其是在频繁访问相同存档文件时<br/>
+    /// <br/>
+    /// ⚠注意事项：<br/>
+    /// 缓存内容为加载时的快照，不会自动同步磁盘变更；<br/>
+    /// 调用 <see cref="Invalidate"/> 方法可手动清除指定路径的缓存；<br/>
+    /// 所有通过 <see cref="SaveContent{T}.SaveTagToFile"/> 写入的内容应同时调用 <see cref="Set"/> 更新缓存；<br/>
+    /// 读取路径应优先使用<see cref = "TryGet" /> 检查缓存是否存在，避免不必要的磁盘访问
+    /// </remarks>
+    public static class TagCache
+    {
+        /// <summary>
+        /// 内部缓存字典，键为文件路径，值为对应的 <see cref="TagCompound"/> 数据快照
+        /// </summary>
+        private static readonly ConcurrentDictionary<string, TagCompound> _cache = [];
+        private static readonly Queue<string> _order = new();//记录插入顺序
+        private static readonly object _lock = new();
+        private const int maxCapacity = 12;//最大缓存标签数量
+        /// <summary>
+        /// 将指定路径的数据写入缓存（如已存在则覆盖）
+        /// </summary>
+        /// <param name="path">对应的存储路径</param>
+        /// <param name="tag">要缓存的 <see cref="TagCompound"/> 实例</param>
+        public static void Set(string path, TagCompound tag) {
+            _cache[path] = tag;//插入或更新值
+
+            lock (_lock) {
+                if (_order.Contains(path)) {
+                    return;//已存在，顺序不变
+                }
+
+                _order.Enqueue(path);
+                if (_order.Count > maxCapacity) {
+                    string oldest = _order.Dequeue();
+                    _cache.TryRemove(oldest, out _);
+                }
+            }
+        }
+        /// <summary>
+        /// 尝试获取指定路径下的缓存内容
+        /// </summary>
+        /// <param name="path">存储路径</param>
+        /// <param name="tag">若缓存存在，输出对应的 <see cref="TagCompound"/> 实例</param>
+        /// <returns>若缓存存在，返回 <see langword="true"/>；否则返回 <see langword="false"/></returns>
+        public static bool TryGet(string path, out TagCompound tag) => _cache.TryGetValue(path, out tag);
+        /// <summary>
+        /// 使指定路径的缓存失效，从字典中移除对应项
+        /// </summary>
+        /// <param name="path">需要清除缓存的文件路径</param>
+        public static void Invalidate(string path) {
+            if (!_cache.TryRemove(path, out _)) {
+                return;
+            }
+
+            lock (_lock) {
+                var newOrder = new Queue<string>(_order.Count);
+                foreach (var p in _order) {
+                    if (p == path) {
+                        continue;
+                    }
+                    newOrder.Enqueue(p);
+                }
+
+                _order.Clear();
+                foreach (var p in newOrder) {
+                    _order.Enqueue(p);
+                }
+            }
+        }
+        /// <summary>
+        /// 清理所有缓存
+        /// </summary>
+        public static void Clear() {
+            _cache.Clear();
+            lock (_lock) {
+                _order.Clear();
+            }
+        }
+    }
+
+    /// <summary>
+    /// 一个基本的保存接口
+    /// </summary>
+    public interface ISaveContent
+    {
+        /// <summary>
+        /// 启用强制刷新
+        /// </summary>
+        bool ForceReload => false;
+        /// <summary>
+        /// 内部装载名
+        /// </summary>
+        abstract string LoadenName { get; }
+        /// <summary>
+        /// 保存路径
+        /// </summary>
+        abstract string SavePath { get; }
+        /// <summary>
+        /// 保存数据，在<see cref="LoadData"/>中编写接收数据的逻辑
+        /// </summary>
+        /// <param name="tag"></param>
+        abstract void SaveData(TagCompound tag);
+        /// <summary>
+        /// 加载数据，如果<see cref="SaveData"/>没有存入数据，该函数就不会被调用
+        /// </summary>
+        /// <param name="tag"></param>
+        abstract void LoadData(TagCompound tag);
+    }
+
+    /// <summary>
+    /// 用于基本保存内容的基类
+    /// <br>该API的使用介绍:<see href="https://innovault.wiki/cn/persistence/save-content/"/></br>
+    /// </summary>
+    public abstract class SaveContent<T> : VaultType<SaveContent<T>> where T : SaveContent<T>
+    {
+        /// <summary>
+        /// 所有实例以单例形式存储于此
+        /// </summary>
+        public static List<T> SaveContents { get; private set; } = [];
+        /// <summary>
+        /// 获取泛型参数T对应类型的单实例，仅当直接使用该泛型类型时有效，
+        /// 若在子类或多级继承中使用，该属性可能返回基类的实例，
+        /// 不一定是当前具体子类的实例
+        /// </summary>
+        public static T GenericInstance => TypeToInstance[typeof(T)];
+        /// <summary>
+        /// 从类型映射到对应的实例
+        /// </summary>
+        public new static Dictionary<Type, T> TypeToInstance { get; private set; } = [];
+        /// <summary>
+        /// 从模组映射到对应的实例列表
+        /// </summary>
+        public static Dictionary<Mod, List<T>> ModToSaves { get; private set; } = [];
+        /// <summary>
+        /// 保存时用作标记的前缀，默认返回父类的名字
+        /// </summary>
+        public virtual string SavePrefix => GetType().BaseType?.Name?.Split('`')[0] ?? "Unknown";
+        /// <summary>
+        /// 内部装载名
+        /// </summary>
+        public virtual string LoadenName => $"{SavePrefix}:{Name}";
+        /// <summary>
+        /// 保存路径，默认为 VaultSave.RootPath + content_{nameof(T)}.nbt;
+        /// </summary>
+        public virtual string SavePath => Path.Combine(VaultSave.RootPath, $"content_{nameof(T)}.nbt");
+        /// <summary>
+        /// 检测目标存档文件是否已经存在
+        /// </summary>
+        public bool HasSave => File.Exists(SavePath);
+        /// <inheritdoc/>
+        protected override void VaultRegister() {
+            SaveContents.Add((T)(object)this);
+        }
+        /// <inheritdoc/>
+        public override void VaultSetup() {
+            ModToSaves.TryAdd(Mod, []);
+            TypeToInstance.Add(GetType(), (T)(object)this);
+            ModToSaves[Mod].Add((T)(object)this);
+            SetStaticDefaults();
+        }
+        /// <inheritdoc/>
+        public override void Unload() {
+            SaveContents.Clear();
+            ModToSaves.Clear();
+            TypeToInstance.Clear();
+        }
+        /// <summary>
+        /// 获取这个类型的单实例
+        /// </summary>
+        /// <returns></returns>
+        public static TTarget GetInstance<TTarget>() where TTarget : SaveContent<T>
+            => (TTarget)(object)TypeToInstance[typeof(TTarget)];
+        /// <summary>
+        /// 尝试从指定路径读取并反序列化出 <see cref="TagCompound"/> 数据
+        /// 如果文件不存在则返回 <see langword="false"/> 并输出 <see langword="null"/>
+        /// 若读取或反序列化失败则返回 <see langword="false"/> 并记录警告日志
+        /// 使用 <see cref="TagIO.FromStream"/> 从压缩 NBT 文件中加载
+        /// </summary>
+        public static bool TryLoadRootTag(string path, out TagCompound tag, bool forceReload = false) {
+            tag = null!;
+
+            if (File.Exists(path)) {
+                try {
+                    if (!forceReload && TagCache.TryGet(path, out tag)) {
+                        return true;
+                    }
+
+                    using FileStream stream = File.OpenRead(path);
+                    tag = TagIO.FromStream(stream);
+                    TagCache.Set(path, tag);
+                    return true;
+                } catch (Exception ex) {
+                    //主文件损坏，记录后尝试 .bak 兜底（原子写入时由 ReplaceFileAtomic 自动保留的上一版）
+                    VaultMod.Instance.Logger.Warn($"[TryLoadRootTag] Failed to load NBT file at {path}: {ex}");
+                }
+            }
+            else {
+                //主文件不存在时使旧缓存失效，避免读到上一个世界 / 角色的残留
+                TagCache.Invalidate(path);
+            }
+
+            string backupPath = path + ".bak";
+            if (File.Exists(backupPath)) {
+                try {
+                    using FileStream stream = File.OpenRead(backupPath);
+                    tag = TagIO.FromStream(stream);
+                    TagCache.Set(path, tag);
+                    VaultMod.Instance.Logger.Warn($"[TryLoadRootTag] Primary '{path}' missing or corrupt; recovered from backup '{backupPath}'.");
+                    return true;
+                } catch (Exception ex) {
+                    VaultMod.Instance.Logger.Warn($"[TryLoadRootTag] Failed to load backup NBT file at {backupPath}: {ex}");
+                }
+            }
+
+            tag = null!;
+            return false;
+        }
+
+        /// <summary>
+        /// 将传入的 <see cref="TagCompound"/> 数据写入指定路径的 NBT 文件
+        /// 如果路径所处的目录不存在则自动创建
+        /// </summary>
+        public static void SaveTagToFile(TagCompound tag, string path) {
+            string tempPath = path + ".tmp";
+            try {
+                var dir = Path.GetDirectoryName(path);
+                if (!string.IsNullOrEmpty(dir)) {
+                    Directory.CreateDirectory(dir);
+                }
+
+                //先写入临时文件并刷盘，再原子替换目标文件，避免写入中途被打断（崩溃 / 断电 / 异常）导致目标 NBT 被截断损坏
+                using (FileStream stream = File.Create(tempPath)) {
+                    TagIO.ToStream(tag, stream);
+                    stream.Flush(true);
+                }
+
+                ReplaceFileAtomic(tempPath, path);
+
+                TagCache.Set(path, tag);
+            } catch (Exception ex) {
+                VaultMod.Instance.Logger.Error($"[SaveTagToFile] Failed to save NBT: {ex}");
+                TryDeleteFile(tempPath);
+            }
+        }
+        //将临时文件原子地替换为目标文件，并把旧文件保留为 .bak 作为额外的恢复点
+        private static void ReplaceFileAtomic(string tempPath, string path) {
+            if (!File.Exists(path)) {
+                File.Move(tempPath, path);
+                return;
+            }
+
+            string backupPath = path + ".bak";
+            try {
+                File.Replace(tempPath, path, backupPath, ignoreMetadataErrors: true);
+            } catch {
+                //个别文件系统不支持 File.Replace，退化为“旧文件改名 .bak + 新文件就位”
+                TryDeleteFile(backupPath);
+                File.Move(path, backupPath);
+                File.Move(tempPath, path);
+            }
+        }
+        //尽力删除一个文件，失败仅记录警告，不抛出
+        private static void TryDeleteFile(string path) {
+            try {
+                if (File.Exists(path)) {
+                    File.Delete(path);
+                }
+            } catch (Exception ex) {
+                VaultMod.Instance.Logger.Warn($"[SaveTagToFile] Failed to delete file {path}: {ex}");
+            }
+        }
+        /// <summary>
+        /// 将传入的 <see cref="TagCompound"/> 数据直接保存到 zip 文件中
+        /// 如果路径所处的目录不存在则自动创建
+        /// </summary>
+        public static void SaveTagToZip(TagCompound tag, string zipPath, bool addTimeStamp = false) {
+            try {
+                var dir = Path.GetDirectoryName(zipPath);
+                if (!string.IsNullOrEmpty(dir)) {
+                    Directory.CreateDirectory(dir);
+                }
+
+                if (File.Exists(zipPath)) {
+                    File.Delete(zipPath);//避免旧文件冲突
+                }
+
+                if (addTimeStamp) {//在清除了旧文件后再插入时间戳
+                    string fileNameWithoutExt = Path.GetFileNameWithoutExtension(zipPath);
+                    string ext = Path.GetExtension(zipPath);
+                    string timeStamp = VaultUtils.GetTimeStamp();
+                    string newFileName = $"{timeStamp}-{fileNameWithoutExt}{ext}";
+                    zipPath = Path.Combine(dir ?? string.Empty, newFileName);
+                }
+
+                using FileStream zipStream = new(zipPath, FileMode.Create);
+                using var archive = new System.IO.Compression.ZipArchive(zipStream, System.IO.Compression.ZipArchiveMode.Create);
+
+                //在 zip 内部创建一个 NBT 文件 (名字可自定义)
+                var entry = archive.CreateEntry(Path.GetFileNameWithoutExtension(zipPath) + ".nbt", System.IO.Compression.CompressionLevel.Optimal);
+
+                using var entryStream = entry.Open();
+                TagIO.ToStream(tag, entryStream);//直接写入 zip 内的 entry
+            } catch (Exception ex) {
+                VaultMod.Instance.Logger.Error($"[SaveTagToZip] Failed to save NBT into zip: {ex}");
+            }
+        }
+        /// <summary>
+        /// 尝试从 zip 备份文件中读取并反序列化出 <see cref="TagCompound"/> 数据
+        /// zip 内仅包含单个 NBT 条目（由 <see cref="SaveTagToZip"/> 写入）
+        /// </summary>
+        public static bool TryLoadTagFromZip(string zipPath, out TagCompound tag) {
+            tag = null!;
+            if (!File.Exists(zipPath)) {
+                return false;
+            }
+
+            try {
+                using FileStream zipStream = File.OpenRead(zipPath);
+                using var archive = new System.IO.Compression.ZipArchive(zipStream, System.IO.Compression.ZipArchiveMode.Read);
+                var entry = archive.Entries.FirstOrDefault(e => e.Name.EndsWith(".nbt", StringComparison.OrdinalIgnoreCase))
+                    ?? archive.Entries.FirstOrDefault();
+                if (entry == null) {
+                    return false;
+                }
+
+                //复制到可定位的内存流，避免依赖 zip 条目流的可定位性
+                using var entryStream = entry.Open();
+                using var memory = new MemoryStream();
+                entryStream.CopyTo(memory);
+                memory.Position = 0;
+                tag = TagIO.FromStream(memory);
+                return true;
+            } catch (Exception ex) {
+                VaultMod.Instance.Logger.Warn($"[TryLoadTagFromZip] Failed to load NBT from zip {zipPath}: {ex}");
+                return false;
+            }
+        }
+        //构建匹配某世界备份文件名的精确正则：可选的 yyyy-MM-dd- 时间戳前缀（见 SaveTagToZip 的命名）+ 恰好 baseName + .zip
+        //baseName 经 Regex.Escape 处理，避免其中的特殊字符破坏匹配，且锚定首尾防止误匹配以 baseName 结尾的他世界备份
+        private static Regex BuildBackupRegex(string baseName)
+            => new($@"^(\d{{4}}-\d{{2}}-\d{{2}}-)?{Regex.Escape(baseName)}\.zip$", RegexOptions.IgnoreCase);
+        /// <summary>
+        /// 在备份目录中按时间从新到旧查找与 <paramref name="baseZipPath"/> 同名的备份 zip，
+        /// 返回第一个可成功读取的 <see cref="TagCompound"/>，用于主文件与 .bak 均不可用时的灾难恢复
+        /// </summary>
+        public static bool TryRestoreFromBackupZips(string baseZipPath, out TagCompound tag) {
+            tag = null!;
+            try {
+                if (string.IsNullOrEmpty(baseZipPath)) {
+                    return false;
+                }
+                string dir = Path.GetDirectoryName(baseZipPath);
+                if (string.IsNullOrEmpty(dir) || !Directory.Exists(dir)) {
+                    return false;
+                }
+
+                string baseName = Path.GetFileNameWithoutExtension(baseZipPath);
+                //不依赖 glob 的后缀语义（会误匹配以 baseName 结尾的他世界备份），改用精确正则筛选
+                Regex regex = BuildBackupRegex(baseName);
+                var files = Directory.EnumerateFiles(dir, "*.zip", SearchOption.TopDirectoryOnly)
+                    .Where(f => regex.IsMatch(Path.GetFileName(f)))
+                    .Select(f => new FileInfo(f))
+                    .OrderByDescending(f => f.LastWriteTimeUtc)
+                    .ToList();
+
+                foreach (var file in files) {
+                    if (TryLoadTagFromZip(file.FullName, out tag)) {
+                        return true;
+                    }
+                }
+            } catch (Exception ex) {
+                VaultMod.Instance.Logger.Warn($"[TryRestoreFromBackupZips] Unexpected error: {ex}");
+            }
+
+            tag = null!;
+            return false;
+        }
+        /// <summary>
+        /// 修剪同一世界（或TP数据）备份数量，按 LastWriteTime 升序删除最旧的，保留最新的指定数量
+        /// 期望文件命名：yyyy-MM-dd-world_xxx.zip 或 world_xxx.zip（无时间戳残留）
+        /// </summary>
+        /// <param name="baseZipPath">调用时传入的基础备份路径（未加时间戳版本）</param>
+        /// <param name="maxCount">最大保留数量</param>
+        public static void PruneBackups(string baseZipPath, int maxCount = 7) {
+            try {
+                if (string.IsNullOrEmpty(baseZipPath) || maxCount <= 0) {
+                    return;
+                }
+                string dir = Path.GetDirectoryName(baseZipPath);
+                if (string.IsNullOrEmpty(dir) || !Directory.Exists(dir)) {
+                    return;
+                }
+                string baseName = Path.GetFileNameWithoutExtension(baseZipPath);
+                //不依赖 glob 的后缀语义（会误删以 baseName 结尾的他世界备份），改用精确正则筛选
+                Regex regex = BuildBackupRegex(baseName);
+                var files = Directory.EnumerateFiles(dir, "*.zip", SearchOption.TopDirectoryOnly)
+                                      .Where(f => regex.IsMatch(Path.GetFileName(f)))
+                                      .Select(f => new FileInfo(f))
+                                      .OrderBy(f => f.LastWriteTimeUtc)
+                                      .ToList();
+                if (files.Count <= maxCount) {
+                    return;
+                }
+                int remove = files.Count - maxCount;
+                for (int i = 0; i < remove; i++) {
+                    try {
+                        files[i].Delete();
+                    } catch (Exception ex) {
+                        VaultMod.Instance.Logger.Warn($"[PruneBackups] Failed to delete old backup {files[i].FullName}: {ex.Message}");
+                    }
+                }
+            } catch (Exception ex) {
+                VaultMod.Instance.Logger.Warn($"[PruneBackups] Unexpected error: {ex}");
+            }
+        }
+        /// <summary>
+        /// 获取该存储对象所拥有的根标签，用于表达NBT存储内容
+        /// </summary>
+        /// <param name="rootTag"></param>
+        /// <param name="forceReload"></param>
+        /// <returns></returns>
+        public static bool TryGetRootTag(out TagCompound rootTag, bool forceReload = false) {
+            if (ModToSaves.Count == 0) {
+                rootTag = null;
+                return false;
+            }
+            return TryLoadRootTag(GenericInstance.SavePath, out rootTag, forceReload);
+        }
+        /// <summary>
+        /// 统一执行所有保存任务
+        /// </summary>
+        public static void DoSave() {
+            if (ModToSaves.Count == 0) {
+                return;
+            }
+
+            TagCompound rootTag = [];
+
+            foreach (var (mod, saves) in ModToSaves) {
+                TagCompound modTag = [];
+
+                foreach (var save in saves) {
+                    TagCompound saveTag = [];
+                    if (save.PreSaveData(saveTag, 0)) {
+                        save.SaveData(saveTag);
+                    }
+
+                    if (saveTag.Count == 0) {
+                        continue;
+                    }
+
+                    modTag[save.LoadenName] = saveTag;
+                }
+
+                if (modTag.Count == 0) {
+                    continue;
+                }
+
+                rootTag[$"mod:{mod.Name}"] = modTag;
+            }
+
+            if (rootTag.Count == 0) {
+                //本次没有任何数据：仅当旧存档文件已存在时写入空根标签以清除残留，
+                //避免数据被清空后下次加载复活旧值；同时不为从未有数据的存档凭空创建空文件
+                if (File.Exists(GenericInstance.SavePath)) {
+                    SaveTagToFile(rootTag, GenericInstance.SavePath);
+                }
+                return;
+            }
+
+            SaveTagToFile(rootTag, GenericInstance.SavePath);
+        }
+        /// <summary>
+        /// 统一执行所有加载任务
+        /// </summary>
+        public static void DoLoad(bool forceReload = false) {
+            if (!TryGetRootTag(out var rootTag, forceReload)) {
+                return;
+            }
+
+            foreach (var (mod, saves) in ModToSaves) {
+                if (!rootTag.TryGet($"mod:{mod.Name}", out TagCompound modTag) || modTag.Count == 0) {
+                    continue;
+                }
+
+                foreach (var save in saves) {
+                    if (!modTag.TryGet(save.LoadenName, out TagCompound saveTag) || saveTag.Count == 0) {
+                        continue;
+                    }
+                    if (save.PreLoadData(saveTag, 0)) {
+                        save.LoadData(saveTag);
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// 执行指定类型的保存任务（避免覆盖其他数据）
+        /// </summary>
+        public static void DoSave<TTarget>(bool forceReload = false) where TTarget : SaveContent<T> {
+            TTarget save = GetInstance<TTarget>();
+
+            if (!TryLoadRootTag(save.SavePath, out TagCompound rootTag, forceReload)) {
+                rootTag = [];
+            }
+
+            //尝试获取原有 modTag,避免全覆盖
+            if (!rootTag.TryGet($"mod:{save.Mod.Name}", out TagCompound modTag)) {
+                modTag = [];
+            }
+
+            TagCompound saveTag = [];
+            if (save.PreSaveData(saveTag, 1)) {
+                save.SaveData(saveTag);
+            }
+
+            if (saveTag.Count == 0) {
+                //本次实例无数据：从已有存档中移除其旧条目，确保"清空"被持久化，而不是保留旧值
+                //仅当旧条目确实存在时才回写文件，避免无谓的写入
+                if (modTag.ContainsKey(save.LoadenName)) {
+                    modTag.Remove(save.LoadenName);
+                    if (modTag.Count == 0) {
+                        rootTag.Remove($"mod:{save.Mod.Name}");
+                    }
+                    else {
+                        rootTag[$"mod:{save.Mod.Name}"] = modTag;
+                    }
+                    SaveTagToFile(rootTag, save.SavePath);
+                }
+                return;
+            }
+
+            //更新当前实例的内容,不影响其他
+            modTag[save.LoadenName] = saveTag;
+            rootTag[$"mod:{save.Mod.Name}"] = modTag;
+
+            SaveTagToFile(rootTag, save.SavePath);
+        }
+        /// <summary>
+        /// 执行指定类型的加载任务
+        /// </summary>
+        public static void DoLoad<TTarget>(bool forceReload = false) where TTarget : SaveContent<T> {
+            TTarget save = GetInstance<TTarget>();
+
+            if (!TryLoadRootTag(save.SavePath, out TagCompound rootTag, forceReload) || rootTag.Count == 0) {
+                return;
+            }
+
+            //尝试获取原有 modTag
+            if (!rootTag.TryGet($"mod:{save.Mod.Name}", out TagCompound modTag) || modTag.Count == 0) {
+                return;
+            }
+
+            if (!modTag.TryGet(save.LoadenName, out TagCompound saveTag) || saveTag.Count == 0) {
+                return;
+            }
+
+            if (save.PreLoadData(saveTag, 1)) {
+                save.LoadData(saveTag);
+            }
+        }
+        /// <summary>
+        /// 保存指定接口实例提供的数据
+        /// </summary>
+        /// <param name="saveContent"></param>
+        public static void DoSave(ISaveContent saveContent) {
+            if (!TryLoadRootTag(saveContent.SavePath, out TagCompound rootTag, saveContent.ForceReload)) {
+                rootTag = [];
+            }
+
+            TagCompound saveTag = [];
+            saveContent.SaveData(saveTag);
+            if (saveTag.Count == 0) {
+                return;
+            }
+
+            rootTag[saveContent.LoadenName] = saveTag;
+            SaveTagToFile(rootTag, saveContent.SavePath);
+        }
+        /// <summary>
+        /// 接收指定接口实例提供的数据
+        /// </summary>
+        /// <param name="saveContent"></param>
+        public static void DoLoad(ISaveContent saveContent) {
+            if (!TryLoadRootTag(saveContent.SavePath, out TagCompound rootTag, saveContent.ForceReload) || rootTag.Count == 0) {
+                return;
+            }
+
+            if (!rootTag.TryGet(saveContent.LoadenName, out TagCompound saveTag) || saveTag.Count == 0) {
+                return;
+            }
+
+            saveContent.LoadData(saveTag);
+        }
+        /// <summary>
+        /// 保存数据前的预处理，如果返回false则跳过保存
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="style">如果为0，则说明处于全局保存，如果为1，则处于单例保存中</param>
+        /// <returns></returns>
+        public virtual bool PreSaveData(TagCompound tag, int style) {
+            return true;
+        }
+        /// <summary>
+        /// 保存数据，在<see cref="LoadData"/>中编写接收数据的逻辑
+        /// 不要直接通过实例访问调用该函数，除非清楚自己在干什么，
+        /// 如果需要针对类型的保存应该使用<see cref="DoSave{TTarget}(bool)"/>
+        /// </summary>
+        /// <param name="tag"></param>
+        public virtual void SaveData(TagCompound tag) {
+
+        }
+        /// <summary>
+        /// 加载数据前的预处理，如果返回false则跳过加载
+        /// </summary>
+        /// <param name="tag"></param>
+        /// <param name="style">如果为0，则说明处于全局加载，如果为1，则处于单例加载中</param>
+        /// <returns></returns>
+        public virtual bool PreLoadData(TagCompound tag, int style) {
+            return true;
+        }
+        /// <summary>
+        /// 加载数据，如果<see cref="SaveData"/>没有存入数据，该函数就不会被调用
+        /// 不要直接通过实例访问调用该函数，除非清楚自己在干什么，
+        /// 如果需要针对类型的加载应该使用<see cref="DoLoad{TTarget}(bool)"/>
+        /// </summary>
+        /// <param name="tag"></param>
+        public virtual void LoadData(TagCompound tag) {
+
+        }
+    }
+}

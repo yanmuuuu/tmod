@@ -1,0 +1,141 @@
+Mods: {
+	WeaponDisplay: {
+		Config: {
+			head1: Weapon Display
+			head2: Item Effect
+			head3: Slash Visual Effect (affects only the visual effect, not the gameplay)
+			K1: Our new mod
+			K2: has been published, please go to the workshop and subscribe
+		}
+
+		ConfigurationServer: {
+			SlashSettings: Slash Gameplay Effect (affects only the gameplay, not the visual effect)
+			Parry: Parry Settings
+		}
+
+		Items: {
+			旧日支配者: {
+				DisplayName: Great Old Ones
+				Tooltip: This power has not fully awakened
+			}
+
+			真旧日支配者: {
+				DisplayName: True Great Old Ones
+				Tooltip: ""
+			}
+
+			第一分形: {
+				DisplayName: First Fractal
+				Tooltip: ""
+			}
+		}
+
+		Projectiles.旧日剑气.DisplayName: 旧日剑气
+
+		Configs: {
+			Configuration: {
+				DisplayName: Visual Effect Settings
+
+				ShowWeapon: {
+					Label: Weapon Display Switch
+					Tooltip: Yes, enable weapon display. No, disable weapon display. The default is yes
+				}
+
+				DyeUsed: {
+					Label: Dye used in weapons
+					Tooltip: The dye effect of the selected armor slot will be applied to the displayed weapon.
+				}
+
+				ShowGlow: {
+					Label: Weapon glowmask drawing switch
+					Tooltip: Yes, to turn on the weapon glowmask drawing(It will only take effect when the body armor has a glowmask, the effect is the same as the armor glowmask), no, to cancel. Default is No
+				}
+
+				GlowLighting: {
+					Label: Weapon glowmask brightness
+					Tooltip: Adjust the brightness of weapon glowmask
+				}
+
+				CoolerSwooshActive: {
+					Label: More cool slashing effects
+					Tooltip:
+						'''
+						Are you tired with the vanilla melee swing style? 
+						If you want to affect the actual attack effect, please go to the gameplay settings to open the hitbox
+						'''
+				}
+
+				LightItem: {
+					Label: Item light effect in world
+					Tooltip: Yes, to turn on the lighting effect of items in world, No, to cancel. Default is Yes
+				}
+
+				WeaponScale: {
+					Label: Weapon display size
+					Tooltip: Adjust the display size of weapons
+				}
+
+				LightItemNum: {
+					Label: The type of Item light effect in world
+					Tooltip: ""
+				}
+
+				IsLighterDecider: {
+					Label: Slash effect brightness
+					Tooltip: Brightness greater than 0.5 will use high-brightness slashing
+				}
+
+				UseItemTexForSwoosh: {
+					Label: Slashing effect color
+					Tooltip: Yes, associate the slashing effect color with the diagonal color of the enabled weapon map, no, use a single color. Default is Yes
+				}
+
+				ItemAdditive: {
+					Label: Weapon and weapon swing effects are translucent and highlighted
+					Tooltip: 阿汪:I think this is weird but someone wants this
+				}
+
+				ToolsNoUseNewSwooshEffect: {
+					Label: Cancel the effect of the new slashing effect on tools
+					Tooltip: Yes, to cancel the effect of the new slashing effect on the tool, No, not cancel, the default is No
+				}
+			}
+
+			DyeSlot: {
+				Tooltip: ""
+				None.Label: None
+				Head.Label: Head
+				Body.Label: Body
+				Leg.Label: Leg
+			}
+
+			ConfigurationServer: {
+				DisplayName: Gameplay Settings
+
+				UseHitbox: {
+					Label: Use a new hitbox that matches the swing effect
+					Tooltip: Yes, to enable a new hitbox for the weapon, no, to use the vanilla hitbox. Default is Yes
+				}
+
+				ItemAttackCD: {
+					Label: Melee Slash Attackable Enemies Amount
+					Tooltip: Maximum number of enemies that can be damaged at one swing of the weapon.
+				}
+
+				CanParry: {
+					Label: Weapon Parry
+					Tooltip:
+						'''
+						If yes, the weapons listed below will be able to parry attacks.
+						Useful only when equipped with shield accessories
+						'''
+				}
+
+				ParryItems: {
+					Label: Add parry effect to these weapons:
+					Tooltip: List of weapons that can be used for parrying
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,64 @@
+Configs: {
+	VaultClientConfig: {
+		DisplayName: Настройки клиента
+
+		HideWorldLoadingScreen: {
+			Label: Скрыть экран загрузки мира
+			Tooltip:
+				'''
+				Интерфейс загрузки больше не будет отображаться при входе в мир.
+				По умолчанию выключено. Включение сделает загрузку невидимой.
+				'''
+		}
+	}
+}
+
+Loadings: {
+	WorldLoadingText: {
+		Text1: Загрузка мира
+		Text2: Чтение данных сохранения
+		Text3: Загрузка обработчика тайлов (Tile Processor)
+		Text4: Получение сетевых данных
+		Text5: Сохранение мира
+		NetWaringTimeoutMsg:
+			'''
+			[VaultNet] Время ожидания сетевой загрузки истекло. Часть данных могла быть потеряна или задержана.
+			Это может привести к неполным сущностям мира или несогласованному состоянию.
+			Рекомендуется проверить подключение к сети и попытаться перезайти на сервер.
+			'''
+	}
+}
+
+Items: {
+	TestItem: {
+		DisplayName: Тестовый предмет
+		Tooltip: ""
+	}
+}
+
+Projectiles.TestProj.DisplayName: Тестовый снаряд
+
+UI: {
+	DeveloperPanelUI: {
+		TitleText: Панель отладки разработчика
+		TPBoxDrawText: Показать хитбоксы
+		TPShowNameText: Показать внутр. имя
+		TPShowPositionText: Показать позицию
+		TPShowIDText: Показать ID
+		ResetAllText: Сбросить всё
+		CloseText: Закрыть
+		TPTabText: TileProcessor
+		ActorTabText: Actor
+		ActorBoxDrawText: Показать хитбоксы
+		ActorShowNameText: Показать внутр. имя
+		ActorShowPositionText: Показать позицию
+		ActorShowIDText: Показать ID
+		ActorShowVelocityText: Показать скорость
+		ResetText: Сброс
+		StateMachineTabText: Машина состояний
+		StateMachineOverlayText: Оверлей FSM
+		BehaviorTreeOverlayText: Оверлей дерева поведения
+		TPForceSerialText: Принудить последовательное обновление
+		ActorForceSerialText: Принудить последовательное обновление
+	}
+}

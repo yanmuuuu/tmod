@@ -1,0 +1,74 @@
+# 手写的低多边形水晶：上下两个六棱锥夹一段六棱柱腰身，14 顶点 / 24 三角形。
+# 顶点与法线都是按正六边形（半径 0.5，环高 ±0.55，锥尖 ±1.4）手算的，
+# 方便读者对照数字理解 OBJ 的 v / vn / f 语法。
+#
+# A hand-written low-poly crystal: two hexagonal cones joined by a short
+# hexagonal prism waist, 14 vertices / 24 triangles. Positions and normals are
+# computed by hand from a regular hexagon (radius 0.5, ring height +-0.55,
+# apexes +-1.4) so the numbers stay readable.
+mtllib LowPolyCrystal.mtl
+
+# 顶端锥尖 / top apex
+v 0 1.4 0
+# 上环六点，从 +X 出发每 60 度转向 +Z 一周 / upper ring, 0..300 deg sweeping from +X toward +Z
+v 0.5 0.55 0
+v 0.25 0.55 0.433
+v -0.25 0.55 0.433
+v -0.5 0.55 0
+v -0.25 0.55 -0.433
+v 0.25 0.55 -0.433
+# 下环六点 / lower ring
+v 0.5 -0.55 0
+v 0.25 -0.55 0.433
+v -0.25 -0.55 0.433
+v -0.5 -0.55 0
+v -0.25 -0.55 -0.433
+v 0.25 -0.55 -0.433
+# 底端锥尖 / bottom apex
+v 0 -1.4 0
+
+# 上锥面法线，按各面角平分线方向外倾 / top cone face normals
+vn 0.772 0.454 0.446
+vn 0 0.454 0.891
+vn -0.772 0.454 0.446
+vn -0.772 0.454 -0.446
+vn 0 0.454 -0.891
+vn 0.772 0.454 -0.446
+# 棱柱侧面法线，纯水平 / prism side normals, horizontal
+vn 0.866 0 0.5
+vn 0 0 1
+vn -0.866 0 0.5
+vn -0.866 0 -0.5
+vn 0 0 -1
+vn 0.866 0 -0.5
+# 下锥面法线 / bottom cone face normals
+vn 0.772 -0.454 0.446
+vn 0 -0.454 0.891
+vn -0.772 -0.454 0.446
+vn -0.772 -0.454 -0.446
+vn 0 -0.454 -0.891
+vn 0.772 -0.454 -0.446
+
+# 上下两个锥体共用主体材质 / both cones use the body material
+usemtl CrystalBody
+f 1//1 3//1 2//1
+f 1//2 4//2 3//2
+f 1//3 5//3 4//3
+f 1//4 6//4 5//4
+f 1//5 7//5 6//5
+f 1//6 2//6 7//6
+f 14//13 8//13 9//13
+f 14//14 9//14 10//14
+f 14//15 10//15 11//15
+f 14//16 11//16 12//16
+f 14//17 12//17 13//17
+f 14//18 13//18 8//18
+
+# 中段棱带换第二种材质，演示 usemtl 分组 / girdle band switches material to show usemtl grouping
+usemtl CrystalGirdle
+f 2//7 3//7 9//7 8//7
+f 3//8 4//8 10//8 9//8
+f 4//9 5//9 11//9 10//9
+f 5//10 6//10 12//10 11//10
+f 6//11 7//11 13//11 12//11
+f 7//12 2//12 8//12 13//12

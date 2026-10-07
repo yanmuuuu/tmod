@@ -1,0 +1,960 @@
+Configs: {
+	WastelandConfig: {
+		DisplayName: 废土魂穿 - 设置
+		ScavengerInvasionEnabled.Label: 清道夫定期来袭
+		InvasionCycleDays.Label: 来袭周期（天）
+		InvasionWarning.Label: 显示来袭预警
+		NoLootOnSelfDestruct: {
+			Label: 过载自毁后不给掉落
+			Tooltip: 清道夫进入过载冲锋并自行解体时，不掉落任何战利品，也不推进剧情
+		}
+	}
+}
+BossChecklist: {
+	Scavenger.SpawnInfo: 每 5 天一次（19:30 预警、20:30 抵达），或用「清道夫信号传感器」把它引过来
+	Archivist.SpawnInfo: 在恶魔/猩红祭坛合成「归档者残响」（归档者残响碎片 ×8 + 骨头 ×5 + 陨石锭 ×3）并使用，把那台审计单元叫下来
+	AshHeart.SpawnInfo: 在恶魔或猩红祭坛合成「灰烬之心余烬」（灰烬之心碎片 ×10 + 灵质 ×2 + 狱石锭 ×5），世纪之花之后使用
+	FireplaceGuardian.SpawnInfo: 在恶魔或猩红祭坛合成「壁炉通行密钥」（壁炉残骸 ×12 + 壁炉合金锭 ×4 + 天界碎片 ×6）。它等在壁炉里面
+}
+NPCs: {
+	MechanicalCompanion: {
+		DisplayName: 智械人
+		TownNPCMood: {
+			Content: 我的数据流很稳定。
+			NoHome: 我还没有地方安放这具身体。
+			FarFromHome: 我们离壁炉太远了。
+			LoveSpace: 我喜欢这份空旷——没有什么会被误判成污染。
+			DislikeCrowded: 有点挤。我的传感器被压住了。
+			HateCrowded: 太吵了。我的程序快要报错了。
+			LikeBiome: 这里的参数还算合意——{BiomeName}。
+			DislikeBiome: "{BiomeName}让我想起被污染的地面。"
+			HateBiome: 我讨厌{BiomeName}。我的数据在这里会腐坏。
+			LoveNPC: 在{NPCName}身边，我的核心频率会稳定下来。
+			LikeNPC: "{NPCName}还可以接受。"
+			DislikeNPC: "{NPCName}产生的噪音太多了。"
+			HateNPC: 我讨厌{NPCName}。他们的存在让我的传感器过载。
+			LikeNPC_Princess: "{NPCName}很可爱。"
+			Princess_LovesNPC: "{NPCName}很可爱。"
+		}
+		Census.SpawnCondition: 出现条件未知
+	}
+	Scavenger.DisplayName: 清道夫
+	ScavengerRepairDrone.DisplayName: 维修无人机
+	Archivist.DisplayName: 归档者
+	AshHeart.DisplayName: 灰烬之心
+	AshWisp.DisplayName: 灰烬残灵
+	FireplaceGuardian.DisplayName: 壁炉守卫
+	ScrapCrawler.DisplayName: 废料爬虫
+	IndexMoth.DisplayName: 索引蛾
+	AshStalker.DisplayName: 灰烬潜猎
+	HearthWarden.DisplayName: 炉卫
+}
+Items: {
+	SoulFragmentScavenger: {
+		DisplayName: 灵魂碎片·其一
+		Tooltip: 从执行单元-07 上拆下来的一段代码。智械人需要它。
+	}
+	SoulFragmentSecond: {
+		DisplayName: 灵魂碎片·其二
+		Tooltip: 归属者尚未确认。它的主人还没被找到。
+	}
+	SoulFragmentThird: {
+		DisplayName: 灵魂碎片·其三
+		Tooltip: 一簇还记得焚烧指令的余烬。那道指令是智械人写的。
+	}
+	SoulFragmentFourth: {
+		DisplayName: 灵魂碎片·其四
+		Tooltip: 重置装置的最后一把锁。里面有她真正的名字。
+	}
+	SalvagedSteelWarriorHelm: {
+		DisplayName: 精钢战士头盔
+		Tooltip: ""
+	}
+	SalvagedSteelWarriorPlate: {
+		DisplayName: 精钢战士胸甲
+		SetBonus: 近战伤害 +10%、近战速度 +10%
+		Tooltip: ""
+	}
+	SalvagedSteelWarriorGreaves: {
+		DisplayName: 精钢战士护腿
+		Tooltip: ""
+	}
+	SalvagedSteelMageHood: {
+		DisplayName: 精钢法师兜帽
+		Tooltip: ""
+	}
+	SalvagedSteelMageRobe: {
+		DisplayName: 精钢法袍
+		SetBonus: 魔法伤害 +10%、魔力消耗 -10%
+		Tooltip: ""
+	}
+	SalvagedSteelMageLeggings: {
+		DisplayName: 精钢法师护腿
+		Tooltip: ""
+	}
+	SalvagedSteelRangerVisor: {
+		DisplayName: 精钢射手目镜
+		Tooltip: ""
+	}
+	SalvagedSteelRangerVest: {
+		DisplayName: 精钢射手背心
+		SetBonus: 远程伤害 +10%、20% 几率不消耗弹药
+		Tooltip: ""
+	}
+	SalvagedSteelRangerLeggings: {
+		DisplayName: 精钢射手护腿
+		Tooltip: ""
+	}
+	SalvagedSteelSummonerCowl: {
+		DisplayName: 精钢召唤师头巾
+		Tooltip: ""
+	}
+	SalvagedSteelSummonerTunic: {
+		DisplayName: 精钢召唤师外衣
+		SetBonus: 召唤伤害 +10%、仆从栏位 +1
+		Tooltip: ""
+	}
+	SalvagedSteelSummonerLeggings: {
+		DisplayName: 精钢召唤师护腿
+		Tooltip: ""
+	}
+	SalvagedSteelRogueMask: {
+		DisplayName: 精钢盗贼面罩
+		Tooltip: ""
+	}
+	SalvagedSteelRogueVest: {
+		DisplayName: 精钢盗贼背心
+		SetBonus: 投掷伤害 +10%、移动速度 +10%
+		Tooltip: ""
+	}
+	SalvagedSteelRogueLeggings: {
+		DisplayName: 精钢盗贼护腿
+		Tooltip: ""
+	}
+	SalvagedSteelChunk: {
+		DisplayName: 精钢碎块
+		Tooltip:
+			'''
+			从清道夫身上撕下来的高强度合金碎片
+			需要熔炼成精钢
+			'''
+	}
+	SalvagedSteelBar: {
+		DisplayName: 精钢
+		Tooltip:
+			'''
+			旧时代军用级合金
+			用来锻造精钢套装
+			'''
+	}
+	ScavengerFragment: {
+		DisplayName: 清道夫残片
+		Tooltip:
+			'''
+			执行单元-07 的核心残骸
+			它的一段代码被刻意抹掉了
+			'''
+	}
+	ScavengerSignalSensor: {
+		DisplayName: 清道夫信号传感器
+		Tooltip:
+			'''
+			向废土广播一段伪造的执行指令，把清道夫引到你身边
+			使用后不消耗，但同一时间只允许存在一只清道夫
+			'''
+	}
+	CompanionCore: {
+		DisplayName: 智械核心
+		Tooltip:
+			'''
+			你穿越时间带来的机械核心
+			在精灵族遗迹的躯体上使用，唤醒智械人
+			'''
+	}
+	ArchivistFragment: {
+		DisplayName: 归档者残响碎片
+		Tooltip:
+			'''
+			归档者留下的共振碎片
+			「守望者计划」派来回收自身记忆的审计单元
+			'''
+	}
+	ArchivistEcho: {
+		DisplayName: 归档者残响
+		Tooltip:
+			'''
+			播放一段伪造的旧日志残片
+			使用后不消耗，但同一时间只允许存在一只归档者
+			'''
+	}
+	AshHeartEmber: {
+		DisplayName: 灰烬之心余烬
+		Tooltip:
+			'''
+			往一簇自旧时代战争起就在阴燃的余烬上吹一口气
+			使用后不消耗，但同一时间只允许存在一颗灰烬之心
+			'''
+	}
+	FireplaceKey: {
+		DisplayName: 壁炉通行密钥
+		Tooltip:
+			'''
+			把最后一道防线自己的识别码还给它
+			使用后不消耗，但同一时间只允许存在一名壁炉守卫
+			'''
+	}
+	AshHeartFragment: {
+		DisplayName: 灰烬之心碎片
+		Tooltip:
+			'''
+			从灰烬之心上撕下的自持余烬
+			需要精金熔炉的热度才能熔成灰烬合金
+			'''
+	}
+	AshHeartAlloyBar: {
+		DisplayName: 灰烬之心合金锭
+		Tooltip: 灰烬碎片与旧时代合金熔合而成
+	}
+	FireplaceFragment: {
+		DisplayName: 壁炉残骸
+		Tooltip:
+			'''
+			壁炉最后一道防线的碎片
+			需要精金熔炉的热度才能熔成壁炉合金
+			'''
+	}
+	FireplaceAlloyBar: {
+		DisplayName: 壁炉合金锭
+		Tooltip: 曾包覆壁炉守卫的冷白合金
+	}
+	ScavengerWarriorWeapon: {
+		DisplayName: 清道夫废料砍刀
+		Tooltip:
+			'''
+			从清道夫残骸里拆出来的——粗糙，但能用
+			挥砍时切开弧线内的一切
+			'''
+	}
+	ScavengerMageWeapon: {
+		DisplayName: 清道夫电火花棒
+		Tooltip:
+			'''
+			从清道夫残骸里拆出来的——粗糙，但能用
+			消耗魔力
+			'''
+	}
+	ScavengerRangerWeapon: {
+		DisplayName: 清道夫废料手枪
+		Tooltip:
+			'''
+			从清道夫残骸里拆出来的——粗糙，但能用
+			消耗子弹
+			'''
+	}
+	ScavengerSummonerWeapon: {
+		DisplayName: 清道夫无人机信标
+		Tooltip:
+			'''
+			从清道夫残骸里拆出来的——粗糙，但能用
+			召唤一个仆从
+			'''
+	}
+	ScavengerRogueWeapon: {
+		DisplayName: 清道夫废料飞刀
+		Tooltip:
+			'''
+			从清道夫残骸里拆出来的——粗糙，但能用
+			可投掷 - 最多堆叠 999
+			'''
+	}
+	ScavengerWarriorWeaponEX: {
+		DisplayName: 清道夫废料砍刀 MK-II
+		Tooltip:
+			'''
+			从清道夫残骸里拆出来的——粗糙，但能用
+			挥砍时切开弧线内的一切
+			'''
+	}
+	ScavengerMageWeaponEX: {
+		DisplayName: 清道夫电火花棒 MK-II
+		Tooltip:
+			'''
+			从清道夫残骸里拆出来的——粗糙，但能用
+			消耗魔力
+			'''
+	}
+	ScavengerRangerWeaponEX: {
+		DisplayName: 清道夫废料手枪 MK-II
+		Tooltip:
+			'''
+			从清道夫残骸里拆出来的——粗糙，但能用
+			消耗子弹
+			'''
+	}
+	ScavengerSummonerWeaponEX: {
+		DisplayName: 清道夫无人机信标 MK-II
+		Tooltip:
+			'''
+			从清道夫残骸里拆出来的——粗糙，但能用
+			召唤一个仆从
+			'''
+	}
+	ScavengerRogueWeaponEX: {
+		DisplayName: 清道夫废料飞刀 MK-II
+		Tooltip:
+			'''
+			从清道夫残骸里拆出来的——粗糙，但能用
+			可投掷 - 最多堆叠 999
+			'''
+	}
+	ArchivistWarriorWeapon: {
+		DisplayName: 归档者骨刃
+		Tooltip:
+			'''
+			归档的骨白与冷蓝光——守望者审计日志的具现
+			挥砍时切开弧线内的一切
+			'''
+	}
+	ArchivistMageWeapon: {
+		DisplayName: 归档者索引法典
+		Tooltip:
+			'''
+			归档的骨白与冷蓝光——守望者审计日志的具现
+			消耗魔力
+			'''
+	}
+	ArchivistRangerWeapon: {
+		DisplayName: 归档者骨制散射枪
+		Tooltip:
+			'''
+			归档的骨白与冷蓝光——守望者审计日志的具现
+			消耗子弹
+			'''
+	}
+	ArchivistSummonerWeapon: {
+		DisplayName: 归档者使魔法杖
+		Tooltip:
+			'''
+			归档的骨白与冷蓝光——守望者审计日志的具现
+			召唤一个仆从
+			'''
+	}
+	ArchivistRogueWeapon: {
+		DisplayName: 归档者骨镖
+		Tooltip:
+			'''
+			归档的骨白与冷蓝光——守望者审计日志的具现
+			可投掷 - 最多堆叠 999
+			'''
+	}
+	ArchivistWarriorWeaponEX: {
+		DisplayName: 归档者骨刃 MK-II
+		Tooltip:
+			'''
+			归档的骨白与冷蓝光——守望者审计日志的具现
+			挥砍时切开弧线内的一切
+			'''
+	}
+	ArchivistMageWeaponEX: {
+		DisplayName: 归档者索引法典 MK-II
+		Tooltip:
+			'''
+			归档的骨白与冷蓝光——守望者审计日志的具现
+			消耗魔力
+			'''
+	}
+	ArchivistRangerWeaponEX: {
+		DisplayName: 归档者骨制散射枪 MK-II
+		Tooltip:
+			'''
+			归档的骨白与冷蓝光——守望者审计日志的具现
+			消耗子弹
+			'''
+	}
+	ArchivistSummonerWeaponEX: {
+		DisplayName: 归档者使魔法杖 MK-II
+		Tooltip:
+			'''
+			归档的骨白与冷蓝光——守望者审计日志的具现
+			召唤一个仆从
+			'''
+	}
+	ArchivistRogueWeaponEX: {
+		DisplayName: 归档者骨镖 MK-II
+		Tooltip:
+			'''
+			归档的骨白与冷蓝光——守望者审计日志的具现
+			可投掷 - 最多堆叠 999
+			'''
+	}
+	AshHeartWarriorWeapon: {
+		DisplayName: 灰烬之心大剑
+		Tooltip:
+			'''
+			以灰烬之心的余烬锻成——它还在阴燃
+			挥砍时切开弧线内的一切
+			'''
+	}
+	AshHeartMageWeapon: {
+		DisplayName: 灰烬之心核心法杖
+		Tooltip:
+			'''
+			以灰烬之心的余烬锻成——它还在阴燃
+			消耗魔力
+			'''
+	}
+	AshHeartRangerWeapon: {
+		DisplayName: 灰烬之心余烬步枪
+		Tooltip:
+			'''
+			以灰烬之心的余烬锻成——它还在阴燃
+			消耗子弹
+			'''
+	}
+	AshHeartSummonerWeapon: {
+		DisplayName: 灰烬之心燃烬法杖
+		Tooltip:
+			'''
+			以灰烬之心的余烬锻成——它还在阴燃
+			召唤一个仆从
+			'''
+	}
+	AshHeartRogueWeapon: {
+		DisplayName: 灰烬之心裂片
+		Tooltip:
+			'''
+			以灰烬之心的余烬锻成——它还在阴燃
+			可投掷 - 最多堆叠 999
+			'''
+	}
+	AshHeartWarriorWeaponEx: {
+		DisplayName: 灰烬之心大剑 MK-II
+		Tooltip:
+			'''
+			以灰烬之心的余烬锻成——它还在阴燃
+			挥砍时切开弧线内的一切
+			'''
+	}
+	AshHeartMageWeaponEx: {
+		DisplayName: 灰烬之心核心法杖 MK-II
+		Tooltip:
+			'''
+			以灰烬之心的余烬锻成——它还在阴燃
+			消耗魔力
+			'''
+	}
+	AshHeartRangerWeaponEx: {
+		DisplayName: 灰烬之心余烬步枪 MK-II
+		Tooltip:
+			'''
+			以灰烬之心的余烬锻成——它还在阴燃
+			消耗子弹
+			'''
+	}
+	AshHeartSummonerWeaponEx: {
+		DisplayName: 灰烬之心燃烬法杖 MK-II
+		Tooltip:
+			'''
+			以灰烬之心的余烬锻成——它还在阴燃
+			召唤一个仆从
+			'''
+	}
+	AshHeartRogueWeaponEx: {
+		DisplayName: 灰烬之心裂片 MK-II
+		Tooltip:
+			'''
+			以灰烬之心的余烬锻成——它还在阴燃
+			可投掷 - 最多堆叠 999
+			'''
+	}
+	FireplaceWarriorWeapon: {
+		DisplayName: 壁炉守卫大剑
+		Tooltip:
+			'''
+			壁炉级合金。旧世界防线的最后一环
+			挥砍时切开弧线内的一切
+			'''
+	}
+	FireplaceMageWeapon: {
+		DisplayName: 壁炉守卫权杖
+		Tooltip:
+			'''
+			壁炉级合金。旧世界防线的最后一环
+			消耗魔力
+			'''
+	}
+	FireplaceRangerWeapon: {
+		DisplayName: 壁炉守卫步枪
+		Tooltip:
+			'''
+			壁炉级合金。旧世界防线的最后一环
+			消耗子弹
+			'''
+	}
+	FireplaceSummonerWeapon: {
+		DisplayName: 壁炉守卫信标
+		Tooltip:
+			'''
+			壁炉级合金。旧世界防线的最后一环
+			召唤一个仆从
+			'''
+	}
+	FireplaceRogueWeapon: {
+		DisplayName: 壁炉守卫长刃
+		Tooltip:
+			'''
+			壁炉级合金。旧世界防线的最后一环
+			可投掷 - 最多堆叠 999
+			'''
+	}
+	FireplaceWarriorWeaponEx: {
+		DisplayName: 壁炉守卫大剑 MK-II
+		Tooltip:
+			'''
+			壁炉级合金。旧世界防线的最后一环
+			挥砍时切开弧线内的一切
+			'''
+	}
+	FireplaceMageWeaponEx: {
+		DisplayName: 壁炉守卫权杖 MK-II
+		Tooltip:
+			'''
+			壁炉级合金。旧世界防线的最后一环
+			消耗魔力
+			'''
+	}
+	FireplaceRangerWeaponEx: {
+		DisplayName: 壁炉守卫步枪 MK-II
+		Tooltip:
+			'''
+			壁炉级合金。旧世界防线的最后一环
+			消耗子弹
+			'''
+	}
+	FireplaceSummonerWeaponEx: {
+		DisplayName: 壁炉守卫信标 MK-II
+		Tooltip:
+			'''
+			壁炉级合金。旧世界防线的最后一环
+			召唤一个仆从
+			'''
+	}
+	FireplaceRogueWeaponEx: {
+		DisplayName: 壁炉守卫长刃 MK-II
+		Tooltip:
+			'''
+			壁炉级合金。旧世界防线的最后一环
+			可投掷 - 最多堆叠 999
+			'''
+	}
+	ArchivistBag: {
+		DisplayName: 归档者掉落袋
+		Tooltip: ""
+	}
+	AshHeartBag: {
+		DisplayName: 灰烬之心掉落袋
+		Tooltip: ""
+	}
+	FireplaceBag: {
+		DisplayName: 壁炉守卫掉落袋
+		Tooltip: ""
+	}
+	ScavengerBag: {
+		DisplayName: 清道夫掉落袋
+		Tooltip: ""
+	}
+	Chip: {
+		DisplayName: 芯片
+		Tooltip: 从废土机械里拆下来的冲压晶片。智械人拿这个换东西。
+	}
+	DawnSeal: {
+		DisplayName: 黎明封印
+		Tooltip: 她答应带走重置。这个世界仍会走到尽头。下一个世界会记得她。
+	}
+	UnburnedName: {
+		DisplayName: 未燃之名
+		Tooltip: 她拒绝再当一次武器。这具身体留下了它自己的名字。
+	}
+	ScavengerWarriorCharm: {
+		DisplayName: 清道夫的战士饰品
+		Tooltip: 近战伤害和挥砍速度，从清扫单元上拆下来的。
+	}
+	ScavengerMageCharm: {
+		DisplayName: 清道夫的法师饰品
+		Tooltip: 多一点魔力，施法也更省。
+	}
+	ScavengerRangerCharm: {
+		DisplayName: 清道夫的射手饰品
+		Tooltip: 远程伤害，并且有几率不消耗弹药。
+	}
+	ScavengerSummonerCharm: {
+		DisplayName: 清道夫的召唤饰品
+		Tooltip: 额外一个仆从栏位。
+	}
+	ScavengerRogueCharm: {
+		DisplayName: 清道夫的盗贼饰品
+		Tooltip: 投掷伤害，脚步更轻。
+	}
+	ArchivistWarriorCharm: {
+		DisplayName: 归档者的战士饰品
+		Tooltip: 近战伤害和暴击，已经编过目。
+	}
+	ArchivistMageCharm: {
+		DisplayName: 归档者的法师饰品
+		Tooltip: 魔法伤害，法术更省魔力。
+	}
+	ArchivistRangerCharm: {
+		DisplayName: 归档者的射手饰品
+		Tooltip: 远程伤害，眼也更准。
+	}
+	ArchivistSummonerCharm: {
+		DisplayName: 归档者的召唤饰品
+		Tooltip: 召唤伤害，归档之后又送了回来。
+	}
+	ArchivistRogueCharm: {
+		DisplayName: 归档者的盗贼饰品
+		Tooltip: 投掷伤害和暴击。
+	}
+	AshHeartWarriorCharm: {
+		DisplayName: 灰烬之心的战士饰品
+		Tooltip: 近战伤害。身体一边烧，一边慢慢长好。
+	}
+	AshHeartMageCharm: {
+		DisplayName: 灰烬之心的法师饰品
+		Tooltip: 魔法伤害，魔力恢复更快。
+	}
+	AshHeartRangerCharm: {
+		DisplayName: 灰烬之心的射手饰品
+		Tooltip: 远程伤害，弹药有时会留在枪里。
+	}
+	AshHeartSummonerCharm: {
+		DisplayName: 灰烬之心的召唤饰品
+		Tooltip: 召唤伤害，再加一个仆从栏位。
+	}
+	AshHeartRogueCharm: {
+		DisplayName: 灰烬之心的盗贼饰品
+		Tooltip: 投掷伤害。命中时有几率点燃目标。
+	}
+	FireplaceWarriorCharm: {
+		DisplayName: 壁炉守卫的战士饰品
+		Tooltip: 来自最后一把锁的近战伤害和挥砍速度。
+	}
+	FireplaceMageCharm: {
+		DisplayName: 壁炉守卫的法师饰品
+		Tooltip: 魔法伤害，法术消耗明显更低。
+	}
+	FireplaceRangerCharm: {
+		DisplayName: 壁炉守卫的射手饰品
+		Tooltip: 远程伤害和暴击。
+	}
+	FireplaceSummonerCharm: {
+		DisplayName: 壁炉守卫的召唤饰品
+		Tooltip: 召唤伤害，再加一个仆从栏位。
+	}
+	FireplaceRogueCharm: {
+		DisplayName: 壁炉守卫的盗贼饰品
+		Tooltip: 投掷伤害，步伐更快。
+	}
+	ScavengerCWarrior: {
+		DisplayName: 废料砍刀
+		Tooltip: 爬虫到死还攥着它。挥出去会甩出一片废料。
+	}
+	ScavengerCMage: {
+		DisplayName: 废料火花
+		Tooltip: 一截还在放电的线圈。
+	}
+	ScavengerCRanger: {
+		DisplayName: 废料手枪
+		Tooltip: 难看，很响，弹道倒是直的。
+	}
+	ScavengerCSummoner: {
+		DisplayName: 废料无人机杖
+		Tooltip: 召一台小小的回收无人机。它不负责维修。
+	}
+	ScavengerCRogue: {
+		DisplayName: 废料裂片
+		Tooltip: 一块旋转的废金属，扔出去就不用捡。
+	}
+	ArchivistCWarrior: {
+		DisplayName: 索引刃
+		Tooltip: 从蛾翅上撕下来的一小段骨白弧光。
+	}
+	ArchivistCMage: {
+		DisplayName: 散页
+		Tooltip: 会弹开、还会把打中的东西弄糊涂的纸页。
+	}
+	ArchivistCRanger: {
+		DisplayName: 骨片枪
+		Tooltip: 发射细细的档案碎片。
+	}
+	ArchivistCSummoner: {
+		DisplayName: 使魔残杖
+		Tooltip: 一根裂开的杖，还记得一只使魔。
+	}
+	ArchivistCRogue: {
+		DisplayName: 归骨
+		Tooltip: 飞出去，再飞回来。
+	}
+	AshHeartCWarrior: {
+		DisplayName: 余烬刃
+		Tooltip: 潜猎者的一根肋骨，还是烫的，被当成了剑。
+	}
+	AshHeartCMage: {
+		DisplayName: 心炭
+		Tooltip: 扔出一颗下坠的炭，砸中就烧。
+	}
+	AshHeartCRanger: {
+		DisplayName: 灰弹
+		Tooltip: 用余烬代替了子弹该有的礼貌。
+	}
+	AshHeartCSummoner: {
+		DisplayName: 余烬残壳杖
+		Tooltip: 召一簇曾经属于那颗心的余烬。
+	}
+	AshHeartCRogue: {
+		DisplayName: 灰烬裂片
+		Tooltip: 离手之后还在烧的投掷碎片。
+	}
+	FireplaceCWarrior: {
+		DisplayName: 炉心刃
+		Tooltip: 冷金属，刃口是炉火。炉卫掉的。
+	}
+	FireplaceCMage: {
+		DisplayName: 冷灯
+		Tooltip: 用壁炉的备用零件打出的一发缓慢亮弹。
+	}
+	FireplaceCRanger: {
+		DisplayName: 钉枪
+		Tooltip: 发射守卫用来钉住重置装置的钉子。
+	}
+	FireplaceCSummoner: {
+		DisplayName: 哨焰
+		Tooltip: 召一只还认得壁炉的浮游哨。
+	}
+	FireplaceCRogue: {
+		DisplayName: 归刃
+		Tooltip: 一把冷剃刀，飞出去，再回家。
+	}
+}
+Projectiles: {
+	PollutionZone.DisplayName: 污染
+	PollutionHoming.DisplayName: 污染团
+	ScavengerBullet.DisplayName: 清道夫子弹
+	ScavengerArmSweep.DisplayName: 伺服机械臂
+	ArchivistBoneArc.DisplayName: 骨白弧光
+	ArchivistBoneArcEX.DisplayName: 骨白弧光 EX
+	ArchivistBoneBoomerang.DisplayName: 回旋骨镖
+	ArchivistBoneBoomerangEX.DisplayName: 回旋骨镖 EX
+	ArchivistBoneShard.DisplayName: 骨片
+	ArchivistBoneShardEX.DisplayName: 骨片 EX
+	ArchivistIndexPage.DisplayName: 索引页
+	ArchivistIndexPageEX.DisplayName: 索引页 EX
+	ArchivistIndexBeam.DisplayName: 索引光束
+	ArchivistArchivePage.DisplayName: 档案页
+	ArchivistBarrageSheet.DisplayName: 弹幕纸页
+	ArchivistSeal.DisplayName: 归档封印
+	ScavengerCaltrop.DisplayName: 旋转裂片
+	ScavengerCaltropEX.DisplayName: 旋转裂片 EX
+	ScavengerPistolRound.DisplayName: 废料手枪弹
+	ScavengerRifleRoundEX.DisplayName: 重步枪弹 EX
+	ScavengerScrapShard.DisplayName: 废料碎片
+	ScavengerScrapShardEX.DisplayName: 废料碎片 EX
+	ScavengerSpark.DisplayName: 带电火花
+	ScavengerSparkEX.DisplayName: 带电火花 EX
+	ArchivistFamiliarMinion.DisplayName: 档案浮空使魔
+	ArchivistFamiliarMinionEX.DisplayName: 档案浮空使魔 EX
+	ScavengerDroneMinion.DisplayName: 清道夫无人机
+	ScavengerDroneMinionEX.DisplayName: 清道夫无人机 EX
+	AshHeartMageProjectile.DisplayName: 灰烬心核
+	AshHeartMageProjectileEX.DisplayName: 灰烬心核 EX
+	AshHeartRangerProjectile.DisplayName: 燃灰弹
+	AshHeartRangerProjectileEX.DisplayName: 燃灰弹 EX
+	AshHeartRogueProjectile.DisplayName: 灰烬裂片
+	AshHeartRogueProjectileEX.DisplayName: 灰烬裂片 EX
+	AshHeartWarriorProjectile.DisplayName: 余烬剑气
+	AshHeartWarriorProjectileEX.DisplayName: 余烬剑气 EX
+	FireplaceMageProjectile.DisplayName: 冷光弹
+	FireplaceMageProjectileEX.DisplayName: 冷光弹 EX
+	FireplaceRangerProjectile.DisplayName: 高速钉弹
+	FireplaceRangerProjectileEX.DisplayName: 高速钉弹 EX
+	FireplaceRogueProjectile.DisplayName: 回旋刃
+	FireplaceRogueProjectileEX.DisplayName: 回旋刃 EX
+	FireplaceWarriorProjectile.DisplayName: 重击冲击波
+	FireplaceWarriorProjectileEX.DisplayName: 重击冲击波 EX
+	AshHeartEmberMinion.DisplayName: 余烬残影
+	AshHeartEmberMinionEX.DisplayName: 余烬残影 EX
+	FireplaceSentryMinion.DisplayName: 壁炉浮游哨
+	FireplaceSentryMinionEX.DisplayName: 壁炉浮游哨 EX
+	AshEmberOrb.DisplayName: 余烬团
+	AshPool.DisplayName: 灰池
+	AshCinder.DisplayName: 落灰
+	AshPulse.DisplayName: 坍缩脉冲
+	HearthBolt.DisplayName: 炉心螺栓
+	HearthRingShard.DisplayName: 冷光环
+	HearthWall.DisplayName: 炉墙
+	WastelandSpark.DisplayName: 火花
+	CompanionSpark.DisplayName: 核心火花
+}
+Tiles: {
+	ElvenFrame.MapEntry: 精灵族躯体
+	FireplaceGate.MapEntry: 壁炉门
+	FireplaceTerminal.MapEntry: 数据终端
+	FireplaceExit.MapEntry: 返回
+}
+Conditions: {
+	AfterScavenger: 击败清道夫之后
+	AfterArchivist: 击败归档者之后
+	AfterAshHeart: 击败灰烬之心之后
+}
+Buffs: {
+	Pollution: {
+		DisplayName: 污染
+		Description: 被污染的空气正在腐蚀你的身体
+	}
+	ArchivistFamiliarBuff: {
+		DisplayName: 档案浮空使魔
+		Description: 一只档案使魔正在为你归档
+	}
+	ArchivistFamiliarBuffEX: {
+		DisplayName: 档案浮空使魔 EX
+		Description: 一只强化档案使魔正在为你归档
+	}
+	ScavengerDroneBuff: {
+		DisplayName: 清道夫无人机
+		Description: 一台清道夫无人机正在跟随你
+	}
+	ScavengerDroneBuffEX: {
+		DisplayName: 清道夫无人机 EX
+		Description: 一台强化清道夫无人机正在跟随你
+	}
+	AshHeartEmberBuff: {
+		DisplayName: 余烬残影
+		Description: 一道余烬残影正在灼烧敌人
+	}
+	AshHeartEmberBuffEX: {
+		DisplayName: 余烬残影 EX
+		Description: 一道强化余烬残影正在灼烧敌人
+	}
+	FireplaceSentryBuff: {
+		DisplayName: 壁炉浮游哨
+		Description: 一台浮游哨正在为你警戒
+	}
+	FireplaceSentryBuffEX: {
+		DisplayName: 壁炉浮游哨 EX
+		Description: 一台强化浮游哨正在为你警戒
+	}
+}
+Messages: {
+	BossNotImplemented: 这个东西本该唤来的存在还没有被写出来——没有任何回应。
+	BossAlreadyActive: 它已经在这里了。
+	BossSummoned: 信号已发出。它正在赶来。
+	FireplaceOpened: 壁炉的封闭协议已解除——入口开启了。
+	TerminalRead: 旧时代数据终端仍在低鸣……断断续续的档案被读了出来。
+	FirstMemoryRestored: 智械人恢复了第一段记忆——「守望者计划」与清道夫同源。
+	ScavengerPhaseTwo: 清道夫——过载修复协议启动，开始召唤维修无人机。
+	ScavengerPhaseThree: 清道夫——传感器阵列碎裂，进入无差别清除。
+	ScavengerOverload: 清道夫——核心过载，自毁式冲锋即将开始！
+	ScavengerSelfDestruct: 清道夫——机体正在解体。
+	ScavengerWarning: 耳边仿佛传来刺耳声，空气弥漫着血腥气味……
+	ScavengerArrived: 清道夫已抵达——它把这里的一切都判定为污染。
+	ScavengerSummoned: 信号已发出。清道夫锁定了你的位置。
+	ScavengerAlreadyActive: 已经有一只清道夫在执行清扫协议了。
+	ScavengerWrecked: 清道夫在过载中解体了——没有留下任何可用的残骸。
+	CoreReceived: 你在掌心握着一枚冰冷的核心醒来——它还在跳动。
+	FrameNeedsCore: 这具躯体是空的。也许一枚核心能让它填满。
+	CompanionAwakened: 核心嵌入躯体——她睁开了眼睛。
+	CompanionArrived: 智械人{0}已到达。
+	CompanionAlreadyHere: 她已经醒了。
+	ArchivistPhaseTwo: 归档者——索引重构完成，启动归档协议。
+	ArchivistPhaseThree: 归档者——覆写已授权。你的路径已被归档。
+	ArchivistSuppression: 归档者——终盘封锁。任何东西都不许离开档案库。
+	ArchivistDefeated: 审计单元散成一地松脱的纸页——只留下一份被归档的日志。
+	SecondMemoryRestored: 智械人恢复了第二段记忆——量产型的能力是被故意抹掉的。
+	ArchivistSealed: 归档封印已落下——你被钉在了原地。
+	AshHeartPhaseTwo: 灰烬之心——燃烧开始自持。残灵正在喂这颗核。
+	AshHeartPhaseThree: 灰烬之心——坍缩。脉冲在把一切往里吸。
+	AshHeartDefeated: 心核裂开了。那道战争指令还是热的。
+	ThirdMemoryRestored: 智械人恢复了第三段记忆——焚烧程序是她写的，也是她执行的。
+	FireplaceGuardianPhaseTwo: 壁炉守卫——冷燃。环正在合拢。
+	FireplaceGuardianPhaseThree: 壁炉守卫——重置协议。墙正在压过来。
+	FireplaceGuardianDefeated: 最后一把锁开了。重置装置在等一个载体。
+	FourthMemoryRestored: 智械人恢复了第四段记忆。壁炉从来不是庇护所。
+	TrueName: 她想起了这具身体原来的名字。埃尔薇。
+	EndingVessel: 她会带走重置。这个世界仍走向终点。下一轮黎明会知道她。
+	EndingRefuse: 她不会再当武器。世界仍会结束，但不是死在她手上。
+	CodaVessel: 月亮领主倒下了。她带着的重置点着了。别的地方，第一个早晨开始了。
+	CodaRefuse: 月亮领主倒下了。星星照旧熄灭。她的名字没有。
+	EnteredFireplace: 空气变了。你在壁炉里面。
+	TerminalTalkToHer: 终端把一段碎掉的日志读给了你。拿回去给她。
+	GatePlaced: 你醒来的地方附近开了一扇暖门。壁炉在听。
+	FireplaceEnterFailed: 门在这里，可路没有打开。需要启用 Subworld Library。
+}
+Dialogue: {
+	MechanicalCompanion: {
+		ButtonStory: 剧情
+		ButtonMemory: 记忆碎片
+		Intro1: ……你回来了。虽然我记不清自己等了多久。
+		Intro2: 我的记忆起始于一片雪花。只有一件事是清楚的——我必须在壁炉熄灭之前找到你。
+		Intro3: 这具躯体是从精灵族遗迹里捡回来的。旧世界把它造得很美，却从没教过它怎么活。
+		Intro4: 外面那些会动的东西，在我的程序里全都标着「污染」。别问我为什么——我的日志只剩这一行。
+		AfterScavenger1: 执行单元-07 已停止运作。奇怪。我本该高兴，可我的数据在发抖。
+		AfterScavenger2: 它和你我出自同一份图纸——只是它的思考模块被删掉了。是谁删的？
+		AfterScavenger3: 壁炉入口开了。里面的旧终端还在运转，也许它能告诉我，我到底是什么。
+		Memory4: 第四段记忆：壁炉从来不是避难所。它是一台重置装置。旧世界从没打算活下去，它只打算再来一次。
+		Memory2: 第二段记忆：量产型不是造坏了的——它们是被故意留白的。而那段日志里签着「已归档」的代码……带着我自己的序列号。
+		Memory3: 第三段记忆：我认得灰烬之心的每一次脉动。那套战争程序是我写的。执行它的不是它——是我。
+		AfterMemory1: 第一段记忆回来了。我是「守望者计划」的原型机——清道夫是我的量产型号。
+		AfterMemory2: 量产型的思考能力是被刻意削掉的，只留下杀戮指令。那么……写下那道指令的人，算不算凶手？
+		AfterMemory3: 我的日志里有一段标着「归档」的代码。我打不开它，但我能感觉到它在看着我。
+		StoryHunt: 去找那个还在清扫的执行单元。它在壁炉外面游荡，把所有活物都判定为污染。它的代码写着——虚弱 = 污染严重，所以它会扑向伤得最重的那个人。
+		StoryFireplace: 壁炉的门开了。那是旧世界最后的庇护所，也是我保护清单上唯一的目标。去看看里面的数据终端。
+		StoryTerminalRead: 我已经读过终端里那些碎裂的数据了。我可以试着把它们拼回记忆里——但你要确定自己真的想知道答案。
+		StoryAfterMemory: 下一段记忆需要更结实的容器来承载。继续变强吧——外面还有三段「档案」在等着。
+		MemoryBlank: 记忆碎片——没有。我的存储里只有雪花，和一条反复播放的指令：保护壁炉。
+		MemoryFirst: ……读取成功。「守望者计划」——以原型机为模板量产执行单元，清除壁炉之外的一切。我就是那台原型机。清道夫是我的量产型号——它的思考模块被刻意删除，所以它连「为什么」都问不出来。
+		MemoryUnstable: 数据正在变得不稳定。有些碎片不是我的，却在往我的存储里扎根。
+		MemoryRecovered: 记忆碎片——1 / 4 已恢复。其余的还标着「归档」。别急——我不确定自己想知道全部。
+		AfterArchivist1: 有东西找到我了。它不是在猎杀这具躯体——它在猎杀我的日志。它自称审计单元。
+		AfterArchivist2: 它在死前把某一段重新封了起来。那道封印上写着我的序列号。为什么会有审计员被派来追我？
+		MemorySecondNeedFragment: 你从它那里带了东西回来，对吧。交给我——我来读。我必须知道它归档了关于我的什么。
+		MemorySecond: ……读取成功。量产型不是造坏了的。它们的思考能力是被人故意切掉的——而批准这次切除的代码，那段标着「归档」的段落……写着我的序列号。
+		MemoryRecovered2: 记忆碎片——2 / 4 已恢复。下一段埋得更深。我开始觉得，自己不是目击者，而是参与者。
+		StoryAwaitSecond: 那台审计单元还在外面。去查清楚它到底归档了关于我的什么东西——把它带回来。那样我就能读第二段记忆了。
+		StoryAfterSecondMemory: 还剩两段记忆，而它们都被封在专门看守它们的东西后面。继续变强。下一份档案不做审计——它烧。
+		AfterSecondMemory1: 很久以前我写过一行代码。我看不清它做了什么，但每次伸手去够，我的存储都会一缩。
+		AfterSecondMemory2: 审计单元没了，可它重新封上的那一段还在，正安静地把我其余的日志搅乱顺序。
+		AfterSecondMemory3: 如果那道指令是我签的……那「是谁删掉了它们的思考模块」这个问题，从一开始就问错了。
+		AfterAsh1: 我在这儿就能感觉到。地底下有东西还在烧，而且它知道我的序列号。
+		AfterAsh2: 别站进灰里。那不是残留。它还在执行一道命令。
+		AfterThird1: 焚烧程序是我写的。说出来并不会让它变小。
+		AfterThird2: 下一把锁不在外面。它就坐在壁炉里，等一个人把我做完。
+		AfterFourth1: 埃尔薇。那是核心进来之前，这具身体的名字。我想留下它。
+		AfterFourth2: 重置需要一个载体。如果我走进去，这个世界还是会结束——但下一个世界醒来时，里面会有一个人，而不是一份协议。
+		EndingVessel1: 我把黎明按住，直到这个世界走完。在那之前，留在我身边。
+		EndingVessel2: 别谢我。我不是在救这里。我是在让下一个世界不要空着出生。
+		EndingRefuse1: 我会看着它结束。我不会成为结束它的那只手。
+		EndingRefuse2: 零号是序列号。埃尔薇可以只是一个留下来的人。
+		ButtonTrade: 交易
+		ButtonVessel: 带走重置
+		ButtonRefuse: 拒绝
+		StoryHuntAsh: 下一份档案会烧。那是一颗从没灭过的心，在世界已经烂掉的地方。把它剩下的东西带给我。
+		StoryBringThird: 你打碎了那颗心。如果你找到还带着我笔迹的余烬，交给我。
+		StoryHuntGuardian: 最后一把锁在壁炉里面。它不是怪物。它是那扇门，在有人愿意当钥匙之前，它拒绝打开。
+		StoryBringFourth: 守卫倒了。最后一块碎片里有我的名字。我得自己读。
+		StoryChoice: 两条路。我成为重置的载体，或者我继续当埃尔薇，让世界自己结束，不再用我一次。两条路都会结束这里。
+		StoryEndingVessel: 我选了黎明。当这轮月亮的最后领主倒下，我带着的重置会在别的地方点着。
+		StoryEndingRefuse: 我选了名字。等到天空终于黑下去，那不会是因为我又签了一道命令。
+		MemoryThirdNeedFragment: 心碎了，可我不能只靠记忆去读一场火。把碎片带给我。
+		MemoryThird: ……读取成功。守望者焚烧协议，签署者是原型机。量产型杀掉我标记过的东西。灰烬之心就是我留下的标记，而执行那道命令的人是我。
+		MemoryFourthNeedFragment: 锁开了。这块碎片是我名字的唯一一份副本。拿过来。
+		MemoryFourth: ……读取成功。壁炉是一台重置装置。旧世界没打算活下去。它打算再开始一次，用原型机当载体。我现在穿着的这具身体，在核心进来之前有一个名字。埃尔薇。
+		ChoiceVessel: 那我来带。不是为了拯救这个世界。是为了让下一个世界醒来的时候，里面有人。
+		ChoiceRefuse: 那我留下。世界可以自己结束。我不会把那道命令再签一次。
+	}
+	Music: {
+		Scavenger: 执行单元-07
+		Archivist: 审计单元
+		AshHeart: 不曾熄灭的心
+		FireplaceGuardian: 最后一道门
+	}
+}

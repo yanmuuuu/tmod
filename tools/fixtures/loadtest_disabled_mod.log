@@ -1,0 +1,29 @@
+Adding Content: tModLoader v2026.8.3.0
+Adding Content: Boss Checklist v2.2.4
+Adding Content: InnoVault v1.9.101
+Adding Content: Subworld Library v2.3.0.1
+Adding Content: 废土魂穿 汉化补丁 v0.1
+Adding Content: 废土魂穿 v0.1
+Configuring Content: tModLoader v2026.8.3.0
+Finalizing Content: 废土魂穿 汉化补丁 v0.1
+Adding Recipes...
+当文件已存在时，无法创建该文件。 (see server.log for full trace)
+An error occurred while loading WastelandSoulCN v0.1
+The mod(s) and any dependencies have been automatically disabled.
+System.IO.IOException: 当文件已存在时，无法创建该文件。
+   at System.IO.FileSystem.MoveFile(String sourceFullPath, String destFullPath, Boolean overwrite)
+   at Terraria.ModLoader.LocalizationLoader.UpdateLocalizationFilesForMod(Mod mod, String outputPath, GameCulture specificCulture) in tModLoader\Terraria\ModLoader\LocalizationLoader.cs:line 516
+   at Terraria.ModLoader.LocalizationLoader.UpdateLocalizationFiles() in tModLoader\Terraria\ModLoader\LocalizationLoader.cs:line 312
+Unloading: 废土魂穿 v0.1
+Unloading: 废土魂穿 汉化补丁 v0.1
+Unloading: Subworld Library v2.3.0.1
+Unloading: InnoVault v1.9.101
+Unloading: Boss Checklist v2.2.4
+Finding Mods...
+Adding Content: tModLoader v2026.8.3.0
+Adding Content: Boss Checklist v2.2.4
+Adding Content: InnoVault v1.9.101
+Adding Content: Subworld Library v2.3.0.1
+Adding Recipes...
+Terraria Server v1.4.4.9 - tModLoader v2026.8.3.0
+Choose World: 

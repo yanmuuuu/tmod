@@ -1,0 +1,2907 @@
+﻿==================== IL ====================
+### WeaponDisplay.SlashGlobalItem::AppliesToEntity
+   IL_0000: ldarg.1 
+   IL_0001: ldfld Terraria.Item::useStyle
+   IL_0006: ldc.i4.1 
+   IL_0007: bne.un.s IL_0018: ldc.i4.0
+   IL_0009: ldarg.1 
+   IL_000A: callvirt Terraria.Item::get_DamageType()
+   IL_000F: call Terraria.ModLoader.DamageClass::get_Melee()
+   IL_0014: ceq 
+   IL_0016: br.s IL_0019: stloc.0
+   IL_0018: ldc.i4.0 
+   IL_0019: stloc.0 
+   IL_001A: ldsfld WeaponDisplay.WeaponDisplay::ToolsNoUse
+   IL_001F: brfalse.s IL_0041: ldarg.2
+   IL_0021: ldloc.0 
+   IL_0022: brfalse.s IL_003f: ldc.i4.0
+   IL_0024: ldarg.1 
+   IL_0025: ldfld Terraria.Item::axe
+   IL_002A: brtrue.s IL_003f: ldc.i4.0
+   IL_002C: ldarg.1 
+   IL_002D: ldfld Terraria.Item::hammer
+   IL_0032: brtrue.s IL_003f: ldc.i4.0
+   IL_0034: ldarg.1 
+   IL_0035: ldfld Terraria.Item::pick
+   IL_003A: ldc.i4.0 
+   IL_003B: ceq 
+   IL_003D: br.s IL_0040: stloc.0
+   IL_003F: ldc.i4.0 
+   IL_0040: stloc.0 
+   IL_0041: ldarg.2 
+   IL_0042: ldloc.0 
+   IL_0043: and 
+   IL_0044: ret 
+### WeaponDisplay.SlashGlobalItem::UseItemHitbox
+   IL_0000: ldarg.2 
+   IL_0001: callvirt Terraria.Player::GetModPlayer()
+   IL_0006: stloc.0 
+   IL_0007: ldsfld WeaponDisplay.WeaponDisplay::ConfigGameplay
+   IL_000C: ldfld WeaponDisplay.ConfigurationServer::UseHitbox
+   IL_0011: brtrue.s IL_0014: ldloc.0
+   IL_0013: ret 
+   IL_0014: ldloc.0 
+   IL_0015: ldfld WeaponDisplay.WeaponDisplayPlayer::HitboxPosition
+   IL_001A: stloc.1 
+   IL_001B: ldloca.s V_2
+   IL_001D: ldloc.1 
+   IL_001E: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0023: call System.Math::Abs(Single)
+   IL_0028: ldloc.1 
+   IL_0029: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_002E: call System.Math::Abs(Single)
+   IL_0033: call Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_0038: ldarg.3 
+   IL_0039: ldloc.2 
+   IL_003A: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_003F: conv.i4 
+   IL_0040: stfld Microsoft.Xna.Framework.Rectangle::Width
+   IL_0045: ldarg.3 
+   IL_0046: ldloc.2 
+   IL_0047: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_004C: conv.i4 
+   IL_004D: stfld Microsoft.Xna.Framework.Rectangle::Height
+   IL_0052: ldarg.3 
+   IL_0053: ldarg.2 
+   IL_0054: callvirt Terraria.Entity::get_Center()
+   IL_0059: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_005E: conv.i4 
+   IL_005F: stfld Microsoft.Xna.Framework.Rectangle::X
+   IL_0064: ldloc.1 
+   IL_0065: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_006A: ldc.r4 -4
+   IL_006F: bge.un.s IL_00ab: ldloc.1
+   IL_0071: ldarg.3 
+   IL_0072: ldarg.2 
+   IL_0073: callvirt Terraria.Entity::get_Center()
+   IL_0078: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_007D: conv.i4 
+   IL_007E: ldloc.2 
+   IL_007F: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0084: conv.i4 
+   IL_0085: sub 
+   IL_0086: stfld Microsoft.Xna.Framework.Rectangle::Y
+   IL_008B: ldarg.2 
+   IL_008C: ldfld Terraria.Player::gravDir
+   IL_0091: ldc.r4 -1
+   IL_0096: bne.un.s IL_0105: ldloc.1
+   IL_0098: ldarg.3 
+   IL_0099: ldflda Microsoft.Xna.Framework.Rectangle::Y
+   IL_009E: dup 
+   IL_009F: ldind.i4 
+   IL_00A0: ldloc.2 
+   IL_00A1: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_00A6: conv.i4 
+   IL_00A7: add 
+   IL_00A8: stind.i4 
+   IL_00A9: br.s IL_0105: ldloc.1
+   IL_00AB: ldloc.1 
+   IL_00AC: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_00B1: ldc.r4 4
+   IL_00B6: ble.un.s IL_00ea: ldarg.3
+   IL_00B8: ldarg.3 
+   IL_00B9: ldarg.2 
+   IL_00BA: callvirt Terraria.Entity::get_Center()
+   IL_00BF: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_00C4: conv.i4 
+   IL_00C5: stfld Microsoft.Xna.Framework.Rectangle::Y
+   IL_00CA: ldarg.2 
+   IL_00CB: ldfld Terraria.Player::gravDir
+   IL_00D0: ldc.r4 -1
+   IL_00D5: bne.un.s IL_0105: ldloc.1
+   IL_00D7: ldarg.3 
+   IL_00D8: ldflda Microsoft.Xna.Framework.Rectangle::Y
+   IL_00DD: dup 
+   IL_00DE: ldind.i4 
+   IL_00DF: ldloc.2 
+   IL_00E0: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_00E5: conv.i4 
+   IL_00E6: sub 
+   IL_00E7: stind.i4 
+   IL_00E8: br.s IL_0105: ldloc.1
+   IL_00EA: ldarg.3 
+   IL_00EB: ldarg.2 
+   IL_00EC: callvirt Terraria.Entity::get_Center()
+   IL_00F1: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_00F6: conv.i4 
+   IL_00F7: ldc.i4.4 
+   IL_00F8: sub 
+   IL_00F9: stfld Microsoft.Xna.Framework.Rectangle::Y
+   IL_00FE: ldarg.3 
+   IL_00FF: ldc.i4.8 
+   IL_0100: stfld Microsoft.Xna.Framework.Rectangle::Height
+   IL_0105: ldloc.1 
+   IL_0106: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_010B: ldc.r4 -4
+   IL_0110: bge.un.s IL_0125: ldloc.1
+   IL_0112: ldarg.3 
+   IL_0113: ldflda Microsoft.Xna.Framework.Rectangle::X
+   IL_0118: dup 
+   IL_0119: ldind.i4 
+   IL_011A: ldloc.2 
+   IL_011B: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0120: conv.i4 
+   IL_0121: sub 
+   IL_0122: stind.i4 
+   IL_0123: br.s IL_014d: ldarg.0
+   IL_0125: ldloc.1 
+   IL_0126: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_012B: ldc.r4 4
+   IL_0130: bgt.s IL_014d: ldarg.0
+   IL_0132: ldarg.3 
+   IL_0133: ldarg.2 
+   IL_0134: callvirt Terraria.Entity::get_Center()
+   IL_0139: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_013E: conv.i4 
+   IL_013F: ldc.i4.4 
+   IL_0140: sub 
+   IL_0141: stfld Microsoft.Xna.Framework.Rectangle::X
+   IL_0146: ldarg.3 
+   IL_0147: ldc.i4.8 
+   IL_0148: stfld Microsoft.Xna.Framework.Rectangle::Width
+   IL_014D: ldarg.0 
+   IL_014E: ldarg.1 
+   IL_014F: ldarg.2 
+   IL_0150: ldarg.3 
+   IL_0151: ldarg.s noHitbox
+   IL_0153: call Terraria.ModLoader.GlobalItem::UseItemHitbox(Item,Player,Rectangle&,Boolean&)
+   IL_0158: ret 
+### WeaponDisplay.SlashGlobalItem::CanUseItem
+   IL_0000: ldarg.2 
+   IL_0001: callvirt Terraria.Player::GetModPlayer()
+   IL_0006: stloc.0 
+   IL_0007: ldsfld Terraria.Main::myPlayer
+   IL_000C: ldarg.2 
+   IL_000D: ldfld Terraria.Entity::whoAmI
+   IL_0012: bne.un IL_011c: ldc.i4.1
+   IL_0017: call Terraria.Main::get_MouseWorld()
+   IL_001C: ldarg.2 
+   IL_001D: callvirt Terraria.Entity::get_Center()
+   IL_0022: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_0027: stloc.1 
+   IL_0028: ldloca.s V_1
+   IL_002A: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_002F: dup 
+   IL_0030: ldind.r4 
+   IL_0031: ldarg.2 
+   IL_0032: ldfld Terraria.Player::gravDir
+   IL_0037: mul 
+   IL_0038: stind.r4 
+   IL_0039: ldarg.2 
+   IL_003A: ldloc.1 
+   IL_003B: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0040: call System.Math::Sign(Single)
+   IL_0045: stfld Terraria.Entity::direction
+   IL_004A: ldloc.0 
+   IL_004B: dup 
+   IL_004C: ldfld WeaponDisplay.WeaponDisplayPlayer::negativeDir
+   IL_0051: ldc.i4.0 
+   IL_0052: ceq 
+   IL_0054: stfld WeaponDisplay.WeaponDisplayPlayer::negativeDir
+   IL_0059: ldloc.0 
+   IL_005A: ldloc.1 
+   IL_005B: call Terraria.Utils::ToRotation(Vector2)
+   IL_0060: call Terraria.Main::get_rand()
+   IL_0065: ldc.r4 -0.5235988
+   IL_006A: ldc.r4 0.5235988
+   IL_006F: call Terraria.Utils::NextFloat(UnifiedRandom,Single,Single)
+   IL_0074: add 
+   IL_0075: stfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_007A: ldloc.0 
+   IL_007B: call Terraria.Main::get_rand()
+   IL_0080: ldc.r4 1
+   IL_0085: ldc.r4 2
+   IL_008A: call Terraria.Utils::NextFloat(UnifiedRandom,Single,Single)
+   IL_008F: stfld WeaponDisplay.WeaponDisplayPlayer::kValue
+   IL_0094: ldloc.0 
+   IL_0095: ldsfld WeaponDisplay.WeaponDisplay::Config
+   IL_009A: ldfld WeaponDisplay.Configuration::CoolerSwooshActive
+   IL_009F: stfld WeaponDisplay.WeaponDisplayPlayer::UseSlash
+   IL_00A4: ldsfld Terraria.Main::netMode
+   IL_00A9: ldc.i4.1 
+   IL_00AA: bne.un.s IL_011c: ldc.i4.1
+   IL_00AC: ldarg.0 
+   IL_00AD: call Terraria.ModLoader.ModType::get_Mod()
+   IL_00B2: ldc.i4 256
+   IL_00B7: callvirt Terraria.ModLoader.Mod::GetPacket(Int32)
+   IL_00BC: dup 
+   IL_00BD: ldc.i4.0 
+   IL_00BE: callvirt System.IO.BinaryWriter::Write(Byte)
+   IL_00C3: dup 
+   IL_00C4: ldloc.0 
+   IL_00C5: ldfld WeaponDisplay.WeaponDisplayPlayer::negativeDir
+   IL_00CA: callvirt System.IO.BinaryWriter::Write(Boolean)
+   IL_00CF: dup 
+   IL_00D0: ldloc.0 
+   IL_00D1: ldfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_00D6: callvirt System.IO.BinaryWriter::Write(Single)
+   IL_00DB: dup 
+   IL_00DC: ldloc.0 
+   IL_00DD: ldfld WeaponDisplay.WeaponDisplayPlayer::kValue
+   IL_00E2: callvirt System.IO.BinaryWriter::Write(Single)
+   IL_00E7: dup 
+   IL_00E8: ldloc.0 
+   IL_00E9: ldfld WeaponDisplay.WeaponDisplayPlayer::UseSlash
+   IL_00EE: callvirt System.IO.BinaryWriter::Write(Boolean)
+   IL_00F3: ldc.i4.m1 
+   IL_00F4: ldc.i4.m1 
+   IL_00F5: callvirt Terraria.ModLoader.ModPacket::Send(Int32,Int32)
+   IL_00FA: ldc.i4.s 13
+   IL_00FC: ldc.i4.m1 
+   IL_00FD: ldc.i4.m1 
+   IL_00FE: ldnull 
+   IL_00FF: ldarg.2 
+   IL_0100: ldfld Terraria.Entity::whoAmI
+   IL_0105: ldc.r4 0
+   IL_010A: ldc.r4 0
+   IL_010F: ldc.r4 0
+   IL_0114: ldc.i4.0 
+   IL_0115: ldc.i4.0 
+   IL_0116: ldc.i4.0 
+   IL_0117: call Terraria.NetMessage::SendData(Int32,Int32,Int32,NetworkText,Int32,Single,Single,Single,Int32,Int32,Int32)
+   IL_011C: ldc.i4.1 
+   IL_011D: ret 
+### WeaponDisplay.SlashGlobalItem::UseStyle
+   IL_0000: ldarg.2 
+   IL_0001: callvirt Terraria.Player::GetModPlayer()
+   IL_0006: stloc.0 
+   IL_0007: ldloc.0 
+   IL_0008: ldfld WeaponDisplay.WeaponDisplayPlayer::UseSlash
+   IL_000D: brfalse IL_013d: ret
+   IL_0012: ldarg.2 
+   IL_0013: ldfld Terraria.Player::itemAnimation
+   IL_0018: conv.r4 
+   IL_0019: ldarg.2 
+   IL_001A: ldfld Terraria.Player::itemAnimationMax
+   IL_001F: ldc.i4.1 
+   IL_0020: sub 
+   IL_0021: conv.r4 
+   IL_0022: div 
+   IL_0023: stloc.1 
+   IL_0024: ldc.r4 1
+   IL_0029: ldc.r4 2
+   IL_002E: ldc.r4 1
+   IL_0033: ldloc.1 
+   IL_0034: sub 
+   IL_0035: mul 
+   IL_0036: ldc.r4 1
+   IL_003B: ldloc.1 
+   IL_003C: sub 
+   IL_003D: mul 
+   IL_003E: sub 
+   IL_003F: ldc.r4 -1
+   IL_0044: ldc.r4 1
+   IL_0049: ldloc.1 
+   IL_004A: sub 
+   IL_004B: mul 
+   IL_004C: sub 
+   IL_004D: stloc.2 
+   IL_004E: ldloc.0 
+   IL_004F: ldfld WeaponDisplay.WeaponDisplayPlayer::negativeDir
+   IL_0054: brtrue.s IL_0059: ldc.r4 1
+   IL_0056: ldloc.2 
+   IL_0057: br.s IL_0060: stloc.2
+   IL_0059: ldc.r4 1
+   IL_005E: ldloc.2 
+   IL_005F: sub 
+   IL_0060: stloc.2 
+   IL_0061: ldloc.2 
+   IL_0062: ldc.r4 -1.125
+   IL_0067: mul 
+   IL_0068: ldc.r4 1
+   IL_006D: ldloc.2 
+   IL_006E: sub 
+   IL_006F: ldc.r4 0.1125
+   IL_0074: mul 
+   IL_0075: add 
+   IL_0076: ldc.r4 3.141593
+   IL_007B: mul 
+   IL_007C: ldloc.0 
+   IL_007D: ldfld WeaponDisplay.WeaponDisplayPlayer::kValue
+   IL_0082: stloc.3 
+   IL_0083: ldarg.1 
+   IL_0084: callvirt Terraria.Entity::get_Size()
+   IL_0089: stloc.s V_9
+   IL_008B: ldloca.s V_9
+   IL_008D: call Microsoft.Xna.Framework.Vector2::Length()
+   IL_0092: ldarg.1 
+   IL_0093: ldfld Terraria.Item::scale
+   IL_0098: mul 
+   IL_0099: ldloc.3 
+   IL_009A: div 
+   IL_009B: ldc.r4 0.7
+   IL_00A0: mul 
+   IL_00A1: stloc.s V_4
+   IL_00A3: dup 
+   IL_00A4: conv.r8 
+   IL_00A5: call System.Math::Cos(Double)
+   IL_00AA: conv.r4 
+   IL_00AB: ldloc.s V_4
+   IL_00AD: mul 
+   IL_00AE: stloc.s V_5
+   IL_00B0: conv.r8 
+   IL_00B1: call System.Math::Sin(Double)
+   IL_00B6: conv.r4 
+   IL_00B7: ldloc.s V_4
+   IL_00B9: mul 
+   IL_00BA: stloc.s V_6
+   IL_00BC: ldloc.3 
+   IL_00BD: ldloc.s V_5
+   IL_00BF: ldloc.s V_6
+   IL_00C1: sub 
+   IL_00C2: mul 
+   IL_00C3: ldloc.s V_5
+   IL_00C5: neg 
+   IL_00C6: ldloc.s V_6
+   IL_00C8: sub 
+   IL_00C9: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_00CE: ldloc.0 
+   IL_00CF: ldfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_00D4: conv.r8 
+   IL_00D5: ldloca.s V_9
+   IL_00D7: initobj Microsoft.Xna.Framework.Vector2
+   IL_00DD: ldloc.s V_9
+   IL_00DF: call Terraria.Utils::RotatedBy(Vector2,Double,Vector2)
+   IL_00E4: ldloc.3 
+   IL_00E5: neg 
+   IL_00E6: ldloc.s V_5
+   IL_00E8: ldloc.s V_6
+   IL_00EA: add 
+   IL_00EB: mul 
+   IL_00EC: ldloc.s V_6
+   IL_00EE: ldloc.s V_5
+   IL_00F0: sub 
+   IL_00F1: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_00F6: ldloc.0 
+   IL_00F7: ldfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_00FC: conv.r8 
+   IL_00FD: ldloca.s V_9
+   IL_00FF: initobj Microsoft.Xna.Framework.Vector2
+   IL_0105: ldloc.s V_9
+   IL_0107: call Terraria.Utils::RotatedBy(Vector2,Double,Vector2)
+   IL_010C: stloc.s V_7
+   IL_010E: ldloc.s V_7
+   IL_0110: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_0115: stloc.s V_8
+   IL_0117: ldarg.2 
+   IL_0118: ldloc.s V_8
+   IL_011A: call Terraria.Utils::ToRotation(Vector2)
+   IL_011F: ldc.r4 90
+   IL_0124: call Microsoft.Xna.Framework.MathHelper::ToRadians(Single)
+   IL_0129: sub 
+   IL_012A: stfld Terraria.Player::itemRotation
+   IL_012F: ldarg.2 
+   IL_0130: ldc.i4.1 
+   IL_0131: ldc.i4.0 
+   IL_0132: ldarg.2 
+   IL_0133: ldfld Terraria.Player::itemRotation
+   IL_0138: callvirt Terraria.Player::SetCompositeArmFront(Boolean,CompositeArmStretchAmount,Single)
+   IL_013D: ret 
+### WeaponDisplay.WeaponDisplay::Load
+   IL_0000: call Terraria.ModLoader.ModContent::GetInstance()
+   IL_0005: stsfld WeaponDisplay.WeaponDisplay::Config
+   IL_000A: call Terraria.ModLoader.ModContent::GetInstance()
+   IL_000F: stsfld WeaponDisplay.WeaponDisplay::ConfigGameplay
+   IL_0014: ldarg.0 
+   IL_0015: stsfld WeaponDisplay.WeaponDisplay::Instance
+   IL_001A: ldarg.0 
+   IL_001B: ldftn WeaponDisplay.WeaponDisplay::On_PlayerDrawLayers_DrawPlayer_27_HeldItem(orig_DrawPlayer_27_HeldItem,PlayerDrawSet&)
+   IL_0021: newobj Terraria.DataStructures.On_PlayerDrawLayers/hook_DrawPlayer_27_HeldItem::.ctor(Object,IntPtr)
+   IL_0026: call Terraria.DataStructures.On_PlayerDrawLayers::add_DrawPlayer_27_HeldItem(hook_DrawPlayer_27_HeldItem)
+   IL_002B: ret 
+### WeaponDisplay.WeaponDisplay::On_PlayerDrawLayers_DrawPlayer_27_HeldItem
+   IL_0000: ldarg.2 
+   IL_0001: ldfld Terraria.DataStructures.PlayerDrawSet::drawPlayer
+   IL_0006: stloc.0 
+   IL_0007: ldloc.0 
+   IL_0008: callvirt Terraria.Player::GetModPlayer()
+   IL_000D: stloc.1 
+   IL_000E: ldarg.2 
+   IL_000F: ldfld Terraria.DataStructures.PlayerDrawSet::heldItem
+   IL_0014: stloc.2 
+   IL_0015: ldloc.0 
+   IL_0016: ldfld Terraria.Player::itemAnimation
+   IL_001B: ldc.i4.0 
+   IL_001C: ble.s IL_0029: ldc.i4.0
+   IL_001E: ldloc.2 
+   IL_001F: ldfld Terraria.Item::useStyle
+   IL_0024: ldc.i4.0 
+   IL_0025: cgt.un 
+   IL_0027: br.s IL_002a: stloc.3
+   IL_0029: ldc.i4.0 
+   IL_002A: stloc.3 
+   IL_002B: ldloc.2 
+   IL_002C: ldfld Terraria.Item::holdStyle
+   IL_0031: brfalse.s IL_003e: ldc.i4.0
+   IL_0033: ldloc.0 
+   IL_0034: ldfld Terraria.Player::pulley
+   IL_0039: ldc.i4.0 
+   IL_003A: ceq 
+   IL_003C: br.s IL_003f: stloc.s V_4
+   IL_003E: ldc.i4.0 
+   IL_003F: stloc.s V_4
+   IL_0041: ldloc.0 
+   IL_0042: ldloc.2 
+   IL_0043: callvirt Terraria.Player::CanVisuallyHoldItem(Item)
+   IL_0048: brtrue.s IL_004d: ldloc.0
+   IL_004A: ldc.i4.0 
+   IL_004B: stloc.s V_4
+   IL_004D: ldloc.0 
+   IL_004E: callvirt Terraria.Player::get_HeldItem()
+   IL_0053: ldfld Terraria.Item::damage
+   IL_0058: ldc.i4.0 
+   IL_0059: ble.s IL_0094: ldc.i4.0
+   IL_005B: ldloc.0 
+   IL_005C: callvirt Terraria.Player::get_HeldItem()
+   IL_0061: ldfld Terraria.Item::useStyle
+   IL_0066: ldc.i4.1 
+   IL_0067: bne.un.s IL_0094: ldc.i4.0
+   IL_0069: ldloc.0 
+   IL_006A: ldfld Terraria.Player::itemAnimation
+   IL_006F: ldc.i4.0 
+   IL_0070: ble.s IL_0094: ldc.i4.0
+   IL_0072: ldloc.0 
+   IL_0073: callvirt Terraria.Player::get_HeldItem()
+   IL_0078: callvirt Terraria.Item::get_DamageType()
+   IL_007D: call Terraria.ModLoader.DamageClass::get_Melee()
+   IL_0082: bne.un.s IL_0094: ldc.i4.0
+   IL_0084: ldloc.0 
+   IL_0085: callvirt Terraria.Player::get_HeldItem()
+   IL_008A: ldfld Terraria.Item::noUseGraphic
+   IL_008F: ldc.i4.0 
+   IL_0090: ceq 
+   IL_0092: br.s IL_0095: stloc.s V_5
+   IL_0094: ldc.i4.0 
+   IL_0095: stloc.s V_5
+   IL_0097: ldsfld WeaponDisplay.WeaponDisplay::ToolsNoUse
+   IL_009C: brfalse.s IL_00cf: ldarg.2
+   IL_009E: ldloc.s V_5
+   IL_00A0: brfalse.s IL_00cc: ldc.i4.0
+   IL_00A2: ldloc.0 
+   IL_00A3: callvirt Terraria.Player::get_HeldItem()
+   IL_00A8: ldfld Terraria.Item::axe
+   IL_00AD: brtrue.s IL_00cc: ldc.i4.0
+   IL_00AF: ldloc.0 
+   IL_00B0: callvirt Terraria.Player::get_HeldItem()
+   IL_00B5: ldfld Terraria.Item::hammer
+   IL_00BA: brtrue.s IL_00cc: ldc.i4.0
+   IL_00BC: ldloc.0 
+   IL_00BD: callvirt Terraria.Player::get_HeldItem()
+   IL_00C2: ldfld Terraria.Item::pick
+   IL_00C7: ldc.i4.0 
+   IL_00C8: ceq 
+   IL_00CA: br.s IL_00cd: stloc.s V_5
+   IL_00CC: ldc.i4.0 
+   IL_00CD: stloc.s V_5
+   IL_00CF: ldarg.2 
+   IL_00D0: ldfld Terraria.DataStructures.PlayerDrawSet::shadow
+   IL_00D5: ldc.r4 0
+   IL_00DA: bne.un.s IL_0147: ldc.i4.1
+   IL_00DC: ldloc.0 
+   IL_00DD: ldfld Terraria.Player::frozen
+   IL_00E2: brtrue.s IL_0147: ldc.i4.1
+   IL_00E4: ldloc.3 
+   IL_00E5: ldloc.s V_4
+   IL_00E7: or 
+   IL_00E8: brfalse.s IL_0147: ldc.i4.1
+   IL_00EA: ldloc.2 
+   IL_00EB: ldfld Terraria.Item::type
+   IL_00F0: ldc.i4.0 
+   IL_00F1: ble.s IL_0147: ldc.i4.1
+   IL_00F3: ldloc.0 
+   IL_00F4: ldfld Terraria.Player::dead
+   IL_00F9: brtrue.s IL_0147: ldc.i4.1
+   IL_00FB: ldloc.2 
+   IL_00FC: ldfld Terraria.Item::noUseGraphic
+   IL_0101: brtrue.s IL_0147: ldc.i4.1
+   IL_0103: ldloc.0 
+   IL_0104: ldfld Terraria.Player::JustDroppedAnItem
+   IL_0109: brtrue.s IL_0147: ldc.i4.1
+   IL_010B: ldloc.0 
+   IL_010C: ldfld Terraria.Entity::wet
+   IL_0111: brfalse.s IL_011b: ldloc.0
+   IL_0113: ldloc.2 
+   IL_0114: ldfld Terraria.Item::noWet
+   IL_0119: brtrue.s IL_0147: ldc.i4.1
+   IL_011B: ldloc.0 
+   IL_011C: ldfld Terraria.Player::happyFunTorchTime
+   IL_0121: brfalse.s IL_0140: ldloc.s V_5
+   IL_0123: ldloc.0 
+   IL_0124: ldfld Terraria.Player::inventory
+   IL_0129: ldloc.0 
+   IL_012A: ldfld Terraria.Player::selectedItem
+   IL_012F: ldelem.ref 
+   IL_0130: ldfld Terraria.Item::createTile
+   IL_0135: ldc.i4.4 
+   IL_0136: bne.un.s IL_0140: ldloc.s V_5
+   IL_0138: ldloc.0 
+   IL_0139: ldfld Terraria.Player::itemAnimation
+   IL_013E: brfalse.s IL_0147: ldc.i4.1
+   IL_0140: ldloc.s V_5
+   IL_0142: ldc.i4.0 
+   IL_0143: ceq 
+   IL_0145: br.s IL_0148: stloc.s V_6
+   IL_0147: ldc.i4.1 
+   IL_0148: stloc.s V_6
+   IL_014A: ldloc.s V_6
+   IL_014C: brtrue.s IL_0156: ldarg.1
+   IL_014E: ldloc.1 
+   IL_014F: ldfld WeaponDisplay.WeaponDisplayPlayer::UseSlash
+   IL_0154: brtrue.s IL_0170: ldsfld ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>[] Terraria.GameContent.TextureAssets::Item
+   IL_0156: ldarg.1 
+   IL_0157: ldarg.2 
+   IL_0158: callvirt Terraria.DataStructures.On_PlayerDrawLayers/orig_DrawPlayer_27_HeldItem::Invoke(PlayerDrawSet&)
+   IL_015D: ldsfld WeaponDisplay.WeaponDisplay::ConfigGameplay
+   IL_0162: ldfld WeaponDisplay.ConfigurationServer::UseHitbox
+   IL_0167: ldc.i4.0 
+   IL_0168: ceq 
+   IL_016A: ldloc.s V_6
+   IL_016C: or 
+   IL_016D: brfalse.s IL_0170: ldsfld ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>[] Terraria.GameContent.TextureAssets::Item
+   IL_016F: ret 
+   IL_0170: ldsfld Terraria.GameContent.TextureAssets::Item
+   IL_0175: ldloc.0 
+   IL_0176: callvirt Terraria.Player::get_HeldItem()
+   IL_017B: ldfld Terraria.Item::type
+   IL_0180: ldelem.ref 
+   IL_0181: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_0186: dup 
+   IL_0187: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_018C: stloc.s V_7
+   IL_018E: dup 
+   IL_018F: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_0194: stloc.s V_8
+   IL_0196: ldloc.s V_7
+   IL_0198: ldloc.s V_8
+   IL_019A: mul 
+   IL_019B: newarr Microsoft.Xna.Framework.Color
+   IL_01A0: stloc.s V_9
+   IL_01A2: ldloc.s V_9
+   IL_01A4: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::GetData(!!0[])
+   IL_01A9: ldloca.s V_10
+   IL_01AB: initobj Microsoft.Xna.Framework.Vector4
+   IL_01B1: ldc.r4 0
+   IL_01B6: stloc.s V_11
+   IL_01B8: ldc.i4.0 
+   IL_01B9: stloc.s V_13
+   IL_01BB: br.s IL_021d: ldloc.s V_13
+   IL_01BD: ldloc.s V_9
+   IL_01BF: ldloc.s V_13
+   IL_01C1: ldelem.any Microsoft.Xna.Framework.Color
+   IL_01C6: ldloca.s V_14
+   IL_01C8: initobj Microsoft.Xna.Framework.Color
+   IL_01CE: ldloc.s V_14
+   IL_01D0: call Microsoft.Xna.Framework.Color::op_Inequality(Color,Color)
+   IL_01D5: brfalse.s IL_0217: ldloc.s V_13
+   IL_01D7: ldloc.s V_13
+   IL_01D9: ldc.i4.1 
+   IL_01DA: add 
+   IL_01DB: ldloc.s V_7
+   IL_01DD: rem 
+   IL_01DE: ldloc.s V_8
+   IL_01E0: ldloc.s V_13
+   IL_01E2: ldloc.s V_7
+   IL_01E4: div 
+   IL_01E5: sub 
+   IL_01E6: mul 
+   IL_01E7: conv.r4 
+   IL_01E8: ldloc.s V_7
+   IL_01EA: conv.r4 
+   IL_01EB: div 
+   IL_01EC: ldloc.s V_8
+   IL_01EE: conv.r4 
+   IL_01EF: div 
+   IL_01F0: stloc.s V_15
+   IL_01F2: ldloc.s V_10
+   IL_01F4: ldloc.s V_9
+   IL_01F6: ldloc.s V_13
+   IL_01F8: ldelema Microsoft.Xna.Framework.Color
+   IL_01FD: call Microsoft.Xna.Framework.Color::ToVector4()
+   IL_0202: ldloc.s V_15
+   IL_0204: call Microsoft.Xna.Framework.Vector4::op_Multiply(Vector4,Single)
+   IL_0209: call Microsoft.Xna.Framework.Vector4::op_Addition(Vector4,Vector4)
+   IL_020E: stloc.s V_10
+   IL_0210: ldloc.s V_11
+   IL_0212: ldloc.s V_15
+   IL_0214: add 
+   IL_0215: stloc.s V_11
+   IL_0217: ldloc.s V_13
+   IL_0219: ldc.i4.1 
+   IL_021A: add 
+   IL_021B: stloc.s V_13
+   IL_021D: ldloc.s V_13
+   IL_021F: ldloc.s V_9
+   IL_0221: ldlen 
+   IL_0222: conv.i4 
+   IL_0223: blt.s IL_01bd: ldloc.s V_9
+   IL_0225: ldloc.s V_10
+   IL_0227: ldloc.s V_11
+   IL_0229: call Microsoft.Xna.Framework.Vector4::op_Division(Vector4,Single)
+   IL_022E: stloc.s V_10
+   IL_0230: ldloca.s V_12
+   IL_0232: ldloc.s V_10
+   IL_0234: ldfld Microsoft.Xna.Framework.Vector4::X
+   IL_0239: ldloc.s V_10
+   IL_023B: ldfld Microsoft.Xna.Framework.Vector4::Y
+   IL_0240: ldloc.s V_10
+   IL_0242: ldfld Microsoft.Xna.Framework.Vector4::Z
+   IL_0247: ldloc.s V_10
+   IL_0249: ldfld Microsoft.Xna.Framework.Vector4::W
+   IL_024E: call Microsoft.Xna.Framework.Color::.ctor(Single,Single,Single,Single)
+   IL_0253: ldloc.s V_12
+   IL_0255: call Terraria.Main::rgbToHsl(Color)
+   IL_025A: ldfld Microsoft.Xna.Framework.Vector3::Z
+   IL_025F: ldsfld WeaponDisplay.WeaponDisplay::IsLighterDecider
+   IL_0264: bge.un.s IL_0270: ldarg.0
+   IL_0266: ldarg.0 
+   IL_0267: ldloc.0 
+   IL_0268: ldloc.s V_12
+   IL_026A: call WeaponDisplay.WeaponDisplay::DrawSwoosh_AlphaBlend(Player,Color)
+   IL_026F: ret 
+   IL_0270: ldarg.0 
+   IL_0271: ldloc.0 
+   IL_0272: ldloc.s V_12
+   IL_0274: call WeaponDisplay.WeaponDisplay::DrawSwoosh(Player,Color)
+   IL_0279: ret 
+### WeaponDisplay.WeaponDisplay::DrawSwoosh
+   IL_0000: call WeaponDisplay.WeaponDisplay::get_ColorfulEffect()
+   IL_0005: brtrue.s IL_0008: call Microsoft.Xna.Framework.Graphics.Effect WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_0007: ret 
+   IL_0008: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_000D: brtrue.s IL_0010: ldarg.1
+   IL_000F: ret 
+   IL_0010: ldarg.1 
+   IL_0011: callvirt Terraria.Player::GetModPlayer()
+   IL_0016: stloc.0 
+   IL_0017: ldarg.1 
+   IL_0018: ldfld Terraria.Player::itemAnimation
+   IL_001D: conv.r4 
+   IL_001E: ldarg.1 
+   IL_001F: ldfld Terraria.Player::itemAnimationMax
+   IL_0024: ldc.i4.1 
+   IL_0025: sub 
+   IL_0026: conv.r4 
+   IL_0027: div 
+   IL_0028: stloc.1 
+   IL_0029: ldc.r4 1
+   IL_002E: ldc.r4 2
+   IL_0033: ldc.r4 1
+   IL_0038: ldloc.1 
+   IL_0039: sub 
+   IL_003A: mul 
+   IL_003B: ldc.r4 1
+   IL_0040: ldloc.1 
+   IL_0041: sub 
+   IL_0042: mul 
+   IL_0043: sub 
+   IL_0044: ldc.r4 -1
+   IL_0049: ldc.r4 1
+   IL_004E: ldloc.1 
+   IL_004F: sub 
+   IL_0050: mul 
+   IL_0051: sub 
+   IL_0052: stloc.2 
+   IL_0053: ldarg.1 
+   IL_0054: ldfld Terraria.Player::gravDir
+   IL_0059: ldc.r4 -1
+   IL_005E: beq.s IL_0068: ldarg.1
+   IL_0060: ldarg.1 
+   IL_0061: callvirt Terraria.Entity::get_Center()
+   IL_0066: br.s IL_00c4: stloc.3
+   IL_0068: ldarg.1 
+   IL_0069: callvirt Terraria.Entity::get_Center()
+   IL_006E: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0073: ldc.r4 2
+   IL_0078: ldsfld Terraria.Main::screenPosition
+   IL_007D: call Terraria.Main::get_ScreenSize()
+   IL_0082: call Terraria.Utils::ToVector2(Point)
+   IL_0087: ldc.r4 2
+   IL_008C: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_0091: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_0096: call Microsoft.Xna.Framework.Vector2::op_Multiply(Single,Vector2)
+   IL_009B: ldarg.1 
+   IL_009C: callvirt Terraria.Entity::get_Center()
+   IL_00A1: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_00A6: ldc.r4 0
+   IL_00AB: ldc.r4 96
+   IL_00B0: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_00B5: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_00BA: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_00BF: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_00C4: stloc.3 
+   IL_00C5: ldloc.0 
+   IL_00C6: ldfld WeaponDisplay.WeaponDisplayPlayer::negativeDir
+   IL_00CB: brtrue.s IL_00d0: ldc.r4 1
+   IL_00CD: ldloc.2 
+   IL_00CE: br.s IL_00d7: stloc.2
+   IL_00D0: ldc.r4 1
+   IL_00D5: ldloc.2 
+   IL_00D6: sub 
+   IL_00D7: stloc.2 
+   IL_00D8: ldloc.2 
+   IL_00D9: ldc.r4 -1.125
+   IL_00DE: mul 
+   IL_00DF: ldc.r4 1
+   IL_00E4: ldloc.2 
+   IL_00E5: sub 
+   IL_00E6: ldc.r4 0.1125
+   IL_00EB: mul 
+   IL_00EC: add 
+   IL_00ED: ldc.r4 3.141593
+   IL_00F2: mul 
+   IL_00F3: stloc.s V_4
+   IL_00F5: ldc.i4.6 
+   IL_00F6: newarr WeaponDisplay.CustomVertexInfo
+   IL_00FB: stloc.s V_5
+   IL_00FD: ldsfld Terraria.GameContent.TextureAssets::Item
+   IL_0102: ldarg.1 
+   IL_0103: callvirt Terraria.Player::get_HeldItem()
+   IL_0108: ldfld Terraria.Item::type
+   IL_010D: ldelem.ref 
+   IL_010E: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_0113: stloc.s V_6
+   IL_0115: ldloc.0 
+   IL_0116: ldfld WeaponDisplay.WeaponDisplayPlayer::kValue
+   IL_011B: stloc.s V_7
+   IL_011D: ldloc.s V_6
+   IL_011F: call Terraria.Utils::Size(Texture2D)
+   IL_0124: stloc.s V_24
+   IL_0126: ldloca.s V_24
+   IL_0128: call Microsoft.Xna.Framework.Vector2::Length()
+   IL_012D: ldarg.1 
+   IL_012E: ldarg.1 
+   IL_012F: callvirt Terraria.Player::get_HeldItem()
+   IL_0134: callvirt Terraria.Player::GetAdjustedItemScale(Item)
+   IL_0139: mul 
+   IL_013A: ldloc.s V_7
+   IL_013C: div 
+   IL_013D: ldc.r4 0.7
+   IL_0142: mul 
+   IL_0143: ldsfld Terraria.Main::GameViewMatrix
+   IL_0148: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_014D: ldfld Microsoft.Xna.Framework.Matrix::M11
+   IL_0152: mul 
+   IL_0153: stloc.s V_8
+   IL_0155: ldloc.s V_4
+   IL_0157: conv.r8 
+   IL_0158: call System.Math::Cos(Double)
+   IL_015D: conv.r4 
+   IL_015E: ldloc.s V_8
+   IL_0160: mul 
+   IL_0161: stloc.s V_9
+   IL_0163: ldloc.s V_4
+   IL_0165: conv.r8 
+   IL_0166: call System.Math::Sin(Double)
+   IL_016B: conv.r4 
+   IL_016C: ldloc.s V_8
+   IL_016E: mul 
+   IL_016F: stloc.s V_10
+   IL_0171: ldloc.s V_7
+   IL_0173: ldloc.s V_9
+   IL_0175: ldloc.s V_10
+   IL_0177: sub 
+   IL_0178: mul 
+   IL_0179: ldloc.s V_9
+   IL_017B: neg 
+   IL_017C: ldloc.s V_10
+   IL_017E: sub 
+   IL_017F: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_0184: ldloc.0 
+   IL_0185: ldfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_018A: conv.r8 
+   IL_018B: ldloca.s V_24
+   IL_018D: initobj Microsoft.Xna.Framework.Vector2
+   IL_0193: ldloc.s V_24
+   IL_0195: call Terraria.Utils::RotatedBy(Vector2,Double,Vector2)
+   IL_019A: stloc.s V_11
+   IL_019C: ldloc.s V_7
+   IL_019E: neg 
+   IL_019F: ldloc.s V_9
+   IL_01A1: ldloc.s V_10
+   IL_01A3: add 
+   IL_01A4: mul 
+   IL_01A5: ldloc.s V_10
+   IL_01A7: ldloc.s V_9
+   IL_01A9: sub 
+   IL_01AA: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_01AF: ldloc.0 
+   IL_01B0: ldfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_01B5: conv.r8 
+   IL_01B6: ldloca.s V_24
+   IL_01B8: initobj Microsoft.Xna.Framework.Vector2
+   IL_01BE: ldloc.s V_24
+   IL_01C0: call Terraria.Utils::RotatedBy(Vector2,Double,Vector2)
+   IL_01C5: stloc.s V_12
+   IL_01C7: ldc.r4 0
+   IL_01CC: ldsfld Terraria.Main::screenWidth
+   IL_01D1: conv.r4 
+   IL_01D2: ldsfld Terraria.Main::screenHeight
+   IL_01D7: conv.r4 
+   IL_01D8: ldc.r4 0
+   IL_01DD: ldc.r4 0
+   IL_01E2: ldc.r4 1
+   IL_01E7: call Microsoft.Xna.Framework.Matrix::CreateOrthographicOffCenter(Single,Single,Single,Single,Single,Single)
+   IL_01EC: stloc.s V_13
+   IL_01EE: ldsflda Terraria.Main::screenPosition
+   IL_01F3: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_01F8: neg 
+   IL_01F9: ldsflda Terraria.Main::screenPosition
+   IL_01FE: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0203: neg 
+   IL_0204: ldc.r4 0
+   IL_0209: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_020E: call Microsoft.Xna.Framework.Matrix::CreateTranslation(Vector3)
+   IL_0213: stloc.s V_14
+   IL_0215: ldsfld Terraria.Main::graphics
+   IL_021A: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_021F: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_RasterizerState()
+   IL_0224: stloc.s V_15
+   IL_0226: newobj System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::.ctor()
+   IL_022B: stloc.s V_16
+   IL_022D: ldloc.0 
+   IL_022E: ldfld WeaponDisplay.WeaponDisplayPlayer::negativeDir
+   IL_0233: brtrue.s IL_023e: ldc.r4 4
+   IL_0235: ldc.r4 4
+   IL_023A: ldloc.2 
+   IL_023B: mul 
+   IL_023C: br.s IL_024b: ldc.r4 0.1125
+   IL_023E: ldc.r4 4
+   IL_0243: ldloc.2 
+   IL_0244: mul 
+   IL_0245: ldc.r4 3
+   IL_024A: sub 
+   IL_024B: ldc.r4 0.1125
+   IL_0250: ldc.r4 -1.125
+   IL_0255: ldc.i4.1 
+   IL_0256: call WeaponDisplay.WeaponDisplayMethods::Lerp(Single,Single,Single,Boolean)
+   IL_025B: ldc.r4 3.141593
+   IL_0260: mul 
+   IL_0261: stloc.s V_17
+   IL_0263: ldsfld Terraria.Main::screenPosition
+   IL_0268: call Terraria.Main::get_ScreenSize()
+   IL_026D: call Terraria.Utils::ToVector2(Point)
+   IL_0272: ldc.r4 2
+   IL_0277: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_027C: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_0281: stloc.s V_18
+   IL_0283: ldloc.3 
+   IL_0284: ldloc.s V_18
+   IL_0286: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_028B: stloc.s V_19
+   IL_028D: ldloca.s V_19
+   IL_028F: call Microsoft.Xna.Framework.Vector2::Length()
+   IL_0294: ldsfld Terraria.Main::GameViewMatrix
+   IL_0299: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_029E: ldfld Microsoft.Xna.Framework.Matrix::M11
+   IL_02A3: mul 
+   IL_02A4: stloc.s V_20
+   IL_02A6: ldloc.s V_18
+   IL_02A8: ldloc.s V_19
+   IL_02AA: call Microsoft.Xna.Framework.Vector2::Normalize(Vector2)
+   IL_02AF: ldloc.s V_20
+   IL_02B1: call Microsoft.Xna.Framework.Vector2::op_Multiply(Vector2,Single)
+   IL_02B6: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_02BB: stloc.s V_21
+   IL_02BD: ldloc.0 
+   IL_02BE: ldfld WeaponDisplay.WeaponDisplayPlayer::HitboxPosition
+   IL_02C3: stloc.s V_22
+   IL_02C5: ldc.i4.0 
+   IL_02C6: stloc.s V_25
+   IL_02C8: br IL_03fe: ldloc.s V_25
+   IL_02CD: ldloc.s V_25
+   IL_02CF: ldc.i4.1 
+   IL_02D0: add 
+   IL_02D1: conv.r4 
+   IL_02D2: ldc.r4 25
+   IL_02D7: div 
+   IL_02D8: stloc.s V_26
+   IL_02DA: ldloc.s V_26
+   IL_02DC: ldloc.s V_17
+   IL_02DE: ldloc.s V_4
+   IL_02E0: ldc.i4.1 
+   IL_02E1: call WeaponDisplay.WeaponDisplayMethods::Lerp(Single,Single,Single,Boolean)
+   IL_02E6: dup 
+   IL_02E7: conv.r8 
+   IL_02E8: call System.Math::Cos(Double)
+   IL_02ED: conv.r4 
+   IL_02EE: ldloc.s V_8
+   IL_02F0: mul 
+   IL_02F1: stloc.s V_27
+   IL_02F3: conv.r8 
+   IL_02F4: call System.Math::Sin(Double)
+   IL_02F9: conv.r4 
+   IL_02FA: ldloc.s V_8
+   IL_02FC: mul 
+   IL_02FD: stloc.s V_28
+   IL_02FF: ldloc.s V_7
+   IL_0301: ldloc.s V_27
+   IL_0303: ldloc.s V_28
+   IL_0305: sub 
+   IL_0306: mul 
+   IL_0307: ldloc.s V_27
+   IL_0309: neg 
+   IL_030A: ldloc.s V_28
+   IL_030C: sub 
+   IL_030D: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_0312: ldloc.0 
+   IL_0313: ldfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_0318: conv.r8 
+   IL_0319: ldloca.s V_24
+   IL_031B: initobj Microsoft.Xna.Framework.Vector2
+   IL_0321: ldloc.s V_24
+   IL_0323: call Terraria.Utils::RotatedBy(Vector2,Double,Vector2)
+   IL_0328: ldloc.s V_7
+   IL_032A: neg 
+   IL_032B: ldloc.s V_27
+   IL_032D: ldloc.s V_28
+   IL_032F: add 
+   IL_0330: mul 
+   IL_0331: ldloc.s V_28
+   IL_0333: ldloc.s V_27
+   IL_0335: sub 
+   IL_0336: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_033B: ldloc.0 
+   IL_033C: ldfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_0341: conv.r8 
+   IL_0342: ldloca.s V_24
+   IL_0344: initobj Microsoft.Xna.Framework.Vector2
+   IL_034A: ldloc.s V_24
+   IL_034C: call Terraria.Utils::RotatedBy(Vector2,Double,Vector2)
+   IL_0351: stloc.s V_29
+   IL_0353: ldloc.s V_29
+   IL_0355: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_035A: stloc.s V_30
+   IL_035C: ldloc.3 
+   IL_035D: ldloc.s V_30
+   IL_035F: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_0364: stloc.s V_31
+   IL_0366: ldsfld Terraria.Main::myPlayer
+   IL_036B: ldarg.1 
+   IL_036C: ldfld Terraria.Entity::whoAmI
+   IL_0371: bne.un.s IL_0396: ldloc.s V_16
+   IL_0373: ldloc.s V_31
+   IL_0375: ldarg.1 
+   IL_0376: callvirt Terraria.Entity::get_Center()
+   IL_037B: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_0380: ldsfld Terraria.Main::GameViewMatrix
+   IL_0385: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_038A: ldfld Microsoft.Xna.Framework.Matrix::M11
+   IL_038F: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_0394: stloc.s V_22
+   IL_0396: ldloc.s V_16
+   IL_0398: ldloc.s V_21
+   IL_039A: ldloc.s V_30
+   IL_039C: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_03A1: ldarg.2 
+   IL_03A2: ldc.r4 1
+   IL_03A7: ldloc.s V_26
+   IL_03A9: sub 
+   IL_03AA: ldc.r4 1
+   IL_03AF: ldc.r4 3
+   IL_03B4: ldloc.s V_26
+   IL_03B6: mul 
+   IL_03B7: ldc.r4 3
+   IL_03BC: ldloc.s V_26
+   IL_03BE: mul 
+   IL_03BF: ldc.r4 1
+   IL_03C4: add 
+   IL_03C5: div 
+   IL_03C6: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_03CB: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_03D0: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_03D5: ldloc.s V_16
+   IL_03D7: ldloc.s V_21
+   IL_03D9: ldarg.2 
+   IL_03DA: ldc.r4 0
+   IL_03DF: ldc.r4 0
+   IL_03E4: ldc.r4 0
+   IL_03E9: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_03EE: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_03F3: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_03F8: ldloc.s V_25
+   IL_03FA: ldc.i4.1 
+   IL_03FB: add 
+   IL_03FC: stloc.s V_25
+   IL_03FE: ldloc.s V_25
+   IL_0400: ldc.i4.s 25
+   IL_0402: blt IL_02cd: ldloc.s V_25
+   IL_0407: ldloc.0 
+   IL_0408: ldloc.s V_22
+   IL_040A: stfld WeaponDisplay.WeaponDisplayPlayer::HitboxPosition
+   IL_040F: ldsfld Terraria.Main::netMode
+   IL_0414: ldc.i4.1 
+   IL_0415: bne.un.s IL_0440: ldloc.0
+   IL_0417: ldsfld WeaponDisplay.WeaponDisplay::Instance
+   IL_041C: ldc.i4 256
+   IL_0421: callvirt Terraria.ModLoader.Mod::GetPacket(Int32)
+   IL_0426: dup 
+   IL_0427: ldc.i4.1 
+   IL_0428: callvirt System.IO.BinaryWriter::Write(Byte)
+   IL_042D: dup 
+   IL_042E: ldloc.0 
+   IL_042F: ldfld WeaponDisplay.WeaponDisplayPlayer::HitboxPosition
+   IL_0434: call Terraria.Utils::WritePackedVector2(BinaryWriter,Vector2)
+   IL_0439: ldc.i4.m1 
+   IL_043A: ldc.i4.m1 
+   IL_043B: callvirt Terraria.ModLoader.ModPacket::Send(Int32,Int32)
+   IL_0440: ldloc.0 
+   IL_0441: ldfld WeaponDisplay.WeaponDisplayPlayer::UseSlash
+   IL_0446: brtrue.s IL_0449: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_0448: ret 
+   IL_0449: ldsfld Terraria.Main::spriteBatch
+   IL_044E: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_0453: ldsfld Terraria.Main::spriteBatch
+   IL_0458: ldc.i4.1 
+   IL_0459: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::Additive
+   IL_045E: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_0463: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::Default
+   IL_0468: ldsfld Microsoft.Xna.Framework.Graphics.RasterizerState::CullNone
+   IL_046D: ldnull 
+   IL_046E: ldsfld Terraria.Main::GameViewMatrix
+   IL_0473: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_0478: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_047D: newobj System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::.ctor()
+   IL_0482: stloc.s V_23
+   IL_0484: ldloc.s V_16
+   IL_0486: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Count()
+   IL_048B: ldc.i4.2 
+   IL_048C: ble IL_0661: ldloc.2
+   IL_0491: ldc.i4.0 
+   IL_0492: stloc.s V_32
+   IL_0494: br.s IL_0506: ldloc.s V_32
+   IL_0496: ldloc.s V_23
+   IL_0498: ldloc.s V_16
+   IL_049A: ldloc.s V_32
+   IL_049C: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_04A1: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_04A6: ldloc.s V_23
+   IL_04A8: ldloc.s V_16
+   IL_04AA: ldloc.s V_32
+   IL_04AC: ldc.i4.2 
+   IL_04AD: add 
+   IL_04AE: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_04B3: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_04B8: ldloc.s V_23
+   IL_04BA: ldloc.s V_16
+   IL_04BC: ldloc.s V_32
+   IL_04BE: ldc.i4.1 
+   IL_04BF: add 
+   IL_04C0: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_04C5: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_04CA: ldloc.s V_23
+   IL_04CC: ldloc.s V_16
+   IL_04CE: ldloc.s V_32
+   IL_04D0: ldc.i4.1 
+   IL_04D1: add 
+   IL_04D2: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_04D7: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_04DC: ldloc.s V_23
+   IL_04DE: ldloc.s V_16
+   IL_04E0: ldloc.s V_32
+   IL_04E2: ldc.i4.2 
+   IL_04E3: add 
+   IL_04E4: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_04E9: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_04EE: ldloc.s V_23
+   IL_04F0: ldloc.s V_16
+   IL_04F2: ldloc.s V_32
+   IL_04F4: ldc.i4.3 
+   IL_04F5: add 
+   IL_04F6: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_04FB: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_0500: ldloc.s V_32
+   IL_0502: ldc.i4.2 
+   IL_0503: add 
+   IL_0504: stloc.s V_32
+   IL_0506: ldloc.s V_32
+   IL_0508: ldloc.s V_16
+   IL_050A: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Count()
+   IL_050F: ldc.i4.2 
+   IL_0510: sub 
+   IL_0511: blt.s IL_0496: ldloc.s V_23
+   IL_0513: call WeaponDisplay.WeaponDisplay::get_ColorfulEffect()
+   IL_0518: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_051D: ldstr "uTransform"
+   IL_0522: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_0527: ldloc.s V_14
+   IL_0529: ldloc.s V_13
+   IL_052B: call Microsoft.Xna.Framework.Matrix::op_Multiply(Matrix,Matrix)
+   IL_0530: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Matrix)
+   IL_0535: call WeaponDisplay.WeaponDisplay::get_ColorfulEffect()
+   IL_053A: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_053F: ldstr "uTime"
+   IL_0544: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_0549: ldsfld Terraria.Main::time
+   IL_054E: conv.r4 
+   IL_054F: neg 
+   IL_0550: ldc.r4 0.06
+   IL_0555: mul 
+   IL_0556: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Single)
+   IL_055B: ldsfld Terraria.Main::graphics
+   IL_0560: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0565: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_056A: ldc.i4.0 
+   IL_056B: ldstr "WeaponDisplay/Shader/BaseTex"
+   IL_0570: ldc.i4.2 
+   IL_0571: call Terraria.ModLoader.ModContent::Request(String,AssetRequestMode)
+   IL_0576: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_057B: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_0580: ldsfld Terraria.Main::graphics
+   IL_0585: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_058A: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_058F: ldc.i4.1 
+   IL_0590: ldstr "WeaponDisplay/Shader/AniTex"
+   IL_0595: ldc.i4.2 
+   IL_0596: call Terraria.ModLoader.ModContent::Request(String,AssetRequestMode)
+   IL_059B: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_05A0: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_05A5: ldsfld Terraria.Main::graphics
+   IL_05AA: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_05AF: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_05B4: ldc.i4.2 
+   IL_05B5: ldloc.s V_6
+   IL_05B7: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_05BC: ldsfld Terraria.Main::graphics
+   IL_05C1: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_05C6: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_05CB: ldc.i4.0 
+   IL_05CC: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_05D1: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_05D6: ldsfld Terraria.Main::graphics
+   IL_05DB: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_05E0: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_05E5: ldc.i4.1 
+   IL_05E6: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_05EB: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_05F0: ldsfld Terraria.Main::graphics
+   IL_05F5: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_05FA: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_05FF: ldc.i4.2 
+   IL_0600: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_0605: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_060A: call WeaponDisplay.WeaponDisplay::get_ColorfulEffect()
+   IL_060F: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_CurrentTechnique()
+   IL_0614: callvirt Microsoft.Xna.Framework.Graphics.EffectTechnique::get_Passes()
+   IL_0619: ldc.i4.1 
+   IL_061A: ldsfld WeaponDisplay.WeaponDisplay::UseItemTexForSwoosh
+   IL_061F: call Terraria.Utils::ToInt(Boolean)
+   IL_0624: add 
+   IL_0625: callvirt Microsoft.Xna.Framework.Graphics.EffectPassCollection::get_Item(Int32)
+   IL_062A: callvirt Microsoft.Xna.Framework.Graphics.EffectPass::Apply()
+   IL_062F: ldsfld Terraria.Main::graphics
+   IL_0634: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0639: ldc.i4.0 
+   IL_063A: ldloc.s V_23
+   IL_063C: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::ToArray()
+   IL_0641: ldc.i4.0 
+   IL_0642: ldloc.s V_23
+   IL_0644: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Count()
+   IL_0649: ldc.i4.3 
+   IL_064A: div 
+   IL_064B: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::DrawUserPrimitives(PrimitiveType,!!0[],Int32,Int32)
+   IL_0650: ldsfld Terraria.Main::graphics
+   IL_0655: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_065A: ldloc.s V_15
+   IL_065C: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::set_RasterizerState(RasterizerState)
+   IL_0661: ldloc.2 
+   IL_0662: ldc.r4 0
+   IL_0667: beq IL_09e0: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_066C: ldloc.0 
+   IL_066D: ldfld WeaponDisplay.WeaponDisplayPlayer::negativeDir
+   IL_0672: brtrue.s IL_0677: ldc.i4.0
+   IL_0674: ldc.i4.1 
+   IL_0675: br.s IL_0678: stloc.s V_33
+   IL_0677: ldc.i4.0 
+   IL_0678: stloc.s V_33
+   IL_067A: ldloc.s V_5
+   IL_067C: ldc.i4.0 
+   IL_067D: ldloc.s V_21
+   IL_067F: ldarg.2 
+   IL_0680: ldc.r4 0
+   IL_0685: ldc.r4 1
+   IL_068A: ldc.r4 0.5
+   IL_068F: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_0694: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_0699: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_069E: ldloc.s V_5
+   IL_06A0: ldc.i4.1 
+   IL_06A1: ldloc.s V_11
+   IL_06A3: ldloc.s V_21
+   IL_06A5: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_06AA: ldarg.2 
+   IL_06AB: ldloc.s V_33
+   IL_06AD: ldc.i4.1 
+   IL_06AE: xor 
+   IL_06AF: conv.r4 
+   IL_06B0: ldloc.s V_33
+   IL_06B2: ldc.i4.1 
+   IL_06B3: xor 
+   IL_06B4: conv.r4 
+   IL_06B5: ldc.r4 0.5
+   IL_06BA: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_06BF: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_06C4: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_06C9: ldloc.s V_5
+   IL_06CB: ldc.i4.2 
+   IL_06CC: ldloc.s V_12
+   IL_06CE: ldloc.s V_21
+   IL_06D0: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_06D5: ldarg.2 
+   IL_06D6: ldloc.s V_33
+   IL_06D8: conv.r4 
+   IL_06D9: ldloc.s V_33
+   IL_06DB: conv.r4 
+   IL_06DC: ldc.r4 0.5
+   IL_06E1: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_06E6: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_06EB: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_06F0: ldloc.s V_5
+   IL_06F2: ldc.i4.3 
+   IL_06F3: ldloc.s V_5
+   IL_06F5: ldc.i4.1 
+   IL_06F6: ldelem.any WeaponDisplay.CustomVertexInfo
+   IL_06FB: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_0700: ldloc.s V_5
+   IL_0702: ldc.i4.4 
+   IL_0703: ldloc.s V_11
+   IL_0705: ldloc.s V_12
+   IL_0707: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_070C: ldloc.s V_21
+   IL_070E: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_0713: ldarg.2 
+   IL_0714: ldc.r4 1
+   IL_0719: ldc.r4 0
+   IL_071E: ldc.r4 0.5
+   IL_0723: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_0728: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_072D: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_0732: ldloc.s V_5
+   IL_0734: ldc.i4.5 
+   IL_0735: ldloc.s V_5
+   IL_0737: ldc.i4.2 
+   IL_0738: ldelem.any WeaponDisplay.CustomVertexInfo
+   IL_073D: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_0742: ldsfld Terraria.Main::spriteBatch
+   IL_0747: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_074C: ldsfld Terraria.Main::spriteBatch
+   IL_0751: ldc.i4.1 
+   IL_0752: ldsfld WeaponDisplay.WeaponDisplay::ItemAdditive
+   IL_0757: brtrue.s IL_0760: ldsfld Microsoft.Xna.Framework.Graphics.BlendState Microsoft.Xna.Framework.Graphics.BlendState::Additive
+   IL_0759: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_075E: br.s IL_0765: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_0760: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::Additive
+   IL_0765: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_076A: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::Default
+   IL_076F: ldsfld Microsoft.Xna.Framework.Graphics.RasterizerState::CullNone
+   IL_0774: ldnull 
+   IL_0775: ldsfld Terraria.Main::GameViewMatrix
+   IL_077A: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_077F: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_0784: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_0789: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_078E: ldstr "uTransform"
+   IL_0793: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_0798: ldloc.s V_14
+   IL_079A: ldloc.s V_13
+   IL_079C: call Microsoft.Xna.Framework.Matrix::op_Multiply(Matrix,Matrix)
+   IL_07A1: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Matrix)
+   IL_07A6: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_07AB: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_07B0: ldstr "uTime"
+   IL_07B5: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_07BA: ldsfld Terraria.Main::time
+   IL_07BF: conv.r4 
+   IL_07C0: ldc.r4 60
+   IL_07C5: div 
+   IL_07C6: ldc.r4 1
+   IL_07CB: rem 
+   IL_07CC: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Single)
+   IL_07D1: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_07D6: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_07DB: ldstr "uItemColor"
+   IL_07E0: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_07E5: ldarg.1 
+   IL_07E6: callvirt Terraria.Entity::get_Center()
+   IL_07EB: ldc.r4 16
+   IL_07F0: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_07F5: call Terraria.Utils::ToPoint(Vector2)
+   IL_07FA: ldfld Microsoft.Xna.Framework.Point::X
+   IL_07FF: ldarg.1 
+   IL_0800: callvirt Terraria.Entity::get_Center()
+   IL_0805: ldc.r4 16
+   IL_080A: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_080F: call Terraria.Utils::ToPoint(Vector2)
+   IL_0814: ldfld Microsoft.Xna.Framework.Point::Y
+   IL_0819: call Terraria.Lighting::GetColor(Int32,Int32)
+   IL_081E: stloc.s V_35
+   IL_0820: ldloca.s V_35
+   IL_0822: call Microsoft.Xna.Framework.Color::ToVector4()
+   IL_0827: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Vector4)
+   IL_082C: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_0831: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_0836: ldstr "uItemGlowColor"
+   IL_083B: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_0840: ldc.i4 250
+   IL_0845: ldc.i4 250
+   IL_084A: ldc.i4 250
+   IL_084F: ldarg.1 
+   IL_0850: callvirt Terraria.Player::get_HeldItem()
+   IL_0855: ldfld Terraria.Item::alpha
+   IL_085A: newobj Microsoft.Xna.Framework.Color::.ctor(Int32,Int32,Int32,Int32)
+   IL_085F: stloc.s V_35
+   IL_0861: ldloca.s V_35
+   IL_0863: call Microsoft.Xna.Framework.Color::ToVector4()
+   IL_0868: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Vector4)
+   IL_086D: ldsfld Terraria.Main::graphics
+   IL_0872: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0877: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_087C: ldc.i4.0 
+   IL_087D: ldloc.s V_6
+   IL_087F: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_0884: ldsfld Terraria.Main::graphics
+   IL_0889: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_088E: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_0893: ldc.i4.1 
+   IL_0894: ldstr "WeaponDisplay/Shader/Style_12"
+   IL_0899: ldc.i4.2 
+   IL_089A: call Terraria.ModLoader.ModContent::Request(String,AssetRequestMode)
+   IL_089F: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_08A4: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_08A9: ldsfld Terraria.Main::graphics
+   IL_08AE: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_08B3: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_08B8: ldc.i4.2 
+   IL_08B9: ldstr "WeaponDisplay/Shader/Style_18"
+   IL_08BE: ldc.i4.2 
+   IL_08BF: call Terraria.ModLoader.ModContent::Request(String,AssetRequestMode)
+   IL_08C4: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_08C9: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_08CE: ldarg.1 
+   IL_08CF: callvirt Terraria.Player::get_HeldItem()
+   IL_08D4: ldfld Terraria.Item::glowMask
+   IL_08D9: stloc.s V_34
+   IL_08DB: ldloc.s V_34
+   IL_08DD: ldc.i4.m1 
+   IL_08DE: beq.s IL_0902: ldarg.1
+   IL_08E0: ldsfld Terraria.Main::graphics
+   IL_08E5: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_08EA: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_08EF: ldc.i4.3 
+   IL_08F0: ldsfld Terraria.GameContent.TextureAssets::GlowMask
+   IL_08F5: ldloc.s V_34
+   IL_08F7: ldelem.ref 
+   IL_08F8: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_08FD: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_0902: ldarg.1 
+   IL_0903: callvirt Terraria.Player::get_HeldItem()
+   IL_0908: ldfld Terraria.Item::type
+   IL_090D: ldc.i4 3823
+   IL_0912: bne.un.s IL_0939: ldsfld Microsoft.Xna.Framework.GraphicsDeviceManager Terraria.Main::graphics
+   IL_0914: ldsfld Terraria.Main::graphics
+   IL_0919: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_091E: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_0923: ldc.i4.3 
+   IL_0924: ldstr "WeaponDisplay/Shader/ItemFlame_3823"
+   IL_0929: ldc.i4.2 
+   IL_092A: call Terraria.ModLoader.ModContent::Request(String,AssetRequestMode)
+   IL_092F: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_0934: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_0939: ldsfld Terraria.Main::graphics
+   IL_093E: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0943: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_0948: ldc.i4.0 
+   IL_0949: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_094E: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_0953: ldsfld Terraria.Main::graphics
+   IL_0958: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_095D: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_0962: ldc.i4.1 
+   IL_0963: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_0968: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_096D: ldsfld Terraria.Main::graphics
+   IL_0972: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0977: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_097C: ldc.i4.2 
+   IL_097D: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_0982: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_0987: ldsfld Terraria.Main::graphics
+   IL_098C: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0991: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_0996: ldc.i4.3 
+   IL_0997: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_099C: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_09A1: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_09A6: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_CurrentTechnique()
+   IL_09AB: callvirt Microsoft.Xna.Framework.Graphics.EffectTechnique::get_Passes()
+   IL_09B0: ldc.i4.2 
+   IL_09B1: callvirt Microsoft.Xna.Framework.Graphics.EffectPassCollection::get_Item(Int32)
+   IL_09B6: callvirt Microsoft.Xna.Framework.Graphics.EffectPass::Apply()
+   IL_09BB: ldsfld Terraria.Main::graphics
+   IL_09C0: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_09C5: ldc.i4.0 
+   IL_09C6: ldloc.s V_5
+   IL_09C8: ldc.i4.0 
+   IL_09C9: ldc.i4.2 
+   IL_09CA: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::DrawUserPrimitives(PrimitiveType,!!0[],Int32,Int32)
+   IL_09CF: ldsfld Terraria.Main::graphics
+   IL_09D4: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_09D9: ldloc.s V_15
+   IL_09DB: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::set_RasterizerState(RasterizerState)
+   IL_09E0: ldsfld Terraria.Main::spriteBatch
+   IL_09E5: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_09EA: ldsfld Terraria.Main::spriteBatch
+   IL_09EF: ldc.i4.1 
+   IL_09F0: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_09F5: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_09FA: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::Default
+   IL_09FF: ldsfld Microsoft.Xna.Framework.Graphics.RasterizerState::CullNone
+   IL_0A04: ldnull 
+   IL_0A05: call Terraria.Main::get_Transform()
+   IL_0A0A: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_0A0F: ret 
+### WeaponDisplay.WeaponDisplay::DrawSwoosh_AlphaBlend
+   IL_0000: call WeaponDisplay.WeaponDisplay::get_ColorfulEffect()
+   IL_0005: brtrue.s IL_0008: call Microsoft.Xna.Framework.Graphics.Effect WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_0007: ret 
+   IL_0008: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_000D: brtrue.s IL_0010: ldarg.1
+   IL_000F: ret 
+   IL_0010: ldarg.1 
+   IL_0011: callvirt Terraria.Player::GetModPlayer()
+   IL_0016: stloc.0 
+   IL_0017: ldarg.1 
+   IL_0018: ldfld Terraria.Player::itemAnimation
+   IL_001D: conv.r4 
+   IL_001E: ldarg.1 
+   IL_001F: ldfld Terraria.Player::itemAnimationMax
+   IL_0024: ldc.i4.1 
+   IL_0025: sub 
+   IL_0026: conv.r4 
+   IL_0027: div 
+   IL_0028: stloc.1 
+   IL_0029: ldc.r4 1
+   IL_002E: ldc.r4 2
+   IL_0033: ldc.r4 1
+   IL_0038: ldloc.1 
+   IL_0039: sub 
+   IL_003A: mul 
+   IL_003B: ldc.r4 1
+   IL_0040: ldloc.1 
+   IL_0041: sub 
+   IL_0042: mul 
+   IL_0043: sub 
+   IL_0044: ldc.r4 -1
+   IL_0049: ldc.r4 1
+   IL_004E: ldloc.1 
+   IL_004F: sub 
+   IL_0050: mul 
+   IL_0051: sub 
+   IL_0052: stloc.2 
+   IL_0053: ldarg.1 
+   IL_0054: ldfld Terraria.Player::gravDir
+   IL_0059: ldc.r4 -1
+   IL_005E: beq.s IL_0068: ldarg.1
+   IL_0060: ldarg.1 
+   IL_0061: callvirt Terraria.Entity::get_Center()
+   IL_0066: br.s IL_00c4: stloc.3
+   IL_0068: ldarg.1 
+   IL_0069: callvirt Terraria.Entity::get_Center()
+   IL_006E: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0073: ldc.r4 2
+   IL_0078: ldsfld Terraria.Main::screenPosition
+   IL_007D: call Terraria.Main::get_ScreenSize()
+   IL_0082: call Terraria.Utils::ToVector2(Point)
+   IL_0087: ldc.r4 2
+   IL_008C: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_0091: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_0096: call Microsoft.Xna.Framework.Vector2::op_Multiply(Single,Vector2)
+   IL_009B: ldarg.1 
+   IL_009C: callvirt Terraria.Entity::get_Center()
+   IL_00A1: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_00A6: ldc.r4 0
+   IL_00AB: ldc.r4 96
+   IL_00B0: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_00B5: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_00BA: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_00BF: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_00C4: stloc.3 
+   IL_00C5: ldloc.0 
+   IL_00C6: ldfld WeaponDisplay.WeaponDisplayPlayer::negativeDir
+   IL_00CB: brtrue.s IL_00d0: ldc.r4 1
+   IL_00CD: ldloc.2 
+   IL_00CE: br.s IL_00d7: stloc.2
+   IL_00D0: ldc.r4 1
+   IL_00D5: ldloc.2 
+   IL_00D6: sub 
+   IL_00D7: stloc.2 
+   IL_00D8: ldloc.2 
+   IL_00D9: ldc.r4 -1.125
+   IL_00DE: mul 
+   IL_00DF: ldc.r4 1
+   IL_00E4: ldloc.2 
+   IL_00E5: sub 
+   IL_00E6: ldc.r4 0.1125
+   IL_00EB: mul 
+   IL_00EC: add 
+   IL_00ED: ldc.r4 3.141593
+   IL_00F2: mul 
+   IL_00F3: stloc.s V_4
+   IL_00F5: ldc.i4.6 
+   IL_00F6: newarr WeaponDisplay.CustomVertexInfo
+   IL_00FB: stloc.s V_5
+   IL_00FD: ldsfld Terraria.GameContent.TextureAssets::Item
+   IL_0102: ldarg.1 
+   IL_0103: callvirt Terraria.Player::get_HeldItem()
+   IL_0108: ldfld Terraria.Item::type
+   IL_010D: ldelem.ref 
+   IL_010E: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_0113: stloc.s V_6
+   IL_0115: ldloc.0 
+   IL_0116: ldfld WeaponDisplay.WeaponDisplayPlayer::kValue
+   IL_011B: stloc.s V_7
+   IL_011D: ldloc.s V_6
+   IL_011F: call Terraria.Utils::Size(Texture2D)
+   IL_0124: stloc.s V_25
+   IL_0126: ldloca.s V_25
+   IL_0128: call Microsoft.Xna.Framework.Vector2::Length()
+   IL_012D: ldarg.1 
+   IL_012E: ldarg.1 
+   IL_012F: callvirt Terraria.Player::get_HeldItem()
+   IL_0134: callvirt Terraria.Player::GetAdjustedItemScale(Item)
+   IL_0139: mul 
+   IL_013A: ldloc.s V_7
+   IL_013C: div 
+   IL_013D: ldc.r4 0.7
+   IL_0142: mul 
+   IL_0143: ldsfld Terraria.Main::GameViewMatrix
+   IL_0148: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_014D: ldfld Microsoft.Xna.Framework.Matrix::M11
+   IL_0152: mul 
+   IL_0153: stloc.s V_8
+   IL_0155: ldloc.s V_4
+   IL_0157: conv.r8 
+   IL_0158: call System.Math::Cos(Double)
+   IL_015D: conv.r4 
+   IL_015E: ldloc.s V_8
+   IL_0160: mul 
+   IL_0161: stloc.s V_9
+   IL_0163: ldloc.s V_4
+   IL_0165: conv.r8 
+   IL_0166: call System.Math::Sin(Double)
+   IL_016B: conv.r4 
+   IL_016C: ldloc.s V_8
+   IL_016E: mul 
+   IL_016F: stloc.s V_10
+   IL_0171: ldloc.s V_7
+   IL_0173: ldloc.s V_9
+   IL_0175: ldloc.s V_10
+   IL_0177: sub 
+   IL_0178: mul 
+   IL_0179: ldloc.s V_9
+   IL_017B: neg 
+   IL_017C: ldloc.s V_10
+   IL_017E: sub 
+   IL_017F: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_0184: ldloc.0 
+   IL_0185: ldfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_018A: conv.r8 
+   IL_018B: ldloca.s V_25
+   IL_018D: initobj Microsoft.Xna.Framework.Vector2
+   IL_0193: ldloc.s V_25
+   IL_0195: call Terraria.Utils::RotatedBy(Vector2,Double,Vector2)
+   IL_019A: stloc.s V_11
+   IL_019C: ldloc.s V_7
+   IL_019E: neg 
+   IL_019F: ldloc.s V_9
+   IL_01A1: ldloc.s V_10
+   IL_01A3: add 
+   IL_01A4: mul 
+   IL_01A5: ldloc.s V_10
+   IL_01A7: ldloc.s V_9
+   IL_01A9: sub 
+   IL_01AA: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_01AF: ldloc.0 
+   IL_01B0: ldfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_01B5: conv.r8 
+   IL_01B6: ldloca.s V_25
+   IL_01B8: initobj Microsoft.Xna.Framework.Vector2
+   IL_01BE: ldloc.s V_25
+   IL_01C0: call Terraria.Utils::RotatedBy(Vector2,Double,Vector2)
+   IL_01C5: stloc.s V_12
+   IL_01C7: ldc.r4 0
+   IL_01CC: ldsfld Terraria.Main::screenWidth
+   IL_01D1: conv.r4 
+   IL_01D2: ldsfld Terraria.Main::screenHeight
+   IL_01D7: conv.r4 
+   IL_01D8: ldc.r4 0
+   IL_01DD: ldc.r4 0
+   IL_01E2: ldc.r4 1
+   IL_01E7: call Microsoft.Xna.Framework.Matrix::CreateOrthographicOffCenter(Single,Single,Single,Single,Single,Single)
+   IL_01EC: stloc.s V_13
+   IL_01EE: ldsflda Terraria.Main::screenPosition
+   IL_01F3: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_01F8: neg 
+   IL_01F9: ldsflda Terraria.Main::screenPosition
+   IL_01FE: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0203: neg 
+   IL_0204: ldc.r4 0
+   IL_0209: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_020E: call Microsoft.Xna.Framework.Matrix::CreateTranslation(Vector3)
+   IL_0213: stloc.s V_14
+   IL_0215: ldsfld Terraria.Main::graphics
+   IL_021A: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_021F: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_RasterizerState()
+   IL_0224: stloc.s V_15
+   IL_0226: ldarg.1 
+   IL_0227: callvirt Terraria.Entity::get_Center()
+   IL_022C: ldc.r4 16
+   IL_0231: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_0236: call Terraria.Utils::ToPoint(Vector2)
+   IL_023B: ldfld Microsoft.Xna.Framework.Point::X
+   IL_0240: ldarg.1 
+   IL_0241: callvirt Terraria.Entity::get_Center()
+   IL_0246: ldc.r4 16
+   IL_024B: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_0250: call Terraria.Utils::ToPoint(Vector2)
+   IL_0255: ldfld Microsoft.Xna.Framework.Point::Y
+   IL_025A: ldarg.2 
+   IL_025B: call Terraria.Lighting::GetColor(Int32,Int32,Color)
+   IL_0260: starg.s newColor
+   IL_0262: newobj System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::.ctor()
+   IL_0267: stloc.s V_16
+   IL_0269: ldloc.0 
+   IL_026A: ldfld WeaponDisplay.WeaponDisplayPlayer::negativeDir
+   IL_026F: brtrue.s IL_027a: ldc.r4 4
+   IL_0271: ldc.r4 4
+   IL_0276: ldloc.2 
+   IL_0277: mul 
+   IL_0278: br.s IL_0287: ldc.r4 0.1125
+   IL_027A: ldc.r4 4
+   IL_027F: ldloc.2 
+   IL_0280: mul 
+   IL_0281: ldc.r4 3
+   IL_0286: sub 
+   IL_0287: ldc.r4 0.1125
+   IL_028C: ldc.r4 -1.125
+   IL_0291: ldc.i4.1 
+   IL_0292: call WeaponDisplay.WeaponDisplayMethods::Lerp(Single,Single,Single,Boolean)
+   IL_0297: ldc.r4 3.141593
+   IL_029C: mul 
+   IL_029D: stloc.s V_17
+   IL_029F: ldsfld Terraria.Main::screenPosition
+   IL_02A4: call Terraria.Main::get_ScreenSize()
+   IL_02A9: call Terraria.Utils::ToVector2(Point)
+   IL_02AE: ldc.r4 2
+   IL_02B3: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_02B8: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_02BD: stloc.s V_18
+   IL_02BF: ldloc.3 
+   IL_02C0: ldloc.s V_18
+   IL_02C2: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_02C7: stloc.s V_19
+   IL_02C9: ldloca.s V_19
+   IL_02CB: call Microsoft.Xna.Framework.Vector2::Length()
+   IL_02D0: ldsfld Terraria.Main::GameViewMatrix
+   IL_02D5: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_02DA: ldfld Microsoft.Xna.Framework.Matrix::M11
+   IL_02DF: mul 
+   IL_02E0: stloc.s V_20
+   IL_02E2: ldloc.s V_18
+   IL_02E4: ldloc.s V_19
+   IL_02E6: call Microsoft.Xna.Framework.Vector2::Normalize(Vector2)
+   IL_02EB: ldloc.s V_20
+   IL_02ED: call Microsoft.Xna.Framework.Vector2::op_Multiply(Vector2,Single)
+   IL_02F2: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_02F7: stloc.s V_21
+   IL_02F9: ldarg.1 
+   IL_02FA: callvirt Terraria.Entity::get_Center()
+   IL_02FF: ldc.r4 16
+   IL_0304: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_0309: call Terraria.Utils::ToPoint(Vector2)
+   IL_030E: ldfld Microsoft.Xna.Framework.Point::X
+   IL_0313: ldarg.1 
+   IL_0314: callvirt Terraria.Entity::get_Center()
+   IL_0319: ldc.r4 16
+   IL_031E: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_0323: call Terraria.Utils::ToPoint(Vector2)
+   IL_0328: ldfld Microsoft.Xna.Framework.Point::Y
+   IL_032D: call Terraria.Lighting::GetColor(Int32,Int32)
+   IL_0332: stloc.s V_26
+   IL_0334: ldloca.s V_26
+   IL_0336: call Microsoft.Xna.Framework.Color::ToVector4()
+   IL_033B: stloc.s V_22
+   IL_033D: ldloc.0 
+   IL_033E: ldfld WeaponDisplay.WeaponDisplayPlayer::HitboxPosition
+   IL_0343: stloc.s V_23
+   IL_0345: ldc.i4.0 
+   IL_0346: stloc.s V_27
+   IL_0348: br IL_04dd: ldloc.s V_27
+   IL_034D: ldloc.s V_27
+   IL_034F: conv.r4 
+   IL_0350: ldc.r4 24
+   IL_0355: div 
+   IL_0356: stloc.s V_28
+   IL_0358: ldloc.s V_28
+   IL_035A: ldloc.s V_17
+   IL_035C: ldloc.s V_4
+   IL_035E: ldc.i4.1 
+   IL_035F: call WeaponDisplay.WeaponDisplayMethods::Lerp(Single,Single,Single,Boolean)
+   IL_0364: dup 
+   IL_0365: conv.r8 
+   IL_0366: call System.Math::Cos(Double)
+   IL_036B: conv.r4 
+   IL_036C: ldloc.s V_8
+   IL_036E: mul 
+   IL_036F: stloc.s V_29
+   IL_0371: conv.r8 
+   IL_0372: call System.Math::Sin(Double)
+   IL_0377: conv.r4 
+   IL_0378: ldloc.s V_8
+   IL_037A: mul 
+   IL_037B: stloc.s V_30
+   IL_037D: ldloc.s V_7
+   IL_037F: ldloc.s V_29
+   IL_0381: ldloc.s V_30
+   IL_0383: sub 
+   IL_0384: mul 
+   IL_0385: ldloc.s V_29
+   IL_0387: neg 
+   IL_0388: ldloc.s V_30
+   IL_038A: sub 
+   IL_038B: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_0390: ldloc.0 
+   IL_0391: ldfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_0396: conv.r8 
+   IL_0397: ldloca.s V_25
+   IL_0399: initobj Microsoft.Xna.Framework.Vector2
+   IL_039F: ldloc.s V_25
+   IL_03A1: call Terraria.Utils::RotatedBy(Vector2,Double,Vector2)
+   IL_03A6: ldloc.s V_7
+   IL_03A8: neg 
+   IL_03A9: ldloc.s V_29
+   IL_03AB: ldloc.s V_30
+   IL_03AD: add 
+   IL_03AE: mul 
+   IL_03AF: ldloc.s V_30
+   IL_03B1: ldloc.s V_29
+   IL_03B3: sub 
+   IL_03B4: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_03B9: ldloc.0 
+   IL_03BA: ldfld WeaponDisplay.WeaponDisplayPlayer::rotationForShadow
+   IL_03BF: conv.r8 
+   IL_03C0: ldloca.s V_25
+   IL_03C2: initobj Microsoft.Xna.Framework.Vector2
+   IL_03C8: ldloc.s V_25
+   IL_03CA: call Terraria.Utils::RotatedBy(Vector2,Double,Vector2)
+   IL_03CF: stloc.s V_31
+   IL_03D1: ldloc.s V_31
+   IL_03D3: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_03D8: stloc.s V_32
+   IL_03DA: ldloc.3 
+   IL_03DB: ldloc.s V_32
+   IL_03DD: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_03E2: stloc.s V_33
+   IL_03E4: ldsfld Terraria.Main::myPlayer
+   IL_03E9: ldarg.1 
+   IL_03EA: ldfld Terraria.Entity::whoAmI
+   IL_03EF: bne.un.s IL_0414: ldloc.s V_16
+   IL_03F1: ldloc.s V_33
+   IL_03F3: ldarg.1 
+   IL_03F4: callvirt Terraria.Entity::get_Center()
+   IL_03F9: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_03FE: ldsfld Terraria.Main::GameViewMatrix
+   IL_0403: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_0408: ldfld Microsoft.Xna.Framework.Matrix::M11
+   IL_040D: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_0412: stloc.s V_23
+   IL_0414: ldloc.s V_16
+   IL_0416: ldloc.s V_21
+   IL_0418: ldloc.s V_32
+   IL_041A: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_041F: ldarga.s newColor
+   IL_0421: call Microsoft.Xna.Framework.Color::get_R()
+   IL_0426: conv.r4 
+   IL_0427: ldc.r4 255
+   IL_042C: div 
+   IL_042D: ldarga.s newColor
+   IL_042F: call Microsoft.Xna.Framework.Color::get_G()
+   IL_0434: conv.r4 
+   IL_0435: ldc.r4 255
+   IL_043A: div 
+   IL_043B: ldarga.s newColor
+   IL_043D: call Microsoft.Xna.Framework.Color::get_B()
+   IL_0442: conv.r4 
+   IL_0443: ldc.r4 255
+   IL_0448: div 
+   IL_0449: ldloc.s V_28
+   IL_044B: newobj Microsoft.Xna.Framework.Color::.ctor(Single,Single,Single,Single)
+   IL_0450: ldc.r4 1
+   IL_0455: ldloc.s V_28
+   IL_0457: sub 
+   IL_0458: ldc.r4 1
+   IL_045D: ldc.r4 0.5
+   IL_0462: ldloc.s V_22
+   IL_0464: ldfld Microsoft.Xna.Framework.Vector4::X
+   IL_0469: mul 
+   IL_046A: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_046F: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_0474: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_0479: ldloc.s V_16
+   IL_047B: ldloc.s V_21
+   IL_047D: ldarga.s newColor
+   IL_047F: call Microsoft.Xna.Framework.Color::get_R()
+   IL_0484: conv.r4 
+   IL_0485: ldc.r4 255
+   IL_048A: div 
+   IL_048B: ldarga.s newColor
+   IL_048D: call Microsoft.Xna.Framework.Color::get_G()
+   IL_0492: conv.r4 
+   IL_0493: ldc.r4 255
+   IL_0498: div 
+   IL_0499: ldarga.s newColor
+   IL_049B: call Microsoft.Xna.Framework.Color::get_B()
+   IL_04A0: conv.r4 
+   IL_04A1: ldc.r4 255
+   IL_04A6: div 
+   IL_04A7: ldc.r4 0
+   IL_04AC: newobj Microsoft.Xna.Framework.Color::.ctor(Single,Single,Single,Single)
+   IL_04B1: ldc.r4 0
+   IL_04B6: ldc.r4 0
+   IL_04BB: ldc.r4 0.5
+   IL_04C0: ldloc.s V_22
+   IL_04C2: ldfld Microsoft.Xna.Framework.Vector4::X
+   IL_04C7: mul 
+   IL_04C8: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_04CD: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_04D2: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_04D7: ldloc.s V_27
+   IL_04D9: ldc.i4.1 
+   IL_04DA: add 
+   IL_04DB: stloc.s V_27
+   IL_04DD: ldloc.s V_27
+   IL_04DF: ldc.i4.s 25
+   IL_04E1: blt IL_034d: ldloc.s V_27
+   IL_04E6: ldloc.0 
+   IL_04E7: ldloc.s V_23
+   IL_04E9: stfld WeaponDisplay.WeaponDisplayPlayer::HitboxPosition
+   IL_04EE: ldsfld Terraria.Main::netMode
+   IL_04F3: ldc.i4.1 
+   IL_04F4: bne.un.s IL_051f: ldloc.0
+   IL_04F6: ldsfld WeaponDisplay.WeaponDisplay::Instance
+   IL_04FB: ldc.i4 256
+   IL_0500: callvirt Terraria.ModLoader.Mod::GetPacket(Int32)
+   IL_0505: dup 
+   IL_0506: ldc.i4.1 
+   IL_0507: callvirt System.IO.BinaryWriter::Write(Byte)
+   IL_050C: dup 
+   IL_050D: ldloc.0 
+   IL_050E: ldfld WeaponDisplay.WeaponDisplayPlayer::HitboxPosition
+   IL_0513: call Terraria.Utils::WritePackedVector2(BinaryWriter,Vector2)
+   IL_0518: ldc.i4.m1 
+   IL_0519: ldc.i4.m1 
+   IL_051A: callvirt Terraria.ModLoader.ModPacket::Send(Int32,Int32)
+   IL_051F: ldloc.0 
+   IL_0520: ldfld WeaponDisplay.WeaponDisplayPlayer::UseSlash
+   IL_0525: brtrue.s IL_0528: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_0527: ret 
+   IL_0528: ldsfld Terraria.Main::spriteBatch
+   IL_052D: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_0532: ldsfld Terraria.Main::spriteBatch
+   IL_0537: ldc.i4.1 
+   IL_0538: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::Additive
+   IL_053D: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_0542: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::Default
+   IL_0547: ldsfld Microsoft.Xna.Framework.Graphics.RasterizerState::CullNone
+   IL_054C: ldnull 
+   IL_054D: ldsfld Terraria.Main::GameViewMatrix
+   IL_0552: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_0557: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_055C: newobj System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::.ctor()
+   IL_0561: stloc.s V_24
+   IL_0563: ldloc.s V_16
+   IL_0565: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Count()
+   IL_056A: ldc.i4.2 
+   IL_056B: ble IL_0740: ldloc.2
+   IL_0570: ldc.i4.0 
+   IL_0571: stloc.s V_34
+   IL_0573: br.s IL_05e5: ldloc.s V_34
+   IL_0575: ldloc.s V_24
+   IL_0577: ldloc.s V_16
+   IL_0579: ldloc.s V_34
+   IL_057B: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_0580: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_0585: ldloc.s V_24
+   IL_0587: ldloc.s V_16
+   IL_0589: ldloc.s V_34
+   IL_058B: ldc.i4.2 
+   IL_058C: add 
+   IL_058D: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_0592: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_0597: ldloc.s V_24
+   IL_0599: ldloc.s V_16
+   IL_059B: ldloc.s V_34
+   IL_059D: ldc.i4.1 
+   IL_059E: add 
+   IL_059F: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_05A4: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_05A9: ldloc.s V_24
+   IL_05AB: ldloc.s V_16
+   IL_05AD: ldloc.s V_34
+   IL_05AF: ldc.i4.1 
+   IL_05B0: add 
+   IL_05B1: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_05B6: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_05BB: ldloc.s V_24
+   IL_05BD: ldloc.s V_16
+   IL_05BF: ldloc.s V_34
+   IL_05C1: ldc.i4.2 
+   IL_05C2: add 
+   IL_05C3: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_05C8: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_05CD: ldloc.s V_24
+   IL_05CF: ldloc.s V_16
+   IL_05D1: ldloc.s V_34
+   IL_05D3: ldc.i4.3 
+   IL_05D4: add 
+   IL_05D5: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Item(Int32)
+   IL_05DA: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::Add(!0)
+   IL_05DF: ldloc.s V_34
+   IL_05E1: ldc.i4.2 
+   IL_05E2: add 
+   IL_05E3: stloc.s V_34
+   IL_05E5: ldloc.s V_34
+   IL_05E7: ldloc.s V_16
+   IL_05E9: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Count()
+   IL_05EE: ldc.i4.2 
+   IL_05EF: sub 
+   IL_05F0: blt.s IL_0575: ldloc.s V_24
+   IL_05F2: call WeaponDisplay.WeaponDisplay::get_ColorfulEffect()
+   IL_05F7: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_05FC: ldstr "uTransform"
+   IL_0601: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_0606: ldloc.s V_14
+   IL_0608: ldloc.s V_13
+   IL_060A: call Microsoft.Xna.Framework.Matrix::op_Multiply(Matrix,Matrix)
+   IL_060F: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Matrix)
+   IL_0614: call WeaponDisplay.WeaponDisplay::get_ColorfulEffect()
+   IL_0619: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_061E: ldstr "uTime"
+   IL_0623: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_0628: ldsfld Terraria.Main::time
+   IL_062D: conv.r4 
+   IL_062E: neg 
+   IL_062F: ldc.r4 0.06
+   IL_0634: mul 
+   IL_0635: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Single)
+   IL_063A: ldsfld Terraria.Main::graphics
+   IL_063F: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0644: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_0649: ldc.i4.0 
+   IL_064A: ldstr "WeaponDisplay/Shader/BaseTex"
+   IL_064F: ldc.i4.2 
+   IL_0650: call Terraria.ModLoader.ModContent::Request(String,AssetRequestMode)
+   IL_0655: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_065A: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_065F: ldsfld Terraria.Main::graphics
+   IL_0664: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0669: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_066E: ldc.i4.1 
+   IL_066F: ldstr "WeaponDisplay/Shader/AniTex"
+   IL_0674: ldc.i4.2 
+   IL_0675: call Terraria.ModLoader.ModContent::Request(String,AssetRequestMode)
+   IL_067A: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_067F: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_0684: ldsfld Terraria.Main::graphics
+   IL_0689: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_068E: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_0693: ldc.i4.2 
+   IL_0694: ldloc.s V_6
+   IL_0696: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_069B: ldsfld Terraria.Main::graphics
+   IL_06A0: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_06A5: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_06AA: ldc.i4.0 
+   IL_06AB: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_06B0: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_06B5: ldsfld Terraria.Main::graphics
+   IL_06BA: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_06BF: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_06C4: ldc.i4.1 
+   IL_06C5: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_06CA: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_06CF: ldsfld Terraria.Main::graphics
+   IL_06D4: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_06D9: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_06DE: ldc.i4.2 
+   IL_06DF: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_06E4: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_06E9: call WeaponDisplay.WeaponDisplay::get_ColorfulEffect()
+   IL_06EE: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_CurrentTechnique()
+   IL_06F3: callvirt Microsoft.Xna.Framework.Graphics.EffectTechnique::get_Passes()
+   IL_06F8: ldc.i4.3 
+   IL_06F9: ldsfld WeaponDisplay.WeaponDisplay::UseItemTexForSwoosh
+   IL_06FE: call Terraria.Utils::ToInt(Boolean)
+   IL_0703: add 
+   IL_0704: callvirt Microsoft.Xna.Framework.Graphics.EffectPassCollection::get_Item(Int32)
+   IL_0709: callvirt Microsoft.Xna.Framework.Graphics.EffectPass::Apply()
+   IL_070E: ldsfld Terraria.Main::graphics
+   IL_0713: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0718: ldc.i4.0 
+   IL_0719: ldloc.s V_24
+   IL_071B: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::ToArray()
+   IL_0720: ldc.i4.0 
+   IL_0721: ldloc.s V_24
+   IL_0723: callvirt System.Collections.Generic.List`1<WeaponDisplay.CustomVertexInfo>::get_Count()
+   IL_0728: ldc.i4.3 
+   IL_0729: div 
+   IL_072A: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::DrawUserPrimitives(PrimitiveType,!!0[],Int32,Int32)
+   IL_072F: ldsfld Terraria.Main::graphics
+   IL_0734: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0739: ldloc.s V_15
+   IL_073B: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::set_RasterizerState(RasterizerState)
+   IL_0740: ldloc.2 
+   IL_0741: ldc.r4 0
+   IL_0746: beq IL_0a7f: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_074B: ldloc.0 
+   IL_074C: ldfld WeaponDisplay.WeaponDisplayPlayer::negativeDir
+   IL_0751: brtrue.s IL_0756: ldc.i4.0
+   IL_0753: ldc.i4.1 
+   IL_0754: br.s IL_0757: stloc.s V_35
+   IL_0756: ldc.i4.0 
+   IL_0757: stloc.s V_35
+   IL_0759: ldloc.s V_5
+   IL_075B: ldc.i4.0 
+   IL_075C: ldloc.s V_21
+   IL_075E: ldarg.2 
+   IL_075F: ldc.r4 0
+   IL_0764: ldc.r4 1
+   IL_0769: ldc.r4 0.5
+   IL_076E: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_0773: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_0778: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_077D: ldloc.s V_5
+   IL_077F: ldc.i4.1 
+   IL_0780: ldloc.s V_11
+   IL_0782: ldloc.s V_21
+   IL_0784: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_0789: ldarg.2 
+   IL_078A: ldloc.s V_35
+   IL_078C: ldc.i4.1 
+   IL_078D: xor 
+   IL_078E: conv.r4 
+   IL_078F: ldloc.s V_35
+   IL_0791: ldc.i4.1 
+   IL_0792: xor 
+   IL_0793: conv.r4 
+   IL_0794: ldc.r4 0.5
+   IL_0799: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_079E: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_07A3: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_07A8: ldloc.s V_5
+   IL_07AA: ldc.i4.2 
+   IL_07AB: ldloc.s V_12
+   IL_07AD: ldloc.s V_21
+   IL_07AF: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_07B4: ldarg.2 
+   IL_07B5: ldloc.s V_35
+   IL_07B7: conv.r4 
+   IL_07B8: ldloc.s V_35
+   IL_07BA: conv.r4 
+   IL_07BB: ldc.r4 0.5
+   IL_07C0: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_07C5: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_07CA: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_07CF: ldloc.s V_5
+   IL_07D1: ldc.i4.3 
+   IL_07D2: ldloc.s V_5
+   IL_07D4: ldc.i4.1 
+   IL_07D5: ldelem.any WeaponDisplay.CustomVertexInfo
+   IL_07DA: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_07DF: ldloc.s V_5
+   IL_07E1: ldc.i4.4 
+   IL_07E2: ldloc.s V_11
+   IL_07E4: ldloc.s V_12
+   IL_07E6: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_07EB: ldloc.s V_21
+   IL_07ED: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_07F2: ldarg.2 
+   IL_07F3: ldc.r4 1
+   IL_07F8: ldc.r4 0
+   IL_07FD: ldc.r4 0.5
+   IL_0802: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_0807: newobj WeaponDisplay.CustomVertexInfo::.ctor(Vector2,Color,Vector3)
+   IL_080C: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_0811: ldloc.s V_5
+   IL_0813: ldc.i4.5 
+   IL_0814: ldloc.s V_5
+   IL_0816: ldc.i4.2 
+   IL_0817: ldelem.any WeaponDisplay.CustomVertexInfo
+   IL_081C: stelem.any WeaponDisplay.CustomVertexInfo
+   IL_0821: ldsfld Terraria.Main::spriteBatch
+   IL_0826: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_082B: ldsfld Terraria.Main::spriteBatch
+   IL_0830: ldc.i4.1 
+   IL_0831: ldsfld WeaponDisplay.WeaponDisplay::ItemAdditive
+   IL_0836: brtrue.s IL_083f: ldsfld Microsoft.Xna.Framework.Graphics.BlendState Microsoft.Xna.Framework.Graphics.BlendState::Additive
+   IL_0838: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_083D: br.s IL_0844: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_083F: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::Additive
+   IL_0844: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_0849: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::Default
+   IL_084E: ldsfld Microsoft.Xna.Framework.Graphics.RasterizerState::CullNone
+   IL_0853: ldnull 
+   IL_0854: ldsfld Terraria.Main::GameViewMatrix
+   IL_0859: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_085E: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_0863: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_0868: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_086D: ldstr "uTransform"
+   IL_0872: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_0877: ldloc.s V_14
+   IL_0879: ldloc.s V_13
+   IL_087B: call Microsoft.Xna.Framework.Matrix::op_Multiply(Matrix,Matrix)
+   IL_0880: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Matrix)
+   IL_0885: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_088A: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_088F: ldstr "uTime"
+   IL_0894: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_0899: ldsfld Terraria.Main::time
+   IL_089E: conv.r4 
+   IL_089F: ldc.r4 60
+   IL_08A4: div 
+   IL_08A5: ldc.r4 1
+   IL_08AA: rem 
+   IL_08AB: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Single)
+   IL_08B0: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_08B5: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_08BA: ldstr "uItemColor"
+   IL_08BF: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_08C4: ldloc.s V_22
+   IL_08C6: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Vector4)
+   IL_08CB: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_08D0: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_Parameters()
+   IL_08D5: ldstr "uItemGlowColor"
+   IL_08DA: callvirt Microsoft.Xna.Framework.Graphics.EffectParameterCollection::get_Item(String)
+   IL_08DF: ldc.i4 250
+   IL_08E4: ldc.i4 250
+   IL_08E9: ldc.i4 250
+   IL_08EE: ldarg.1 
+   IL_08EF: callvirt Terraria.Player::get_HeldItem()
+   IL_08F4: ldfld Terraria.Item::alpha
+   IL_08F9: newobj Microsoft.Xna.Framework.Color::.ctor(Int32,Int32,Int32,Int32)
+   IL_08FE: stloc.s V_26
+   IL_0900: ldloca.s V_26
+   IL_0902: call Microsoft.Xna.Framework.Color::ToVector4()
+   IL_0907: callvirt Microsoft.Xna.Framework.Graphics.EffectParameter::SetValue(Vector4)
+   IL_090C: ldsfld Terraria.Main::graphics
+   IL_0911: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0916: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_091B: ldc.i4.0 
+   IL_091C: ldloc.s V_6
+   IL_091E: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_0923: ldsfld Terraria.Main::graphics
+   IL_0928: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_092D: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_0932: ldc.i4.1 
+   IL_0933: ldstr "WeaponDisplay/Shader/Style_12"
+   IL_0938: ldc.i4.2 
+   IL_0939: call Terraria.ModLoader.ModContent::Request(String,AssetRequestMode)
+   IL_093E: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_0943: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_0948: ldsfld Terraria.Main::graphics
+   IL_094D: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0952: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_0957: ldc.i4.2 
+   IL_0958: ldstr "WeaponDisplay/Shader/Style_18"
+   IL_095D: ldc.i4.2 
+   IL_095E: call Terraria.ModLoader.ModContent::Request(String,AssetRequestMode)
+   IL_0963: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_0968: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_096D: ldarg.1 
+   IL_096E: callvirt Terraria.Player::get_HeldItem()
+   IL_0973: ldfld Terraria.Item::glowMask
+   IL_0978: stloc.s V_36
+   IL_097A: ldloc.s V_36
+   IL_097C: ldc.i4.m1 
+   IL_097D: beq.s IL_09a1: ldarg.1
+   IL_097F: ldsfld Terraria.Main::graphics
+   IL_0984: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0989: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_098E: ldc.i4.3 
+   IL_098F: ldsfld Terraria.GameContent.TextureAssets::GlowMask
+   IL_0994: ldloc.s V_36
+   IL_0996: ldelem.ref 
+   IL_0997: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_099C: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_09A1: ldarg.1 
+   IL_09A2: callvirt Terraria.Player::get_HeldItem()
+   IL_09A7: ldfld Terraria.Item::type
+   IL_09AC: ldc.i4 3823
+   IL_09B1: bne.un.s IL_09d8: ldsfld Microsoft.Xna.Framework.GraphicsDeviceManager Terraria.Main::graphics
+   IL_09B3: ldsfld Terraria.Main::graphics
+   IL_09B8: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_09BD: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_Textures()
+   IL_09C2: ldc.i4.3 
+   IL_09C3: ldstr "WeaponDisplay/Shader/ItemFlame_3823"
+   IL_09C8: ldc.i4.2 
+   IL_09C9: call Terraria.ModLoader.ModContent::Request(String,AssetRequestMode)
+   IL_09CE: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_09D3: callvirt Microsoft.Xna.Framework.Graphics.TextureCollection::set_Item(Int32,Texture)
+   IL_09D8: ldsfld Terraria.Main::graphics
+   IL_09DD: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_09E2: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_09E7: ldc.i4.0 
+   IL_09E8: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_09ED: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_09F2: ldsfld Terraria.Main::graphics
+   IL_09F7: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_09FC: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_0A01: ldc.i4.1 
+   IL_0A02: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_0A07: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_0A0C: ldsfld Terraria.Main::graphics
+   IL_0A11: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0A16: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_0A1B: ldc.i4.2 
+   IL_0A1C: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_0A21: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_0A26: ldsfld Terraria.Main::graphics
+   IL_0A2B: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0A30: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::get_SamplerStates()
+   IL_0A35: ldc.i4.3 
+   IL_0A36: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_0A3B: callvirt Microsoft.Xna.Framework.Graphics.SamplerStateCollection::set_Item(Int32,SamplerState)
+   IL_0A40: call WeaponDisplay.WeaponDisplay::get_ItemEffect()
+   IL_0A45: callvirt Microsoft.Xna.Framework.Graphics.Effect::get_CurrentTechnique()
+   IL_0A4A: callvirt Microsoft.Xna.Framework.Graphics.EffectTechnique::get_Passes()
+   IL_0A4F: ldc.i4.2 
+   IL_0A50: callvirt Microsoft.Xna.Framework.Graphics.EffectPassCollection::get_Item(Int32)
+   IL_0A55: callvirt Microsoft.Xna.Framework.Graphics.EffectPass::Apply()
+   IL_0A5A: ldsfld Terraria.Main::graphics
+   IL_0A5F: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0A64: ldc.i4.0 
+   IL_0A65: ldloc.s V_5
+   IL_0A67: ldc.i4.0 
+   IL_0A68: ldc.i4.2 
+   IL_0A69: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::DrawUserPrimitives(PrimitiveType,!!0[],Int32,Int32)
+   IL_0A6E: ldsfld Terraria.Main::graphics
+   IL_0A73: callvirt Microsoft.Xna.Framework.GraphicsDeviceManager::get_GraphicsDevice()
+   IL_0A78: ldloc.s V_15
+   IL_0A7A: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::set_RasterizerState(RasterizerState)
+   IL_0A7F: ldsfld Terraria.Main::spriteBatch
+   IL_0A84: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_0A89: ldsfld Terraria.Main::spriteBatch
+   IL_0A8E: ldc.i4.1 
+   IL_0A8F: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_0A94: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::PointWrap
+   IL_0A99: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::Default
+   IL_0A9E: ldsfld Microsoft.Xna.Framework.Graphics.RasterizerState::CullNone
+   IL_0AA3: ldnull 
+   IL_0AA4: call Terraria.Main::get_Transform()
+   IL_0AA9: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_0AAE: ret 
+### WeaponDisplay.WeaponDisplayPlayer::ModifyDrawInfo
+   IL_0000: ldarg.0 
+   IL_0001: call Microsoft.Xna.Framework.Vector2::get_Zero()
+   IL_0006: stfld WeaponDisplay.WeaponDisplayPlayer::HitboxPosition
+   IL_000B: ldsfld WeaponDisplay.WeaponDisplayPlayer::ShowWeapon
+   IL_0010: brfalse IL_0457: ldarg.0
+   IL_0015: ldarg.0 
+   IL_0016: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_001B: ldfld Terraria.Player::inventory
+   IL_0020: ldarg.0 
+   IL_0021: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_0026: ldfld Terraria.Player::selectedItem
+   IL_002B: ldelem.ref 
+   IL_002C: stloc.0 
+   IL_002D: ldarg.0 
+   IL_002E: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_0033: ldfld Terraria.Entity::active
+   IL_0038: brfalse IL_0457: ldarg.0
+   IL_003D: ldarg.0 
+   IL_003E: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_0043: ldfld Terraria.Player::dead
+   IL_0048: brtrue IL_0457: ldarg.0
+   IL_004D: ldloc.0 
+   IL_004E: ldfld Terraria.Item::stack
+   IL_0053: ldc.i4.0 
+   IL_0054: ble IL_0457: ldarg.0
+   IL_0059: ldloc.0 
+   IL_005A: ldfld Terraria.Item::damage
+   IL_005F: ldc.i4.0 
+   IL_0060: ble IL_0457: ldarg.0
+   IL_0065: ldloc.0 
+   IL_0066: ldfld Terraria.Item::useAnimation
+   IL_006B: ldc.i4.0 
+   IL_006C: ble IL_0457: ldarg.0
+   IL_0071: ldloc.0 
+   IL_0072: ldfld Terraria.Item::useTime
+   IL_0077: ldc.i4.0 
+   IL_0078: ble IL_0457: ldarg.0
+   IL_007D: ldloc.0 
+   IL_007E: ldfld Terraria.Item::consumable
+   IL_0083: brtrue IL_0457: ldarg.0
+   IL_0088: ldloc.0 
+   IL_0089: ldfld Terraria.Item::ammo
+   IL_008E: brtrue IL_0457: ldarg.0
+   IL_0093: ldarg.0 
+   IL_0094: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_0099: ldfld Terraria.Player::itemAnimation
+   IL_009E: brtrue IL_0457: ldarg.0
+   IL_00A3: ldarg.0 
+   IL_00A4: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_00A9: callvirt Terraria.Player::get_ItemTimeIsZero()
+   IL_00AE: brfalse IL_0457: ldarg.0
+   IL_00B3: ldloc.0 
+   IL_00B4: ldarg.0 
+   IL_00B5: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_00BA: call WeaponDisplay.WeaponDisplayPlayer::CheckItemCanUse(Item,Player)
+   IL_00BF: brfalse IL_0457: ldarg.0
+   IL_00C4: ldloc.0 
+   IL_00C5: ldfld Terraria.Item::holdStyle
+   IL_00CA: brtrue IL_0457: ldarg.0
+   IL_00CF: ldloc.0 
+   IL_00D0: ldfld Terraria.Item::type
+   IL_00D5: ldc.i4 930
+   IL_00DA: beq IL_0457: ldarg.0
+   IL_00DF: ldloc.0 
+   IL_00E0: ldfld Terraria.Item::type
+   IL_00E5: ldc.i4 494
+   IL_00EA: beq IL_0457: ldarg.0
+   IL_00EF: ldloc.0 
+   IL_00F0: ldfld Terraria.Item::type
+   IL_00F5: ldc.i4 3542
+   IL_00FA: beq IL_0457: ldarg.0
+   IL_00FF: ldloc.0 
+   IL_0100: ldfld Terraria.Item::type
+   IL_0105: ldc.i4 3476
+   IL_010A: beq IL_0457: ldarg.0
+   IL_010F: ldloc.0 
+   IL_0110: ldfld Terraria.Item::type
+   IL_0115: ldc.i4 4707
+   IL_011A: beq IL_0457: ldarg.0
+   IL_011F: ldloc.0 
+   IL_0120: ldfld Terraria.Item::type
+   IL_0125: ldc.i4 4818
+   IL_012A: beq IL_0457: ldarg.0
+   IL_012F: ldloc.0 
+   IL_0130: ldfld Terraria.Item::type
+   IL_0135: ldc.i4 4952
+   IL_013A: beq IL_0457: ldarg.0
+   IL_013F: ldloc.0 
+   IL_0140: ldfld Terraria.Item::type
+   IL_0145: ldc.i4 4760
+   IL_014A: beq IL_0457: ldarg.0
+   IL_014F: ldloc.0 
+   IL_0150: ldfld Terraria.Item::type
+   IL_0155: ldc.i4 4715
+   IL_015A: beq IL_0457: ldarg.0
+   IL_015F: ldsfld Terraria.GameContent.TextureAssets::Item
+   IL_0164: ldloc.0 
+   IL_0165: ldfld Terraria.Item::type
+   IL_016A: ldelem.ref 
+   IL_016B: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_0170: stloc.1 
+   IL_0171: ldloca.s V_2
+   IL_0173: ldc.i4.0 
+   IL_0174: ldc.i4.0 
+   IL_0175: ldloc.1 
+   IL_0176: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_017B: ldloc.1 
+   IL_017C: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_0181: call Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_0186: ldarg.1 
+   IL_0187: call Microsoft.Xna.Framework.Vector2::get_Zero()
+   IL_018C: ldc.r4 0
+   IL_0191: ldc.r4 8
+   IL_0196: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_019B: call WeaponDisplay.WeaponDisplayPlayer::DrawPlayer_Head_GetSpecialDrawPosition(PlayerDrawSet&,Vector2,Vector2)
+   IL_01A0: stloc.3 
+   IL_01A1: ldc.r4 3.141593
+   IL_01A6: stloc.s V_4
+   IL_01A8: ldloc.0 
+   IL_01A9: callvirt Terraria.Item::get_DamageType()
+   IL_01AE: call Terraria.ModLoader.DamageClass::get_Ranged()
+   IL_01B3: beq.s IL_020d: ldarg.0
+   IL_01B5: ldloc.0 
+   IL_01B6: ldfld Terraria.Item::axe
+   IL_01BB: ldc.i4.0 
+   IL_01BC: bgt.s IL_01c7: ldloc.0
+   IL_01BE: ldloc.0 
+   IL_01BF: ldfld Terraria.Item::pick
+   IL_01C4: ldc.i4.0 
+   IL_01C5: ble.s IL_01cf: ldloc.0
+   IL_01C7: ldloc.0 
+   IL_01C8: ldfld Terraria.Item::channel
+   IL_01CD: brtrue.s IL_020d: ldarg.0
+   IL_01CF: ldloc.0 
+   IL_01D0: ldfld Terraria.Item::useStyle
+   IL_01D5: ldc.i4.5 
+   IL_01D6: bne.un.s IL_01f3: ldloc.0
+   IL_01D8: ldsfld Terraria.Item::staff
+   IL_01DD: ldloc.0 
+   IL_01DE: ldfld Terraria.Item::type
+   IL_01E3: ldelem.u1 
+   IL_01E4: brtrue.s IL_01f3: ldloc.0
+   IL_01E6: ldloc.0 
+   IL_01E7: callvirt Terraria.Item::get_DamageType()
+   IL_01EC: call Terraria.ModLoader.DamageClass::get_Magic()
+   IL_01F1: beq.s IL_020d: ldarg.0
+   IL_01F3: ldloc.0 
+   IL_01F4: ldfld Terraria.Item::type
+   IL_01F9: ldc.i4 1314
+   IL_01FE: beq.s IL_020d: ldarg.0
+   IL_0200: ldloc.0 
+   IL_0201: ldfld Terraria.Item::type
+   IL_0206: ldc.i4 1297
+   IL_020B: bne.un.s IL_0265: ldsfld Terraria.DataStructures.DrawAnimation[] Terraria.Main::itemAnimations
+   IL_020D: ldarg.0 
+   IL_020E: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_0213: ldfld Terraria.Player::gravDir
+   IL_0218: ldc.r4 -1
+   IL_021D: bne.un.s IL_0243: ldloc.s V_4
+   IL_021F: ldloc.s V_4
+   IL_0221: ldc.r4 0.7853982
+   IL_0226: add 
+   IL_0227: stloc.s V_4
+   IL_0229: ldarg.0 
+   IL_022A: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_022F: ldfld Terraria.Entity::direction
+   IL_0234: ldc.i4.0 
+   IL_0235: bge.s IL_0265: ldsfld Terraria.DataStructures.DrawAnimation[] Terraria.Main::itemAnimations
+   IL_0237: ldloc.s V_4
+   IL_0239: ldc.r4 1.570796
+   IL_023E: sub 
+   IL_023F: stloc.s V_4
+   IL_0241: br.s IL_0265: ldsfld Terraria.DataStructures.DrawAnimation[] Terraria.Main::itemAnimations
+   IL_0243: ldloc.s V_4
+   IL_0245: ldc.r4 0.7853982
+   IL_024A: sub 
+   IL_024B: stloc.s V_4
+   IL_024D: ldarg.0 
+   IL_024E: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_0253: ldfld Terraria.Entity::direction
+   IL_0258: ldc.i4.0 
+   IL_0259: bge.s IL_0265: ldsfld Terraria.DataStructures.DrawAnimation[] Terraria.Main::itemAnimations
+   IL_025B: ldloc.s V_4
+   IL_025D: ldc.r4 1.570796
+   IL_0262: add 
+   IL_0263: stloc.s V_4
+   IL_0265: ldsfld Terraria.Main::itemAnimations
+   IL_026A: ldloc.0 
+   IL_026B: ldfld Terraria.Item::type
+   IL_0270: ldelem.ref 
+   IL_0271: brfalse.s IL_0287: ldloc.2
+   IL_0273: ldsfld Terraria.Main::itemAnimations
+   IL_0278: ldloc.0 
+   IL_0279: ldfld Terraria.Item::type
+   IL_027E: ldelem.ref 
+   IL_027F: ldloc.1 
+   IL_0280: ldc.i4.m1 
+   IL_0281: callvirt Terraria.DataStructures.DrawAnimation::GetFrame(Texture2D,Int32)
+   IL_0286: stloc.2 
+   IL_0287: ldloc.2 
+   IL_0288: call Terraria.Utils::Size(Rectangle)
+   IL_028D: ldc.r4 2
+   IL_0292: call Microsoft.Xna.Framework.Vector2::op_Division(Vector2,Single)
+   IL_0297: stloc.s V_5
+   IL_0299: ldloca.s V_6
+   IL_029B: ldloc.1 
+   IL_029C: ldloc.3 
+   IL_029D: ldloc.2 
+   IL_029E: newobj System.Nullable`1<Microsoft.Xna.Framework.Rectangle>::.ctor(!0)
+   IL_02A3: ldarg.1 
+   IL_02A4: ldfld Terraria.DataStructures.PlayerDrawSet::colorArmorBody
+   IL_02A9: ldloc.s V_4
+   IL_02AB: ldloc.s V_5
+   IL_02AD: ldsfld WeaponDisplay.WeaponDisplay::Config
+   IL_02B2: ldfld WeaponDisplay.Configuration::WeaponScale
+   IL_02B7: ldloc.0 
+   IL_02B8: ldfld Terraria.Item::scale
+   IL_02BD: mul 
+   IL_02BE: ldarg.1 
+   IL_02BF: ldfld Terraria.DataStructures.PlayerDrawSet::playerEffect
+   IL_02C4: ldc.r4 0
+   IL_02C9: call Terraria.DataStructures.DrawData::.ctor(Texture2D,Vector2,Nullable`1,Color,Single,Vector2,Single,SpriteEffects,Single)
+   IL_02CE: ldsfld WeaponDisplay.WeaponDisplay::Config
+   IL_02D3: ldfld WeaponDisplay.Configuration::DyeUsed
+   IL_02D8: stloc.s V_7
+   IL_02DA: ldloc.s V_7
+   IL_02DC: switch Mono.Cecil.Cil.Instruction[]
+   IL_02F1: br.s IL_034c: ldarg.1
+   IL_02F3: ldloca.s V_6
+   IL_02F5: ldc.i4.0 
+   IL_02F6: stfld Terraria.DataStructures.DrawData::shader
+   IL_02FB: br.s IL_034c: ldarg.1
+   IL_02FD: ldloca.s V_6
+   IL_02FF: ldarg.0 
+   IL_0300: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_0305: ldfld Terraria.Player::dye
+   IL_030A: ldc.i4.0 
+   IL_030B: ldelem.ref 
+   IL_030C: ldfld Terraria.Item::dye
+   IL_0311: stfld Terraria.DataStructures.DrawData::shader
+   IL_0316: br.s IL_034c: ldarg.1
+   IL_0318: ldloca.s V_6
+   IL_031A: ldarg.0 
+   IL_031B: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_0320: ldfld Terraria.Player::dye
+   IL_0325: ldc.i4.1 
+   IL_0326: ldelem.ref 
+   IL_0327: ldfld Terraria.Item::dye
+   IL_032C: stfld Terraria.DataStructures.DrawData::shader
+   IL_0331: br.s IL_034c: ldarg.1
+   IL_0333: ldloca.s V_6
+   IL_0335: ldarg.0 
+   IL_0336: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_033B: ldfld Terraria.Player::dye
+   IL_0340: ldc.i4.2 
+   IL_0341: ldelem.ref 
+   IL_0342: ldfld Terraria.Item::dye
+   IL_0347: stfld Terraria.DataStructures.DrawData::shader
+   IL_034C: ldarg.1 
+   IL_034D: ldfld Terraria.DataStructures.PlayerDrawSet::DrawDataCache
+   IL_0352: ldloc.s V_6
+   IL_0354: callvirt System.Collections.Generic.List`1<Terraria.DataStructures.DrawData>::Add(!0)
+   IL_0359: ldsfld WeaponDisplay.WeaponDisplay::Config
+   IL_035E: ldfld WeaponDisplay.Configuration::ShowGlow
+   IL_0363: brfalse IL_0457: ldarg.0
+   IL_0368: ldloc.0 
+   IL_0369: ldfld Terraria.Item::glowMask
+   IL_036E: ldc.i4.0 
+   IL_036F: blt IL_0457: ldarg.0
+   IL_0374: ldsfld Terraria.GameContent.TextureAssets::GlowMask
+   IL_0379: ldloc.0 
+   IL_037A: ldfld Terraria.Item::glowMask
+   IL_037F: ldelem.ref 
+   IL_0380: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_0385: stloc.s V_8
+   IL_0387: ldloca.s V_9
+   IL_0389: ldloc.s V_8
+   IL_038B: ldloc.3 
+   IL_038C: ldloc.2 
+   IL_038D: newobj System.Nullable`1<Microsoft.Xna.Framework.Rectangle>::.ctor(!0)
+   IL_0392: ldarg.1 
+   IL_0393: ldfld Terraria.DataStructures.PlayerDrawSet::bodyGlowColor
+   IL_0398: ldsfld WeaponDisplay.WeaponDisplay::Config
+   IL_039D: ldfld WeaponDisplay.Configuration::GlowLighting
+   IL_03A2: call Microsoft.Xna.Framework.Color::op_Multiply(Color,Single)
+   IL_03A7: ldloc.s V_4
+   IL_03A9: ldloc.s V_5
+   IL_03AB: ldsfld WeaponDisplay.WeaponDisplay::Config
+   IL_03B0: ldfld WeaponDisplay.Configuration::WeaponScale
+   IL_03B5: ldloc.0 
+   IL_03B6: ldfld Terraria.Item::scale
+   IL_03BB: mul 
+   IL_03BC: ldarg.1 
+   IL_03BD: ldfld Terraria.DataStructures.PlayerDrawSet::playerEffect
+   IL_03C2: ldc.r4 0
+   IL_03C7: call Terraria.DataStructures.DrawData::.ctor(Texture2D,Vector2,Nullable`1,Color,Single,Vector2,Single,SpriteEffects,Single)
+   IL_03CC: ldsfld WeaponDisplay.WeaponDisplay::Config
+   IL_03D1: ldfld WeaponDisplay.Configuration::DyeUsed
+   IL_03D6: stloc.s V_7
+   IL_03D8: ldloc.s V_7
+   IL_03DA: switch Mono.Cecil.Cil.Instruction[]
+   IL_03EF: br.s IL_044a: ldarg.1
+   IL_03F1: ldloca.s V_9
+   IL_03F3: ldc.i4.0 
+   IL_03F4: stfld Terraria.DataStructures.DrawData::shader
+   IL_03F9: br.s IL_044a: ldarg.1
+   IL_03FB: ldloca.s V_6
+   IL_03FD: ldarg.0 
+   IL_03FE: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_0403: ldfld Terraria.Player::dye
+   IL_0408: ldc.i4.0 
+   IL_0409: ldelem.ref 
+   IL_040A: ldfld Terraria.Item::dye
+   IL_040F: stfld Terraria.DataStructures.DrawData::shader
+   IL_0414: br.s IL_044a: ldarg.1
+   IL_0416: ldloca.s V_6
+   IL_0418: ldarg.0 
+   IL_0419: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_041E: ldfld Terraria.Player::dye
+   IL_0423: ldc.i4.1 
+   IL_0424: ldelem.ref 
+   IL_0425: ldfld Terraria.Item::dye
+   IL_042A: stfld Terraria.DataStructures.DrawData::shader
+   IL_042F: br.s IL_044a: ldarg.1
+   IL_0431: ldloca.s V_6
+   IL_0433: ldarg.0 
+   IL_0434: call Terraria.ModLoader.ModPlayer::get_Player()
+   IL_0439: ldfld Terraria.Player::dye
+   IL_043E: ldc.i4.2 
+   IL_043F: ldelem.ref 
+   IL_0440: ldfld Terraria.Item::dye
+   IL_0445: stfld Terraria.DataStructures.DrawData::shader
+   IL_044A: ldarg.1 
+   IL_044B: ldfld Terraria.DataStructures.PlayerDrawSet::DrawDataCache
+   IL_0450: ldloc.s V_9
+   IL_0452: callvirt System.Collections.Generic.List`1<Terraria.DataStructures.DrawData>::Add(!0)
+   IL_0457: ldarg.0 
+   IL_0458: ldarg.1 
+   IL_0459: call Terraria.ModLoader.ModPlayer::ModifyDrawInfo(PlayerDrawSet&)
+   IL_045E: ret 
+### WeaponDisplay.WeaponDisplayPlayer::CheckItemCanUse
+   IL_0000: ldc.i4.1 
+   IL_0001: stloc.0 
+   IL_0002: ldarg.0 
+   IL_0003: ldfld Terraria.Item::shoot
+   IL_0008: ldc.i4.6 
+   IL_0009: beq IL_0091: ldarg.1
+   IL_000E: ldarg.0 
+   IL_000F: ldfld Terraria.Item::shoot
+   IL_0014: ldc.i4.s 19
+   IL_0016: beq.s IL_0091: ldarg.1
+   IL_0018: ldarg.0 
+   IL_0019: ldfld Terraria.Item::shoot
+   IL_001E: ldc.i4.s 33
+   IL_0020: beq.s IL_0091: ldarg.1
+   IL_0022: ldarg.0 
+   IL_0023: ldfld Terraria.Item::shoot
+   IL_0028: ldc.i4.s 52
+   IL_002A: beq.s IL_0091: ldarg.1
+   IL_002C: ldarg.0 
+   IL_002D: ldfld Terraria.Item::shoot
+   IL_0032: ldc.i4.s 113
+   IL_0034: beq.s IL_0091: ldarg.1
+   IL_0036: ldarg.0 
+   IL_0037: ldfld Terraria.Item::shoot
+   IL_003C: ldc.i4 320
+   IL_0041: beq.s IL_0091: ldarg.1
+   IL_0043: ldarg.0 
+   IL_0044: ldfld Terraria.Item::shoot
+   IL_0049: ldc.i4 333
+   IL_004E: beq.s IL_0091: ldarg.1
+   IL_0050: ldarg.0 
+   IL_0051: ldfld Terraria.Item::shoot
+   IL_0056: ldc.i4 383
+   IL_005B: beq.s IL_0091: ldarg.1
+   IL_005D: ldarg.0 
+   IL_005E: ldfld Terraria.Item::shoot
+   IL_0063: ldc.i4 491
+   IL_0068: beq.s IL_0091: ldarg.1
+   IL_006A: ldarg.0 
+   IL_006B: ldfld Terraria.Item::shoot
+   IL_0070: ldc.i4 867
+   IL_0075: beq.s IL_0091: ldarg.1
+   IL_0077: ldarg.0 
+   IL_0078: ldfld Terraria.Item::shoot
+   IL_007D: ldc.i4 902
+   IL_0082: beq.s IL_0091: ldarg.1
+   IL_0084: ldarg.0 
+   IL_0085: ldfld Terraria.Item::shoot
+   IL_008A: ldc.i4 866
+   IL_008F: bne.un.s IL_00a3: ldarg.0
+   IL_0091: ldarg.1 
+   IL_0092: ldfld Terraria.Player::ownedProjectileCounts
+   IL_0097: ldarg.0 
+   IL_0098: ldfld Terraria.Item::shoot
+   IL_009D: ldelem.i4 
+   IL_009E: ldc.i4.0 
+   IL_009F: ble.s IL_00a3: ldarg.0
+   IL_00A1: ldc.i4.0 
+   IL_00A2: stloc.0 
+   IL_00A3: ldarg.0 
+   IL_00A4: ldfld Terraria.Item::shoot
+   IL_00A9: ldc.i4.s 106
+   IL_00AB: beq.s IL_00ba: ldarg.1
+   IL_00AD: ldarg.0 
+   IL_00AE: ldfld Terraria.Item::shoot
+   IL_00B3: ldc.i4 272
+   IL_00B8: bne.un.s IL_00d1: ldloc.0
+   IL_00BA: ldarg.1 
+   IL_00BB: ldfld Terraria.Player::ownedProjectileCounts
+   IL_00C0: ldarg.0 
+   IL_00C1: ldfld Terraria.Item::shoot
+   IL_00C6: ldelem.i4 
+   IL_00C7: ldarg.0 
+   IL_00C8: ldfld Terraria.Item::stack
+   IL_00CD: blt.s IL_00d1: ldloc.0
+   IL_00CF: ldc.i4.0 
+   IL_00D0: stloc.0 
+   IL_00D1: ldloc.0 
+   IL_00D2: ret 
+### WeaponDisplay.WeaponParry::On_Player_ItemCheck_ManageRightClickFeatures_ShieldRaise
+   IL_0000: ldsfld WeaponDisplay.WeaponDisplay::ConfigGameplay
+   IL_0005: ldfld WeaponDisplay.ConfigurationServer::CanParry
+   IL_000A: brtrue.s IL_0015: ldsfld Terraria.GameInput.TriggersPack Terraria.GameInput.PlayerInput::Triggers
+   IL_000C: ldarg.1 
+   IL_000D: ldarg.2 
+   IL_000E: ldarg.3 
+   IL_000F: callvirt Terraria.On_Player/orig_ItemCheck_ManageRightClickFeatures_ShieldRaise::Invoke(Player,Boolean)
+   IL_0014: ret 
+   IL_0015: ldsfld Terraria.GameInput.PlayerInput::Triggers
+   IL_001A: ldfld Terraria.GameInput.TriggersPack::JustPressed
+   IL_001F: callvirt Terraria.GameInput.TriggersSet::get_MouseRight()
+   IL_0024: stloc.0 
+   IL_0025: ldarg.2 
+   IL_0026: ldfld Terraria.Entity::whoAmI
+   IL_002B: ldsfld Terraria.Main::myPlayer
+   IL_0030: beq.s IL_0041: ldc.i4.0
+   IL_0032: ldarg.2 
+   IL_0033: ldfld Terraria.Player::shieldRaised
+   IL_0038: stloc.0 
+   IL_0039: ldarg.2 
+   IL_003A: ldfld Terraria.Player::shieldRaised
+   IL_003F: starg.s theGeneralCheck
+   IL_0041: ldc.i4.0 
+   IL_0042: stloc.1 
+   IL_0043: ldarg.2 
+   IL_0044: ldfld Terraria.Player::inventory
+   IL_0049: ldarg.2 
+   IL_004A: ldfld Terraria.Player::selectedItem
+   IL_004F: ldelem.ref 
+   IL_0050: ldfld Terraria.Item::type
+   IL_0055: newobj Terraria.ModLoader.Config.ItemDefinition::.ctor(Int32)
+   IL_005A: stloc.2 
+   IL_005B: ldarg.2 
+   IL_005C: ldfld Terraria.Player::inventory
+   IL_0061: ldarg.2 
+   IL_0062: ldfld Terraria.Player::selectedItem
+   IL_0067: ldelem.ref 
+   IL_0068: ldfld Terraria.Item::type
+   IL_006D: ldc.i4 3823
+   IL_0072: beq.s IL_009f: ldc.i4.1
+   IL_0074: ldarg.2 
+   IL_0075: ldfld Terraria.Player::inventory
+   IL_007A: ldarg.2 
+   IL_007B: ldfld Terraria.Player::selectedItem
+   IL_0080: ldelem.ref 
+   IL_0081: ldfld Terraria.Item::type
+   IL_0086: ldc.i4 4760
+   IL_008B: beq.s IL_009f: ldc.i4.1
+   IL_008D: ldsfld WeaponDisplay.WeaponDisplay::ConfigGameplay
+   IL_0092: ldfld WeaponDisplay.ConfigurationServer::ParryItems
+   IL_0097: ldloc.2 
+   IL_0098: callvirt System.Collections.Generic.List`1<Terraria.ModLoader.Config.ItemDefinition>::Contains(!0)
+   IL_009D: br.s IL_00a0: stloc.3
+   IL_009F: ldc.i4.1 
+   IL_00A0: stloc.3 
+   IL_00A1: ldarg.3 
+   IL_00A2: ldloc.3 
+   IL_00A3: and 
+   IL_00A4: brfalse.s IL_00ca: ldarg.2
+   IL_00A6: ldarg.2 
+   IL_00A7: ldfld Terraria.Player::hasRaisableShield
+   IL_00AC: brfalse.s IL_00ca: ldarg.2
+   IL_00AE: ldarg.2 
+   IL_00AF: ldfld Terraria.Player::mount
+   IL_00B4: callvirt Terraria.Mount::get_Active()
+   IL_00B9: brtrue.s IL_00ca: ldarg.2
+   IL_00BB: ldarg.2 
+   IL_00BC: ldfld Terraria.Player::itemAnimation
+   IL_00C1: ldc.i4.0 
+   IL_00C2: ceq 
+   IL_00C4: ldloc.0 
+   IL_00C5: or 
+   IL_00C6: brfalse.s IL_00ca: ldarg.2
+   IL_00C8: ldc.i4.1 
+   IL_00C9: stloc.1 
+   IL_00CA: ldarg.2 
+   IL_00CB: ldfld Terraria.Player::shield_parry_cooldown
+   IL_00D0: ldc.i4.0 
+   IL_00D1: ble IL_01c3: ldarg.2
+   IL_00D6: ldarg.2 
+   IL_00D7: dup 
+   IL_00D8: ldfld Terraria.Player::shield_parry_cooldown
+   IL_00DD: ldc.i4.1 
+   IL_00DE: sub 
+   IL_00DF: stfld Terraria.Player::shield_parry_cooldown
+   IL_00E4: ldarg.2 
+   IL_00E5: ldfld Terraria.Player::shield_parry_cooldown
+   IL_00EA: brtrue IL_01c3: ldarg.2
+   IL_00EF: ldsflda Terraria.ID.SoundID::MaxMana
+   IL_00F4: ldarg.2 
+   IL_00F5: callvirt Terraria.Entity::get_Center()
+   IL_00FA: newobj System.Nullable`1<Microsoft.Xna.Framework.Vector2>::.ctor(!0)
+   IL_00FF: ldnull 
+   IL_0100: call Terraria.Audio.SoundEngine::PlaySound(SoundStyle&,Nullable`1,SoundUpdateCallback)
+   IL_0105: pop 
+   IL_0106: ldc.i4.0 
+   IL_0107: stloc.s V_4
+   IL_0109: br IL_01ba: ldloc.s V_4
+   IL_010E: ldarg.2 
+   IL_010F: callvirt Terraria.Entity::get_Center()
+   IL_0114: ldarg.2 
+   IL_0115: ldfld Terraria.Entity::direction
+   IL_011A: ldc.i4.6 
+   IL_011B: mul 
+   IL_011C: ldarg.2 
+   IL_011D: ldfld Terraria.Entity::direction
+   IL_0122: ldc.i4.m1 
+   IL_0123: beq.s IL_0128: ldc.i4.s -10
+   IL_0125: ldc.i4.0 
+   IL_0126: br.s IL_012a: add
+   IL_0128: ldc.i4.s -10
+   IL_012A: add 
+   IL_012B: conv.r4 
+   IL_012C: ldc.r4 -14
+   IL_0131: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_0136: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_013B: ldc.i4.s 10
+   IL_013D: ldc.i4.s 16
+   IL_013F: ldc.i4.s 45
+   IL_0141: ldc.r4 0
+   IL_0146: ldc.r4 0
+   IL_014B: ldc.i4 255
+   IL_0150: ldc.i4 255
+   IL_0155: ldc.i4.s 100
+   IL_0157: ldc.i4.0 
+   IL_0158: ldc.i4.s 127
+   IL_015A: newobj Microsoft.Xna.Framework.Color::.ctor(Int32,Int32,Int32,Int32)
+   IL_015F: call Terraria.Main::get_rand()
+   IL_0164: ldc.i4.s 10
+   IL_0166: ldc.i4.s 16
+   IL_0168: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32,Int32)
+   IL_016D: conv.r4 
+   IL_016E: ldc.r4 0.1
+   IL_0173: mul 
+   IL_0174: call Terraria.Dust::NewDust(Vector2,Int32,Int32,Int32,Single,Single,Int32,Color,Single)
+   IL_0179: stloc.s V_5
+   IL_017B: ldsfld Terraria.Main::dust
+   IL_0180: ldloc.s V_5
+   IL_0182: ldelem.ref 
+   IL_0183: ldc.i4.1 
+   IL_0184: stfld Terraria.Dust::noLight
+   IL_0189: ldsfld Terraria.Main::dust
+   IL_018E: ldloc.s V_5
+   IL_0190: ldelem.ref 
+   IL_0191: ldc.i4.1 
+   IL_0192: stfld Terraria.Dust::noGravity
+   IL_0197: ldsfld Terraria.Main::dust
+   IL_019C: ldloc.s V_5
+   IL_019E: ldelem.ref 
+   IL_019F: dup 
+   IL_01A0: ldfld Terraria.Dust::velocity
+   IL_01A5: ldc.r4 0.5
+   IL_01AA: call Microsoft.Xna.Framework.Vector2::op_Multiply(Vector2,Single)
+   IL_01AF: stfld Terraria.Dust::velocity
+   IL_01B4: ldloc.s V_4
+   IL_01B6: ldc.i4.1 
+   IL_01B7: add 
+   IL_01B8: stloc.s V_4
+   IL_01BA: ldloc.s V_4
+   IL_01BC: ldc.i4.s 10
+   IL_01BE: blt IL_010e: ldarg.2
+   IL_01C3: ldarg.2 
+   IL_01C4: ldfld Terraria.Player::shieldParryTimeLeft
+   IL_01C9: ldc.i4.0 
+   IL_01CA: ble.s IL_01eb: ldarg.2
+   IL_01CC: ldarg.2 
+   IL_01CD: ldfld Terraria.Player::shieldParryTimeLeft
+   IL_01D2: ldc.i4.1 
+   IL_01D3: add 
+   IL_01D4: stloc.s V_6
+   IL_01D6: ldarg.2 
+   IL_01D7: ldloc.s V_6
+   IL_01D9: stfld Terraria.Player::shieldParryTimeLeft
+   IL_01DE: ldloc.s V_6
+   IL_01E0: ldc.i4.s 20
+   IL_01E2: ble.s IL_01eb: ldarg.2
+   IL_01E4: ldarg.2 
+   IL_01E5: ldc.i4.0 
+   IL_01E6: stfld Terraria.Player::shieldParryTimeLeft
+   IL_01EB: ldarg.2 
+   IL_01EC: ldloc.1 
+   IL_01ED: callvirt Terraria.Player::TryTogglingShield(Boolean)
+   IL_01F2: ret 

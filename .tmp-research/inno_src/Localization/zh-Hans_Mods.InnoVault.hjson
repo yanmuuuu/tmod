@@ -1,0 +1,64 @@
+Configs: {
+	VaultClientConfig: {
+		DisplayName: 客户端设置
+
+		HideWorldLoadingScreen: {
+			Label: 隐藏世界加载缓冲屏幕
+			Tooltip:
+				'''
+				进入世界的加载阶段将不再显示缓冲UI
+				默认关闭，开启后将让加载隐形进行
+				'''
+		}
+	}
+}
+
+Loadings: {
+	WorldLoadingText: {
+		Text1: 正在加载世界
+		Text2: 正在读取存档数据
+		Text3: 正在加载物块处理器
+		Text4: 正在接收网络数据
+		Text5: 正在保存世界
+		NetWaringTimeoutMsg:
+			'''
+			[VaultNet] 网络加载已超时，部分网络数据可能已丢失或延迟
+			这可能导致世界实体不完整或状态不一致
+			建议检查您的网络连接，并尝试重新加入服务器
+			'''
+	}
+}
+
+Items: {
+	TestItem: {
+		DisplayName: 测试物品
+		Tooltip: ""
+	}
+}
+
+Projectiles.TestProj.DisplayName: 测试弹幕
+
+UI: {
+	DeveloperPanelUI: {
+		TitleText: 开发者调试面板
+		TPBoxDrawText: 显示碰撞箱
+		TPShowNameText: 显示内部名
+		TPShowPositionText: 显示位置
+		TPShowIDText: 显示ID
+		ResetAllText: 重置所有
+		CloseText: 关闭
+		TPTabText: TileProcessor
+		ActorTabText: Actor
+		ActorBoxDrawText: 显示碰撞箱
+		ActorShowNameText: 显示内部名
+		ActorShowPositionText: 显示位置
+		ActorShowIDText: 显示ID
+		ActorShowVelocityText: 显示速度
+		ResetText: 重置
+		StateMachineTabText: 状态机
+		StateMachineOverlayText: 状态机叠层
+		BehaviorTreeOverlayText: 行为树叠层
+		TPForceSerialText: 强制串行更新
+		ActorForceSerialText: 强制串行更新
+	}
+}

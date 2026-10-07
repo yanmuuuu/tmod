@@ -1,0 +1,20 @@
+{
+  "Backslash": "accept",
+  "BraceMid": "accept",
+  "BraceMidQuoted": "accept",
+  "BraceQuoted": "accept",
+  "BraceStart": "reject",
+  "BracketMid": "accept",
+  "BracketStart": "accept",
+  "ColonMid": "accept",
+  "CommaEnd": "accept",
+  "CommaMid": "accept",
+  "CurlyEnd": "accept",
+  "DashStart": "accept",
+  "EqualsSign": "accept",
+  "HashStart": "accept",
+  "Plain": "accept",
+  "PlusSigns": "accept",
+  "QuoteMid": "accept",
+  "SemicolonMid": "accept"
+}

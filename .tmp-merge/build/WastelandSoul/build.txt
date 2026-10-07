@@ -1,0 +1,10 @@
+displayName = 废土魂穿
+author = 待定
+version = 0.1
+side = Both
+# InnoVault 是工具库模组（状态机 / 剧情框架 / 3D 模型等）
+# WastelandSoulCN 是简体中文语言包：这样启用主模组时会自动带上它（不想强制的话删掉这一行即可）
+# SubworldLibrary 是维度（子世界）API：壁炉是独立小世界，必须装这个前置
+modReferences = InnoVault, WastelandSoulCN, SubworldLibrary
+buildIgnore = *.md, *.legacy, .vs\*, obj\*, bin\*
+description = 剧情向 · 半废土科技 · 大型模组（详见 description.txt）

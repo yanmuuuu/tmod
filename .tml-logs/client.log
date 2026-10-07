@@ -1,0 +1,39 @@
+[00:13:33.210] [Main Thread/INFO] [tML]: Starting tModLoader client 1.4.4.9+2026.08.3.0|2026.08|stable|Stable|c9545cf27d56c456321e1896274c02adf67d0140|5250950117352386884 built 2026/10/1 8:04
+[00:13:33.215] [Main Thread/INFO] [tML]: Log date: 2026/10/8
+[00:13:33.216] [Main Thread/INFO] [tML]: Running on Windows (v10.0.26200.0) X64 NetCore 8.0.14
+[00:13:33.219] [Main Thread/INFO] [tML]: CPU: 16 processors. RAM: 23.7 GB
+[00:13:33.219] [Main Thread/INFO] [tML]: FrameworkDescription: .NET 8.0.14
+[00:13:33.219] [Main Thread/INFO] [tML]: Executable: e:\steam\steamapps\common\tModLoader\tModLoader.dll
+[00:13:33.219] [Main Thread/INFO] [tML]: Working Directory: E:\steam\steamapps\common\tModLoader
+[00:13:33.220] [Main Thread/INFO] [tML]: Launch Parameters: -tmlsavedirectory E:\开发\.tml-loadtest-cn
+[00:13:33.222] [Main Thread/INFO] [tML]: Parsed Launch Parameters: -tmlsavedirectory E:\开发\.tml-loadtest-cn
+[00:13:33.479] [Main Thread/INFO] [tML]: Saves Are Located At: E:\开发\.tml-loadtest-cn
+[00:13:33.487] [Main Thread/INFO] [tML]: Display DPI: Diagonal DPI is 144. Vertical DPI is 144. Horizontal DPI is 144
+[00:13:33.488] [Main Thread/INFO] [tML]: High DPI Display detected: setting FNA to highdpi mode
+[00:13:33.490] [Main Thread/DEBUG] [FNA]: Querying linked library versions...
+[00:13:33.490] [Main Thread/DEBUG] [FNA]: SDL v2.28.2
+[00:13:33.490] [Main Thread/DEBUG] [FNA]: FNA3D v23.10.0
+[00:13:33.492] [Main Thread/DEBUG] [FNA]: FAudio v22.9.1
+[00:13:33.790] [Main Thread/INFO] [tML]: Distribution Platform: Steam. Detection method: CWD is /steamapps/
+[00:13:33.795] [Main Thread/DEBUG] [TerrariaSteamClient]: Disabled. Launched outside steam client.
+[00:13:33.884] [Main Thread/INFO] [FNA]: SDL.SDL_Init(SDL.SDL_INIT_VIDEO)...
+[00:13:33.885] [Main Thread/INFO] [FNA]: Success
+[00:13:33.886] [Main Thread/INFO] [FNA]: SDL.SDL_InitSubSystem(SDL.SDL_INIT_GAMECONTROLLER)...
+[00:13:33.945] [Main Thread/INFO] [FNA]: Success
+[00:13:34.100] [Main Thread/DEBUG] [tML]: Native Resolve: Steamworks.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null -> steam_api
+[00:13:34.100] [Main Thread/DEBUG] [tML]: 	delegating to Steamworks.NET.AnyCPU resolver
+[00:13:34.334] [Main Thread/INFO] [tML]: Attempt to Port from "E:\steam\userdata\1231494050\105600\remote\tModLoader" to "E:\steam\userdata\1231494050\105600\remote\tModLoader-1.4.3" aborted, "2026.8.3.0" is a newer version.
+[00:13:34.353] [Main Thread/INFO] [Terraria]: Steam Cloud Quota: 941.2 MB available
+[00:13:34.362] [Main Thread/INFO] [tML]: Steam beta branch: None
+[00:13:34.362] [Main Thread/INFO] [tML]: SteamBackend: Running standard Steam Desktop Client API
+[00:13:34.368] [Main Thread/INFO] [tML]: Current 1281930 Workshop Folder Directory: E:\steam\steamapps\common\tModLoader\..\..\workshop
+[00:13:34.538] [Main Thread/INFO] [FNA]: SDL Video Diver: windows
+[00:13:34.538] [Main Thread/INFO] [FNA]: FNA3D Driver: D3D11
+[00:13:34.538] [Main Thread/INFO] [FNA]: D3D11 Adapter: NVIDIA GeForce RTX 4060 Laptop GPU
+[00:13:34.548] [Main Thread/INFO] [tML]: Terraria Steam Install Location assumed to be: E:\steam\steamapps\common\Terraria
+[00:13:34.944] [Main Thread/INFO] [tML]: Maximum Resolution is 2560 x 1440
+[00:13:34.951] [Main Thread/DEBUG] [Terraria]: Device Created, Adapter: Generic PnP Monitor, DisplayMode: {{Width:2560 Height:1440 Format:Color}}, Profile: HiDef, Width: 800, Height: 720, Fullscreen: False, Display: \\.\DISPLAY1
+[00:13:34.973] [Main Thread/INFO] [tML]: Language: en-US
+[00:13:35.286] [Main Thread/INFO] [FNA]: SDL Audio Driver: 
+[00:13:36.298] [8/DEBUG] [tML]: SSDP search line separator: CRLF
+[00:13:36.967] [8/DEBUG] [tML]: Hook System.Runtime.Loader.AssemblyLoadContext::ValidateAssemblyNameWithSimpleName(Assembly, string) added by tModLoader

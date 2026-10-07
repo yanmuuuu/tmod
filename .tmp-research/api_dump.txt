@@ -1,0 +1,451 @@
+﻿==== ASSEMBLY: InnoVault, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null ====
+==== RUN-TIME VERSION (target framework) ====
+v4.0.30319
+==== ASSEMBLY REFS ====
+  System.Runtime 8.0.0.0
+  FNA 23.10.0.0
+  tModLoader 1.4.4.9
+  System.Collections 8.0.0.0
+  System.Reflection.Emit.ILGeneration 8.0.0.0
+  ReLogic 1.0.0.0
+  System.Collections.Concurrent 8.0.0.0
+  System.Text.RegularExpressions 8.0.0.0
+  Newtonsoft.Json 13.0.0.0
+  MonoMod.Utils 25.0.10.0
+  Mono.Cecil 0.11.6.0
+  System.Linq.Expressions 8.0.0.0
+  System.IO.Compression 8.0.0.0
+  TerrariaHooks 0.0.0.0
+  System.Linq 8.0.0.0
+  System.Text.Encoding.Extensions 8.0.0.0
+  MonoMod.RuntimeDetour 25.3.2.0
+  System.Threading.Tasks.Parallel 8.0.0.0
+  log4net 2.0.8.0
+  System.Reflection.Emit.Lightweight 8.0.0.0
+  System.Reflection.Primitives 8.0.0.0
+  System.Threading 8.0.0.0
+  System.Runtime.InteropServices 8.0.0.0
+  Steamworks.NET 1.0.0.0
+
+==== PUBLIC TYPES in InnoVault.Models3D.* ====
+
+[public] class InnoVault.Models3D.Wavefront.MtlParser : System.Object
+    static System.Collections.Generic.Dictionary`2<System.String,InnoVault.Models3D.Wavefront.ObjMaterial> Parse(System.IO.TextReader reader, InnoVault.Models3D.Wavefront.ObjDiagnostic diagnostic, System.String source)
+
+[public] struct InnoVault.Models3D.Wavefront.ObjDiagnosticEntry : System.ValueType
+    PROP  InnoVault.Models3D.Wavefront.ObjDiagnosticSeverity Severity {get}
+    PROP  System.String Source {get}
+    PROP  System.Int32 Line {get}
+    PROP  System.String Message {get}
+    System.Void .ctor(InnoVault.Models3D.Wavefront.ObjDiagnosticSeverity severity, System.String source, System.Int32 line, System.String message)
+    System.String ToString()
+
+[public] enum InnoVault.Models3D.Wavefront.ObjDiagnosticSeverity : System.Enum
+        Info = 0
+        Warning = 1
+        Error = 2
+
+[public] class InnoVault.Models3D.Wavefront.ObjDiagnostic : InnoVault.Models3D.Runtime.Model3DDiagnostic
+    System.Void .ctor()
+
+[public] enum InnoVault.Models3D.Wavefront.ObjAxisConvention : System.Enum
+        Raw = 0
+        YUpToYDown = 1
+
+[public] class InnoVault.Models3D.Wavefront.ObjImportOptions : System.Object
+    PROP  InnoVault.Models3D.Wavefront.ObjImportOptions Default {get}
+    PROP  InnoVault.Models3D.Wavefront.ObjAxisConvention AxisConvention {get,set}
+    PROP  Microsoft.Xna.Framework.Vector3 ImportScale {get,set}
+    PROP  System.Boolean GenerateMissingNormals {get,set}
+    PROP  System.Boolean FlipTextureV {get,set}
+    PROP  System.Boolean TriangulateNGons {get,set}
+    Microsoft.Xna.Framework.Vector3 ApplyAxis(Microsoft.Xna.Framework.Vector3 raw)
+    Microsoft.Xna.Framework.Vector3 ApplyAxisNormal(Microsoft.Xna.Framework.Vector3 raw)
+    System.Void .ctor()
+
+[public] class InnoVault.Models3D.Wavefront.ObjMaterial : InnoVault.Models3D.Runtime.Model3DMaterial
+    System.Void .ctor(System.String name)
+
+[public] class InnoVault.Models3D.Wavefront.ObjMeshBuilder : System.Object
+    static System.Collections.Generic.List`1<InnoVault.Models3D.Wavefront.ObjMeshGroup> Build(InnoVault.Models3D.Wavefront.ObjRawData raw, System.Collections.Generic.IReadOnlyDictionary`2<System.String,InnoVault.Models3D.Wavefront.ObjMaterial> materials, InnoVault.Models3D.Wavefront.ObjImportOptions options, InnoVault.Models3D.Wavefront.ObjDiagnostic diagnostic, System.String source, Microsoft.Xna.Framework.BoundingBox& bounds)
+
+[public] class InnoVault.Models3D.Wavefront.ObjMeshGroup : InnoVault.Models3D.Runtime.Model3DMeshGroup
+    PROP  InnoVault.Models3D.Wavefront.ObjMaterial Material {get}
+    PROP  System.Int16[] Indices {get}
+    System.Void .ctor(System.String materialName, Microsoft.Xna.Framework.Graphics.VertexPositionNormalTexture[] vertices, System.Int16[] indices)
+
+[public] class InnoVault.Models3D.Wavefront.ObjModelLoader : System.Object
+    static InnoVault.Models3D.Runtime.Vault3DModel Load(Terraria.ModLoader.Mod mod, System.String path, InnoVault.Models3D.Wavefront.ObjImportOptions options)
+
+[public] class InnoVault.Models3D.Wavefront.ObjParser : System.Object
+    static InnoVault.Models3D.Wavefront.ObjRawData Parse(System.IO.TextReader reader, InnoVault.Models3D.Wavefront.ObjDiagnostic diagnostic, System.String source, InnoVault.Models3D.Wavefront.ObjImportOptions options)
+
+[public] struct InnoVault.Models3D.Wavefront.ObjFaceVertex : System.ValueType
+    PROP  System.Int32 Position {get}
+    PROP  System.Int32 TexCoord {get}
+    PROP  System.Int32 Normal {get}
+    System.Void .ctor(System.Int32 position, System.Int32 texCoord, System.Int32 normal)
+
+[public] class InnoVault.Models3D.Wavefront.ObjFace : System.Object
+    PROP  InnoVault.Models3D.Wavefront.ObjFaceVertex[] Vertices {get}
+    PROP  System.String MaterialName {get}
+    System.Void .ctor(InnoVault.Models3D.Wavefront.ObjFaceVertex[] vertices, System.String materialName)
+
+[public] class InnoVault.Models3D.Wavefront.ObjRawData : System.Object
+    PROP  System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector3> Positions {get}
+    PROP  System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector2> TexCoords {get}
+    PROP  System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector3> Normals {get}
+    PROP  System.Collections.Generic.List`1<InnoVault.Models3D.Wavefront.ObjFace> Faces {get}
+    PROP  System.Collections.Generic.List`1<System.String> MaterialLibraries {get}
+    System.Void .ctor()
+
+[public] struct InnoVault.Models3D.Skinning.Joint4 : System.ValueType
+    FIELD System.UInt16 I0
+    FIELD System.UInt16 I1
+    FIELD System.UInt16 I2
+    FIELD System.UInt16 I3
+    System.Void .ctor(System.UInt16 i0, System.UInt16 i1, System.UInt16 i2, System.UInt16 i3)
+
+[public] struct InnoVault.Models3D.Skinning.Model3DJoint : System.ValueType
+    FIELD System.String Name
+    FIELD Microsoft.Xna.Framework.Vector3 BindTranslation
+    FIELD Microsoft.Xna.Framework.Quaternion BindRotation
+    FIELD Microsoft.Xna.Framework.Vector3 BindScale
+
+[public] class InnoVault.Models3D.Skinning.Model3DSkeleton : System.Object
+    PROP  System.String Name {get}
+    PROP  System.Int32 Index {get}
+    PROP  InnoVault.Models3D.Skinning.Model3DJoint[] Joints {get}
+    PROP  System.Int32[] ParentIndices {get}
+    PROP  Microsoft.Xna.Framework.Matrix[] InverseBindMatrices {get}
+    PROP  System.Int32[] EvaluationOrder {get}
+    PROP  Microsoft.Xna.Framework.Matrix[] RootAncestorMatrices {get}
+    PROP  System.Int32 JointCount {get}
+    System.Void .ctor(System.String name, System.Int32 index, InnoVault.Models3D.Skinning.Model3DJoint[] joints, System.Int32[] parentIndices, Microsoft.Xna.Framework.Matrix[] inverseBindMatrices, Microsoft.Xna.Framework.Matrix[] rootAncestorMatrices)
+
+[public] class InnoVault.Models3D.Skinning.SkinningPalette : System.Object
+    PROP  InnoVault.Models3D.Skinning.Model3DSkeleton Skeleton {get}
+    PROP  Microsoft.Xna.Framework.Matrix[] Matrices {get}
+    System.Void .ctor(InnoVault.Models3D.Skinning.Model3DSkeleton skeleton)
+    System.Void SetIdentity()
+    static System.Void ApplyToVertices(InnoVault.Models3D.Runtime.Model3DMeshGroup group, InnoVault.Models3D.Skinning.SkinningPalette palette, Microsoft.Xna.Framework.Graphics.VertexPositionNormalTexture[] dst)
+
+[public] struct InnoVault.Models3D.Runtime.Model3DDiagnosticEntry : System.ValueType
+    PROP  InnoVault.Models3D.Runtime.Model3DDiagnosticSeverity Severity {get}
+    PROP  System.String Source {get}
+    PROP  System.Int32 Line {get}
+    PROP  System.String Message {get}
+    System.Void .ctor(InnoVault.Models3D.Runtime.Model3DDiagnosticSeverity severity, System.String source, System.Int32 line, System.String message)
+    System.String ToString()
+
+[public] enum InnoVault.Models3D.Runtime.Model3DDiagnosticSeverity : System.Enum
+        Info = 0
+        Warning = 1
+        Error = 2
+
+[public] class InnoVault.Models3D.Runtime.Model3DDiagnostic : System.Object
+    PROP  System.Collections.Generic.IReadOnlyList`1<InnoVault.Models3D.Runtime.Model3DDiagnosticEntry> Entries {get}
+    PROP  System.Int32 WarningCount {get}
+    PROP  System.Int32 ErrorCount {get}
+    PROP  System.Boolean HasErrors {get}
+    System.Void Info(System.String source, System.Int32 line, System.String message)
+    System.Void Warn(System.String source, System.Int32 line, System.String message)
+    System.Void Error(System.String source, System.Int32 line, System.String message)
+    System.Void Add(InnoVault.Models3D.Runtime.Model3DDiagnosticSeverity severity, System.String source, System.Int32 line, System.String message)
+    System.String Format()
+    System.Void .ctor()
+
+[public] struct InnoVault.Models3D.Runtime.Model3DDrawContext : System.ValueType
+    PROP  Microsoft.Xna.Framework.Graphics.GraphicsDevice GraphicsDevice {get}
+    PROP  InnoVault.Models3D.Runtime.Model3DInstance Instance {get}
+    PROP  InnoVault.Models3D.Runtime.Vault3DModel Model {get}
+    PROP  InnoVault.Models3D.Runtime.Model3DMeshGroup Group {get}
+    PROP  InnoVault.Models3D.Runtime.Model3DMaterial Material {get}
+    PROP  InnoVault.Models3D.Runtime.Model3DLayer Layer {get}
+    PROP  Microsoft.Xna.Framework.Matrix World {get}
+    PROP  Microsoft.Xna.Framework.Matrix View {get}
+    PROP  Microsoft.Xna.Framework.Matrix Projection {get}
+    PROP  InnoVault.Models3D.Runtime.Model3DLightingConfig Lighting {get}
+    PROP  System.Boolean IsTransparent {get}
+    PROP  System.Single Time {get}
+    System.Void .ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, InnoVault.Models3D.Runtime.Model3DInstance instance, InnoVault.Models3D.Runtime.Vault3DModel model, InnoVault.Models3D.Runtime.Model3DMeshGroup group, InnoVault.Models3D.Runtime.Model3DMaterial material, InnoVault.Models3D.Runtime.Model3DLayer layer, Microsoft.Xna.Framework.Matrix world, Microsoft.Xna.Framework.Matrix view, Microsoft.Xna.Framework.Matrix projection, InnoVault.Models3D.Runtime.Model3DLightingConfig lighting, System.Boolean isTransparent, System.Single time)
+    InnoVault.Models3D.Runtime.Model3DDrawContext WithGroup(InnoVault.Models3D.Runtime.Model3DMeshGroup group, InnoVault.Models3D.Runtime.Model3DMaterial material)
+
+[public] class InnoVault.Models3D.Runtime.Model3DRenderState : System.Object
+    PROP  System.Boolean ForcesTransparentBucket {get}
+    FIELD Microsoft.Xna.Framework.Graphics.BlendState Blend
+    FIELD Microsoft.Xna.Framework.Graphics.DepthStencilState Depth
+    FIELD Microsoft.Xna.Framework.Graphics.RasterizerState Rasterizer
+    FIELD Microsoft.Xna.Framework.Graphics.SamplerState Sampler0
+    static System.Void ApplyResolved(Microsoft.Xna.Framework.Graphics.GraphicsDevice gd, InnoVault.Models3D.Runtime.Model3DRenderState instanceState, InnoVault.Models3D.Runtime.Model3DRenderState materialState, Microsoft.Xna.Framework.Graphics.BlendState defaultBlend, Microsoft.Xna.Framework.Graphics.DepthStencilState defaultDepth, Microsoft.Xna.Framework.Graphics.RasterizerState defaultRasterizer, Microsoft.Xna.Framework.Graphics.SamplerState defaultSampler)
+    System.Void .ctor()
+
+[public] interface InnoVault.Models3D.Runtime.IModel3DEffectProvider
+    Microsoft.Xna.Framework.Graphics.Effect Resolve(InnoVault.Models3D.Runtime.Model3DDrawContext& modreq(System.Runtime.InteropServices.InAttribute) ctx)
+    System.Void Configure(InnoVault.Models3D.Runtime.Model3DDrawContext& modreq(System.Runtime.InteropServices.InAttribute) ctx, Microsoft.Xna.Framework.Graphics.Effect effect)
+
+[public] class InnoVault.Models3D.Runtime.Model3DConfigureEffect : System.MulticastDelegate
+    System.Void .ctor(System.Object object, System.IntPtr method)
+    System.Void Invoke(InnoVault.Models3D.Runtime.Model3DDrawContext& modreq(System.Runtime.InteropServices.InAttribute) ctx, Microsoft.Xna.Framework.Graphics.Effect effect)
+    System.IAsyncResult BeginInvoke(InnoVault.Models3D.Runtime.Model3DDrawContext& modreq(System.Runtime.InteropServices.InAttribute) ctx, Microsoft.Xna.Framework.Graphics.Effect effect, System.AsyncCallback callback, System.Object object)
+    System.Void EndInvoke(InnoVault.Models3D.Runtime.Model3DDrawContext& modreq(System.Runtime.InteropServices.InAttribute) ctx, System.IAsyncResult result)
+
+[public] class InnoVault.Models3D.Runtime.Model3DDrawCallback : System.MulticastDelegate
+    System.Void .ctor(System.Object object, System.IntPtr method)
+    System.Void Invoke(InnoVault.Models3D.Runtime.Model3DDrawContext& modreq(System.Runtime.InteropServices.InAttribute) ctx)
+    System.IAsyncResult BeginInvoke(InnoVault.Models3D.Runtime.Model3DDrawContext& modreq(System.Runtime.InteropServices.InAttribute) ctx, System.AsyncCallback callback, System.Object object)
+    System.Void EndInvoke(InnoVault.Models3D.Runtime.Model3DDrawContext& modreq(System.Runtime.InteropServices.InAttribute) ctx, System.IAsyncResult result)
+
+[public] class InnoVault.Models3D.Runtime.Model3DInstance : System.Object
+    PROP  InnoVault.Models3D.Runtime.Vault3DModel Model {get,set}
+    PROP  Microsoft.Xna.Framework.Vector2 Position {get,set}
+    PROP  System.Single Depth {get,set}
+    PROP  Microsoft.Xna.Framework.Vector3 Rotation {get,set}
+    PROP  Microsoft.Xna.Framework.Vector3 Scale {get,set}
+    PROP  Microsoft.Xna.Framework.Color Tint {get,set}
+    PROP  System.Single Opacity {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DLayer Layer {get,set}
+    PROP  System.Boolean LightingEnabled {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DLightingConfig LightingOverride {get,set}
+    PROP  System.Boolean CastShadow {get,set}
+    PROP  System.Boolean ReceiveShadow {get,set}
+    PROP  System.Boolean DepthEnabled {get,set}
+    PROP  System.Boolean CullBackface {get,set}
+    PROP  System.Boolean ForceTransparent {get,set}
+    PROP  System.Single SortKey {get,set}
+    PROP  System.Boolean Visible {get,set}
+    PROP  Microsoft.Xna.Framework.Graphics.Effect Effect {get,set}
+    PROP  InnoVault.Models3D.Runtime.IModel3DEffectProvider EffectProvider {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DConfigureEffect ConfigureEffect {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DRenderState RenderStateOverride {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DDrawCallback PreDrawInstance {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DDrawCallback PostDrawInstance {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DDrawCallback PreDrawGroup {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DDrawCallback PostDrawGroup {get,set}
+    PROP  InnoVault.Models3D.Animation.AnimationPlayer Animation {get,set}
+    System.Void .ctor()
+    System.Void .ctor(InnoVault.Models3D.Runtime.Vault3DModel model)
+
+[public] enum InnoVault.Models3D.Runtime.Model3DLayer : System.Enum
+        BeforeTiles = 0
+        AfterTiles = 1
+        BeforePlayers = 2
+        AfterPlayers = 3
+        BeforeInfernoRings = 4
+
+[public] struct InnoVault.Models3D.Runtime.Model3DDirectionalLight : System.ValueType
+    FIELD System.Boolean Enabled
+    FIELD Microsoft.Xna.Framework.Vector3 Direction
+    FIELD Microsoft.Xna.Framework.Vector3 DiffuseColor
+    FIELD Microsoft.Xna.Framework.Vector3 SpecularColor
+
+[public] class InnoVault.Models3D.Runtime.Model3DLightingConfig : System.Object
+    FIELD Microsoft.Xna.Framework.Vector3 AmbientColor
+    FIELD InnoVault.Models3D.Runtime.Model3DDirectionalLight Light0
+    FIELD InnoVault.Models3D.Runtime.Model3DDirectionalLight Light1
+    FIELD InnoVault.Models3D.Runtime.Model3DDirectionalLight Light2
+    FIELD Microsoft.Xna.Framework.Vector3 EmissiveColor
+    FIELD System.Single SpecularPower
+    System.Void .ctor()
+    static InnoVault.Models3D.Runtime.Model3DLightingConfig CreateDefault()
+    System.Void CopyTo(InnoVault.Models3D.Runtime.Model3DLightingConfig dst)
+
+[public] class InnoVault.Models3D.Runtime.Model3DLightingResolver : System.MulticastDelegate
+    System.Void .ctor(System.Object object, System.IntPtr method)
+    System.Void Invoke(InnoVault.Models3D.Runtime.Model3DInstance instance, InnoVault.Models3D.Runtime.Model3DLightingConfig config)
+    System.IAsyncResult BeginInvoke(InnoVault.Models3D.Runtime.Model3DInstance instance, InnoVault.Models3D.Runtime.Model3DLightingConfig config, System.AsyncCallback callback, System.Object object)
+    System.Void EndInvoke(System.IAsyncResult result)
+
+[public] class InnoVault.Models3D.Runtime.Model3DLoadenHandle : InnoVault.VaultLoadenHandle
+    PROP  System.Type TargetType {get}
+    PROP  System.Int32 Priority {get}
+    PROP  System.Boolean SupportArrayLoading {get}
+    System.Boolean CanHandle(System.Type type)
+    System.Boolean CanHandleArrayElement(System.Type elementType)
+    System.Object GetDefaultValue(System.Type type)
+    System.Object HandleLoad(System.Reflection.MemberInfo member, InnoVault.VaultLoadenAttribute attribute)
+    static InnoVault.Models3D.Runtime.Vault3DModel Load(Terraria.ModLoader.Mod mod, System.String path, InnoVault.Models3D.Gltf.GltfImportOptions gltfOptions, InnoVault.Models3D.Wavefront.ObjImportOptions objOptions)
+    System.Void .ctor()
+
+[public] class InnoVault.Models3D.Runtime.Model3DMaterial : System.Object
+    PROP  System.String Name {get}
+    PROP  Microsoft.Xna.Framework.Color DiffuseColor {get,set}
+    PROP  System.Single Opacity {get,set}
+    PROP  System.String DiffuseTexturePath {get,set}
+    PROP  Microsoft.Xna.Framework.Graphics.Texture2D DiffuseTexture {get,set}
+    PROP  System.Boolean HasTexture {get}
+    PROP  Microsoft.Xna.Framework.Graphics.Effect Effect {get,set}
+    PROP  InnoVault.Models3D.Runtime.IModel3DEffectProvider EffectProvider {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DConfigureEffect ConfigureEffect {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DRenderState RenderStateOverride {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DDrawCallback PreDrawGroup {get,set}
+    PROP  InnoVault.Models3D.Runtime.Model3DDrawCallback PostDrawGroup {get,set}
+    System.Void .ctor(System.String name)
+
+[public] class InnoVault.Models3D.Runtime.Model3DMeshGroup : System.Object
+    PROP  System.String MaterialName {get}
+    PROP  InnoVault.Models3D.Runtime.Model3DMaterial Material {get}
+    PROP  Microsoft.Xna.Framework.Graphics.VertexPositionNormalTexture[] Vertices {get}
+    PROP  System.Int32[] Indices {get}
+    PROP  System.Int32 TriangleCount {get}
+    PROP  Microsoft.Xna.Framework.Graphics.VertexPositionNormalTexture[] BindVertices {get}
+    PROP  InnoVault.Models3D.Skinning.Joint4[] JointIndices {get}
+    PROP  Microsoft.Xna.Framework.Vector4[] JointWeights {get}
+    PROP  System.Int32 SkinIndex {get}
+    PROP  System.Boolean IsSkinned {get}
+    System.Void .ctor(System.String materialName, Microsoft.Xna.Framework.Graphics.VertexPositionNormalTexture[] vertices, System.Int32[] indices)
+
+[public] class InnoVault.Models3D.Runtime.Model3DRenderer : InnoVault.RenderHandles.RenderHandle
+    PROP  System.Single Weight {get}
+    PROP  InnoVault.Models3D.Runtime.Model3DRenderer Instance {get}
+    PROP  InnoVault.Models3D.Runtime.Model3DLightingConfig GlobalLighting {get,set}
+    PROP  Microsoft.Xna.Framework.Graphics.RenderTarget2D CurrentLayerRT {get}
+    PROP  Microsoft.Xna.Framework.Graphics.BasicEffect DefaultEffect {get}
+    FIELD InnoVault.Models3D.Runtime.Model3DRenderer/Model3DCompositeOverride CompositeOverride
+    static System.Void add_ResolveLighting(InnoVault.Models3D.Runtime.Model3DLightingResolver value)
+    static System.Void remove_ResolveLighting(InnoVault.Models3D.Runtime.Model3DLightingResolver value)
+    static System.Void add_PreDrawInstance(InnoVault.Models3D.Runtime.Model3DDrawCallback value)
+    static System.Void remove_PreDrawInstance(InnoVault.Models3D.Runtime.Model3DDrawCallback value)
+    static System.Void add_PostDrawInstance(InnoVault.Models3D.Runtime.Model3DDrawCallback value)
+    static System.Void remove_PostDrawInstance(InnoVault.Models3D.Runtime.Model3DDrawCallback value)
+    static System.Void add_PreDrawGroup(InnoVault.Models3D.Runtime.Model3DDrawCallback value)
+    static System.Void remove_PreDrawGroup(InnoVault.Models3D.Runtime.Model3DDrawCallback value)
+    static System.Void add_PostDrawGroup(InnoVault.Models3D.Runtime.Model3DDrawCallback value)
+    static System.Void remove_PostDrawGroup(InnoVault.Models3D.Runtime.Model3DDrawCallback value)
+    static System.Void add_OnLayerRendered(System.Action`2<InnoVault.Models3D.Runtime.Model3DLayer,Microsoft.Xna.Framework.Graphics.RenderTarget2D> value)
+    static System.Void remove_OnLayerRendered(System.Action`2<InnoVault.Models3D.Runtime.Model3DLayer,Microsoft.Xna.Framework.Graphics.RenderTarget2D> value)
+    System.Void .ctor()
+    System.Void OnResolutionChanged(Microsoft.Xna.Framework.Vector2 screenSize)
+    static System.Void Submit(InnoVault.Models3D.Runtime.Model3DInstance instance)
+    static System.Void Draw(InnoVault.Models3D.Runtime.Vault3DModel model, Microsoft.Xna.Framework.Vector2 position, Microsoft.Xna.Framework.Vector3 rotation, Microsoft.Xna.Framework.Vector3 scale, InnoVault.Models3D.Runtime.Model3DLayer layer, System.Nullable`1<Microsoft.Xna.Framework.Color> tint)
+    static System.Boolean RegisterPersistent(InnoVault.Models3D.Runtime.Model3DInstance instance)
+    static System.Boolean UnregisterPersistent(InnoVault.Models3D.Runtime.Model3DInstance instance)
+    static System.Void ClearPersistent()
+    System.Void DrawBeforeTiles(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTarget2D screenSwap)
+    System.Void DrawAfterTiles(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTarget2D screenSwap)
+    System.Void DrawBeforePlayers(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTarget2D screenSwap)
+    System.Void DrawAfterPlayers(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTarget2D screenSwap)
+    System.Void DrawBeforeInfernoRings(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTarget2D screenSwap)
+    System.Void EndEntityDraw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Terraria.Main main, Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, Microsoft.Xna.Framework.Graphics.RenderTarget2D screenSwap)
+    static System.Void DrawInstance(Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, InnoVault.Models3D.Runtime.Model3DInstance instance, Microsoft.Xna.Framework.Matrix view, Microsoft.Xna.Framework.Matrix projection, InnoVault.Models3D.Runtime.Model3DLayer layer, System.Boolean isTransparent, Microsoft.Xna.Framework.Graphics.Effect effectOverride)
+    static System.Void DrawMeshGroup(Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, InnoVault.Models3D.Runtime.Model3DMeshGroup group, Microsoft.Xna.Framework.Graphics.Effect effect, Microsoft.Xna.Framework.Matrix world, Microsoft.Xna.Framework.Matrix view, Microsoft.Xna.Framework.Matrix projection)
+    static System.Void DrawMeshPrimitives(Microsoft.Xna.Framework.Graphics.GraphicsDevice graphicsDevice, Microsoft.Xna.Framework.Graphics.VertexPositionNormalTexture[] vertices, System.Int32[] indices, Microsoft.Xna.Framework.Graphics.Effect effect)
+    static Microsoft.Xna.Framework.Matrix BuildWorldMatrix(InnoVault.Models3D.Runtime.Model3DInstance instance)
+    static Microsoft.Xna.Framework.Matrix BuildScreenViewMatrix()
+    static Microsoft.Xna.Framework.Matrix BuildScreenProjection()
+    static System.Void ApplyLighting(Microsoft.Xna.Framework.Graphics.IEffectLights effect, InnoVault.Models3D.Runtime.Model3DLightingConfig cfg)
+
+[public] class InnoVault.Models3D.Runtime.Model3DRenderer/Model3DCompositeOverride : System.MulticastDelegate
+    System.Void .ctor(System.Object object, System.IntPtr method)
+    System.Boolean Invoke(InnoVault.Models3D.Runtime.Model3DLayer layer, Microsoft.Xna.Framework.Graphics.RenderTarget2D rt, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+    System.IAsyncResult BeginInvoke(InnoVault.Models3D.Runtime.Model3DLayer layer, Microsoft.Xna.Framework.Graphics.RenderTarget2D rt, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, System.AsyncCallback callback, System.Object object)
+    System.Boolean EndInvoke(System.IAsyncResult result)
+
+[public] class InnoVault.Models3D.Runtime.Vault3DModel : System.Object
+    PROP  InnoVault.Models3D.Runtime.Vault3DModel Empty {get}
+    PROP  System.String Name {get}
+    PROP  System.String SourcePath {get}
+    PROP  System.Collections.Generic.IReadOnlyList`1<InnoVault.Models3D.Runtime.Model3DMeshGroup> Groups {get}
+    PROP  System.Collections.Generic.IReadOnlyDictionary`2<System.String,InnoVault.Models3D.Runtime.Model3DMaterial> Materials {get}
+    PROP  System.Collections.Generic.IReadOnlyList`1<InnoVault.Models3D.Skinning.Model3DSkeleton> Skeletons {get}
+    PROP  System.Collections.Generic.IReadOnlyList`1<InnoVault.Models3D.Animation.Model3DAnimationClip> Clips {get}
+    PROP  InnoVault.Models3D.Runtime.Model3DDiagnostic Diagnostic {get}
+    PROP  Microsoft.Xna.Framework.BoundingBox Bounds {get}
+    PROP  Microsoft.Xna.Framework.Vector3 Pivot {get}
+    PROP  Microsoft.Xna.Framework.Matrix RootTransform {get}
+    PROP  System.Int32 VertexCount {get}
+    PROP  System.Int32 TriangleCount {get}
+    PROP  System.Boolean IsValid {get}
+    PROP  System.Boolean IsSkinned {get}
+    System.Boolean TryGetClip(System.String name, InnoVault.Models3D.Animation.Model3DAnimationClip& clip)
+
+[public] class InnoVault.Models3D.Gltf.GltfImportOptions : System.Object
+    PROP  InnoVault.Models3D.Gltf.GltfImportOptions Default {get}
+    PROP  Microsoft.Xna.Framework.Vector3 ImportScale {get,set}
+    PROP  System.Boolean ApplyNodeTransforms {get,set}
+    PROP  System.Boolean GenerateMissingNormals {get,set}
+    PROP  System.Boolean FlipTextureV {get,set}
+    PROP  System.Boolean FlipYForTerraria {get,set}
+    PROP  System.Boolean CenterPivot {get,set}
+    PROP  System.Boolean ImportSkins {get,set}
+    PROP  System.Boolean ImportAnimations {get,set}
+    Microsoft.Xna.Framework.Vector3 ApplyImportScale(Microsoft.Xna.Framework.Vector3 value)
+    Microsoft.Xna.Framework.Vector3 ApplyAxis(Microsoft.Xna.Framework.Vector3 value)
+    Microsoft.Xna.Framework.Vector3 ApplyAxisNormal(Microsoft.Xna.Framework.Vector3 value)
+    System.Void .ctor()
+
+[public] class InnoVault.Models3D.Gltf.GltfModelLoader : System.Object
+    static InnoVault.Models3D.Runtime.Vault3DModel Load(Terraria.ModLoader.Mod mod, System.String path, InnoVault.Models3D.Gltf.GltfImportOptions options)
+
+[public] class InnoVault.Models3D.Animation.AnimationPlayer : System.Object
+    PROP  InnoVault.Models3D.Runtime.Vault3DModel Model {get}
+    PROP  InnoVault.Models3D.Animation.Model3DAnimationClip Current {get}
+    PROP  InnoVault.Models3D.Animation.Model3DAnimationClip Previous {get}
+    PROP  System.Boolean IsFading {get}
+    FIELD System.Single Time
+    FIELD System.Single Speed
+    FIELD System.Boolean Loop
+    FIELD System.Boolean Paused
+    FIELD System.Boolean Diagnostic
+    FIELD System.Double LastDriverTotalSeconds
+    FIELD System.Single PreviousTime
+    FIELD System.Single PreviousSpeed
+    FIELD System.Boolean PreviousLoop
+    FIELD System.Single FadeDuration
+    FIELD System.Single FadeElapsed
+    System.Void .ctor(InnoVault.Models3D.Runtime.Vault3DModel model)
+    InnoVault.Models3D.Skinning.SkinningPalette GetPalette(System.Int32 skeletonIndex)
+    System.Boolean Play(System.String clipName, System.Single fadeIn, System.Boolean restart)
+    System.Void Play(InnoVault.Models3D.Animation.Model3DAnimationClip clip, System.Single fadeIn, System.Boolean restart)
+    System.Void Stop()
+    System.Void Update(System.Single deltaSeconds)
+    System.Void Tick(System.Single deltaSeconds)
+    System.Void SamplePose()
+
+[public] class InnoVault.Models3D.Animation.Model3DAnimationChannel : System.Object
+    PROP  System.Int32 SkeletonIndex {get}
+    PROP  System.Int32 JointIndex {get}
+    PROP  InnoVault.Models3D.Animation.Model3DAnimationPath Path {get}
+    PROP  InnoVault.Models3D.Animation.Model3DAnimationSampler Sampler {get}
+    System.Void .ctor(System.Int32 skeletonIndex, System.Int32 jointIndex, InnoVault.Models3D.Animation.Model3DAnimationPath path, InnoVault.Models3D.Animation.Model3DAnimationSampler sampler)
+
+[public] class InnoVault.Models3D.Animation.Model3DAnimationClip : System.Object
+    PROP  System.String Name {get}
+    PROP  System.Single Duration {get}
+    PROP  InnoVault.Models3D.Animation.Model3DAnimationChannel[] Channels {get}
+    System.Void .ctor(System.String name, System.Single duration, InnoVault.Models3D.Animation.Model3DAnimationChannel[] channels)
+
+[public] enum InnoVault.Models3D.Animation.Model3DAnimationPath : System.Enum
+        Translation = 0
+        Rotation = 1
+        Scale = 2
+        Weights = 3
+
+[public] enum InnoVault.Models3D.Animation.Model3DInterpolation : System.Enum
+        Step = 0
+        Linear = 1
+        CubicSpline = 2
+
+[public] class InnoVault.Models3D.Animation.Model3DAnimationSampler : System.Object
+    PROP  System.Single[] Input {get}
+    PROP  System.Single[] Output {get}
+    PROP  System.Int32 Stride {get}
+    PROP  InnoVault.Models3D.Animation.Model3DInterpolation Interpolation {get}
+    PROP  System.Single StartTime {get}
+    PROP  System.Single EndTime {get}
+    System.Void .ctor(System.Single[] input, System.Single[] output, System.Int32 stride, InnoVault.Models3D.Animation.Model3DInterpolation interpolation)
+    Microsoft.Xna.Framework.Vector3 SampleVec3(System.Single time)
+    Microsoft.Xna.Framework.Quaternion SampleQuat(System.Single time)
+
+==== VaultLoadenHandle base + Model3DLoadenHandle registration ====
+TYPE InnoVault.VaultLoadenHandle : System.Object
+TYPE InnoVault.Models3D.Runtime.Model3DLoadenHandle : InnoVault.VaultLoadenHandle
+
+==== TEST: does InnoVault mention .glb anywhere in DLL strings? ====
+  .glb     occurrences=0
+  glb      occurrences=0
+  FBX      occurrences=0
+  .fbx     occurrences=0
+  gltf     occurrences=1
+  .gltf    occurrences=0
+  .obj     occurrences=0

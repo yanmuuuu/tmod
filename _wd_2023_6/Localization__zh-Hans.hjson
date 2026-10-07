@@ -1,0 +1,143 @@
+Mods: {
+	WeaponDisplay: {
+		Config: {
+			head1: 武器背显
+			head2: 掉落物效果
+			head3: 挥砍效果（仅影响视觉效果，不影响实际判定）
+			K1: 制作组新模组
+			K2: 已发布, 欢迎去创意工坊订阅
+		}
+
+		ConfigurationServer: {
+			SlashSettings: 挥砍效果（仅影响实际判定，不影响视觉效果）
+			Parry: 武器盾反
+		}
+
+		Items: {
+			旧日支配者: {
+				DisplayName: 旧日支配者
+				Tooltip: 这股力量还未完全苏醒
+			}
+
+			真旧日支配者: {
+				DisplayName: 真▪旧日支配者
+				Tooltip: ""
+			}
+
+			第一分形: {
+				DisplayName: 第一分形
+				Tooltip: ""
+			}
+		}
+
+		Projectiles.旧日剑气.DisplayName: 旧日剑气
+
+		Configs: {
+			Configuration: {
+				DisplayName: 视觉效果设置
+
+				ShowWeapon: {
+					Label: 武器显示开关
+					Tooltip: 是,开启武器显示,否,关闭,默认为是
+				}
+
+				DyeUsed: {
+					Label: 武器使用的染料
+					Tooltip: 决定背显武器使用哪个装备栏的染料（Head:头 Body:身 Leg:腿）
+				}
+
+				ShowGlow: {
+					Label: 武器光效绘制开关
+					Tooltip: 是,以开启武器的光效绘制(只会在身体盔甲存在光效时生效,效果与盔甲光效一致),否,以取消.默认为否
+				}
+
+				GlowLighting: {
+					Label: 武器光效亮度
+					Tooltip: 调整武器光效的亮度
+				}
+
+				CoolerSwooshActive: {
+					Label: 更帅的拔刀
+					Tooltip:
+						'''
+						你厌倦了原版近战的挥动方式了吗？
+						如果想要影响实际攻击效果，请到游戏性设置处开启碰撞箱
+						               
+						'''
+				}
+
+				LightItem: {
+					Label: 掉落物光效开关
+					Tooltip: 是,以开启掉落物的光效绘制,否,以取消.默认为是
+				}
+
+				WeaponScale: {
+					Label: 武器显示尺寸
+					Tooltip: 调整武器的显示尺寸
+				}
+
+				LightItemNum: {
+					Label: 掉落物使用的光效种类
+					Tooltip: ""
+				}
+
+				IsLighterDecider: {
+					Label: 挥砍效果亮度
+					Tooltip: 亮度大于0.5就会使用高亮式挥砍
+				}
+
+				UseItemTexForSwoosh: {
+					Label: 挥砍效果颜色
+					Tooltip: 是,以开启武器贴图对角线颜色关联挥砍效果颜色,否,使用单色.默认为是
+				}
+
+				ItemAdditive: {
+					Label: 武器和武器挥舞效果半透明且高亮
+					Tooltip: 阿汪:我觉着这挺诡异的但是有人想要www
+				}
+
+				ToolsNoUseNewSwooshEffect: {
+					Label: 取消新的挥舞效果对工具的影响
+					Tooltip: 是,以取消新的挥舞效果对工具的影响,否,不取消,默认为否
+				}
+			}
+
+			DyeSlot: {
+				Tooltip: ""
+				None.Label: None
+				Head.Label: Head
+				Body.Label: Body
+				Leg.Label: Leg
+			}
+
+			ConfigurationServer: {
+				DisplayName: 游戏性设置
+
+				UseHitbox: {
+					Label: 使用和刀光效果匹配的碰撞箱
+					Tooltip: 是,以开启武器的新碰撞箱,否,使用原版碰撞箱.默认为是
+				}
+
+				ItemAttackCD: {
+					Label: 真近战挥舞可伤害最大敌人数
+					Tooltip: 每次挥舞武器时刀体可对最多几个敌人造成伤害
+				}
+
+				CanParry: {
+					Label: 武器盾反开关
+					Tooltip:
+						'''
+						是,会给以下物品加上右键盾反效果,否,以取消,默认为是
+						仅在装备盾牌饰品时有用
+						   
+						'''
+				}
+
+				ParryItems: {
+					Label: 给武器添加右键盾反效果
+					Tooltip: 可用于盾反的武器列表
+				}
+			}
+		}
+	}
+}

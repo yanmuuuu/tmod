@@ -1,0 +1,74 @@
+using InnoVault.Narrative.Core;
+using System;
+using Terraria.Audio;
+
+namespace InnoVault.Narrative.Composition
+{
+    /// <summary>
+    /// 选项构建器，用于在 <see cref="NarrativeComposer.Choice(CharacterId, string, Action{ChoiceBuilder})"/> 中声明选项与限时行为
+    /// </summary>
+    public sealed class ChoiceBuilder
+    {
+        internal ChoiceNode Node { get; }
+
+        internal ChoiceBuilder(ChoiceNode node) {
+            Node = node;
+        }
+
+        /// <summary>为提示句绑定配音（默认同时静音打字机音）</summary>
+        /// <param name="voice">提示句配音</param>
+        /// <param name="muteTypingSound">是否静音打字机音</param>
+        public ChoiceBuilder Voice(SoundStyle voice, bool muteTypingSound = true) {
+            Node.Voice = voice;
+            Node.MuteTypingSound = muteTypingSound;
+            return this;
+        }
+
+        /// <summary>
+        /// 允许 Skip 飞过本选择的回调副作用（选项本身仍是停顿点；仅影响「因 OnEnter/OnExit 而额外挡 Skip」的语义）
+        /// </summary>
+        /// <param name="allow">为 true 时标记 <see cref="NarrativeNode.AllowSkipThrough"/></param>
+        public ChoiceBuilder AllowSkipThrough(bool allow = true) {
+            Node.AllowSkipThrough = allow;
+            return this;
+        }
+
+        /// <summary>添加一个选项</summary>
+        /// <param name="id">稳定选项 id</param>
+        /// <param name="text">显示文本</param>
+        /// <param name="target">选择后的流程跳转，<see langword="null"/> 表示继续下一节点</param>
+        /// <param name="onSelect">选择时的副作用回调</param>
+        /// <param name="enabled">启用判定，<see langword="null"/> 表示始终启用</param>
+        /// <param name="disabledHint">禁用提示</param>
+        public ChoiceBuilder Option(ChoiceId id, string text, NarrativeTarget target = null,
+            Action onSelect = null, Func<bool> enabled = null, string disabledHint = null) {
+            Node.Options.Add(new ChoiceOption {
+                Id = id,
+                Text = text,
+                Target = target ?? NarrativeTarget.Continue,
+                OnSelect = onSelect,
+                Enabled = enabled,
+                DisabledHint = disabledHint,
+            });
+            return this;
+        }
+
+        /// <summary>设置该选择为限时选择</summary>
+        /// <param name="seconds">限时秒数</param>
+        /// <param name="defaultChoice">超时默认选择的选项 id，<see langword="null"/> 时超时随机选择一个可用项</param>
+        public ChoiceBuilder Timed(float seconds, ChoiceId? defaultChoice = null) {
+            Node.Timed = TimedSettings.Of(seconds);
+            Node.DefaultChoice = defaultChoice;
+            return this;
+        }
+
+        /// <summary>设置该选择为限时选择（完整定时配置）</summary>
+        /// <param name="timed">限时配置；<see langword="null"/> 表示取消限时</param>
+        /// <param name="defaultChoice">超时默认选择的选项 id，<see langword="null"/> 时超时随机选择一个可用项</param>
+        public ChoiceBuilder Timed(TimedSettings timed, ChoiceId? defaultChoice = null) {
+            Node.Timed = timed;
+            Node.DefaultChoice = defaultChoice;
+            return this;
+        }
+    }
+}

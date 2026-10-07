@@ -1,0 +1,64 @@
+Configs: {
+	VaultClientConfig: {
+		DisplayName: Client-Einstellungen
+
+		HideWorldLoadingScreen: {
+			Label: Welt-Ladebildschirm verbergen
+			Tooltip:
+				'''
+				Die Ladeoberfläche wird beim Betreten einer Welt nicht mehr angezeigt.
+				Standardmäßig aus; Aktivieren macht den Ladevorgang unsichtbar.
+				'''
+		}
+	}
+}
+
+Loadings: {
+	WorldLoadingText: {
+		Text1: Lade Welt
+		Text2: Lese Speicherdaten
+		Text3: Lade Tile Processor
+		Text4: Empfange Netzwerkdaten
+		Text5: Speichere Welt
+		NetWaringTimeoutMsg:
+			'''
+			[VaultNet] Zeitüberschreitung beim Netzwerkladen. Einige Daten sind möglicherweise verloren gegangen oder verzögert.
+			Dies kann zu unvollständigen Welt-Entitäten oder inkonsistenten Zuständen führen.
+			Es wird empfohlen, die Netzwerkverbindung zu überprüfen und erneut dem Server beizutreten.
+			'''
+	}
+}
+
+Items: {
+	TestItem: {
+		DisplayName: Testgegenstand
+		Tooltip: ""
+	}
+}
+
+Projectiles.TestProj.DisplayName: Testprojektil
+
+UI: {
+	DeveloperPanelUI: {
+		TitleText: Entwickler-Debug-Panel
+		TPBoxDrawText: Hitbox anzeigen
+		TPShowNameText: Interne Namen anzeigen
+		TPShowPositionText: Position anzeigen
+		TPShowIDText: ID anzeigen
+		ResetAllText: Alles zurücksetzen
+		CloseText: Schließen
+		TPTabText: TileProcessor
+		ActorTabText: Actor
+		ActorBoxDrawText: Hitbox anzeigen
+		ActorShowNameText: Interne Namen anzeigen
+		ActorShowPositionText: Position anzeigen
+		ActorShowIDText: ID anzeigen
+		ActorShowVelocityText: Geschwindigkeit anz.
+		ResetText: Reset
+		StateMachineTabText: Zustandsmaschine
+		StateMachineOverlayText: FSM-Overlay
+		BehaviorTreeOverlayText: Verhaltensbaum-Overlay
+		TPForceSerialText: Serielle Aktualisierung erzwingen
+		ActorForceSerialText: Serielle Aktualisierung erzwingen
+	}
+}

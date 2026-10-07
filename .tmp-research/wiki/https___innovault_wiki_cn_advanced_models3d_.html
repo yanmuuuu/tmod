@@ -1,0 +1,790 @@
+﻿<!DOCTYPE html><html lang="zh-CN" dir="ltr" data-theme="dark" data-has-toc data-has-sidebar class="astro-bguv2lll"> <head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Models3D | InnoVault Wiki</title><link rel="shortcut icon" href="/favicon.png" type="image/png"/><meta name="generator" content="Astro v5.18.2"/><meta name="generator" content="Starlight v0.37.7"/><meta property="og:title" content="Models3D"/><meta property="og:type" content="article"/><meta property="og:locale" content="zh-CN"/><meta property="og:description" content="OBJ / glTF 加载、Model3DRenderer 分层绘制与蒙皮动画。"/><meta property="og:site_name" content="InnoVault Wiki"/><meta name="twitter:card" content="summary_large_image"/><meta name="description" content="OBJ / glTF 加载、Model3DRenderer 分层绘制与蒙皮动画。"/> <meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback" content="animate"><script type="module" src="/_astro/ClientRouter.astro_astro_type_script_index_0_lang.BDvKCjmJ.js"></script> <link rel="apple-touch-icon" href="/favicon.png"> <meta name="theme-color" content="#0f1218" id="vault-theme-color"> <meta name="color-scheme" content="light dark"> <!-- Default dark theme + sidebar collapse pre-hydration (avoid FOUC) --> <script>
+	(function () {
+		var theme = localStorage.getItem('starlight-theme');
+		if (!theme) {
+			theme = 'dark';
+			localStorage.setItem('starlight-theme', theme);
+		}
+		document.documentElement.dataset.theme = theme;
+
+		var colorScheme = document.querySelector('meta[name="color-scheme"]');
+		if (colorScheme) colorScheme.setAttribute('content', theme === 'light' ? 'light' : 'dark');
+
+		var themeColor = document.getElementById('vault-theme-color');
+		if (themeColor) themeColor.setAttribute('content', theme === 'light' ? '#f8f9fb' : '#0f1218');
+
+		try {
+			if (localStorage.getItem('vault-sidebar-collapsed') === '1') {
+				document.documentElement.setAttribute('data-sidebar-collapsed', '');
+			}
+		} catch (_) {
+			/* localStorage unavailable */
+		}
+	})();
+</script> <!-- Persist locale preference when user switches via Starlight language select --> <script>
+	(function () {
+		var STORAGE_KEY = 'vault-locale';
+		var COOKIE_MAX_AGE = 31536000;
+
+		function saveLocale(locale) {
+			if (locale !== 'cn' && locale !== 'en') return;
+			try {
+				localStorage.setItem(STORAGE_KEY, locale);
+				document.cookie =
+					STORAGE_KEY + '=' + locale + ';path=/;max-age=' + COOKIE_MAX_AGE + ';SameSite=Lax';
+			} catch (_) {}
+		}
+
+		function localeFromPath(pathname) {
+			var segment = pathname.split('/').filter(Boolean)[0];
+			if (segment === 'en') return 'en';
+			if (segment === 'cn') return 'cn';
+			return null;
+		}
+
+		document.addEventListener('change', function (e) {
+			var target = e.target;
+			if (!(target instanceof HTMLSelectElement)) return;
+			if (!target.closest('starlight-lang-select')) return;
+			var locale = localeFromPath(target.value);
+			if (locale) saveLocale(locale);
+		});
+	})();
+</script><script>
+	window.StarlightThemeProvider = (() => {
+		const storedTheme =
+			typeof localStorage !== 'undefined' && localStorage.getItem('starlight-theme');
+		const theme =
+			storedTheme ||
+			(window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+		document.documentElement.dataset.theme = theme === 'light' ? 'light' : 'dark';
+		return {
+			updatePickers(theme = storedTheme || 'auto') {
+				document.querySelectorAll('starlight-theme-select').forEach((picker) => {
+					const select = picker.querySelector('select');
+					if (select) select.value = theme;
+					/** @type {HTMLTemplateElement | null} */
+					const tmpl = document.querySelector(`#theme-icons`);
+					const newIcon = tmpl && tmpl.content.querySelector('.' + theme);
+					if (newIcon) {
+						const oldIcon = picker.querySelector('svg.label-icon');
+						if (oldIcon) {
+							oldIcon.replaceChildren(...newIcon.cloneNode(true).childNodes);
+						}
+					}
+				});
+			},
+		};
+	})();
+</script><template id="theme-icons"><svg aria-hidden="true" class="light astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M5 12a1 1 0 0 0-1-1H3a1 1 0 0 0 0 2h1a1 1 0 0 0 1-1Zm.64 5-.71.71a1 1 0 0 0 0 1.41 1 1 0 0 0 1.41 0l.71-.71A1 1 0 0 0 5.64 17ZM12 5a1 1 0 0 0 1-1V3a1 1 0 0 0-2 0v1a1 1 0 0 0 1 1Zm5.66 2.34a1 1 0 0 0 .7-.29l.71-.71a1 1 0 1 0-1.41-1.41l-.66.71a1 1 0 0 0 0 1.41 1 1 0 0 0 .66.29Zm-12-.29a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.71-.71a1.004 1.004 0 1 0-1.43 1.41l.73.71ZM21 11h-1a1 1 0 0 0 0 2h1a1 1 0 0 0 0-2Zm-2.64 6A1 1 0 0 0 17 18.36l.71.71a1 1 0 0 0 1.41 0 1 1 0 0 0 0-1.41l-.76-.66ZM12 6.5a5.5 5.5 0 1 0 5.5 5.5A5.51 5.51 0 0 0 12 6.5Zm0 9a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0 3.5a1 1 0 0 0-1 1v1a1 1 0 0 0 2 0v-1a1 1 0 0 0-1-1Z"/></svg><svg aria-hidden="true" class="dark astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.64 13a1 1 0 0 0-1.05-.14 8.049 8.049 0 0 1-3.37.73 8.15 8.15 0 0 1-8.14-8.1 8.59 8.59 0 0 1 .25-2A1 1 0 0 0 8 2.36a10.14 10.14 0 1 0 14 11.69 1 1 0 0 0-.36-1.05Zm-9.5 6.69A8.14 8.14 0 0 1 7.08 5.22v.27a10.15 10.15 0 0 0 10.14 10.14 9.784 9.784 0 0 0 2.1-.22 8.11 8.11 0 0 1-7.18 4.32v-.04Z"/></svg><svg aria-hidden="true" class="auto astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg></template><link rel="stylesheet" href="/_astro/print.DNXP8c50.css" media="print"><link rel="stylesheet" href="/_astro/index.DQRNdI7e.css">
+<style>@layer starlight.components{:root{--sl-badge-default-border: var(--sl-color-accent);--sl-badge-default-bg: var(--sl-color-accent-low);--sl-badge-default-text: #fff;--sl-badge-note-border: var(--sl-color-blue);--sl-badge-note-bg: var(--sl-color-blue-low);--sl-badge-note-text: #fff;--sl-badge-danger-border: var(--sl-color-red);--sl-badge-danger-bg: var(--sl-color-red-low);--sl-badge-danger-text: #fff;--sl-badge-success-border: var(--sl-color-green);--sl-badge-success-bg: var(--sl-color-green-low);--sl-badge-success-text: #fff;--sl-badge-caution-border: var(--sl-color-orange);--sl-badge-caution-bg: var(--sl-color-orange-low);--sl-badge-caution-text: #fff;--sl-badge-tip-border: var(--sl-color-purple);--sl-badge-tip-bg: var(--sl-color-purple-low);--sl-badge-tip-text: #fff}[data-theme=light]:root{--sl-badge-default-bg: var(--sl-color-accent-high);--sl-badge-note-bg: var(--sl-color-blue-high);--sl-badge-danger-bg: var(--sl-color-red-high);--sl-badge-success-bg: var(--sl-color-green-high);--sl-badge-caution-bg: var(--sl-color-orange-high);--sl-badge-tip-bg: var(--sl-color-purple-high)}.sl-badge:where(.astro-avdet4wd){display:inline-block;border:1px solid var(--sl-color-border-badge);border-radius:.25rem;font-family:var(--sl-font-system-mono);line-height:normal;color:var(--sl-color-text-badge);background-color:var(--sl-color-bg-badge);overflow-wrap:anywhere}.sidebar-content .sl-badge:where(.astro-avdet4wd){line-height:1;font-size:var(--sl-text-xs);padding:.125rem .375rem}.sidebar-content a[aria-current=page]>.sl-badge:where(.astro-avdet4wd){--sl-color-bg-badge: transparent;--sl-color-border-badge: currentColor;color:inherit}.default:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-default-bg);--sl-color-border-badge: var(--sl-badge-default-border);--sl-color-text-badge: var(--sl-badge-default-text)}.note:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-note-bg);--sl-color-border-badge: var(--sl-badge-note-border);--sl-color-text-badge: var(--sl-badge-note-text)}.danger:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-danger-bg);--sl-color-border-badge: var(--sl-badge-danger-border);--sl-color-text-badge: var(--sl-badge-danger-text)}.success:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-success-bg);--sl-color-border-badge: var(--sl-badge-success-border);--sl-color-text-badge: var(--sl-badge-success-text)}.tip:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-tip-bg);--sl-color-border-badge: var(--sl-badge-tip-border);--sl-color-text-badge: var(--sl-badge-tip-text)}.caution:where(.astro-avdet4wd){--sl-color-bg-badge: var(--sl-badge-caution-bg);--sl-color-border-badge: var(--sl-badge-caution-border);--sl-color-text-badge: var(--sl-badge-caution-text)}.small:where(.astro-avdet4wd){font-size:var(--sl-text-xs);padding:.125rem .25rem}.medium:where(.astro-avdet4wd){font-size:var(--sl-text-sm);padding:.175rem .35rem}.large:where(.astro-avdet4wd){font-size:var(--sl-text-base);padding:.225rem .45rem}.sl-markdown-content :is(h1,h2,h3,h4,h5,h6) .sl-badge:where(.astro-avdet4wd){vertical-align:middle}}
+@layer starlight.components{.card-grid:where(.astro-zntqmydn){display:grid;grid-template-columns:100%;gap:1rem}.card-grid:where(.astro-zntqmydn)>*{margin-top:0!important}@media(min-width:50rem){.card-grid:where(.astro-zntqmydn){grid-template-columns:1fr 1fr;gap:1.5rem}.stagger:where(.astro-zntqmydn){--stagger-height: 5rem;padding-bottom:var(--stagger-height)}.stagger:where(.astro-zntqmydn)>*:nth-child(2n){transform:translateY(var(--stagger-height))}}}
+@layer starlight.components{svg:where(.astro-c6vsoqas){color:var(--sl-icon-color);font-size:var(--sl-icon-size, 1em);width:1em;height:1em}}
+@layer starlight.components{starlight-tabs:where(.astro-esqgolmp){display:block}.tablist-wrapper:where(.astro-esqgolmp){overflow-x:auto}:where(.astro-esqgolmp)[role=tablist]{display:flex;list-style:none;border-bottom:2px solid var(--sl-color-gray-5);padding:0}.tab:where(.astro-esqgolmp){display:flex}.tab:where(.astro-esqgolmp)>:where(.astro-esqgolmp)[role=tab]{--sl-tab-color-border: var(--sl-color-gray-5);display:flex;align-items:center;gap:.5rem;line-height:var(--sl-line-height-headings);padding:.275rem 1.25rem;text-decoration:none;box-shadow:0 2px 0 var(--sl-tab-color-border);color:var(--sl-color-gray-3);outline-offset:var(--sl-outline-offset-inside);overflow-wrap:initial}.tab:where(.astro-esqgolmp) :where(.astro-esqgolmp)[role=tab][aria-selected=true]{--sl-tab-color-border: var(--sl-color-text-accent);color:var(--sl-color-white);font-weight:600}.tablist-wrapper:where(.astro-esqgolmp)~[role=tabpanel]{margin-top:1rem}}
+@layer starlight.components{.sl-link-card:where(.astro-mf7fz2mj){display:grid;grid-template-columns:1fr auto;gap:.5rem;border:1px solid var(--sl-color-gray-5);border-radius:.5rem;padding:1rem;box-shadow:var(--sl-shadow-sm);position:relative}a:where(.astro-mf7fz2mj){text-decoration:none;line-height:var(--sl-line-height-headings)}a:where(.astro-mf7fz2mj):before{content:"";position:absolute;inset:0}.stack:where(.astro-mf7fz2mj){flex-direction:column;gap:.5rem}.title:where(.astro-mf7fz2mj){color:var(--sl-color-white);font-weight:600;font-size:var(--sl-text-lg)}.description:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3);line-height:1.5}.icon:where(.astro-mf7fz2mj){color:var(--sl-color-gray-3)}.sl-link-card:where(.astro-mf7fz2mj):hover{background:var(--sl-color-gray-7, var(--sl-color-gray-6));border-color:var(--sl-color-gray-2)}.sl-link-card:where(.astro-mf7fz2mj):hover .icon:where(.astro-mf7fz2mj){color:var(--sl-color-white)}}
+@layer starlight.components{.sl-steps{--bullet-size: calc(var(--sl-line-height) * 1rem);--bullet-margin: .375rem;list-style:none;counter-reset:steps-counter var(--sl-steps-start, 0);padding-inline-start:0}.sl-steps>li{counter-increment:steps-counter;position:relative;padding-inline-start:calc(var(--bullet-size) + 1rem);padding-bottom:1px;min-height:calc(var(--bullet-size) + var(--bullet-margin))}.sl-steps>li+li{margin-top:0}.sl-steps>li:before{content:counter(steps-counter);position:absolute;top:0;inset-inline-start:0;width:var(--bullet-size);height:var(--bullet-size);line-height:var(--bullet-size);font-size:var(--sl-text-xs);font-weight:600;text-align:center;color:var(--sl-color-white);background-color:var(--sl-color-gray-6);border-radius:99rem;box-shadow:inset 0 0 0 1px var(--sl-color-gray-5)}.sl-steps>li:after{--guide-width: 1px;content:"";position:absolute;top:calc(var(--bullet-size) + var(--bullet-margin));bottom:var(--bullet-margin);inset-inline-start:calc((var(--bullet-size) - var(--guide-width)) / 2);width:var(--guide-width);background-color:var(--sl-color-hairline-light)}}@layer starlight.content{.sl-steps>li>:first-child{--lh: calc(1em * var(--sl-line-height));--shift-y: calc(.5 * (var(--bullet-size) - var(--lh)));transform:translateY(var(--shift-y));margin-bottom:var(--shift-y)}.sl-steps>li>:first-child:where(h1,h2,h3,h4,h5,h6){--lh: calc(1em * var(--sl-line-height-headings))}@supports (--prop: 1lh){.sl-steps>li>:first-child{--lh: 1lh}}}
+@layer starlight.components{.sl-link-button:where(.astro-xwgiixxa){align-items:center;border:1px solid transparent;border-radius:999rem;display:inline-flex;font-size:var(--sl-text-sm);gap:.5em;line-height:1.1875;outline-offset:.25rem;padding:.4375rem 1.125rem;text-decoration:none}.sl-link-button:where(.astro-xwgiixxa).primary{background:var(--sl-color-text-accent);border-color:var(--sl-color-text-accent);color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).primary:hover{color:var(--sl-color-black)}.sl-link-button:where(.astro-xwgiixxa).secondary{border-color:inherit;color:var(--sl-color-white)}.sl-link-button:where(.astro-xwgiixxa).minimal{color:var(--sl-color-white);padding-inline:0}.sl-link-button:where(.astro-xwgiixxa) svg{flex-shrink:0}@media(min-width:50rem){.sl-link-button:where(.astro-xwgiixxa){font-size:var(--sl-text-base);padding:.9375rem 1.25rem}}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa){margin-inline-end:1rem}.sl-markdown-content .sl-link-button:where(.astro-xwgiixxa):not(:where(p *)){margin-block:1rem}}
+</style><script type="module" src="/_astro/page.CCPTUmzv.js"></script></head> <body class="astro-bguv2lll"> <a href="#_top" class="astro-7q3lir66">跳转到内容</a>  <div class="vault-cursor-light" aria-hidden="true"> <div class="vault-cursor-light__core"></div> <div class="vault-cursor-light__grid"></div> <div class="vault-cursor-light__grid-hot"></div> <div class="vault-cursor-light__hot"></div> </div> <script type="module">const a="-999px",p="data-vault-cursor-light-active";function o(i){document.documentElement.toggleAttribute(p,i)}function v(){o(!1),document.documentElement.style.setProperty("--vault-cursor-x",a),document.documentElement.style.setProperty("--vault-cursor-y",a)}function m(){if(window.__vaultCursorGridLight)return;window.__vaultCursorGridLight=!0;const i=window.matchMedia("(prefers-reduced-motion: reduce)").matches,l=window.matchMedia("(pointer: fine)").matches;if(i||!l){v();return}let t=0,u=0,d=0;const s=()=>{t=0,document.documentElement.style.setProperty("--vault-cursor-x",`${u}px`),document.documentElement.style.setProperty("--vault-cursor-y",`${d}px`)},c=(e,f=!1)=>{u=e.clientX,d=e.clientY,f?(t&&cancelAnimationFrame(t),s()):t||(t=requestAnimationFrame(s))},n=()=>{t&&(cancelAnimationFrame(t),t=0),o(!1)},r=e=>(e.buttons&3)!==0;document.addEventListener("mousedown",e=>{r(e)&&(c(e,!0),o(!0))}),document.addEventListener("mousemove",e=>{if(!r(e)){n();return}c(e),o(!0)},{passive:!0}),window.addEventListener("mouseup",e=>{r(e)||n()}),document.addEventListener("mouseleave",n),window.addEventListener("blur",n),document.addEventListener("visibilitychange",()=>{document.hidden&&n()}),document.addEventListener("astro:before-swap",n)}m();document.addEventListener("astro:page-load",m);</script> <!-- Initial site load overlay (fades out when document is ready) --><div id="vault-loading-overlay" class="vault-loading-overlay" role="status" aria-live="polite" aria-label="Loading"> <div class="vault-loading-overlay-inner"> <img src="/_astro/gear-wheel.2G07J351.png" width="50" height="50" alt="" class="vault-loading-gear" decoding="async" fetchpriority="high"> </div> </div> <!-- Client route transition feedback (NavProgress pattern) --> <div id="nav-progress" data-astro-transition-persist="nav-progress" role="presentation" aria-hidden="true"> <div class="nav-progress-bar"></div> </div> <div id="nav-loading-toast" data-astro-transition-persist="nav-loading-toast" role="status" aria-live="polite"> <img src="/_astro/gear-wheel.2G07J351.png" width="50" height="50" alt="" class="nav-loading-gear" decoding="async"> <span class="nav-loading-textwrap"> <span class="nav-loading-title" data-i18n-cn="加载中" data-i18n-en="Loading">Loading</span> </span> </div>  <script>
+	(() => {
+		if (window.__vaultLoadingBooted) return;
+		window.__vaultLoadingBooted = true;
+
+		const html = document.documentElement;
+		const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+		function syncLoadingLabel() {
+			const title = document.querySelector('.nav-loading-title');
+			if (!title) return;
+			const isEn = /^\/en(\/|$)/.test(window.location.pathname);
+			const key = isEn ? 'i18nEn' : 'i18nCn';
+			const text = title.dataset[key];
+			if (text) title.textContent = text;
+		}
+
+		const OVERLAY_FALLBACK_MS = 5000;
+
+		/** Remove every full-screen overlay (swap may inject duplicates). */
+		function removeLoadingOverlays(instant) {
+			const overlays = document.querySelectorAll('#vault-loading-overlay');
+			if (!overlays.length) return;
+
+			if (instant || window.__vaultAppReady || reducedMotion) {
+				overlays.forEach((el) => el.remove());
+				return;
+			}
+
+			window.__vaultAppReady = true;
+			overlays.forEach((el) => {
+				el.classList.add('fade-out');
+				el.addEventListener('transitionend', () => el.remove(), { once: true });
+				setTimeout(() => el.remove(), 600);
+			});
+		}
+
+		const getBar = () =>
+			/** @type {HTMLElement | null} */ (document.getElementById('nav-progress'));
+		const getInner = () =>
+			/** @type {HTMLElement | null} */ (document.querySelector('.nav-progress-bar'));
+		const getToast = () =>
+			/** @type {HTMLElement | null} */ (document.getElementById('nav-loading-toast'));
+
+		const STATE = {
+			width: 0,
+			rafId: 0,
+			startDelayId: 0,
+			toastDelayId: 0,
+			finishingId: 0,
+			safetyId: 0,
+			active: false,
+			navGen: 0,
+		};
+
+		function clearTimer(key) {
+			if (STATE[key]) {
+				clearTimeout(STATE[key]);
+				STATE[key] = 0;
+			}
+		}
+
+		function setWidth(pct) {
+			STATE.width = pct;
+			const inner = getInner();
+			if (inner) inner.style.width = pct + '%';
+		}
+
+		function trickle() {
+			cancelAnimationFrame(STATE.rafId);
+			const step = () => {
+				if (!STATE.active) return;
+				const remaining = Math.max(0, 90 - STATE.width);
+				const delta = remaining * 0.08 + 0.4;
+				setWidth(Math.min(90, STATE.width + delta));
+				STATE.rafId = requestAnimationFrame(() => {
+					setTimeout(step, 220);
+				});
+			};
+			step();
+		}
+
+		function start(gen) {
+			if (gen !== STATE.navGen) return;
+			clearTimer('finishingId');
+			const bar = getBar();
+			if (!bar) return;
+			STATE.active = true;
+			bar.classList.remove('is-finishing');
+			bar.classList.add('is-active');
+			html.classList.add('is-navigating');
+			setWidth(8);
+			trickle();
+			clearTimer('toastDelayId');
+			STATE.toastDelayId = setTimeout(() => {
+				if (gen !== STATE.navGen || !STATE.active) return;
+				const toast = getToast();
+				if (toast) toast.classList.add('is-visible');
+			}, 400);
+			clearTimer('safetyId');
+			STATE.safetyId = setTimeout(() => {
+				if (gen === STATE.navGen && STATE.active) finish();
+			}, 12000);
+		}
+
+		function bump(target) {
+			if (!STATE.active) return;
+			setWidth(Math.max(STATE.width, target));
+		}
+
+		function finish() {
+			STATE.navGen += 1;
+			const bar = getBar();
+			const toast = getToast();
+			cancelAnimationFrame(STATE.rafId);
+			clearTimer('startDelayId');
+			clearTimer('toastDelayId');
+			clearTimer('safetyId');
+			STATE.active = false;
+			html.classList.remove('is-navigating');
+			if (toast) toast.classList.remove('is-visible');
+			if (!bar) return;
+			bar.classList.add('is-finishing');
+			setWidth(100);
+			clearTimer('finishingId');
+			STATE.finishingId = setTimeout(() => {
+				bar.classList.remove('is-active', 'is-finishing');
+				setWidth(0);
+			}, 280);
+		}
+
+		function scheduleStart() {
+			const gen = ++STATE.navGen;
+			clearTimer('startDelayId');
+			STATE.startDelayId = setTimeout(() => start(gen), 80);
+		}
+
+		function cancel() {
+			clearTimer('startDelayId');
+			finish();
+		}
+
+		document.addEventListener('astro:before-preparation', () => {
+			// Route changes: progress bar only — strip any overlay before swap injects a fresh one
+			removeLoadingOverlays(true);
+			scheduleStart();
+		});
+		document.addEventListener('astro:after-preparation', () => bump(70));
+		document.addEventListener('astro:before-swap', () => bump(85));
+		document.addEventListener('astro:after-swap', () => {
+			removeLoadingOverlays(true);
+			bump(95);
+			finish();
+		});
+		document.addEventListener('astro:page-load', () => {
+			syncLoadingLabel();
+			removeLoadingOverlays(Boolean(window.__vaultAppReady));
+			finish();
+		});
+
+		syncLoadingLabel();
+
+		function dismissOnReady() {
+			removeLoadingOverlays(Boolean(window.__vaultAppReady));
+		}
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', dismissOnReady);
+		} else {
+			dismissOnReady();
+		}
+
+		// Hard fallback: always dismiss initial overlay even if lifecycle events never fire
+		setTimeout(() => removeLoadingOverlays(true), OVERLAY_FALLBACK_MS);
+
+		window.addEventListener('pageshow', () => {
+			cancel();
+			removeLoadingOverlays(true);
+		});
+		document.addEventListener('visibilitychange', () => {
+			if (document.hidden) cancel();
+		});
+	})();
+</script> <button class="sidebar-toggle astro-lp5naqcd" type="button" aria-label="切换侧边栏" aria-pressed="false" title="切换侧边栏 ( [ )" data-sidebar-toggle> <svg class="icon icon-collapse astro-lp5naqcd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <rect width="18" height="18" x="3" y="3" rx="2" class="astro-lp5naqcd"></rect> <path d="M9 3v18" class="astro-lp5naqcd"></path> <path d="m16 15-3-3 3-3" class="astro-lp5naqcd"></path> </svg> <svg class="icon icon-expand astro-lp5naqcd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"> <rect width="18" height="18" x="3" y="3" rx="2" class="astro-lp5naqcd"></rect> <path d="M9 3v18" class="astro-lp5naqcd"></path> <path d="m14 9 3 3-3 3" class="astro-lp5naqcd"></path> </svg> </button>  <script type="module">const r="vault-sidebar-collapsed";function o(t){const e=document.documentElement;t?e.setAttribute("data-sidebar-collapsed",""):e.removeAttribute("data-sidebar-collapsed"),document.querySelectorAll("[data-sidebar-toggle]").forEach(a=>{a.setAttribute("aria-pressed",String(t))});try{localStorage.setItem(r,t?"1":"0")}catch{}}function n(){const t=document.documentElement.hasAttribute("data-sidebar-collapsed");o(!t)}function d(){const t=document.documentElement.hasAttribute("data-sidebar-collapsed");document.querySelectorAll("[data-sidebar-toggle]").forEach(e=>{e.setAttribute("aria-pressed",String(t)),!e.dataset.bound&&(e.dataset.bound="1",e.addEventListener("click",n))})}document.addEventListener("keydown",t=>{if(t.key!=="["||t.metaKey||t.ctrlKey||t.altKey)return;const e=t.target;if(!e)return;const a=e.tagName;a==="INPUT"||a==="TEXTAREA"||a==="SELECT"||e.isContentEditable||(t.preventDefault(),n())});document.readyState==="loading"?document.addEventListener("DOMContentLoaded",d):d();document.addEventListener("astro:page-load",d);</script> <div class="page sl-flex astro-vrdttmbt"> <header class="header astro-vrdttmbt"><div class="header astro-kmkmnagf"> <div class="title-wrapper sl-flex astro-kmkmnagf"> <a href="/cn" class="site-title sl-flex astro-m46x6ez3">  <img class="astro-m46x6ez3" alt="InnoVault" src="/_astro/gear-wheel.2G07J351.png" width="50" height="50">  <span class="astro-m46x6ez3" translate="no"> InnoVault Wiki </span> </a>  </div> <div class="sl-flex print:hidden astro-kmkmnagf"> <site-search class="astro-kmkmnagf astro-pkfvzmd6" data-translations="{&#34;placeholder&#34;:&#34;搜索&#34;}"> <button data-open-modal disabled aria-label="搜索" aria-keyshortcuts="Control+K" class="astro-pkfvzmd6"> <svg aria-hidden="true" class="astro-pkfvzmd6 astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21.71 20.29 18 16.61A9 9 0 1 0 16.61 18l3.68 3.68a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.39ZM11 18a7 7 0 1 1 0-14 7 7 0 0 1 0 14Z"/></svg> <span class="sl-hidden md:sl-block astro-pkfvzmd6" aria-hidden="true">搜索</span> <kbd class="sl-hidden md:sl-flex astro-pkfvzmd6" style="display: none;"> <kbd class="astro-pkfvzmd6">Ctrl</kbd><kbd class="astro-pkfvzmd6">K</kbd> </kbd> </button> <dialog style="padding:0" aria-label="搜索" class="astro-pkfvzmd6"> <div class="dialog-frame sl-flex astro-pkfvzmd6"> <button data-close-modal class="sl-flex md:sl-hidden astro-pkfvzmd6"> 取消 </button> <div class="search-container astro-pkfvzmd6"> <div id="starlight__search" class="astro-pkfvzmd6"></div> </div> </div> </dialog> </site-search> <script>
+	(() => {
+		const openBtn = document.querySelector('button[data-open-modal]');
+		const shortcut = openBtn?.querySelector('kbd');
+		if (!openBtn || !(shortcut instanceof HTMLElement)) return;
+		const platformKey = shortcut.querySelector('kbd');
+		if (platformKey && /(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+			platformKey.textContent = '⌘';
+			openBtn.setAttribute('aria-keyshortcuts', 'Meta+K');
+		}
+		shortcut.style.display = '';
+	})();
+</script> <script type="module" src="/_astro/SiteSearch.astro_astro_type_script_index_0_lang.Du3YWO5M.js"></script>   </div> <div class="sl-hidden md:sl-flex print:hidden right-group astro-kmkmnagf"> <div class="sl-flex social-icons astro-kmkmnagf"> <a href="https://github.com/hocha113/InnoVault" rel="me" class="sl-flex astro-wy4te6ga"><span class="sr-only astro-wy4te6ga">GitHub</span><svg aria-hidden="true" class="astro-wy4te6ga astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">选择主题</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">深色</option><option value="light" class="astro-4yphtoen">浅色</option><option value="auto" selected class="astro-4yphtoen">自动</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script> <script type="module">const r="starlight-theme",o=e=>e==="auto"||e==="dark"||e==="light"?e:"auto",c=()=>o(typeof localStorage<"u"&&localStorage.getItem(r));function n(e){typeof localStorage<"u"&&localStorage.setItem(r,e==="light"||e==="dark"?e:"")}const l=()=>matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";function t(e){StarlightThemeProvider.updatePickers(e),document.documentElement.dataset.theme=e==="auto"?l():e,n(e)}matchMedia("(prefers-color-scheme: light)").addEventListener("change",()=>{c()==="auto"&&t("auto")});class s extends HTMLElement{constructor(){super(),t(c()),this.querySelector("select")?.addEventListener("change",a=>{a.currentTarget instanceof HTMLSelectElement&&t(o(a.currentTarget.value))})}}customElements.define("starlight-theme-select",s);</script> <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">选择语言</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/cn/advanced/models3d/" selected class="astro-4yphtoen">简体中文</option><option value="/en/advanced/models3d/" class="astro-4yphtoen">English</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select><script type="module">class s extends HTMLElement{constructor(){super();const e=this.querySelector("select");e&&(e.addEventListener("change",t=>{t.currentTarget instanceof HTMLSelectElement&&(window.location.pathname=t.currentTarget.value)}),window.addEventListener("pageshow",t=>{if(!t.persisted)return;const n=e.querySelector("option[selected]")?.index;n!==e.selectedIndex&&(e.selectedIndex=n??0)}))}}customElements.define("starlight-lang-select",s);</script> </div> </div> </header> <nav class="sidebar print:hidden astro-vrdttmbt" aria-label="主要"> <starlight-menu-button class="print:hidden astro-jif73yzw"> <button aria-expanded="false" aria-label="菜单" aria-controls="starlight__sidebar" class="sl-flex md:sl-hidden astro-jif73yzw"> <svg aria-hidden="true" class="open-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M3 8h18a1 1 0 1 0 0-2H3a1 1 0 0 0 0 2Zm18 8H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Zm0-5H3a1 1 0 0 0 0 2h18a1 1 0 0 0 0-2Z"/></svg> <svg aria-hidden="true" class="close-menu astro-jif73yzw astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="m13.41 12 6.3-6.29a1.004 1.004 0 1 0-1.42-1.42L12 10.59l-6.29-6.3a1.004 1.004 0 0 0-1.42 1.42l6.3 6.29-6.3 6.29a1 1 0 0 0 0 1.42.998.998 0 0 0 1.42 0l6.29-6.3 6.29 6.3a.999.999 0 0 0 1.42 0 1 1 0 0 0 0-1.42L13.41 12Z"/></svg> </button> </starlight-menu-button> <script type="module">class s extends HTMLElement{constructor(){super(),this.btn=this.querySelector("button"),this.btn.addEventListener("click",()=>this.toggleExpanded());const t=this.closest("nav");t&&t.addEventListener("keyup",e=>this.closeOnEscape(e))}setExpanded(t){this.setAttribute("aria-expanded",String(t)),document.body.toggleAttribute("data-mobile-menu-expanded",t)}toggleExpanded(){this.setExpanded(this.getAttribute("aria-expanded")!=="true")}closeOnEscape(t){t.code==="Escape"&&(this.setExpanded(!1),this.btn.focus())}}customElements.define("starlight-menu-button",s);</script>   <div id="starlight__sidebar" class="sidebar-pane astro-vrdttmbt"> <div class="sidebar-content sl-flex astro-vrdttmbt"> <sl-sidebar-state-persist data-hash="0g0azl5" class="astro-kku4brbg"> <script aria-hidden="true">
+		(() => {
+			try {
+				if (!matchMedia('(min-width: 50em)').matches) return;
+				/** @type {HTMLElement | null} */
+				const target = document.querySelector('sl-sidebar-state-persist');
+				const state = JSON.parse(sessionStorage.getItem('sl-sidebar-state') || '0');
+				if (!target || !state || target.dataset.hash !== state.hash) return;
+				window._starlightScrollRestore = state.scroll;
+				customElements.define(
+					'sl-sidebar-restore',
+					class SidebarRestore extends HTMLElement {
+						connectedCallback() {
+							try {
+								const idx = parseInt(this.dataset.index || '');
+								const details = this.closest('details');
+								if (details && typeof state.open[idx] === 'boolean') details.open = state.open[idx];
+							} catch {}
+						}
+					}
+				);
+			} catch {}
+		})();
+	</script>  <ul class="top-level astro-3ii7xxms"> <li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">入门</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="0"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/cn/getting-started/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">入门概览</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/getting-started/installation/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">安装与引用</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/getting-started/ivault-loader/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">IVaultLoader</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/getting-started/example-mod/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">示例模组</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">核心概念</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="1"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/cn/core/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">核心概览</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/core/architecture/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">架构</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/core/vault-type/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">VaultType</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/core/vault-loaden/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">VaultLoaden</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">实用 API</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="2"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/cn/utilities/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">VaultUtils Utilities</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/utilities/environment/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Environment &amp; Networking</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/utilities/math-animation/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Math &amp; Animation</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/utilities/targeting/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Targeting &amp; AI</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/utilities/game/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Game Logic</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/utilities/world-tiles/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">World &amp; Tiles</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/utilities/drawing/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Drawing</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/utilities/ui-text/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">UI &amp; Text</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/utilities/reflection/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Reflection &amp; System</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">内容与渲染</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="3"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/cn/content/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">内容与渲染</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/content/prt/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">PRT</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/content/render-handle/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">RenderHandle</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/content/tile-processor/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">TileProcessor</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/content/ui-handle/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">UIHandle</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/content/base-held-proj/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">BaseHeldProj</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/content/trails/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Trails</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">覆写</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="4"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/cn/overrides/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">覆写概览</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/overrides/item/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">ItemOverride</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/overrides/npc/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">NPCOverride</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/overrides/player/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">PlayerOverride</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/overrides/projectile/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">ProjOverride</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/overrides/item-use-animation/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">ItemUseAnimation</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/overrides/menu/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">MenuOverride</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/overrides/tile/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">TileOverride</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/overrides/scene/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">SceneOverride</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/overrides/global-dust/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">GlobalDust</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">持久化与网络</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="5"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/cn/persistence/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">持久化与网络</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/persistence/save-content/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">SaveContent</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/persistence/sync-var/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">SyncVar</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/persistence/data-modules/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">DataModules</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/persistence/actor/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Actor</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/persistence/solid-actor/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">SolidActor</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">叙事</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="6"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/cn/narrative/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">叙事系统</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/narrative/scenarios/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Scenarios</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/narrative/presentation/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Presentation</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">AI 系统</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="7"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/cn/ai/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">AI 系统</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/ai/state-machines/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">State Machines</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/ai/behavior-trees/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Behavior Trees</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details open class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">高级</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="8"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/cn/advanced/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">高级主题</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/advanced/models3d/" aria-current="page" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Models3D</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/advanced/cinematics/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Cinematics</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/advanced/storages/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">Storages</span>  </a> </li> </ul>  </details> </li><li class="astro-3ii7xxms"> <details class="astro-3ii7xxms"> <summary class="astro-3ii7xxms"> <span class="group-label astro-3ii7xxms"> <span class="large astro-3ii7xxms">指南</span>  </span> <svg aria-hidden="true" class="caret astro-3ii7xxms astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.25rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg> </summary> <sl-sidebar-restore data-index="9"></sl-sidebar-restore> <ul class="astro-3ii7xxms"> <li class="astro-3ii7xxms"> <a href="/cn/guides/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">指南</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/guides/reading-order/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">阅读顺序</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/guides/faq/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">常见问题</span>  </a> </li><li class="astro-3ii7xxms"> <a href="/cn/guides/licensing/" class="astro-3ii7xxms"> <span class="astro-3ii7xxms">许可与政策</span>  </a> </li> </ul>  </details> </li> </ul>   <script aria-hidden="true">
+		(() => {
+			const scroller = document.getElementById('starlight__sidebar');
+			if (!window._starlightScrollRestore || !scroller) return;
+			scroller.scrollTop = window._starlightScrollRestore;
+			delete window._starlightScrollRestore;
+		})();
+	</script> </sl-sidebar-state-persist>  <div class="md:sl-hidden"> <div class="mobile-preferences sl-flex astro-wu23bvmt"> <div class="social-icons astro-wu23bvmt"> <a href="https://github.com/hocha113/InnoVault" rel="me" class="sl-flex astro-wy4te6ga"><span class="sr-only astro-wy4te6ga">GitHub</span><svg aria-hidden="true" class="astro-wy4te6ga astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57L9 21.07c-3.34.72-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.08 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22l-.01 3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3Z"/></svg></a> </div> <starlight-theme-select>  <label style="--sl-select-width: 6.25em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">选择主题</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M21 14h-1V7a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v7H3a1 1 0 0 0-1 1v2a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3v-2a1 1 0 0 0-1-1ZM6 7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v7H6V7Zm14 10a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-1h16v1Z"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="dark" class="astro-4yphtoen">深色</option><option value="light" class="astro-4yphtoen">浅色</option><option value="auto" selected class="astro-4yphtoen">自动</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label>  </starlight-theme-select>  <script>
+	StarlightThemeProvider.updatePickers();
+</script>  <starlight-lang-select><label style="--sl-select-width: 7em" class="astro-4yphtoen"> <span class="sr-only astro-4yphtoen">选择语言</span> <svg aria-hidden="true" class="icon label-icon astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path fill-rule="evenodd" d="M8.516 3a.94.94 0 0 0-.941.94v1.15H2.94a.94.94 0 1 0 0 1.882h7.362a7.422 7.422 0 0 1-1.787 3.958 7.42 7.42 0 0 1-1.422-2.425.94.94 0 1 0-1.774.627 9.303 9.303 0 0 0 1.785 3.043 7.422 7.422 0 0 1-4.164 1.278.94.94 0 1 0 0 1.881 9.303 9.303 0 0 0 5.575-1.855 9.303 9.303 0 0 0 4.11 1.74l-.763 1.525a.968.968 0 0 0-.016.034l-1.385 2.77a.94.94 0 1 0 1.683.841l1.133-2.267h5.806l1.134 2.267a.94.94 0 0 0 1.683-.841l-1.385-2.769a.95.95 0 0 0-.018-.036l-3.476-6.951a.94.94 0 0 0-1.682 0l-1.82 3.639a7.423 7.423 0 0 1-3.593-1.256 9.303 9.303 0 0 0 2.27-5.203h1.894a.94.94 0 0 0 0-1.881H9.456V3.94A.94.94 0 0 0 8.516 3Zm6.426 11.794a1.068 1.068 0 0 1-.02.039l-.703 1.407h3.924l-1.962-3.924-1.24 2.478Z" clip-rule="evenodd"/></svg> <select autocomplete="off" class="astro-4yphtoen"> <option value="/cn/advanced/models3d/" selected class="astro-4yphtoen">简体中文</option><option value="/en/advanced/models3d/" class="astro-4yphtoen">English</option> </select> <svg aria-hidden="true" class="icon caret astro-4yphtoen astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M17 9.17a1 1 0 0 0-1.41 0L12 12.71 8.46 9.17a1 1 0 1 0-1.41 1.42l4.24 4.24a1.002 1.002 0 0 0 1.42 0L17 10.59a1.002 1.002 0 0 0 0-1.42Z"/></svg> </label> </starlight-lang-select> </div>  </div> </div> </div> </nav> <div class="main-frame astro-vrdttmbt">   <script type="module">const a=document.getElementById("starlight__sidebar"),n=a?.querySelector("sl-sidebar-state-persist"),o="sl-sidebar-state",i=()=>{let t=[];const e=n?.dataset.hash||"";try{const s=sessionStorage.getItem(o),r=JSON.parse(s||"{}");Array.isArray(r.open)&&r.hash===e&&(t=r.open)}catch{}return{hash:e,open:t,scroll:a?.scrollTop||0}},c=t=>{try{sessionStorage.setItem(o,JSON.stringify(t))}catch{}},d=()=>c(i()),l=(t,e)=>{const s=i();s.open[e]=t,c(s)};n?.addEventListener("click",t=>{if(!(t.target instanceof Element))return;const e=t.target.closest("summary")?.closest("details");if(!e)return;const s=e.querySelector("sl-sidebar-restore"),r=parseInt(s?.dataset.index||"");isNaN(r)||l(!e.open,r)});addEventListener("visibilitychange",()=>{document.visibilityState==="hidden"&&d()});addEventListener("pageHide",d);</script> <div class="lg:sl-flex astro-67yu43on"> <aside class="right-sidebar-container print:hidden astro-67yu43on"> <div class="right-sidebar astro-67yu43on"> <script type="module" src="/_astro/MobileTableOfContents.astro_astro_type_script_index_0_lang.hwBsy0Mo.js"></script><script type="module" src="/_astro/TableOfContents.astro_astro_type_script_index_0_lang.FuRcXuRY.js"></script><div class="lg:sl-hidden astro-pb3aqygn"><mobile-starlight-toc data-min-h="2" data-max-h="3" class="astro-doynk5tl"><nav aria-labelledby="starlight__on-this-page--mobile" class="astro-doynk5tl"><details id="starlight__mobile-toc" class="astro-doynk5tl"><summary id="starlight__on-this-page--mobile" class="sl-flex astro-doynk5tl"><span class="toggle sl-flex astro-doynk5tl">本页内容<svg aria-hidden="true" class="caret astro-doynk5tl astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1rem;"><path d="m14.83 11.29-4.24-4.24a1 1 0 1 0-1.42 1.41L12.71 12l-3.54 3.54a1 1 0 0 0 0 1.41 1 1 0 0 0 .71.29 1 1 0 0 0 .71-.29l4.24-4.24a1.002 1.002 0 0 0 0-1.42Z"/></svg></span><span class="display-current astro-doynk5tl"></span></summary><div class="dropdown astro-doynk5tl"><ul class="isMobile astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">概述</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#概述" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">概述</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#临时绘制-vs-常驻实例" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">临时绘制 vs 常驻实例</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#快速开始" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">快速开始</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#挂载到-npc-工作流" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">挂载到 NPC 工作流</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#架构" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">架构</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#常见模式" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">常见模式</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#常驻实例npc--世界物件" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">常驻实例（NPC / 世界物件）</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#蒙皮动画" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">蒙皮动画</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#手动加载" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">手动加载</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#model3dlayer-选择" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Model3DLayer 选择</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#进阶" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">进阶</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#自定义-effect-与光照" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">自定义 Effect 与光照</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#全局绘制钩子" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">全局绘制钩子</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#renderhandle-管线" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">RenderHandle 管线</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#完整示例带动画-boss-装饰" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">完整示例（带动画 Boss 装饰）</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#api-速查" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">API 速查</span> </a> <ul class="isMobile astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vault3dmodel" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Vault3DModel</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#model3dinstance" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Model3DInstance</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#model3drenderer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Model3DRenderer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#animationplayer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">AnimationPlayer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#导入格式" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">导入格式</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#常见问题" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">常见问题</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#配套示例" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">配套示例</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#相关链接" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">相关链接</span> </a>  </li> </ul> </div></details></nav></mobile-starlight-toc></div><div class="right-sidebar-panel sl-hidden lg:sl-block astro-pb3aqygn"><div class="sl-container astro-pb3aqygn"><starlight-toc data-min-h="2" data-max-h="3"><nav aria-labelledby="starlight__on-this-page"><h2 id="starlight__on-this-page">本页内容</h2><ul class="astro-g2bywc46" style="--depth: 0;"> <li class="astro-g2bywc46" style="--depth: 0;"> <a href="#_top" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">概述</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#概述" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">概述</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#临时绘制-vs-常驻实例" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">临时绘制 vs 常驻实例</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#快速开始" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">快速开始</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#挂载到-npc-工作流" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">挂载到 NPC 工作流</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#架构" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">架构</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#常见模式" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">常见模式</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#常驻实例npc--世界物件" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">常驻实例（NPC / 世界物件）</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#蒙皮动画" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">蒙皮动画</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#手动加载" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">手动加载</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#model3dlayer-选择" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Model3DLayer 选择</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#进阶" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">进阶</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#自定义-effect-与光照" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">自定义 Effect 与光照</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#全局绘制钩子" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">全局绘制钩子</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#renderhandle-管线" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">RenderHandle 管线</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#完整示例带动画-boss-装饰" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">完整示例（带动画 Boss 装饰）</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#api-速查" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">API 速查</span> </a> <ul class="astro-g2bywc46" style="--depth: 1;"> <li class="astro-g2bywc46" style="--depth: 1;"> <a href="#vault3dmodel" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Vault3DModel</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#model3dinstance" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Model3DInstance</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#model3drenderer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">Model3DRenderer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#animationplayer" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">AnimationPlayer</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 1;"> <a href="#导入格式" class="astro-g2bywc46" style="--depth: 1;"> <span class="astro-g2bywc46" style="--depth: 1;">导入格式</span> </a>  </li> </ul>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#常见问题" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">常见问题</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#配套示例" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">配套示例</span> </a>  </li><li class="astro-g2bywc46" style="--depth: 0;"> <a href="#相关链接" class="astro-g2bywc46" style="--depth: 0;"> <span class="astro-g2bywc46" style="--depth: 0;">相关链接</span> </a>  </li> </ul> </nav></starlight-toc></div></div> </div> </aside> <div class="main-pane astro-67yu43on">  <main data-pagefind-body class="astro-bguv2lll" lang="zh-CN" dir="ltr">    <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <nav class="wiki-breadcrumb not-content" aria-label="breadcrumb"><a href="/cn/" class="breadcrumb-link breadcrumb-home" title="首页"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg><span>首页</span></a><span class="breadcrumb-sep" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><polyline points="9 18 15 12 9 6"></polyline></svg></span><a href="/cn/advanced/" class="breadcrumb-link"><span>高级</span></a><span class="breadcrumb-sep" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><polyline points="9 18 15 12 9 6"></polyline></svg></span><span class="breadcrumb-current">Models3D</span></nav><h1 id="_top" class="astro-j6tvhyss">Models3D</h1>  </div> </div>  <div class="content-panel astro-7nkwcw3z"> <div class="sl-container astro-7nkwcw3z"> <div class="sl-markdown-content"> <p class="vault-lead"><strong>Models3D</strong> 将 <code dir="auto">.obj</code> / <code dir="auto">.gltf</code> 资产导入为 <code dir="auto">Vault3DModel</code>，通过 <code dir="auto">Model3DRenderer</code>（一个 <code dir="auto">RenderHandle</code>）按层绘制到游戏画面，支持蒙皮动画。服务端 <code dir="auto">Main.dedServ</code> 下加载返回 <code dir="auto">Vault3DModel.Empty</code>，不会创建 GPU 资源。</p>
+<div class="vault-feature-grid"><div class="vault-feature-item"><span class="vault-feature-value">客户端</span><span class="vault-feature-label">GPU 专用</span></div><div class="vault-feature-item"><span class="vault-feature-value">Weight=5</span><span class="vault-feature-label">PRT 之后绘制</span></div><div class="vault-feature-item"><span class="vault-feature-value">Layer</span><span class="vault-feature-label">Model3DLayer</span></div></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="概述">概述</h2><a class="sl-anchor-link" href="#概述"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “概述”</span></a></div>
+<p><strong>Models3D</strong> 适合 Boss 装饰、载具、武器模型、环境 3D 物件等<strong>客户端视觉</strong>。</p>
+<p><strong>适合：</strong></p>
+<ul>
+<li>glTF 蒙皮动画的角色 / Boss 模型</li>
+<li>贴地或悬浮的 3D 装饰（NPC / 弹幕 <code dir="auto">PostDraw</code>）</li>
+<li>需要与物块 / 玩家排序的 3D 内容（<code dir="auto">Model3DLayer</code>）</li>
+</ul>
+<p><strong>不适合：</strong></p>
+<ul>
+<li>服务端逻辑或碰撞判定：使用 NPC / Projectile / <a href="/cn/persistence/actor/">Actor</a></li>
+<li>纯 2D 精灵特效：使用 <a href="/cn/content/prt/">PRT</a></li>
+<li>复杂后处理全屏管线：自定义 <code dir="auto">RenderHandle</code>（见 <a href="/cn/content/render-handle/">RenderHandle</a>）</li>
+</ul>
+<div class="sl-heading-wrapper level-h3"><h3 id="临时绘制-vs-常驻实例">临时绘制 vs 常驻实例</h3><a class="sl-anchor-link" href="#临时绘制-vs-常驻实例"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “临时绘制 vs 常驻实例”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th></th><th><strong>临时（<code dir="auto">Draw</code> / <code dir="auto">Submit</code>）</strong></th><th><strong>常驻（<code dir="auto">RegisterPersistent</code>）</strong></th></tr></thead><tbody><tr><td>生命周期</td><td>仅当前帧</td><td>直到 <code dir="auto">UnregisterPersistent</code></td></tr><tr><td>典型场景</td><td>弹幕尾迹、一次性特效</td><td>NPC 身上持续存在的模型</td></tr><tr><td>更新方式</td><td>每帧传参或构造新实例</td><td>修改 <code dir="auto">Model3DInstance</code> 字段</td></tr><tr><td>性能</td><td>适合低频、短生命周期</td><td>适合长期存在、每帧改变换</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h2"><h2 id="快速开始">快速开始</h2><a class="sl-anchor-link" href="#快速开始"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “快速开始”</span></a></div>
+<div class="expressive-code"><link rel="stylesheet" href="/_astro/ec.z71rr.css"><script type="module" src="/_astro/ec.0vx5m.js"></script><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="csharp"><code><div class="ec-line"><div class="code"><span style="--0:#BF3441;--1:#CD89E1">using</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">InnoVault</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#BF3441;--1:#CD89E1">using</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">InnoVault</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#E5C07B">Models3D</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#E5C07B">Runtime</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#BF3441;--1:#CD89E1">using</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">Microsoft</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#E5C07B">Xna</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#E5C07B">Framework</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#616972;--1:#9FA3AA;--1fs:italic">// 1) 自动加载模型</span></div></div><div class="ec-line"><div class="code"><span style="--0:#BF3441;--1:#CD89E1">public</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">static</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">class</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">MyAssets</span><span style="--0:#24292E;--1:#ABB2BF"> {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E;--1:#ABB2BF">    </span></span><span style="--0:#24292E;--1:#ABB2BF">[</span><span style="--0:#6F42C1;--1:#E5C07B">VaultLoaden</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#032F62;--1:#98C379">"Assets/Models/MyModel"</span><span style="--0:#24292E;--1:#ABB2BF">)]</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#BF3441;--1:#CD89E1">public</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">static</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">Vault3DModel</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E6888F">MyModel</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#ABB2BF">}</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#616972;--1:#9FA3AA;--1fs:italic">// 2) 每帧绘制（弹幕 PostDraw 等）</span></div></div><div class="ec-line"><div class="code"><span style="--0:#BF3441;--1:#CD89E1">public</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">class</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">MyProjectile</span><span style="--0:#24292E;--1:#ABB2BF"> : </span><span style="--0:#6F42C1;--1:#E5C07B">ModProjectile</span><span style="--0:#24292E;--1:#ABB2BF"> {</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#BF3441;--1:#CD89E1">public</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">override</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">void</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#61AFEF">PostDraw</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#6F42C1;--1:#E5C07B">Color</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">lightColor</span><span style="--0:#24292E;--1:#ABB2BF">) {</span></div></div><div class="ec-line"><div class="code"><span class="indent">        </span><span style="--0:#BF3441;--1:#CD89E1">if</span><span style="--0:#24292E;--1:#ABB2BF"> (</span><span style="--0:#BF3441;--1:#56B6C2">!</span><span style="--0:#24292E;--1:#E5C07B">MyAssets</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">MyModel</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">IsValid</span><span style="--0:#24292E;--1:#ABB2BF">) </span><span style="--0:#BF3441;--1:#CD89E1">return</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">        </span></span><span style="--0:#24292E;--1:#E5C07B">Model3DRenderer</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#61AFEF">Draw</span><span style="--0:#24292E;--1:#ABB2BF">(</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">            </span></span><span style="--0:#24292E;--1:#E5C07B">MyAssets</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">MyModel</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">            </span></span><span style="--0:#24292E;--1:#E5C07B">Projectile</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">Center</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--1:#ABB2BF">            </span></span><span style="--0:#BF3441;--1:#ABB2BF">new</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">Vector3</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#005CC5;--1:#D19A66">0</span><span style="--0:#24292E;--1:#ABB2BF">, </span><span style="--0:#24292E;--1:#E5C07B">Projectile</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">rotation</span><span style="--0:#24292E;--1:#ABB2BF">, </span><span style="--0:#005CC5;--1:#D19A66">0</span><span style="--0:#24292E;--1:#ABB2BF">),</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">            </span></span><span style="--0:#24292E;--1:#E5C07B">Vector3</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">One</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">*</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#005CC5;--1:#D19A66">0.5f</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">            </span></span><span style="--0:#24292E;--1:#E5C07B">Model3DLayer</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">AfterPlayers</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">            </span></span><span style="--0:#24292E;--1:#E5C07B">Color</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">White</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E;--1:#ABB2BF">    </span></span><span style="--0:#24292E;--1:#ABB2BF">}</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#ABB2BF">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="using InnoVault;using InnoVault.Models3D.Runtime;using Microsoft.Xna.Framework;// 1) 自动加载模型public static class MyAssets {    [VaultLoaden(&#x22;Assets/Models/MyModel&#x22;)]    public static Vault3DModel MyModel;}// 2) 每帧绘制（弹幕 PostDraw 等）public class MyProjectile : ModProjectile {    public override void PostDraw(Color lightColor) {        if (!MyAssets.MyModel.IsValid) return;        Model3DRenderer.Draw(            MyAssets.MyModel,            Projectile.Center,            new Vector3(0, Projectile.rotation, 0),            Vector3.One * 0.5f,            Model3DLayer.AfterPlayers,            Color.White);    }}"><div></div></button></div></figure></div>
+<p>路径可省略扩展名，按 <code dir="auto">.obj</code> → <code dir="auto">.gltf</code> 顺序探测。详见 <a href="/cn/core/vault-loaden/">VaultLoaden</a>。</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="挂载到-npc-工作流">挂载到 NPC 工作流</h2><a class="sl-anchor-link" href="#挂载到-npc-工作流"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “挂载到 NPC 工作流”</span></a></div>
+<p>持久 3D 装饰遵循注册 → 更新 → 注销。玩法逻辑留在 NPC 上；Models3D 仅负责客户端绘制。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>步骤</th><th>操作</th></tr></thead><tbody><tr><td>1</td><td>用 <code dir="auto">[VaultLoaden]</code> 自动加载 <code dir="auto">.gltf</code> / <code dir="auto">.obj</code> 到静态 <code dir="auto">Vault3DModel</code> 字段</td></tr><tr><td>2</td><td>在 <code dir="auto">ModNPC.OnSpawn(IEntitySource source)</code> 中用 <code dir="auto">model.IsValid</code> 守卫（服务端得到 <code dir="auto">Empty</code>）</td></tr><tr><td>3</td><td>创建 <code dir="auto">Model3DInstance</code>，设置 <code dir="auto">Layer</code>、<code dir="auto">Scale</code>、可选 <code dir="auto">AnimationPlayer</code></td></tr><tr><td>4</td><td>每次生成调用一次 <code dir="auto">Model3DRenderer.RegisterPersistent(_instance)</code></td></tr><tr><td>5</td><td>每帧 <code dir="auto">AI()</code> 中赋值 <code dir="auto">_instance.Position = NPC.Center</code>，旋转取自 <code dir="auto">NPC.rotation</code></td></tr><tr><td>6</td><td>阶段切换时用 <code dir="auto">AnimationPlayer.Play("attack", fadeIn: 0.2f)</code> 交叉淡入</td></tr><tr><td>7</td><td>死亡或 despawn 时在 <code dir="auto">OnKill</code> 调用 <code dir="auto">Model3DRenderer.UnregisterPersistent(_instance)</code></td></tr><tr><td>8</td><td>按需求选择 <code dir="auto">Model3DLayer</code>，使模型与物块/玩家正确排序</td></tr><tr><td>9</td><td>不要在 <code dir="auto">Main.dedServ</code> 上从 3D 实例读取碰撞或阶段</td></tr><tr><td>10</td><td>客户端测试：OBJ 常需 <code dir="auto">CullBackface = false</code>；加载失败查 <code dir="auto">model.Diagnostic</code></td></tr></tbody></table>
+<p>要点：</p>
+<ul>
+<li>绘制前检查 <code dir="auto">model.IsValid</code></li>
+<li><code dir="auto">Position</code> 使用世界像素坐标（框架自动减 <code dir="auto">screenPosition</code>）</li>
+<li>OBJ 模型常设 <code dir="auto">CullBackface = false</code></li>
+</ul>
+<div class="sl-heading-wrapper level-h2"><h2 id="架构">架构</h2><a class="sl-anchor-link" href="#架构"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “架构”</span></a></div>
+<pre class="mermaid" dir="ltr">flowchart LR
+    VL[VaultLoaden / 手动 Load] --> Model[Vault3DModel]
+    Model --> Inst[Model3DInstance]
+    Inst -->|Submit 临时| Renderer[Model3DRenderer]
+    Inst -->|RegisterPersistent| Renderer
+    Renderer -->|extends| RH[RenderHandle]
+    RH -->|Weight=5| Pipeline[PRT 之后的绘制管线]
+    Pipeline --> Screen[合成到游戏画面]</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>组件</th><th>说明</th></tr></thead><tbody><tr><td><code dir="auto">Vault3DModel</code></td><td>静态模型资源（网格分组、材质、骨架、动画 Clip）</td></tr><tr><td><code dir="auto">Model3DInstance</code></td><td>单次绘制描述（位置、旋转、缩放、层级、Effect 等）</td></tr><tr><td><code dir="auto">Model3DRenderer</code></td><td>渲染器（<code dir="auto">RenderHandle</code>），按 <code dir="auto">Model3DLayer</code> 分层绘制</td></tr><tr><td><code dir="auto">Model3DLoadenHandle</code></td><td>VaultLoaden 加载器</td></tr><tr><td><code dir="auto">AnimationPlayer</code></td><td>实例级动画播放头（蒙皮 / cross-fade）</td></tr><tr><td><code dir="auto">ObjModelLoader</code> / <code dir="auto">GltfModelLoader</code></td><td>手动加载入口</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h2"><h2 id="常见模式">常见模式</h2><a class="sl-anchor-link" href="#常见模式"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “常见模式”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="常驻实例npc--世界物件">常驻实例（NPC / 世界物件）</h3><a class="sl-anchor-link" href="#常驻实例npc--世界物件"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “常驻实例（NPC / 世界物件）”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="csharp"><code><div class="ec-line"><div class="code"><span style="--0:#BF3441;--1:#CD89E1">private</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">Model3DInstance</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E6888F">_instance</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#BF3441;--1:#CD89E1">public</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">override</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">void</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#61AFEF">OnSpawn</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#6F42C1;--1:#E5C07B">IEntitySource</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">source</span><span style="--0:#24292E;--1:#ABB2BF">) {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">    </span></span><span style="--0:#24292E;--1:#E6888F">_instance</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--1:#ABB2BF"><span style="--0:#24292E"> </span><span style="--0:#BF3441">new</span><span style="--0:#24292E"> </span></span><span style="--0:#6F42C1;--1:#E5C07B">Model3DInstance</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E5C07B">MyAssets</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">MyModel</span><span style="--0:#24292E;--1:#ABB2BF">) {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">        </span></span><span style="--0:#24292E;--1:#E6888F">Layer</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#24292E;--1:#E5C07B">Model3DLayer</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">AfterTiles</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">        </span></span><span style="--0:#24292E;--1:#E6888F">Scale</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#24292E;--1:#E5C07B">Vector3</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">One</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">*</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#005CC5;--1:#D19A66">2f</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E;--1:#ABB2BF">    </span></span><span style="--0:#24292E;--1:#ABB2BF">};</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">    </span></span><span style="--0:#24292E;--1:#E5C07B">Model3DRenderer</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#61AFEF">RegisterPersistent</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E6888F">_instance</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#ABB2BF">}</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#BF3441;--1:#CD89E1">public</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">override</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">void</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#61AFEF">AI</span><span style="--0:#24292E;--1:#ABB2BF">() {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">    </span></span><span style="--0:#24292E;--1:#E5C07B">_instance</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">Position</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#24292E;--1:#E5C07B">NPC</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">Center</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">    </span></span><span style="--0:#24292E;--1:#E5C07B">_instance</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">Rotation</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--1:#ABB2BF"><span style="--0:#24292E"> </span><span style="--0:#BF3441">new</span><span style="--0:#24292E"> </span></span><span style="--0:#6F42C1;--1:#E5C07B">Vector3</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#005CC5;--1:#D19A66">0</span><span style="--0:#24292E;--1:#ABB2BF">, </span><span style="--0:#24292E;--1:#E5C07B">NPC</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">rotation</span><span style="--0:#24292E;--1:#ABB2BF">, </span><span style="--0:#005CC5;--1:#D19A66">0</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#ABB2BF">}</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#BF3441;--1:#CD89E1">public</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">override</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">void</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#61AFEF">OnKill</span><span style="--0:#24292E;--1:#ABB2BF">() {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">    </span></span><span style="--0:#24292E;--1:#E5C07B">Model3DRenderer</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#61AFEF">UnregisterPersistent</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E6888F">_instance</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#ABB2BF">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="private Model3DInstance _instance;public override void OnSpawn(IEntitySource source) {    _instance = new Model3DInstance(MyAssets.MyModel) {        Layer = Model3DLayer.AfterTiles,        Scale = Vector3.One * 2f,    };    Model3DRenderer.RegisterPersistent(_instance);}public override void AI() {    _instance.Position = NPC.Center;    _instance.Rotation = new Vector3(0, NPC.rotation, 0);}public override void OnKill() {    Model3DRenderer.UnregisterPersistent(_instance);}"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="蒙皮动画">蒙皮动画</h3><a class="sl-anchor-link" href="#蒙皮动画"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “蒙皮动画”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="csharp"><code><div class="ec-line"><div class="code"><span style="--0:#BF3441;--1:#CD89E1">var</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E6888F">anim</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--1:#ABB2BF"><span style="--0:#24292E"> </span><span style="--0:#BF3441">new</span><span style="--0:#24292E"> </span></span><span style="--0:#6F42C1;--1:#E5C07B">AnimationPlayer</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E6888F">model</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#E5C07B">anim</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#61AFEF">Play</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#032F62;--1:#98C379">"idle"</span><span style="--0:#24292E;--1:#ABB2BF">, </span><span style="--0:#6F42C1;--1:#E5C07B">fadeIn</span><span style="--0:#24292E;--1:#ABB2BF">: </span><span style="--0:#005CC5;--1:#D19A66">0.3f</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#E5C07B">anim</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">Loop</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#005CC5;--1:#D19A66">true</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#E6888F">_instance</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--1:#ABB2BF"><span style="--0:#24292E"> </span><span style="--0:#BF3441">new</span><span style="--0:#24292E"> </span></span><span style="--0:#6F42C1;--1:#E5C07B">Model3DInstance</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E6888F">model</span><span style="--0:#24292E;--1:#ABB2BF">) {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">    </span></span><span style="--0:#24292E;--1:#E6888F">Animation</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#24292E;--1:#E6888F">anim</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">    </span></span><span style="--0:#24292E;--1:#E6888F">Layer</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#24292E;--1:#E5C07B">Model3DLayer</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">BeforePlayers</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#ABB2BF">};</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#E5C07B">Model3DRenderer</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#61AFEF">RegisterPersistent</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E6888F">_instance</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="var anim = new AnimationPlayer(model);anim.Play(&#x22;idle&#x22;, fadeIn: 0.3f);anim.Loop = true;_instance = new Model3DInstance(model) {    Animation = anim,    Layer = Model3DLayer.BeforePlayers,};Model3DRenderer.RegisterPersistent(_instance);"><div></div></button></div></figure></div>
+<p>每个实例需独立 <code dir="auto">AnimationPlayer</code>；渲染器默认自动 <code dir="auto">Update</code> 动画时间。</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="手动加载">手动加载</h3><a class="sl-anchor-link" href="#手动加载"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “手动加载”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="csharp"><code><div class="ec-line"><div class="code"><span style="--0:#6F42C1;--1:#E5C07B">Vault3DModel</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E6888F">model</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#24292E;--1:#E5C07B">Model3DLoadenHandle</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#61AFEF">Load</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E6888F">Mod</span><span style="--0:#24292E;--1:#ABB2BF">, </span><span style="--0:#032F62;--1:#98C379">"Assets/Models/Boss"</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#616972;--1:#9FA3AA;--1fs:italic">// GltfModelLoader.Load(Mod, path, gltfOptions);</span></div></div><div class="ec-line"><div class="code"><span style="--0:#616972;--1:#9FA3AA;--1fs:italic">// ObjModelLoader.Load(Mod, path, objOptions);</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="Vault3DModel model = Model3DLoadenHandle.Load(Mod, &#x22;Assets/Models/Boss&#x22;);// GltfModelLoader.Load(Mod, path, gltfOptions);// ObjModelLoader.Load(Mod, path, objOptions);"><div></div></button></div></figure></div>
+<p>导入问题写入 <code dir="auto">model.Diagnostic</code>；可用 <code dir="auto">GltfImportOptions</code> / <code dir="auto">ObjImportOptions</code> 调轴向与缩放。</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="model3dlayer-选择">Model3DLayer 选择</h3><a class="sl-anchor-link" href="#model3dlayer-选择"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Model3DLayer 选择”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>枚举值</th><th>说明</th></tr></thead><tbody><tr><td><code dir="auto">BeforeTiles</code></td><td>物块之前，背景远景</td></tr><tr><td><code dir="auto">AfterTiles</code></td><td>物块之后，贴地物件</td></tr><tr><td><code dir="auto">BeforePlayers</code></td><td>玩家之前，被玩家遮挡</td></tr><tr><td><code dir="auto">AfterPlayers</code></td><td>玩家之后，载具 / 武器</td></tr><tr><td><code dir="auto">BeforeInfernoRings</code></td><td>默认通用世界 FX 层</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h2"><h2 id="进阶">进阶</h2><a class="sl-anchor-link" href="#进阶"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “进阶”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="自定义-effect-与光照">自定义 Effect 与光照</h3><a class="sl-anchor-link" href="#自定义-effect-与光照"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “自定义 Effect 与光照”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="csharp"><code><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#E6888F">_instance</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--1:#ABB2BF"><span style="--0:#24292E"> </span><span style="--0:#BF3441">new</span><span style="--0:#24292E"> </span></span><span style="--0:#6F42C1;--1:#E5C07B">Model3DInstance</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E6888F">model</span><span style="--0:#24292E;--1:#ABB2BF">) {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">    </span></span><span style="--0:#24292E;--1:#E6888F">EffectProvider</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">ctx</span><span style="--1:#ABB2BF"><span style="--0:#24292E"> </span><span style="--0:#BF3441">=></span><span style="--0:#24292E"> </span></span><span style="--0:#24292E;--1:#E6888F">myCustomEffect</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">    </span></span><span style="--0:#24292E;--1:#E6888F">ConfigureEffect</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> (</span><span style="--0:#6F42C1;--1:#E5C07B">ctx</span><span style="--0:#24292E;--1:#ABB2BF">, </span><span style="--0:#6F42C1;--1:#E5C07B">effect</span><span style="--1:#ABB2BF"><span style="--0:#24292E">) </span><span style="--0:#BF3441">=></span><span style="--0:#24292E"> {</span></span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#616972;--1:#9FA3AA;--1fs:italic">        </span></span><span style="--0:#616972;--1:#9FA3AA;--1fs:italic">// 非 BasicEffect 时需自行写 tint / texture / 光照参数</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E;--1:#ABB2BF">    </span></span><span style="--0:#24292E;--1:#ABB2BF">},</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">    </span></span><span style="--0:#24292E;--1:#E6888F">LightingEnabled</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#005CC5;--1:#D19A66">true</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">    </span></span><span style="--0:#24292E;--1:#E6888F">LightingOverride</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--1:#ABB2BF"><span style="--0:#24292E"> </span><span style="--0:#BF3441">new</span><span style="--0:#24292E"> </span></span><span style="--0:#6F42C1;--1:#E5C07B">Model3DLightingConfig</span><span style="--0:#24292E;--1:#ABB2BF"> { </span><span style="--0:#616972;--1:#9FA3AA;--1fs:italic">/* ... */</span><span style="--0:#24292E;--1:#ABB2BF"> },</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#ABB2BF">};</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="_instance = new Model3DInstance(model) {    EffectProvider = ctx => myCustomEffect,    ConfigureEffect = (ctx, effect) => {        // 非 BasicEffect 时需自行写 tint / texture / 光照参数    },    LightingEnabled = true,    LightingOverride = new Model3DLightingConfig { /* ... */ },};"><div></div></button></div></figure></div>
+<p><strong>Effect 优先级：</strong> 显式 override > 实例 <code dir="auto">Effect</code> > 实例 <code dir="auto">EffectProvider</code> > 材质 <code dir="auto">Effect</code> > 材质 <code dir="auto">EffectProvider</code> > 默认 <code dir="auto">BasicEffect</code>。</p>
+<p>全局光照：<code dir="auto">Model3DRenderer.GlobalLighting</code>；每实例解析事件：<code dir="auto">Model3DRenderer.ResolveLighting</code>。</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="全局绘制钩子">全局绘制钩子</h3><a class="sl-anchor-link" href="#全局绘制钩子"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “全局绘制钩子”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>事件</th><th>说明</th></tr></thead><tbody><tr><td><code dir="auto">ResolveLighting</code></td><td>每实例绘制前解析光照</td></tr><tr><td><code dir="auto">PreDrawInstance</code> / <code dir="auto">PostDrawInstance</code></td><td>实例绘制前 / 后</td></tr><tr><td><code dir="auto">PreDrawGroup</code> / <code dir="auto">PostDrawGroup</code></td><td>mesh group 绘制前 / 后</td></tr><tr><td><code dir="auto">OnLayerRendered</code></td><td>一层 RT 写入完成（后处理）</td></tr><tr><td><code dir="auto">CompositeOverride</code></td><td>替换默认 RT 合成</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="renderhandle-管线">RenderHandle 管线</h3><a class="sl-anchor-link" href="#renderhandle-管线"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “RenderHandle 管线”</span></a></div>
+<p><code dir="auto">Model3DRenderer</code> 继承 <code dir="auto">RenderHandle</code>，由框架在多个 Terraria 绘制阶段挂载。<code dir="auto">Weight = 5</code>，排在 PRT（更低 weight）之后，避免覆盖粒子画布状态。</p>
+<p>原子 API（<code dir="auto">DrawInstance</code>、<code dir="auto">DrawMeshGroup</code>、<code dir="auto">BuildWorldMatrix</code> 等）可在<strong>自定义 <code dir="auto">RenderHandle</code></strong> 中复用加载与矩阵基础设施。全屏后处理、<code dir="auto">Weight</code> 排序与 SpriteBatch 契约详见 <a href="/cn/content/render-handle/">RenderHandle</a>。</p>
+<div class="sl-heading-wrapper level-h3"><h3 id="完整示例带动画-boss-装饰">完整示例（带动画 Boss 装饰）</h3><a class="sl-anchor-link" href="#完整示例带动画-boss-装饰"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “完整示例（带动画 Boss 装饰）”</span></a></div>
+<div class="expressive-code"><figure class="frame not-content"><figcaption class="header"></figcaption><pre data-language="csharp"><code><div class="ec-line"><div class="code"><span style="--0:#BF3441;--1:#CD89E1">public</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">class</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">BossDecor</span><span style="--0:#24292E;--1:#ABB2BF"> : </span><span style="--0:#6F42C1;--1:#E5C07B">ModNPC</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#ABB2BF">{</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#BF3441;--1:#CD89E1">private</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">Model3DInstance</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E6888F">_model</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#BF3441;--1:#CD89E1">private</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">AnimationPlayer</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E6888F">_anim</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E;--1:#ABB2BF">    </span></span><span style="--0:#24292E;--1:#ABB2BF">[</span><span style="--0:#6F42C1;--1:#E5C07B">VaultLoaden</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#032F62;--1:#98C379">"Assets/Models/Boss"</span><span style="--0:#24292E;--1:#ABB2BF">)]</span></div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#BF3441;--1:#CD89E1">private</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">static</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">Vault3DModel</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E6888F">BossModel</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#BF3441;--1:#CD89E1">public</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">override</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">void</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#61AFEF">OnSpawn</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#6F42C1;--1:#E5C07B">IEntitySource</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#E5C07B">source</span><span style="--0:#24292E;--1:#ABB2BF">) {</span></div></div><div class="ec-line"><div class="code"><span class="indent">        </span><span style="--0:#BF3441;--1:#CD89E1">if</span><span style="--0:#24292E;--1:#ABB2BF"> (</span><span style="--0:#BF3441;--1:#56B6C2">!</span><span style="--0:#24292E;--1:#E5C07B">BossModel</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">IsValid</span><span style="--0:#24292E;--1:#ABB2BF">) </span><span style="--0:#BF3441;--1:#CD89E1">return</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">        </span></span><span style="--0:#24292E;--1:#E6888F">_anim</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--1:#ABB2BF"><span style="--0:#24292E"> </span><span style="--0:#BF3441">new</span><span style="--0:#24292E"> </span></span><span style="--0:#6F42C1;--1:#E5C07B">AnimationPlayer</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E6888F">BossModel</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">        </span></span><span style="--0:#24292E;--1:#E5C07B">_anim</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#61AFEF">Play</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#032F62;--1:#98C379">"spawn"</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">        </span></span><span style="--0:#24292E;--1:#E6888F">_model</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--1:#ABB2BF"><span style="--0:#24292E"> </span><span style="--0:#BF3441">new</span><span style="--0:#24292E"> </span></span><span style="--0:#6F42C1;--1:#E5C07B">Model3DInstance</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E6888F">BossModel</span><span style="--0:#24292E;--1:#ABB2BF">) {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">            </span></span><span style="--0:#24292E;--1:#E6888F">Layer</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#24292E;--1:#E5C07B">Model3DLayer</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">BeforePlayers</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">            </span></span><span style="--0:#24292E;--1:#E6888F">Scale</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#24292E;--1:#E5C07B">Vector3</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">One</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">*</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#005CC5;--1:#D19A66">3f</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">            </span></span><span style="--0:#24292E;--1:#E6888F">LightingEnabled</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#005CC5;--1:#D19A66">true</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">            </span></span><span style="--0:#24292E;--1:#E6888F">Animation</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#24292E;--1:#E6888F">_anim</span><span style="--0:#24292E;--1:#ABB2BF">,</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E;--1:#ABB2BF">        </span></span><span style="--0:#24292E;--1:#ABB2BF">};</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">        </span></span><span style="--0:#24292E;--1:#E5C07B">Model3DRenderer</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#61AFEF">RegisterPersistent</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E6888F">_model</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E;--1:#ABB2BF">    </span></span><span style="--0:#24292E;--1:#ABB2BF">}</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#BF3441;--1:#CD89E1">public</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">override</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">void</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#61AFEF">AI</span><span style="--0:#24292E;--1:#ABB2BF">() {</span></div></div><div class="ec-line"><div class="code"><span class="indent">        </span><span style="--0:#BF3441;--1:#CD89E1">if</span><span style="--0:#24292E;--1:#ABB2BF"> (</span><span style="--0:#24292E;--1:#E6888F">_model</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">!=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#005CC5;--1:#D19A66">null</span><span style="--0:#24292E;--1:#ABB2BF">) {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">            </span></span><span style="--0:#24292E;--1:#E5C07B">_model</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">Position</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#24292E;--1:#E5C07B">NPC</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">Center</span><span style="--0:#24292E;--1:#ABB2BF">;</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">            </span></span><span style="--0:#24292E;--1:#E5C07B">_model</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">Rotation</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#56B6C2">=</span><span style="--1:#ABB2BF"><span style="--0:#24292E"> </span><span style="--0:#BF3441">new</span><span style="--0:#24292E"> </span></span><span style="--0:#6F42C1;--1:#E5C07B">Vector3</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#005CC5;--1:#D19A66">0</span><span style="--0:#24292E;--1:#ABB2BF">, </span><span style="--0:#24292E;--1:#E5C07B">NPC</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#24292E;--1:#E5C07B">rotation</span><span style="--0:#24292E;--1:#ABB2BF">, </span><span style="--0:#005CC5;--1:#D19A66">0</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E;--1:#ABB2BF">        </span></span><span style="--0:#24292E;--1:#ABB2BF">}</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E;--1:#ABB2BF">    </span></span><span style="--0:#24292E;--1:#ABB2BF">}</span></div></div><div class="ec-line"><div class="code">
+</div></div><div class="ec-line"><div class="code"><span class="indent">    </span><span style="--0:#BF3441;--1:#CD89E1">public</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">override</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#BF3441;--1:#CD89E1">void</span><span style="--0:#24292E;--1:#ABB2BF"> </span><span style="--0:#6F42C1;--1:#61AFEF">OnKill</span><span style="--0:#24292E;--1:#ABB2BF">() {</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E">        </span></span><span style="--0:#24292E;--1:#E5C07B">Model3DRenderer</span><span style="--0:#24292E;--1:#ABB2BF">.</span><span style="--0:#6F42C1;--1:#61AFEF">UnregisterPersistent</span><span style="--0:#24292E;--1:#ABB2BF">(</span><span style="--0:#24292E;--1:#E6888F">_model</span><span style="--0:#24292E;--1:#ABB2BF">);</span></div></div><div class="ec-line"><div class="code"><span class="indent"><span style="--0:#24292E;--1:#ABB2BF">    </span></span><span style="--0:#24292E;--1:#ABB2BF">}</span></div></div><div class="ec-line"><div class="code"><span style="--0:#24292E;--1:#ABB2BF">}</span></div></div></code></pre><div class="copy"><div aria-live="polite"></div><button title="Copy to clipboard" data-copied="Copied!" data-code="public class BossDecor : ModNPC{    private Model3DInstance _model;    private AnimationPlayer _anim;    [VaultLoaden(&#x22;Assets/Models/Boss&#x22;)]    private static Vault3DModel BossModel;    public override void OnSpawn(IEntitySource source) {        if (!BossModel.IsValid) return;        _anim = new AnimationPlayer(BossModel);        _anim.Play(&#x22;spawn&#x22;);        _model = new Model3DInstance(BossModel) {            Layer = Model3DLayer.BeforePlayers,            Scale = Vector3.One * 3f,            LightingEnabled = true,            Animation = _anim,        };        Model3DRenderer.RegisterPersistent(_model);    }    public override void AI() {        if (_model != null) {            _model.Position = NPC.Center;            _model.Rotation = new Vector3(0, NPC.rotation, 0);        }    }    public override void OnKill() {        Model3DRenderer.UnregisterPersistent(_model);    }}"><div></div></button></div></figure></div>
+<div class="sl-heading-wrapper level-h2"><h2 id="api-速查">API 速查</h2><a class="sl-anchor-link" href="#api-速查"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “API 速查”</span></a></div>
+<div class="sl-heading-wrapper level-h3"><h3 id="vault3dmodel">Vault3DModel</h3><a class="sl-anchor-link" href="#vault3dmodel"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Vault3DModel”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>成员</th><th>说明</th></tr></thead><tbody><tr><td><code dir="auto">Empty</code></td><td>空占位（加载失败 / 服务端）</td></tr><tr><td><code dir="auto">Name</code> / <code dir="auto">SourcePath</code></td><td>模型名与源路径</td></tr><tr><td><code dir="auto">Groups</code> / <code dir="auto">Materials</code></td><td>网格分组与材质表</td></tr><tr><td><code dir="auto">Skeletons</code> / <code dir="auto">Clips</code></td><td>骨架与动画 Clip</td></tr><tr><td><code dir="auto">Diagnostic</code></td><td>导入诊断</td></tr><tr><td><code dir="auto">Bounds</code> / <code dir="auto">Pivot</code> / <code dir="auto">RootTransform</code></td><td>包围盒、轴心、根变换</td></tr><tr><td><code dir="auto">IsValid</code> / <code dir="auto">IsSkinned</code></td><td>可绘制 / 含骨架</td></tr><tr><td><code dir="auto">TryGetClip(name, out clip)</code></td><td>按名查找 Clip</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="model3dinstance">Model3DInstance</h3><a class="sl-anchor-link" href="#model3dinstance"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Model3DInstance”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>属性</th><th>说明</th></tr></thead><tbody><tr><td><code dir="auto">Model</code></td><td>关联 <code dir="auto">Vault3DModel</code></td></tr><tr><td><code dir="auto">Position</code> / <code dir="auto">Depth</code></td><td>世界位置与 Z 偏移</td></tr><tr><td><code dir="auto">Rotation</code> / <code dir="auto">Scale</code></td><td>欧拉旋转（弧度 X/Y/Z）、三轴缩放</td></tr><tr><td><code dir="auto">Tint</code> / <code dir="auto">Opacity</code></td><td>颜色与不透明度</td></tr><tr><td><code dir="auto">Layer</code> / <code dir="auto">SortKey</code> / <code dir="auto">Visible</code></td><td>层级、同层排序、是否绘制</td></tr><tr><td><code dir="auto">LightingEnabled</code> / <code dir="auto">LightingOverride</code></td><td>光照开关与覆盖</td></tr><tr><td><code dir="auto">DepthEnabled</code> / <code dir="auto">CullBackface</code> / <code dir="auto">ForceTransparent</code></td><td>深度、背面剔除、透明桶</td></tr><tr><td><code dir="auto">Animation</code></td><td><code dir="auto">AnimationPlayer</code></td></tr><tr><td><code dir="auto">Effect</code> / <code dir="auto">EffectProvider</code> / <code dir="auto">ConfigureEffect</code></td><td>自定义 shader</td></tr><tr><td><code dir="auto">RenderStateOverride</code></td><td>Blend / Depth / Rasterizer 覆盖</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="model3drenderer">Model3DRenderer</h3><a class="sl-anchor-link" href="#model3drenderer"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “Model3DRenderer”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>方法</th><th>说明</th></tr></thead><tbody><tr><td><code dir="auto">Submit(instance)</code></td><td>提交到当前帧临时队列</td></tr><tr><td><code dir="auto">Draw(model, pos, rot, scale, layer, tint)</code></td><td>一次性绘制</td></tr><tr><td><code dir="auto">RegisterPersistent</code> / <code dir="auto">UnregisterPersistent</code></td><td>注册 / 注销常驻实例</td></tr><tr><td><code dir="auto">ClearPersistent()</code></td><td>清空全部常驻</td></tr><tr><td><code dir="auto">Instance</code></td><td>渲染器单例</td></tr><tr><td><code dir="auto">GlobalLighting</code></td><td>全局默认光照</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="animationplayer">AnimationPlayer</h3><a class="sl-anchor-link" href="#animationplayer"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “AnimationPlayer”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>成员</th><th>说明</th></tr></thead><tbody><tr><td><code dir="auto">Play(clipName, fadeIn, restart)</code></td><td>按名播放，支持 cross-fade</td></tr><tr><td><code dir="auto">Stop()</code></td><td>停止并退回 bind pose</td></tr><tr><td><code dir="auto">Update(delta)</code> / <code dir="auto">Tick(delta)</code></td><td>推进时间</td></tr><tr><td><code dir="auto">Time</code> / <code dir="auto">Speed</code> / <code dir="auto">Loop</code> / <code dir="auto">Paused</code></td><td>播放控制</td></tr><tr><td><code dir="auto">Current</code> / <code dir="auto">IsFading</code></td><td>当前 Clip / cross-fade 状态</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h3"><h3 id="导入格式">导入格式</h3><a class="sl-anchor-link" href="#导入格式"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “导入格式”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>格式</th><th>加载器</th><th>说明</th></tr></thead><tbody><tr><td><code dir="auto">.obj</code> + <code dir="auto">.mtl</code></td><td><code dir="auto">ObjModelLoader</code></td><td>Wavefront OBJ</td></tr><tr><td><code dir="auto">.gltf</code></td><td><code dir="auto">GltfModelLoader</code></td><td>glTF 2.0（含骨架与动画）</td></tr></tbody></table>
+<div class="sl-heading-wrapper level-h2"><h2 id="常见问题">常见问题</h2><a class="sl-anchor-link" href="#常见问题"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “常见问题”</span></a></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>问题</th><th>原因 / 处理</th></tr></thead><tbody><tr><td>模型不显示</td><td><code dir="auto">IsValid</code> 为 false；检查路径、日志、<code dir="auto">Diagnostic</code></td></tr><tr><td>专用服务器空模型</td><td>预期行为；服务端返回 <code dir="auto">Empty</code>，客户端才加载 GPU</td></tr><tr><td>忘记 <code dir="auto">UnregisterPersistent</code></td><td>实体销毁后模型仍绘制；在 <code dir="auto">Kill</code> / <code dir="auto">OnKill</code> 注销</td></tr><tr><td>OBJ 模型缺面</td><td>设 <code dir="auto">CullBackface = false</code></td></tr><tr><td>动画不动</td><td>未设 <code dir="auto">Animation</code>；或 Clip 名不匹配 <code dir="auto">TryGetClip</code></td></tr><tr><td>自定义 shader 全黑</td><td>非 <code dir="auto">BasicEffect</code> 需在 <code dir="auto">ConfigureEffect</code> 自行传参</td></tr><tr><td>与 PRT 绘制顺序错乱</td><td>Models3D <code dir="auto">Weight=5</code> 在 PRT 之后；勿在 PRT 回调里改全局 RenderState 而不恢复</td></tr><tr><td><code dir="auto">CastShadow</code> 无效</td><td>前向兼容预留，<strong>当前管线尚未实现阴影</strong></td></tr></tbody></table>
+<aside aria-label="警告" class="starlight-aside starlight-aside--caution"> <p class="starlight-aside__title" aria-hidden="true"> <svg aria-hidden="true" class="starlight-aside__icon astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1em;"><path d="M12 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2Zm10.67 1.47-8.05-14a3 3 0 0 0-5.24 0l-8 14A3 3 0 0 0 3.94 22h16.12a3 3 0 0 0 2.61-4.53Zm-1.73 2a1 1 0 0 1-.88.51H3.94a1 1 0 0 1-.88-.51 1 1 0 0 1 0-1l8-14a1 1 0 0 1 1.78 0l8.05 14a1 1 0 0 1 .05 1.02v-.02ZM12 8a1 1 0 0 0-1 1v4a1 1 0 0 0 2 0V9a1 1 0 0 0-1-1Z"/></svg>警告 </p> <div class="starlight-aside__content"> <p>Models3D 为<strong>客户端 / GPU 专用</strong>。在 <code dir="auto">Main.dedServ</code> 或专用服务器上不要依赖 3D 模型做玩法判定；逻辑应放在 NPC / Projectile / Actor 等服务端可见实体上。</p> </div> </aside>
+<div class="sl-heading-wrapper level-h2"><h2 id="配套示例">配套示例</h2><a class="sl-anchor-link" href="#配套示例"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “配套示例”</span></a></div>
+<p><a href="https://github.com/hocha113/InnoVaultExample/blob/main/Content/Advanced/Models3D/CrystalModel.cs">InnoVaultExample · CrystalModel</a>：手写的 <a href="https://github.com/hocha113/InnoVaultExample/blob/main/Assets/Models/LowPolyCrystal.obj">LowPolyCrystal.obj</a> 经 <code dir="auto">[VaultLoaden]</code> 加载为 <code dir="auto">Vault3DModel</code>，握持投影器时用 <code dir="auto">Model3DRenderer</code> 常驻实例在头顶画旋转水晶；注释解释了为何选 <code dir="auto">RegisterPersistent</code> 而不是每 tick <code dir="auto">Submit</code>（高帧率下临时队列会闪烁）。</p>
+<div class="sl-heading-wrapper level-h2"><h2 id="相关链接">相关链接</h2><a class="sl-anchor-link" href="#相关链接"><span aria-hidden="true" class="sl-anchor-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="currentcolor" d="m12.11 15.39-3.88 3.88a2.52 2.52 0 0 1-3.5 0 2.47 2.47 0 0 1 0-3.5l3.88-3.88a1 1 0 0 0-1.42-1.42l-3.88 3.89a4.48 4.48 0 0 0 6.33 6.33l3.89-3.88a1 1 0 1 0-1.42-1.42Zm8.58-12.08a4.49 4.49 0 0 0-6.33 0l-3.89 3.88a1 1 0 0 0 1.42 1.42l3.88-3.88a2.52 2.52 0 0 1 3.5 0 2.47 2.47 0 0 1 0 3.5l-3.88 3.88a1 1 0 1 0 1.42 1.42l3.88-3.89a4.49 4.49 0 0 0 0-6.33ZM8.83 15.17a1 1 0 0 0 1.1.22 1 1 0 0 0 .32-.22l4.92-4.92a1 1 0 0 0-1.42-1.42l-4.92 4.92a1 1 0 0 0 0 1.42Z"></path></svg></span><span class="sr-only" data-pagefind-ignore>Section titled “相关链接”</span></a></div>
+<div class="card-grid stagger astro-zntqmydn"><div class="sl-link-card astro-mf7fz2mj"> <span class="sl-flex stack astro-mf7fz2mj"> <a href="/cn/core/vault-loaden/" class="astro-mf7fz2mj"> <span class="title astro-mf7fz2mj">VaultLoaden</span> </a> <span class="description astro-mf7fz2mj">[VaultLoaden] 加载 3D 模型</span> </span> <svg aria-hidden="true" class="icon rtl:flip astro-mf7fz2mj astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.333em;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> </div> <div class="sl-link-card astro-mf7fz2mj"> <span class="sl-flex stack astro-mf7fz2mj"> <a href="/cn/content/render-handle/" class="astro-mf7fz2mj"> <span class="title astro-mf7fz2mj">RenderHandle</span> </a> <span class="description astro-mf7fz2mj">共享渲染基类与后处理</span> </span> <svg aria-hidden="true" class="icon rtl:flip astro-mf7fz2mj astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.333em;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> </div> <div class="sl-link-card astro-mf7fz2mj"> <span class="sl-flex stack astro-mf7fz2mj"> <a href="/cn/content/prt/" class="astro-mf7fz2mj"> <span class="title astro-mf7fz2mj">PRT</span> </a> <span class="description astro-mf7fz2mj">PRTRender 同管线</span> </span> <svg aria-hidden="true" class="icon rtl:flip astro-mf7fz2mj astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.333em;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> </div> <div class="sl-link-card astro-mf7fz2mj"> <span class="sl-flex stack astro-mf7fz2mj"> <a href="/cn/persistence/actor/" class="astro-mf7fz2mj"> <span class="title astro-mf7fz2mj">Actor</span> </a> <span class="description astro-mf7fz2mj">世界实体 + 3D 装饰配合</span> </span> <svg aria-hidden="true" class="icon rtl:flip astro-mf7fz2mj astro-c6vsoqas" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="--sl-icon-size: 1.333em;"><path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/></svg> </div> </div>  </div> <footer class="sl-flex astro-3yyafb3n"> <div class="meta sl-flex astro-3yyafb3n">   </div> <nav class="vault-doc-nav print:hidden astro-6vonrtgf" dir="ltr" aria-label="阅读顺序"><div class="vault-doc-nav-header astro-6vonrtgf"><span class="vault-doc-nav-chain astro-6vonrtgf">阅读顺序 · 14 / 21</span></div><div class="vault-doc-nav-links astro-6vonrtgf"><a href="/cn/narrative/" rel="prev" class="vault-doc-nav-link vault-doc-nav-prev astro-6vonrtgf"><span class="vault-doc-nav-arrow astro-6vonrtgf" aria-hidden="true">←</span><span class="vault-doc-nav-text astro-6vonrtgf"><span class="vault-doc-nav-dir astro-6vonrtgf">上一页</span><span class="vault-doc-nav-title astro-6vonrtgf">Narrative</span></span></a><a href="/cn/overrides/projectile/" rel="next" class="vault-doc-nav-link vault-doc-nav-next astro-6vonrtgf"><span class="vault-doc-nav-text astro-6vonrtgf"><span class="vault-doc-nav-dir astro-6vonrtgf">下一页</span><span class="vault-doc-nav-title astro-6vonrtgf">ProjOverride</span></span><span class="vault-doc-nav-arrow astro-6vonrtgf" aria-hidden="true">→</span></a></div></nav>  </footer>  </div> </div>   </main> </div> </div>     </div> </div>  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon='{"version":"2024.11.0","token":"cb99b6ce386b40a191a78f4a858b33b2","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body></html>
