@@ -1,0 +1,2 @@
+.tml-mpclient/Mods/2025.12CalamityModMusic.tmod filter=lfs diff=lfs merge=lfs -text
+.tml-mpclient/Mods/2026.6CalamityMod.tmod filter=lfs diff=lfs merge=lfs -text

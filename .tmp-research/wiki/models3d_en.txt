@@ -1,0 +1,191 @@
+ HomeAdvancedModels3D
+
+# Models3D
+ Models3D imports `.obj` / `.gltf` assets into `Vault3DModel`, then draws them via `Model3DRenderer` (a `RenderHandle`) in layered passes with skinned animation support. On `Main.dedServ`, loading returns `Vault3DModel.Empty` and no GPU resources are created.
+
+ClientGPU onlyWeight=5Draws after PRTLayerModel3DLayer
+
+## Overview
+Section titled “Overview”
+Use for boss props, vehicles, weapons, environmental 3D objects: client visuals.
+
+Use when:
+
+- Skinned glTF characters / boss models
+
+- Grounded or floating 3D decor (NPC / projectile `PostDraw`)
+
+- 3D content that must sort with tiles / players (`Model3DLayer`)
+
+Don’t use when:
+
+- Server logic or hitboxes: use NPC / Projectile / Actor
+
+- Pure 2D sprite FX: use PRT
+
+- Full-screen post-process pipelines: custom `RenderHandle` (see RenderHandle)
+
+### Transient vs persistent
+Section titled “Transient vs persistent”
+
+Transient (`Draw` / `Submit`)Persistent (`RegisterPersistent`)LifetimeCurrent frame onlyUntil `UnregisterPersistent`Typical useProjectile trails, one-shot FXModel attached to NPC for entire lifeUpdatesPass params each frameMutate `Model3DInstance` fieldsPerformanceLow frequency, short lifeLong-lived, per-frame transform updates
+
+## Quick start
+Section titled “Quick start”
+
+- 
+```
+`using InnoVault;using InnoVault.Models3D.Runtime;using Microsoft.Xna.Framework;
+// 1) Autoload modelpublic static class MyAssets { [VaultLoaden("Assets/Models/MyModel")] public static Vault3DModel MyModel;}
+// 2) Draw each frame (e.g. projectile PostDraw)public class MyProjectile : ModProjectile { public override void PostDraw(Color lightColor) { if (!MyAssets.MyModel.IsValid) return; Model3DRenderer.Draw( MyAssets.MyModel, Projectile.Center, new Vector3(0, Projectile.rotation, 0), Vector3.One * 0.5f, Model3DLayer.AfterPlayers, Color.White); }}`
+```
+
+Extension may be omitted; `.obj` then `.gltf` are tried. See VaultLoaden.
+
+## Attach to NPC workflow
+Section titled “Attach to NPC workflow”
+Persistent 3D decor follows register → update → unregister. Gameplay logic stays on the NPC; Models3D is client draw only.
+
+StepAction1Autoload `.gltf` / `.obj` with `[VaultLoaden]` on a static `Vault3DModel` field2In `ModNPC.OnSpawn(IEntitySource source)`, guard with `model.IsValid` (server gets `Empty`)3Create `Model3DInstance`, set `Layer`, `Scale`, optional `AnimationPlayer`4Call `Model3DRenderer.RegisterPersistent(_instance)` once per spawn5Each `AI()` tick, assign `_instance.Position = NPC.Center` and rotation from `NPC.rotation`6Cross-fade clips on phase change via `AnimationPlayer.Play("attack", fadeIn: 0.2f)`7On death or despawn, call `Model3DRenderer.UnregisterPersistent(_instance)` in `OnKill`8Pick `Model3DLayer` so the mesh sorts with tiles/players as intended9Do not read hitboxes or phase from the 3D instance on `Main.dedServ`10Test on client: OBJ may need `CullBackface = false`; check `model.Diagnostic` on load failure
+Key points:
+
+- Check `model.IsValid` before draw
+
+- `Position` is world pixels (framework subtracts `screenPosition`)
+
+- OBJ models often need `CullBackface = false`
+
+## Architecture
+Section titled “Architecture”
+
+```
+flowchart LR
+ VL[VaultLoaden / manual Load] --> Model[Vault3DModel]
+ Model --> Inst[Model3DInstance]
+ Inst -->|Submit transient| Renderer[Model3DRenderer]
+ Inst -->|RegisterPersistent| Renderer
+ Renderer -->|extends| RH[RenderHandle]
+ RH -->|Weight=5| Pipeline[After PRT in pipeline]
+ Pipeline --> Screen[Composited to game]
+```
+
+ComponentDescription`Vault3DModel`Static asset (mesh groups, materials, skeletons, clips)`Model3DInstance`Per-draw description (transform, layer, effect, etc.)`Model3DRenderer`Renderer (`RenderHandle`), draws by `Model3DLayer``Model3DLoadenHandle`VaultLoaden loader`AnimationPlayer`Per-instance animation head (skinning / cross-fade)`ObjModelLoader` / `GltfModelLoader`Manual load entry points
+
+## Common patterns
+Section titled “Common patterns”
+
+### Persistent instance (NPC / world object)
+Section titled “Persistent instance (NPC / world object)”
+
+```
+`private Model3DInstance _instance;
+public override void OnSpawn(IEntitySource source) { _instance = new Model3DInstance(MyAssets.MyModel) { Layer = Model3DLayer.AfterTiles, Scale = Vector3.One * 2f, }; Model3DRenderer.RegisterPersistent(_instance);}
+public override void AI() { _instance.Position = NPC.Center; _instance.Rotation = new Vector3(0, NPC.rotation, 0);}
+public override void OnKill() { Model3DRenderer.UnregisterPersistent(_instance);}`
+```
+
+### Skinned animation
+Section titled “Skinned animation”
+
+```
+`var anim = new AnimationPlayer(model);anim.Play("idle", fadeIn: 0.3f);anim.Loop = true;
+_instance = new Model3DInstance(model) { Animation = anim, Layer = Model3DLayer.BeforePlayers,};Model3DRenderer.RegisterPersistent(_instance);`
+```
+
+Each instance needs its own `AnimationPlayer`; the renderer auto-calls `Update`.
+
+### Manual load
+Section titled “Manual load”
+
+```
+`Vault3DModel model = Model3DLoadenHandle.Load(Mod, "Assets/Models/Boss");`
+```
+
+Import issues go to `model.Diagnostic`; tune via `GltfImportOptions` / `ObjImportOptions`.
+
+### Model3DLayer
+Section titled “Model3DLayer”
+
+ValueDescription`BeforeTiles`Before tiles. Background scenery`AfterTiles`After tiles. Ground objects`BeforePlayers`Before players. Occluded by player`AfterPlayers`After players. Vehicles, weapons`BeforeInfernoRings`Default general world FX layer
+
+## Advanced
+Section titled “Advanced”
+
+### Custom Effect and lighting
+Section titled “Custom Effect and lighting”
+
+```
+`_instance = new Model3DInstance(model) { EffectProvider = ctx => myCustomEffect, ConfigureEffect = (ctx, effect) => { // Non-BasicEffect: set tint / texture / lighting yourself }, LightingEnabled = true,};`
+```
+ myCustomEffect, ConfigureEffect = (ctx, effect) => { // Non-BasicEffect: set tint / texture / lighting yourself }, LightingEnabled = true,};">
+Effect priority: explicit override > instance `Effect` > instance `EffectProvider` > material `Effect` > material `EffectProvider` > default `BasicEffect`.
+
+Global: `Model3DRenderer.GlobalLighting`; per-instance: `Model3DRenderer.ResolveLighting` event.
+
+### Global draw hooks
+Section titled “Global draw hooks”
+
+EventDescription`ResolveLighting`Per-instance lighting resolve`PreDrawInstance` / `PostDrawInstance`Instance draw hooks`PreDrawGroup` / `PostDrawGroup`Mesh group hooks`OnLayerRendered`Layer RT ready (post-process)`CompositeOverride`Replace default RT composite
+
+### RenderHandle pipeline
+Section titled “RenderHandle pipeline”
+`Model3DRenderer` extends `RenderHandle`, hooked into multiple Terraria draw stages. `Weight = 5`. After PRT (lower weight) to avoid clobbering particle canvas state.
+
+Atomic API (`DrawInstance`, `DrawMeshGroup`, `BuildWorldMatrix`, etc.) can be reused in custom `RenderHandle`. Full-screen post-process, `Weight` ordering, and SpriteBatch contracts: RenderHandle.
+
+### Full example (animated boss decor)
+Section titled “Full example (animated boss decor)”
+
+```
+`public class BossDecor : ModNPC{ private Model3DInstance _model; private AnimationPlayer _anim;
+ [VaultLoaden("Assets/Models/Boss")] private static Vault3DModel BossModel;
+ public override void OnSpawn(IEntitySource source) { if (!BossModel.IsValid) return; _anim = new AnimationPlayer(BossModel); _anim.Play("spawn"); _model = new Model3DInstance(BossModel) { Layer = Model3DLayer.BeforePlayers, Scale = Vector3.One * 3f, LightingEnabled = true, Animation = _anim, }; Model3DRenderer.RegisterPersistent(_model); }
+ public override void AI() { if (_model != null) { _model.Position = NPC.Center; _model.Rotation = new Vector3(0, NPC.rotation, 0); } }
+ public override void OnKill() { Model3DRenderer.UnregisterPersistent(_model); }}`
+```
+
+## API reference
+Section titled “API reference”
+
+### Vault3DModel
+Section titled “Vault3DModel”
+
+MemberDescription`Empty`Placeholder on failure / dedicated server`Name` / `SourcePath`Display name and source path`Groups` / `Materials`Mesh groups and materials`Skeletons` / `Clips`Skeletons and animation clips`Diagnostic`Import diagnostics`Bounds` / `Pivot` / `RootTransform`Bounds, pivot, root transform`IsValid` / `IsSkinned`Drawable / has skeleton`TryGetClip(name, out clip)`Lookup clip by name
+
+### Model3DInstance
+Section titled “Model3DInstance”
+
+PropertyDescription`Model`Associated `Vault3DModel``Position` / `Depth`World position and Z offset`Rotation` / `Scale`Euler radians (X/Y/Z), scale`Tint` / `Opacity`Color and opacity`Layer` / `SortKey` / `Visible`Layer, sort, visibility`LightingEnabled` / `LightingOverride`Lighting`DepthEnabled` / `CullBackface` / `ForceTransparent`Depth, cull, transparent bucket`Animation``AnimationPlayer``Effect` / `EffectProvider` / `ConfigureEffect`Custom shader`RenderStateOverride`Blend / depth / rasterizer override
+
+### Model3DRenderer
+Section titled “Model3DRenderer”
+
+MethodDescription`Submit(instance)`Submit to current-frame queue`Draw(...)`One-shot draw`RegisterPersistent` / `UnregisterPersistent`Register / unregister persistent`ClearPersistent()`Clear all persistent`Instance`Renderer singleton`GlobalLighting`Global lighting config
+
+### AnimationPlayer
+Section titled “AnimationPlayer”
+
+MemberDescription`Play(clipName, fadeIn, restart)`Play by name with cross-fade`Stop()`Stop; revert to bind pose`Update(delta)` / `Tick(delta)`Advance time`Time` / `Speed` / `Loop` / `Paused`Playback control`Current` / `IsFading`Current clip / cross-fade state
+
+### Import formats
+Section titled “Import formats”
+
+FormatLoaderNotes`.obj` + `.mtl``ObjModelLoader`Wavefront OBJ`.gltf``GltfModelLoader`glTF 2.0 with skeletons/animations
+
+## Common issues
+Section titled “Common issues”
+
+IssueCause / fixModel not visible`IsValid` false; check path, logs, `Diagnostic`Dedicated server empty modelExpected; `Empty` on server, GPU on clientForgot `UnregisterPersistent`Model keeps drawing after entity dies; unregister in `Kill`OBJ missing facesSet `CullBackface = false`Animation frozenNo `Animation`; or clip name mismatchCustom shader all blackNon-`BasicEffect` needs `ConfigureEffect` paramsDraw order vs PRT wrongModels3D `Weight=5` after PRT; restore RenderState if mixing`CastShadow` does nothingReserved. Shadows not implemented yet
+ Caution 
+
+ Models3D is client / GPU only. Do not rely on 3D models for gameplay logic on `Main.dedServ` or dedicated servers; put logic on server-visible NPC / Projectile / Actor entities.
+
+ 
+
+## Companion sample
+Section titled “Companion sample”
+InnoVaultExample · CrystalModel: the hand-written LowPolyCrystal.obj loads into a `Vault3DModel` via `[VaultLoaden]`, and a persistent `Model3DRenderer` instance spins a crystal above the player while the projector is held; the comments explain why `RegisterPersistent` beats per-tick `Submit` (the transient queue flickers at high frame rates).
+
+## Related links
+Section titled “Related links”
+ VaultLoaden [VaultLoaden] 3D model loading RenderHandle Shared render base and post-process PRT PRTRender in same pipeline Actor World entities + 3D decor Reading order · 14 / 21←PreviousNarrativeNextProjOverride→ 

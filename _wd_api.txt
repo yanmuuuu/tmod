@@ -1,0 +1,286 @@
+﻿==================== ASSEMBLY REFS ====================
+REF: System.Runtime 6.0.0.0
+REF: tModLoader 1.4.4.9
+REF: System.Collections 6.0.0.0
+REF: FNA 22.7.0.0
+REF: MonoMod.Utils 23.3.22.1
+REF: Mono.Cecil 0.11.4.0
+REF: TerrariaHooks 0.0.0.0
+REF: log4net 2.0.8.0
+REF: ReLogic 1.0.0.0
+==================== MOD REFERENCES (TypeRef into other assemblies) ====================
+--- SCOPE FNA (33 types) ---
+    Microsoft.Xna.Framework.Color
+    Microsoft.Xna.Framework.Graphics.BlendState
+    Microsoft.Xna.Framework.Graphics.DepthStencilState
+    Microsoft.Xna.Framework.Graphics.Effect
+    Microsoft.Xna.Framework.Graphics.EffectParameter
+    Microsoft.Xna.Framework.Graphics.EffectParameterCollection
+    Microsoft.Xna.Framework.Graphics.EffectPass
+    Microsoft.Xna.Framework.Graphics.EffectPassCollection
+    Microsoft.Xna.Framework.Graphics.EffectTechnique
+    Microsoft.Xna.Framework.Graphics.GraphicsDevice
+    Microsoft.Xna.Framework.Graphics.IVertexType
+    Microsoft.Xna.Framework.Graphics.PrimitiveType
+    Microsoft.Xna.Framework.Graphics.RasterizerState
+    Microsoft.Xna.Framework.Graphics.SamplerState
+    Microsoft.Xna.Framework.Graphics.SamplerStateCollection
+    Microsoft.Xna.Framework.Graphics.SpriteBatch
+    Microsoft.Xna.Framework.Graphics.SpriteEffects
+    Microsoft.Xna.Framework.Graphics.SpriteSortMode
+    Microsoft.Xna.Framework.Graphics.Texture
+    Microsoft.Xna.Framework.Graphics.Texture2D
+    Microsoft.Xna.Framework.Graphics.TextureCollection
+    Microsoft.Xna.Framework.Graphics.VertexDeclaration
+    Microsoft.Xna.Framework.Graphics.VertexElement
+    Microsoft.Xna.Framework.Graphics.VertexElementFormat
+    Microsoft.Xna.Framework.Graphics.VertexElementUsage
+    Microsoft.Xna.Framework.GraphicsDeviceManager
+    Microsoft.Xna.Framework.MathHelper
+    Microsoft.Xna.Framework.Matrix
+    Microsoft.Xna.Framework.Point
+    Microsoft.Xna.Framework.Rectangle
+    Microsoft.Xna.Framework.Vector2
+    Microsoft.Xna.Framework.Vector3
+    Microsoft.Xna.Framework.Vector4
+--- SCOPE log4net (1 types) ---
+    log4net.ILog
+--- SCOPE Mono.Cecil (1 types) ---
+    Mono.Cecil.Cil.Instruction
+--- SCOPE MonoMod.Utils (5 types) ---
+    MonoMod.Cil.ILContext
+    MonoMod.Cil.ILContext/Manipulator
+    MonoMod.Cil.ILCursor
+    MonoMod.Cil.ILPatternMatchingExt
+    MonoMod.Cil.MoveType
+--- SCOPE ReLogic (3 types) ---
+    ReLogic.Content.Asset`1
+    ReLogic.Content.AssetRequestMode
+    ReLogic.Utilities.SlotId
+--- SCOPE System.Collections (1 types) ---
+    System.Collections.Generic.List`1
+--- SCOPE System.Runtime (22 types) ---
+    System.Attribute
+    System.AttributeTargets
+    System.AttributeUsageAttribute
+    System.Byte
+    System.ComponentModel.DefaultValueAttribute
+    System.Diagnostics.DebuggableAttribute
+    System.Diagnostics.DebuggableAttribute/DebuggingModes
+    System.Enum
+    System.Func`2
+    System.IO.BinaryReader
+    System.IO.BinaryWriter
+    System.Math
+    System.Nullable`1
+    System.Object
+    System.Runtime.CompilerServices.CompilationRelaxationsAttribute
+    System.Runtime.CompilerServices.CompilerGeneratedAttribute
+    System.Runtime.CompilerServices.DefaultInterpolatedStringHandler
+    System.Runtime.CompilerServices.ExtensionAttribute
+    System.Runtime.CompilerServices.RuntimeCompatibilityAttribute
+    System.Single
+    System.String
+    System.ValueType
+--- SCOPE TerrariaHooks (7 types) ---
+    Terraria.DataStructures.On_PlayerDrawLayers
+    Terraria.DataStructures.On_PlayerDrawLayers/hook_DrawPlayer_27_HeldItem
+    Terraria.DataStructures.On_PlayerDrawLayers/orig_DrawPlayer_27_HeldItem
+    Terraria.IL_Player
+    Terraria.On_Player
+    Terraria.On_Player/hook_ItemCheck_ManageRightClickFeatures_ShieldRaise
+    Terraria.On_Player/orig_ItemCheck_ManageRightClickFeatures_ShieldRaise
+--- SCOPE tModLoader (52 types) ---
+    Terraria.Audio.SoundEngine
+    Terraria.Audio.SoundStyle
+    Terraria.Audio.SoundUpdateCallback
+    Terraria.Collision
+    Terraria.DataStructures.DrawAnimation
+    Terraria.DataStructures.DrawData
+    Terraria.DataStructures.EntitySource_ItemUse_WithAmmo
+    Terraria.DataStructures.IEntitySource
+    Terraria.DataStructures.PlayerDrawSet
+    Terraria.Dust
+    Terraria.Entity
+    Terraria.GameContent.TextureAssets
+    Terraria.GameContent.UI.ItemRarity
+    Terraria.GameInput.PlayerInput
+    Terraria.GameInput.TriggersPack
+    Terraria.GameInput.TriggersSet
+    Terraria.Graphics.SpriteViewMatrix
+    Terraria.ID.SoundID
+    Terraria.Item
+    Terraria.Lighting
+    Terraria.Localization.Language
+    Terraria.Localization.NetworkText
+    Terraria.Main
+    Terraria.ModLoader.Config.ConfigScope
+    Terraria.ModLoader.Config.DrawTicksAttribute
+    Terraria.ModLoader.Config.HeaderAttribute
+    Terraria.ModLoader.Config.IncrementAttribute
+    Terraria.ModLoader.Config.ItemDefinition
+    Terraria.ModLoader.Config.LabelAttribute
+    Terraria.ModLoader.Config.ModConfig
+    Terraria.ModLoader.Config.RangeAttribute
+    Terraria.ModLoader.Config.SliderAttribute
+    Terraria.ModLoader.Config.TooltipAttribute
+    Terraria.ModLoader.DamageClass
+    Terraria.ModLoader.GlobalItem
+    Terraria.ModLoader.Mod
+    Terraria.ModLoader.ModContent
+    Terraria.ModLoader.ModItem
+    Terraria.ModLoader.ModPacket
+    Terraria.ModLoader.ModPlayer
+    Terraria.ModLoader.ModProjectile
+    Terraria.ModLoader.ModSystem
+    Terraria.ModLoader.ModType
+    Terraria.Mount
+    Terraria.NetMessage
+    Terraria.NPC
+    Terraria.Player
+    Terraria.Player/CompositeArmStretchAmount
+    Terraria.Projectile
+    Terraria.Recipe
+    Terraria.Utilities.UnifiedRandom
+    Terraria.Utils
+==================== TYPES ====================
+TYPE [internal sealed] Microsoft.CodeAnalysis.EmbeddedAttribute : System.Attribute
+  METHOD public System.Void .ctor()
+TYPE [internal sealed] System.Runtime.CompilerServices.NullableAttribute : System.Attribute
+  FIELD public readonly System.Byte[] NullableFlags
+  METHOD public System.Void .ctor(System.Byte )
+  METHOD public System.Void .ctor(System.Byte[] )
+TYPE [internal sealed] System.Runtime.CompilerServices.NullableContextAttribute : System.Attribute
+  FIELD public readonly System.Byte Flag
+  METHOD public System.Void .ctor(System.Byte )
+TYPE [public] WeaponDisplay.Configuration : Terraria.ModLoader.Config.ModConfig
+  FIELD public System.Boolean ShowWeapon
+  FIELD public WeaponDisplay.DyeSlot DyeUsed
+  FIELD public System.Boolean ShowGlow
+  FIELD public System.Single GlowLighting
+  FIELD public System.Single WeaponScale
+  FIELD public System.Boolean LightItem
+  FIELD public System.Int32 LightItemNum
+  FIELD public System.Boolean CoolerSwooshActive
+  FIELD public System.Single IsLighterDecider
+  FIELD public System.Boolean UseItemTexForSwoosh
+  FIELD public System.Boolean ItemAdditive
+  FIELD public System.Boolean ToolsNoUseNewSwooshEffect
+  PROP Terraria.ModLoader.Config.ConfigScope Mode {get}
+  METHOD public override System.Void OnChanged()
+  METHOD public System.Void .ctor()
+TYPE [public] WeaponDisplay.ConfigurationServer : Terraria.ModLoader.Config.ModConfig
+  FIELD public System.Boolean UseHitbox
+  FIELD public System.Int32 ItemAttackCD
+  FIELD public System.Boolean CanParry
+  FIELD public System.Collections.Generic.List`1<Terraria.ModLoader.Config.ItemDefinition> ParryItems
+  PROP Terraria.ModLoader.Config.ConfigScope Mode {get}
+  METHOD public System.Void .ctor()
+TYPE [public sealed enum] WeaponDisplay.DyeSlot : System.Enum
+  FIELD public System.Int32 value__
+  FIELD public static const WeaponDisplay.DyeSlot None = 0
+  FIELD public static const WeaponDisplay.DyeSlot Head = 1
+  FIELD public static const WeaponDisplay.DyeSlot Body = 2
+  FIELD public static const WeaponDisplay.DyeSlot Leg = 3
+TYPE [public sealed] WeaponDisplay.CustomVertexInfo : System.ValueType implements Microsoft.Xna.Framework.Graphics.IVertexType
+  FIELD private static Microsoft.Xna.Framework.Graphics.VertexDeclaration _vertexDeclaration
+  FIELD public Microsoft.Xna.Framework.Vector2 Position
+  FIELD public Microsoft.Xna.Framework.Color Color
+  FIELD public Microsoft.Xna.Framework.Vector3 TexCoord
+  PROP Microsoft.Xna.Framework.Graphics.VertexDeclaration VertexDeclaration {get}
+  METHOD public System.Void .ctor(Microsoft.Xna.Framework.Vector2 position, Microsoft.Xna.Framework.Color color, Microsoft.Xna.Framework.Vector3 texCoord)
+  METHOD public System.Void .ctor(Microsoft.Xna.Framework.Vector2 position, Microsoft.Xna.Framework.Vector3 texCoord)
+  METHOD private static System.Void .cctor()
+TYPE [internal] WeaponDisplay.HandleNetwork : System.Object
+  METHOD protected static System.Void HandlePacket(System.IO.BinaryReader reader, System.Int32 whoAmI)
+  METHOD public System.Void .ctor()
+  TYPE [sealed enum] WeaponDisplay.HandleNetwork/MessageType : System.Enum
+    FIELD public System.Int32 value__
+    FIELD public static const WeaponDisplay.HandleNetwork/MessageType BasicStats = 0
+    FIELD public static const WeaponDisplay.HandleNetwork/MessageType Hitbox = 1
+TYPE [public] WeaponDisplay.SlashGlobalItem : Terraria.ModLoader.GlobalItem
+  METHOD public override System.Boolean AppliesToEntity(Terraria.Item item, System.Boolean lateInstantiation)
+  METHOD public override System.Void UseItemHitbox(Terraria.Item item, Terraria.Player player, Microsoft.Xna.Framework.Rectangle& hitbox, System.Boolean& noHitbox)
+  METHOD public override System.Boolean CanUseItem(Terraria.Item item, Terraria.Player player)
+  METHOD public override System.Void UseStyle(Terraria.Item item, Terraria.Player player, Microsoft.Xna.Framework.Rectangle heldItemFrame)
+  METHOD public override System.Void Load()
+  METHOD private System.Void Player_ItemCheck_MeleeHitNPCs(MonoMod.Cil.ILContext il)
+  METHOD public System.Void .ctor()
+  TYPE [sealed] WeaponDisplay.SlashGlobalItem/<>c : System.Object
+    FIELD public static readonly WeaponDisplay.SlashGlobalItem/<>c <>9
+    FIELD public static System.Func`2<System.Double,System.Double> <>9__5_0
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__5_1
+    METHOD private static System.Void .cctor()
+    METHOD public System.Void .ctor()
+    METHOD protected System.Double <Player_ItemCheck_MeleeHitNPCs>b__5_0(System.Double _)
+    METHOD protected System.Boolean <Player_ItemCheck_MeleeHitNPCs>b__5_1(Mono.Cecil.Cil.Instruction i)
+TYPE [public] WeaponDisplay.WeaponDisplay : Terraria.ModLoader.Mod
+  FIELD protected static System.Boolean ItemAdditive
+  FIELD protected static System.Boolean ToolsNoUse
+  FIELD protected static System.Single IsLighterDecider
+  FIELD protected static System.Boolean UseItemTexForSwoosh
+  FIELD protected static WeaponDisplay.Configuration Config
+  FIELD protected static WeaponDisplay.ConfigurationServer ConfigGameplay
+  FIELD protected static WeaponDisplay.WeaponDisplay Instance
+  FIELD protected static Microsoft.Xna.Framework.Graphics.Effect itemEffect
+  FIELD protected static Microsoft.Xna.Framework.Graphics.Effect colorfulEffect
+  PROP Microsoft.Xna.Framework.Graphics.Effect ItemEffect {}
+  PROP Microsoft.Xna.Framework.Graphics.Effect ColorfulEffect {}
+  METHOD public override System.Void Load()
+  METHOD private System.Void On_PlayerDrawLayers_DrawPlayer_27_HeldItem(Terraria.DataStructures.On_PlayerDrawLayers/orig_DrawPlayer_27_HeldItem orig, Terraria.DataStructures.PlayerDrawSet& drawinfo)
+  METHOD public override System.Void Unload()
+  METHOD public override System.Void HandlePacket(System.IO.BinaryReader reader, System.Int32 whoAmI)
+  METHOD private System.Void DrawSwoosh(Terraria.Player drawPlayer, Microsoft.Xna.Framework.Color newColor)
+  METHOD private System.Void DrawSwoosh_AlphaBlend(Terraria.Player drawPlayer, Microsoft.Xna.Framework.Color newColor)
+  METHOD public System.Void .ctor()
+  METHOD private static System.Void .cctor()
+TYPE [internal static] WeaponDisplay.WeaponDisplayMethods : System.Object
+  METHOD public static System.Single Lerp(System.Single t, System.Single from, System.Single to, System.Boolean clamp)
+TYPE [public] WeaponDisplay.WeaponDisplayPlayer : Terraria.ModLoader.ModPlayer
+  FIELD public System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector2> itemOldPositions
+  FIELD public System.Single kValue
+  FIELD public System.Boolean negativeDir
+  FIELD public System.Single rotationForShadow
+  FIELD public static System.Boolean ShowWeapon
+  FIELD public Microsoft.Xna.Framework.Vector2 HitboxPosition
+  FIELD public System.Boolean UseSlash
+  METHOD private static Microsoft.Xna.Framework.Vector2 DrawPlayer_Head_GetSpecialDrawPosition(Terraria.DataStructures.PlayerDrawSet& drawinfo, Microsoft.Xna.Framework.Vector2 helmetOffset, Microsoft.Xna.Framework.Vector2 hatOffset)
+  METHOD public override System.Void ModifyDrawInfo(Terraria.DataStructures.PlayerDrawSet& drawInfo)
+  METHOD private static System.Boolean CheckItemCanUse(Terraria.Item sItem, Terraria.Player player)
+  METHOD public override System.Void OnEnterWorld()
+  METHOD public System.Void .ctor()
+TYPE [public] WeaponDisplay.WeaponParry : Terraria.ModLoader.ModSystem
+  METHOD public override System.Void Load()
+  METHOD private System.Void On_Player_ItemCheck_ManageRightClickFeatures_ShieldRaise(Terraria.On_Player/orig_ItemCheck_ManageRightClickFeatures_ShieldRaise orig, Terraria.Player self, System.Boolean theGeneralCheck)
+  METHOD public System.Void .ctor()
+TYPE [public] WeaponDisplay.Weapons.旧日剑气 : Terraria.ModLoader.ModProjectile
+  METHOD public override System.Void SetDefaults()
+  METHOD public override System.Nullable`1<System.Boolean> Colliding(Microsoft.Xna.Framework.Rectangle projHitbox, Microsoft.Xna.Framework.Rectangle targetHitbox)
+  METHOD public override System.Void AI()
+  METHOD public override System.Void Kill(System.Int32 timeLeft)
+  METHOD public override System.Boolean PreDraw(Microsoft.Xna.Framework.Color& lightColor)
+  METHOD public System.Void .ctor()
+TYPE [public] WeaponDisplay.Weapons.旧日支配者 : Terraria.ModLoader.ModItem
+  PROP Terraria.Item item {}
+  METHOD public override System.Void SetStaticDefaults()
+  METHOD public override System.Void SetDefaults()
+  METHOD public override System.Boolean Shoot(Terraria.Player player, Terraria.DataStructures.EntitySource_ItemUse_WithAmmo source, Microsoft.Xna.Framework.Vector2 position, Microsoft.Xna.Framework.Vector2 velocity, System.Int32 type, System.Int32 damage, System.Single knockback)
+  METHOD public override System.Void AddRecipes()
+  METHOD public System.Void .ctor()
+TYPE [public] WeaponDisplay.Weapons.真旧日支配者 : Terraria.ModLoader.ModItem
+  PROP Terraria.Item item {}
+  METHOD public override System.Void SetStaticDefaults()
+  METHOD public override System.Void SetDefaults()
+  METHOD public override System.Boolean Shoot(Terraria.Player player, Terraria.DataStructures.EntitySource_ItemUse_WithAmmo source, Microsoft.Xna.Framework.Vector2 position, Microsoft.Xna.Framework.Vector2 velocity, System.Int32 type, System.Int32 damage, System.Single knockback)
+  METHOD public override System.Void AddRecipes()
+  METHOD public System.Void .ctor()
+TYPE [public] WeaponDisplay.Weapons.第一分形 : Terraria.ModLoader.ModItem
+  METHOD public override System.Void SetStaticDefaults()
+  METHOD public override System.Void SetDefaults()
+  METHOD private System.Boolean GetSparkleGuitarTarget(System.Collections.Generic.List`1<Terraria.NPC>& validTargets)
+  METHOD public override System.Boolean Shoot(Terraria.Player player, Terraria.DataStructures.EntitySource_ItemUse_WithAmmo source, Microsoft.Xna.Framework.Vector2 position, Microsoft.Xna.Framework.Vector2 velocity, System.Int32 type, System.Int32 damage, System.Single knockback)
+  METHOD public override System.Void AddRecipes()
+  METHOD public System.Void .ctor()
+TYPE [public] WeaponDisplay.ItemInWorld.ItemLight : Terraria.ModLoader.GlobalItem
+  METHOD public override System.Boolean PreDrawInWorld(Terraria.Item item, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Color lightColor, Microsoft.Xna.Framework.Color alphaColor, System.Single& rotation, System.Single& scale, System.Int32 whoAmI)
+  METHOD public System.Void .ctor()

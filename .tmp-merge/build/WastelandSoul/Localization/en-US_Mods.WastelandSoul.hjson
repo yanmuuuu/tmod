@@ -1,0 +1,1000 @@
+Configs: {
+	WastelandConfig: {
+		DisplayName: Wasteland Soul - Settings
+		ScavengerInvasionEnabled.Label: Scavenger invasion
+		InvasionCycleDays.Label: Invasion cycle (in days)
+		InvasionWarning.Label: Show invasion warning
+
+		NoLootOnSelfDestruct: {
+			Label: No loot after overload self-destruct
+			Tooltip: If the Scavenger reaches its overload charge and tears itself apart, it drops nothing and does not advance the story
+		}
+	}
+}
+
+BossChecklist: {
+	Scavenger.SpawnInfo: Every 5 days (warning at 19:30, arrival at 20:30), or lure it with the Scavenger Signal Sensor
+	Archivist.SpawnInfo: Craft an Archivist Echo at a Demon/Crimson Altar (8 Archivist Fragments + 5 Bones + 3 Meteorite Bars) and use it to call the audit unit down
+	AshHeart.SpawnInfo: Craft an Ash Heart Ember at a Demon/Crimson Altar (10 Ash Heart Fragments + 2 Ectoplasm + 5 Hellstone Bars) and use it after Plantera
+	FireplaceGuardian.SpawnInfo: Craft a Fireplace Access Key at a Demon/Crimson Altar (12 Fireplace Fragments + 4 Fireplace Alloy Bars + 6 Solar Fragments). It waits inside the Fireplace
+}
+
+NPCs: {
+	MechanicalCompanion: {
+		DisplayName: Machina
+
+		TownNPCMood: {
+			Content: My data stream is stable.
+			NoHome: I have nowhere to keep this body.
+			FarFromHome: We are too far from the Fireplace.
+			LoveSpace: I like the emptiness - nothing gets misjudged as pollution.
+			DislikeCrowded: It is a little crowded. My sensors are squeezed.
+			HateCrowded: Too loud. My program is close to throwing errors.
+			LikeBiome: The parameters here are agreeable - {BiomeName}.
+			DislikeBiome: "{BiomeName} reminds me of contaminated ground."
+			HateBiome: I hate {BiomeName}. My data corrupts here.
+			LoveNPC: My core frequency steadies around {NPCName}.
+			LikeNPC: "{NPCName} is acceptable."
+			DislikeNPC: "{NPCName} generates too much noise."
+			HateNPC: I hate {NPCName}. Their presence overloads my sensors.
+			LikeNPC_Princess: "{NPCName} is lovely."
+			Princess_LovesNPC: "{NPCName} is lovely."
+		}
+
+		Census.SpawnCondition: Conditions unknown
+	}
+
+	Scavenger.DisplayName: Scavenger
+	ScavengerRepairDrone.DisplayName: Repair Drone
+	Archivist.DisplayName: Archivist
+	AshHeart.DisplayName: Ash Heart
+	AshWisp.DisplayName: Ash Wisp
+	FireplaceGuardian.DisplayName: Fireplace Guardian
+	ScrapCrawler.DisplayName: Scrap Crawler
+	IndexMoth.DisplayName: Index Moth
+	AshStalker.DisplayName: Ash Stalker
+	HearthWarden.DisplayName: Hearth Warden
+}
+
+Items: {
+	SoulFragmentScavenger: {
+		DisplayName: Soul Fragment I
+		Tooltip: A fragment of code pulled from Execution Unit-07. Machina needs this.
+	}
+
+	SoulFragmentSecond: {
+		DisplayName: Soul Fragment II
+		Tooltip: Unidentified. Its owner has not been found yet.
+	}
+
+	SoulFragmentThird: {
+		DisplayName: Soul Fragment III
+		Tooltip: A cinder that still remembers the burn order. Machina wrote that order.
+	}
+
+	SoulFragmentFourth: {
+		DisplayName: Soul Fragment IV
+		Tooltip: The last lock of the reset device. Her true name is inside it.
+	}
+
+	SalvagedSteelWarriorHelm: {
+		DisplayName: Salvaged Steel Warrior Helm
+		Tooltip: ""
+	}
+
+	SalvagedSteelWarriorPlate: {
+		DisplayName: Salvaged Steel Warrior Plate
+		SetBonus: +10% melee damage and +10% melee speed
+		Tooltip: ""
+	}
+
+	SalvagedSteelWarriorGreaves: {
+		DisplayName: Salvaged Steel Warrior Greaves
+		Tooltip: ""
+	}
+
+	SalvagedSteelMageHood: {
+		DisplayName: Salvaged Steel Mage Hood
+		Tooltip: ""
+	}
+
+	SalvagedSteelMageRobe: {
+		DisplayName: Salvaged Steel Mage Robe
+		SetBonus: +10% magic damage and -10% mana cost
+		Tooltip: ""
+	}
+
+	SalvagedSteelMageLeggings: {
+		DisplayName: Salvaged Steel Mage Leggings
+		Tooltip: ""
+	}
+
+	SalvagedSteelRangerVisor: {
+		DisplayName: Salvaged Steel Ranger Visor
+		Tooltip: ""
+	}
+
+	SalvagedSteelRangerVest: {
+		DisplayName: Salvaged Steel Ranger Vest
+		SetBonus: +10% ranged damage and a 20% chance to save ammo
+		Tooltip: ""
+	}
+
+	SalvagedSteelRangerLeggings: {
+		DisplayName: Salvaged Steel Ranger Leggings
+		Tooltip: ""
+	}
+
+	SalvagedSteelSummonerCowl: {
+		DisplayName: Salvaged Steel Summoner Cowl
+		Tooltip: ""
+	}
+
+	SalvagedSteelSummonerTunic: {
+		DisplayName: Salvaged Steel Summoner Tunic
+		SetBonus: +10% summon damage and +1 minion slot
+		Tooltip: ""
+	}
+
+	SalvagedSteelSummonerLeggings: {
+		DisplayName: Salvaged Steel Summoner Leggings
+		Tooltip: ""
+	}
+
+	SalvagedSteelRogueMask: {
+		DisplayName: Salvaged Steel Rogue Mask
+		Tooltip: ""
+	}
+
+	SalvagedSteelRogueVest: {
+		DisplayName: Salvaged Steel Rogue Vest
+		SetBonus: +10% throwing damage and +10% movement speed
+		Tooltip: ""
+	}
+
+	SalvagedSteelRogueLeggings: {
+		DisplayName: Salvaged Steel Rogue Leggings
+		Tooltip: ""
+	}
+
+	SalvagedSteelChunk: {
+		DisplayName: Salvaged Steel Chunk
+		Tooltip:
+			'''
+			A high-strength alloy fragment torn off the Scavenger
+			Must be smelted into Salvaged Steel
+			'''
+	}
+
+	SalvagedSteelBar: {
+		DisplayName: Salvaged Steel
+		Tooltip:
+			'''
+			Old-world military grade alloy
+			Used to forge Salvaged Steel armor
+			'''
+	}
+
+	ScavengerFragment: {
+		DisplayName: Scavenger Fragment
+		Tooltip:
+			'''
+			The core wreckage of Execution Unit-07
+			A section of its code was deliberately removed
+			'''
+	}
+
+	ScavengerSignalSensor: {
+		DisplayName: Scavenger Signal Sensor
+		Tooltip:
+			'''
+			Broadcasts a forged execution order across the wasteland, luring the Scavenger to you
+			Crafted at an Anvil from 5 Salvaged Steel
+			Not consumed, but only one Scavenger may exist at a time
+			'''
+	}
+
+	CompanionCore: {
+		DisplayName: Companion Core
+		Tooltip:
+			'''
+			The machine core you carried across time
+			Use it on the body at the elven ruin to awaken Machina
+			'''
+	}
+
+	ArchivistFragment: {
+		DisplayName: Archivist Fragment
+		Tooltip:
+			'''
+			A resonance shard left behind by the Archivist
+			The audit unit the Watchman Project sent to reclaim its own memories
+			'''
+	}
+
+	ArchivistEcho: {
+		DisplayName: Archivist Echo
+		Tooltip:
+			'''
+			Plays back a forged fragment of the old logs
+			Crafted at a Demon/Crimson Altar from 8 Archivist Fragments + 5 Bones + 3 Meteorite Bars
+			Not consumed, but only one Archivist may audit at a time
+			'''
+	}
+
+	AshHeartEmber: {
+		DisplayName: Ash Heart Ember
+		Tooltip:
+			'''
+			Breathe on an ember that has smouldered since the old war
+			Crafted at a Demon/Crimson Altar from 10 Ash Heart Fragments + 2 Ectoplasm + 5 Hellstone Bars
+			Not consumed, but only one Ash Heart may burn at a time
+			'''
+	}
+
+	FireplaceKey: {
+		DisplayName: Fireplace Access Key
+		Tooltip:
+			'''
+			Returns the last line of defence its own recognition code
+			Crafted at a Demon/Crimson Altar from 12 Fireplace Fragments + 4 Fireplace Alloy Bars + 6 Solar Fragments
+			Not consumed, but only one Guardian may wake at a time
+			'''
+	}
+
+	AshHeartFragment: {
+		DisplayName: Ash Heart Fragment
+		Tooltip:
+			'''
+			A self-sustaining ember torn from the Ash Heart
+			Smelt it with Adamantite Forge heat to make Ash Heart Alloy
+			'''
+	}
+
+	AshHeartAlloyBar: {
+		DisplayName: Ash Heart Alloy Bar
+		Tooltip:
+			'''
+			Ash Heart fragment fused into old-world alloy
+			Smelted at an Adamantite Forge
+			'''
+	}
+
+	FireplaceFragment: {
+		DisplayName: Fireplace Fragment
+		Tooltip:
+			'''
+			A shard of the Fireplace's last defensive line
+			Smelt it with Adamantite Forge heat to make Fireplace Alloy
+			'''
+	}
+
+	FireplaceAlloyBar: {
+		DisplayName: Fireplace Alloy Bar
+		Tooltip:
+			'''
+			Cold white alloy that once clad the Fireplace Guardian
+			Smelted at an Adamantite Forge
+			'''
+	}
+
+	ScavengerWarriorWeapon: {
+		DisplayName: Scavenger Scrap Cleaver
+		Tooltip:
+			'''
+			Salvaged from the Scavenger's wreck - crude, but it works.
+			Swing it to cut down everything inside the arc
+			Crafted at an Anvil
+			'''
+	}
+
+	ScavengerMageWeapon: {
+		DisplayName: Scavenger Spark Rod
+		Tooltip:
+			'''
+			Salvaged from the Scavenger's wreck - crude, but it works.
+			Consumes mana
+			Crafted at an Anvil
+			'''
+	}
+
+	ScavengerRangerWeapon: {
+		DisplayName: Scavenger Scrap Pistol
+		Tooltip:
+			'''
+			Salvaged from the Scavenger's wreck - crude, but it works.
+			Consumes bullets
+			Crafted at an Anvil
+			'''
+	}
+
+	ScavengerSummonerWeapon: {
+		DisplayName: Scavenger Drone Beacon
+		Tooltip:
+			'''
+			Salvaged from the Scavenger's wreck - crude, but it works.
+			Summons a minion
+			Crafted at an Anvil
+			'''
+	}
+
+	ScavengerRogueWeapon: {
+		DisplayName: Scavenger Scrap Knife
+		Tooltip:
+			'''
+			Salvaged from the Scavenger's wreck - crude, but it works.
+			Throwable - stacks up to 999
+			Crafted at an Anvil
+			'''
+	}
+
+	ScavengerWarriorWeaponEX: {
+		DisplayName: Scavenger Scrap Cleaver MK-II
+		Tooltip:
+			'''
+			Salvaged from the Scavenger's wreck - crude, but it works.
+			Swing it to cut down everything inside the arc
+			'''
+	}
+
+	ScavengerMageWeaponEX: {
+		DisplayName: Scavenger Spark Rod MK-II
+		Tooltip:
+			'''
+			Salvaged from the Scavenger's wreck - crude, but it works.
+			Consumes mana
+			'''
+	}
+
+	ScavengerRangerWeaponEX: {
+		DisplayName: Scavenger Scrap Pistol MK-II
+		Tooltip:
+			'''
+			Salvaged from the Scavenger's wreck - crude, but it works.
+			Consumes bullets
+			'''
+	}
+
+	ScavengerSummonerWeaponEX: {
+		DisplayName: Scavenger Drone Beacon MK-II
+		Tooltip:
+			'''
+			Salvaged from the Scavenger's wreck - crude, but it works.
+			Summons a minion
+			'''
+	}
+
+	ScavengerRogueWeaponEX: {
+		DisplayName: Scavenger Scrap Knife MK-II
+		Tooltip:
+			'''
+			Salvaged from the Scavenger's wreck - crude, but it works.
+			Throwable - stacks up to 999
+			'''
+	}
+
+	ArchivistWarriorWeapon: {
+		DisplayName: Archivist Boneblade
+		Tooltip:
+			'''
+			Archived bone and cold blue light - the Watchman's audit log made manifest.
+			Swing it to cut down everything inside the arc
+			Crafted at an Anvil
+			'''
+	}
+
+	ArchivistMageWeapon: {
+		DisplayName: Archivist Index Tome
+		Tooltip:
+			'''
+			Archived bone and cold blue light - the Watchman's audit log made manifest.
+			Consumes mana
+			Crafted at an Anvil
+			'''
+	}
+
+	ArchivistRangerWeapon: {
+		DisplayName: Archivist Bone Scattergun
+		Tooltip:
+			'''
+			Archived bone and cold blue light - the Watchman's audit log made manifest.
+			Consumes bullets
+			Crafted at an Anvil
+			'''
+	}
+
+	ArchivistSummonerWeapon: {
+		DisplayName: Archivist Familiar Staff
+		Tooltip:
+			'''
+			Archived bone and cold blue light - the Watchman's audit log made manifest.
+			Summons a minion
+			Crafted at an Anvil
+			'''
+	}
+
+	ArchivistRogueWeapon: {
+		DisplayName: Archivist Bone Boomerang
+		Tooltip:
+			'''
+			Archived bone and cold blue light - the Watchman's audit log made manifest.
+			Throwable - stacks up to 999
+			Crafted at an Anvil
+			'''
+	}
+
+	ArchivistWarriorWeaponEX: {
+		DisplayName: Archivist Boneblade MK-II
+		Tooltip:
+			'''
+			Archived bone and cold blue light - the Watchman's audit log made manifest.
+			Swing it to cut down everything inside the arc
+			'''
+	}
+
+	ArchivistMageWeaponEX: {
+		DisplayName: Archivist Index Tome MK-II
+		Tooltip:
+			'''
+			Archived bone and cold blue light - the Watchman's audit log made manifest.
+			Consumes mana
+			'''
+	}
+
+	ArchivistRangerWeaponEX: {
+		DisplayName: Archivist Bone Scattergun MK-II
+		Tooltip:
+			'''
+			Archived bone and cold blue light - the Watchman's audit log made manifest.
+			Consumes bullets
+			'''
+	}
+
+	ArchivistSummonerWeaponEX: {
+		DisplayName: Archivist Familiar Staff MK-II
+		Tooltip:
+			'''
+			Archived bone and cold blue light - the Watchman's audit log made manifest.
+			Summons a minion
+			'''
+	}
+
+	ArchivistRogueWeaponEX: {
+		DisplayName: Archivist Bone Boomerang MK-II
+		Tooltip:
+			'''
+			Archived bone and cold blue light - the Watchman's audit log made manifest.
+			Throwable - stacks up to 999
+			'''
+	}
+
+	AshHeartWarriorWeapon: {
+		DisplayName: Ash Heart Greatblade
+		Tooltip:
+			'''
+			Forged from the Ash Heart's ember - it still smoulders.
+			Swing it to cut down everything inside the arc
+			Crafted at an Mythril Anvil
+			'''
+	}
+
+	AshHeartMageWeapon: {
+		DisplayName: Ash Heart Core Staff
+		Tooltip:
+			'''
+			Forged from the Ash Heart's ember - it still smoulders.
+			Consumes mana
+			Crafted at an Mythril Anvil
+			'''
+	}
+
+	AshHeartRangerWeapon: {
+		DisplayName: Ash Heart Ember Rifle
+		Tooltip:
+			'''
+			Forged from the Ash Heart's ember - it still smoulders.
+			Consumes bullets
+			Crafted at an Mythril Anvil
+			'''
+	}
+
+	AshHeartSummonerWeapon: {
+		DisplayName: Ash Heart Cinder Staff
+		Tooltip:
+			'''
+			Forged from the Ash Heart's ember - it still smoulders.
+			Summons a minion
+			Crafted at an Mythril Anvil
+			'''
+	}
+
+	AshHeartRogueWeapon: {
+		DisplayName: Ash Heart Shard
+		Tooltip:
+			'''
+			Forged from the Ash Heart's ember - it still smoulders.
+			Throwable - stacks up to 999
+			Crafted at an Mythril Anvil
+			'''
+	}
+
+	AshHeartWarriorWeaponEx: {
+		DisplayName: Ash Heart Greatblade MK-II
+		Tooltip:
+			'''
+			Forged from the Ash Heart's ember - it still smoulders.
+			Swing it to cut down everything inside the arc
+			'''
+	}
+
+	AshHeartMageWeaponEx: {
+		DisplayName: Ash Heart Core Staff MK-II
+		Tooltip:
+			'''
+			Forged from the Ash Heart's ember - it still smoulders.
+			Consumes mana
+			'''
+	}
+
+	AshHeartRangerWeaponEx: {
+		DisplayName: Ash Heart Ember Rifle MK-II
+		Tooltip:
+			'''
+			Forged from the Ash Heart's ember - it still smoulders.
+			Consumes bullets
+			'''
+	}
+
+	AshHeartSummonerWeaponEx: {
+		DisplayName: Ash Heart Cinder Staff MK-II
+		Tooltip:
+			'''
+			Forged from the Ash Heart's ember - it still smoulders.
+			Summons a minion
+			'''
+	}
+
+	AshHeartRogueWeaponEx: {
+		DisplayName: Ash Heart Shard MK-II
+		Tooltip:
+			'''
+			Forged from the Ash Heart's ember - it still smoulders.
+			Throwable - stacks up to 999
+			'''
+	}
+
+	FireplaceWarriorWeapon: {
+		DisplayName: Fireplace Guardian Greatblade
+		Tooltip:
+			'''
+			Fireplace-grade alloy. The last line of the old world's defence.
+			Swing it to cut down everything inside the arc
+			Crafted at an Mythril Anvil
+			'''
+	}
+
+	FireplaceMageWeapon: {
+		DisplayName: Fireplace Guardian Scepter
+		Tooltip:
+			'''
+			Fireplace-grade alloy. The last line of the old world's defence.
+			Consumes mana
+			Crafted at an Mythril Anvil
+			'''
+	}
+
+	FireplaceRangerWeapon: {
+		DisplayName: Fireplace Guardian Rifle
+		Tooltip:
+			'''
+			Fireplace-grade alloy. The last line of the old world's defence.
+			Consumes bullets
+			Crafted at an Mythril Anvil
+			'''
+	}
+
+	FireplaceSummonerWeapon: {
+		DisplayName: Fireplace Guardian Beacon
+		Tooltip:
+			'''
+			Fireplace-grade alloy. The last line of the old world's defence.
+			Summons a minion
+			Crafted at an Mythril Anvil
+			'''
+	}
+
+	FireplaceRogueWeapon: {
+		DisplayName: Fireplace Guardian Glaive
+		Tooltip:
+			'''
+			Fireplace-grade alloy. The last line of the old world's defence.
+			Throwable - stacks up to 999
+			Crafted at an Mythril Anvil
+			'''
+	}
+
+	FireplaceWarriorWeaponEx: {
+		DisplayName: Fireplace Guardian Greatblade MK-II
+		Tooltip:
+			'''
+			Fireplace-grade alloy. The last line of the old world's defence.
+			Swing it to cut down everything inside the arc
+			'''
+	}
+
+	FireplaceMageWeaponEx: {
+		DisplayName: Fireplace Guardian Scepter MK-II
+		Tooltip:
+			'''
+			Fireplace-grade alloy. The last line of the old world's defence.
+			Consumes mana
+			'''
+	}
+
+	FireplaceRangerWeaponEx: {
+		DisplayName: Fireplace Guardian Rifle MK-II
+		Tooltip:
+			'''
+			Fireplace-grade alloy. The last line of the old world's defence.
+			Consumes bullets
+			'''
+	}
+
+	FireplaceSummonerWeaponEx: {
+		DisplayName: Fireplace Guardian Beacon MK-II
+		Tooltip:
+			'''
+			Fireplace-grade alloy. The last line of the old world's defence.
+			Summons a minion
+			'''
+	}
+
+	FireplaceRogueWeaponEx: {
+		DisplayName: Fireplace Guardian Glaive MK-II
+		Tooltip:
+			'''
+			Fireplace-grade alloy. The last line of the old world's defence.
+			Throwable - stacks up to 999
+			'''
+	}
+
+	ArchivistBag: {
+		DisplayName: Archivist Bag
+		Tooltip: ""
+	}
+
+	AshHeartBag: {
+		DisplayName: Ash Heart Bag
+		Tooltip: ""
+	}
+
+	FireplaceBag: {
+		DisplayName: Fireplace Bag
+		Tooltip: ""
+	}
+
+	ScavengerBag: {
+		DisplayName: Scavenger Bag
+		Tooltip: ""
+	}
+
+	Chip.DisplayName: Chip
+	Chip.Tooltip: A stamped wafer pulled out of wasteland machines. Machina will trade for these.
+	DawnSeal.DisplayName: Dawn Seal
+	DawnSeal.Tooltip: She agreed to carry the reset. This world still ends. The next one will remember her.
+	UnburnedName.DisplayName: Unburned Name
+	UnburnedName.Tooltip: She refused to be the weapon again. The body keeps the name it was given.
+
+	ScavengerWarriorCharm.DisplayName: Scavenger Warrior Charm
+	ScavengerWarriorCharm.Tooltip: Melee damage and swing speed, salvaged from a purge unit.
+	ScavengerMageCharm.DisplayName: Scavenger Mage Charm
+	ScavengerMageCharm.Tooltip: A little more mana, and spells cost less to cast.
+	ScavengerRangerCharm.DisplayName: Scavenger Ranger Charm
+	ScavengerRangerCharm.Tooltip: Ranged damage, and a chance to keep the round.
+	ScavengerSummonerCharm.DisplayName: Scavenger Summoner Charm
+	ScavengerSummonerCharm.Tooltip: One extra minion slot, bolted on.
+	ScavengerRogueCharm.DisplayName: Scavenger Rogue Charm
+	ScavengerRogueCharm.Tooltip: Thrown damage and lighter steps.
+
+	ArchivistWarriorCharm.DisplayName: Archivist Warrior Charm
+	ArchivistWarriorCharm.Tooltip: Melee damage and critical chance, indexed.
+	ArchivistMageCharm.DisplayName: Archivist Mage Charm
+	ArchivistMageCharm.Tooltip: Magic damage, and spells burn less mana.
+	ArchivistRangerCharm.DisplayName: Archivist Ranger Charm
+	ArchivistRangerCharm.Tooltip: Ranged damage and a sharper eye.
+	ArchivistSummonerCharm.DisplayName: Archivist Summoner Charm
+	ArchivistSummonerCharm.Tooltip: Summon damage, filed and returned.
+	ArchivistRogueCharm.DisplayName: Archivist Rogue Charm
+	ArchivistRogueCharm.Tooltip: Thrown damage and critical chance.
+
+	AshHeartWarriorCharm.DisplayName: Ash Heart Warrior Charm
+	AshHeartWarriorCharm.Tooltip: Melee damage, and the body knits a little while it burns.
+	AshHeartMageCharm.DisplayName: Ash Heart Mage Charm
+	AshHeartMageCharm.Tooltip: Magic damage and faster mana recovery.
+	AshHeartRangerCharm.DisplayName: Ash Heart Ranger Charm
+	AshHeartRangerCharm.Tooltip: Ranged damage, and rounds that sometimes stay in the gun.
+	AshHeartSummonerCharm.DisplayName: Ash Heart Summoner Charm
+	AshHeartSummonerCharm.Tooltip: Summon damage and one more minion.
+	AshHeartRogueCharm.DisplayName: Ash Heart Rogue Charm
+	AshHeartRogueCharm.Tooltip: Thrown damage. Hits sometimes set the target alight.
+
+	FireplaceWarriorCharm.DisplayName: Fireplace Warrior Charm
+	FireplaceWarriorCharm.Tooltip: Melee damage and swing speed from the last lock.
+	FireplaceMageCharm.DisplayName: Fireplace Mage Charm
+	FireplaceMageCharm.Tooltip: Magic damage, and spells cost noticeably less.
+	FireplaceRangerCharm.DisplayName: Fireplace Ranger Charm
+	FireplaceRangerCharm.Tooltip: Ranged damage and critical chance.
+	FireplaceSummonerCharm.DisplayName: Fireplace Summoner Charm
+	FireplaceSummonerCharm.Tooltip: Summon damage and one more minion.
+	FireplaceRogueCharm.DisplayName: Fireplace Rogue Charm
+	FireplaceRogueCharm.Tooltip: Thrown damage and a quicker stride.
+
+	ScavengerCWarrior.DisplayName: Scrap Cleaver
+	ScavengerCWarrior.Tooltip: A crawler was still holding this. It throws a shard of scrap.
+	ScavengerCMage.DisplayName: Scrap Spark
+	ScavengerCMage.Tooltip: A cracked coil that still throws charged scrap.
+	ScavengerCRanger.DisplayName: Scrap Pistol
+	ScavengerCRanger.Tooltip: Ugly, loud, and surprisingly straight.
+	ScavengerCSummoner.DisplayName: Scrap Drone Staff
+	ScavengerCSummoner.Tooltip: Calls a small salvage drone. It is not the repair kind.
+	ScavengerCRogue.DisplayName: Scrap Caltrop
+	ScavengerCRogue.Tooltip: A spinning scrap of metal that does not ask to be picked back up.
+
+	ArchivistCWarrior.DisplayName: Index Blade
+	ArchivistCWarrior.Tooltip: A short bone-white arc, torn out of a moth's wings.
+	ArchivistCMage.DisplayName: Loose Index
+	ArchivistCMage.Tooltip: Pages that bounce and confuse whatever they hit.
+	ArchivistCRanger.DisplayName: Bone Sliver Gun
+	ArchivistCRanger.Tooltip: Fires thin archive slivers.
+	ArchivistCSummoner.DisplayName: Familiar Splinter
+	ArchivistCSummoner.Tooltip: A cracked staff that still remembers one familiar.
+	ArchivistCRogue.DisplayName: Returning Bone
+	ArchivistCRogue.Tooltip: It goes out, then it comes back.
+
+	AshHeartCWarrior.DisplayName: Cinder Edge
+	AshHeartCWarrior.Tooltip: A stalker's rib, still hot, swung as a sword.
+	AshHeartCMage.DisplayName: Heart Coal
+	AshHeartCMage.Tooltip: Throws a falling coal that burns on impact.
+	AshHeartCRanger.DisplayName: Ash Shot
+	AshHeartCRanger.Tooltip: Fast cinders instead of bullets' manners.
+	AshHeartCSummoner.DisplayName: Ember Husk Staff
+	AshHeartCSummoner.Tooltip: Calls a cinder that used to be part of the Heart.
+	AshHeartCRogue.DisplayName: Ash Splinter
+	AshHeartCRogue.Tooltip: A thrown splinter that keeps burning after it leaves the hand.
+
+	FireplaceCWarrior.DisplayName: Hearth Blade
+	FireplaceCWarrior.Tooltip: Cold metal with a furnace edge. A warden dropped it.
+	FireplaceCMage.DisplayName: Cold Lamp
+	FireplaceCMage.Tooltip: A slow, bright bolt from the Fireplace's spare parts.
+	FireplaceCRanger.DisplayName: Nail Thrower
+	FireplaceCRanger.Tooltip: Fires the nails the Guardian used to hold the reset shut.
+	FireplaceCSummoner.DisplayName: Sentry Wick
+	FireplaceCSummoner.Tooltip: Calls a floating sentry that still knows the hearth.
+	FireplaceCRogue.DisplayName: Returning Razor
+	FireplaceCRogue.Tooltip: A cold razor that flies out and comes home.
+}
+
+Projectiles: {
+	PollutionZone.DisplayName: Pollution
+	PollutionHoming.DisplayName: Pollution Blob
+	ScavengerBullet.DisplayName: Scavenger Shot
+	ScavengerArmSweep.DisplayName: Servo Arm
+	ArchivistBoneArc.DisplayName: Archivist Bone Arc
+	ArchivistBoneArcEX.DisplayName: Archivist Bone Arc E X
+	ArchivistBoneBoomerang.DisplayName: Archivist Bone Boomerang
+	ArchivistBoneBoomerangEX.DisplayName: Archivist Bone Boomerang E X
+	ArchivistBoneShard.DisplayName: Archivist Bone Shard
+	ArchivistBoneShardEX.DisplayName: Archivist Bone Shard E X
+	ArchivistIndexPage.DisplayName: Archivist Index Page
+	ArchivistIndexPageEX.DisplayName: Archivist Index Page E X
+	ArchivistIndexBeam.DisplayName: Archivist Index Beam
+	ArchivistArchivePage.DisplayName: Archivist Archive Page
+	ArchivistBarrageSheet.DisplayName: Archivist Barrage Sheet
+	ArchivistSeal.DisplayName: Archivist Seal
+	ScavengerCaltrop.DisplayName: Scavenger Caltrop
+	ScavengerCaltropEX.DisplayName: Scavenger Caltrop E X
+	ScavengerPistolRound.DisplayName: Scavenger Pistol Round
+	ScavengerRifleRoundEX.DisplayName: Scavenger Rifle Round E X
+	ScavengerScrapShard.DisplayName: Scavenger Scrap Shard
+	ScavengerScrapShardEX.DisplayName: Scavenger Scrap Shard E X
+	ScavengerSpark.DisplayName: Scavenger Spark
+	ScavengerSparkEX.DisplayName: Scavenger Spark E X
+	ArchivistFamiliarMinion.DisplayName: Archivist Familiar Minion
+	ArchivistFamiliarMinionEX.DisplayName: Archivist Familiar Minion E X
+	ScavengerDroneMinion.DisplayName: Scavenger Drone Minion
+	ScavengerDroneMinionEX.DisplayName: Scavenger Drone Minion E X
+	AshHeartMageProjectile.DisplayName: Ash Heart Mage Projectile
+	AshHeartMageProjectileEX.DisplayName: Ash Heart Mage Projectile E X
+	AshHeartRangerProjectile.DisplayName: Ash Heart Ranger Projectile
+	AshHeartRangerProjectileEX.DisplayName: Ash Heart Ranger Projectile E X
+	AshHeartRogueProjectile.DisplayName: Ash Heart Rogue Projectile
+	AshHeartRogueProjectileEX.DisplayName: Ash Heart Rogue Projectile E X
+	AshHeartWarriorProjectile.DisplayName: Ash Heart Warrior Projectile
+	AshHeartWarriorProjectileEX.DisplayName: Ash Heart Warrior Projectile E X
+	FireplaceMageProjectile.DisplayName: Fireplace Mage Projectile
+	FireplaceMageProjectileEX.DisplayName: Fireplace Mage Projectile E X
+	FireplaceRangerProjectile.DisplayName: Fireplace Ranger Projectile
+	FireplaceRangerProjectileEX.DisplayName: Fireplace Ranger Projectile E X
+	FireplaceRogueProjectile.DisplayName: Fireplace Rogue Projectile
+	FireplaceRogueProjectileEX.DisplayName: Fireplace Rogue Projectile E X
+	FireplaceWarriorProjectile.DisplayName: Fireplace Warrior Projectile
+	FireplaceWarriorProjectileEX.DisplayName: Fireplace Warrior Projectile E X
+	AshHeartEmberMinion.DisplayName: Ash Heart Ember Minion
+	AshHeartEmberMinionEX.DisplayName: Ash Heart Ember Minion E X
+	FireplaceSentryMinion.DisplayName: Fireplace Sentry Minion
+	FireplaceSentryMinionEX.DisplayName: Fireplace Sentry Minion E X
+	AshEmberOrb.DisplayName: Ember Orb
+	AshPool.DisplayName: Ash Pool
+	AshCinder.DisplayName: Falling Cinder
+	AshPulse.DisplayName: Collapse Pulse
+	HearthBolt.DisplayName: Hearth Bolt
+	HearthRingShard.DisplayName: Cold Ring
+	HearthWall.DisplayName: Hearth Wall
+	WastelandSpark.DisplayName: Spark
+	CompanionSpark.DisplayName: Core Spark
+}
+
+Tiles.ElvenFrame.MapEntry: Elven Body
+Tiles.FireplaceGate.MapEntry: Fireplace Door
+Tiles.FireplaceTerminal.MapEntry: Data Terminal
+Tiles.FireplaceExit.MapEntry: Way Out
+Conditions.AfterScavenger: After the Scavenger falls
+Conditions.AfterArchivist: After the Archivist falls
+Conditions.AfterAshHeart: After the Ash Heart falls
+
+Buffs: {
+	Pollution: {
+		DisplayName: Pollution
+		Description: The polluted air is corroding your body
+	}
+
+	ArchivistFamiliarBuff: {
+		DisplayName: Archivist Familiar Buff
+		Description: Mods.WastelandSoul.Buffs.ArchivistFamiliarBuff.Description
+	}
+
+	ArchivistFamiliarBuffEX: {
+		DisplayName: Archivist Familiar Buff E X
+		Description: Mods.WastelandSoul.Buffs.ArchivistFamiliarBuffEX.Description
+	}
+
+	ScavengerDroneBuff: {
+		DisplayName: Scavenger Drone Buff
+		Description: Mods.WastelandSoul.Buffs.ScavengerDroneBuff.Description
+	}
+
+	ScavengerDroneBuffEX: {
+		DisplayName: Scavenger Drone Buff E X
+		Description: Mods.WastelandSoul.Buffs.ScavengerDroneBuffEX.Description
+	}
+
+	AshHeartEmberBuff: {
+		DisplayName: Ash Heart Ember Buff
+		Description: Mods.WastelandSoul.Buffs.AshHeartEmberBuff.Description
+	}
+
+	AshHeartEmberBuffEX: {
+		DisplayName: Ash Heart Ember Buff E X
+		Description: Mods.WastelandSoul.Buffs.AshHeartEmberBuffEX.Description
+	}
+
+	FireplaceSentryBuff: {
+		DisplayName: Fireplace Sentry Buff
+		Description: Mods.WastelandSoul.Buffs.FireplaceSentryBuff.Description
+	}
+
+	FireplaceSentryBuffEX: {
+		DisplayName: Fireplace Sentry Buff E X
+		Description: Mods.WastelandSoul.Buffs.FireplaceSentryBuffEX.Description
+	}
+}
+
+Messages: {
+	BossNotImplemented: Whatever this would call has not been written yet - nothing answers.
+	BossAlreadyActive: It is already here.
+	BossSummoned: Signal sent. It is on its way.
+	FireplaceOpened: The Fireplace's lockdown protocol has been lifted - the entrance is open.
+	TerminalRead: The old-world data terminal still hums... fragmented records are read out.
+	FirstMemoryRestored: Machina recovered her first memory - the Watchman Project shares its origin with the Scavenger.
+	ScavengerPhaseTwo: Scavenger - Overload Repair protocol engaged - summoning repair drones.
+	ScavengerPhaseThree: Scavenger - sensor array shattered. Indiscriminate purge in progress.
+	ScavengerOverload: Scavenger - core overload - self-destructive charge imminent!
+	ScavengerSelfDestruct: Scavenger - chassis disintegrating.
+	ScavengerWarning: A piercing screech seems to ring at the edge of hearing, and the air reeks of blood...
+	ScavengerArrived: The Scavenger has arrived - it has judged everything here as pollution.
+	ScavengerSummoned: Signal sent. The Scavenger has locked onto your position.
+	ScavengerAlreadyActive: A Scavenger is already carrying out its purge protocol.
+	ScavengerWrecked: The Scavenger tore itself apart in overload - nothing usable remains.
+	CoreReceived: You wake with a cold core in your palm - it is still beating.
+	FrameNeedsCore: This body is hollow. Perhaps a core could fill it.
+	CompanionAwakened: The core settles into the body - she opens her eyes.
+	CompanionArrived: Machina {0} has arrived.
+	CompanionAlreadyHere: She is already awake.
+	ArchivistPhaseTwo: Archivist - reindexing complete. Filing protocol engaged.
+	ArchivistPhaseThree: Archivist - overwrite authorised. Your path has been archived.
+	ArchivistSuppression: Archivist - terminal lockdown. Nothing leaves the archive.
+	ArchivistDefeated: The audit unit comes apart into loose pages - one archived log is left behind.
+	SecondMemoryRestored: Machina recovered her second memory - the mass-produced units were blanked on purpose.
+	ArchivistSealed: An archiving seal has been placed - you are pinned in place.
+	AshHeartPhaseTwo: Ash Heart - the burn sustains itself. Wisps are feeding the core.
+	AshHeartPhaseThree: Ash Heart - collapse. The pulse is pulling inward.
+	AshHeartDefeated: The Heart breaks open. The war order is still warm.
+	ThirdMemoryRestored: Machina recovered her third memory - she wrote the burn, and she carried it out.
+	FireplaceGuardianPhaseTwo: Fireplace Guardian - cold ignition. The ring is closing.
+	FireplaceGuardianPhaseThree: Fireplace Guardian - reset protocol. The walls are coming in.
+	FireplaceGuardianDefeated: The last lock opens. The reset device is waiting for a carrier.
+	FourthMemoryRestored: Machina recovered her fourth memory. The Fireplace was never a shelter.
+	TrueName: She remembers the name this body had. Elvi.
+	EndingVessel: She will carry the reset. This world still walks to its end. The next dawn will know her.
+	EndingRefuse: She will not be the weapon again. The world still ends, but not by her hand.
+	CodaVessel: The Moon Lord falls. The reset she carries kindles. Somewhere else, a first morning starts.
+	CodaRefuse: The Moon Lord falls. The stars go out on schedule. Her name does not.
+	EnteredFireplace: The air changes. You are inside the Fireplace.
+	TerminalTalkToHer: The terminal has read you a broken log. Bring it back to her.
+	GatePlaced: A warm door has opened near where you woke. The Fireplace is listening.
+	FireplaceEnterFailed: The door is here, but the way through did not open. Subworld Library has to be enabled.
+}
+
+Dialogue: {
+	MechanicalCompanion: {
+		ButtonStory: Story
+		ButtonMemory: Memory Fragments
+		Intro1: ...You came back. Though I can't remember how long I waited.
+		Intro2: My memory starts inside a field of static. Only one thing is clear - I had to find you before the Fireplace goes out.
+		Intro3: This body was salvaged from an elven ruin. The old world built it beautifully, then never told it how to live.
+		Intro4: Those moving things outside are all labeled "pollution" in my program. Don't ask me why - that one line is all my log has left.
+		AfterScavenger1: Execution Unit-07 has stopped functioning. Strange. I should be glad, yet my data is shaking.
+		AfterScavenger2: It came from the same blueprint as you and me - only its thinking module was deleted. Who deleted it?
+		AfterScavenger3: The Fireplace entrance is open. The old terminal is still running inside. Perhaps it can tell me what I am.
+		Memory4: Fourth memory: the fireplace was never a shelter. It is a reset device. The old world never intended to survive; it only intended to begin again.
+		Memory2: Second memory: the mass-produced units were not built broken - they were left blank on purpose. And the code in that log, the part signed Archived... carries my own serial number.
+		Memory3: Third memory: I recognise every pulse of the Ash Heart. I wrote that war program. The one who carried it out was not it - it was me.
+		AfterMemory1: The first memory is back. I am the prototype of the Watchman Project - the Scavenger is my mass-produced model.
+		AfterMemory2: The mass-produced units had their capacity for thought deliberately cut away, leaving only the kill order. So... is the one who wrote that order a murderer?
+		AfterMemory3: There is a section of code in my log marked "Archived". I cannot open it, but I can feel it watching me.
+		StoryHunt: Go find the execution unit still sweeping. It wanders outside the Fireplace, judging everything alive as pollution. Its code reads - weakened = heavily polluted. So it will lunge at whoever is hurt the worst.
+		StoryFireplace: The Fireplace door is open. It was the old world's last shelter, and the only target written into my protection list. Go look at the data terminal inside.
+		StoryTerminalRead: I have already read the terminal's fragmented data. I can try to piece it back into my memory - but be sure you truly want the answer.
+		StoryAfterMemory: The next memory needs a stronger vessel to hold it. Keep growing stronger - three more "Archives" are waiting out there.
+		MemoryBlank: Memory fragments - none. My storage holds nothing but static, and one instruction repeating - protect the Fireplace.
+		MemoryFirst: ...Read successful. "Watchman Project" - mass-produce execution units from the prototype's template to purge everything outside the Fireplace. I am that prototype. The Scavenger is my mass-produced model - its thinking module was deliberately deleted, so it cannot even ask "why".
+		MemoryUnstable: The data is becoming unstable. Some fragments are not mine, yet they are taking root in my storage.
+		MemoryRecovered: Memory fragments - 1 / 4 recovered. The rest are still "Archived". Don't rush - I am not sure I want to know all of it.
+		AfterArchivist1: Something found me. It was not hunting the body - it was hunting my logs. It called itself an audit unit.
+		AfterArchivist2: It sealed one section back up before it died. My serial number is written on that seal. Why would an auditor be sent after me?
+		MemorySecondNeedFragment: You brought something back from it, didn't you. Give it to me - I will read it. I have to know what it filed about me.
+		MemorySecond: ...Read successful. The mass-produced units were not built broken. Their capacity to think was cut away on purpose - and the code that signed off on the cut, the section marked "Archived"... carries my own serial number.
+		MemoryRecovered2: Memory fragments - 2 / 4 recovered. The next one is buried deeper. I am starting to think I was not a witness. I was a participant.
+		StoryAwaitSecond: The audit unit is still out there. Find out what it filed about me - and bring it back. Then I can read the second memory.
+		StoryAfterSecondMemory: Two memories left, and both are sealed behind things that were built to guard them. Keep growing stronger. The next archive does not audit - it burns.
+		AfterSecondMemory1: I wrote a line of code once, long ago. I cannot see what it did, but my storage flinches whenever I reach for it.
+		AfterSecondMemory2: The audit unit is gone, but the section it resealed is still there, quietly pulling the rest of my logs out of order.
+		AfterSecondMemory3: If I was the one who signed that order... then asking "who deleted their thinking module" was the wrong question all along.
+		AfterAsh1: I can feel it from here. Something underground is still burning, and it knows my serial number.
+		AfterAsh2: Don't stand in the ash. It is not leftover. It is still following an order.
+		AfterThird1: I wrote the burn. Saying it out loud does not make it smaller.
+		AfterThird2: The next lock is not outside. It is sitting in the Fireplace, waiting for someone to finish me.
+		AfterFourth1: Elvi. That was the name of the body, before the core. I think I want to keep it.
+		AfterFourth2: The reset needs a carrier. If I step in, this world still ends - but the next one starts with a person instead of a protocol.
+		EndingVessel1: I am holding the dawn shut until this world is finished. Stay with me until then.
+		EndingVessel2: Don't thank me. I am not saving this place. I am making sure the next one is not born empty.
+		EndingRefuse1: I will watch it end. I will not be the hand that ends it.
+		EndingRefuse2: Zero was a serial number. Elvi can just be a person who stayed.
+		ButtonTrade: Trade
+		ButtonVessel: Carry the reset
+		ButtonRefuse: Refuse
+		StoryHuntAsh: The next archive burns. It is a heart that never went out, somewhere the world is already rotten. Bring me what is left of it.
+		StoryBringThird: You broke the Heart. If you found the cinder that still has my handwriting, give it to me.
+		StoryHuntGuardian: The last lock is inside the Fireplace. It is not a monster. It is the door, refusing to open until someone is willing to be the key.
+		StoryBringFourth: The Guardian is down. The last fragment has my name in it. I need to read it myself.
+		StoryChoice: Two ways through. I become the carrier of the reset, or I stay Elvi and let the world end without using me again. Both of them still end this place.
+		StoryEndingVessel: I chose the dawn. When the last lord of this moon falls, the reset I am holding will kindle somewhere else.
+		StoryEndingRefuse: I chose the name. When the sky finally goes dark, it will not be because I signed another order.
+		MemoryThirdNeedFragment: The Heart broke, but I cannot read a fire from memory alone. Bring me the fragment.
+		MemoryThird: ...Read successful. Watchman burn protocol, signed by the prototype. The mass-produced units killed what I marked. The Ash Heart is the mark I left, and I was the one who carried the order out.
+		MemoryFourthNeedFragment: The lock is open. The fragment is the only copy of my name. Give it here.
+		MemoryFourth: ...Read successful. The Fireplace is a reset device. The old world did not plan to survive. It planned to begin again, using the prototype as the carrier. The body I am wearing had a name before the core. Elvi.
+		ChoiceVessel: Then I will carry it. Not to save this world. To make sure the next one wakes up with someone in it.
+		ChoiceRefuse: Then I stay. The world can end on its own. I will not sign the order a second time.
+	}
+}

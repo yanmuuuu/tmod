@@ -1,0 +1,64 @@
+Configs: {
+	VaultClientConfig: {
+		DisplayName: Paramètres du client
+
+		HideWorldLoadingScreen: {
+			Label: Masquer l'écran de chargement du monde
+			Tooltip:
+				'''
+				L'interface de chargement ne sera plus affichée lors de l'entrée dans un monde.
+				Désactivé par défaut ; l'activer rendra le chargement invisible.
+				'''
+		}
+	}
+}
+
+Loadings: {
+	WorldLoadingText: {
+		Text1: Chargement du monde
+		Text2: Lecture des données de sauvegarde
+		Text3: Chargement du Tile Processor
+		Text4: Réception des données réseau
+		Text5: Sauvegarde du monde
+		NetWaringTimeoutMsg:
+			'''
+			[VaultNet] Le chargement réseau a expiré. Certaines données peuvent être perdues ou retardées.
+			Cela peut entraîner des entités incomplètes ou des états incohérents.
+			Il est recommandé de vérifier votre connexion réseau et d'essayer de rejoindre le serveur à nouveau.
+			'''
+	}
+}
+
+Items: {
+	TestItem: {
+		DisplayName: Objet de test
+		Tooltip: ""
+	}
+}
+
+Projectiles.TestProj.DisplayName: Projectile de test
+
+UI: {
+	DeveloperPanelUI: {
+		TitleText: Panneau de débogage développeur
+		TPBoxDrawText: Afficher les Hitbox
+		TPShowNameText: Afficher le nom interne
+		TPShowPositionText: Afficher la position
+		TPShowIDText: Afficher l'ID
+		ResetAllText: Tout réinitialiser
+		CloseText: Fermer
+		TPTabText: TileProcessor
+		ActorTabText: Actor
+		ActorBoxDrawText: Afficher les Hitbox
+		ActorShowNameText: Afficher le nom interne
+		ActorShowPositionText: Afficher la position
+		ActorShowIDText: Afficher l'ID
+		ActorShowVelocityText: Afficher la vitesse
+		ResetText: Réinit.
+		StateMachineTabText: Machine à états
+		StateMachineOverlayText: Superposition FSM
+		BehaviorTreeOverlayText: Superposition arbre de comportement
+		TPForceSerialText: Forcer la mise à jour séquentielle
+		ActorForceSerialText: Forcer la mise à jour séquentielle
+	}
+}

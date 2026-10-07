@@ -1,0 +1,64 @@
+Configs: {
+	VaultClientConfig: {
+		DisplayName: Client Settings
+
+		HideWorldLoadingScreen: {
+			Label: Hide World Loading Screen
+			Tooltip:
+				'''
+				The buffering UI will no longer be shown during the world loading phase.
+				Default is Off; enabling this will make loading invisible.
+				'''
+		}
+	}
+}
+
+Loadings: {
+	WorldLoadingText: {
+		Text1: Loading World
+		Text2: Reading Save Data
+		Text3: Loading Tile Processor
+		Text4: Receiving Network Data
+		Text5: Saving World
+		NetWaringTimeoutMsg:
+			'''
+			[VaultNet] Network loading timed out. Some network data may be lost or delayed.
+			This may result in incomplete world entities or inconsistent states.
+			It is recommended to check your network connection and try rejoining the server.
+			'''
+	}
+}
+
+Items: {
+	TestItem: {
+		DisplayName: Test Item
+		Tooltip: ""
+	}
+}
+
+Projectiles.TestProj.DisplayName: Test Projectile
+
+UI: {
+	DeveloperPanelUI: {
+		TitleText: Developer Debug Panel
+		TPBoxDrawText: Show Hitbox
+		TPShowNameText: Show Internal Name
+		TPShowPositionText: Show Position
+		TPShowIDText: Show ID
+		ResetAllText: Reset All
+		CloseText: Close
+		TPTabText: TileProcessor
+		ActorTabText: Actor
+		ActorBoxDrawText: Show Hitbox
+		ActorShowNameText: Show Internal Name
+		ActorShowPositionText: Show Position
+		ActorShowIDText: Show ID
+		ActorShowVelocityText: Show Velocity
+		ResetText: Reset
+		StateMachineTabText: StateMachine
+		StateMachineOverlayText: FSM Overlay
+		BehaviorTreeOverlayText: BT Overlay
+		TPForceSerialText: Force Serial Update
+		ActorForceSerialText: Force Serial Update
+	}
+}

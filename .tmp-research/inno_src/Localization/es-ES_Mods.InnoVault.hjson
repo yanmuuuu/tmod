@@ -1,0 +1,64 @@
+Configs: {
+	VaultClientConfig: {
+		DisplayName: Configuración del Cliente
+
+		HideWorldLoadingScreen: {
+			Label: Ocultar pantalla de carga del mundo
+			Tooltip:
+				'''
+				La interfaz de carga ya no se mostrará al entrar en los mundos.
+				Desactivado por defecto; al activarlo, la carga será invisible.
+				'''
+		}
+	}
+}
+
+Loadings: {
+	WorldLoadingText: {
+		Text1: Cargando mundo
+		Text2: Leyendo datos de guardado
+		Text3: Cargando Tile Processor
+		Text4: Recibiendo datos de red
+		Text5: Guardando mundo
+		NetWaringTimeoutMsg:
+			'''
+			[VaultNet] Tiempo de espera de carga de red agotado. Algunos datos pueden haberse perdido o retrasado.
+			Esto puede resultar en entidades del mundo incompletas o estados inconsistentes.
+			Se recomienda verificar su conexión de red e intentar volver a unirse al servidor.
+			'''
+	}
+}
+
+Items: {
+	TestItem: {
+		DisplayName: Objeto de prueba
+		Tooltip: ""
+	}
+}
+
+Projectiles.TestProj.DisplayName: Proyectil de prueba
+
+UI: {
+	DeveloperPanelUI: {
+		TitleText: Panel de depuración de desarrollador
+		TPBoxDrawText: Mostrar Hitbox
+		TPShowNameText: Mostrar nombre interno
+		TPShowPositionText: Mostrar posición
+		TPShowIDText: Mostrar ID
+		ResetAllText: Reiniciar todo
+		CloseText: Cerrar
+		TPTabText: TileProcessor
+		ActorTabText: Actor
+		ActorBoxDrawText: Mostrar Hitbox
+		ActorShowNameText: Mostrar nombre interno
+		ActorShowPositionText: Mostrar posición
+		ActorShowIDText: Mostrar ID
+		ActorShowVelocityText: Mostrar velocidad
+		ResetText: Reiniciar
+		StateMachineTabText: Máquina de estados
+		StateMachineOverlayText: Superposición FSM
+		BehaviorTreeOverlayText: Superposición de árbol de comportamiento
+		TPForceSerialText: Forzar actualización serial
+		ActorForceSerialText: Forzar actualización serial
+	}
+}

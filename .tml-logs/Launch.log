@@ -1,0 +1,17 @@
+Logging to E:/steam/steamapps/common/tModLoader/tModLoader-Logs/Launch.log
+Fixing Environment Issues
+mv: can't rename 'E:/steam/steamapps/common/tModLoader/Libraries/Newtonsoft.Json': Invalid argument
+'E:/steam/steamapps/common/tModLoader/Libraries/Newtonsoft.Json' -> 'E:/steam/steamapps/common/tModLoader/Libraries/newtonsoft.json/Newtonsoft.Json'
+Windows Version 10.0
+Quick Edit Disabled
+Verifying installation directory...
+Success!
+Verifying .NET....
+Parsing .NET version requirements from runtimeconfig.json
+Success! dotnet_version=8.0.0
+Checking for old .NET versions to remove from folder
+Cleanup Complete
+Checking dotnet install...
+Dotnet should be present in "E:/steam/steamapps/common/tModLoader/dotnet"
+Attempting Launch...
+Launched Using Local Dotnet. Launch command: "E:/steam/steamapps/common/tModLoader/dotnet/dotnet" tModLoader.dll ""

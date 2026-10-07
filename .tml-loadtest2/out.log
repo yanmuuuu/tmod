@@ -1,0 +1,20 @@
+Access to the registry key 'HKEY_CURRENT_USER\Software\Classes\.tmod' is denied. (see server.log for full trace)
+拒绝访问。 (see server.log for full trace)
+Finding Mods...
+Sandboxing: 废土魂穿 v0.1
+Constructing Mods...
+Adding Content: tModLoader v2026.8.3.0
+Adding Content: 废土魂穿 v0.1
+Resizing...
+Configuring Content: tModLoader v2026.8.3.0
+Configuring Content: 废土魂穿 v0.1
+Finalizing Content: tModLoader v2026.8.3.0
+Finalizing Content: 废土魂穿 v0.1
+Adding Recipes...
+Terraria Server v1.4.4.9 - tModLoader v2026.8.3.0
+
+n		New World
+d <number>	Delete World
+m		Mods List
+
+Choose World: 

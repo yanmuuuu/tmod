@@ -1,0 +1,1858 @@
+====================================================================================================
+FILE WastelandSoul\Common\Bosses\WastelandBossRegistry.cs   (E=101 lines, D=107 lines)
+--- E
++++ D
+@@ -3,2 +3,4 @@
+ using WastelandSoul.Content.NPCs.Bosses.Archivist;
++using WastelandSoul.Content.NPCs.Bosses.AshHeart;
++using WastelandSoul.Content.NPCs.Bosses.FireplaceGuardian;
+ using WastelandSoul.Content.NPCs.Bosses.Scavenger;
+@@ -55,3 +57,3 @@
+ 				Progression = 10.5f,
+-				Implemented = false,
++				Implemented = true,
+ 				Theme = "旧时代战争留下的自持污染源；击败它才会揭明「世界灭亡不可逆」，以及智械人当年是执行者之一。"
+@@ -62,3 +64,3 @@
+ 				Progression = 14f,
+-				Implemented = false,
++				Implemented = true,
+ 				Theme = "壁炉的最后防线，守着「世界重置」装置；击败后智械人必须决定是否成为重置的载体。月亮领主前最后一个原创 Boss。"
+@@ -78,2 +80,6 @@
+ 					return ModContent.NPCType<Archivist>();
++				case "AshHeart":
++					return ModContent.NPCType<AshHeart>();
++				case "FireplaceGuardian":
++					return ModContent.NPCType<FireplaceGuardian>();
+ 				default:
+====================================================================================================
+FILE WastelandSoul\Common\Effects\WastelandEffectLayer.cs   (E=216 lines, D=272 lines)
+--- E
++++ D
+@@ -1,2 +1 @@
+-using System;
+ using System.Collections.Generic;
+@@ -17,7 +16,3 @@
+ 	//   1) 纯客户端绘制（Main.dedServ 直接返回），绝不影响伤害/AI/判定；
+-	//   2) **先确认 SpriteBatch 的状态**：弹幕 PostDraw 里批次已经开着（那套是屏幕坐标，
+-	//      要减 Main.screenPosition）；而 ModSystem.PostDrawTiles 里**批次没开**，
+-	//      必须自己 Begin/End 并带 Main.GameViewMatrix 变换（用世界坐标）。
+-	//      ⚠️ 直接 Draw 会抛 `InvalidOperationException: Draw was called, but Begin has not
+-	//      yet been called`，tML 把它记成 `Main engine crash` —— 整个游戏挂掉（实测踩过）；
++	//   2) 不重新 Begin/End SpriteBatch（只往已经开着的批次里画，避免与其它模组冲突、崩溃）；
+ 	//   3) 每处拖尾都有固定段数上限，历史记录及时清理，不在每帧做大分配。
+@@ -55,8 +50,5 @@
+ 		/// 沿一串世界坐标点画拖尾。越新的点越粗越亮。
+-		/// <para/><paramref name="worldSpace"/> = true 时点被当作**世界坐标**（调用方用
+-		/// <c>Main.GameViewMatrix.TransformationMatrix</c> 开了批次）；
+-		/// false 时按原版弹幕绘制那套**屏幕坐标**惯例减去 <c>Main.screenPosition</c>。
++		/// <para/>注意：世界坐标系绘制要减去 Main.screenPosition。
+ 		/// </summary>
+-		public static void Draw(SpriteBatch spriteBatch, IList<Vector2> points, Color color,
+-			float maxWidth, float maxAlpha, bool worldSpace = false)
++		public static void Draw(SpriteBatch spriteBatch, IList<Vector2> points, Color color, float maxWidth, float maxAlpha)
+ 		{
+@@ -70,42 +62,106 @@
+ 
+-			for (int i = 1; i < count; i++) {
+-				float t = i / (float)(count - 1);          // 0 = 最老，1 = 最新
+-				Vector2 a = points[i - 1];
+-				Vector2 b = points[i];
+-				float length = Vector2.Distance(a, b);
+-				float width = maxWidth * t;
+-
+-				if (length < 0.01f || width < 0.5f) {
+-					continue;
+-				}
+-
+-				Vector2 mid = worldSpace ? (a + b) * 0.5f : (a + b) * 0.5f - Main.screenPosition;
+-
+-				spriteBatch.Draw(
+-					pixel,
+-					mid,
+-					null,
+-					color * (maxAlpha * t),
+-					(b - a).ToRotation(),
+-					new Vector2(0.5f, 0.5f),
+-					new Vector2(length, width),
+-					SpriteEffects.None,
+-					0f);
+-			}
+-		}
+-	}
+-
+-	// ====================================================================================
+-	// 【已移除】本模组弹幕的自动拖尾（原 WastelandTrailGlobalProjectile）
+-	//
+-	// 你的反馈：用本模组的武器发射弹幕、以及 Boss 发射弹幕时，都会拖出**一条白线**，干扰视野。
+-	// 原因：这个 GlobalProjectile 会给**每一个**本模组弹幕自动加拖尾（每个弹幕 12 个历史点、
+-	// 用 1x1 白点拉伸成 16px 宽的段），而配色是按 DamageClass 查表，
+-	// **敌对弹幕 / 无职业伤害的弹幕全部落到兜底色 `(200,200,200)`** —— 那就是那条白线；
+-	// 高速弹幕的两个历史点之间还会被拉成一条很长的直线，所以看起来像"白线扫过屏幕"。
+-	//
+-	// 结论：**不做自动拖尾**。真要给某个弹幕加拖尾，请在那个弹幕自己的
+-	// `ModProjectile.PreDraw/PostDraw` 里手动画（那里批次是开着的）、并且用明确的颜色与短历史，
+-	// 不要再挂 GlobalProjectile 全局加。
+-	// ====================================================================================
++			for (int pass = 0; pass < 2; pass++) {
++				bool core = pass == 1;
++
++				for (int i = 1; i < count; i++) {
++					float t = i / (float)(count - 1);
++					Vector2 a = points[i - 1];
++					Vector2 b = points[i];
++					float length = Vector2.Distance(a, b);
++					float width = (core ? maxWidth * 0.42f : maxWidth) * t;
++
++					if (length < 0.01f || width < 0.4f) {
++						continue;
++					}
++
++					Vector2 mid = (a + b) * 0.5f - Main.screenPosition;
++					Color ink = core ? Color.Lerp(color, Color.White, 0.55f) : color;
++					float alpha = core ? maxAlpha * t : maxAlpha * 0.28f * t;
++
++					spriteBatch.Draw(
++						pixel,
++						mid,
++						null,
++						ink * alpha,
++						(b - a).ToRotation(),
++						new Vector2(0.5f, 0.5f),
++						new Vector2(length, width),
++						SpriteEffects.None,
++						0f);
++				}
++			}
++		}
++	}
++
++	/// <summary>
++	/// 本模组弹幕的拖尾。用 <c>projectile.ModProjectile.Mod</c> 判断归属，
++	/// 不硬编码任何弹幕类型，所以以后新增弹幕自动就有拖尾。
++	/// </summary>
++	public class WastelandTrailGlobalProjectile : GlobalProjectile
++	{
++		private const int MaxPoints = 16;
++		private const float MaxWidth = 16f;
++		private const float MaxAlpha = 0.55f;
++
++		private readonly List<Vector2> trail = new List<Vector2>();
++
++		/// <summary>每个弹幕一份历史记录。</summary>
++		public override bool InstancePerEntity => true;
++
++		private static bool IsOurs(Projectile projectile)
++		{
++			return projectile.ModProjectile != null;
++		}
++
++		public override bool PreAI(Projectile projectile)
++		{
++			if (Main.dedServ || !IsOurs(projectile)) {
++				return true;
++			}
++
++			trail.Add(projectile.Center);
++
++			while (trail.Count > MaxPoints) {
++				trail.RemoveAt(0);
++			}
++
++			return true;
++		}
++
++		public override void PostDraw(Projectile projectile, Color lightColor)
++		{
++			if (Main.dedServ || trail.Count < 2 || !IsOurs(projectile)) {
++				return;
++			}
++
++			if (projectile.hide) {
++				return;
++			}
++
++			WastelandTrailRenderer.Draw(Main.spriteBatch, trail, TrailColor(projectile), MaxWidth, MaxAlpha);
++		}
++
++		private static Color TrailColor(Projectile projectile)
++		{
++			if (!projectile.hostile) {
++				return WastelandEffectColors.For(projectile.DamageType);
++			}
++
++			string space = projectile.ModProjectile.GetType().Namespace ?? string.Empty;
++
++			if (space.Contains("AshHeart")) {
++				return new Color(255, 128, 48);
++			}
++
++			if (space.Contains("Fireplace")) {
++				return new Color(160, 214, 255);
++			}
++
++			if (space.Contains("Archivist")) {
++				return new Color(176, 196, 255);
++			}
++
++			return new Color(168, 176, 168);
++		}
++	}
+ 
+@@ -153,15 +209,7 @@
+ 	{
+-		/// <summary>
+-		/// ⚠️ 这里踩过一次**引擎级崩溃**（client.log 里的 `Main engine crash`）：
+-		/// <c>PostDrawTiles</c> 时 <c>Main.spriteBatch</c> **并不在 Begin 状态**，
+-		/// 直接 Draw 会抛 `InvalidOperationException: Draw was called, but Begin has not yet been called`
+-		/// → 整个游戏挂掉。所以：
+-		/// <list type="number">
+-		/// <item>先收集要画的东西，没东西可画就**不开批次**；</item>
+-		/// <item>自己 <c>Begin</c>（带 <c>Main.GameViewMatrix.TransformationMatrix</c>，
+-		/// 于是直接传**世界坐标**，不要再减 <c>Main.screenPosition</c>）；</item>
+-		/// <item><c>End</c> 放在 <c>finally</c> 里，保证异常也不会留下"开着不关"的批次；</item>
+-		/// <item>整段包 try/catch：绘制出错只记一条日志，**不允许再把游戏掀翻**。</item>
+-		/// </list>
+-		/// </summary>
++		public override void PostUpdateDusts()
++		{
++			WastelandFxSystem.Update();
++		}
++
+ 		public override void PostDrawTiles()
+@@ -172,4 +220,3 @@
+ 
+-			// 1) 先收集：没有任何挥砍时，连 Begin/End 都不做
+-			List<(IList<Vector2> Points, Color Color)> pending = null;
++			bool swinging = false;
+ 
+@@ -184,31 +231,40 @@
+ 
+-				if (!tracker.Swinging || tracker.SwingPoints.Count < 2) {
+-					continue;
+-				}
+-
+-				pending ??= new List<(IList<Vector2>, Color)>();
+-				pending.Add((tracker.SwingPoints, tracker.SwingColor));
+-			}
+-
+-			if (pending == null) {
+-				return;
+-			}
+-
+-			// 2) 自己开批次（世界坐标），3) 无论如何都要 End
+-			// 用 AlphaBlend 而不是 Additive：加法混合下 9 段互相叠加会**饱和成白色**，
+-			// 又变成一条"白线"（拖尾那边就是因为颜色回退到近白才被当成白线）。
+-			try {
+-				Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState,
+-					DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+-
+-				try {
+-					foreach ((IList<Vector2> points, Color color) in pending) {
+-						WastelandTrailRenderer.Draw(Main.spriteBatch, points, color, 20f, 0.45f, worldSpace: true);
++				if (tracker.Swinging && tracker.SwingPoints.Count >= 2) {
++					swinging = true;
++					break;
++				}
++			}
++
++			if (swinging) {
++				Main.spriteBatch.Begin(
++					SpriteSortMode.Deferred,
++					BlendState.Additive,
++					Main.DefaultSamplerState,
++					DepthStencilState.None,
++					Main.Rasterizer,
++					null,
++					Main.GameViewMatrix.TransformationMatrix);
++
++				for (int i = 0; i < Main.maxPlayers; i++) {
++					Player player = Main.player[i];
++
++					if (!player.active || player.dead) {
++						continue;
+ 					}
+-				} finally {
+-					Main.spriteBatch.End();
+-				}
+-			} catch (Exception exception) {
+-				Mod.Logger.Warn("WastelandSwingDrawSystem: 画挥砍弧光失败（已忽略，不影响游戏）", exception);
+-			}
++
++					WastelandSwingTracker tracker = player.GetModPlayer<WastelandSwingTracker>();
++
++					if (!tracker.Swinging || tracker.SwingPoints.Count < 2) {
++						continue;
++					}
++
++					WastelandTrailRenderer.Draw(Main.spriteBatch, tracker.SwingPoints, tracker.SwingColor, 28f, 0.85f);
++					Vector2 tip = tracker.SwingPoints[tracker.SwingPoints.Count - 1];
++					WastelandFxSystem.Glow(tip, tracker.SwingColor, 1.3f, 5);
++				}
++
++				Main.spriteBatch.End();
++			}
++
++			WastelandFxSystem.Draw();
+ 		}
+====================================================================================================
+FILE WastelandSoul\Common\ItemBases\WastelandBossBag.cs   (E=142 lines, D=146 lines)
+--- E
++++ D
+@@ -94,2 +94,6 @@
+ 
++			foreach (int charm in Content.Items.Accessories.WastelandAccessoryCatalog.BagDrops(BossIndex)) {
++				player.QuickSpawnItem(player.GetSource_OpenItem(Type), charm);
++			}
++
+ 			// 3) 专属武器：随机一件 + 随机原版词条（可在哥布林工匠重铸）
+====================================================================================================
+FILE WastelandSoul\Common\Players\WastelandPlayer.cs   (E=106 lines, D=152 lines)
+--- E
++++ D
+@@ -1,2 +1,3 @@
+ using Terraria;
++using Terraria.ID;
+ using Terraria.Localization;
+@@ -4,2 +5,3 @@
+ using Terraria.ModLoader.IO;
++using WastelandSoul.Common.Systems;
+ 
+@@ -28,2 +30,8 @@
+ 		public int soulFragmentsDelivered;
++
++		/// <summary>饰品提供的不消耗弹药概率。每帧由饰品重写，在 <see cref="ResetEffects"/> 里清掉。</summary>
++		public float ammoSave;
++
++		/// <summary>命中时点燃目标的概率。</summary>
++		public float emberOnHit;
+ 
+@@ -69,4 +77,42 @@
+ 		{
+-			// 以上都是长期进度，不在这里重置。
+-			// 后续若加入限时状态（例如「被壁炉标记」），在 ResetEffects 里清空即可。
++			ammoSave = 0f;
++			emberOnHit = 0f;
++		}
++
++		public override void PostUpdateEquips()
++		{
++			if (WastelandStorySystem.endingChoice == WastelandStorySystem.EndingVessel) {
++				Player.GetDamage(DamageClass.Generic) += 0.08f;
++				Player.lifeRegen += 2;
++			}
++			else if (WastelandStorySystem.endingChoice == WastelandStorySystem.EndingRefuse) {
++				Player.statDefense += 8;
++				Player.moveSpeed += 0.08f;
++			}
++		}
++
++		public override bool CanConsumeAmmo(Item weapon, Item ammo)
++		{
++			if (ammoSave > 0f && Main.rand.NextFloat() < ammoSave) {
++				return false;
++			}
++
++			return base.CanConsumeAmmo(weapon, ammo);
++		}
++
++		public override void OnHitNPCWithItem(Item item, NPC target, NPC.HitInfo hit, int damageDone)
++		{
++			TryIgnite(target);
++		}
++
++		public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
++		{
++			TryIgnite(target);
++		}
++
++		private void TryIgnite(NPC target)
++		{
++			if (emberOnHit > 0f && Main.rand.NextFloat() < emberOnHit) {
++				target.AddBuff(BuffID.OnFire3, 180);
++			}
+ 		}
+====================================================================================================
+FILE WastelandSoul\Common\Systems\BossChecklistIntegrationSystem.cs   (E=70 lines, D=72 lines)
+--- E
++++ D
+@@ -50,2 +50,4 @@
+ 				"Archivist" => () => WastelandStorySystem.archivistDefeated,
++				"AshHeart" => () => WastelandStorySystem.ashHeartDefeated,
++				"FireplaceGuardian" => () => WastelandStorySystem.fireplaceGuardianDefeated,
+ 				_ => () => false
+====================================================================================================
+FILE WastelandSoul\Common\Systems\WastelandMemorySystem.cs   (E=93 lines, D=93 lines)
+--- E
++++ D
+@@ -2,6 +2,3 @@
+ using Terraria;
+-using Terraria.ID;
+-using Terraria.ModLoader;
+ using WastelandSoul.Common.Bosses;
+-using WastelandSoul.Content.Items.Soul;
+ 
+@@ -32,24 +29,27 @@
+ 
+-		/// <summary>
+-		/// 把玩家背包里携带的灵魂碎片交给智械人：消耗碎片、记一段记忆。
+-		/// <para/>返回本次交付了几枚（0 表示玩家身上没有碎片）。
+-		/// </summary>
++		/// <summary>交出某一只 Boss 对应的那一枚碎片。交错了不会往前跳。</summary>
++		public static bool TryDeliver(Player player, int bossIndex)
++		{
++			int itemType = SoulFragmentTypeForBoss(bossIndex);
++
++			if (itemType <= 0 || player == null || !player.HasItem(itemType)) {
++				return false;
++			}
++
++			player.ConsumeItem(itemType);
++			Common.Players.WastelandPlayer modPlayer = player.GetModPlayer<Common.Players.WastelandPlayer>();
++
++			if (modPlayer.soulFragmentsDelivered < bossIndex) {
++				modPlayer.soulFragmentsDelivered = bossIndex;
++			}
++
++			return true;
++		}
++
+ 		public static int DeliverCarriedSoulFragments(Player player)
+ 		{
+-			if (Main.netMode == NetmodeID.MultiplayerClient) {
+-				return 0;   // 联机同步待做
+-			}
+-
+-			Common.Players.WastelandPlayer modPlayer = player.GetModPlayer<Common.Players.WastelandPlayer>();
+ 			int delivered = 0;
+ 
+-			foreach (int itemType in SoulFragmentRegistry.AllTypes) {
+-				if (modPlayer.soulFragmentsDelivered >= TotalMemories) {
+-					break;
+-				}
+-
+-				// 一次只收一枚，保持"一段记忆一段剧情"的节奏
+-				while (player.HasItem(itemType) && modPlayer.soulFragmentsDelivered < TotalMemories) {
+-					player.ConsumeItem(itemType);
+-					modPlayer.soulFragmentsDelivered++;
++			for (int bossIndex = 1; bossIndex <= TotalMemories; bossIndex++) {
++				if (TryDeliver(player, bossIndex)) {
+ 					delivered++;
+====================================================================================================
+FILE WastelandSoul\Common\Systems\WastelandStorySystem.cs   (E=280 lines, D=410 lines)
+--- E
++++ D
+@@ -1,2 +1,3 @@
+ using System.IO;
++using Microsoft.Xna.Framework;
+ using Terraria;
+@@ -10,3 +11,3 @@
+ 	/// <summary>
+-	/// 智械人的剧情阶段。对话按阶段分支，避免在各处散落魔法布尔值判断。
++	/// 智械人的剧情阶段。对话按阶段分支。
+ 	/// </summary>
+@@ -14,16 +15,8 @@
+ 	{
+-		/// <summary>前期：数据完好，正常引导玩家。</summary>
+ 		Intact,
+-
+-		/// <summary>击败清道夫、恢复第一段记忆后：开始不稳定。</summary>
+ 		FirstMemory,
+-
+-		/// <summary>击败归档者、恢复第二段记忆后：数据碎裂加剧，日志里出现"归档"代码。</summary>
+ 		SecondMemory,
+-
+-		/// <summary>后续 Boss 阶段：数据逐渐碎裂，暗示她是毁灭的帮凶。（预留）</summary>
+-		Unstable,
+-
+-		/// <summary>后期：是否回到原型机成为世界重置载体的抉择。（预留）</summary>
+-		Choice
++		ThirdMemory,
++		FourthMemory,
++		Ending
+ 	}
+@@ -31,4 +24,3 @@
+ 	/// <summary>
+-	/// 世界级剧情进度系统。
+-	/// <para/>所有剧情标志位集中在这里，随世界存档保存；智械人 NPC 与后续壁炉结构都读取它。
++	/// 世界级剧情进度。标志位随世界存档保存，联机时用模组包同步。
+ 	/// </summary>
+@@ -36,38 +28,27 @@
+ 	{
+-		// ==================== 剧情标志位 ====================
+-
+-		/// <summary>Boss 1「清道夫」是否已被击败。</summary>
++		public const int EndingNone = 0;
++		public const int EndingVessel = 1;
++		public const int EndingRefuse = 2;
++
++		public const string TrueName = "埃尔薇";
++
+ 		public static bool scavengerDefeated;
+-
+-		/// <summary>Boss 2「归档者」是否已被击败（守望者计划派来的审计单元）。</summary>
+ 		public static bool archivistDefeated;
+-
+-		/// <summary>「壁炉」入口是否已开启（击败清道夫后开启）。</summary>
++		public static bool ashHeartDefeated;
++		public static bool fireplaceGuardianDefeated;
+ 		public static bool fireplaceOpened;
+-
+-		/// <summary>是否已读取壁炉内的旧时代数据终端。</summary>
+ 		public static bool dataTerminalRead;
+-
+-		/// <summary>智械人是否已恢复第一段记忆。</summary>
+ 		public static bool firstMemoryRestored;
+-
+-		/// <summary>智械人是否已恢复第二段记忆（击败归档者后交付灵魂碎片·其二）。</summary>
+ 		public static bool secondMemoryRestored;
+-
+-		/// <summary>智械人是否已在精灵族遗迹的躯体中苏醒（决定遗迹躯体还能不能再用）。</summary>
++		public static bool thirdMemoryRestored;
++		public static bool fourthMemoryRestored;
+ 		public static bool companionAwakened;
+-
+-		/// <summary>
+-		/// 智械人的名字（她到达时随机抽一个并存盘，之后对话/提示都用它）。
+-		/// <para/>正式名字还没定；换名字只改 <c>MechanicalCompanion.CandidateNames</c>。
+-		/// </summary>
++		public static bool codaPlayed;
++		public static int endingChoice;
+ 		public static string companionName = string.Empty;
+ 
+-		// ---------- 预留：后续 Boss 标志位 ----------
+-		// public static bool boss2Defeated;   // Boss 2
+-		// public static bool boss3Defeated;   // Boss 3
+-		// public static bool boss4Defeated;   // Boss 4
+-		// public static bool moonLordPhase;   // 月亮领主后的固始县阶段
+-
+-		/// <summary>智械人当前剧情阶段（派生值，不单独存盘）。</summary>
++		public static int GateX;
++		public static int GateY;
++		public static bool GatePlaced;
++
+ 		public static CompanionStage CompanionMemoryStage
+@@ -76,2 +57,14 @@
+ 			{
++				if (endingChoice != EndingNone) {
++					return CompanionStage.Ending;
++				}
++
++				if (fourthMemoryRestored) {
++					return CompanionStage.FourthMemory;
++				}
++
++				if (thirdMemoryRestored) {
++					return CompanionStage.ThirdMemory;
++				}
++
+ 				if (secondMemoryRestored) {
+@@ -88,9 +81,8 @@
+ 
+-		// ==================== 存档 ====================
+-
+ 		public override void ClearWorld()
+ 		{
+-			// 进入新世界时必须先清空，否则会继承上一个世界的进度
+ 			scavengerDefeated = false;
+ 			archivistDefeated = false;
++			ashHeartDefeated = false;
++			fireplaceGuardianDefeated = false;
+ 			fireplaceOpened = false;
+@@ -99,8 +91,16 @@
+ 			secondMemoryRestored = false;
++			thirdMemoryRestored = false;
++			fourthMemoryRestored = false;
+ 			companionAwakened = false;
++			codaPlayed = false;
++			endingChoice = EndingNone;
+ 			companionName = string.Empty;
+-
+-			// 状态机上下文是按 whoAmI 缓存的，换世界必须清空
++			GatePlaced = false;
++			GateX = 0;
++			GateY = 0;
++
+ 			Content.NPCs.Bosses.Scavenger.ScavengerContext.Clear();
+ 			Content.NPCs.Bosses.Archivist.ArchivistContext.Clear();
++			Content.NPCs.Bosses.AshHeart.AshHeartContext.Clear();
++			Content.NPCs.Bosses.FireplaceGuardian.FireplaceGuardianContext.Clear();
+ 		}
+@@ -109,29 +109,18 @@
+ 		{
+-			if (scavengerDefeated) {
+-				tag["scavenger"] = true;
+-			}
+-
+-			if (archivistDefeated) {
+-				tag["archivist"] = true;
+-			}
+-
+-			if (fireplaceOpened) {
+-				tag["fireplace"] = true;
+-			}
+-
+-			if (dataTerminalRead) {
+-				tag["terminal"] = true;
+-			}
+-
+-			if (firstMemoryRestored) {
+-				tag["memory1"] = true;
+-			}
+-
+-			if (secondMemoryRestored) {
+-				tag["memory2"] = true;
+-			}
+-
+-			if (companionAwakened) {
+-				tag["companion"] = true;
+-			}
++			tag["scavenger"] = scavengerDefeated;
++			tag["archivist"] = archivistDefeated;
++			tag["ashHeart"] = ashHeartDefeated;
++			tag["guardian"] = fireplaceGuardianDefeated;
++			tag["fireplace"] = fireplaceOpened;
++			tag["terminal"] = dataTerminalRead;
++			tag["memory1"] = firstMemoryRestored;
++			tag["memory2"] = secondMemoryRestored;
++			tag["memory3"] = thirdMemoryRestored;
++			tag["memory4"] = fourthMemoryRestored;
++			tag["companion"] = companionAwakened;
++			tag["coda"] = codaPlayed;
++			tag["ending"] = endingChoice;
++			tag["gatePlaced"] = GatePlaced;
++			tag["gateX"] = GateX;
++			tag["gateY"] = GateY;
+ 
+@@ -146,2 +135,4 @@
+ 			archivistDefeated = tag.GetBool("archivist");
++			ashHeartDefeated = tag.GetBool("ashHeart");
++			fireplaceGuardianDefeated = tag.GetBool("guardian");
+ 			fireplaceOpened = tag.GetBool("fireplace");
+@@ -150,3 +141,10 @@
+ 			secondMemoryRestored = tag.GetBool("memory2");
++			thirdMemoryRestored = tag.GetBool("memory3");
++			fourthMemoryRestored = tag.GetBool("memory4");
+ 			companionAwakened = tag.GetBool("companion");
++			codaPlayed = tag.GetBool("coda");
++			endingChoice = tag.GetInt("ending");
++			GatePlaced = tag.GetBool("gatePlaced");
++			GateX = tag.GetInt("gateX");
++			GateY = tag.GetInt("gateY");
+ 			companionName = tag.GetString("companionName") ?? string.Empty;
+@@ -154,7 +152,31 @@
+ 
+-		// ==================== 联机同步 ====================
+-		// 说明：NetSend / NetReceive 只负责「进入世界时的整包同步」。
+-		// 运行中标志位变化（如刚打完 Boss）的广播方案属于文档中「联机暂时搁置」的待定项。
+-
+ 		public override void NetSend(BinaryWriter writer)
++		{
++			WriteStory(writer);
++		}
++
++		public override void NetReceive(BinaryReader reader)
++		{
++			ReadStory(reader);
++		}
++
++		public override void PostUpdateWorld()
++		{
++			if (codaPlayed || endingChoice == EndingNone || !NPC.downedMoonlord) {
++				return;
++			}
++
++			if (Main.netMode == NetmodeID.MultiplayerClient) {
++				return;
++			}
++
++			codaPlayed = true;
++			string key = endingChoice == EndingVessel
++				? "Mods.WastelandSoul.Messages.CodaVessel"
++				: "Mods.WastelandSoul.Messages.CodaRefuse";
++			Announce(key, new Color(230, 220, 180));
++			Sync();
++		}
++
++		public static void WriteStory(BinaryWriter writer)
+ 		{
+@@ -162,2 +184,4 @@
+ 			writer.Write(archivistDefeated);
++			writer.Write(ashHeartDefeated);
++			writer.Write(fireplaceGuardianDefeated);
+ 			writer.Write(fireplaceOpened);
+@@ -166,7 +190,14 @@
+ 			writer.Write(secondMemoryRestored);
++			writer.Write(thirdMemoryRestored);
++			writer.Write(fourthMemoryRestored);
+ 			writer.Write(companionAwakened);
+-			writer.Write(companionName);
+-		}
+-
+-		public override void NetReceive(BinaryReader reader)
++			writer.Write(codaPlayed);
++			writer.Write(endingChoice);
++			writer.Write(GatePlaced);
++			writer.Write(GateX);
++			writer.Write(GateY);
++			writer.Write(companionName ?? string.Empty);
++		}
++
++		public static void ReadStory(BinaryReader reader)
+ 		{
+@@ -174,2 +205,4 @@
+ 			archivistDefeated = reader.ReadBoolean();
++			ashHeartDefeated = reader.ReadBoolean();
++			fireplaceGuardianDefeated = reader.ReadBoolean();
+ 			fireplaceOpened = reader.ReadBoolean();
+@@ -178,3 +211,10 @@
+ 			secondMemoryRestored = reader.ReadBoolean();
++			thirdMemoryRestored = reader.ReadBoolean();
++			fourthMemoryRestored = reader.ReadBoolean();
+ 			companionAwakened = reader.ReadBoolean();
++			codaPlayed = reader.ReadBoolean();
++			endingChoice = reader.ReadInt32();
++			GatePlaced = reader.ReadBoolean();
++			GateX = reader.ReadInt32();
++			GateY = reader.ReadInt32();
+ 			companionName = reader.ReadString();
+@@ -182,7 +222,30 @@
+ 
+-		// ==================== 剧情推进接口 ====================
+-
+-		/// <summary>
+-		/// 击败清道夫时调用：解锁壁炉入口，并提示玩家。
+-		/// </summary>
++		/// <summary>把当前剧情标志发给另一端。单人模式什么都不做。</summary>
++		public static void Sync()
++		{
++			if (Main.netMode == NetmodeID.SinglePlayer) {
++				return;
++			}
++
++			ModPacket packet = ModContent.GetInstance<WastelandSoul.WastelandSoul>().GetPacket();
++			packet.Write((byte)1);
++			WriteStory(packet);
++			packet.Send();
++		}
++
++		public static void ReceivePacket(BinaryReader reader, int whoAmI)
++		{
++			byte kind = reader.ReadByte();
++
++			if (kind != 1) {
++				return;
++			}
++
++			ReadStory(reader);
++
++			if (Main.netMode == NetmodeID.Server) {
++				Sync();
++			}
++		}
++
+ 		public static void MarkScavengerDefeated()
+@@ -195,11 +258,39 @@
+ 			fireplaceOpened = true;
+-
+-			if (Main.netMode != NetmodeID.Server) {
+-				Main.NewText(Language.GetTextValue("Mods.WastelandSoul.Messages.FireplaceOpened"), 226, 122, 74);
+-			}
+-		}
+-
+-		/// <summary>
+-		/// 读取壁炉内的旧时代数据终端（壁炉结构尚未实现，预留给开发优先级 4）。
+-		/// </summary>
++			Announce("Mods.WastelandSoul.Messages.FireplaceOpened", new Color(226, 122, 74));
++			Sync();
++		}
++
++		public static void MarkArchivistDefeated()
++		{
++			if (archivistDefeated) {
++				return;
++			}
++
++			archivistDefeated = true;
++			Announce("Mods.WastelandSoul.Messages.ArchivistDefeated", new Color(176, 190, 224));
++			Sync();
++		}
++
++		public static void MarkAshHeartDefeated()
++		{
++			if (ashHeartDefeated) {
++				return;
++			}
++
++			ashHeartDefeated = true;
++			Announce("Mods.WastelandSoul.Messages.AshHeartDefeated", new Color(255, 140, 70));
++			Sync();
++		}
++
++		public static void MarkFireplaceGuardianDefeated()
++		{
++			if (fireplaceGuardianDefeated) {
++				return;
++			}
++
++			fireplaceGuardianDefeated = true;
++			Announce("Mods.WastelandSoul.Messages.FireplaceGuardianDefeated", new Color(170, 210, 255));
++			Sync();
++		}
++
+ 		public static void MarkDataTerminalRead()
+@@ -211,13 +302,6 @@
+ 			dataTerminalRead = true;
+-
+-			if (Main.netMode != NetmodeID.Server) {
+-				Main.NewText(Language.GetTextValue("Mods.WastelandSoul.Messages.TerminalRead"), 150, 200, 230);
+-			}
+-		}
+-
+-		/// <summary>
+-		/// 智械人到达（消耗智械核心）：记下她的名字并推进标志位。
+-		/// <para/>「到达」的表现（生成 NPC + 提示）在 <c>MechanicalCompanion.TrySummon</c>，
+-		/// 这里只负责状态，保证两条入口（用核心 / 遗迹躯体）行为一致。
+-		/// </summary>
++			Announce("Mods.WastelandSoul.Messages.TerminalRead", new Color(150, 200, 230));
++			Sync();
++		}
++
+ 		public static void MarkCompanionArrived(string name)
+@@ -229,8 +313,8 @@
+ 			}
+-		}
+-
+-		/// <summary>
+-		/// 智械人恢复第一段记忆：揭示「守望者计划」与清道夫同源。
+-		/// </summary>
+-		public static void RestoreFirstMemory()		{
++
++			Sync();
++		}
++
++		public static void RestoreFirstMemory()
++		{
+ 			if (firstMemoryRestored) {
+@@ -240,28 +324,6 @@
+ 			firstMemoryRestored = true;
+-
+-			if (Main.netMode != NetmodeID.Server) {
+-				Main.NewText(Language.GetTextValue("Mods.WastelandSoul.Messages.FirstMemoryRestored"), 180, 200, 255);
+-			}
+-		}
+-
+-		/// <summary>
+-		/// 击败归档者时调用：守望者计划的审计单元被拆掉了，
+-		/// 但它归档的那段日志留了下来——提示玩家去找智械人交付灵魂碎片·其二。
+-		/// </summary>
+-		public static void MarkArchivistDefeated()
+-		{
+-			if (archivistDefeated) {
+-				return;
+-			}
+-
+-			archivistDefeated = true;
+-
+-			if (Main.netMode != NetmodeID.Server) {
+-				Main.NewText(Language.GetTextValue("Mods.WastelandSoul.Messages.ArchivistDefeated"), 176, 190, 224);
+-			}
+-		}
+-
+-		/// <summary>
+-		/// 智械人恢复第二段记忆：量产型的能力是被**故意**削掉的，日志里那段"归档"代码带着她自己的序列号。
+-		/// </summary>
++			Announce("Mods.WastelandSoul.Messages.FirstMemoryRestored", new Color(180, 200, 255));
++			Sync();
++		}
++
+ 		public static void RestoreSecondMemory()
+@@ -273,6 +335,74 @@
+ 			secondMemoryRestored = true;
+-
+-			if (Main.netMode != NetmodeID.Server) {
+-				Main.NewText(Language.GetTextValue("Mods.WastelandSoul.Messages.SecondMemoryRestored"), 160, 190, 240);
+-			}
++			Announce("Mods.WastelandSoul.Messages.SecondMemoryRestored", new Color(160, 190, 240));
++			Sync();
++		}
++
++		public static void RestoreThirdMemory()
++		{
++			if (thirdMemoryRestored) {
++				return;
++			}
++
++			thirdMemoryRestored = true;
++			Announce("Mods.WastelandSoul.Messages.ThirdMemoryRestored", new Color(255, 160, 90));
++			Sync();
++		}
++
++		public static void RestoreFourthMemory()
++		{
++			if (fourthMemoryRestored) {
++				return;
++			}
++
++			fourthMemoryRestored = true;
++			companionName = TrueName;
++			RenameCompanion();
++			Announce("Mods.WastelandSoul.Messages.FourthMemoryRestored", new Color(210, 220, 255));
++			Announce("Mods.WastelandSoul.Messages.TrueName", new Color(240, 220, 160));
++			Sync();
++		}
++
++		public static void ChooseEnding(Player player, int choice)
++		{
++			if (endingChoice != EndingNone || !fourthMemoryRestored) {
++				return;
++			}
++
++			endingChoice = choice == EndingRefuse ? EndingRefuse : EndingVessel;
++			string key = endingChoice == EndingVessel
++				? "Mods.WastelandSoul.Messages.EndingVessel"
++				: "Mods.WastelandSoul.Messages.EndingRefuse";
++			Announce(key, new Color(230, 210, 160));
++
++			if (player != null) {
++				int relic = endingChoice == EndingVessel
++					? ModContent.ItemType<Content.Items.Story.DawnSeal>()
++					: ModContent.ItemType<Content.Items.Story.UnburnedName>();
++				player.QuickSpawnItem(player.GetSource_GiftOrReward(), relic);
++			}
++
++			Sync();
++		}
++
++		private static void RenameCompanion()
++		{
++			int type = ModContent.NPCType<Content.NPCs.Town.MechanicalCompanion>();
++
++			for (int i = 0; i < Main.maxNPCs; i++) {
++				NPC npc = Main.npc[i];
++
++				if (npc.active && npc.type == type) {
++					npc.GivenName = TrueName;
++				}
++			}
++		}
++
++		private static void Announce(string key, Color color)
++		{
++			if (Main.netMode == NetmodeID.Server) {
++				Terraria.Chat.ChatHelper.BroadcastChatMessage(NetworkText.FromKey(key), color);
++				return;
++			}
++
++			Main.NewText(Language.GetTextValue(key), color);
+ 		}
+====================================================================================================
+FILE WastelandSoul\Common\WastelandText.cs   (E=83 lines, D=138 lines)
+--- E
++++ D
+@@ -42,3 +42,58 @@
+ 
+-			// ---- 智械人对话 ----
++			"Messages.AshHeartPhaseTwo",
++			"Messages.AshHeartPhaseThree",
++			"Messages.AshHeartDefeated",
++			"Messages.ThirdMemoryRestored",
++			"Messages.FireplaceGuardianPhaseTwo",
++			"Messages.FireplaceGuardianPhaseThree",
++			"Messages.FireplaceGuardianDefeated",
++			"Messages.FourthMemoryRestored",
++			"Messages.TrueName",
++			"Messages.EndingVessel",
++			"Messages.EndingRefuse",
++			"Messages.CodaVessel",
++			"Messages.CodaRefuse",
++			"Messages.EnteredFireplace",
++			"Messages.TerminalTalkToHer",
++			"Messages.GatePlaced",
++			"Messages.FireplaceEnterFailed",
++
++			"Conditions.AfterScavenger",
++			"Conditions.AfterArchivist",
++			"Conditions.AfterAshHeart",
++
++			"Tiles.FireplaceGate.MapEntry",
++			"Tiles.FireplaceTerminal.MapEntry",
++			"Tiles.FireplaceExit.MapEntry",
++
++			DialoguePrefix + "ButtonTrade",
++			DialoguePrefix + "ButtonVessel",
++			DialoguePrefix + "ButtonRefuse",
++
++			DialoguePrefix + "AfterAsh1",
++			DialoguePrefix + "AfterAsh2",
++			DialoguePrefix + "AfterThird1",
++			DialoguePrefix + "AfterThird2",
++			DialoguePrefix + "AfterFourth1",
++			DialoguePrefix + "AfterFourth2",
++			DialoguePrefix + "EndingVessel1",
++			DialoguePrefix + "EndingVessel2",
++			DialoguePrefix + "EndingRefuse1",
++			DialoguePrefix + "EndingRefuse2",
++
++			DialoguePrefix + "StoryHuntAsh",
++			DialoguePrefix + "StoryBringThird",
++			DialoguePrefix + "StoryHuntGuardian",
++			DialoguePrefix + "StoryBringFourth",
++			DialoguePrefix + "StoryChoice",
++			DialoguePrefix + "StoryEndingVessel",
++			DialoguePrefix + "StoryEndingRefuse",
++
++			DialoguePrefix + "MemoryThird",
++			DialoguePrefix + "MemoryThirdNeedFragment",
++			DialoguePrefix + "MemoryFourth",
++			DialoguePrefix + "MemoryFourthNeedFragment",
++			DialoguePrefix + "ChoiceVessel",
++			DialoguePrefix + "ChoiceRefuse",
++
+ 			DialoguePrefix + "ButtonStory",
+====================================================================================================
+FILE WastelandSoul\Content\Items\Story\CompanionCore.cs   (E=60 lines, D=59 lines)
+--- E
++++ D
+@@ -2,3 +2,2 @@
+ using Terraria.ID;
+-using Terraria.Localization;
+ using Terraria.ModLoader;
+@@ -55,3 +54,3 @@
+ 
+-			MechanicalCompanion.TrySummon(player, null, player.GetSource_ItemUse(Item));
++			MechanicalCompanion.TrySummon(player, player.GetSource_ItemUse(Item));
+ 			return true;
+====================================================================================================
+FILE WastelandSoul\Content\NPCs\Bosses\Archivist\Archivist.cs   (E=592 lines, D=592 lines)
+--- E
++++ D
+@@ -124,3 +124,3 @@
+ 			NPC.DeathSound = SoundID.NPCDeath14;
+-			Music = MusicID.Boss3;         // ⚠️ 待定项：Boss2 专属音乐还没做，先借原版机械 Boss 曲
++			Music = MusicLoader.GetMusicSlot(Mod, "Music/Archivist");
+ 		}
+====================================================================================================
+FILE WastelandSoul\Content\NPCs\Bosses\Scavenger\Scavenger.cs   (E=724 lines, D=725 lines)
+--- E
++++ D
+@@ -137,2 +137,3 @@
+ 			NPC.DeathSound = SoundID.NPCDeath14;
++			Music = MusicLoader.GetMusicSlot(Mod, "Music/Scavenger");
+ 		}
+====================================================================================================
+FILE WastelandSoul\Content\NPCs\Town\MechanicalCompanion.cs   (E=348 lines, D=467 lines)
+--- E
++++ D
+@@ -73,8 +73,5 @@
+ 		/// <summary>
+-		/// 待定项：智械人的正式名字尚未确定，这里先放三个候选。改名只需改这个列表。
+-		/// <para/>「到达」时会从这里随机抽一个给她，并存进 <see cref="WastelandStorySystem.companionName"/>。
++		/// 序列名是「零号」。第四段记忆恢复后，她会记起这具精灵躯体原来的名字「埃尔薇」。
+ 		/// </summary>
+ 		public static readonly string[] CandidateNames = {
+-			"艾拉",
+-			"赫尔",
+ 			"零号"
+@@ -210,4 +207,23 @@
+ 
++			if (WastelandStorySystem.endingChoice == WastelandStorySystem.EndingVessel) {
++				return Language.GetTextValue(DialogueKey + "EndingVessel" + Main.rand.Next(1, 3));
++			}
++
++			if (WastelandStorySystem.endingChoice == WastelandStorySystem.EndingRefuse) {
++				return Language.GetTextValue(DialogueKey + "EndingRefuse" + Main.rand.Next(1, 3));
++			}
++
++			if (WastelandStorySystem.fourthMemoryRestored) {
++				return Language.GetTextValue(DialogueKey + "AfterFourth" + Main.rand.Next(1, 3));
++			}
++
++			if (WastelandStorySystem.thirdMemoryRestored) {
++				return Language.GetTextValue(DialogueKey + "AfterThird" + Main.rand.Next(1, 3));
++			}
++
++			if (WastelandStorySystem.ashHeartDefeated) {
++				return Language.GetTextValue(DialogueKey + "AfterAsh" + Main.rand.Next(1, 3));
++			}
++
+ 			if (WastelandStorySystem.secondMemoryRestored) {
+-				// 第二段记忆之后：日志里的「归档」代码开始自己往外爬
+ 				return Language.GetTextValue(DialogueKey + "AfterSecondMemory" + Main.rand.Next(1, 4));
+@@ -216,3 +232,2 @@
+ 			if (WastelandStorySystem.firstMemoryRestored) {
+-				// 第一阶段：记忆碎片化，开始暗示她是毁灭的帮凶
+ 				return Language.GetTextValue(DialogueKey + "AfterMemory" + Main.rand.Next(1, 4));
+@@ -221,3 +236,2 @@
+ 			if (WastelandStorySystem.archivistDefeated) {
+-				// 击败归档者后：日志被归档单元翻出来过，她开始不稳定
+ 				return Language.GetTextValue(DialogueKey + "AfterArchivist" + Main.rand.Next(1, 3));
+@@ -226,3 +240,2 @@
+ 			if (WastelandStorySystem.scavengerDefeated) {
+-				// 击败清道夫后：数据开始不稳定
+ 				return Language.GetTextValue(DialogueKey + "AfterScavenger" + Main.rand.Next(1, 4));
+@@ -230,3 +243,2 @@
+ 
+-			// 前期：正常引导玩家
+ 			return Language.GetTextValue(DialogueKey + "Intro" + Main.rand.Next(1, 5));
+@@ -236,4 +248,12 @@
+ 		{
++			if (WastelandStorySystem.fourthMemoryRestored && WastelandStorySystem.endingChoice == WastelandStorySystem.EndingNone) {
++				button = Language.GetTextValue(DialogueKey + "ButtonVessel");
++				button2 = Language.GetTextValue(DialogueKey + "ButtonRefuse");
++				return;
++			}
++
+ 			button = Language.GetTextValue(DialogueKey + "ButtonStory");
+-			button2 = Language.GetTextValue(DialogueKey + "ButtonMemory");
++			button2 = HasNextFragment()
++				? Language.GetTextValue(DialogueKey + "ButtonMemory")
++				: Language.GetTextValue(DialogueKey + "ButtonTrade");
+ 		}
+@@ -242,4 +262,11 @@
+ 		{
++			if (WastelandStorySystem.fourthMemoryRestored && WastelandStorySystem.endingChoice == WastelandStorySystem.EndingNone) {
++				WastelandStorySystem.ChooseEnding(Main.LocalPlayer, firstButton ? WastelandStorySystem.EndingVessel : WastelandStorySystem.EndingRefuse);
++				Main.npcChatText = firstButton
++					? Language.GetTextValue("Mods.WastelandSoul.Dialogue.MechanicalCompanion.ChoiceVessel")
++					: Language.GetTextValue("Mods.WastelandSoul.Dialogue.MechanicalCompanion.ChoiceRefuse");
++				return;
++			}
++
+ 			if (firstButton) {
+-				// 「剧情」按钮：跟随当前进度给出推进方向
+ 				Main.npcChatText = GetStoryDialogue();
+@@ -248,4 +275,71 @@
+ 
+-			// 「记忆碎片」按钮：推进/展示她的记忆恢复情况
+-			Main.npcChatText = GetMemoryDialogue();
++			if (HasNextFragment()) {
++				Main.npcChatText = GetMemoryDialogue();
++				return;
++			}
++
++			shop = "Chips";
++		}
++
++		public override void AddShops()
++		{
++			NPCShop npcShop = new NPCShop(Type, "Chips")
++				.Add(Priced<Content.Items.Accessories.ScavengerRangerCharm>(8))
++				.Add(Priced<Content.Items.Accessories.ScavengerSummonerCharm>(8))
++				.Add(Priced<Content.Items.Accessories.ScavengerRogueCharm>(8))
++				.Add(Priced<Content.Items.Accessories.ArchivistWarriorCharm>(16), new Condition("Mods.WastelandSoul.Conditions.AfterScavenger", () => WastelandStorySystem.scavengerDefeated))
++				.Add(Priced<Content.Items.Accessories.ArchivistMageCharm>(16), new Condition("Mods.WastelandSoul.Conditions.AfterScavenger", () => WastelandStorySystem.scavengerDefeated))
++				.Add(Priced<Content.Items.Accessories.ArchivistRogueCharm>(16), new Condition("Mods.WastelandSoul.Conditions.AfterScavenger", () => WastelandStorySystem.scavengerDefeated))
++				.Add(Priced<Content.Items.Accessories.AshHeartMageCharm>(28), new Condition("Mods.WastelandSoul.Conditions.AfterArchivist", () => WastelandStorySystem.archivistDefeated))
++				.Add(Priced<Content.Items.Accessories.AshHeartRangerCharm>(28), new Condition("Mods.WastelandSoul.Conditions.AfterArchivist", () => WastelandStorySystem.archivistDefeated))
++				.Add(Priced<Content.Items.Accessories.AshHeartSummonerCharm>(28), new Condition("Mods.WastelandSoul.Conditions.AfterArchivist", () => WastelandStorySystem.archivistDefeated))
++				.Add(Priced<Content.Items.Accessories.FireplaceWarriorCharm>(48), new Condition("Mods.WastelandSoul.Conditions.AfterAshHeart", () => WastelandStorySystem.ashHeartDefeated))
++				.Add(Priced<Content.Items.Accessories.FireplaceSummonerCharm>(48), new Condition("Mods.WastelandSoul.Conditions.AfterAshHeart", () => WastelandStorySystem.ashHeartDefeated))
++				.Add(Priced<Content.Items.Accessories.FireplaceRogueCharm>(48), new Condition("Mods.WastelandSoul.Conditions.AfterAshHeart", () => WastelandStorySystem.ashHeartDefeated));
++			npcShop.Register();
++		}
++
++		public override void ModifyActiveShop(string shopName, Item[] items)
++		{
++			if (shopName != "Chips") {
++				return;
++			}
++
++			int currency = ChipCurrencySystem.CurrencyId;
++
++			foreach (Item item in items) {
++				if (item == null || item.IsAir) {
++					continue;
++				}
++
++				item.shopSpecialCurrency = currency;
++			}
++		}
++
++		private static Item Priced<T>(int chips) where T : ModItem
++		{
++			return new Item(ModContent.ItemType<T>()) { shopCustomPrice = chips };
++		}
++
++		private static bool HasNextFragment()
++		{
++			Player player = Main.LocalPlayer;
++
++			if (WastelandStorySystem.dataTerminalRead && WastelandStorySystem.scavengerDefeated && !WastelandStorySystem.firstMemoryRestored) {
++				return true;
++			}
++
++			if (WastelandStorySystem.archivistDefeated && !WastelandStorySystem.secondMemoryRestored && player.HasItem(WastelandMemorySystem.SoulFragmentTypeForBoss(2))) {
++				return true;
++			}
++
++			if (WastelandStorySystem.ashHeartDefeated && !WastelandStorySystem.thirdMemoryRestored && player.HasItem(WastelandMemorySystem.SoulFragmentTypeForBoss(3))) {
++				return true;
++			}
++
++			if (WastelandStorySystem.fireplaceGuardianDefeated && !WastelandStorySystem.fourthMemoryRestored && player.HasItem(WastelandMemorySystem.SoulFragmentTypeForBoss(4))) {
++				return true;
++			}
++
++			return false;
+ 		}
+@@ -254,4 +348,28 @@
+ 		{
++			if (WastelandStorySystem.endingChoice == WastelandStorySystem.EndingVessel) {
++				return Language.GetTextValue(DialogueKey + "StoryEndingVessel");
++			}
++
++			if (WastelandStorySystem.endingChoice == WastelandStorySystem.EndingRefuse) {
++				return Language.GetTextValue(DialogueKey + "StoryEndingRefuse");
++			}
++
++			if (WastelandStorySystem.fourthMemoryRestored) {
++				return Language.GetTextValue(DialogueKey + "StoryChoice");
++			}
++
++			if (WastelandStorySystem.fireplaceGuardianDefeated) {
++				return Language.GetTextValue(DialogueKey + "StoryBringFourth");
++			}
++
++			if (WastelandStorySystem.thirdMemoryRestored) {
++				return Language.GetTextValue(DialogueKey + "StoryHuntGuardian");
++			}
++
++			if (WastelandStorySystem.ashHeartDefeated) {
++				return Language.GetTextValue(DialogueKey + "StoryBringThird");
++			}
++
+ 			if (WastelandStorySystem.secondMemoryRestored) {
+-				return Language.GetTextValue(DialogueKey + "StoryAfterSecondMemory");
++				return Language.GetTextValue(DialogueKey + "StoryHuntAsh");
+ 			}
+@@ -270,3 +388,2 @@
+ 
+-			// 前期主线：引导玩家去击败清道夫
+ 			return Language.GetTextValue(DialogueKey + "StoryHunt");
+@@ -276,8 +393,24 @@
+ 		{
+-			// 第二段记忆：击败归档者 + 交出灵魂碎片·其二
++			Player player = Main.LocalPlayer;
++
++			if (WastelandStorySystem.fireplaceGuardianDefeated && !WastelandStorySystem.fourthMemoryRestored) {
++				if (WastelandMemorySystem.TryDeliver(player, 4)) {
++					WastelandStorySystem.RestoreFourthMemory();
++					return Language.GetTextValue(DialogueKey + "MemoryFourth");
++				}
++
++				return Language.GetTextValue(DialogueKey + "MemoryFourthNeedFragment");
++			}
++
++			if (WastelandStorySystem.ashHeartDefeated && !WastelandStorySystem.thirdMemoryRestored) {
++				if (WastelandMemorySystem.TryDeliver(player, 3)) {
++					WastelandStorySystem.RestoreThirdMemory();
++					return Language.GetTextValue(DialogueKey + "MemoryThird");
++				}
++
++				return Language.GetTextValue(DialogueKey + "MemoryThirdNeedFragment");
++			}
++
+ 			if (WastelandStorySystem.archivistDefeated && !WastelandStorySystem.secondMemoryRestored) {
+-				int soulType = WastelandMemorySystem.SoulFragmentTypeForBoss(2);
+-
+-				if (soulType > 0 && Main.LocalPlayer.HasItem(soulType)
+-					&& WastelandMemorySystem.DeliverCarriedSoulFragments(Main.LocalPlayer) > 0) {
++				if (WastelandMemorySystem.TryDeliver(player, 2)) {
+ 					WastelandStorySystem.RestoreSecondMemory();
+@@ -289,25 +422,8 @@
+ 
+-			if (WastelandStorySystem.secondMemoryRestored) {
+-				return Main.rand.NextBool()
+-					? Language.GetTextValue(DialogueKey + "MemoryRecovered2")
+-					: Language.GetTextValue(DialogueKey + "MemoryUnstable");
+-			}
+-
+-			if (WastelandStorySystem.firstMemoryRestored) {
+-				// 恢复第一段记忆之后、拆掉归档者之前
+-				return Main.rand.NextBool()
+-					? Language.GetTextValue(DialogueKey + "MemoryRecovered")
+-					: Language.GetTextValue(DialogueKey + "MemoryUnstable");
+-			}
+-
+-			if (WastelandStorySystem.scavengerDefeated) {
+-				// 击败清道夫后触发第一段记忆恢复：
+-				// 揭示她是「守望者计划」原型机，清道夫是量产型执行单元，量产型代码被故意阉割。
+-				// TODO(开发优先级 4)：改由壁炉内的旧时代数据终端触发，此处保留为当前可玩路径。
++			if (WastelandStorySystem.scavengerDefeated && WastelandStorySystem.dataTerminalRead && !WastelandStorySystem.firstMemoryRestored) {
++				WastelandMemorySystem.TryDeliver(player, 1);
+ 				WastelandStorySystem.RestoreFirstMemory();
+-
+-				WastelandPlayer modPlayer = Main.LocalPlayer.GetModPlayer<WastelandPlayer>();
++				WastelandPlayer modPlayer = player.GetModPlayer<WastelandPlayer>();
+ 				modPlayer.heardFirstMemory = true;
+ 				modPlayer.knowsWatchmanProtocol = true;
+-
+ 				return Language.GetTextValue(DialogueKey + "MemoryFirst");
+@@ -315,3 +431,6 @@
+ 
+-			// 前期：她的记忆还是一片空白
++			if (WastelandStorySystem.scavengerDefeated && !WastelandStorySystem.dataTerminalRead) {
++				return Language.GetTextValue(DialogueKey + "StoryFireplace");
++			}
++
+ 			return Language.GetTextValue(DialogueKey + "MemoryBlank");
+@@ -337,3 +456,3 @@
+ 			// 占位：沿用原版紫水晶弹，后续替换为智械专属弹幕
+-			projType = ProjectileID.AmethystBolt;
++			projType = ModContent.ProjectileType<Content.Projectiles.CompanionSpark>();
+ 			attackDelay = 20;
+====================================================================================================
+FILE WastelandSoul\Content\Projectiles\Archivist\ArchivistIndexBeam.cs   (E=192 lines, D=199 lines)
+--- E
++++ D
+@@ -94,2 +94,9 @@
+ 				EmitBeamDust(origin, angle);
++				bool charging = Projectile.localAI[0] < ArchivistNpc.BeamWindup;
++
++				if (!charging && (int)Projectile.localAI[0] % 4 == 0) {
++					Vector2 direction = angle.ToRotationVector2();
++					Common.Effects.WastelandFxSystem.Bolt(origin, origin + direction * MaxLength, new Color(190, 220, 255));
++					Common.Effects.WastelandFxSystem.Glow(origin, new Color(210, 230, 255), 1.4f, 6);
++				}
+ 			}
+====================================================================================================
+FILE WastelandSoul\Content\Subworlds\FireplaceStructure.cs   (E=321 lines, D=348 lines)
+--- E
++++ D
+@@ -3,3 +3,5 @@
+ using Terraria.IO;
++using Terraria.ModLoader;
+ using Terraria.WorldBuilding;
++using WastelandSoul.Content.Tiles;
+ 
+@@ -80,2 +82,3 @@
+ 			Decorate();
++			PlaceStoryTiles();
+ 
+@@ -208,2 +211,26 @@
+ 			FillBackWall(left - 3, y - 8, right + 3, y - 1, WallID.ObsidianBrick);
++		}
++
++		/// <summary>终端和返回门。底部中心对准空气格，家具才会站在台子或地面上。</summary>
++		private static void PlaceStoryTiles()
++		{
++			int terminalBottom = TerminalY - 3;
++
++			for (int dx = -1; dx <= 1; dx++) {
++				for (int dy = 0; dy <= 2; dy++) {
++					ClearTile(353 + dx, terminalBottom - dy);
++				}
++			}
++
++			WorldGen.PlaceTile(353, terminalBottom, ModContent.TileType<FireplaceTerminal>(), mute: true, forced: true);
++
++			int exitBottom = HallBottom;
++
++			for (int dx = -1; dx <= 1; dx++) {
++				for (int dy = 0; dy <= 2; dy++) {
++					ClearTile(HallLeft + 12 + dx, exitBottom - dy);
++				}
++			}
++
++			WorldGen.PlaceTile(HallLeft + 12, exitBottom, ModContent.TileType<FireplaceExit>(), mute: true, forced: true);
+ 		}
+====================================================================================================
+FILE WastelandSoul\WastelandSoul.cs   (E=34 lines, D=42 lines)
+--- E
++++ D
+@@ -1 +1,2 @@
++using System.IO;
+ using Terraria.ModLoader;
+@@ -31,2 +32,9 @@
+ 			Content.NPCs.Bosses.Scavenger.ScavengerContext.Clear();
++			Content.NPCs.Bosses.AshHeart.AshHeartContext.Clear();
++			Content.NPCs.Bosses.FireplaceGuardian.FireplaceGuardianContext.Clear();
++		}
++
++		public override void HandlePacket(BinaryReader reader, int whoAmI)
++		{
++			Common.Systems.WastelandStorySystem.ReceivePacket(reader, whoAmI);
+ 		}
+====================================================================================================
+FILE tools\apply_art.py   (E=471 lines, D=471 lines)
+--- E
++++ D
+@@ -210,3 +210,3 @@
+ 
+-def tilt_frame(base, dy, split=22):
++def tilt_frame(base, dy, split=26):
+     """把头部区域整体上下移动 dy 像素 —— 做出「低头 / 抬头」。
+====================================================================================================
+FILE tools\check_assets.py   (E=176 lines, D=178 lines)
+--- E
++++ D
+@@ -12,3 +12,5 @@
+ 
+-MOD_ROOT = r"E:\开发\WastelandSoul"
++_TOOLS = os.path.dirname(os.path.abspath(__file__))
++_ROOT = os.path.dirname(_TOOLS)
++MOD_ROOT = os.path.join(_ROOT, "WastelandSoul") if os.path.isdir(os.path.join(_ROOT, "WastelandSoul")) else r"E:\开发\WastelandSoul"
+ 
+====================================================================================================
+FILE tools\check_localization.py   (E=277 lines, D=280 lines)
+--- E
++++ D
+@@ -16,3 +16,5 @@
+ 
+-MOD_ROOT = r"E:\开发\WastelandSoul"
++_TOOLS = os.path.dirname(os.path.abspath(__file__))
++_ROOT = os.path.dirname(_TOOLS)
++MOD_ROOT = os.path.join(_ROOT, "WastelandSoul") if os.path.isdir(os.path.join(_ROOT, "WastelandSoul")) else r"E:\开发\WastelandSoul"
+ LOC_DIR = os.path.join(MOD_ROOT, "Localization")
+@@ -21,3 +23,4 @@
+ # 所以引号规则检查必须同时覆盖两处。
+-PATCH_LOC_DIR = r"E:\开发\WastelandSoulCN\Localization"
++_PATCH = os.path.join(_ROOT, "WastelandSoulCN", "Localization")
++PATCH_LOC_DIR = _PATCH if os.path.isdir(_PATCH) else r"E:\开发\WastelandSoulCN\Localization"
+ CHECK_DIRS = [LOC_DIR, PATCH_LOC_DIR]
+====================================================================================================
+FILE tools\gen_armor_equip.py   (E=255 lines, D=249 lines)
+--- E
++++ D
+@@ -41,8 +41,7 @@
+ 
+-# 放置框（左, 上, 右, 下）——**必须首尾相接**：
+-# 头 8..20、身 20..36、腿 35..53，相邻部位重叠 1 像素，穿起来不会露出身体。
++# 放置框（左, 上, 右, 下）——沿用旧占位图的锚点
+ BOXES = {
+-    "Head": (13, 8, 27, 20),
+-    "Body": (11, 20, 29, 36),
+-    "Legs": (13, 35, 27, 53),
++    "Head": (11, 2, 30, 21),
++    "Body": (9, 19, 32, 35),
++    "Legs": (12, 34, 29, 54),
+ }
+@@ -59,6 +58,3 @@
+ def palette_from_icon(icon):
+-    """从 AI 图标里取 4 个用途色：描边(最暗) / 主色(中间调里最常见的) / 亮色(最亮) / 点缀色(最艳)。
+-
+-    主色特意只在**中间亮度**里挑：不然法师那套会被图标上的金色描边带偏，整套变橙。
+-    """
++    """从 AI 图标里取 4 个用途色：描边(最暗) / 主色(最常见) / 亮色(最亮) / 点缀色(最艳)。"""
+     icon = icon.convert("RGBA")
+@@ -70,2 +66,4 @@
+ 
++    opaque.sort(key=lambda item: -item[0])
++
+     def luma(color):
+@@ -77,6 +75,3 @@
+ 
+-    mid = [item for item in opaque if 55 <= luma(item[1]) <= 190] or opaque
+-    mid.sort(key=lambda item: -item[0])
+-
+-    main = mid[0][1]
++    main = opaque[0][1]
+     dark = min(opaque, key=lambda item: luma(item[1]))[1]
+@@ -84,3 +79,5 @@
+     accent = max(opaque, key=lambda item: saturation(item[1]) * (1.0 + item[0] / 500.0))[1]
+-    outline = tuple(max(0, int(channel * 0.5)) for channel in dark[:3]) + (255,)
++
++    # 描边用最暗色再压暗一点，保证在游戏里有清晰轮廓
++    outline = tuple(max(0, int(channel * 0.55)) for channel in dark[:3]) + (255,)
+ 
+@@ -90,33 +87,29 @@
+ def draw_head(d, kind, palette):
+-    """小头盔：14x12，坐在肩上（底边和胸甲重叠 1px）。"""
++    """小头盔：14x10 左右，压在头部，按职业给不同轮廓。"""
+     outline, main, light, accent = palette
+     left, top, right, bottom = BOXES["Head"]
++    box = (left + 2, top + 4, right - 2, top + 14)
+ 
+     if kind == "Hood":
+-        # 尖顶兜帽：脸部压暗
+-        d.polygon([(left + 6, top - 4), (right - 6, top - 4), (right, bottom), (left, bottom)],
++        d.polygon([(box[0] + 3, box[1] - 4), (box[2] - 3, box[1] - 4), (box[2], box[3]), (box[0], box[3])],
+                   fill=main, outline=outline)
+-        d.rectangle((left + 3, top + 4, right - 3, bottom - 1), fill=outline)
+-        d.line((left + 5, top - 2, right - 6, top - 2), fill=light)
++        d.rectangle((box[0] + 2, box[3] - 4, box[2] - 2, box[3]), fill=outline)
++        d.line((box[0] + 1, box[1] - 1, box[2] - 4, box[1] - 1), fill=light)
+     elif kind == "Visor":
+-        # 护目镜：一条亮色横带 + 两个深色镜片
+-        d.rounded_rectangle((left, top + 1, right, bottom), radius=2, fill=main, outline=outline)
+-        d.rectangle((left + 1, top + 4, right - 1, top + 6), fill=accent)
+-        d.point((left + 3, top + 5), fill=outline)
+-        d.point((right - 4, top + 5), fill=outline)
+-        d.line((left + 3, top + 2, right - 4, top + 2), fill=light)
++        d.rounded_rectangle(box, radius=3, fill=main, outline=outline)
++        d.rectangle((box[0], box[3] - 5, box[2], box[3] - 3), fill=accent)
++        d.line((box[0] + 2, box[1] + 1, box[2] - 3, box[1] + 1), fill=light)
+     elif kind == "Cowl":
+-        # 圆头巾：正中一颗点缀
+-        d.rounded_rectangle((left, top + 2, right, bottom), radius=4, fill=main, outline=outline)
+-        d.point((left + 6, top + 6), fill=accent)
+-        d.line((left + 3, top + 3, right - 4, top + 3), fill=light)
++        d.rounded_rectangle(box, radius=4, fill=main, outline=outline)
++        d.ellipse((box[0] + 5, box[1] + 2, box[0] + 9, box[1] + 6), fill=accent)
++        d.line((box[0] + 2, box[1] + 1, box[2] - 3, box[1] + 1), fill=light)
+     elif kind == "Mask":
+-        # 面罩：只裹下半张脸（眼睛留出来）
+-        d.rectangle((left + 1, top + 6, right - 1, bottom - 1), fill=main, outline=outline)
+-        d.line((left + 2, top + 6, right - 3, top + 6), fill=light)
+-        d.rectangle((left + 3, top + 8, right - 4, top + 9), fill=outline)
+-    else:  # Helm：全罩盔 + 面部竖缝
+-        d.rounded_rectangle((left, top + 1, right, bottom), radius=2, fill=main, outline=outline)
+-        d.rectangle((left + 6, top + 3, right - 6, bottom - 1), fill=outline)
+-        d.line((left + 2, top + 2, right - 3, top + 2), fill=light)
++        d.rectangle(box, fill=main, outline=outline)
++        d.rectangle((box[0], box[1] + 2, box[2], box[3] - 2), fill=outline)
++        d.line((box[0] + 1, box[1], box[2] - 2, box[1]), fill=light)
++    else:  # Helm
++        d.rounded_rectangle(box, radius=3, fill=main, outline=outline)
++        d.rectangle((box[0] + 5, box[1] + 4, box[0] + 6, box[3] - 3), fill=outline)
++        d.rectangle((box[2] - 6, box[1] + 4, box[2] - 5, box[3] - 3), fill=outline)
++        d.line((box[0] + 2, box[1] + 1, box[2] - 3, box[1] + 1), fill=light)
+ 
+@@ -124,21 +117,22 @@
+ def draw_body(d, kind, palette):
+-    """胸甲：18x16 的躯干 + 两个小肩甲，收窄一点，比"整块大方块"贴原版。"""
++    """胸甲：收窄的躯干 + 两个小肩甲，比"整块大方块"贴近原版。"""
+     outline, main, light, accent = palette
+     left, top, right, bottom = BOXES["Body"]
+-    torso = (left + 2, top, right - 2, bottom)
++    torso = (left + 3, top + 2, right - 3, bottom - 1)
+ 
+     if kind in ("Robe", "Tunic"):
+-        d.polygon([(torso[0] + 1, torso[1]), (torso[2] - 1, torso[1]),
+-                   (torso[2], torso[3]), (torso[0], torso[3])], fill=main, outline=outline)
+-        d.line((torso[0] + 2, torso[1] + 2, torso[2] - 3, torso[1] + 2), fill=light)
+-        d.line((torso[0] + 4, torso[1] + 3, torso[0] + 4, torso[3] - 1), fill=accent)
++        d.polygon([(torso[0] + 2, torso[1]), (torso[2] - 2, torso[1]),
++                   (torso[2], torso[3] + 2), (torso[0], torso[3] + 2)], fill=main, outline=outline)
++        d.line((torso[0] + 3, torso[1] + 2, torso[2] - 3, torso[1] + 2), fill=light)
++        d.line((torso[0] + 5, torso[1] + 1, torso[0] + 5, torso[3]), fill=accent)
+     else:
+         d.rounded_rectangle(torso, radius=2, fill=main, outline=outline)
+-        d.line((torso[0] + 1, torso[1] + 2, torso[2] - 2, torso[1] + 2), fill=light)
+-        d.rectangle((torso[0] + 4, torso[1] + 5, torso[0] + 5, torso[3] - 3), fill=accent)
+-        d.rectangle((torso[0], torso[3] - 3, torso[2], torso[3] - 2), fill=outline)   # 腰带
+-
+-    # 肩甲（和躯干连成一体，不悬空）
+-    d.rectangle((left, top + 1, left + 2, top + 6), fill=main, outline=outline)
+-    d.rectangle((right - 2, top + 1, right, top + 6), fill=main, outline=outline)
++        d.line((torso[0] + 1, torso[1] + 1, torso[2] - 2, torso[1] + 1), fill=light)
++        d.rectangle((torso[0] + 4, torso[1] + 4, torso[0] + 5, torso[3] - 2), fill=accent)
++
++    # 肩甲
++    d.rounded_rectangle((torso[0] - 2, torso[1], torso[0] + 1, torso[1] + 5), radius=1,
++                        fill=main, outline=outline)
++    d.rounded_rectangle((torso[2] - 1, torso[1], torso[2] + 2, torso[1] + 5), radius=1,
++                        fill=main, outline=outline)
+ 
+@@ -146,13 +140,13 @@
+ def draw_legs(d, palette):
+-    """护腿：**《我的世界》那种两条分开的竖直裤管**，上端接住胸甲，膝盖一道亮色带。"""
++    """护腿：**《我的世界》那种两条分开的竖直裤管**，中间留缝，膝盖一条亮色带。"""
+     outline, main, light, accent = palette
+     left, top, right, bottom = BOXES["Legs"]
++    gap = 2
+     mid = (left + right) // 2
+-    legs = ((left, mid - 2), (mid + 2, right))
++    legs = ((left + 1, mid - gap), (mid + gap, right - 1))
+ 
+     for x0, x1 in legs:
+-        d.rectangle((x0, top, x1, bottom), fill=main, outline=outline)
+-        d.line((x0 + 1, top + 1, x0 + 1, bottom - 1), fill=light)          # 外侧高光
+-        d.rectangle((x0 + 1, top + 6, x1 - 1, top + 7), fill=accent)       # 膝盖带
+-        d.rectangle((x0 + 1, bottom - 3, x1 - 1, bottom - 1), fill=outline)  # 靴口
++        d.rectangle((x0, top + 2, x1, bottom), fill=main, outline=outline)
++        d.line((x0 + 1, top + 3, x0 + 1, bottom - 1), fill=light)          # 外侧高光
++        d.rectangle((x0, top + 6, x1, top + 7), fill=accent)               # 膝盖带
+ 
+====================================================================================================
+FILE tools\sync_cn_translation.py   (E=692 lines, D=853 lines)
+--- E
++++ D
+@@ -22,5 +22,12 @@
+ 
+-MAIN_LOC = r"E:\开发\WastelandSoul\Localization"
+-CN_LOC = r"E:\开发\WastelandSoulCN\Localization"
+-CN_BACKUP = r"E:\开发\.backup\WastelandSoulCN_zh-Hans.hjson"
++_TOOLS = os.path.dirname(os.path.abspath(__file__))
++_ROOT = os.path.dirname(_TOOLS)
++if os.path.isdir(os.path.join(_ROOT, "WastelandSoul")):
++    MAIN_LOC = os.path.join(_ROOT, "WastelandSoul", "Localization")
++    CN_LOC = os.path.join(_ROOT, "WastelandSoulCN", "Localization")
++    CN_BACKUP = os.path.join(_ROOT, ".backup", "WastelandSoulCN_zh-Hans.hjson")
++else:
++    MAIN_LOC = r"E:\开发\WastelandSoul\Localization"
++    CN_LOC = r"E:\开发\WastelandSoulCN\Localization"
++    CN_BACKUP = r"E:\开发\.backup\WastelandSoulCN_zh-Hans.hjson"
+ 
+@@ -74,5 +81,5 @@
+     "SoulFragmentThird.DisplayName": "灵魂碎片·其三",
+-    "SoulFragmentThird.Tooltip": "归属者尚未确认。它的主人还没被找到。",
++    "SoulFragmentThird.Tooltip": "一簇还记得焚烧指令的余烬。那道指令是智械人写的。",
+     "SoulFragmentFourth.DisplayName": "灵魂碎片·其四",
+-    "SoulFragmentFourth.Tooltip": "归属者尚未确认。它的主人还没被找到。",
++    "SoulFragmentFourth.Tooltip": "重置装置的最后一把锁。里面有她真正的名字。",
+ 
+@@ -127,3 +134,3 @@
+     "AshHeartAlloyBar.DisplayName": "灰烬之心合金锭",
+-    "AshHeartAlloyBar.Tooltip": "灰烬碎片与旧时代合金熔合而成",
++    "AshHeartAlloyBar.Tooltip": "灰烬碎片与旧时代合金熔合而成\n在精金熔炉熔炼",
+     "FireplaceFragment.DisplayName": "壁炉残骸",
+@@ -131,3 +138,3 @@
+     "FireplaceAlloyBar.DisplayName": "壁炉合金锭",
+-    "FireplaceAlloyBar.Tooltip": "曾包覆壁炉守卫的冷白合金",
++    "FireplaceAlloyBar.Tooltip": "曾包覆壁炉守卫的冷白合金\n在精金熔炉熔炼",
+ 
+@@ -135,9 +142,9 @@
+     "ScavengerSignalSensor.DisplayName": "清道夫信号传感器",
+-    "ScavengerSignalSensor.Tooltip": "向废土广播一段伪造的执行指令，把清道夫引到你身边\n使用后不消耗，但同一时间只允许存在一只清道夫",
++    "ScavengerSignalSensor.Tooltip": "向废土广播一段伪造的执行指令，把清道夫引到你身边\n在铁砧用 5 个精钢制作\n使用后不消耗，但同一时间只允许存在一只清道夫",
+     "ArchivistEcho.DisplayName": "归档者残响",
+-    "ArchivistEcho.Tooltip": "播放一段伪造的旧日志残片\n使用后不消耗，但同一时间只允许存在一只归档者",
++    "ArchivistEcho.Tooltip": "播放一段伪造的旧日志残片\n在恶魔/猩红祭坛用 8 个归档者残响碎片 + 5 根骨头 + 3 个陨石锭制作\n使用后不消耗，但同一时间只允许存在一只归档者",
+     "AshHeartEmber.DisplayName": "灰烬之心余烬",
+-    "AshHeartEmber.Tooltip": "往一簇自旧时代战争起就在阴燃的余烬上吹一口气\n使用后不消耗，但同一时间只允许存在一颗灰烬之心",
++    "AshHeartEmber.Tooltip": "往一簇自旧时代战争起就在阴燃的余烬上吹一口气\n在恶魔/猩红祭坛用 10 个灰烬之心碎片 + 2 个灵质 + 5 个狱石锭制作\n使用后不消耗，但同一时间只允许存在一颗灰烬之心",
+     "FireplaceKey.DisplayName": "壁炉通行密钥",
+-    "FireplaceKey.Tooltip": "把最后一道防线自己的识别码还给它\n使用后不消耗，但同一时间只允许存在一名壁炉守卫",
++    "FireplaceKey.Tooltip": "把最后一道防线自己的识别码还给它\n在恶魔/猩红祭坛用 12 个壁炉残骸 + 4 个壁炉合金锭 + 6 个天界符制作\n使用后不消耗，但同一时间只允许存在一名壁炉守卫",
+     "CompanionCore.DisplayName": "智械核心",
+@@ -147,11 +154,11 @@
+     "ArchivistWarriorWeapon.DisplayName": "归档者骨刃",
+-    "ArchivistWarriorWeapon.Tooltip": "归档的骨白与冷蓝光——守望者审计日志的具现\n挥砍时切开弧线内的一切",
++    "ArchivistWarriorWeapon.Tooltip": "归档的骨白与冷蓝光——守望者审计日志的具现\n挥砍时切开弧线内的一切\n在铁砧制作",
+     "ArchivistMageWeapon.DisplayName": "归档者索引法典",
+-    "ArchivistMageWeapon.Tooltip": "归档的骨白与冷蓝光——守望者审计日志的具现\n消耗魔力",
++    "ArchivistMageWeapon.Tooltip": "归档的骨白与冷蓝光——守望者审计日志的具现\n消耗魔力\n在铁砧制作",
+     "ArchivistRangerWeapon.DisplayName": "归档者骨制散射枪",
+-    "ArchivistRangerWeapon.Tooltip": "归档的骨白与冷蓝光——守望者审计日志的具现\n消耗子弹",
++    "ArchivistRangerWeapon.Tooltip": "归档的骨白与冷蓝光——守望者审计日志的具现\n消耗子弹\n在铁砧制作",
+     "ArchivistSummonerWeapon.DisplayName": "归档者使魔法杖",
+-    "ArchivistSummonerWeapon.Tooltip": "归档的骨白与冷蓝光——守望者审计日志的具现\n召唤一个仆从",
++    "ArchivistSummonerWeapon.Tooltip": "归档的骨白与冷蓝光——守望者审计日志的具现\n召唤一个仆从\n在铁砧制作",
+     "ArchivistRogueWeapon.DisplayName": "归档者骨镖",
+-    "ArchivistRogueWeapon.Tooltip": "归档的骨白与冷蓝光——守望者审计日志的具现\n可投掷 - 最多堆叠 999",
++    "ArchivistRogueWeapon.Tooltip": "归档的骨白与冷蓝光——守望者审计日志的具现\n可投掷 - 最多堆叠 999\n在铁砧制作",
+     "ArchivistWarriorWeaponEX.DisplayName": "归档者骨刃 MK-II",
+@@ -169,11 +176,11 @@
+     "ScavengerWarriorWeapon.DisplayName": "清道夫废料砍刀",
+-    "ScavengerWarriorWeapon.Tooltip": "从清道夫残骸里拆出来的——粗糙，但能用\n挥砍时切开弧线内的一切",
++    "ScavengerWarriorWeapon.Tooltip": "从清道夫残骸里拆出来的——粗糙，但能用\n挥砍时切开弧线内的一切\n在铁砧制作",
+     "ScavengerMageWeapon.DisplayName": "清道夫电火花棒",
+-    "ScavengerMageWeapon.Tooltip": "从清道夫残骸里拆出来的——粗糙，但能用\n消耗魔力",
++    "ScavengerMageWeapon.Tooltip": "从清道夫残骸里拆出来的——粗糙，但能用\n消耗魔力\n在铁砧制作",
+     "ScavengerRangerWeapon.DisplayName": "清道夫废料手枪",
+-    "ScavengerRangerWeapon.Tooltip": "从清道夫残骸里拆出来的——粗糙，但能用\n消耗子弹",
++    "ScavengerRangerWeapon.Tooltip": "从清道夫残骸里拆出来的——粗糙，但能用\n消耗子弹\n在铁砧制作",
+     "ScavengerSummonerWeapon.DisplayName": "清道夫无人机信标",
+-    "ScavengerSummonerWeapon.Tooltip": "从清道夫残骸里拆出来的——粗糙，但能用\n召唤一个仆从",
++    "ScavengerSummonerWeapon.Tooltip": "从清道夫残骸里拆出来的——粗糙，但能用\n召唤一个仆从\n在铁砧制作",
+     "ScavengerRogueWeapon.DisplayName": "清道夫废料飞刀",
+-    "ScavengerRogueWeapon.Tooltip": "从清道夫残骸里拆出来的——粗糙，但能用\n可投掷 - 最多堆叠 999",
++    "ScavengerRogueWeapon.Tooltip": "从清道夫残骸里拆出来的——粗糙，但能用\n可投掷 - 最多堆叠 999\n在铁砧制作",
+     "ScavengerWarriorWeaponEX.DisplayName": "清道夫废料砍刀 MK-II",
+@@ -191,11 +198,11 @@
+     "AshHeartWarriorWeapon.DisplayName": "灰烬之心大剑",
+-    "AshHeartWarriorWeapon.Tooltip": "以灰烬之心的余烬锻成——它还在阴燃\n挥砍时切开弧线内的一切",
++    "AshHeartWarriorWeapon.Tooltip": "以灰烬之心的余烬锻成——它还在阴燃\n挥砍时切开弧线内的一切\n在秘银砧制作",
+     "AshHeartMageWeapon.DisplayName": "灰烬之心核心法杖",
+-    "AshHeartMageWeapon.Tooltip": "以灰烬之心的余烬锻成——它还在阴燃\n消耗魔力",
++    "AshHeartMageWeapon.Tooltip": "以灰烬之心的余烬锻成——它还在阴燃\n消耗魔力\n在秘银砧制作",
+     "AshHeartRangerWeapon.DisplayName": "灰烬之心余烬步枪",
+-    "AshHeartRangerWeapon.Tooltip": "以灰烬之心的余烬锻成——它还在阴燃\n消耗子弹",
++    "AshHeartRangerWeapon.Tooltip": "以灰烬之心的余烬锻成——它还在阴燃\n消耗子弹\n在秘银砧制作",
+     "AshHeartSummonerWeapon.DisplayName": "灰烬之心燃烬法杖",
+-    "AshHeartSummonerWeapon.Tooltip": "以灰烬之心的余烬锻成——它还在阴燃\n召唤一个仆从",
++    "AshHeartSummonerWeapon.Tooltip": "以灰烬之心的余烬锻成——它还在阴燃\n召唤一个仆从\n在秘银砧制作",
+     "AshHeartRogueWeapon.DisplayName": "灰烬之心裂片",
+-    "AshHeartRogueWeapon.Tooltip": "以灰烬之心的余烬锻成——它还在阴燃\n可投掷 - 最多堆叠 999",
++    "AshHeartRogueWeapon.Tooltip": "以灰烬之心的余烬锻成——它还在阴燃\n可投掷 - 最多堆叠 999\n在秘银砧制作",
+     "AshHeartWarriorWeaponEx.DisplayName": "灰烬之心大剑 MK-II",
+@@ -213,11 +220,11 @@
+     "FireplaceWarriorWeapon.DisplayName": "壁炉守卫大剑",
+-    "FireplaceWarriorWeapon.Tooltip": "壁炉级合金。旧世界防线的最后一环\n挥砍时切开弧线内的一切",
++    "FireplaceWarriorWeapon.Tooltip": "壁炉级合金。旧世界防线的最后一环\n挥砍时切开弧线内的一切\n在秘银砧制作",
+     "FireplaceMageWeapon.DisplayName": "壁炉守卫权杖",
+-    "FireplaceMageWeapon.Tooltip": "壁炉级合金。旧世界防线的最后一环\n消耗魔力",
++    "FireplaceMageWeapon.Tooltip": "壁炉级合金。旧世界防线的最后一环\n消耗魔力\n在秘银砧制作",
+     "FireplaceRangerWeapon.DisplayName": "壁炉守卫步枪",
+-    "FireplaceRangerWeapon.Tooltip": "壁炉级合金。旧世界防线的最后一环\n消耗子弹",
++    "FireplaceRangerWeapon.Tooltip": "壁炉级合金。旧世界防线的最后一环\n消耗子弹\n在秘银砧制作",
+     "FireplaceSummonerWeapon.DisplayName": "壁炉守卫信标",
+-    "FireplaceSummonerWeapon.Tooltip": "壁炉级合金。旧世界防线的最后一环\n召唤一个仆从",
++    "FireplaceSummonerWeapon.Tooltip": "壁炉级合金。旧世界防线的最后一环\n召唤一个仆从\n在秘银砧制作",
+     "FireplaceRogueWeapon.DisplayName": "壁炉守卫长刃",
+-    "FireplaceRogueWeapon.Tooltip": "壁炉级合金。旧世界防线的最后一环\n可投掷 - 最多堆叠 999",
++    "FireplaceRogueWeapon.Tooltip": "壁炉级合金。旧世界防线的最后一环\n可投掷 - 最多堆叠 999\n在秘银砧制作",
+     "FireplaceWarriorWeaponEx.DisplayName": "壁炉守卫大剑 MK-II",
+@@ -378,2 +385,156 @@
+     "MechanicalCompanion.Memory3": "第三段记忆：我认得灰烬之心的每一次脉动。那套战争程序是我写的。执行它的不是它——是我。",
++
++    "AshHeart.DisplayName": "灰烬之心",
++    "AshWisp.DisplayName": "灰烬残灵",
++    "FireplaceGuardian.DisplayName": "壁炉守卫",
++    "ScrapCrawler.DisplayName": "废料爬虫",
++    "IndexMoth.DisplayName": "索引蛾",
++    "AshStalker.DisplayName": "灰烬潜猎",
++    "HearthWarden.DisplayName": "炉卫",
++    "BossChecklist.AshHeart.SpawnInfo": "在恶魔或猩红祭坛合成「灰烬之心余烬」（灰烬之心碎片 ×10 + 灵质 ×2 + 狱石锭 ×5），世纪之花之后使用",
++    "BossChecklist.FireplaceGuardian.SpawnInfo": "在恶魔或猩红祭坛合成「壁炉通行密钥」（壁炉残骸 ×12 + 壁炉合金锭 ×4 + 天界碎片 ×6）。它等在壁炉里面",
++    "Chip.DisplayName": "芯片",
++    "Chip.Tooltip": "从废土机械里拆下来的冲压晶片。智械人拿这个换东西。",
++    "DawnSeal.DisplayName": "黎明封印",
++    "DawnSeal.Tooltip": "她答应带走重置。这个世界仍会走到尽头。下一个世界会记得她。",
++    "UnburnedName.DisplayName": "未燃之名",
++    "UnburnedName.Tooltip": "她拒绝再当一次武器。这具身体留下了它自己的名字。",
++    "ScavengerWarriorCharm.DisplayName": "清道夫的战士饰品",
++    "ScavengerWarriorCharm.Tooltip": "近战伤害和挥砍速度，从清扫单元上拆下来的。",
++    "ScavengerMageCharm.DisplayName": "清道夫的法师饰品",
++    "ScavengerMageCharm.Tooltip": "多一点魔力，施法也更省。",
++    "ScavengerRangerCharm.DisplayName": "清道夫的射手饰品",
++    "ScavengerRangerCharm.Tooltip": "远程伤害，并且有几率不消耗弹药。",
++    "ScavengerSummonerCharm.DisplayName": "清道夫的召唤饰品",
++    "ScavengerSummonerCharm.Tooltip": "额外一个仆从栏位。",
++    "ScavengerRogueCharm.DisplayName": "清道夫的盗贼饰品",
++    "ScavengerRogueCharm.Tooltip": "投掷伤害，脚步更轻。",
++    "ArchivistWarriorCharm.DisplayName": "归档者的战士饰品",
++    "ArchivistWarriorCharm.Tooltip": "近战伤害和暴击，已经编过目。",
++    "ArchivistMageCharm.DisplayName": "归档者的法师饰品",
++    "ArchivistMageCharm.Tooltip": "魔法伤害，法术更省魔力。",
++    "ArchivistRangerCharm.DisplayName": "归档者的射手饰品",
++    "ArchivistRangerCharm.Tooltip": "远程伤害，眼也更准。",
++    "ArchivistSummonerCharm.DisplayName": "归档者的召唤饰品",
++    "ArchivistSummonerCharm.Tooltip": "召唤伤害，归档之后又送了回来。",
++    "ArchivistRogueCharm.DisplayName": "归档者的盗贼饰品",
++    "ArchivistRogueCharm.Tooltip": "投掷伤害和暴击。",
++    "AshHeartWarriorCharm.DisplayName": "灰烬之心的战士饰品",
++    "AshHeartWarriorCharm.Tooltip": "近战伤害。身体一边烧，一边慢慢长好。",
++    "AshHeartMageCharm.DisplayName": "灰烬之心的法师饰品",
++    "AshHeartMageCharm.Tooltip": "魔法伤害，魔力恢复更快。",
++    "AshHeartRangerCharm.DisplayName": "灰烬之心的射手饰品",
++    "AshHeartRangerCharm.Tooltip": "远程伤害，弹药有时会留在枪里。",
++    "AshHeartSummonerCharm.DisplayName": "灰烬之心的召唤饰品",
++    "AshHeartSummonerCharm.Tooltip": "召唤伤害，再加一个仆从栏位。",
++    "AshHeartRogueCharm.DisplayName": "灰烬之心的盗贼饰品",
++    "AshHeartRogueCharm.Tooltip": "投掷伤害。命中时有几率点燃目标。",
++    "FireplaceWarriorCharm.DisplayName": "壁炉守卫的战士饰品",
++    "FireplaceWarriorCharm.Tooltip": "来自最后一把锁的近战伤害和挥砍速度。",
++    "FireplaceMageCharm.DisplayName": "壁炉守卫的法师饰品",
++    "FireplaceMageCharm.Tooltip": "魔法伤害，法术消耗明显更低。",
++    "FireplaceRangerCharm.DisplayName": "壁炉守卫的射手饰品",
++    "FireplaceRangerCharm.Tooltip": "远程伤害和暴击。",
++    "FireplaceSummonerCharm.DisplayName": "壁炉守卫的召唤饰品",
++    "FireplaceSummonerCharm.Tooltip": "召唤伤害，再加一个仆从栏位。",
++    "FireplaceRogueCharm.DisplayName": "壁炉守卫的盗贼饰品",
++    "FireplaceRogueCharm.Tooltip": "投掷伤害，步伐更快。",
++    "ScavengerCWarrior.DisplayName": "废料砍刀",
++    "ScavengerCWarrior.Tooltip": "爬虫到死还攥着它。挥出去会甩出一片废料。",
++    "ScavengerCMage.DisplayName": "废料火花",
++    "ScavengerCMage.Tooltip": "一截还在放电的线圈。",
++    "ScavengerCRanger.DisplayName": "废料手枪",
++    "ScavengerCRanger.Tooltip": "难看，很响，弹道倒是直的。",
++    "ScavengerCSummoner.DisplayName": "废料无人机杖",
++    "ScavengerCSummoner.Tooltip": "召一台小小的回收无人机。它不负责维修。",
++    "ScavengerCRogue.DisplayName": "废料裂片",
++    "ScavengerCRogue.Tooltip": "一块旋转的废金属，扔出去就不用捡。",
++    "ArchivistCWarrior.DisplayName": "索引刃",
++    "ArchivistCWarrior.Tooltip": "从蛾翅上撕下来的一小段骨白弧光。",
++    "ArchivistCMage.DisplayName": "散页",
++    "ArchivistCMage.Tooltip": "会弹开、还会把打中的东西弄糊涂的纸页。",
++    "ArchivistCRanger.DisplayName": "骨片枪",
++    "ArchivistCRanger.Tooltip": "发射细细的档案碎片。",
++    "ArchivistCSummoner.DisplayName": "使魔残杖",
++    "ArchivistCSummoner.Tooltip": "一根裂开的杖，还记得一只使魔。",
++    "ArchivistCRogue.DisplayName": "归骨",
++    "ArchivistCRogue.Tooltip": "飞出去，再飞回来。",
++    "AshHeartCWarrior.DisplayName": "余烬刃",
++    "AshHeartCWarrior.Tooltip": "潜猎者的一根肋骨，还是烫的，被当成了剑。",
++    "AshHeartCMage.DisplayName": "心炭",
++    "AshHeartCMage.Tooltip": "扔出一颗下坠的炭，砸中就烧。",
++    "AshHeartCRanger.DisplayName": "灰弹",
++    "AshHeartCRanger.Tooltip": "用余烬代替了子弹该有的礼貌。",
++    "AshHeartCSummoner.DisplayName": "余烬残壳杖",
++    "AshHeartCSummoner.Tooltip": "召一簇曾经属于那颗心的余烬。",
++    "AshHeartCRogue.DisplayName": "灰烬裂片",
++    "AshHeartCRogue.Tooltip": "离手之后还在烧的投掷碎片。",
++    "FireplaceCWarrior.DisplayName": "炉心刃",
++    "FireplaceCWarrior.Tooltip": "冷金属，刃口是炉火。炉卫掉的。",
++    "FireplaceCMage.DisplayName": "冷灯",
++    "FireplaceCMage.Tooltip": "用壁炉的备用零件打出的一发缓慢亮弹。",
++    "FireplaceCRanger.DisplayName": "钉枪",
++    "FireplaceCRanger.Tooltip": "发射守卫用来钉住重置装置的钉子。",
++    "FireplaceCSummoner.DisplayName": "哨焰",
++    "FireplaceCSummoner.Tooltip": "召一只还认得壁炉的浮游哨。",
++    "FireplaceCRogue.DisplayName": "归刃",
++    "FireplaceCRogue.Tooltip": "一把冷剃刀，飞出去，再回家。",
++    "AshEmberOrb.DisplayName": "余烬团",
++    "AshPool.DisplayName": "灰池",
++    "AshCinder.DisplayName": "落灰",
++    "AshPulse.DisplayName": "坍缩脉冲",
++    "HearthBolt.DisplayName": "炉心螺栓",
++    "HearthRingShard.DisplayName": "冷光环",
++    "HearthWall.DisplayName": "炉墙",
++    "WastelandSpark.DisplayName": "火花",
++    "CompanionSpark.DisplayName": "核心火花",
++    "AshHeartPhaseTwo": "灰烬之心——燃烧开始自持。残灵正在喂这颗核。",
++    "AshHeartPhaseThree": "灰烬之心——坍缩。脉冲在把一切往里吸。",
++    "AshHeartDefeated": "心核裂开了。那道战争指令还是热的。",
++    "ThirdMemoryRestored": "智械人恢复了第三段记忆——焚烧程序是她写的，也是她执行的。",
++    "FireplaceGuardianPhaseTwo": "壁炉守卫——冷燃。环正在合拢。",
++    "FireplaceGuardianPhaseThree": "壁炉守卫——重置协议。墙正在压过来。",
++    "FireplaceGuardianDefeated": "最后一把锁开了。重置装置在等一个载体。",
++    "FourthMemoryRestored": "智械人恢复了第四段记忆。壁炉从来不是庇护所。",
++    "TrueName": "她想起了这具身体原来的名字。埃尔薇。",
++    "EndingVessel": "她会带走重置。这个世界仍走向终点。下一轮黎明会知道她。",
++    "EndingRefuse": "她不会再当武器。世界仍会结束，但不是死在她手上。",
++    "CodaVessel": "月亮领主倒下了。她带着的重置点着了。别的地方，第一个早晨开始了。",
++    "CodaRefuse": "月亮领主倒下了。星星照旧熄灭。她的名字没有。",
++    "EnteredFireplace": "空气变了。你在壁炉里面。",
++    "TerminalTalkToHer": "终端把一段碎掉的日志读给了你。拿回去给她。",
++    "GatePlaced": "你醒来的地方附近开了一扇暖门。壁炉在听。",
++    "FireplaceEnterFailed": "门在这里，可路没有打开。需要启用 Subworld Library。",
++    "Tiles.FireplaceGate.MapEntry": "壁炉门",
++    "Tiles.FireplaceTerminal.MapEntry": "数据终端",
++    "Tiles.FireplaceExit.MapEntry": "返回",
++    "Conditions.AfterScavenger": "击败清道夫之后",
++    "Conditions.AfterArchivist": "击败归档者之后",
++    "Conditions.AfterAshHeart": "击败灰烬之心之后",
++    "MechanicalCompanion.AfterAsh1": "我在这儿就能感觉到。地底下有东西还在烧，而且它知道我的序列号。",
++    "MechanicalCompanion.AfterAsh2": "别站进灰里。那不是残留。它还在执行一道命令。",
++    "MechanicalCompanion.AfterThird1": "焚烧程序是我写的。说出来并不会让它变小。",
++    "MechanicalCompanion.AfterThird2": "下一把锁不在外面。它就坐在壁炉里，等一个人把我做完。",
++    "MechanicalCompanion.AfterFourth1": "埃尔薇。那是核心进来之前，这具身体的名字。我想留下它。",
++    "MechanicalCompanion.AfterFourth2": "重置需要一个载体。如果我走进去，这个世界还是会结束——但下一个世界醒来时，里面会有一个人，而不是一份协议。",
++    "MechanicalCompanion.EndingVessel1": "我把黎明按住，直到这个世界走完。在那之前，留在我身边。",
++    "MechanicalCompanion.EndingVessel2": "别谢我。我不是在救这里。我是在让下一个世界不要空着出生。",
++    "MechanicalCompanion.EndingRefuse1": "我会看着它结束。我不会成为结束它的那只手。",
++    "MechanicalCompanion.EndingRefuse2": "零号是序列号。埃尔薇可以只是一个留下来的人。",
++    "MechanicalCompanion.ButtonTrade": "交易",
++    "MechanicalCompanion.ButtonVessel": "带走重置",
++    "MechanicalCompanion.ButtonRefuse": "拒绝",
++    "MechanicalCompanion.StoryHuntAsh": "下一份档案会烧。那是一颗从没灭过的心，在世界已经烂掉的地方。把它剩下的东西带给我。",
++    "MechanicalCompanion.StoryBringThird": "你打碎了那颗心。如果你找到还带着我笔迹的余烬，交给我。",
++    "MechanicalCompanion.StoryHuntGuardian": "最后一把锁在壁炉里面。它不是怪物。它是那扇门，在有人愿意当钥匙之前，它拒绝打开。",
++    "MechanicalCompanion.StoryBringFourth": "守卫倒了。最后一块碎片里有我的名字。我得自己读。",
++    "MechanicalCompanion.StoryChoice": "两条路。我成为重置的载体，或者我继续当埃尔薇，让世界自己结束，不再用我一次。两条路都会结束这里。",
++    "MechanicalCompanion.StoryEndingVessel": "我选了黎明。当这轮月亮的最后领主倒下，我带着的重置会在别的地方点着。",
++    "MechanicalCompanion.StoryEndingRefuse": "我选了名字。等到天空终于黑下去，那不会是因为我又签了一道命令。",
++    "MechanicalCompanion.MemoryThirdNeedFragment": "心碎了，可我不能只靠记忆去读一场火。把碎片带给我。",
++    "MechanicalCompanion.MemoryThird": "……读取成功。守望者焚烧协议，签署者是原型机。量产型杀掉我标记过的东西。灰烬之心就是我留下的标记，而执行那道命令的人是我。",
++    "MechanicalCompanion.MemoryFourthNeedFragment": "锁开了。这块碎片是我名字的唯一一份副本。拿过来。",
++    "MechanicalCompanion.MemoryFourth": "……读取成功。壁炉是一台重置装置。旧世界没打算活下去。它打算再开始一次，用原型机当载体。我现在穿着的这具身体，在核心进来之前有一个名字。埃尔薇。",
++    "MechanicalCompanion.ChoiceVessel": "那我来带。不是为了拯救这个世界。是为了让下一个世界醒来的时候，里面有人。",
++    "MechanicalCompanion.ChoiceRefuse": "那我留下。世界可以自己结束。我不会把那道命令再签一次。",
+ }
+====================================================================================================
+FILE tools\ws_pipeline.ps1   (E=394 lines, D=387 lines)
+--- E
++++ D
+@@ -160,10 +160,3 @@
+ RunChecker "$PSScriptRoot\check_assets.py"       'check_assets'
+-# SpriteBatch state audit: PostDrawTiles has NO active batch, so drawing there without
+-# Begin/End throws and tModLoader reports it as "Main engine crash" (it really crashed
+-# the game once - see check_batch_usage.py)
+-RunChecker "$PSScriptRoot\check_batch_usage.py"  'check_batch_usage'
+ RunChecker "$PSScriptRoot\check_localization.py" 'check_localization'
+-# item tooltips must not repeat crafting information (station/recipe) - the crafting
+-# UI already shows it; BossChecklist SpawnInfo is intentionally exempt
+-RunChecker "$PSScriptRoot\check_tooltip_no_crafting.py" 'check_tooltip_no_crafting'
+ RunChecker "$PSScriptRoot\check_cn_parity.py"    'check_cn_parity'

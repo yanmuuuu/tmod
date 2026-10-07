@@ -1,0 +1,8 @@
+displayName = 废土魂穿 汉化补丁
+author = 待定
+version = 0.1
+side = Both
+# 注意：不在这里引用主模组，改由主模组引用本补丁（否则会形成循环依赖）。
+# 这样启用主模组时会自动把它带上。
+buildIgnore = *.md, *.legacy, .vs\*, obj\*, bin\*
+description = 《废土魂穿》的简体中文语言包（详见 description.txt）
