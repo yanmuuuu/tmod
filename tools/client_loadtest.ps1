@@ -89,9 +89,12 @@ if (Test-Path $clientLog) {
 }
 
 # 3) boot the CLIENT (no -server) against the isolated save dir
+#    stderr 单独重定向：FNA/Steam 会往 stderr 写一堆噪音，留着会把本脚本的退出码带歪
+$stderrLog = Join-Path $TestDir 'client-stderr.log'
 $proc = Start-Process -FilePath 'dotnet' `
     -ArgumentList @("$TmlDir\tModLoader.dll", '-tmlsavedirectory', $TestDir) `
-    -WorkingDirectory $TmlDir -PassThru -NoNewWindow
+    -WorkingDirectory $TmlDir -PassThru -NoNewWindow `
+    -RedirectStandardError $stderrLog
 
 Write-Host ("  [..] client pid {0}, waiting for 'Mod Load Completed' (max {1}s)" -f $proc.Id, $TimeoutSeconds)
 
