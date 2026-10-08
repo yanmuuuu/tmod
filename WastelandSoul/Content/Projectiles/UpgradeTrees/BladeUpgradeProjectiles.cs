@@ -33,15 +33,18 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation += 0.42f * Projectile.direction;
 			Projectile.velocity *= 0.992f;
 
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Silver);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-				}
 				dust.scale = 0.8f;
 				dust.velocity *= 0.25f;
 			}
@@ -78,6 +81,12 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.scale = 1f + (60 - Projectile.timeLeft) * 0.012f;
 			Projectile.velocity.Y *= 0.90f;
 			Projectile.rotation = Projectile.velocity.ToRotation();
@@ -85,9 +94,6 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 			if (Main.rand.NextBool(2)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-				}
 				dust.scale = 0.95f;
 				dust.velocity *= 0.3f;
 			}
@@ -137,6 +143,12 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation += 0.5f * Projectile.direction;
 
 			NPC target = UpgradeTreeAim.NearestEnemy(Projectile.Center, 420f);
@@ -149,9 +161,6 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 				if (Main.rand.NextBool(5)) {
 					Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 					dust.noGravity = true;
-					if (!Main.dedServ) {
-						WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-					}
 					dust.scale = 0.7f;
 					dust.velocity *= 0.2f;
 				}

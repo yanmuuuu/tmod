@@ -33,15 +33,18 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 			Projectile.velocity.Y += 0.006f;
 
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Silver);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-				}
 				dust.scale = 0.6f;
 				dust.velocity *= 0.2f;
 			}
@@ -68,15 +71,18 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 			Projectile.velocity.Y += 0.004f;
 
 			if (Main.rand.NextBool(2)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-				}
 				dust.scale = 0.8f;
 				dust.velocity *= 0.25f;
 			}

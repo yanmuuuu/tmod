@@ -27,6 +27,12 @@ namespace WastelandSoul.Content.Projectiles.Wildlife
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.velocity.Y += 0.06f;
 			Projectile.rotation += 0.22f * Math.Sign(Projectile.velocity.X == 0f ? 1f : Projectile.velocity.X);
 
@@ -34,9 +40,6 @@ namespace WastelandSoul.Content.Projectiles.Wildlife
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.velocity *= 0.2f;
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(150, 200, 90), 0.4f, 8);
-				}
 				dust.scale = 0.75f;
 			}
 		}
@@ -73,6 +76,12 @@ namespace WastelandSoul.Content.Projectiles.Wildlife
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.velocity *= 0.975f;
 			Projectile.rotation += 0.13f;
 
@@ -85,9 +94,6 @@ namespace WastelandSoul.Content.Projectiles.Wildlife
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.velocity = -Projectile.velocity * 0.15f;
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(150, 200, 90), 0.4f, 8);
-				}
 				dust.scale = 0.9f;
 			}
 		}
@@ -121,6 +127,12 @@ namespace WastelandSoul.Content.Projectiles.Wildlife
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			// ---------- 轻微追踪 ----------
 			int closest = -1;
 			float best = HomingRange;
@@ -152,9 +164,6 @@ namespace WastelandSoul.Content.Projectiles.Wildlife
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.velocity *= 0.2f;
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(150, 200, 90), 0.4f, 8);
-				}
 				dust.scale = 0.8f;
 				dust.color = new Color(230, 150, 80);
 			}

@@ -30,6 +30,12 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation += 0.06f * (Projectile.velocity.X >= 0f ? 1f : -1f);
 
 			// 轻微上下摆动，让整面墙看起来像被翻动的档案
@@ -38,9 +44,6 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 			if (!Main.dedServ && Main.rand.NextBool(5)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Bone, 0f, 0f);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(176, 204, 255), 0.4f, 8);
-				}
 				dust.scale = 0.75f;
 				dust.velocity *= 0.4f;
 			}
@@ -55,9 +58,6 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 			for (int i = 0; i < 6; i++) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, Main.rand.NextBool(3) ? DustID.BlueTorch : DustID.Bone, 0f, 0f);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(176, 204, 255), 0.4f, 8);
-				}
 				dust.scale = 0.85f;
 			}
 		}

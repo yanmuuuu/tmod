@@ -31,6 +31,12 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			// 越飞越大（最多 1.6 倍），同时把纵向速度压平 —— 读起来像贴地推出去的
 			Projectile.scale = 1f + (45 - Projectile.timeLeft) * 0.014f;
 			Projectile.velocity.Y *= 0.90f;
@@ -38,9 +44,6 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 			if (Main.rand.NextBool(2)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
-				}
 				dust.scale = 0.9f;
 				dust.velocity *= 0.4f;
 			}
@@ -48,9 +51,6 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
-				}
 				dust.scale = 0.8f;
 			}
 		}
@@ -88,6 +88,12 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Player player = Main.player[Projectile.owner];
 
 			if (!player.active || player.dead) {
@@ -121,9 +127,6 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 			if (Main.rand.NextBool(6)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
-				}
 				dust.scale = 0.7f;
 				dust.velocity *= 0.2f;
 			}

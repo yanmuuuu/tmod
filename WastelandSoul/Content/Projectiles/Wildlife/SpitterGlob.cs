@@ -29,6 +29,12 @@ namespace WastelandSoul.Content.Projectiles.Wildlife
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.velocity.Y += 0.09f;
 			Projectile.rotation += 0.14f * (Projectile.velocity.X >= 0f ? 1f : -1f);
 
@@ -36,9 +42,6 @@ namespace WastelandSoul.Content.Projectiles.Wildlife
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke);
 				dust.velocity *= 0.25f;
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(150, 200, 90), 0.4f, 8);
-				}
 				dust.scale = 0.85f;
 				dust.color = new Color(140, 180, 90);
 			}

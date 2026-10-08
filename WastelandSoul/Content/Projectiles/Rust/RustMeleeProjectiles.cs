@@ -32,15 +32,18 @@ namespace WastelandSoul.Content.Projectiles.Rust
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation += 0.38f * Projectile.direction;
 			Projectile.velocity *= 0.99f;
 
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
-				}
 				dust.scale = 0.8f;
 			}
 		}
@@ -65,24 +68,24 @@ namespace WastelandSoul.Content.Projectiles.Rust
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation += 0.46f * Projectile.direction;
 			Projectile.velocity *= 0.992f;
 
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
-				}
 				dust.scale = 0.9f;
 			}
 
 			if (Main.rand.NextBool(5)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
-				}
 				dust.scale = 0.7f;
 			}
 		}
@@ -117,13 +120,16 @@ namespace WastelandSoul.Content.Projectiles.Rust
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			// aiStyle 99 已经把运动做完了，这里只加「转起来掉铁屑」的表现
 			if (Main.rand.NextBool(6)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
-				}
 				dust.scale = 0.7f;
 				dust.velocity *= 0.3f;
 			}

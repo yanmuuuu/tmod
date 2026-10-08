@@ -32,14 +32,17 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Electric);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-				}
 				dust.scale = 0.85f;
 				dust.velocity *= 0.4f;
 			}
@@ -70,6 +73,12 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 
 			NPC target = UpgradeTreeAim.NearestEnemy(Projectile.Center, 340f);
@@ -83,9 +92,6 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.IceTorch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-				}
 				dust.scale = 0.8f;
 				dust.velocity *= 0.3f;
 			}

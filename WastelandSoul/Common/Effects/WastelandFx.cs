@@ -266,6 +266,50 @@ namespace WastelandSoul.Common.Effects
 			Lines(position, Math.Clamp((int)(5f * power), 3, 10), Color.Lerp(color, Color.White, 0.35f), 14f + 12f * power);
 		}
 
+		/// <summary>
+		/// 各武器线自己的短爆发。0 破碎，1 光暗，2 余烬，3 冷炉，其余是废料火花。
+		/// 一层亮核、一层主体、一圈晕、外围碎屑，避免整段弹道都一样亮。
+		/// </summary>
+		public static void StyleStrike(int theme, Vector2 position, Vector2 direction)
+		{
+			if (Main.dedServ) {
+				return;
+			}
+
+			Vector2 forward = direction.LengthSquared() > 0.25f ? Vector2.Normalize(direction) : Main.rand.NextVector2Unit();
+
+			switch (theme) {
+				case 0:
+					Glow(position, new Color(255, 220, 160), 0.55f, 8);
+					Spark(position, forward * 2.4f, new Color(255, 120, 40), 0.75f, 12, 0.05f);
+					Lines(position, 3, new Color(160, 120, 80), 18f);
+					Smoke(position, new Vector2(0f, -0.45f), new Color(72, 64, 58), 0.45f, 16);
+					break;
+				case 1:
+					Flash(position, new Color(232, 240, 255), 0.65f);
+					Flakes(position, 3, new Color(226, 232, 242));
+					Ring(position, new Color(70, 90, 180), 6f, 30f, 12);
+					Spark(position, -forward * 1.2f, new Color(40, 50, 90), 0.4f, 10, 0f);
+					break;
+				case 2:
+					Glow(position, new Color(255, 244, 220), 0.6f, 8);
+					Embers(position, 3, new Color(255, 110, 30));
+					Ring(position, new Color(255, 80, 20), 8f, 34f, 12);
+					break;
+				case 3:
+					Glow(position, new Color(230, 250, 255), 0.5f, 8);
+					Ring(position, new Color(140, 210, 255), 6f, 28f, 12);
+					Motes(position, 18f, 2, new Color(180, 230, 255));
+					Spark(position, forward * 1.6f, new Color(190, 240, 255), 0.5f, 10, 0f);
+					break;
+				default:
+					Glow(position, new Color(255, 210, 140), 0.45f, 8);
+					Spark(position, forward * 2f, new Color(200, 150, 80), 0.6f, 11, 0.04f);
+					Lines(position, 2, new Color(170, 140, 90), 14f);
+					break;
+			}
+		}
+
 		public static void Embers(Vector2 position, int count, Color color)
 		{
 			if (Main.dedServ || count <= 0) {

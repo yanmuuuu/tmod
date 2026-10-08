@@ -47,6 +47,12 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Player player = SealedPlayer();
 
 			// 预警阶段跟随玩家（封印还没锁死），之后固定在原地
@@ -84,9 +90,6 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 
 				Dust dust = Dust.NewDustDirect(position, 4, 4, holding ? DustID.BlueTorch : DustID.Bone, velocity.X, velocity.Y);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(176, 204, 255), 0.4f, 8);
-				}
 				dust.scale = holding ? 1.1f : 0.8f;
 			}
 		}

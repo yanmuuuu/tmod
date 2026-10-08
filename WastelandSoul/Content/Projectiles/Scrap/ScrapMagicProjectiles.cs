@@ -41,14 +41,17 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation += 0.12f * Projectile.direction;
 
 			if (Main.rand.NextBool(2)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
-				}
 				dust.scale = 1.0f;
 				dust.velocity *= 0.3f;
 			}
@@ -81,9 +84,6 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 			for (int i = 0; i < 14; i++) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
-				}
 				dust.scale = 1.1f;
 				dust.velocity *= 1.8f;
 			}
@@ -106,14 +106,17 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			base.AI();
 
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
-				}
 				dust.scale = 0.9f;
 				dust.velocity *= 0.3f;
 			}
@@ -139,6 +142,12 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation += 0.36f * Projectile.direction;
 
 			NPC target = FindTarget(220f);
@@ -151,9 +160,6 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
-				}
 				dust.scale = 0.8f;
 				dust.velocity *= 0.2f;
 			}

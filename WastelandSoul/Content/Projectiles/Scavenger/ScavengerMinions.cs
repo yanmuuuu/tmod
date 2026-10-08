@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 
 namespace WastelandSoul.Content.Projectiles.Scavenger
 {
@@ -58,6 +59,12 @@ namespace WastelandSoul.Content.Projectiles.Scavenger
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Player owner = Main.player[Projectile.owner];
 
 			// 主人没了 / 专属 Buff 掉了 → 自己退场（这是仆从"不秒消"的关键）

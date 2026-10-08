@@ -32,6 +32,12 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			// 纸页翻飞：自转 + 一点空气阻力，越飞越慢但不会停
 			Projectile.rotation += 0.14f * (Projectile.velocity.X >= 0f ? 1f : -1f);
 			Projectile.velocity *= 0.9985f;
@@ -39,9 +45,6 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 			if (!Main.dedServ && Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.BlueTorch, 0f, 0f);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(176, 204, 255), 0.4f, 8);
-				}
 				dust.scale = 0.7f;
 			}
 		}
@@ -66,9 +69,6 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 				for (int i = 0; i < 6; i++) {
 					Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Bone, 0f, 0f);
 					dust.noGravity = true;
-					if (!Main.dedServ) {
-						WastelandFxSystem.Glow(Projectile.Center, new Color(176, 204, 255), 0.4f, 8);
-					}
 					dust.scale = 0.9f;
 				}
 			}
@@ -91,9 +91,6 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 			for (int i = 0; i < 8; i++) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Bone, 0f, 0f);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(176, 204, 255), 0.4f, 8);
-				}
 				dust.scale = 0.9f;
 			}
 		}

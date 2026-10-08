@@ -31,6 +31,12 @@ namespace WastelandSoul.Content.Projectiles.AshHeart
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(2, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 			Projectile.velocity *= 0.975f;
 			Projectile.alpha = (int)MathHelper.Lerp(0f, 190f, 1f - Projectile.timeLeft / 60f);
@@ -38,9 +44,6 @@ namespace WastelandSoul.Content.Projectiles.AshHeart
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(255, 140, 50), 0.4f, 8);
-				}
 				dust.scale = 0.9f;
 			}
 		}
@@ -69,6 +72,12 @@ namespace WastelandSoul.Content.Projectiles.AshHeart
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(2, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation += 0.1f * Projectile.direction;
 			Projectile.velocity.Y += 0.08f;
 
@@ -79,9 +88,6 @@ namespace WastelandSoul.Content.Projectiles.AshHeart
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(255, 140, 50), 0.4f, 8);
-				}
 				dust.scale = 1.1f;
 			}
 		}
@@ -111,14 +117,17 @@ namespace WastelandSoul.Content.Projectiles.AshHeart
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(2, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 
 			if (Main.rand.NextBool(2)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.FireworkFountain_Red);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(255, 140, 50), 0.4f, 8);
-				}
 				dust.scale = 0.8f;
 			}
 		}

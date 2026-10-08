@@ -35,6 +35,12 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			// 铁钉会掉：给一点点重力，远距离需要抬枪口
 			Projectile.velocity.Y += 0.03f;
 
@@ -46,9 +52,6 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.velocity = -Projectile.velocity * 0.08f;
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
-				}
 				dust.scale = 0.6f;
 			}
 		}
@@ -87,6 +90,12 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			if (Projectile.velocity.LengthSquared() > 0.01f) {
 				Projectile.rotation = Projectile.velocity.ToRotation();
 			}
@@ -96,9 +105,6 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.IceTorch);
 				dust.velocity = -Projectile.velocity * 0.15f;
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
-				}
 				dust.scale = 0.9f;
 				dust.alpha = 40;
 			}
@@ -119,9 +125,6 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.IceTorch);
 				dust.velocity *= 1.4f;
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
-				}
 				dust.scale = 1.1f;
 			}
 
@@ -151,6 +154,12 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.velocity *= 0.995f;   // 重弹头，速度会衰减
 
 			if (Projectile.velocity.LengthSquared() > 0.01f) {
@@ -161,9 +170,6 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.velocity = -Projectile.velocity * 0.2f;
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
-				}
 				dust.scale = 1.1f;
 			}
 		}
@@ -183,9 +189,6 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.velocity *= 1.6f;
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
-				}
 				dust.scale = 1.2f;
 			}
 
@@ -218,6 +221,12 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation += 0.22f * (Projectile.velocity.X >= 0f ? 1f : -1f);
 			Projectile.velocity *= 0.99f;
 
@@ -225,9 +234,6 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.velocity *= 0.3f;
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
-				}
 				dust.scale = 0.7f;
 				dust.color = new Color(226, 214, 180);
 			}
@@ -243,9 +249,6 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.velocity *= 1.2f;
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
-				}
 				dust.scale = 0.9f;
 				dust.color = new Color(226, 214, 180);
 			}

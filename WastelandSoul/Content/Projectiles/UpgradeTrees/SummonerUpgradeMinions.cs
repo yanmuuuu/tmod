@@ -79,6 +79,12 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Player owner = Main.player[Projectile.owner];
 
 			// 主人没了 / 专属 Buff 掉了 → 自己退场（这是仆从「不秒消」的关键）
@@ -217,14 +223,17 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			base.AI();
 
 			if (Main.rand.NextBool(7)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-				}
 				dust.scale = 0.6f;
 				dust.velocity *= 0.2f;
 			}
@@ -288,14 +297,17 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			base.AI();
 
 			if (Main.rand.NextBool(7)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Silver);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-				}
 				dust.scale = 0.6f;
 				dust.velocity *= 0.2f;
 			}
@@ -364,14 +376,17 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Silver);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-				}
 				dust.scale = 0.6f;
 				dust.velocity *= 0.2f;
 			}
@@ -452,6 +467,12 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			base.AI();
 
 			// 基类 AI 末尾会按速度重设 rotation，所以自转放在它后面覆盖
@@ -460,9 +481,6 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-				}
 				dust.scale = 0.7f;
 				dust.velocity *= 0.2f;
 			}
@@ -522,6 +540,12 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(1, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation += 0.3f * Projectile.direction;
 
 			NPC target = GearTreeAim.NearestEnemy(Projectile.Center, 460f);
@@ -535,9 +559,6 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
-				}
 				dust.scale = 0.8f;
 				dust.velocity *= 0.2f;
 			}

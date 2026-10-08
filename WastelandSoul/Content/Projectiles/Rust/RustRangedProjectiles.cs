@@ -32,15 +32,18 @@ namespace WastelandSoul.Content.Projectiles.Rust
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 			Projectile.velocity.Y += 0.02f;
 
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
-				}
 				dust.scale = 0.6f;
 				dust.velocity *= 0.2f;
 			}
@@ -66,15 +69,18 @@ namespace WastelandSoul.Content.Projectiles.Rust
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 			Projectile.velocity.Y += 0.012f;
 
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
-				}
 				dust.scale = 0.6f;
 				dust.velocity *= 0.2f;
 			}
@@ -119,14 +125,17 @@ namespace WastelandSoul.Content.Projectiles.Rust
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 
 			if (Main.rand.NextBool(5)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
-				}
 				dust.scale = 0.6f;
 				dust.velocity *= 0.2f;
 			}

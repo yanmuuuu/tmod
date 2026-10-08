@@ -32,14 +32,17 @@ namespace WastelandSoul.Content.Projectiles.Rust
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Electric);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
-				}
 				dust.scale = 0.85f;
 				dust.velocity *= 0.4f;
 			}
@@ -65,6 +68,12 @@ namespace WastelandSoul.Content.Projectiles.Rust
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			Projectile.rotation = Projectile.velocity.ToRotation();
 
 			// 轻微追踪：转向很慢，只是「不容易打空」，不是制导导弹
@@ -78,9 +87,6 @@ namespace WastelandSoul.Content.Projectiles.Rust
 			if (Main.rand.NextBool(2)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
-				}
 				dust.scale = 0.95f;
 				dust.velocity *= 0.4f;
 			}
@@ -134,6 +140,12 @@ namespace WastelandSoul.Content.Projectiles.Rust
 
 		public override void AI()
 		{
+			if (Projectile.localAI[1] == 0f) {
+				Projectile.localAI[1] = 1f;
+				if (!Main.dedServ) {
+					WastelandFxSystem.StyleStrike(0, Projectile.Center, Projectile.velocity);
+				}
+			}
 			// 出生第一帧按 ai[0] 做一次扇形微调（同一套弹幕复用 3 次）
 			if (Projectile.ai[1] == 0f) {
 				Projectile.ai[1] = 1f;
@@ -150,9 +162,6 @@ namespace WastelandSoul.Content.Projectiles.Rust
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenMoss);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
-				}
 				dust.scale = 0.8f;
 				dust.velocity *= 0.3f;
 			}
@@ -168,9 +177,6 @@ namespace WastelandSoul.Content.Projectiles.Rust
 			for (int i = 0; i < 6; i++) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenMoss);
 				dust.noGravity = true;
-				if (!Main.dedServ) {
-					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
-				}
 				dust.scale = 1.0f;
 			}
 		}
