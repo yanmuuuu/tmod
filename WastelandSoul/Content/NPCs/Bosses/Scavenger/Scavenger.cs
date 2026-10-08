@@ -9,6 +9,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using WastelandSoul.Common.Systems;
+using WastelandSoul.Content.Items.Decor;
 using WastelandSoul.Content.Items.Materials;
 using WastelandSoul.Content.Projectiles;
 
@@ -125,8 +126,8 @@ namespace WastelandSoul.Content.NPCs.Bosses.Scavenger
 			NPC.aiStyle = -1;                 // 自定义 AI（由状态机驱动）
 			NPC.damage = 34;
 			NPC.defDamage = 34;
-			NPC.defense = 14;
-			NPC.lifeMax = 4200;               // 待定项：具体数值
+			NPC.defense = 10;
+			NPC.lifeMax = 2800;               // 最初的 Boss：对着眼珠（2800）这个量级，别再往上抬
 			NPC.knockBackResist = 0f;
 			NPC.noGravity = true;             // 悬浮
 			NPC.noTileCollide = true;
@@ -679,6 +680,10 @@ namespace WastelandSoul.Content.NPCs.Bosses.Scavenger
 
 			// Boss 掉落统一装进掉落袋：打开后保底材料 + 必定灵魂碎片 + 随机词条装备
 			defeatedProperly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<Content.Items.Bags.ScavengerBag>(), 1));
+
+			// 10% 奖杯（与原版 Boss 掉落奖杯的做法一致）：同样挂在"被玩家正常击败"的条件上，
+			// 过载自毁依旧什么都不掉。
+			defeatedProperly.OnSuccess(ItemDropRule.Common(ModContent.ItemType<ScavengerTrophy>(), 10));
 
 			npcLoot.Add(defeatedProperly);
 		}

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using WastelandSoul.Common.Bosses;
 using WastelandSoul.Common.Configs;
@@ -26,7 +27,12 @@ namespace WastelandSoul.Common.Systems
 			}
 
 			foreach (WastelandBossEntry entry in WastelandBossRegistry.All) {
-				// 还没实现的 Boss 先不登记
+				// 还没实现的 Boss 先不登记：注册表里的 Implemented 是唯一开关，
+				// 这样以后加新 Boss 只要先填表、写完 NPC 再翻标志位。
+				if (!entry.Implemented) {
+					continue;
+				}
+
 				int npcType = WastelandBossRegistry.ResolveNpcType(entry.InternalName);
 
 				if (npcType <= 0) {
@@ -53,8 +59,63 @@ namespace WastelandSoul.Common.Systems
 				_ => () => false
 			};
 
-			string displayNameKey = "$Mods.WastelandSoul.NPCs." + entry.InternalName + ".DisplayName";
-			string spawnInfoKey = "$Mods.WastelandSoul.BossChecklist." + entry.InternalName + ".SpawnInfo";
+			// ⚠️ 这几个键名与类型是**逐行核过** BossChecklist 1.4.4 分支的 EntryInfo.cs 得出的
+			// （那条分支的 mod-call API 版本号是 v2.0.0，LogBoss 就是它的新接口）：
+			//   * displayName / spawnInfo 必须是 LocalizedText —— 传 `"$键名"` 字符串会被**静默忽略**，
+			//     然后退回"自动注册"，结果召唤说明会显示成 "Spawn conditions unknown"；
+			//   * 收集项键名是 collectibles（List<int>）；
+			//   * 召唤物键名是 spawnItems（**复数**，List<int>|int）；
+			//   * **没有** bossBag 这种键：掉落袋只要放进 collectibles，BossChecklist 自己会认出宝物袋。
+			LocalizedText displayName = Language.GetText("Mods.WastelandSoul.NPCs." + entry.InternalName + ".DisplayName");
+			LocalizedText spawnInfo = Language.GetText("Mods.WastelandSoul.BossChecklist." + entry.InternalName + ".SpawnInfo");
+
+			// 清单收集项：掉落袋 + 对应的灵魂碎片 + 奖杯 + 旗帜
+			// （奖杯是 10% 掉落，旗帜用 Boss 材料在织布机上缝 —— 两个都算「这件战利品拿到了吗」）
+			List<int> collectibles = new List<int>();
+			List<int> spawnItems = new List<int>();
+
+			int summonItem = WastelandBossRegistry.ResolveSummonItemType(entry.InternalName);
+
+			if (summonItem > 0) {
+				spawnItems.Add(summonItem);
+			}
+
+			int bagItem = WastelandBossRegistry.ResolveBagItemType(entry.InternalName);
+
+			if (bagItem > 0) {
+				collectibles.Add(bagItem);
+			}
+
+			int soulFragment = WastelandBossRegistry.ResolveSoulFragmentType(entry.Index);
+
+			if (soulFragment > 0) {
+				collectibles.Add(soulFragment);
+			}
+
+			int trophyItem = WastelandBossRegistry.ResolveTrophyItemType(entry.InternalName);
+
+			if (trophyItem > 0) {
+				collectibles.Add(trophyItem);
+			}
+
+			int bannerItem = WastelandBossRegistry.ResolveBannerItemType(entry.InternalName);
+
+			if (bannerItem > 0) {
+				collectibles.Add(bannerItem);
+			}
+
+			Dictionary<string, object> extra = new Dictionary<string, object> {
+				{ "displayName", displayName },
+				{ "spawnInfo", spawnInfo }
+			};
+
+			if (spawnItems.Count > 0) {
+				extra["spawnItems"] = spawnItems;
+			}
+
+			if (collectibles.Count > 0) {
+				extra["collectibles"] = collectibles;
+			}
 
 			bossChecklist.Call(
 				"LogBoss",
@@ -63,10 +124,7 @@ namespace WastelandSoul.Common.Systems
 				entry.Progression,
 				downed,
 				new List<int> { npcType },
-				new Dictionary<string, object> {
-					{ "displayName", displayNameKey },
-					{ "spawnInfo", spawnInfoKey }
-				});
+				extra);
 		}
 	}
 }

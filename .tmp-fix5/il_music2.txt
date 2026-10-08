@@ -1,0 +1,1888 @@
+ASSEMBLY tModLoader, Version=1.4.4.9, Culture=neutral, PublicKeyToken=null
+LOADED in 29 ms
+
+### Terraria.Main::UpdateAudio_DecideOnNewMusic
+   LOCAL System.Boolean 0
+   LOCAL System.Boolean 1
+   LOCAL System.Boolean 2
+   LOCAL System.Boolean 3
+   LOCAL System.Boolean 4
+   LOCAL System.Boolean 5
+   LOCAL System.Boolean 6
+   LOCAL System.Boolean 7
+   LOCAL System.Boolean 8
+   LOCAL System.Boolean 9
+   LOCAL System.Boolean 10
+   LOCAL System.Boolean 11
+   LOCAL System.Boolean 12
+   LOCAL System.Boolean 13
+   LOCAL System.Boolean 14
+   LOCAL System.Boolean 15
+   LOCAL System.Boolean 16
+   LOCAL System.Boolean 17
+   LOCAL System.Boolean 18
+   LOCAL System.Single 19
+   LOCAL System.Int32 20
+   LOCAL Terraria.ModLoader.SceneEffectPriority 21
+   LOCAL System.Single 22
+   LOCAL System.Single 23
+   LOCAL System.Int32 24
+   LOCAL Microsoft.Xna.Framework.Rectangle 25
+   LOCAL System.Int32 26
+   LOCAL System.Int32 27
+   LOCAL System.Int32 28
+   LOCAL Microsoft.Xna.Framework.Rectangle 29
+   LOCAL System.Int32 30
+   LOCAL Terraria.Tile 31
+   LOCAL System.Int32 32
+   LOCAL System.Int32 33
+   IL_0000: ldc.i4.0 
+   IL_0001: stloc.0 
+   IL_0002: ldc.i4.0 
+   IL_0003: stloc.1 
+   IL_0004: ldc.i4.0 
+   IL_0005: stloc.2 
+   IL_0006: ldc.i4.0 
+   IL_0007: stloc.3 
+   IL_0008: ldc.i4.0 
+   IL_0009: stloc.s V_4
+   IL_000B: ldc.i4.0 
+   IL_000C: stloc.s V_5
+   IL_000E: ldc.i4.0 
+   IL_000F: stloc.s V_6
+   IL_0011: ldc.i4.0 
+   IL_0012: stloc.s V_7
+   IL_0014: ldc.i4.0 
+   IL_0015: stloc.s V_8
+   IL_0017: ldc.i4.0 
+   IL_0018: stloc.s V_9
+   IL_001A: ldc.i4.0 
+   IL_001B: stloc.s V_10
+   IL_001D: ldc.i4.0 
+   IL_001E: stloc.s V_11
+   IL_0020: ldc.i4.0 
+   IL_0021: stloc.s V_12
+   IL_0023: ldc.i4.0 
+   IL_0024: stloc.s V_13
+   IL_0026: ldc.i4.0 
+   IL_0027: stloc.s V_14
+   IL_0029: ldc.i4.0 
+   IL_002A: stloc.s V_15
+   IL_002C: ldc.i4.0 
+   IL_002D: stloc.s V_16
+   IL_002F: call Terraria.Main::get_LocalPlayer()
+   IL_0034: ldfld Terraria.Player::townNPCs
+   IL_0039: ldc.r4 2
+   IL_003E: cgt 
+   IL_0040: stloc.s V_17
+   IL_0042: ldsfld Terraria.Main::slimeRain
+   IL_0047: stloc.s V_18
+   IL_0049: ldsfld Terraria.Main::SceneMetrics
+   IL_004E: callvirt Terraria.SceneMetrics::get_ShadowCandleCount()
+   IL_0053: ldc.i4.0 
+   IL_0054: bgt.s IL_0077: ldc.i4.0
+   IL_0056: call Terraria.Main::get_LocalPlayer()
+   IL_005B: ldfld Terraria.Player::inventory
+   IL_0060: call Terraria.Main::get_LocalPlayer()
+   IL_0065: ldfld Terraria.Player::selectedItem
+   IL_006A: ldelem.ref 
+   IL_006B: ldfld Terraria.Item::type
+   IL_0070: ldc.i4 5322
+   IL_0075: bne.un.s IL_007a: ldc.r4 0
+   IL_0077: ldc.i4.0 
+   IL_0078: stloc.s V_17
+   IL_007A: ldc.r4 0
+   IL_007F: stloc.s V_19
+   IL_0081: ldc.i4.0 
+   IL_0082: stloc.s V_24
+   IL_0084: br.s IL_00b3: ldloc.s V_24
+   IL_0086: ldsfld Terraria.Main::musicFade
+   IL_008B: ldloc.s V_24
+   IL_008D: ldelem.r4 
+   IL_008E: ldloc.s V_19
+   IL_0090: ble.un.s IL_00ad: ldloc.s V_24
+   IL_0092: ldsfld Terraria.Main::musicFade
+   IL_0097: ldloc.s V_24
+   IL_0099: ldelem.r4 
+   IL_009A: stloc.s V_19
+   IL_009C: ldloc.s V_19
+   IL_009E: ldc.r4 1
+   IL_00A3: bne.un.s IL_00ad: ldloc.s V_24
+   IL_00A5: ldarg.0 
+   IL_00A6: ldloc.s V_24
+   IL_00A8: stfld Terraria.Main::lastMusicPlayed
+   IL_00AD: ldloc.s V_24
+   IL_00AF: ldc.i4.1 
+   IL_00B0: add 
+   IL_00B1: stloc.s V_24
+   IL_00B3: ldloc.s V_24
+   IL_00B5: ldsfld Terraria.Main::maxMusic
+   IL_00BA: blt.s IL_0086: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_00BC: ldarg.0 
+   IL_00BD: ldfld Terraria.Main::lastMusicPlayed
+   IL_00C2: ldc.i4.s 50
+   IL_00C4: bne.un.s IL_00cf: ldc.i4.m1
+   IL_00C6: ldsfld Terraria.Main::musicNoCrossFade
+   IL_00CB: ldc.i4.s 51
+   IL_00CD: ldc.i4.1 
+   IL_00CE: stelem.i1 
+   IL_00CF: ldc.i4.m1 
+   IL_00D0: stloc.s V_20
+   IL_00D2: ldc.i4.0 
+   IL_00D3: stloc.s V_21
+   IL_00D5: ldsfld Terraria.Main::gameMenu
+   IL_00DA: brtrue IL_060e: ldsflda Microsoft.Xna.Framework.Vector2 Terraria.Main::screenPosition
+   IL_00DF: ldloca.s V_25
+   IL_00E1: ldsflda Terraria.Main::screenPosition
+   IL_00E6: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_00EB: conv.i4 
+   IL_00EC: ldsflda Terraria.Main::screenPosition
+   IL_00F1: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_00F6: conv.i4 
+   IL_00F7: ldsfld Terraria.Main::screenWidth
+   IL_00FC: ldsfld Terraria.Main::screenHeight
+   IL_0101: call Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_0106: ldc.i4 5000
+   IL_010B: stloc.s V_26
+   IL_010D: ldc.i4.0 
+   IL_010E: stloc.s V_27
+   IL_0110: br IL_05f4: ldloc.s V_27
+   IL_0115: ldsfld Terraria.Main::npc
+   IL_011A: ldloc.s V_27
+   IL_011C: ldelem.ref 
+   IL_011D: ldfld Terraria.Entity::active
+   IL_0122: brfalse IL_05ee: ldloc.s V_27
+   IL_0127: ldc.i4 5000
+   IL_012C: stloc.s V_26
+   IL_012E: ldc.i4.0 
+   IL_012F: stloc.s V_28
+   IL_0131: ldsfld Terraria.Main::npc
+   IL_0136: ldloc.s V_27
+   IL_0138: ldelem.ref 
+   IL_0139: ldfld Terraria.NPC::type
+   IL_013E: stloc.s V_30
+   IL_0140: ldloc.s V_30
+   IL_0142: ldc.i4.s 13
+   IL_0144: sub 
+   IL_0145: ldc.i4.2 
+   IL_0146: ble.un IL_0273: ldc.i4.1
+   IL_014B: ldloc.s V_30
+   IL_014D: ldc.i4.s 127
+   IL_014F: sub 
+   IL_0150: ldc.i4.4 
+   IL_0151: ble.un IL_0273: ldc.i4.1
+   IL_0156: br IL_027b: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionGoblinArmy
+   IL_015B: ldloc.s V_30
+   IL_015D: ldc.i4.s 113
+   IL_015F: sub 
+   IL_0160: ldc.i4.1 
+   IL_0161: ble.un IL_02b5: ldc.i4.2
+   IL_0166: ldloc.s V_30
+   IL_0168: ldc.i4.s 125
+   IL_016A: sub 
+   IL_016B: ldc.i4.1 
+   IL_016C: ble.un IL_02b5: ldc.i4.2
+   IL_0171: ldloc.s V_30
+   IL_0173: ldc.i4 134
+   IL_0178: sub 
+   IL_0179: ldc.i4.2 
+   IL_017A: ble.un IL_02ee: ldc.i4.3
+   IL_017F: br IL_02bd: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionFrostLegion
+   IL_0184: ldloc.s V_30
+   IL_0186: ldc.i4 266
+   IL_018B: beq IL_02ee: ldc.i4.3
+   IL_0190: br IL_02f6: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionPirate
+   IL_0195: ldloc.s V_30
+   IL_0197: ldc.i4 222
+   IL_019C: beq IL_0337: ldc.i4.5
+   IL_01A1: ldloc.s V_30
+   IL_01A3: ldc.i4 245
+   IL_01A8: beq IL_032f: ldc.i4.4
+   IL_01AD: ldloc.s V_30
+   IL_01AF: ldc.i4 262
+   IL_01B4: sub 
+   IL_01B5: ldc.i4.2 
+   IL_01B6: ble.un IL_033f: ldc.i4.6
+   IL_01BB: br IL_0344: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionMartianMadness
+   IL_01C0: ldloc.s V_30
+   IL_01C2: ldc.i4 439
+   IL_01C7: bgt.s IL_0218: ldloc.s V_30
+   IL_01C9: ldloc.s V_30
+   IL_01CB: ldc.i4 398
+   IL_01D0: bgt.s IL_01ef: ldloc.s V_30
+   IL_01D2: ldloc.s V_30
+   IL_01D4: ldc.i4 370
+   IL_01D9: beq IL_03b9: ldc.i4.s 15
+   IL_01DE: ldloc.s V_30
+   IL_01E0: ldc.i4 398
+   IL_01E5: beq IL_037b: ldc.i4.7
+   IL_01EA: br IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_01EF: ldloc.s V_30
+   IL_01F1: ldc.i4 422
+   IL_01F6: beq IL_0380: ldc.i4.s 10
+   IL_01FB: ldloc.s V_30
+   IL_01FD: ldc.i4 438
+   IL_0202: beq IL_038b: ldsfld Terraria.NPC[] Terraria.Main::npc
+   IL_0207: ldloc.s V_30
+   IL_0209: ldc.i4 439
+   IL_020E: beq IL_0386: ldc.i4.4
+   IL_0213: br IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_0218: ldloc.s V_30
+   IL_021A: ldc.i4 517
+   IL_021F: bgt.s IL_024a: ldloc.s V_30
+   IL_0221: ldloc.s V_30
+   IL_0223: ldc.i4 493
+   IL_0228: beq IL_0380: ldc.i4.s 10
+   IL_022D: ldloc.s V_30
+   IL_022F: ldc.i4 507
+   IL_0234: beq IL_0380: ldc.i4.s 10
+   IL_0239: ldloc.s V_30
+   IL_023B: ldc.i4 517
+   IL_0240: beq IL_0380: ldc.i4.s 10
+   IL_0245: br IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_024A: ldloc.s V_30
+   IL_024C: ldc.i4 636
+   IL_0251: beq IL_03b3: ldc.i4.s 14
+   IL_0256: ldloc.s V_30
+   IL_0258: ldc.i4 657
+   IL_025D: beq IL_03ad: ldc.i4.s 13
+   IL_0262: ldloc.s V_30
+   IL_0264: ldc.i4 668
+   IL_0269: beq IL_03bf: ldc.i4.s 16
+   IL_026E: br IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_0273: ldc.i4.1 
+   IL_0274: stloc.s V_28
+   IL_0276: br IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_027B: ldsfld Terraria.ID.NPCID/Sets::BelongsToInvasionGoblinArmy
+   IL_0280: ldsfld Terraria.Main::npc
+   IL_0285: ldloc.s V_27
+   IL_0287: ldelem.ref 
+   IL_0288: ldfld Terraria.NPC::type
+   IL_028D: ldelem.u1 
+   IL_028E: brfalse IL_015b: ldloc.s V_30
+   IL_0293: ldsfld Terraria.ID.NPCID/Sets::InvasionSlotCount
+   IL_0298: ldsfld Terraria.Main::npc
+   IL_029D: ldloc.s V_27
+   IL_029F: ldelem.ref 
+   IL_02A0: ldfld Terraria.NPC::type
+   IL_02A5: ldelem.i4 
+   IL_02A6: ldc.i4.0 
+   IL_02A7: ble IL_015b: ldloc.s V_30
+   IL_02AC: ldc.i4.s 11
+   IL_02AE: stloc.s V_28
+   IL_02B0: br IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_02B5: ldc.i4.2 
+   IL_02B6: stloc.s V_28
+   IL_02B8: br IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_02BD: ldsfld Terraria.ID.NPCID/Sets::BelongsToInvasionFrostLegion
+   IL_02C2: ldsfld Terraria.Main::npc
+   IL_02C7: ldloc.s V_27
+   IL_02C9: ldelem.ref 
+   IL_02CA: ldfld Terraria.NPC::type
+   IL_02CF: ldelem.u1 
+   IL_02D0: brfalse IL_0184: ldloc.s V_30
+   IL_02D5: ldsfld Terraria.ID.NPCID/Sets::InvasionSlotCount
+   IL_02DA: ldsfld Terraria.Main::npc
+   IL_02DF: ldloc.s V_27
+   IL_02E1: ldelem.ref 
+   IL_02E2: ldfld Terraria.NPC::type
+   IL_02E7: ldelem.i4 
+   IL_02E8: ldc.i4.0 
+   IL_02E9: ble IL_0184: ldloc.s V_30
+   IL_02EE: ldc.i4.3 
+   IL_02EF: stloc.s V_28
+   IL_02F1: br IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_02F6: ldsfld Terraria.ID.NPCID/Sets::BelongsToInvasionPirate
+   IL_02FB: ldsfld Terraria.Main::npc
+   IL_0300: ldloc.s V_27
+   IL_0302: ldelem.ref 
+   IL_0303: ldfld Terraria.NPC::type
+   IL_0308: ldelem.u1 
+   IL_0309: brfalse IL_0195: ldloc.s V_30
+   IL_030E: ldsfld Terraria.ID.NPCID/Sets::InvasionSlotCount
+   IL_0313: ldsfld Terraria.Main::npc
+   IL_0318: ldloc.s V_27
+   IL_031A: ldelem.ref 
+   IL_031B: ldfld Terraria.NPC::type
+   IL_0320: ldelem.i4 
+   IL_0321: ldc.i4.0 
+   IL_0322: ble IL_0195: ldloc.s V_30
+   IL_0327: ldc.i4.8 
+   IL_0328: stloc.s V_28
+   IL_032A: br IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_032F: ldc.i4.4 
+   IL_0330: stloc.s V_28
+   IL_0332: br IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_0337: ldc.i4.5 
+   IL_0338: stloc.s V_28
+   IL_033A: br IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_033F: ldc.i4.6 
+   IL_0340: stloc.s V_28
+   IL_0342: br.s IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_0344: ldsfld Terraria.ID.NPCID/Sets::BelongsToInvasionMartianMadness
+   IL_0349: ldsfld Terraria.Main::npc
+   IL_034E: ldloc.s V_27
+   IL_0350: ldelem.ref 
+   IL_0351: ldfld Terraria.NPC::type
+   IL_0356: ldelem.u1 
+   IL_0357: brfalse IL_01c0: ldloc.s V_30
+   IL_035C: ldsfld Terraria.ID.NPCID/Sets::InvasionSlotCount
+   IL_0361: ldsfld Terraria.Main::npc
+   IL_0366: ldloc.s V_27
+   IL_0368: ldelem.ref 
+   IL_0369: ldfld Terraria.NPC::type
+   IL_036E: ldelem.i4 
+   IL_036F: ldc.i4.0 
+   IL_0370: ble IL_01c0: ldloc.s V_30
+   IL_0375: ldc.i4.s 9
+   IL_0377: stloc.s V_28
+   IL_0379: br.s IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_037B: ldc.i4.7 
+   IL_037C: stloc.s V_28
+   IL_037E: br.s IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_0380: ldc.i4.s 10
+   IL_0382: stloc.s V_28
+   IL_0384: br.s IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_0386: ldc.i4.4 
+   IL_0387: stloc.s V_28
+   IL_0389: br.s IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_038B: ldsfld Terraria.Main::npc
+   IL_0390: ldloc.s V_27
+   IL_0392: ldelem.ref 
+   IL_0393: ldfld Terraria.NPC::ai
+   IL_0398: ldc.i4.1 
+   IL_0399: ldelem.r4 
+   IL_039A: ldc.r4 1
+   IL_039F: bne.un.s IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_03A1: ldc.i4 1600
+   IL_03A6: stloc.s V_26
+   IL_03A8: ldc.i4.4 
+   IL_03A9: stloc.s V_28
+   IL_03AB: br.s IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_03AD: ldc.i4.s 13
+   IL_03AF: stloc.s V_28
+   IL_03B1: br.s IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_03B3: ldc.i4.s 14
+   IL_03B5: stloc.s V_28
+   IL_03B7: br.s IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_03B9: ldc.i4.s 15
+   IL_03BB: stloc.s V_28
+   IL_03BD: br.s IL_03c3: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_03BF: ldc.i4.s 16
+   IL_03C1: stloc.s V_28
+   IL_03C3: ldsfld Terraria.ID.NPCID/Sets::BelongsToInvasionOldOnesArmy
+   IL_03C8: ldsfld Terraria.Main::npc
+   IL_03CD: ldloc.s V_27
+   IL_03CF: ldelem.ref 
+   IL_03D0: ldfld Terraria.NPC::type
+   IL_03D5: ldelem.u1 
+   IL_03D6: brfalse.s IL_03dc: ldsfld System.Boolean[] Terraria.ID.NPCID/Sets::NoInvasionMusic
+   IL_03D8: ldc.i4.s 12
+   IL_03DA: stloc.s V_28
+   IL_03DC: ldsfld Terraria.ID.NPCID/Sets::NoInvasionMusic
+   IL_03E1: ldsfld Terraria.Main::npc
+   IL_03E6: ldloc.s V_27
+   IL_03E8: ldelem.ref 
+   IL_03E9: ldfld Terraria.NPC::type
+   IL_03EE: ldelem.u1 
+   IL_03EF: brfalse.s IL_0408: ldloc.s V_28
+   IL_03F1: ldsfld Terraria.Main::npc
+   IL_03F6: ldloc.s V_27
+   IL_03F8: ldelem.ref 
+   IL_03F9: ldfld Terraria.NPC::type
+   IL_03FE: call Terraria.NPC::GetNPCInvasionGroup(Int32)
+   IL_0403: brfalse.s IL_0408: ldloc.s V_28
+   IL_0405: ldc.i4.0 
+   IL_0406: stloc.s V_28
+   IL_0408: ldloc.s V_28
+   IL_040A: brtrue.s IL_041e: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_040C: ldsfld Terraria.Main::npc
+   IL_0411: ldloc.s V_27
+   IL_0413: ldelem.ref 
+   IL_0414: ldfld Terraria.NPC::boss
+   IL_0419: brfalse.s IL_041e: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_041B: ldc.i4.1 
+   IL_041C: stloc.s V_28
+   IL_041E: ldsfld Terraria.Main::remixWorld
+   IL_0423: brfalse.s IL_0477: ldloc.s V_28
+   IL_0425: ldsfld Terraria.Main::getGoodWorld
+   IL_042A: brfalse.s IL_0477: ldloc.s V_28
+   IL_042C: ldsfld Terraria.Main::npc
+   IL_0431: ldloc.s V_27
+   IL_0433: ldelem.ref 
+   IL_0434: ldfld Terraria.NPC::type
+   IL_0439: ldc.i4.s 127
+   IL_043B: beq.s IL_0473: ldc.i4.s 17
+   IL_043D: ldsfld Terraria.Main::npc
+   IL_0442: ldloc.s V_27
+   IL_0444: ldelem.ref 
+   IL_0445: ldfld Terraria.NPC::type
+   IL_044A: ldc.i4 134
+   IL_044F: beq.s IL_0473: ldc.i4.s 17
+   IL_0451: ldsfld Terraria.Main::npc
+   IL_0456: ldloc.s V_27
+   IL_0458: ldelem.ref 
+   IL_0459: ldfld Terraria.NPC::type
+   IL_045E: ldc.i4.s 125
+   IL_0460: beq.s IL_0473: ldc.i4.s 17
+   IL_0462: ldsfld Terraria.Main::npc
+   IL_0467: ldloc.s V_27
+   IL_0469: ldelem.ref 
+   IL_046A: ldfld Terraria.NPC::type
+   IL_046F: ldc.i4.s 126
+   IL_0471: bne.un.s IL_0477: ldloc.s V_28
+   IL_0473: ldc.i4.s 17
+   IL_0475: stloc.s V_28
+   IL_0477: ldloc.s V_28
+   IL_0479: brfalse IL_05ee: ldloc.s V_27
+   IL_047E: ldloca.s V_29
+   IL_0480: ldsfld Terraria.Main::npc
+   IL_0485: ldloc.s V_27
+   IL_0487: ldelem.ref 
+   IL_0488: ldflda Terraria.Entity::position
+   IL_048D: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0492: ldsfld Terraria.Main::npc
+   IL_0497: ldloc.s V_27
+   IL_0499: ldelem.ref 
+   IL_049A: ldfld Terraria.Entity::width
+   IL_049F: ldc.i4.2 
+   IL_04A0: div 
+   IL_04A1: conv.r4 
+   IL_04A2: add 
+   IL_04A3: conv.i4 
+   IL_04A4: ldloc.s V_26
+   IL_04A6: sub 
+   IL_04A7: ldsfld Terraria.Main::npc
+   IL_04AC: ldloc.s V_27
+   IL_04AE: ldelem.ref 
+   IL_04AF: ldflda Terraria.Entity::position
+   IL_04B4: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_04B9: ldsfld Terraria.Main::npc
+   IL_04BE: ldloc.s V_27
+   IL_04C0: ldelem.ref 
+   IL_04C1: ldfld Terraria.Entity::height
+   IL_04C6: ldc.i4.2 
+   IL_04C7: div 
+   IL_04C8: conv.r4 
+   IL_04C9: add 
+   IL_04CA: conv.i4 
+   IL_04CB: ldloc.s V_26
+   IL_04CD: sub 
+   IL_04CE: ldloc.s V_26
+   IL_04D0: ldc.i4.2 
+   IL_04D1: mul 
+   IL_04D2: ldloc.s V_26
+   IL_04D4: ldc.i4.2 
+   IL_04D5: mul 
+   IL_04D6: call Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_04DB: ldloca.s V_25
+   IL_04DD: ldloc.s V_29
+   IL_04DF: call Microsoft.Xna.Framework.Rectangle::Intersects(Rectangle)
+   IL_04E4: brfalse IL_05ee: ldloc.s V_27
+   IL_04E9: ldsfld Terraria.Main::npc
+   IL_04EE: ldloc.s V_27
+   IL_04F0: ldelem.ref 
+   IL_04F1: callvirt Terraria.NPC::get_ModNPC()
+   IL_04F6: brfalse.s IL_0550: ldloc.s V_28
+   IL_04F8: ldsfld Terraria.Main::npc
+   IL_04FD: ldloc.s V_27
+   IL_04FF: ldelem.ref 
+   IL_0500: callvirt Terraria.NPC::get_ModNPC()
+   IL_0505: callvirt Terraria.ModLoader.ModNPC::get_Music()
+   IL_050A: ldc.i4.0 
+   IL_050B: blt.s IL_0550: ldloc.s V_28
+   IL_050D: ldloc.s V_20
+   IL_050F: ldc.i4.0 
+   IL_0510: blt.s IL_0528: ldsfld Terraria.NPC[] Terraria.Main::npc
+   IL_0512: ldsfld Terraria.Main::npc
+   IL_0517: ldloc.s V_27
+   IL_0519: ldelem.ref 
+   IL_051A: callvirt Terraria.NPC::get_ModNPC()
+   IL_051F: callvirt Terraria.ModLoader.ModNPC::get_SceneEffectPriority()
+   IL_0524: ldloc.s V_21
+   IL_0526: ble.s IL_0550: ldloc.s V_28
+   IL_0528: ldsfld Terraria.Main::npc
+   IL_052D: ldloc.s V_27
+   IL_052F: ldelem.ref 
+   IL_0530: callvirt Terraria.NPC::get_ModNPC()
+   IL_0535: callvirt Terraria.ModLoader.ModNPC::get_Music()
+   IL_053A: stloc.s V_20
+   IL_053C: ldsfld Terraria.Main::npc
+   IL_0541: ldloc.s V_27
+   IL_0543: ldelem.ref 
+   IL_0544: callvirt Terraria.NPC::get_ModNPC()
+   IL_0549: callvirt Terraria.ModLoader.ModNPC::get_SceneEffectPriority()
+   IL_054E: stloc.s V_21
+   IL_0550: ldloc.s V_28
+   IL_0552: ldc.i4.1 
+   IL_0553: sub 
+   IL_0554: switch Mono.Cecil.Cil.Instruction[]
+   IL_059D: br.s IL_05ee: ldloc.s V_27
+   IL_059F: ldc.i4.1 
+   IL_05A0: stloc.0 
+   IL_05A1: br.s IL_05ee: ldloc.s V_27
+   IL_05A3: ldc.i4.1 
+   IL_05A4: stloc.2 
+   IL_05A5: br.s IL_05ee: ldloc.s V_27
+   IL_05A7: ldc.i4.1 
+   IL_05A8: stloc.3 
+   IL_05A9: br.s IL_05ee: ldloc.s V_27
+   IL_05AB: ldc.i4.1 
+   IL_05AC: stloc.s V_4
+   IL_05AE: br.s IL_05ee: ldloc.s V_27
+   IL_05B0: ldc.i4.1 
+   IL_05B1: stloc.s V_5
+   IL_05B3: br.s IL_05ee: ldloc.s V_27
+   IL_05B5: ldc.i4.1 
+   IL_05B6: stloc.s V_6
+   IL_05B8: br.s IL_05ee: ldloc.s V_27
+   IL_05BA: ldc.i4.1 
+   IL_05BB: stloc.s V_7
+   IL_05BD: br.s IL_05ee: ldloc.s V_27
+   IL_05BF: ldc.i4.1 
+   IL_05C0: stloc.s V_8
+   IL_05C2: br.s IL_05ee: ldloc.s V_27
+   IL_05C4: ldc.i4.1 
+   IL_05C5: stloc.s V_9
+   IL_05C7: br.s IL_05ee: ldloc.s V_27
+   IL_05C9: ldc.i4.1 
+   IL_05CA: stloc.s V_10
+   IL_05CC: br.s IL_05ee: ldloc.s V_27
+   IL_05CE: ldc.i4.1 
+   IL_05CF: stloc.s V_11
+   IL_05D1: br.s IL_05ee: ldloc.s V_27
+   IL_05D3: ldc.i4.1 
+   IL_05D4: stloc.s V_12
+   IL_05D6: br.s IL_05ee: ldloc.s V_27
+   IL_05D8: ldc.i4.1 
+   IL_05D9: stloc.s V_13
+   IL_05DB: br.s IL_05ee: ldloc.s V_27
+   IL_05DD: ldc.i4.1 
+   IL_05DE: stloc.s V_14
+   IL_05E0: br.s IL_05ee: ldloc.s V_27
+   IL_05E2: ldc.i4.1 
+   IL_05E3: stloc.s V_15
+   IL_05E5: br.s IL_05ee: ldloc.s V_27
+   IL_05E7: ldc.i4.1 
+   IL_05E8: stloc.1 
+   IL_05E9: br.s IL_05ee: ldloc.s V_27
+   IL_05EB: ldc.i4.1 
+   IL_05EC: stloc.s V_16
+   IL_05EE: ldloc.s V_27
+   IL_05F0: ldc.i4.1 
+   IL_05F1: add 
+   IL_05F2: stloc.s V_27
+   IL_05F4: ldloc.s V_27
+   IL_05F6: ldc.i4 200
+   IL_05FB: blt IL_0115: ldsfld Terraria.NPC[] Terraria.Main::npc
+   IL_0600: call Terraria.ModLoader.LoaderManager::Get()
+   IL_0605: ldloca.s V_20
+   IL_0607: ldloca.s V_21
+   IL_0609: callvirt Terraria.ModLoader.SceneEffectLoader::UpdateMusic(Int32&,SceneEffectPriority&)
+   IL_060E: ldsflda Terraria.Main::screenPosition
+   IL_0613: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0618: ldsfld Terraria.Main::screenWidth
+   IL_061D: ldc.i4.2 
+   IL_061E: div 
+   IL_061F: conv.r4 
+   IL_0620: add 
+   IL_0621: ldc.r4 16
+   IL_0626: div 
+   IL_0627: pop 
+   IL_0628: ldsfld Terraria.Main::musicVolume
+   IL_062D: ldc.r4 0
+   IL_0632: bne.un.s IL_063b: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_0634: ldc.i4.0 
+   IL_0635: stsfld Terraria.Main::newMusic
+   IL_063A: ret 
+   IL_063B: ldsfld Terraria.Main::gameMenu
+   IL_0640: brfalse IL_06f7: ldsfld System.Int32 Terraria.Main::maxTilesX
+   IL_0645: ldsfld Terraria.Main::netMode
+   IL_064A: ldc.i4.2 
+   IL_064B: beq IL_06f0: ldc.i4.0
+   IL_0650: ldsfld Terraria.WorldGen::drunkWorldGen
+   IL_0655: brfalse.s IL_0670: ldsfld System.Boolean Terraria.WorldGen::remixWorldGen
+   IL_0657: ldsfld Terraria.WorldGen::remixWorldGen
+   IL_065C: brfalse.s IL_0667: ldc.i4.s 60
+   IL_065E: ldc.i4.s 70
+   IL_0660: stsfld Terraria.Main::newMusic
+   IL_0665: br.s IL_06b3: ldsfld System.Boolean Terraria.Main::_isAsyncLoadComplete
+   IL_0667: ldc.i4.s 60
+   IL_0669: stsfld Terraria.Main::newMusic
+   IL_066E: br.s IL_06b3: ldsfld System.Boolean Terraria.Main::_isAsyncLoadComplete
+   IL_0670: ldsfld Terraria.WorldGen::remixWorldGen
+   IL_0675: brfalse.s IL_067f: ldsfld System.Int32 Terraria.Main::menuMode
+   IL_0677: ldc.i4.8 
+   IL_0678: stsfld Terraria.Main::newMusic
+   IL_067D: br.s IL_06b3: ldsfld System.Boolean Terraria.Main::_isAsyncLoadComplete
+   IL_067F: ldsfld Terraria.Main::menuMode
+   IL_0684: ldc.i4 3000
+   IL_0689: bne.un.s IL_0694: ldsfld System.Boolean Terraria.WorldGen::tenthAnniversaryWorldGen
+   IL_068B: ldc.i4.s 89
+   IL_068D: stsfld Terraria.Main::newMusic
+   IL_0692: br.s IL_06b3: ldsfld System.Boolean Terraria.Main::_isAsyncLoadComplete
+   IL_0694: ldsfld Terraria.WorldGen::tenthAnniversaryWorldGen
+   IL_0699: brfalse.s IL_06a4: call Terraria.ModLoader.ModMenu Terraria.ModLoader.MenuLoader::get_CurrentMenu()
+   IL_069B: ldc.i4.s 11
+   IL_069D: stsfld Terraria.Main::newMusic
+   IL_06A2: br.s IL_06b3: ldsfld System.Boolean Terraria.Main::_isAsyncLoadComplete
+   IL_06A4: call Terraria.ModLoader.MenuLoader::get_CurrentMenu()
+   IL_06A9: callvirt Terraria.ModLoader.ModMenu::get_Music()
+   IL_06AE: stsfld Terraria.Main::newMusic
+   IL_06B3: ldsfld Terraria.Main::_isAsyncLoadComplete
+   IL_06B8: brfalse.s IL_06f6: ret
+   IL_06BA: ldsfld Terraria.Main::newMusic
+   IL_06BF: ldc.i4.s 50
+   IL_06C1: bne.un.s IL_06f6: ret
+   IL_06C3: ldsfld Terraria.Main::audioSystem
+   IL_06C8: ldc.i4.s 50
+   IL_06CA: callvirt Terraria.Audio.IAudioSystem::IsTrackPlaying(Int32)
+   IL_06CF: brtrue.s IL_06f6: ret
+   IL_06D1: ldc.i4.s 51
+   IL_06D3: stsfld Terraria.Main::newMusic
+   IL_06D8: ldsfld Terraria.Main::musicNoCrossFade
+   IL_06DD: ldc.i4.s 51
+   IL_06DF: ldelem.u1 
+   IL_06E0: brfalse.s IL_06f6: ret
+   IL_06E2: ldsfld Terraria.Main::musicFade
+   IL_06E7: ldc.i4.s 51
+   IL_06E9: ldc.r4 1
+   IL_06EE: stelem.r4 
+   IL_06EF: ret 
+   IL_06F0: ldc.i4.0 
+   IL_06F1: stsfld Terraria.Main::newMusic
+   IL_06F6: ret 
+   IL_06F7: ldsfld Terraria.Main::maxTilesX
+   IL_06FC: conv.r4 
+   IL_06FD: ldc.r4 4200
+   IL_0702: div 
+   IL_0703: stloc.s V_22
+   IL_0705: ldloc.s V_22
+   IL_0707: ldloc.s V_22
+   IL_0709: mul 
+   IL_070A: stloc.s V_22
+   IL_070C: ldsflda Terraria.Main::screenPosition
+   IL_0711: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0716: ldsfld Terraria.Main::screenHeight
+   IL_071B: ldc.i4.2 
+   IL_071C: div 
+   IL_071D: conv.r4 
+   IL_071E: add 
+   IL_071F: ldc.r4 16
+   IL_0724: div 
+   IL_0725: ldc.r4 65
+   IL_072A: ldc.r4 10
+   IL_072F: ldloc.s V_22
+   IL_0731: mul 
+   IL_0732: add 
+   IL_0733: sub 
+   IL_0734: conv.r8 
+   IL_0735: ldsfld Terraria.Main::worldSurface
+   IL_073A: ldc.r8 5
+   IL_0743: div 
+   IL_0744: div 
+   IL_0745: conv.r4 
+   IL_0746: stloc.s V_23
+   IL_0748: call Terraria.GameContent.Events.CreditsRollEvent::get_IsEventOngoing()
+   IL_074D: brfalse.s IL_0757: ldloc.s V_21
+   IL_074F: ldc.i4.s 89
+   IL_0751: stsfld Terraria.Main::newMusic
+   IL_0756: ret 
+   IL_0757: ldloc.s V_21
+   IL_0759: ldc.i4.8 
+   IL_075A: blt.s IL_0764: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_075C: ldloc.s V_20
+   IL_075E: stsfld Terraria.Main::newMusic
+   IL_0763: ret 
+   IL_0764: ldsfld Terraria.Main::player
+   IL_0769: ldsfld Terraria.Main::myPlayer
+   IL_076E: ldelem.ref 
+   IL_076F: ldfld Terraria.Player::happyFunTorchTime
+   IL_0774: brfalse.s IL_077e: ldloc.s V_7
+   IL_0776: ldc.i4.s 13
+   IL_0778: stsfld Terraria.Main::newMusic
+   IL_077D: ret 
+   IL_077E: ldloc.s V_7
+   IL_0780: brfalse.s IL_078a: ldloc.s V_21
+   IL_0782: ldc.i4.s 38
+   IL_0784: stsfld Terraria.Main::newMusic
+   IL_0789: ret 
+   IL_078A: ldloc.s V_21
+   IL_078C: ldc.i4.7 
+   IL_078D: blt.s IL_0797: ldloc.s V_16
+   IL_078F: ldloc.s V_20
+   IL_0791: stsfld Terraria.Main::newMusic
+   IL_0796: ret 
+   IL_0797: ldloc.s V_16
+   IL_0799: brfalse.s IL_07a3: ldloc.s V_9
+   IL_079B: ldc.i4.s 81
+   IL_079D: stsfld Terraria.Main::newMusic
+   IL_07A2: ret 
+   IL_07A3: ldloc.s V_9
+   IL_07A5: brfalse.s IL_07af: ldloc.s V_10
+   IL_07A7: ldc.i4.s 37
+   IL_07A9: stsfld Terraria.Main::newMusic
+   IL_07AE: ret 
+   IL_07AF: ldloc.s V_10
+   IL_07B1: brfalse.s IL_07bb: ldloc.s V_6
+   IL_07B3: ldc.i4.s 34
+   IL_07B5: stsfld Terraria.Main::newMusic
+   IL_07BA: ret 
+   IL_07BB: ldloc.s V_6
+   IL_07BD: brfalse.s IL_07c7: ldloc.s V_21
+   IL_07BF: ldc.i4.s 24
+   IL_07C1: stsfld Terraria.Main::newMusic
+   IL_07C6: ret 
+   IL_07C7: ldloc.s V_21
+   IL_07C9: ldc.i4.6 
+   IL_07CA: blt.s IL_07d4: ldloc.s V_14
+   IL_07CC: ldloc.s V_20
+   IL_07CE: stsfld Terraria.Main::newMusic
+   IL_07D3: ret 
+   IL_07D4: ldloc.s V_14
+   IL_07D6: brfalse.s IL_07e0: ldloc.s V_15
+   IL_07D8: ldc.i4.s 57
+   IL_07DA: stsfld Terraria.Main::newMusic
+   IL_07DF: ret 
+   IL_07E0: ldloc.s V_15
+   IL_07E2: brfalse.s IL_07ec: ldloc.2
+   IL_07E4: ldc.i4.s 58
+   IL_07E6: stsfld Terraria.Main::newMusic
+   IL_07EB: ret 
+   IL_07EC: ldloc.2 
+   IL_07ED: brfalse.s IL_07f7: ldloc.0
+   IL_07EF: ldc.i4.s 12
+   IL_07F1: stsfld Terraria.Main::newMusic
+   IL_07F6: ret 
+   IL_07F7: ldloc.0 
+   IL_07F8: brfalse.s IL_0801: ldloc.3
+   IL_07FA: ldc.i4.5 
+   IL_07FB: stsfld Terraria.Main::newMusic
+   IL_0800: ret 
+   IL_0801: ldloc.3 
+   IL_0802: brfalse.s IL_080c: ldloc.s V_4
+   IL_0804: ldc.i4.s 13
+   IL_0806: stsfld Terraria.Main::newMusic
+   IL_080B: ret 
+   IL_080C: ldloc.s V_4
+   IL_080E: brfalse.s IL_0818: ldloc.s V_5
+   IL_0810: ldc.i4.s 17
+   IL_0812: stsfld Terraria.Main::newMusic
+   IL_0817: ret 
+   IL_0818: ldloc.s V_5
+   IL_081A: brfalse.s IL_0824: ldloc.s V_13
+   IL_081C: ldc.i4.s 25
+   IL_081E: stsfld Terraria.Main::newMusic
+   IL_0823: ret 
+   IL_0824: ldloc.s V_13
+   IL_0826: brfalse.s IL_0830: ldloc.1
+   IL_0828: ldc.i4.s 56
+   IL_082A: stsfld Terraria.Main::newMusic
+   IL_082F: ret 
+   IL_0830: ldloc.1 
+   IL_0831: brfalse.s IL_083b: ldloc.s V_21
+   IL_0833: ldc.i4.s 90
+   IL_0835: stsfld Terraria.Main::newMusic
+   IL_083A: ret 
+   IL_083B: ldloc.s V_21
+   IL_083D: ldc.i4.5 
+   IL_083E: blt.s IL_0848: ldloc.s V_8
+   IL_0840: ldloc.s V_20
+   IL_0842: stsfld Terraria.Main::newMusic
+   IL_0847: ret 
+   IL_0848: ldloc.s V_8
+   IL_084A: brfalse.s IL_0854: ldloc.s V_11
+   IL_084C: ldc.i4.s 35
+   IL_084E: stsfld Terraria.Main::newMusic
+   IL_0853: ret 
+   IL_0854: ldloc.s V_11
+   IL_0856: brfalse.s IL_0860: ldloc.s V_12
+   IL_0858: ldc.i4.s 39
+   IL_085A: stsfld Terraria.Main::newMusic
+   IL_085F: ret 
+   IL_0860: ldloc.s V_12
+   IL_0862: brfalse.s IL_086c: ldsflda Microsoft.Xna.Framework.Vector2 Terraria.Main::screenPosition
+   IL_0864: ldc.i4.s 41
+   IL_0866: stsfld Terraria.Main::newMusic
+   IL_086B: ret 
+   IL_086C: ldsflda Terraria.Main::screenPosition
+   IL_0871: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0876: ldc.r4 16
+   IL_087B: div 
+   IL_087C: conv.r8 
+   IL_087D: ldsfld Terraria.Main::worldSurface
+   IL_0882: ldc.r8 10
+   IL_088B: add 
+   IL_088C: blt.s IL_0895: ldsfld System.Boolean Terraria.Main::pumpkinMoon
+   IL_088E: ldsfld Terraria.Main::remixWorld
+   IL_0893: brfalse.s IL_08a4: ldsflda Microsoft.Xna.Framework.Vector2 Terraria.Main::screenPosition
+   IL_0895: ldsfld Terraria.Main::pumpkinMoon
+   IL_089A: brfalse.s IL_08a4: ldsflda Microsoft.Xna.Framework.Vector2 Terraria.Main::screenPosition
+   IL_089C: ldc.i4.s 30
+   IL_089E: stsfld Terraria.Main::newMusic
+   IL_08A3: ret 
+   IL_08A4: ldsflda Terraria.Main::screenPosition
+   IL_08A9: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_08AE: ldc.r4 16
+   IL_08B3: div 
+   IL_08B4: conv.r8 
+   IL_08B5: ldsfld Terraria.Main::worldSurface
+   IL_08BA: ldc.r8 10
+   IL_08C3: add 
+   IL_08C4: blt.s IL_08cd: ldsfld System.Boolean Terraria.Main::snowMoon
+   IL_08C6: ldsfld Terraria.Main::remixWorld
+   IL_08CB: brfalse.s IL_08dc: ldloc.s V_21
+   IL_08CD: ldsfld Terraria.Main::snowMoon
+   IL_08D2: brfalse.s IL_08dc: ldloc.s V_21
+   IL_08D4: ldc.i4.s 32
+   IL_08D6: stsfld Terraria.Main::newMusic
+   IL_08DB: ret 
+   IL_08DC: ldloc.s V_21
+   IL_08DE: ldc.i4.4 
+   IL_08DF: blt.s IL_08e9: ldsfld System.Boolean Terraria.Main::eclipse
+   IL_08E1: ldloc.s V_20
+   IL_08E3: stsfld Terraria.Main::newMusic
+   IL_08E8: ret 
+   IL_08E9: ldsfld Terraria.Main::eclipse
+   IL_08EE: brfalse.s IL_092f: ldsfld System.Boolean Terraria.Main::eclipse
+   IL_08F0: ldsfld Terraria.Main::remixWorld
+   IL_08F5: brtrue.s IL_092f: ldsfld System.Boolean Terraria.Main::eclipse
+   IL_08F7: ldsfld Terraria.Main::player
+   IL_08FC: ldsfld Terraria.Main::myPlayer
+   IL_0901: ldelem.ref 
+   IL_0902: ldflda Terraria.Entity::position
+   IL_0907: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_090C: conv.r8 
+   IL_090D: ldsfld Terraria.Main::worldSurface
+   IL_0912: ldc.r8 16
+   IL_091B: mul 
+   IL_091C: ldsfld Terraria.Main::screenHeight
+   IL_0921: ldc.i4.2 
+   IL_0922: div 
+   IL_0923: conv.r8 
+   IL_0924: add 
+   IL_0925: bge.un.s IL_092f: ldsfld System.Boolean Terraria.Main::eclipse
+   IL_0927: ldc.i4.s 27
+   IL_0929: stsfld Terraria.Main::newMusic
+   IL_092E: ret 
+   IL_092F: ldsfld Terraria.Main::eclipse
+   IL_0934: brfalse.s IL_096c: ldloc.s V_18
+   IL_0936: ldsfld Terraria.Main::remixWorld
+   IL_093B: brfalse.s IL_096c: ldloc.s V_18
+   IL_093D: ldsfld Terraria.Main::player
+   IL_0942: ldsfld Terraria.Main::myPlayer
+   IL_0947: ldelem.ref 
+   IL_0948: ldflda Terraria.Entity::position
+   IL_094D: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0952: conv.r8 
+   IL_0953: ldsfld Terraria.Main::rockLayer
+   IL_0958: ldc.r8 16
+   IL_0961: mul 
+   IL_0962: ble.un.s IL_096c: ldloc.s V_18
+   IL_0964: ldc.i4.s 27
+   IL_0966: stsfld Terraria.Main::newMusic
+   IL_096B: ret 
+   IL_096C: ldloc.s V_18
+   IL_096E: brfalse.s IL_09c8: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_0970: ldsfld Terraria.Main::player
+   IL_0975: ldsfld Terraria.Main::myPlayer
+   IL_097A: ldelem.ref 
+   IL_097B: callvirt Terraria.Player::get_ZoneGraveyard()
+   IL_0980: brtrue.s IL_09c8: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_0982: ldsfld Terraria.Main::bloodMoon
+   IL_0987: brfalse.s IL_0990: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0989: ldsfld Terraria.Main::dayTime
+   IL_098E: brfalse.s IL_09c8: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_0990: ldsfld Terraria.Main::player
+   IL_0995: ldsfld Terraria.Main::myPlayer
+   IL_099A: ldelem.ref 
+   IL_099B: ldflda Terraria.Entity::position
+   IL_09A0: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_09A5: conv.r8 
+   IL_09A6: ldsfld Terraria.Main::worldSurface
+   IL_09AB: ldc.r8 16
+   IL_09B4: mul 
+   IL_09B5: ldsfld Terraria.Main::screenHeight
+   IL_09BA: ldc.i4.2 
+   IL_09BB: div 
+   IL_09BC: conv.r8 
+   IL_09BD: add 
+   IL_09BE: bge.un.s IL_09c8: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_09C0: ldc.i4.s 48
+   IL_09C2: stsfld Terraria.Main::newMusic
+   IL_09C7: ret 
+   IL_09C8: ldsfld Terraria.Main::remixWorld
+   IL_09CD: brfalse.s IL_0a48: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_09CF: ldsfld Terraria.Main::bloodMoon
+   IL_09D4: brfalse.s IL_0a48: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_09D6: ldsfld Terraria.Main::player
+   IL_09DB: ldsfld Terraria.Main::myPlayer
+   IL_09E0: ldelem.ref 
+   IL_09E1: callvirt Terraria.Player::get_ZoneCrimson()
+   IL_09E6: brtrue.s IL_0a48: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_09E8: ldsfld Terraria.Main::player
+   IL_09ED: ldsfld Terraria.Main::myPlayer
+   IL_09F2: ldelem.ref 
+   IL_09F3: callvirt Terraria.Player::get_ZoneCorrupt()
+   IL_09F8: brtrue.s IL_0a48: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_09FA: ldsfld Terraria.Main::player
+   IL_09FF: ldsfld Terraria.Main::myPlayer
+   IL_0A04: ldelem.ref 
+   IL_0A05: ldflda Terraria.Entity::position
+   IL_0A0A: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0A0F: conv.r8 
+   IL_0A10: ldsfld Terraria.Main::rockLayer
+   IL_0A15: ldc.r8 16
+   IL_0A1E: mul 
+   IL_0A1F: ble.un.s IL_0a48: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_0A21: ldsfld Terraria.Main::player
+   IL_0A26: ldsfld Terraria.Main::myPlayer
+   IL_0A2B: ldelem.ref 
+   IL_0A2C: ldflda Terraria.Entity::position
+   IL_0A31: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0A36: call Terraria.Main::get_UnderworldLayer()
+   IL_0A3B: ldc.i4.s 16
+   IL_0A3D: mul 
+   IL_0A3E: conv.r4 
+   IL_0A3F: bgt.un.s IL_0a48: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_0A41: ldc.i4.2 
+   IL_0A42: stsfld Terraria.Main::newMusic
+   IL_0A47: ret 
+   IL_0A48: ldsfld Terraria.Main::remixWorld
+   IL_0A4D: brfalse IL_0ae9: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0A52: ldsfld Terraria.Main::bloodMoon
+   IL_0A57: brfalse IL_0ae9: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0A5C: ldsfld Terraria.Main::player
+   IL_0A61: ldsfld Terraria.Main::myPlayer
+   IL_0A66: ldelem.ref 
+   IL_0A67: ldflda Terraria.Entity::position
+   IL_0A6C: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0A71: call Terraria.Main::get_UnderworldLayer()
+   IL_0A76: ldc.i4.s 16
+   IL_0A78: mul 
+   IL_0A79: conv.r4 
+   IL_0A7A: ble.un.s IL_0ae9: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0A7C: ldsfld Terraria.Main::player
+   IL_0A81: ldsfld Terraria.Main::myPlayer
+   IL_0A86: ldelem.ref 
+   IL_0A87: callvirt Terraria.Entity::get_Center()
+   IL_0A8C: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0A91: ldc.r4 16
+   IL_0A96: div 
+   IL_0A97: conv.r8 
+   IL_0A98: ldsfld Terraria.Main::maxTilesX
+   IL_0A9D: conv.r8 
+   IL_0A9E: ldc.r8 0.37
+   IL_0AA7: mul 
+   IL_0AA8: ldc.r8 50
+   IL_0AB1: add 
+   IL_0AB2: ble.un.s IL_0ae9: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0AB4: ldsfld Terraria.Main::player
+   IL_0AB9: ldsfld Terraria.Main::myPlayer
+   IL_0ABE: ldelem.ref 
+   IL_0ABF: callvirt Terraria.Entity::get_Center()
+   IL_0AC4: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0AC9: ldc.r4 16
+   IL_0ACE: div 
+   IL_0ACF: conv.r8 
+   IL_0AD0: ldsfld Terraria.Main::maxTilesX
+   IL_0AD5: conv.r8 
+   IL_0AD6: ldc.r8 0.63
+   IL_0ADF: mul 
+   IL_0AE0: bge.un.s IL_0ae9: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0AE2: ldc.i4.2 
+   IL_0AE3: stsfld Terraria.Main::newMusic
+   IL_0AE8: ret 
+   IL_0AE9: ldsfld Terraria.Main::player
+   IL_0AEE: ldsfld Terraria.Main::myPlayer
+   IL_0AF3: ldelem.ref 
+   IL_0AF4: callvirt Terraria.Player::get_ZoneShimmer()
+   IL_0AF9: brfalse.s IL_0b03: ldloc.s V_17
+   IL_0AFB: ldc.i4.s 91
+   IL_0AFD: stsfld Terraria.Main::newMusic
+   IL_0B02: ret 
+   IL_0B03: ldloc.s V_17
+   IL_0B05: brfalse.s IL_0b6b: ldloc.s V_17
+   IL_0B07: ldsfld Terraria.Main::dayTime
+   IL_0B0C: brfalse.s IL_0b6b: ldloc.s V_17
+   IL_0B0E: ldsfld Terraria.Main::cloudAlpha
+   IL_0B13: ldc.r4 0
+   IL_0B18: bne.un.s IL_0b21: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0B1A: ldsfld Terraria.Main::_shouldUseWindyDayMusic
+   IL_0B1F: brfalse.s IL_0b51: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0B21: ldsfld Terraria.Main::player
+   IL_0B26: ldsfld Terraria.Main::myPlayer
+   IL_0B2B: ldelem.ref 
+   IL_0B2C: ldflda Terraria.Entity::position
+   IL_0B31: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0B36: conv.r8 
+   IL_0B37: ldsfld Terraria.Main::worldSurface
+   IL_0B3C: ldc.r8 16
+   IL_0B45: mul 
+   IL_0B46: ldsfld Terraria.Main::screenHeight
+   IL_0B4B: ldc.i4.2 
+   IL_0B4C: div 
+   IL_0B4D: conv.r8 
+   IL_0B4E: add 
+   IL_0B4F: blt.un.s IL_0b6b: ldloc.s V_17
+   IL_0B51: ldsfld Terraria.Main::player
+   IL_0B56: ldsfld Terraria.Main::myPlayer
+   IL_0B5B: ldelem.ref 
+   IL_0B5C: callvirt Terraria.Player::get_ZoneGraveyard()
+   IL_0B61: brtrue.s IL_0b6b: ldloc.s V_17
+   IL_0B63: ldc.i4.s 46
+   IL_0B65: stsfld Terraria.Main::newMusic
+   IL_0B6A: ret 
+   IL_0B6B: ldloc.s V_17
+   IL_0B6D: brfalse.s IL_0bd3: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0B6F: ldsfld Terraria.Main::dayTime
+   IL_0B74: brtrue.s IL_0bd3: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0B76: ldsfld Terraria.Main::bloodMoon
+   IL_0B7B: brtrue.s IL_0b89: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0B7D: ldsfld Terraria.Main::cloudAlpha
+   IL_0B82: ldc.r4 0
+   IL_0B87: beq.s IL_0bb9: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0B89: ldsfld Terraria.Main::player
+   IL_0B8E: ldsfld Terraria.Main::myPlayer
+   IL_0B93: ldelem.ref 
+   IL_0B94: ldflda Terraria.Entity::position
+   IL_0B99: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0B9E: conv.r8 
+   IL_0B9F: ldsfld Terraria.Main::worldSurface
+   IL_0BA4: ldc.r8 16
+   IL_0BAD: mul 
+   IL_0BAE: ldsfld Terraria.Main::screenHeight
+   IL_0BB3: ldc.i4.2 
+   IL_0BB4: div 
+   IL_0BB5: conv.r8 
+   IL_0BB6: add 
+   IL_0BB7: blt.un.s IL_0bd3: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0BB9: ldsfld Terraria.Main::player
+   IL_0BBE: ldsfld Terraria.Main::myPlayer
+   IL_0BC3: ldelem.ref 
+   IL_0BC4: callvirt Terraria.Player::get_ZoneGraveyard()
+   IL_0BC9: brtrue.s IL_0bd3: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0BCB: ldc.i4.s 47
+   IL_0BCD: stsfld Terraria.Main::newMusic
+   IL_0BD2: ret 
+   IL_0BD3: ldsfld Terraria.Main::player
+   IL_0BD8: ldsfld Terraria.Main::myPlayer
+   IL_0BDD: ldelem.ref 
+   IL_0BDE: callvirt Terraria.Player::get_ZoneSandstorm()
+   IL_0BE3: brfalse.s IL_0bed: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0BE5: ldc.i4.s 40
+   IL_0BE7: stsfld Terraria.Main::newMusic
+   IL_0BEC: ret 
+   IL_0BED: ldsfld Terraria.Main::player
+   IL_0BF2: ldsfld Terraria.Main::myPlayer
+   IL_0BF7: ldelem.ref 
+   IL_0BF8: ldflda Terraria.Entity::position
+   IL_0BFD: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0C02: call Terraria.Main::get_UnderworldLayer()
+   IL_0C07: ldc.i4.s 16
+   IL_0C09: mul 
+   IL_0C0A: conv.r4 
+   IL_0C0B: ble.un.s IL_0c15: ldloc.s V_23
+   IL_0C0D: ldc.i4.s 36
+   IL_0C0F: stsfld Terraria.Main::newMusic
+   IL_0C14: ret 
+   IL_0C15: ldloc.s V_23
+   IL_0C17: ldc.r4 1
+   IL_0C1C: bge.un.s IL_0c31: ldloc.s V_21
+   IL_0C1E: ldsfld Terraria.Main::dayTime
+   IL_0C23: brtrue.s IL_0c29: ldc.i4.s 42
+   IL_0C25: ldc.i4.s 15
+   IL_0C27: br.s IL_0c2b: stsfld System.Int32 Terraria.Main::newMusic
+   IL_0C29: ldc.i4.s 42
+   IL_0C2B: stsfld Terraria.Main::newMusic
+   IL_0C30: ret 
+   IL_0C31: ldloc.s V_21
+   IL_0C33: ldc.i4.3 
+   IL_0C34: blt.s IL_0c3e: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0C36: ldloc.s V_20
+   IL_0C38: stsfld Terraria.Main::newMusic
+   IL_0C3D: ret 
+   IL_0C3E: ldsflda Terraria.Main::tile
+   IL_0C43: ldsfld Terraria.Main::player
+   IL_0C48: ldsfld Terraria.Main::myPlayer
+   IL_0C4D: ldelem.ref 
+   IL_0C4E: callvirt Terraria.Entity::get_Center()
+   IL_0C53: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0C58: ldc.r4 16
+   IL_0C5D: div 
+   IL_0C5E: conv.i4 
+   IL_0C5F: ldsfld Terraria.Main::player
+   IL_0C64: ldsfld Terraria.Main::myPlayer
+   IL_0C69: ldelem.ref 
+   IL_0C6A: callvirt Terraria.Entity::get_Center()
+   IL_0C6F: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0C74: ldc.r4 16
+   IL_0C79: div 
+   IL_0C7A: conv.i4 
+   IL_0C7B: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0C80: stloc.s V_31
+   IL_0C82: ldloca.s V_31
+   IL_0C84: call Terraria.Tile::get_wall()
+   IL_0C89: ldind.u2 
+   IL_0C8A: ldc.i4.s 87
+   IL_0C8C: bne.un.s IL_0c96: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0C8E: ldc.i4.s 26
+   IL_0C90: stsfld Terraria.Main::newMusic
+   IL_0C95: ret 
+   IL_0C96: ldsfld Terraria.Main::player
+   IL_0C9B: ldsfld Terraria.Main::myPlayer
+   IL_0CA0: ldelem.ref 
+   IL_0CA1: callvirt Terraria.Player::get_ZoneDungeon()
+   IL_0CA6: brfalse.s IL_0cb0: ldsfld System.Int32 Terraria.Main::bgStyle
+   IL_0CA8: ldc.i4.s 23
+   IL_0CAA: stsfld Terraria.Main::newMusic
+   IL_0CAF: ret 
+   IL_0CB0: ldsfld Terraria.Main::bgStyle
+   IL_0CB5: ldc.i4.s 9
+   IL_0CB7: bne.un.s IL_0ce9: ldsfld System.Int32 Terraria.Main::undergroundBackground
+   IL_0CB9: ldsfld Terraria.Main::player
+   IL_0CBE: ldsfld Terraria.Main::myPlayer
+   IL_0CC3: ldelem.ref 
+   IL_0CC4: ldflda Terraria.Entity::position
+   IL_0CC9: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0CCE: conv.r8 
+   IL_0CCF: ldsfld Terraria.Main::worldSurface
+   IL_0CD4: ldc.r8 16
+   IL_0CDD: mul 
+   IL_0CDE: ldsfld Terraria.Main::screenHeight
+   IL_0CE3: ldc.i4.2 
+   IL_0CE4: div 
+   IL_0CE5: conv.r8 
+   IL_0CE6: add 
+   IL_0CE7: blt.s IL_0cf1: ldc.i4.s 29
+   IL_0CE9: ldsfld Terraria.Main::undergroundBackground
+   IL_0CEE: ldc.i4.2 
+   IL_0CEF: bne.un.s IL_0cf9: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0CF1: ldc.i4.s 29
+   IL_0CF3: stsfld Terraria.Main::newMusic
+   IL_0CF8: ret 
+   IL_0CF9: ldsfld Terraria.Main::player
+   IL_0CFE: ldsfld Terraria.Main::myPlayer
+   IL_0D03: ldelem.ref 
+   IL_0D04: callvirt Terraria.Player::get_ZoneCorrupt()
+   IL_0D09: brfalse IL_0db5: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0D0E: ldsfld Terraria.Main::player
+   IL_0D13: ldsfld Terraria.Main::myPlayer
+   IL_0D18: ldelem.ref 
+   IL_0D19: callvirt Terraria.Player::get_ZoneCrimson()
+   IL_0D1E: brfalse.s IL_0d76: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0D20: ldsfld Terraria.Main::SceneMetrics
+   IL_0D25: callvirt Terraria.SceneMetrics::get_BloodTileCount()
+   IL_0D2A: ldsfld Terraria.Main::SceneMetrics
+   IL_0D2F: callvirt Terraria.SceneMetrics::get_EvilTileCount()
+   IL_0D34: ble.s IL_0d76: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0D36: ldsfld Terraria.Main::player
+   IL_0D3B: ldsfld Terraria.Main::myPlayer
+   IL_0D40: ldelem.ref 
+   IL_0D41: ldflda Terraria.Entity::position
+   IL_0D46: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0D4B: conv.r8 
+   IL_0D4C: ldsfld Terraria.Main::worldSurface
+   IL_0D51: ldc.r8 16
+   IL_0D5A: mul 
+   IL_0D5B: ldsfld Terraria.Main::screenHeight
+   IL_0D60: ldc.i4.2 
+   IL_0D61: div 
+   IL_0D62: conv.r8 
+   IL_0D63: add 
+   IL_0D64: ble.un.s IL_0d6e: ldc.i4.s 16
+   IL_0D66: ldc.i4.s 33
+   IL_0D68: stsfld Terraria.Main::newMusic
+   IL_0D6D: ret 
+   IL_0D6E: ldc.i4.s 16
+   IL_0D70: stsfld Terraria.Main::newMusic
+   IL_0D75: ret 
+   IL_0D76: ldsfld Terraria.Main::player
+   IL_0D7B: ldsfld Terraria.Main::myPlayer
+   IL_0D80: ldelem.ref 
+   IL_0D81: ldflda Terraria.Entity::position
+   IL_0D86: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0D8B: conv.r8 
+   IL_0D8C: ldsfld Terraria.Main::worldSurface
+   IL_0D91: ldc.r8 16
+   IL_0D9A: mul 
+   IL_0D9B: ldsfld Terraria.Main::screenHeight
+   IL_0DA0: ldc.i4.2 
+   IL_0DA1: div 
+   IL_0DA2: conv.r8 
+   IL_0DA3: add 
+   IL_0DA4: ble.un.s IL_0dae: ldc.i4.8
+   IL_0DA6: ldc.i4.s 10
+   IL_0DA8: stsfld Terraria.Main::newMusic
+   IL_0DAD: ret 
+   IL_0DAE: ldc.i4.8 
+   IL_0DAF: stsfld Terraria.Main::newMusic
+   IL_0DB4: ret 
+   IL_0DB5: ldsfld Terraria.Main::player
+   IL_0DBA: ldsfld Terraria.Main::myPlayer
+   IL_0DBF: ldelem.ref 
+   IL_0DC0: callvirt Terraria.Player::get_ZoneCrimson()
+   IL_0DC5: brfalse.s IL_0e07: ldloc.s V_21
+   IL_0DC7: ldsfld Terraria.Main::player
+   IL_0DCC: ldsfld Terraria.Main::myPlayer
+   IL_0DD1: ldelem.ref 
+   IL_0DD2: ldflda Terraria.Entity::position
+   IL_0DD7: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0DDC: conv.r8 
+   IL_0DDD: ldsfld Terraria.Main::worldSurface
+   IL_0DE2: ldc.r8 16
+   IL_0DEB: mul 
+   IL_0DEC: ldsfld Terraria.Main::screenHeight
+   IL_0DF1: ldc.i4.2 
+   IL_0DF2: div 
+   IL_0DF3: conv.r8 
+   IL_0DF4: add 
+   IL_0DF5: ble.un.s IL_0dff: ldc.i4.s 16
+   IL_0DF7: ldc.i4.s 33
+   IL_0DF9: stsfld Terraria.Main::newMusic
+   IL_0DFE: ret 
+   IL_0DFF: ldc.i4.s 16
+   IL_0E01: stsfld Terraria.Main::newMusic
+   IL_0E06: ret 
+   IL_0E07: ldloc.s V_21
+   IL_0E09: ldc.i4.2 
+   IL_0E0A: blt.s IL_0e14: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0E0C: ldloc.s V_20
+   IL_0E0E: stsfld Terraria.Main::newMusic
+   IL_0E13: ret 
+   IL_0E14: ldsfld Terraria.Main::player
+   IL_0E19: ldsfld Terraria.Main::myPlayer
+   IL_0E1E: ldelem.ref 
+   IL_0E1F: callvirt Terraria.Player::get_ZoneMeteor()
+   IL_0E24: brfalse.s IL_0e2d: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0E26: ldc.i4.2 
+   IL_0E27: stsfld Terraria.Main::newMusic
+   IL_0E2C: ret 
+   IL_0E2D: ldsfld Terraria.Main::player
+   IL_0E32: ldsfld Terraria.Main::myPlayer
+   IL_0E37: ldelem.ref 
+   IL_0E38: callvirt Terraria.Player::get_ZoneGraveyard()
+   IL_0E3D: brfalse.s IL_0e47: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0E3F: ldc.i4.s 53
+   IL_0E41: stsfld Terraria.Main::newMusic
+   IL_0E46: ret 
+   IL_0E47: ldsfld Terraria.Main::player
+   IL_0E4C: ldsfld Terraria.Main::myPlayer
+   IL_0E51: ldelem.ref 
+   IL_0E52: callvirt Terraria.Player::get_ZoneJungle()
+   IL_0E57: brfalse IL_1009: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0E5C: ldsfld Terraria.Main::remixWorld
+   IL_0E61: brfalse IL_0f31: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0E66: ldsfld Terraria.Main::player
+   IL_0E6B: ldsfld Terraria.Main::myPlayer
+   IL_0E70: ldelem.ref 
+   IL_0E71: ldflda Terraria.Entity::position
+   IL_0E76: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0E7B: conv.r8 
+   IL_0E7C: ldsfld Terraria.Main::rockLayer
+   IL_0E81: ldc.r8 16
+   IL_0E8A: mul 
+   IL_0E8B: ldsfld Terraria.Main::screenHeight
+   IL_0E90: ldc.i4.2 
+   IL_0E91: div 
+   IL_0E92: conv.r8 
+   IL_0E93: add 
+   IL_0E94: ble.un.s IL_0e9d: ldsfld System.Int32 Terraria.Main::newMusic
+   IL_0E96: ldc.i4.7 
+   IL_0E97: stsfld Terraria.Main::newMusic
+   IL_0E9C: ret 
+   IL_0E9D: ldsfld Terraria.Main::newMusic
+   IL_0EA2: ldc.i4.7 
+   IL_0EA3: bne.un.s IL_0ee6: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0EA5: ldsfld Terraria.Main::player
+   IL_0EAA: ldsfld Terraria.Main::myPlayer
+   IL_0EAF: ldelem.ref 
+   IL_0EB0: ldflda Terraria.Entity::position
+   IL_0EB5: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0EBA: conv.r8 
+   IL_0EBB: ldsfld Terraria.Main::rockLayer
+   IL_0EC0: ldc.r8 50
+   IL_0EC9: sub 
+   IL_0ECA: ldc.r8 16
+   IL_0ED3: mul 
+   IL_0ED4: ldsfld Terraria.Main::screenHeight
+   IL_0ED9: ldc.i4.2 
+   IL_0EDA: div 
+   IL_0EDB: conv.r8 
+   IL_0EDC: add 
+   IL_0EDD: ble.un.s IL_0ee6: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_0EDF: ldc.i4.7 
+   IL_0EE0: stsfld Terraria.Main::newMusic
+   IL_0EE5: ret 
+   IL_0EE6: ldsfld Terraria.Main::player
+   IL_0EEB: ldsfld Terraria.Main::myPlayer
+   IL_0EF0: ldelem.ref 
+   IL_0EF1: ldflda Terraria.Entity::position
+   IL_0EF6: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0EFB: conv.r8 
+   IL_0EFC: ldsfld Terraria.Main::worldSurface
+   IL_0F01: ldc.r8 16
+   IL_0F0A: mul 
+   IL_0F0B: ldsfld Terraria.Main::screenHeight
+   IL_0F10: ldc.i4.2 
+   IL_0F11: div 
+   IL_0F12: conv.r8 
+   IL_0F13: add 
+   IL_0F14: bge.un.s IL_0f29: ldc.i4.s 54
+   IL_0F16: ldsfld Terraria.Main::dayTime
+   IL_0F1B: brtrue.s IL_0f21: ldc.i4.s 42
+   IL_0F1D: ldc.i4.s 15
+   IL_0F1F: br.s IL_0f23: stsfld System.Int32 Terraria.Main::newMusic
+   IL_0F21: ldc.i4.s 42
+   IL_0F23: stsfld Terraria.Main::newMusic
+   IL_0F28: ret 
+   IL_0F29: ldc.i4.s 54
+   IL_0F2B: stsfld Terraria.Main::newMusic
+   IL_0F30: ret 
+   IL_0F31: ldsfld Terraria.Main::player
+   IL_0F36: ldsfld Terraria.Main::myPlayer
+   IL_0F3B: ldelem.ref 
+   IL_0F3C: ldflda Terraria.Entity::position
+   IL_0F41: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0F46: conv.r8 
+   IL_0F47: ldsfld Terraria.Main::rockLayer
+   IL_0F4C: ldc.r8 16
+   IL_0F55: mul 
+   IL_0F56: ldsfld Terraria.Main::screenHeight
+   IL_0F5B: ldc.i4.2 
+   IL_0F5C: div 
+   IL_0F5D: conv.r8 
+   IL_0F5E: add 
+   IL_0F5F: ble.un.s IL_0f69: ldsfld System.Int32 Terraria.Main::newMusic
+   IL_0F61: ldc.i4.s 54
+   IL_0F63: stsfld Terraria.Main::newMusic
+   IL_0F68: ret 
+   IL_0F69: ldsfld Terraria.Main::newMusic
+   IL_0F6E: ldc.i4.s 54
+   IL_0F70: bne.un.s IL_0fb4: ldsfld System.Boolean Terraria.Main::_shouldUseStormMusic
+   IL_0F72: ldsfld Terraria.Main::player
+   IL_0F77: ldsfld Terraria.Main::myPlayer
+   IL_0F7C: ldelem.ref 
+   IL_0F7D: ldflda Terraria.Entity::position
+   IL_0F82: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0F87: conv.r8 
+   IL_0F88: ldsfld Terraria.Main::rockLayer
+   IL_0F8D: ldc.r8 50
+   IL_0F96: sub 
+   IL_0F97: ldc.r8 16
+   IL_0FA0: mul 
+   IL_0FA1: ldsfld Terraria.Main::screenHeight
+   IL_0FA6: ldc.i4.2 
+   IL_0FA7: div 
+   IL_0FA8: conv.r8 
+   IL_0FA9: add 
+   IL_0FAA: ble.un.s IL_0fb4: ldsfld System.Boolean Terraria.Main::_shouldUseStormMusic
+   IL_0FAC: ldc.i4.s 54
+   IL_0FAE: stsfld Terraria.Main::newMusic
+   IL_0FB3: ret 
+   IL_0FB4: ldsfld Terraria.Main::_shouldUseStormMusic
+   IL_0FB9: brfalse.s IL_0ff3: ldsfld System.Boolean Terraria.Main::dayTime
+   IL_0FBB: ldsfld Terraria.Main::player
+   IL_0FC0: ldsfld Terraria.Main::myPlayer
+   IL_0FC5: ldelem.ref 
+   IL_0FC6: ldflda Terraria.Entity::position
+   IL_0FCB: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0FD0: conv.r8 
+   IL_0FD1: ldsfld Terraria.Main::worldSurface
+   IL_0FD6: ldc.r8 16
+   IL_0FDF: mul 
+   IL_0FE0: ldsfld Terraria.Main::screenHeight
+   IL_0FE5: ldc.i4.2 
+   IL_0FE6: div 
+   IL_0FE7: conv.r8 
+   IL_0FE8: add 
+   IL_0FE9: bge.un.s IL_0ff3: ldsfld System.Boolean Terraria.Main::dayTime
+   IL_0FEB: ldc.i4.s 52
+   IL_0FED: stsfld Terraria.Main::newMusic
+   IL_0FF2: ret 
+   IL_0FF3: ldsfld Terraria.Main::dayTime
+   IL_0FF8: brfalse.s IL_1001: ldc.i4.s 55
+   IL_0FFA: ldc.i4.7 
+   IL_0FFB: stsfld Terraria.Main::newMusic
+   IL_1000: ret 
+   IL_1001: ldc.i4.s 55
+   IL_1003: stsfld Terraria.Main::newMusic
+   IL_1008: ret 
+   IL_1009: ldsfld Terraria.Main::player
+   IL_100E: ldsfld Terraria.Main::myPlayer
+   IL_1013: ldelem.ref 
+   IL_1014: callvirt Terraria.Player::get_ZoneSnow()
+   IL_1019: brfalse IL_10b7: ldloc.s V_21
+   IL_101E: ldsfld Terraria.Main::player
+   IL_1023: ldsfld Terraria.Main::myPlayer
+   IL_1028: ldelem.ref 
+   IL_1029: ldflda Terraria.Entity::position
+   IL_102E: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1033: conv.r8 
+   IL_1034: ldsfld Terraria.Main::worldSurface
+   IL_1039: ldc.r8 16
+   IL_1042: mul 
+   IL_1043: ldsfld Terraria.Main::screenHeight
+   IL_1048: ldc.i4.2 
+   IL_1049: div 
+   IL_104A: conv.r8 
+   IL_104B: add 
+   IL_104C: ble.un.s IL_1095: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_104E: ldsfld Terraria.Main::remixWorld
+   IL_1053: brfalse.s IL_108d: ldc.i4.s 20
+   IL_1055: ldsfld Terraria.Main::player
+   IL_105A: ldsfld Terraria.Main::myPlayer
+   IL_105F: ldelem.ref 
+   IL_1060: ldflda Terraria.Entity::position
+   IL_1065: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_106A: conv.r8 
+   IL_106B: ldsfld Terraria.Main::rockLayer
+   IL_1070: ldc.r8 16
+   IL_1079: mul 
+   IL_107A: ldsfld Terraria.Main::screenHeight
+   IL_107F: ldc.i4.2 
+   IL_1080: div 
+   IL_1081: conv.r8 
+   IL_1082: add 
+   IL_1083: ble.un.s IL_108d: ldc.i4.s 20
+   IL_1085: ldc.i4.s 14
+   IL_1087: stsfld Terraria.Main::newMusic
+   IL_108C: ret 
+   IL_108D: ldc.i4.s 20
+   IL_108F: stsfld Terraria.Main::newMusic
+   IL_1094: ret 
+   IL_1095: ldsfld Terraria.Main::remixWorld
+   IL_109A: brfalse.s IL_10af: ldc.i4.s 14
+   IL_109C: ldsfld Terraria.Main::dayTime
+   IL_10A1: brtrue.s IL_10a7: ldc.i4.s 42
+   IL_10A3: ldc.i4.s 15
+   IL_10A5: br.s IL_10a9: stsfld System.Int32 Terraria.Main::newMusic
+   IL_10A7: ldc.i4.s 42
+   IL_10A9: stsfld Terraria.Main::newMusic
+   IL_10AE: ret 
+   IL_10AF: ldc.i4.s 14
+   IL_10B1: stsfld Terraria.Main::newMusic
+   IL_10B6: ret 
+   IL_10B7: ldloc.s V_21
+   IL_10B9: ldc.i4.1 
+   IL_10BA: blt.s IL_10c4: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_10BC: ldloc.s V_20
+   IL_10BE: stsfld Terraria.Main::newMusic
+   IL_10C3: ret 
+   IL_10C4: ldsfld Terraria.Main::player
+   IL_10C9: ldsfld Terraria.Main::myPlayer
+   IL_10CE: ldelem.ref 
+   IL_10CF: ldflda Terraria.Entity::position
+   IL_10D4: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_10D9: conv.r8 
+   IL_10DA: ldsfld Terraria.Main::worldSurface
+   IL_10DF: ldc.r8 16
+   IL_10E8: mul 
+   IL_10E9: ldsfld Terraria.Main::screenHeight
+   IL_10EE: ldc.i4.2 
+   IL_10EF: div 
+   IL_10F0: conv.r8 
+   IL_10F1: add 
+   IL_10F2: blt.un IL_1328: ldsfld System.Boolean Terraria.Main::dayTime
+   IL_10F7: ldsfld Terraria.Main::remixWorld
+   IL_10FC: brtrue.s IL_1136: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_10FE: ldsflda Terraria.Main::screenPosition
+   IL_1103: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_1108: ldsfld Terraria.Main::screenWidth
+   IL_110D: ldc.i4.2 
+   IL_110E: div 
+   IL_110F: conv.r4 
+   IL_1110: add 
+   IL_1111: conv.i4 
+   IL_1112: ldc.i4.s 16
+   IL_1114: div 
+   IL_1115: ldsflda Terraria.Main::screenPosition
+   IL_111A: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_111F: ldsfld Terraria.Main::screenHeight
+   IL_1124: ldc.i4.2 
+   IL_1125: div 
+   IL_1126: conv.r4 
+   IL_1127: add 
+   IL_1128: conv.i4 
+   IL_1129: ldc.i4.s 16
+   IL_112B: div 
+   IL_112C: call Terraria.WorldGen::oceanDepths(Int32,Int32)
+   IL_1131: brtrue IL_1328: ldsfld System.Boolean Terraria.Main::dayTime
+   IL_1136: ldsfld Terraria.Main::player
+   IL_113B: ldsfld Terraria.Main::myPlayer
+   IL_1140: ldelem.ref 
+   IL_1141: callvirt Terraria.Player::get_ZoneHallow()
+   IL_1146: brfalse.s IL_118f: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_1148: ldsfld Terraria.Main::remixWorld
+   IL_114D: brfalse.s IL_1187: ldc.i4.s 11
+   IL_114F: ldsfld Terraria.Main::player
+   IL_1154: ldsfld Terraria.Main::myPlayer
+   IL_1159: ldelem.ref 
+   IL_115A: ldflda Terraria.Entity::position
+   IL_115F: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1164: conv.r8 
+   IL_1165: ldsfld Terraria.Main::rockLayer
+   IL_116A: ldc.r8 16
+   IL_1173: mul 
+   IL_1174: ldsfld Terraria.Main::screenHeight
+   IL_1179: ldc.i4.2 
+   IL_117A: div 
+   IL_117B: conv.r8 
+   IL_117C: add 
+   IL_117D: blt.un.s IL_1187: ldc.i4.s 11
+   IL_117F: ldc.i4.s 9
+   IL_1181: stsfld Terraria.Main::newMusic
+   IL_1186: ret 
+   IL_1187: ldc.i4.s 11
+   IL_1189: stsfld Terraria.Main::newMusic
+   IL_118E: ret 
+   IL_118F: ldsfld Terraria.Main::player
+   IL_1194: ldsfld Terraria.Main::myPlayer
+   IL_1199: ldelem.ref 
+   IL_119A: callvirt Terraria.Player::get_ZoneUndergroundDesert()
+   IL_119F: brfalse.s IL_11e1: ldsfld System.Int32 Terraria.Main::ugMusic
+   IL_11A1: ldsfld Terraria.Main::player
+   IL_11A6: ldsfld Terraria.Main::myPlayer
+   IL_11AB: ldelem.ref 
+   IL_11AC: ldflda Terraria.Entity::position
+   IL_11B1: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_11B6: conv.r8 
+   IL_11B7: ldsfld Terraria.Main::worldSurface
+   IL_11BC: ldc.r8 16
+   IL_11C5: mul 
+   IL_11C6: ldsfld Terraria.Main::screenHeight
+   IL_11CB: ldc.i4.2 
+   IL_11CC: div 
+   IL_11CD: conv.r8 
+   IL_11CE: add 
+   IL_11CF: blt.un.s IL_11d9: ldc.i4.s 21
+   IL_11D1: ldc.i4.s 61
+   IL_11D3: stsfld Terraria.Main::newMusic
+   IL_11D8: ret 
+   IL_11D9: ldc.i4.s 21
+   IL_11DB: stsfld Terraria.Main::newMusic
+   IL_11E0: ret 
+   IL_11E1: ldsfld Terraria.Main::ugMusic
+   IL_11E6: brtrue.s IL_11ee: ldsfld Terraria.Audio.IAudioSystem Terraria.Main::audioSystem
+   IL_11E8: ldc.i4.4 
+   IL_11E9: stsfld Terraria.Main::ugMusic
+   IL_11EE: ldsfld Terraria.Main::audioSystem
+   IL_11F3: ldc.i4.4 
+   IL_11F4: callvirt Terraria.Audio.IAudioSystem::IsTrackPlaying(Int32)
+   IL_11F9: brtrue IL_1282: ldsfld System.Int32 Terraria.Main::ugMusic
+   IL_11FE: ldsfld Terraria.Main::audioSystem
+   IL_1203: ldc.i4.s 31
+   IL_1205: callvirt Terraria.Audio.IAudioSystem::IsTrackPlaying(Int32)
+   IL_120A: brtrue.s IL_1282: ldsfld System.Int32 Terraria.Main::ugMusic
+   IL_120C: ldsfld Terraria.Main::musicFade
+   IL_1211: ldc.i4.4 
+   IL_1212: ldelem.r4 
+   IL_1213: ldc.r4 1
+   IL_1218: bne.un.s IL_1227: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_121A: ldsfld Terraria.Main::musicFade
+   IL_121F: ldc.i4.s 31
+   IL_1221: ldc.r4 1
+   IL_1226: stelem.r4 
+   IL_1227: ldsfld Terraria.Main::musicFade
+   IL_122C: ldc.i4.s 31
+   IL_122E: ldelem.r4 
+   IL_122F: ldc.r4 1
+   IL_1234: bne.un.s IL_1242: call Terraria.Utilities.UnifiedRandom Terraria.Main::get_rand()
+   IL_1236: ldsfld Terraria.Main::musicFade
+   IL_123B: ldc.i4.4 
+   IL_123C: ldc.r4 1
+   IL_1241: stelem.r4 
+   IL_1242: call Terraria.Main::get_rand()
+   IL_1247: ldc.i4.2 
+   IL_1248: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_124D: stloc.s V_30
+   IL_124F: ldloc.s V_30
+   IL_1251: brfalse.s IL_125a: ldc.i4.4
+   IL_1253: ldloc.s V_30
+   IL_1255: ldc.i4.1 
+   IL_1256: beq.s IL_126f: ldc.i4.s 31
+   IL_1258: br.s IL_1282: ldsfld System.Int32 Terraria.Main::ugMusic
+   IL_125A: ldc.i4.4 
+   IL_125B: stsfld Terraria.Main::ugMusic
+   IL_1260: ldsfld Terraria.Main::musicFade
+   IL_1265: ldc.i4.s 31
+   IL_1267: ldc.r4 0
+   IL_126C: stelem.r4 
+   IL_126D: br.s IL_1282: ldsfld System.Int32 Terraria.Main::ugMusic
+   IL_126F: ldc.i4.s 31
+   IL_1271: stsfld Terraria.Main::ugMusic
+   IL_1276: ldsfld Terraria.Main::musicFade
+   IL_127B: ldc.i4.4 
+   IL_127C: ldc.r4 0
+   IL_1281: stelem.r4 
+   IL_1282: ldsfld Terraria.Main::ugMusic
+   IL_1287: stsfld Terraria.Main::newMusic
+   IL_128C: ldsfld Terraria.Main::remixWorld
+   IL_1291: brfalse IL_15e7: ret
+   IL_1296: ldsfld Terraria.Main::player
+   IL_129B: ldsfld Terraria.Main::myPlayer
+   IL_12A0: ldelem.ref 
+   IL_12A1: ldflda Terraria.Entity::position
+   IL_12A6: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_12AB: ldc.r4 16
+   IL_12B0: div 
+   IL_12B1: conv.r8 
+   IL_12B2: ldsfld Terraria.Main::rockLayer
+   IL_12B7: ble.un IL_15e7: ret
+   IL_12BC: ldsfld Terraria.Main::player
+   IL_12C1: ldsfld Terraria.Main::myPlayer
+   IL_12C6: ldelem.ref 
+   IL_12C7: ldflda Terraria.Entity::position
+   IL_12CC: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_12D1: ldc.r4 16
+   IL_12D6: div 
+   IL_12D7: ldsfld Terraria.Main::maxTilesY
+   IL_12DC: ldc.i4 350
+   IL_12E1: sub 
+   IL_12E2: conv.r4 
+   IL_12E3: bge.un IL_15e7: ret
+   IL_12E8: ldsfld Terraria.Main::cloudAlpha
+   IL_12ED: ldc.r4 0
+   IL_12F2: ble.un.s IL_12fc: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_12F4: ldc.i4.s 19
+   IL_12F6: stsfld Terraria.Main::newMusic
+   IL_12FB: ret 
+   IL_12FC: ldsfld Terraria.Main::player
+   IL_1301: ldsfld Terraria.Main::myPlayer
+   IL_1306: ldelem.ref 
+   IL_1307: callvirt Terraria.Player::get_ZoneDesert()
+   IL_130C: brfalse.s IL_1316: ldsfld System.Boolean Terraria.Main::_shouldUseWindyDayMusic
+   IL_130E: ldc.i4.s 21
+   IL_1310: stsfld Terraria.Main::newMusic
+   IL_1315: ret 
+   IL_1316: ldsfld Terraria.Main::_shouldUseWindyDayMusic
+   IL_131B: brfalse IL_15e7: ret
+   IL_1320: ldc.i4.s 44
+   IL_1322: stsfld Terraria.Main::newMusic
+   IL_1327: ret 
+   IL_1328: ldsfld Terraria.Main::dayTime
+   IL_132D: brfalse.s IL_1389: ldsfld System.Boolean Terraria.Main::_shouldUseStormMusic
+   IL_132F: ldsfld Terraria.Main::player
+   IL_1334: ldsfld Terraria.Main::myPlayer
+   IL_1339: ldelem.ref 
+   IL_133A: callvirt Terraria.Player::get_ZoneHallow()
+   IL_133F: brfalse.s IL_1389: ldsfld System.Boolean Terraria.Main::_shouldUseStormMusic
+   IL_1341: ldsfld Terraria.Main::_shouldUseStormMusic
+   IL_1346: brfalse.s IL_1350: ldsfld System.Single Terraria.Main::cloudAlpha
+   IL_1348: ldc.i4.s 52
+   IL_134A: stsfld Terraria.Main::newMusic
+   IL_134F: ret 
+   IL_1350: ldsfld Terraria.Main::cloudAlpha
+   IL_1355: ldc.r4 0
+   IL_135A: ble.un.s IL_136b: ldsfld System.Boolean Terraria.Main::_shouldUseWindyDayMusic
+   IL_135C: ldsfld Terraria.Main::gameMenu
+   IL_1361: brtrue.s IL_136b: ldsfld System.Boolean Terraria.Main::_shouldUseWindyDayMusic
+   IL_1363: ldc.i4.s 19
+   IL_1365: stsfld Terraria.Main::newMusic
+   IL_136A: ret 
+   IL_136B: ldsfld Terraria.Main::_shouldUseWindyDayMusic
+   IL_1370: brfalse.s IL_1381: ldc.i4.s 9
+   IL_1372: ldsfld Terraria.Main::remixWorld
+   IL_1377: brtrue.s IL_1381: ldc.i4.s 9
+   IL_1379: ldc.i4.s 44
+   IL_137B: stsfld Terraria.Main::newMusic
+   IL_1380: ret 
+   IL_1381: ldc.i4.s 9
+   IL_1383: stsfld Terraria.Main::newMusic
+   IL_1388: ret 
+   IL_1389: ldsfld Terraria.Main::_shouldUseStormMusic
+   IL_138E: brfalse.s IL_13a6: ldsflda Microsoft.Xna.Framework.Vector2 Terraria.Main::screenPosition
+   IL_1390: ldsfld Terraria.Main::bloodMoon
+   IL_1395: brfalse.s IL_139e: ldc.i4.s 52
+   IL_1397: ldc.i4.2 
+   IL_1398: stsfld Terraria.Main::newMusic
+   IL_139D: ret 
+   IL_139E: ldc.i4.s 52
+   IL_13A0: stsfld Terraria.Main::newMusic
+   IL_13A5: ret 
+   IL_13A6: ldsflda Terraria.Main::screenPosition
+   IL_13AB: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_13B0: ldsfld Terraria.Main::screenWidth
+   IL_13B5: ldc.i4.2 
+   IL_13B6: div 
+   IL_13B7: conv.r4 
+   IL_13B8: add 
+   IL_13B9: conv.i4 
+   IL_13BA: ldc.i4.s 16
+   IL_13BC: div 
+   IL_13BD: ldsflda Terraria.Main::screenPosition
+   IL_13C2: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_13C7: ldsfld Terraria.Main::screenHeight
+   IL_13CC: ldc.i4.2 
+   IL_13CD: div 
+   IL_13CE: conv.r4 
+   IL_13CF: add 
+   IL_13D0: conv.i4 
+   IL_13D1: ldc.i4.s 16
+   IL_13D3: div 
+   IL_13D4: call Terraria.WorldGen::oceanDepths(Int32,Int32)
+   IL_13D9: brfalse.s IL_1417: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_13DB: ldsfld Terraria.Main::bloodMoon
+   IL_13E0: brfalse.s IL_13e9: ldloc.s V_17
+   IL_13E2: ldc.i4.2 
+   IL_13E3: stsfld Terraria.Main::newMusic
+   IL_13E8: ret 
+   IL_13E9: ldloc.s V_17
+   IL_13EB: brfalse.s IL_1404: ldsfld System.Boolean Terraria.Main::dayTime
+   IL_13ED: ldsfld Terraria.Main::dayTime
+   IL_13F2: brfalse.s IL_13fc: ldc.i4.s 47
+   IL_13F4: ldc.i4.s 46
+   IL_13F6: stsfld Terraria.Main::newMusic
+   IL_13FB: ret 
+   IL_13FC: ldc.i4.s 47
+   IL_13FE: stsfld Terraria.Main::newMusic
+   IL_1403: ret 
+   IL_1404: ldsfld Terraria.Main::dayTime
+   IL_1409: brtrue.s IL_140f: ldc.i4.s 22
+   IL_140B: ldc.i4.s 43
+   IL_140D: br.s IL_1411: stsfld System.Int32 Terraria.Main::newMusic
+   IL_140F: ldc.i4.s 22
+   IL_1411: stsfld Terraria.Main::newMusic
+   IL_1416: ret 
+   IL_1417: ldsfld Terraria.Main::player
+   IL_141C: ldsfld Terraria.Main::myPlayer
+   IL_1421: ldelem.ref 
+   IL_1422: callvirt Terraria.Player::get_ZoneDesert()
+   IL_1427: brfalse IL_14f6: ldsfld System.Boolean Terraria.Main::remixWorld
+   IL_142C: ldsfld Terraria.Main::player
+   IL_1431: ldsfld Terraria.Main::myPlayer
+   IL_1436: ldelem.ref 
+   IL_1437: ldflda Terraria.Entity::position
+   IL_143C: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1441: conv.r8 
+   IL_1442: ldsfld Terraria.Main::worldSurface
+   IL_1447: ldc.r8 16
+   IL_1450: mul 
+   IL_1451: blt.un IL_14ee: ldc.i4.s 21
+   IL_1456: ldsfld Terraria.Main::player
+   IL_145B: ldsfld Terraria.Main::myPlayer
+   IL_1460: ldelem.ref 
+   IL_1461: callvirt Terraria.Entity::get_Center()
+   IL_1466: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_146B: ldc.r4 16
+   IL_1470: div 
+   IL_1471: conv.i4 
+   IL_1472: stloc.s V_32
+   IL_1474: ldsfld Terraria.Main::player
+   IL_1479: ldsfld Terraria.Main::myPlayer
+   IL_147E: ldelem.ref 
+   IL_147F: callvirt Terraria.Entity::get_Center()
+   IL_1484: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1489: ldc.r4 16
+   IL_148E: div 
+   IL_148F: conv.i4 
+   IL_1490: stloc.s V_33
+   IL_1492: ldloc.s V_32
+   IL_1494: ldloc.s V_33
+   IL_1496: ldc.i4.0 
+   IL_1497: call Terraria.WorldGen::InWorld(Int32,Int32,Int32)
+   IL_149C: brfalse.s IL_14e6: ldc.i4.s 21
+   IL_149E: ldsfld Terraria.ID.WallID/Sets/Conversion::Sandstone
+   IL_14A3: ldsflda Terraria.Main::tile
+   IL_14A8: ldloc.s V_32
+   IL_14AA: ldloc.s V_33
+   IL_14AC: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_14B1: stloc.s V_31
+   IL_14B3: ldloca.s V_31
+   IL_14B5: call Terraria.Tile::get_wall()
+   IL_14BA: ldind.u2 
+   IL_14BB: ldelem.u1 
+   IL_14BC: brtrue.s IL_14de: ldc.i4.s 61
+   IL_14BE: ldsfld Terraria.ID.WallID/Sets/Conversion::HardenedSand
+   IL_14C3: ldsflda Terraria.Main::tile
+   IL_14C8: ldloc.s V_32
+   IL_14CA: ldloc.s V_33
+   IL_14CC: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_14D1: stloc.s V_31
+   IL_14D3: ldloca.s V_31
+   IL_14D5: call Terraria.Tile::get_wall()
+   IL_14DA: ldind.u2 
+   IL_14DB: ldelem.u1 
+   IL_14DC: brfalse.s IL_14e6: ldc.i4.s 21
+   IL_14DE: ldc.i4.s 61
+   IL_14E0: stsfld Terraria.Main::newMusic
+   IL_14E5: ret 
+   IL_14E6: ldc.i4.s 21
+   IL_14E8: stsfld Terraria.Main::newMusic
+   IL_14ED: ret 
+   IL_14EE: ldc.i4.s 21
+   IL_14F0: stsfld Terraria.Main::newMusic
+   IL_14F5: ret 
+   IL_14F6: ldsfld Terraria.Main::remixWorld
+   IL_14FB: brfalse.s IL_1510: ldsfld System.Boolean Terraria.Main::dayTime
+   IL_14FD: ldsfld Terraria.Main::dayTime
+   IL_1502: brtrue.s IL_1508: ldc.i4.s 42
+   IL_1504: ldc.i4.s 15
+   IL_1506: br.s IL_150a: stsfld System.Int32 Terraria.Main::newMusic
+   IL_1508: ldc.i4.s 42
+   IL_150A: stsfld Terraria.Main::newMusic
+   IL_150F: ret 
+   IL_1510: ldsfld Terraria.Main::dayTime
+   IL_1515: brfalse IL_15b1: ldsfld System.Boolean Terraria.Main::dayTime
+   IL_151A: ldsfld Terraria.Main::cloudAlpha
+   IL_151F: ldc.r4 0
+   IL_1524: ble.un.s IL_154d: ldsfld System.Int32 Terraria.Main::dayMusic
+   IL_1526: ldsfld Terraria.Main::gameMenu
+   IL_152B: brtrue.s IL_154d: ldsfld System.Int32 Terraria.Main::dayMusic
+   IL_152D: ldsfld Terraria.Main::time
+   IL_1532: ldc.r8 10800
+   IL_153B: bge.un.s IL_1545: ldc.i4.s 19
+   IL_153D: ldc.i4.s 59
+   IL_153F: stsfld Terraria.Main::newMusic
+   IL_1544: ret 
+   IL_1545: ldc.i4.s 19
+   IL_1547: stsfld Terraria.Main::newMusic
+   IL_154C: ret 
+   IL_154D: ldsfld Terraria.Main::dayMusic
+   IL_1552: brtrue.s IL_155a: ldsfld Terraria.Audio.IAudioSystem Terraria.Main::audioSystem
+   IL_1554: ldc.i4.1 
+   IL_1555: stsfld Terraria.Main::dayMusic
+   IL_155A: ldsfld Terraria.Main::audioSystem
+   IL_155F: ldc.i4.1 
+   IL_1560: callvirt Terraria.Audio.IAudioSystem::IsTrackPlaying(Int32)
+   IL_1565: brtrue.s IL_1591: ldsfld System.Int32 Terraria.Main::dayMusic
+   IL_1567: ldsfld Terraria.Main::audioSystem
+   IL_156C: ldc.i4.s 18
+   IL_156E: callvirt Terraria.Audio.IAudioSystem::IsTrackPlaying(Int32)
+   IL_1573: brtrue.s IL_1591: ldsfld System.Int32 Terraria.Main::dayMusic
+   IL_1575: call Terraria.Main::get_rand()
+   IL_157A: ldc.i4.2 
+   IL_157B: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_1580: brtrue.s IL_158a: ldc.i4.s 18
+   IL_1582: ldc.i4.1 
+   IL_1583: stsfld Terraria.Main::dayMusic
+   IL_1588: br.s IL_1591: ldsfld System.Int32 Terraria.Main::dayMusic
+   IL_158A: ldc.i4.s 18
+   IL_158C: stsfld Terraria.Main::dayMusic
+   IL_1591: ldsfld Terraria.Main::dayMusic
+   IL_1596: stsfld Terraria.Main::newMusic
+   IL_159B: ldsfld Terraria.Main::_shouldUseWindyDayMusic
+   IL_15A0: brfalse.s IL_15e7: ret
+   IL_15A2: ldsfld Terraria.Main::remixWorld
+   IL_15A7: brtrue.s IL_15e7: ret
+   IL_15A9: ldc.i4.s 44
+   IL_15AB: stsfld Terraria.Main::newMusic
+   IL_15B0: ret 
+   IL_15B1: ldsfld Terraria.Main::dayTime
+   IL_15B6: brtrue.s IL_15e7: ret
+   IL_15B8: ldsfld Terraria.Main::bloodMoon
+   IL_15BD: brfalse.s IL_15c6: ldsfld System.Single Terraria.Main::cloudAlpha
+   IL_15BF: ldc.i4.2 
+   IL_15C0: stsfld Terraria.Main::newMusic
+   IL_15C5: ret 
+   IL_15C6: ldsfld Terraria.Main::cloudAlpha
+   IL_15CB: ldc.r4 0
+   IL_15D0: ble.un.s IL_15e1: ldc.i4.3
+   IL_15D2: ldsfld Terraria.Main::gameMenu
+   IL_15D7: brtrue.s IL_15e1: ldc.i4.3
+   IL_15D9: ldc.i4.s 19
+   IL_15DB: stsfld Terraria.Main::newMusic
+   IL_15E0: ret 
+   IL_15E1: ldc.i4.3 
+   IL_15E2: stsfld Terraria.Main::newMusic
+   IL_15E7: ret 

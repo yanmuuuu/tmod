@@ -1,0 +1,645 @@
+﻿TYPE Terraria.Tilemap : System.ValueType
+  FIELD public readonly System.UInt16 Width
+  FIELD public readonly System.UInt16 Height
+  PROP Terraria.Tile Item {get}
+  PROP Terraria.Tile Item {get}
+  PROP Terraria.Tile Item {get}
+  METHOD protected System.Void .ctor(System.UInt16 width, System.UInt16 height)
+  METHOD public System.Void ClearEverything()
+  METHOD public T[] GetData()
+### Terraria.WorldGen::setWorldSize
+   IL_0000: ldsfld Terraria.Main::maxTilesY
+   IL_0005: ldc.i4.s 16
+   IL_0007: mul 
+   IL_0008: conv.r4 
+   IL_0009: stsfld Terraria.Main::bottomWorld
+   IL_000E: ldsfld Terraria.Main::maxTilesX
+   IL_0013: ldc.i4.s 16
+   IL_0015: mul 
+   IL_0016: conv.r4 
+   IL_0017: stsfld Terraria.Main::rightWorld
+   IL_001C: ldsfld Terraria.Main::maxTilesX
+   IL_0021: ldc.i4.1 
+   IL_0022: sub 
+   IL_0023: ldc.i4 200
+   IL_0028: div 
+   IL_0029: ldc.i4.1 
+   IL_002A: add 
+   IL_002B: stsfld Terraria.Main::maxSectionsX
+   IL_0030: ldsfld Terraria.Main::maxTilesY
+   IL_0035: ldc.i4.1 
+   IL_0036: sub 
+   IL_0037: ldc.i4 150
+   IL_003C: div 
+   IL_003D: ldc.i4.1 
+   IL_003E: add 
+   IL_003F: stsfld Terraria.Main::maxSectionsY
+   IL_0044: ret 
+### Terraria.WorldGen::clearWorld
+   IL_0000: call Terraria.WorldGen::ResetTreeShakes()
+   IL_0005: ldc.r8 0
+   IL_000E: stsfld Terraria.Main::ladyBugRainBoost
+   IL_0013: ldc.i4.0 
+   IL_0014: stsfld Terraria.Main::getGoodWorld
+   IL_0019: ldc.i4.0 
+   IL_001A: stsfld Terraria.Main::drunkWorld
+   IL_001F: ldc.i4.0 
+   IL_0020: stsfld Terraria.Main::tenthAnniversaryWorld
+   IL_0025: ldc.i4.0 
+   IL_0026: stsfld Terraria.Main::dontStarveWorld
+   IL_002B: ldc.i4.0 
+   IL_002C: stsfld Terraria.Main::notTheBeesWorld
+   IL_0031: ldc.i4.0 
+   IL_0032: stsfld Terraria.Main::remixWorld
+   IL_0037: ldc.i4.0 
+   IL_0038: stsfld Terraria.Main::noTrapsWorld
+   IL_003D: ldc.i4.0 
+   IL_003E: stsfld Terraria.Main::zenithWorld
+   IL_0043: ldc.i4.0 
+   IL_0044: stsfld Terraria.Main::afterPartyOfDoom
+   IL_0049: ldc.r4 0
+   IL_004E: stsfld Terraria.Main::shimmerAlpha
+   IL_0053: ldc.r4 0
+   IL_0058: stsfld Terraria.Main::shimmerDarken
+   IL_005D: ldc.r4 0
+   IL_0062: stsfld Terraria.Main::shimmerBrightenDelay
+   IL_0067: call Terraria.NPC::ResetBadgerHatTime()
+   IL_006C: ldc.i4.0 
+   IL_006D: stsfld Terraria.NPC::freeCake
+   IL_0072: ldc.i4.m1 
+   IL_0073: stsfld Terraria.NPC::mechQueen
+   IL_0078: ldc.i4.2 
+   IL_0079: stsfld Terraria.Main::mapDelay
+   IL_007E: ldc.i4.0 
+   IL_007F: stsfld Terraria.Main::waterStyle
+   IL_0084: ldc.i4.1 
+   IL_0085: call Terraria.Main::ResetWindCounter(Boolean)
+   IL_008A: newobj Terraria.GameContent.TownRoomManager::.ctor()
+   IL_008F: stsfld Terraria.WorldGen::TownManager
+   IL_0094: call Terraria.GameContent.PressurePlateHelper::Reset()
+   IL_0099: ldsfld Terraria.WorldGen::TownManager
+   IL_009E: callvirt Terraria.GameContent.TownRoomManager::Clear()
+   IL_00A3: call Terraria.NPC::ResetKillCount()
+   IL_00A8: ldsfld Terraria.Main::instance
+   IL_00AD: callvirt Terraria.Main::ClearCachedTileDraws()
+   IL_00B2: call Terraria.Map.MapHelper::ResetMapData()
+   IL_00B7: call Terraria.DataStructures.TileEntity::Clear()
+   IL_00BC: call Terraria.Main::checkXMas()
+   IL_00C1: call Terraria.Main::checkHalloween()
+   IL_00C6: call Terraria.GameContent.DontStarveDarknessDamageDealer::Reset()
+   IL_00CB: call Terraria.Wiring::ClearAll()
+   IL_00D0: ldsfld Terraria.Main::ParticleSystem_World_BehindPlayers
+   IL_00D5: ldfld Terraria.Graphics.Renderers.ParticleRenderer::Particles
+   IL_00DA: callvirt System.Collections.Generic.List`1<Terraria.Graphics.Renderers.IParticle>::Clear()
+   IL_00DF: ldsfld Terraria.Main::ParticleSystem_World_OverPlayers
+   IL_00E4: ldfld Terraria.Graphics.Renderers.ParticleRenderer::Particles
+   IL_00E9: callvirt System.Collections.Generic.List`1<Terraria.Graphics.Renderers.IParticle>::Clear()
+   IL_00EE: ldsfld Terraria.Main::mapReady
+   IL_00F3: brfalse.s IL_0132: ldc.i4.0
+   IL_00F5: ldc.i4.0 
+   IL_00F6: stloc.0 
+   IL_00F7: br.s IL_0119: ldloc.0
+   IL_00F9: ldloc.0 
+   IL_00FA: conv.r4 
+   IL_00FB: ldsfld Terraria.WorldGen::lastMaxTilesX
+   IL_0100: conv.r4 
+   IL_0101: div 
+   IL_0102: pop 
+   IL_0103: ldsfld Terraria.Lang::gen
+   IL_0108: ldc.i4.s 65
+   IL_010A: ldelem.ref 
+   IL_010B: callvirt Terraria.Localization.LocalizedText::get_Value()
+   IL_0110: call Terraria.Main::set_statusText(String)
+   IL_0115: ldloc.0 
+   IL_0116: ldc.i4.1 
+   IL_0117: add 
+   IL_0118: stloc.0 
+   IL_0119: ldloc.0 
+   IL_011A: ldsfld Terraria.WorldGen::lastMaxTilesX
+   IL_011F: blt.s IL_00f9: ldloc.0
+   IL_0121: ldsfld Terraria.Main::Map
+   IL_0126: brfalse.s IL_0132: ldc.i4.0
+   IL_0128: ldsfld Terraria.Main::Map
+   IL_012D: callvirt Terraria.Map.WorldMap::Clear()
+   IL_0132: ldc.i4.0 
+   IL_0133: stsfld Terraria.NPC::MoonLordCountdown
+   IL_0138: ldc.i4.0 
+   IL_0139: stsfld Terraria.Main::forceHalloweenForToday
+   IL_013E: ldc.i4.0 
+   IL_013F: stsfld Terraria.Main::forceXMasForToday
+   IL_0144: ldsfld Terraria.NPC::RevengeManager
+   IL_0149: callvirt Terraria.GameContent.CoinLossRevengeSystem::Reset()
+   IL_014E: ldc.i4.0 
+   IL_014F: stsfld Terraria.Main::pumpkinMoon
+   IL_0154: ldc.i4.1 
+   IL_0155: stsfld Terraria.Main::clearMap
+   IL_015A: ldc.i4.0 
+   IL_015B: stsfld Terraria.Main::mapTime
+   IL_0160: ldc.i4.0 
+   IL_0161: stsfld Terraria.Main::updateMap
+   IL_0166: ldc.i4.0 
+   IL_0167: stsfld Terraria.Main::mapReady
+   IL_016C: ldc.i4.0 
+   IL_016D: stsfld Terraria.Main::refreshMap
+   IL_0172: ldc.i4.0 
+   IL_0173: stsfld Terraria.Main::eclipse
+   IL_0178: ldc.i4.0 
+   IL_0179: stsfld Terraria.Main::slimeRain
+   IL_017E: ldc.r8 0
+   IL_0187: stsfld Terraria.Main::slimeRainTime
+   IL_018C: ldc.i4.0 
+   IL_018D: stsfld Terraria.Main::slimeWarningTime
+   IL_0192: ldc.i4.0 
+   IL_0193: stsfld Terraria.Main::sundialCooldown
+   IL_0198: ldc.i4.0 
+   IL_0199: stsfld Terraria.Main::moondialCooldown
+   IL_019E: ldc.i4.0 
+   IL_019F: stsfld Terraria.Main::fastForwardTimeToDawn
+   IL_01A4: ldc.i4.0 
+   IL_01A5: stsfld Terraria.Main::fastForwardTimeToDusk
+   IL_01AA: call Terraria.GameContent.Events.BirthdayParty::WorldClear()
+   IL_01AF: call Terraria.GameContent.Events.LanternNight::WorldClear()
+   IL_01B4: ldsfld Terraria.WorldGen::mysticLogsEvent
+   IL_01B9: callvirt Terraria.GameContent.Events.MysticLogFairiesEvent::WorldClear()
+   IL_01BE: call Terraria.GameContent.Events.CreditsRollEvent::Reset()
+   IL_01C3: call Terraria.GameContent.Events.Sandstorm::WorldClear()
+   IL_01C8: ldsfld Terraria.Main::DroneCameraTracker
+   IL_01CD: callvirt Terraria.DataStructures.DroneCameraTracker::WorldClear()
+   IL_01D2: ldsfld Terraria.Main::LocalGolfState
+   IL_01D7: callvirt Terraria.GameContent.Golf.GolfState::WorldClear()
+   IL_01DC: call Microsoft.Xna.Framework.Vector2::get_Zero()
+   IL_01E1: stsfld Terraria.Main::CurrentPan
+   IL_01E6: call Terraria.Main::UpdateTimeRate()
+   IL_01EB: ldc.i4.m1 
+   IL_01EC: stsfld Terraria.Main::wofNPCIndex
+   IL_01F1: ldc.r4 0
+   IL_01F6: stsfld Terraria.NPC::waveKills
+   IL_01FB: ldc.i4.0 
+   IL_01FC: stsfld Terraria.WorldGen::spawnHardBoss
+   IL_0201: ldc.i4.0 
+   IL_0202: stsfld Terraria.WorldGen::totalSolid2
+   IL_0207: ldc.i4.0 
+   IL_0208: stsfld Terraria.WorldGen::totalGood2
+   IL_020D: ldc.i4.0 
+   IL_020E: stsfld Terraria.WorldGen::totalEvil2
+   IL_0213: ldc.i4.0 
+   IL_0214: stsfld Terraria.WorldGen::totalBlood2
+   IL_0219: ldc.i4.0 
+   IL_021A: stsfld Terraria.WorldGen::totalSolid
+   IL_021F: ldc.i4.0 
+   IL_0220: stsfld Terraria.WorldGen::totalGood
+   IL_0225: ldc.i4.0 
+   IL_0226: stsfld Terraria.WorldGen::totalEvil
+   IL_022B: ldc.i4.0 
+   IL_022C: stsfld Terraria.WorldGen::totalBlood
+   IL_0231: call Terraria.IO.WorldFile::ResetTemps()
+   IL_0236: ldc.r4 0
+   IL_023B: stsfld Terraria.Main::maxRaining
+   IL_0240: ldc.i4.0 
+   IL_0241: stsfld Terraria.WorldGen::totalX
+   IL_0246: ldc.i4.0 
+   IL_0247: stsfld Terraria.WorldGen::totalD
+   IL_024C: ldc.i4.0 
+   IL_024D: stsfld Terraria.WorldGen::tEvil
+   IL_0252: ldc.i4.0 
+   IL_0253: stsfld Terraria.WorldGen::tBlood
+   IL_0258: ldc.i4.0 
+   IL_0259: stsfld Terraria.WorldGen::tGood
+   IL_025E: ldc.i4.0 
+   IL_025F: stsfld Terraria.WorldGen::spawnEye
+   IL_0264: ldc.i4.0 
+   IL_0265: stsfld Terraria.WorldGen::prioritizedTownNPCType
+   IL_026A: ldc.i4.0 
+   IL_026B: stsfld Terraria.WorldGen::shadowOrbCount
+   IL_0270: ldc.i4.0 
+   IL_0271: stsfld Terraria.WorldGen::altarCount
+   IL_0276: ldc.i4.m1 
+   IL_0277: stsfld Terraria.WorldGen/SavedOreTiers::Copper
+   IL_027C: ldc.i4.m1 
+   IL_027D: stsfld Terraria.WorldGen/SavedOreTiers::Iron
+   IL_0282: ldc.i4.m1 
+   IL_0283: stsfld Terraria.WorldGen/SavedOreTiers::Silver
+   IL_0288: ldc.i4.m1 
+   IL_0289: stsfld Terraria.WorldGen/SavedOreTiers::Gold
+   IL_028E: ldc.i4.m1 
+   IL_028F: stsfld Terraria.WorldGen/SavedOreTiers::Cobalt
+   IL_0294: ldc.i4.m1 
+   IL_0295: stsfld Terraria.WorldGen/SavedOreTiers::Mythril
+   IL_029A: ldc.i4.m1 
+   IL_029B: stsfld Terraria.WorldGen/SavedOreTiers::Adamantite
+   IL_02A0: call ReLogic.Utilities.Vector2D::get_Zero()
+   IL_02A5: stsfld Terraria.WorldBuilding.GenVars::shimmerPosition
+   IL_02AA: ldc.r4 0
+   IL_02AF: stsfld Terraria.Main::cloudBGActive
+   IL_02B4: ldc.i4.0 
+   IL_02B5: stsfld Terraria.Main::raining
+   IL_02BA: ldc.i4.0 
+   IL_02BB: stsfld Terraria.Main::hardMode
+   IL_02C0: ldc.i4.0 
+   IL_02C1: stsfld Terraria.Main::helpText
+   IL_02C6: ldc.i4.0 
+   IL_02C7: stsfld Terraria.Main::BartenderHelpTextIndex
+   IL_02CC: ldc.i4.0 
+   IL_02CD: stsfld Terraria.Main::dungeonX
+   IL_02D2: ldc.i4.0 
+   IL_02D3: stsfld Terraria.Main::dungeonY
+   IL_02D8: ldc.i4.0 
+   IL_02D9: stsfld Terraria.NPC::downedBoss1
+   IL_02DE: ldc.i4.0 
+   IL_02DF: stsfld Terraria.NPC::downedBoss2
+   IL_02E4: ldc.i4.0 
+   IL_02E5: stsfld Terraria.NPC::downedBoss3
+   IL_02EA: ldc.i4.0 
+   IL_02EB: stsfld Terraria.NPC::downedQueenBee
+   IL_02F0: ldc.i4.0 
+   IL_02F1: stsfld Terraria.NPC::downedSlimeKing
+   IL_02F6: ldc.i4.0 
+   IL_02F7: stsfld Terraria.NPC::downedMechBossAny
+   IL_02FC: ldc.i4.0 
+   IL_02FD: stsfld Terraria.NPC::downedMechBoss1
+   IL_0302: ldc.i4.0 
+   IL_0303: stsfld Terraria.NPC::downedMechBoss2
+   IL_0308: ldc.i4.0 
+   IL_0309: stsfld Terraria.NPC::downedMechBoss3
+   IL_030E: ldc.i4.0 
+   IL_030F: stsfld Terraria.NPC::downedFishron
+   IL_0314: ldc.i4.0 
+   IL_0315: stsfld Terraria.NPC::downedAncientCultist
+   IL_031A: ldc.i4.0 
+   IL_031B: stsfld Terraria.NPC::downedMoonlord
+   IL_0320: ldc.i4.0 
+   IL_0321: stsfld Terraria.NPC::downedHalloweenKing
+   IL_0326: ldc.i4.0 
+   IL_0327: stsfld Terraria.NPC::downedHalloweenTree
+   IL_032C: ldc.i4.0 
+   IL_032D: stsfld Terraria.NPC::downedChristmasIceQueen
+   IL_0332: ldc.i4.0 
+   IL_0333: stsfld Terraria.NPC::downedChristmasSantank
+   IL_0338: ldc.i4.0 
+   IL_0339: stsfld Terraria.NPC::downedChristmasTree
+   IL_033E: ldc.i4.0 
+   IL_033F: stsfld Terraria.NPC::downedPlantBoss
+   IL_0344: ldc.i4.0 
+   IL_0345: stsfld Terraria.NPC::downedGolemBoss
+   IL_034A: ldc.i4.0 
+   IL_034B: stsfld Terraria.NPC::downedEmpressOfLight
+   IL_0350: ldc.i4.0 
+   IL_0351: stsfld Terraria.NPC::downedQueenSlime
+   IL_0356: ldc.i4.0 
+   IL_0357: stsfld Terraria.NPC::downedDeerclops
+   IL_035C: ldc.i4.0 
+   IL_035D: stsfld Terraria.NPC::combatBookWasUsed
+   IL_0362: ldc.i4.0 
+   IL_0363: stsfld Terraria.NPC::combatBookVolumeTwoWasUsed
+   IL_0368: ldc.i4.0 
+   IL_0369: stsfld Terraria.NPC::peddlersSatchelWasUsed
+   IL_036E: ldc.i4.0 
+   IL_036F: stsfld Terraria.NPC::savedStylist
+   IL_0374: ldc.i4.0 
+   IL_0375: stsfld Terraria.NPC::savedGoblin
+   IL_037A: ldc.i4.0 
+   IL_037B: stsfld Terraria.NPC::savedWizard
+   IL_0380: ldc.i4.0 
+   IL_0381: stsfld Terraria.NPC::savedMech
+   IL_0386: ldc.i4.0 
+   IL_0387: stsfld Terraria.NPC::savedTaxCollector
+   IL_038C: ldc.i4.0 
+   IL_038D: stsfld Terraria.NPC::savedAngler
+   IL_0392: ldc.i4.0 
+   IL_0393: stsfld Terraria.NPC::savedBartender
+   IL_0398: ldc.i4.0 
+   IL_0399: stsfld Terraria.NPC::savedGolfer
+   IL_039E: ldc.i4.0 
+   IL_039F: stsfld Terraria.NPC::boughtCat
+   IL_03A4: ldc.i4.0 
+   IL_03A5: stsfld Terraria.NPC::boughtDog
+   IL_03AA: ldc.i4.0 
+   IL_03AB: stsfld Terraria.NPC::boughtBunny
+   IL_03B0: ldc.i4.0 
+   IL_03B1: stsfld Terraria.NPC::unlockedSlimeBlueSpawn
+   IL_03B6: ldc.i4.0 
+   IL_03B7: stsfld Terraria.NPC::unlockedSlimeGreenSpawn
+   IL_03BC: ldc.i4.0 
+   IL_03BD: stsfld Terraria.NPC::unlockedSlimeOldSpawn
+   IL_03C2: ldc.i4.0 
+   IL_03C3: stsfld Terraria.NPC::unlockedSlimePurpleSpawn
+   IL_03C8: ldc.i4.0 
+   IL_03C9: stsfld Terraria.NPC::unlockedSlimeRainbowSpawn
+   IL_03CE: ldc.i4.0 
+   IL_03CF: stsfld Terraria.NPC::unlockedSlimeRedSpawn
+   IL_03D4: ldc.i4.0 
+   IL_03D5: stsfld Terraria.NPC::unlockedSlimeYellowSpawn
+   IL_03DA: ldc.i4.0 
+   IL_03DB: stsfld Terraria.NPC::unlockedSlimeCopperSpawn
+   IL_03E0: ldc.i4.0 
+   IL_03E1: stsfld Terraria.NPC::unlockedMerchantSpawn
+   IL_03E6: ldc.i4.0 
+   IL_03E7: stsfld Terraria.NPC::unlockedDemolitionistSpawn
+   IL_03EC: ldc.i4.0 
+   IL_03ED: stsfld Terraria.NPC::unlockedPartyGirlSpawn
+   IL_03F2: ldc.i4.0 
+   IL_03F3: stsfld Terraria.NPC::unlockedDyeTraderSpawn
+   IL_03F8: ldc.i4.0 
+   IL_03F9: stsfld Terraria.NPC::unlockedTruffleSpawn
+   IL_03FE: ldc.i4.0 
+   IL_03FF: stsfld Terraria.NPC::unlockedArmsDealerSpawn
+   IL_0404: ldc.i4.0 
+   IL_0405: stsfld Terraria.NPC::unlockedNurseSpawn
+   IL_040A: ldc.i4.0 
+   IL_040B: stsfld Terraria.NPC::unlockedPrincessSpawn
+   IL_0410: ldsfld Terraria.NPC::ShimmeredTownNPCs
+   IL_0415: ldc.i4.0 
+   IL_0416: ldsfld Terraria.NPC::ShimmeredTownNPCs
+   IL_041B: ldlen 
+   IL_041C: conv.i4 
+   IL_041D: call System.Array::Clear(Array,Int32,Int32)
+   IL_0422: ldc.i4.0 
+   IL_0423: stsfld Terraria.NPC::downedGoblins
+   IL_0428: ldc.i4.0 
+   IL_0429: stsfld Terraria.NPC::downedClown
+   IL_042E: ldc.i4.0 
+   IL_042F: stsfld Terraria.NPC::downedFrost
+   IL_0434: ldc.i4.0 
+   IL_0435: stsfld Terraria.NPC::downedPirates
+   IL_043A: ldc.i4.0 
+   IL_043B: stsfld Terraria.NPC::downedMartians
+   IL_0440: ldc.i4.0 
+   IL_0441: dup 
+   IL_0442: stsfld Terraria.NPC::LunarApocalypseIsUp
+   IL_0447: dup 
+   IL_0448: stsfld Terraria.NPC::downedTowerStardust
+   IL_044D: dup 
+   IL_044E: stsfld Terraria.NPC::downedTowerNebula
+   IL_0453: dup 
+   IL_0454: stsfld Terraria.NPC::downedTowerVortex
+   IL_0459: stsfld Terraria.NPC::downedTowerSolar
+   IL_045E: ldc.i4.0 
+   IL_045F: dup 
+   IL_0460: stsfld Terraria.NPC::TowerActiveStardust
+   IL_0465: dup 
+   IL_0466: stsfld Terraria.NPC::TowerActiveNebula
+   IL_046B: dup 
+   IL_046C: stsfld Terraria.NPC::TowerActiveVortex
+   IL_0471: stsfld Terraria.NPC::TowerActiveSolar
+   IL_0476: call Terraria.GameContent.Events.DD2Event::ResetProgressEntirely()
+   IL_047B: call Terraria.NPC::ClearFoundActiveNPCs()
+   IL_0480: ldsfld Terraria.Main::BestiaryTracker
+   IL_0485: callvirt Terraria.GameContent.Bestiary.BestiaryUnlocksTracker::Reset()
+   IL_048A: ldsfld Terraria.Main::PylonSystem
+   IL_048F: callvirt Terraria.GameContent.TeleportPylonsSystem::Reset()
+   IL_0494: ldsfld Terraria.GameContent.Creative.CreativePowerManager::Instance
+   IL_0499: callvirt Terraria.GameContent.Creative.CreativePowerManager::Reset()
+   IL_049E: ldsfld Terraria.Main::CreativeMenu
+   IL_04A3: callvirt Terraria.GameContent.Creative.CreativeUI::Reset()
+   IL_04A8: ldc.i4.0 
+   IL_04A9: stsfld Terraria.WorldGen::shadowOrbSmashed
+   IL_04AE: ldc.i4.0 
+   IL_04AF: stsfld Terraria.WorldGen::spawnMeteor
+   IL_04B4: ldc.i4.0 
+   IL_04B5: stsfld Terraria.WorldGen::stopDrops
+   IL_04BA: ldc.i4.0 
+   IL_04BB: stsfld Terraria.Main::invasionDelay
+   IL_04C0: ldc.i4.0 
+   IL_04C1: stsfld Terraria.Main::invasionType
+   IL_04C6: ldc.i4.0 
+   IL_04C7: stsfld Terraria.Main::invasionSize
+   IL_04CC: ldc.i4.0 
+   IL_04CD: stsfld Terraria.Main::invasionWarn
+   IL_04D2: ldc.r8 0
+   IL_04DB: stsfld Terraria.Main::invasionX
+   IL_04E0: ldc.i4.0 
+   IL_04E1: stsfld Terraria.Main::invasionSizeStart
+   IL_04E6: ldsfld Terraria.Main::treeX
+   IL_04EB: ldc.i4.0 
+   IL_04EC: ldsfld Terraria.Main::maxTilesX
+   IL_04F1: stelem.i4 
+   IL_04F2: ldsfld Terraria.Main::treeX
+   IL_04F7: ldc.i4.1 
+   IL_04F8: ldsfld Terraria.Main::maxTilesX
+   IL_04FD: stelem.i4 
+   IL_04FE: ldsfld Terraria.Main::treeX
+   IL_0503: ldc.i4.2 
+   IL_0504: ldsfld Terraria.Main::maxTilesX
+   IL_0509: stelem.i4 
+   IL_050A: ldsfld Terraria.Main::treeStyle
+   IL_050F: ldc.i4.0 
+   IL_0510: ldc.i4.0 
+   IL_0511: stelem.i4 
+   IL_0512: ldsfld Terraria.Main::treeStyle
+   IL_0517: ldc.i4.1 
+   IL_0518: ldc.i4.0 
+   IL_0519: stelem.i4 
+   IL_051A: ldsfld Terraria.Main::treeStyle
+   IL_051F: ldc.i4.2 
+   IL_0520: ldc.i4.0 
+   IL_0521: stelem.i4 
+   IL_0522: ldsfld Terraria.Main::treeStyle
+   IL_0527: ldc.i4.3 
+   IL_0528: ldc.i4.0 
+   IL_0529: stelem.i4 
+   IL_052A: ldc.i4.0 
+   IL_052B: stsfld Terraria.WorldGen::noLiquidCheck
+   IL_0530: ldc.i4.0 
+   IL_0531: stsfld Terraria.Liquid::numLiquid
+   IL_0536: ldc.i4.0 
+   IL_0537: stsfld Terraria.LiquidBuffer::numLiquidBuffer
+   IL_053C: ldsfld Terraria.Main::maxTilesX
+   IL_0541: stsfld Terraria.WorldGen::lastMaxTilesX
+   IL_0546: ldsfld Terraria.Main::maxTilesY
+   IL_054B: stsfld Terraria.WorldGen::lastMaxTilesY
+   IL_0550: ldsfld Terraria.Main::netMode
+   IL_0555: ldc.i4.2 
+   IL_0556: beq.s IL_0580: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0558: ldsfld Terraria.Main::maxTilesX
+   IL_055D: ldc.i4.1 
+   IL_055E: sub 
+   IL_055F: ldc.i4 200
+   IL_0564: div 
+   IL_0565: ldc.i4.1 
+   IL_0566: add 
+   IL_0567: ldsfld Terraria.Main::maxTilesY
+   IL_056C: ldc.i4.1 
+   IL_056D: sub 
+   IL_056E: ldc.i4 150
+   IL_0573: div 
+   IL_0574: ldc.i4.1 
+   IL_0575: add 
+   IL_0576: newobj Terraria.WorldSections::.ctor(Int32,Int32)
+   IL_057B: stsfld Terraria.Main::sectionManager
+   IL_0580: ldsflda Terraria.Main::tile
+   IL_0585: call Terraria.Tilemap::ClearEverything()
+   IL_058A: ldc.i4.0 
+   IL_058B: stloc.1 
+   IL_058C: br.s IL_059a: ldloc.1
+   IL_058E: ldsfld Terraria.Main::countsAsHostForGameplay
+   IL_0593: ldloc.1 
+   IL_0594: ldc.i4.0 
+   IL_0595: stelem.i1 
+   IL_0596: ldloc.1 
+   IL_0597: ldc.i4.1 
+   IL_0598: add 
+   IL_0599: stloc.1 
+   IL_059A: ldloc.1 
+   IL_059B: ldsfld Terraria.Main::countsAsHostForGameplay
+   IL_05A0: ldlen 
+   IL_05A1: conv.i4 
+   IL_05A2: blt.s IL_058e: ldsfld System.Boolean[] Terraria.Main::countsAsHostForGameplay
+   IL_05A4: call Terraria.CombatText::clearAll()
+   IL_05A9: call Terraria.PopupText::ClearAll()
+   IL_05AE: ldc.i4.0 
+   IL_05AF: stloc.2 
+   IL_05B0: br.s IL_05cf: ldloc.2
+   IL_05B2: ldsfld Terraria.Main::dust
+   IL_05B7: ldloc.2 
+   IL_05B8: newobj Terraria.Dust::.ctor()
+   IL_05BD: stelem.ref 
+   IL_05BE: ldsfld Terraria.Main::dust
+   IL_05C3: ldloc.2 
+   IL_05C4: ldelem.ref 
+   IL_05C5: ldloc.2 
+   IL_05C6: stfld Terraria.Dust::dustIndex
+   IL_05CB: ldloc.2 
+   IL_05CC: ldc.i4.1 
+   IL_05CD: add 
+   IL_05CE: stloc.2 
+   IL_05CF: ldloc.2 
+   IL_05D0: ldc.i4 6000
+   IL_05D5: blt.s IL_05b2: ldsfld Terraria.Dust[] Terraria.Main::dust
+   IL_05D7: ldc.i4.0 
+   IL_05D8: stloc.3 
+   IL_05D9: br.s IL_05eb: ldloc.3
+   IL_05DB: ldsfld Terraria.Main::gore
+   IL_05E0: ldloc.3 
+   IL_05E1: newobj Terraria.Gore::.ctor()
+   IL_05E6: stelem.ref 
+   IL_05E7: ldloc.3 
+   IL_05E8: ldc.i4.1 
+   IL_05E9: add 
+   IL_05EA: stloc.3 
+   IL_05EB: ldloc.3 
+   IL_05EC: ldc.i4 600
+   IL_05F1: blt.s IL_05db: ldsfld Terraria.Gore[] Terraria.Main::gore
+   IL_05F3: ldc.i4.0 
+   IL_05F4: stloc.s V_4
+   IL_05F6: br.s IL_0623: ldloc.s V_4
+   IL_05F8: ldsfld Terraria.Main::item
+   IL_05FD: ldloc.s V_4
+   IL_05FF: newobj Terraria.Item::.ctor()
+   IL_0604: stelem.ref 
+   IL_0605: ldsfld Terraria.Main::item
+   IL_060A: ldloc.s V_4
+   IL_060C: ldelem.ref 
+   IL_060D: ldloc.s V_4
+   IL_060F: stfld Terraria.Entity::whoAmI
+   IL_0614: ldsfld Terraria.Main::timeItemSlotCannotBeReusedFor
+   IL_0619: ldloc.s V_4
+   IL_061B: ldc.i4.0 
+   IL_061C: stelem.i4 
+   IL_061D: ldloc.s V_4
+   IL_061F: ldc.i4.1 
+   IL_0620: add 
+   IL_0621: stloc.s V_4
+   IL_0623: ldloc.s V_4
+   IL_0625: ldc.i4 400
+   IL_062A: blt.s IL_05f8: ldsfld Terraria.Item[] Terraria.Main::item
+   IL_062C: ldc.i4.0 
+   IL_062D: stloc.s V_5
+   IL_062F: br.s IL_0653: ldloc.s V_5
+   IL_0631: ldsfld Terraria.Main::npc
+   IL_0636: ldloc.s V_5
+   IL_0638: newobj Terraria.NPC::.ctor()
+   IL_063D: stelem.ref 
+   IL_063E: ldsfld Terraria.Main::npc
+   IL_0643: ldloc.s V_5
+   IL_0645: ldelem.ref 
+   IL_0646: ldloc.s V_5
+   IL_0648: stfld Terraria.Entity::whoAmI
+   IL_064D: ldloc.s V_5
+   IL_064F: ldc.i4.1 
+   IL_0650: add 
+   IL_0651: stloc.s V_5
+   IL_0653: ldloc.s V_5
+   IL_0655: ldc.i4 200
+   IL_065A: blt.s IL_0631: ldsfld Terraria.NPC[] Terraria.Main::npc
+   IL_065C: ldc.i4.0 
+   IL_065D: stloc.s V_6
+   IL_065F: br.s IL_0683: ldloc.s V_6
+   IL_0661: ldsfld Terraria.Main::projectile
+   IL_0666: ldloc.s V_6
+   IL_0668: newobj Terraria.Projectile::.ctor()
+   IL_066D: stelem.ref 
+   IL_066E: ldsfld Terraria.Main::projectile
+   IL_0673: ldloc.s V_6
+   IL_0675: ldelem.ref 
+   IL_0676: ldloc.s V_6
+   IL_0678: stfld Terraria.Entity::whoAmI
+   IL_067D: ldloc.s V_6
+   IL_067F: ldc.i4.1 
+   IL_0680: add 
+   IL_0681: stloc.s V_6
+   IL_0683: ldloc.s V_6
+   IL_0685: ldc.i4 1000
+   IL_068A: blt.s IL_0661: ldsfld Terraria.Projectile[] Terraria.Main::projectile
+   IL_068C: ldc.i4.0 
+   IL_068D: stloc.s V_7
+   IL_068F: br.s IL_06a0: ldloc.s V_7
+   IL_0691: ldsfld Terraria.Main::chest
+   IL_0696: ldloc.s V_7
+   IL_0698: ldnull 
+   IL_0699: stelem.ref 
+   IL_069A: ldloc.s V_7
+   IL_069C: ldc.i4.1 
+   IL_069D: add 
+   IL_069E: stloc.s V_7
+   IL_06A0: ldloc.s V_7
+   IL_06A2: ldc.i4 8000
+   IL_06A7: blt.s IL_0691: ldsfld Terraria.Chest[] Terraria.Main::chest
+   IL_06A9: ldc.i4.0 
+   IL_06AA: stloc.s V_8
+   IL_06AC: br.s IL_06bd: ldloc.s V_8
+   IL_06AE: ldsfld Terraria.Main::sign
+   IL_06B3: ldloc.s V_8
+   IL_06B5: ldnull 
+   IL_06B6: stelem.ref 
+   IL_06B7: ldloc.s V_8
+   IL_06B9: ldc.i4.1 
+   IL_06BA: add 
+   IL_06BB: stloc.s V_8
+   IL_06BD: ldloc.s V_8
+   IL_06BF: ldc.i4 1000
+   IL_06C4: blt.s IL_06ae: ldsfld Terraria.Sign[] Terraria.Main::sign
+   IL_06C6: ldc.i4.0 
+   IL_06C7: stloc.s V_9
+   IL_06C9: br.s IL_06de: ldloc.s V_9
+   IL_06CB: ldsfld Terraria.Main::liquid
+   IL_06D0: ldloc.s V_9
+   IL_06D2: newobj Terraria.Liquid::.ctor()
+   IL_06D7: stelem.ref 
+   IL_06D8: ldloc.s V_9
+   IL_06DA: ldc.i4.1 
+   IL_06DB: add 
+   IL_06DC: stloc.s V_9
+   IL_06DE: ldloc.s V_9
+   IL_06E0: ldsfld Terraria.Liquid::maxLiquid
+   IL_06E5: blt.s IL_06cb: ldsfld Terraria.Liquid[] Terraria.Main::liquid
+   IL_06E7: ldc.i4.0 
+   IL_06E8: stloc.s V_10
+   IL_06EA: br.s IL_06ff: ldloc.s V_10
+   IL_06EC: ldsfld Terraria.Main::liquidBuffer
+   IL_06F1: ldloc.s V_10
+   IL_06F3: newobj Terraria.LiquidBuffer::.ctor()
+   IL_06F8: stelem.ref 
+   IL_06F9: ldloc.s V_10
+   IL_06FB: ldc.i4.1 
+   IL_06FC: add 
+   IL_06FD: stloc.s V_10
+   IL_06FF: ldloc.s V_10
+   IL_0701: ldc.i4 50000
+   IL_0706: blt.s IL_06ec: ldsfld Terraria.LiquidBuffer[] Terraria.Main::liquidBuffer
+   IL_0708: call Terraria.WorldGen::setWorldSize()
+   IL_070D: ldc.i4.m1 
+   IL_070E: call Terraria.Star::SpawnStars(Int32)
+   IL_0713: call Terraria.ModLoader.SystemLoader::ClearWorld()
+   IL_0718: ldc.i4.1 
+   IL_0719: stsfld Terraria.WorldGen::worldCleared
+   IL_071E: ret 

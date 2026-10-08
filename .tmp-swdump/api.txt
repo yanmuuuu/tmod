@@ -1,0 +1,411 @@
+﻿==================== ASSEMBLY REFS ====================
+REF: System.Runtime 8.0.0.0
+REF: tModLoader 1.4.4.9
+REF: System.Collections 8.0.0.0
+REF: FNA 23.10.0.0
+REF: MonoMod.RuntimeDetour 25.3.2.0
+REF: Mono.Cecil 0.11.6.0
+REF: MonoMod.Utils 25.0.10.0
+REF: System.IO.Pipes 8.0.0.0
+REF: Steamworks.NET 1.0.0.0
+REF: System.Threading.Thread 8.0.0.0
+REF: ReLogic 1.0.0.0
+REF: TerrariaHooks 0.0.0.0
+REF: System.Threading 8.0.0.0
+REF: log4net 2.0.8.0
+REF: System.Diagnostics.Process 8.0.0.0
+REF: System.Net.Primitives 8.0.0.0
+REF: System.Console 8.0.0.0
+TYPE [public abstract interface] SubworldLibrary.ICopyWorldData
+  METHOD public virtual System.Void CopyMainWorldData()
+  METHOD public virtual System.Void ReadCopiedMainWorldData()
+TYPE [public abstract] SubworldLibrary.Subworld : Terraria.ModLoader.ModType
+  FIELD protected SubworldLibrary.SubserverLink link
+  PROP System.String LocalizationCategory {get}
+  PROP Terraria.Localization.LocalizedText DisplayName {get}
+  PROP System.String FileName {get}
+  PROP System.Int32 Width {get}
+  PROP System.Int32 Height {get}
+  PROP System.Collections.Generic.List`1<Terraria.WorldBuilding.GenPass> Tasks {get}
+  PROP Terraria.WorldBuilding.WorldGenConfiguration Config {get}
+  PROP System.Int32 ReturnDestination {get}
+  PROP System.Boolean ShouldSave {get}
+  PROP System.Boolean NoPlayerSaving {get}
+  PROP System.Boolean NormalUpdates {get}
+  PROP System.Boolean ManualAudioUpdates {get}
+  METHOD protected override System.Void Register()
+  METHOD public override System.Void SetupContent()
+  METHOD public virtual System.Void OnEnter()
+  METHOD public virtual System.Void OnExit()
+  METHOD public virtual System.Void Update()
+  METHOD public virtual System.Void CopyMainWorldData()
+  METHOD public virtual System.Void CopySubworldData()
+  METHOD public virtual System.Void ReadCopiedMainWorldData()
+  METHOD public virtual System.Void ReadCopiedSubworldData()
+  METHOD public virtual System.Void OnLoad()
+  METHOD public virtual System.Void OnUnload()
+  METHOD public virtual System.Int32 ReadFile(System.IO.BinaryReader reader)
+  METHOD public virtual System.Void PostReadFile()
+  METHOD public virtual System.Void DrawSetup(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD public virtual System.Void DrawMenu(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD public virtual System.Boolean ChangeAudio()
+  METHOD public virtual System.Single GetGravity(Terraria.Entity entity)
+  METHOD public virtual System.Boolean GetLight(Terraria.Tile tile, System.Int32 x, System.Int32 y, Terraria.Utilities.FastRandom& rand, Microsoft.Xna.Framework.Vector3& color)
+  METHOD protected System.Void .ctor()
+TYPE [public] SubworldLibrary.Config : Terraria.ModLoader.Config.ModConfig
+  FIELD public System.Boolean PreloadSubservers
+  PROP Terraria.ModLoader.Config.ConfigScope Mode {get}
+  METHOD public System.Void .ctor()
+TYPE [public] SubworldLibrary.SubworldLibrary : Terraria.ModLoader.Mod
+  FIELD private static MonoMod.RuntimeDetour.ILHook tcpSocketHook
+  FIELD private static MonoMod.RuntimeDetour.ILHook socialSocketHook
+  METHOD public override System.Void Load()
+  METHOD protected static System.Void SendBestiary(System.Byte[] buffer, System.Int32 start)
+  METHOD protected static System.Void SendText(Terraria.MessageBuffer buffer, System.Int32 start, System.Int32 length)
+  METHOD private static System.Boolean DenyRead(Terraria.MessageBuffer buffer, System.Int32 start, System.Int32 length)
+  METHOD private static System.Boolean DenySend(Terraria.Net.Sockets.ISocket socket, System.Byte[] data, System.Int32 start, System.Int32 length, System.Object state)
+  METHOD private static System.Void Sleep(System.Diagnostics.Stopwatch stopwatch, System.Double delta, System.Double& target)
+  METHOD private static System.Void CheckClients()
+  METHOD public override System.Object Call(System.Object[] args)
+  METHOD public override System.Void HandlePacket(System.IO.BinaryReader reader, System.Int32 whoAmI)
+  METHOD private static System.Void ResizeSubworld(System.Int32 lastWidth, System.Int32 lastHeight)
+  METHOD private static System.Void EraseSubworlds(System.Int32 index)
+  METHOD private static System.Boolean InterceptFreeze(Terraria.MessageBuffer buffer, System.Int32 length)
+  METHOD public System.Void .ctor()
+  TYPE [static] SubworldLibrary.SubworldLibrary/<>O : System.Object
+    FIELD public static System.Action`1<System.Object> <0>__ExitWorldCallBack
+  TYPE [sealed] SubworldLibrary.SubworldLibrary/<>c : System.Object
+    FIELD public static readonly SubworldLibrary.SubworldLibrary/<>c <>9
+    FIELD public static MonoMod.Cil.ILContext/Manipulator <>9__2_0
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_9
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_10
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_11
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_12
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_13
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_14
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_15
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_16
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_17
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_18
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_19
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_20
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_21
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_22
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_23
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_24
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_25
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_26
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_27
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_28
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_29
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_35
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_36
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_37
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_38
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_39
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_40
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_41
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_42
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_43
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_44
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_45
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_46
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_56
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_57
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_58
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_59
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_60
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_61
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_62
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_63
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_64
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_65
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_66
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_67
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_68
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_69
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_70
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_71
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_72
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_73
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_74
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_75
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_76
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_77
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_78
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_79
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_80
+    FIELD public static System.Func`2<Mono.Cecil.Cil.Instruction,System.Boolean> <>9__2_81
+    FIELD public static MonoMod.Cil.ILContext/Manipulator <>9__2_8
+    METHOD private static System.Void .cctor()
+    METHOD public System.Void .ctor()
+    METHOD protected System.Void <Load>b__2_0(MonoMod.Cil.ILContext il)
+    METHOD protected System.Boolean <Load>b__2_9(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_10(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_11(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_12(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_13(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_14(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_15(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_16(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_17(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_18(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_19(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_20(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_21(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_22(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_23(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_24(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_25(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_26(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_27(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_28(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_29(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_35(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_36(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_37(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_38(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_39(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_40(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_41(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_42(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_43(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_44(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_45(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_46(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_56(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_57(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_58(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_59(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_60(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_61(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_62(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_63(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_64(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_65(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_66(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_67(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_68(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_69(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_70(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_71(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_72(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_73(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_74(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_75(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_76(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_77(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_78(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_79(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_80(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Boolean <Load>b__2_81(Mono.Cecil.Cil.Instruction i)
+    METHOD protected System.Void <Load>b__2_8(MonoMod.Cil.ILContext il)
+  TYPE [sealed] SubworldLibrary.SubworldLibrary/<>c__DisplayClass2_0 : System.Object
+    FIELD public SubworldLibrary.SubworldLibrary <>4__this
+    FIELD public System.Reflection.FieldInfo current
+    FIELD public System.Reflection.MethodInfo normalUpdates
+    FIELD public System.Reflection.FieldInfo cache
+    FIELD public System.Reflection.MethodInfo shouldSave
+    METHOD public System.Void .ctor()
+    METHOD protected System.Void <Load>b__1(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__2(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__3(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__4(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__5(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__6(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__7(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__30(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>g__AsyncSend|31(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__32(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__33(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__34(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__47(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__50(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__51(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__55(MonoMod.Cil.ILContext il)
+  TYPE [sealed] SubworldLibrary.SubworldLibrary/<>c__DisplayClass2_1 : System.Object
+    FIELD public System.Reflection.FieldInfo hideUnderworld
+    FIELD public SubworldLibrary.SubworldLibrary/<>c__DisplayClass2_0 CS$<>8__locals1
+    METHOD public System.Void .ctor()
+    METHOD protected System.Void <Load>b__48(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__49(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__52(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__53(MonoMod.Cil.ILContext il)
+    METHOD protected System.Void <Load>b__54(MonoMod.Cil.ILContext il)
+TYPE [internal] SubworldLibrary.SubserverLink : System.Object
+  FIELD private System.Int32 subworld
+  FIELD private System.IO.Pipes.NamedPipeServerStream pipeOut
+  FIELD private System.IO.Pipes.NamedPipeServerStream pipeIn
+  FIELD private System.Boolean _connected
+  FIELD private System.Boolean _disposed
+  FIELD private System.Byte[] queue
+  FIELD private System.Int32 totalData
+  PROP System.Boolean Connected {get}
+  PROP System.Boolean Disposed {get}
+  METHOD public System.Void .ctor(System.Int32 id)
+  METHOD public virtual System.Void Dispose()
+  METHOD public System.Void Close()
+  METHOD public System.Void Send(System.Byte[] data)
+  METHOD public System.Void Send(System.Byte[] data, System.Int32 offset, System.Int32 length, System.Byte client)
+  METHOD public System.Void Connect(System.Int32 id, Terraria.ModLoader.IO.TagCompound data)
+  METHOD public System.Void ConnectAndSend()
+  METHOD public System.Void ConnectAndRead()
+  METHOD private System.Void ReadLoop()
+  METHOD private System.Void SendLoop()
+  TYPE [static] SubworldLibrary.SubserverLink/<>O : System.Object
+    FIELD public static Terraria.Net.Sockets.SocketSendCallback <0>__NoOp
+TYPE [internal] SubworldLibrary.CrossModSubworld : SubworldLibrary.Subworld
+  FIELD private readonly System.String <Name>k__BackingField
+  FIELD private readonly System.Int32 <Width>k__BackingField
+  FIELD private readonly System.Int32 <Height>k__BackingField
+  FIELD private readonly System.Collections.Generic.List`1<Terraria.WorldBuilding.GenPass> <Tasks>k__BackingField
+  FIELD private readonly Terraria.WorldBuilding.WorldGenConfiguration <Config>k__BackingField
+  FIELD private readonly System.Int32 <ReturnDestination>k__BackingField
+  FIELD private readonly System.Boolean <ShouldSave>k__BackingField
+  FIELD private readonly System.Boolean <NoPlayerSaving>k__BackingField
+  FIELD private readonly System.Boolean <NormalUpdates>k__BackingField
+  FIELD private readonly System.Boolean <ManualAudioUpdates>k__BackingField
+  FIELD private System.Action _OnEnter
+  FIELD private System.Action _OnExit
+  FIELD private System.Action _Update
+  FIELD private System.Action _CopyMainWorldData
+  FIELD private System.Action _CopySubworldData
+  FIELD private System.Action _ReadCopiedMainWorldData
+  FIELD private System.Action _ReadCopiedSubworldData
+  FIELD private System.Action _OnLoad
+  FIELD private System.Action _OnUnload
+  FIELD private System.Action`1<Microsoft.Xna.Framework.GameTime> _DrawMenu
+  FIELD private System.Func`1<System.Boolean> _ChangeAudio
+  FIELD private System.Func`2<Terraria.Entity,System.Single> _GetGravity
+  PROP System.String Name {get}
+  PROP System.Int32 Width {get}
+  PROP System.Int32 Height {get}
+  PROP System.Collections.Generic.List`1<Terraria.WorldBuilding.GenPass> Tasks {get}
+  PROP Terraria.WorldBuilding.WorldGenConfiguration Config {get}
+  PROP System.Int32 ReturnDestination {get}
+  PROP System.Boolean ShouldSave {get}
+  PROP System.Boolean NoPlayerSaving {get}
+  PROP System.Boolean NormalUpdates {get}
+  PROP System.Boolean ManualAudioUpdates {get}
+  METHOD public override System.Void OnEnter()
+  METHOD public override System.Void OnExit()
+  METHOD public override System.Void Update()
+  METHOD public override System.Void CopyMainWorldData()
+  METHOD public override System.Void CopySubworldData()
+  METHOD public override System.Void ReadCopiedMainWorldData()
+  METHOD public override System.Void ReadCopiedSubworldData()
+  METHOD public override System.Void OnLoad()
+  METHOD public override System.Void OnUnload()
+  METHOD public override System.Void DrawMenu(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD public override System.Boolean ChangeAudio()
+  METHOD public override System.Single GetGravity(Terraria.Entity entity)
+  METHOD public System.Void .ctor(System.String name, System.Int32 width, System.Int32 height, System.Collections.Generic.List`1<Terraria.WorldBuilding.GenPass> tasks, Terraria.WorldBuilding.WorldGenConfiguration config, System.Int32 returnDestination, System.Boolean shouldSave, System.Boolean noPlayerSaving, System.Boolean normalUpdates, System.Boolean manualAudioUpdates, System.Action onEnter, System.Action onExit, System.Action update, System.Action copyMainWorldData, System.Action copySubworldData, System.Action readCopiedMainWorldData, System.Action readCopiedSubworldData, System.Action onLoad, System.Action onUnload, System.Action`1<Microsoft.Xna.Framework.GameTime> drawMenu, System.Func`1<System.Boolean> changeAudio, System.Func`2<Terraria.Entity,System.Single> getGravity)
+TYPE [internal] SubworldLibrary.SubserverSocket : System.Object
+  FIELD private System.Int32 id
+  FIELD protected static Terraria.Net.RemoteAddress address
+  METHOD public System.Void .ctor(System.Int32 id)
+  METHOD private virtual System.Void Terraria.Net.Sockets.ISocket.AsyncReceive(System.Byte[] data, System.Int32 offset, System.Int32 size, Terraria.Net.Sockets.SocketReceiveCallback callback, System.Object state)
+  METHOD private virtual System.Void Terraria.Net.Sockets.ISocket.AsyncSend(System.Byte[] data, System.Int32 offset, System.Int32 size, Terraria.Net.Sockets.SocketSendCallback callback, System.Object state)
+  METHOD private virtual System.Void Terraria.Net.Sockets.ISocket.Close()
+  METHOD private virtual System.Void Terraria.Net.Sockets.ISocket.Connect(Terraria.Net.RemoteAddress address)
+  METHOD private virtual Terraria.Net.RemoteAddress Terraria.Net.Sockets.ISocket.GetRemoteAddress()
+  METHOD private virtual System.Boolean Terraria.Net.Sockets.ISocket.IsConnected()
+  METHOD private virtual System.Boolean Terraria.Net.Sockets.ISocket.IsDataAvailable()
+  METHOD private virtual System.Void Terraria.Net.Sockets.ISocket.SendQueuedPackets()
+  METHOD private virtual System.Boolean Terraria.Net.Sockets.ISocket.StartListening(Terraria.Net.Sockets.SocketConnectionAccepted callback)
+  METHOD private virtual System.Void Terraria.Net.Sockets.ISocket.StopListening()
+TYPE [public] SubworldLibrary.SubworldSystem : Terraria.ModLoader.ModSystem
+  FIELD protected static System.Collections.Generic.List`1<SubworldLibrary.Subworld> subworlds
+  FIELD protected static SubworldLibrary.Subworld current
+  FIELD protected static SubworldLibrary.Subworld cache
+  FIELD private static Terraria.IO.WorldFileData main
+  FIELD private static System.Int32 suppressAutoShutdown
+  FIELD protected static Terraria.ModLoader.IO.TagCompound copiedData
+  FIELD protected static System.Int32[] playerLocations
+  FIELD protected static System.Int32[] pendingMoves
+  FIELD protected static System.Collections.Generic.HashSet`1<Terraria.Net.Sockets.ISocket> deniedSockets
+  FIELD private static Steamworks.AppId_t appIDForWorkshop
+  FIELD private static System.Collections.Generic.Queue`1<SubworldLibrary.SubserverLink> preloadedSubservers
+  FIELD private static System.Int32 nextLink
+  FIELD protected static System.IO.Pipes.NamedPipeClientStream pipeIn
+  FIELD protected static System.IO.Pipes.NamedPipeClientStream pipeOut
+  FIELD protected static System.Byte[] queue
+  FIELD protected static System.Int32 totalData
+  FIELD public static System.Boolean noReturn
+  FIELD public static System.Boolean hideUnderworld
+  PROP SubworldLibrary.Subworld Current {get}
+  PROP System.String CurrentPath {get}
+  METHOD public override System.Void OnModLoad()
+  METHOD public override System.Void OnModUnload()
+  METHOD public override System.Void PostSetupContent()
+  METHOD public override System.Void OnWorldLoad()
+  METHOD private static System.Void ReadCachedData()
+  METHOD private static System.Void OnEnterWorld(Terraria.Player player)
+  METHOD private static System.Void OnDisconnect()
+  METHOD public override System.Void SaveWorldData(Terraria.ModLoader.IO.TagCompound tag)
+  METHOD public override System.Void LoadWorldData(Terraria.ModLoader.IO.TagCompound tag)
+  METHOD public static System.Boolean IsActive(System.String id)
+  METHOD public static System.Boolean IsActive()
+  METHOD public static System.Boolean AnyActive()
+  METHOD public static System.Boolean AnyActive(Terraria.ModLoader.Mod mod)
+  METHOD public static System.Boolean AnyActive()
+  METHOD public static System.Boolean Enter(System.String id)
+  METHOD public static System.Boolean Enter()
+  METHOD public static System.Void Exit()
+  METHOD private static System.Void BeginEntering(System.Int32 index)
+  METHOD public static System.Void MovePlayerToSubworld(System.String id, System.Int32 player)
+  METHOD public static System.Void MovePlayerToSubworld(System.Int32 player)
+  METHOD public static System.Void MovePlayerToMainWorld(System.Int32 player)
+  METHOD protected static System.Void MovePlayerToSubserver(System.Int32 player, System.UInt16 id)
+  METHOD private static System.Byte[] GetMovePacket(System.Int32 id)
+  METHOD protected static System.Void FinishMove(System.Int32 player)
+  METHOD private static System.Void SyncDisconnect(System.Int32 player)
+  METHOD private static System.Byte[] GetDisconnectPacket(System.Int32 player, System.Int32 id)
+  METHOD private static System.Void AllowAutoShutdown(System.Int32 i)
+  METHOD public static System.Void StartSubserver(System.Int32 id)
+  METHOD public static System.Void PreloadSubserver()
+  METHOD public static System.Void StopSubserver(System.Int32 id)
+  METHOD public static System.Int32 GetIndex(System.String id)
+  METHOD public static System.Int32 GetIndex()
+  METHOD private static System.Byte[] GetPacketHeader(System.Int32 size, System.Int32 mod)
+  METHOD public static System.Void SendToSubserver(System.Int32 subserver, Terraria.ModLoader.Mod mod, System.Byte[] data)
+  METHOD public static System.Void SendToAllSubservers(Terraria.ModLoader.Mod mod, System.Byte[] data)
+  METHOD public static System.Void SendToAllSubserversFromMod(Terraria.ModLoader.Mod mod, System.Byte[] data)
+  METHOD public static System.Void SendToMainServer(Terraria.ModLoader.Mod mod, System.Byte[] data)
+  METHOD public static System.Void CopyWorldData(System.String key, System.Object data)
+  METHOD public static T ReadCopiedWorldData(System.String key)
+  METHOD private static System.Boolean ChangeAudio()
+  METHOD private static System.Boolean ManualAudioUpdates()
+  METHOD private static System.Void CopyMainWorldData()
+  METHOD private static System.Void ReadCopiedMainWorldData()
+  METHOD private static System.Void CopyDowned()
+  METHOD private static System.Void ReadCopiedDowned()
+  METHOD private static System.Void CacheWorldData()
+  METHOD private static System.Void CheckBytes()
+  METHOD private static System.Void LoadIntoSubworld()
+  METHOD private static System.Void SubserverSendLoop()
+  METHOD private static System.Void SubserverReadLoop()
+  METHOD private static System.Void CheckTimeout()
+  METHOD protected static System.Void ExitWorldCallBack(System.Object index)
+  METHOD private static System.Void LoadWorld()
+  METHOD private static System.Void SpawnPlayer()
+  METHOD private static System.Void LoadSubworld(System.String path, System.Boolean cloud)
+  METHOD private static System.Void TryLoadWorldFile(System.String path, System.Boolean cloud, System.Int32 tries)
+  METHOD private static System.Void LoadWorldFile(System.String path, System.Boolean cloud)
+  METHOD protected static System.Void PostLoadWorldFile()
+  METHOD protected static System.Void NoOp(System.Object state)
+  METHOD public System.Void .ctor()
+  TYPE [static] SubworldLibrary.SubworldSystem/<>O : System.Object
+    FIELD public static System.Action <0>__ReadCachedData
+    FIELD public static System.Action`1<Terraria.Player> <1>__OnEnterWorld
+    FIELD public static System.Action <2>__OnDisconnect
+    FIELD public static System.Action`1<System.Object> <3>__ExitWorldCallBack
+    FIELD public static Terraria.Net.Sockets.SocketSendCallback <4>__NoOp
+    FIELD public static System.Threading.ThreadStart <5>__SubserverReadLoop
+    FIELD public static System.Threading.ThreadStart <6>__CheckTimeout
+    FIELD public static System.Threading.ThreadStart <7>__SubserverSendLoop
+    FIELD public static System.Action <8>__SpawnPlayer
+  TYPE [sealed] SubworldLibrary.SubworldSystem/<>c__DisplayClass50_0 : System.Object
+    FIELD public SubworldLibrary.SubserverLink link
+    METHOD public System.Void .ctor()
+    METHOD protected System.Void <PreloadSubserver>b__0(System.Object _, System.EventArgs _)

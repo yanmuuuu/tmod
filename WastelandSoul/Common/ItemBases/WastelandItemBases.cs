@@ -236,7 +236,16 @@ namespace WastelandSoul.Common.ItemBases
 		public const int Late = ItemRarityID.Red;
 	}
 
-	/// <summary>Boss 灵魂碎片：智械人恢复记忆所需的剧情伏笔物品。</summary>
+	/// <summary>
+	/// Boss 灵魂碎片：**任务道具**，智械人恢复记忆用的。
+	/// <list type="bullet">
+	/// <item><b>每个世界只给一次</b>：掉落袋按 <c>WastelandMemorySystem.ShouldGrantSoulFragment</c> 判断
+	/// （这段记忆还没恢复、且背包/银行里没有这枚碎片才发），所以不会反复打同一个 Boss 刷出一堆碎片；</item>
+	/// <item><b>交给她会被消耗</b>：<c>WastelandMemorySystem.TryHandIn</c> 把它从背包/银行里扣掉，
+	/// 然后由她自己读取、更新记忆；</item>
+	/// <item><b>玩家自己用不了</b>：没有使用方式，也不响应右键 —— 免得随手乱点把剧情跳过去。</item>
+	/// </list>
+	/// </summary>
 	public abstract class SoulFragment : WastelandMaterial
 	{
 		/// <summary>属于第几个 Boss（1 起）。</summary>
@@ -244,9 +253,26 @@ namespace WastelandSoul.Common.ItemBases
 
 		protected override int IconSize => 24;
 
-		protected override int Rarity => ItemRarityID.Purple;
+		/// <summary>任务道具的原版稀有度（与「智械核心」一致）。</summary>
+		protected override int Rarity => ItemRarityID.Quest;
 
 		protected override int SellPrice => 0;
+
+		public override void SetDefaults()
+		{
+			base.SetDefaults();
+
+			Item.maxStack = 1;                     // 任务道具：不叠放，每个世界就这一枚
+			Item.consumable = true;                // 交给智械人时被消耗掉
+			Item.useStyle = ItemUseStyleID.None;   // 但不是「拿来用」的东西
+			Item.noMelee = true;
+		}
+
+		/// <summary>玩家自己用不了它：只有智械人那边的交付流程会消耗碎片。</summary>
+		public override bool CanUseItem(Player player)
+		{
+			return false;
+		}
 
 		public override void SetStaticDefaults()
 		{

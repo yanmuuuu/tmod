@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AssemblyName>TexProbe</AssemblyName>
+    <RootNamespace>TexProbe</RootNamespace>
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="FNA">
+      <HintPath>E:\steam\steamapps\common\tModLoader\Libraries\FNA\1.0.0\FNA.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="ReLogic">
+      <HintPath>E:\steam\steamapps\common\tModLoader\Libraries\ReLogic\1.0.0\ReLogic.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+﻿### SubworldLibrary.Subworld::OnEnter
+   IL_0000: ret 
+### SubworldLibrary.Subworld::OnLoad
+   IL_0000: ret 
+### SubworldLibrary.Subworld::ReadFile
+   IL_0000: ldarg.1 
+   IL_0001: call Terraria.IO.WorldFile::LoadWorld_Version2(BinaryReader)
+   IL_0006: ldsfld Terraria.Main::ActiveWorldFileData
+   IL_000B: ldsfld Terraria.Main::worldName
+   IL_0010: stfld Terraria.IO.FileData::Name
+   IL_0015: ldsfld Terraria.Main::ActiveWorldFileData
+   IL_001A: ldsfld Terraria.Main::WorldFileMetadata
+   IL_001F: stfld Terraria.IO.FileData::Metadata
+   IL_0024: ret 
+### SubworldLibrary.Subworld::PostReadFile
+   IL_0000: call SubworldLibrary.SubworldSystem::PostLoadWorldFile()
+   IL_0005: ret 

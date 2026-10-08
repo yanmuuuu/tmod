@@ -86,7 +86,11 @@ namespace WastelandSoul.Content.Projectiles.FireplaceBoss
 			float stopX = Projectile.ai[0];
 			bool movingRight = Projectile.velocity.X > 0f;
 
-			if ((movingRight && Projectile.Center.X >= stopX) || (!movingRight && Projectile.Center.X <= stopX)) {
+			// ⚠️ 兜底：生成方忘了写 ai[0] 时它是 0，而**向右飞**的墙会立刻满足
+			// `Center.X >= 0`，被直接吸到 x=0（整段火墙横穿半个世界，然后贴在世界左边缘）。
+			// 现在把 0 当成「没有停止点」：墙照常飞，由 timeLeft 自然消失，
+			// 生成方永远不写参数也不会再出现这个穿越。
+			if (stopX != 0f && ((movingRight && Projectile.Center.X >= stopX) || (!movingRight && Projectile.Center.X <= stopX))) {
 				Projectile.velocity = Vector2.Zero;
 				Projectile.Center = new Vector2(stopX, Projectile.Center.Y);
 			}

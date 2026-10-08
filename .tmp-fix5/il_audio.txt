@@ -1,0 +1,3709 @@
+ASSEMBLY tModLoader, Version=1.4.4.9, Culture=neutral, PublicKeyToken=null
+LOADED in 31 ms
+
+### Terraria.Main::UpdateAudio
+   LOCAL System.Boolean 0
+   LOCAL System.Single 1
+   LOCAL System.Boolean 2
+   LOCAL System.Int32 3
+   LOCAL System.Single 4
+   LOCAL System.Single 5
+   LOCAL System.Single 6
+   LOCAL System.Single 7
+   LOCAL System.Single 8
+   LOCAL System.Single 9
+   LOCAL System.Single 10
+   LOCAL System.Single 11
+   LOCAL System.Single 12
+   LOCAL System.Single 13
+   LOCAL System.Single 14
+   LOCAL System.Single 15
+   LOCAL System.Single 16
+   LOCAL System.Single 17
+   LOCAL System.Single 18
+   LOCAL System.Single 19
+   IL_0000: call Terraria.Audio.SoundEngine::get_IsAudioSupported()
+   IL_0005: brfalse.s IL_0011: ret
+   IL_0007: ldarg.0 
+   IL_0008: volatile. 
+   IL_000A: ldfld Terraria.Main::_musicLoaded
+   IL_000F: brtrue.s IL_0012: ldsfld System.Boolean Terraria.Main::dedServ
+   IL_0011: ret 
+   IL_0012: ldsfld Terraria.Main::dedServ
+   IL_0017: brtrue.s IL_0025: ldsfld System.Single Terraria.Main::musicVolume
+   IL_0019: ldsfld Terraria.Main::showSplash
+   IL_001E: brtrue.s IL_0025: ldsfld System.Single Terraria.Main::musicVolume
+   IL_0020: call Terraria.Audio.SoundEngine::Update()
+   IL_0025: ldsfld Terraria.Main::musicVolume
+   IL_002A: ldc.r4 0
+   IL_002F: bne.un.s IL_0037: nop
+   IL_0031: ldc.i4.0 
+   IL_0032: stsfld Terraria.Main::curMusic
+   IL_0037: nop 
+   IL_0038: ldsfld Terraria.Main::dedServ
+   IL_003D: brfalse.s IL_0044: ldarg.0
+   IL_003F: leave IL_0e1c: ret
+   IL_0044: ldarg.0 
+   IL_0045: call Microsoft.Xna.Framework.Game::get_IsActive()
+   IL_004A: stloc.0 
+   IL_004B: ldloc.0 
+   IL_004C: brtrue.s IL_005f: ldsfld Terraria.Audio.IAudioSystem Terraria.Main::audioSystem
+   IL_004E: ldsfld Terraria.Main::audioSystem
+   IL_0053: callvirt Terraria.Audio.IAudioSystem::PauseAll()
+   IL_0058: call Terraria.Audio.SoundEngine::StopAmbientSounds()
+   IL_005D: br.s IL_0069: ldsfld System.Boolean Terraria.Main::drunkWorld
+   IL_005F: ldsfld Terraria.Main::audioSystem
+   IL_0064: callvirt Terraria.Audio.IAudioSystem::ResumeAll()
+   IL_0069: ldsfld Terraria.Main::drunkWorld
+   IL_006E: brfalse.s IL_0076: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_0070: ldc.i4.1 
+   IL_0071: stsfld Terraria.Main::TOWMusicUnlocked
+   IL_0076: ldsfld Terraria.Main::gameMenu
+   IL_007B: brfalse.s IL_0083: ldsfld System.Boolean Terraria.Main::swapMusic
+   IL_007D: ldc.i4.0 
+   IL_007E: stsfld Terraria.Main::swapMusic
+   IL_0083: ldsfld Terraria.Main::swapMusic
+   IL_0088: brfalse.s IL_00a8: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_008A: ldsfld Terraria.Main::drunkWorld
+   IL_008F: brfalse.s IL_00a0: ldarg.0
+   IL_0091: ldsfld Terraria.Main::remixWorld
+   IL_0096: brtrue.s IL_00a0: ldarg.0
+   IL_0098: ldarg.0 
+   IL_0099: call Terraria.Main::UpdateAudio_DecideOnNewMusic()
+   IL_009E: br.s IL_00cb: ldsfld System.Int32 Terraria.Main::musicBox2
+   IL_00A0: ldarg.0 
+   IL_00A1: call Terraria.Main::UpdateAudio_DecideOnTOWMusic()
+   IL_00A6: br.s IL_00cb: ldsfld System.Int32 Terraria.Main::musicBox2
+   IL_00A8: ldsfld Terraria.Main::gameMenu
+   IL_00AD: brtrue.s IL_00c5: ldarg.0
+   IL_00AF: ldsfld Terraria.Main::drunkWorld
+   IL_00B4: brfalse.s IL_00c5: ldarg.0
+   IL_00B6: ldsfld Terraria.Main::remixWorld
+   IL_00BB: brtrue.s IL_00c5: ldarg.0
+   IL_00BD: ldarg.0 
+   IL_00BE: call Terraria.Main::UpdateAudio_DecideOnTOWMusic()
+   IL_00C3: br.s IL_00cb: ldsfld System.Int32 Terraria.Main::musicBox2
+   IL_00C5: ldarg.0 
+   IL_00C6: call Terraria.Main::UpdateAudio_DecideOnNewMusic()
+   IL_00CB: ldsfld Terraria.Main::musicBox2
+   IL_00D0: ldc.i4.0 
+   IL_00D1: blt.s IL_00e2: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_00D3: ldsfld Terraria.Main::SceneMetrics
+   IL_00D8: ldsfld Terraria.Main::musicBox2
+   IL_00DD: callvirt Terraria.SceneMetrics::set_ActiveMusicBox(Int32)
+   IL_00E2: ldsfld Terraria.Main::SceneMetrics
+   IL_00E7: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_00EC: ldc.i4.0 
+   IL_00ED: blt IL_0838: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_00F2: ldsfld Terraria.Main::SceneMetrics
+   IL_00F7: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_00FC: brtrue.s IL_0104: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_00FE: ldc.i4.1 
+   IL_00FF: stsfld Terraria.Main::newMusic
+   IL_0104: ldsfld Terraria.Main::SceneMetrics
+   IL_0109: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_010E: ldc.i4.1 
+   IL_010F: bne.un.s IL_0117: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0111: ldc.i4.2 
+   IL_0112: stsfld Terraria.Main::newMusic
+   IL_0117: ldsfld Terraria.Main::SceneMetrics
+   IL_011C: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0121: ldc.i4.2 
+   IL_0122: bne.un.s IL_012a: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0124: ldc.i4.3 
+   IL_0125: stsfld Terraria.Main::newMusic
+   IL_012A: ldsfld Terraria.Main::SceneMetrics
+   IL_012F: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0134: ldc.i4.4 
+   IL_0135: bne.un.s IL_013d: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0137: ldc.i4.4 
+   IL_0138: stsfld Terraria.Main::newMusic
+   IL_013D: ldsfld Terraria.Main::SceneMetrics
+   IL_0142: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0147: ldc.i4.5 
+   IL_0148: bne.un.s IL_0150: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_014A: ldc.i4.5 
+   IL_014B: stsfld Terraria.Main::newMusic
+   IL_0150: ldsfld Terraria.Main::SceneMetrics
+   IL_0155: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_015A: ldc.i4.3 
+   IL_015B: bne.un.s IL_0163: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_015D: ldc.i4.6 
+   IL_015E: stsfld Terraria.Main::newMusic
+   IL_0163: ldsfld Terraria.Main::SceneMetrics
+   IL_0168: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_016D: ldc.i4.6 
+   IL_016E: bne.un.s IL_0176: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0170: ldc.i4.7 
+   IL_0171: stsfld Terraria.Main::newMusic
+   IL_0176: ldsfld Terraria.Main::SceneMetrics
+   IL_017B: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0180: ldc.i4.7 
+   IL_0181: bne.un.s IL_0189: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0183: ldc.i4.8 
+   IL_0184: stsfld Terraria.Main::newMusic
+   IL_0189: ldsfld Terraria.Main::SceneMetrics
+   IL_018E: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0193: ldc.i4.s 9
+   IL_0195: bne.un.s IL_019e: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0197: ldc.i4.s 9
+   IL_0199: stsfld Terraria.Main::newMusic
+   IL_019E: ldsfld Terraria.Main::SceneMetrics
+   IL_01A3: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_01A8: ldc.i4.8 
+   IL_01A9: bne.un.s IL_01b2: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_01AB: ldc.i4.s 10
+   IL_01AD: stsfld Terraria.Main::newMusic
+   IL_01B2: ldsfld Terraria.Main::SceneMetrics
+   IL_01B7: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_01BC: ldc.i4.s 11
+   IL_01BE: bne.un.s IL_01c7: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_01C0: ldc.i4.s 11
+   IL_01C2: stsfld Terraria.Main::newMusic
+   IL_01C7: ldsfld Terraria.Main::SceneMetrics
+   IL_01CC: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_01D1: ldc.i4.s 10
+   IL_01D3: bne.un.s IL_01dc: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_01D5: ldc.i4.s 12
+   IL_01D7: stsfld Terraria.Main::newMusic
+   IL_01DC: ldsfld Terraria.Main::SceneMetrics
+   IL_01E1: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_01E6: ldc.i4.s 12
+   IL_01E8: bne.un.s IL_01f1: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_01EA: ldc.i4.s 13
+   IL_01EC: stsfld Terraria.Main::newMusic
+   IL_01F1: ldsfld Terraria.Main::SceneMetrics
+   IL_01F6: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_01FB: ldc.i4.s 13
+   IL_01FD: bne.un.s IL_0206: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_01FF: ldc.i4.s 14
+   IL_0201: stsfld Terraria.Main::newMusic
+   IL_0206: ldsfld Terraria.Main::SceneMetrics
+   IL_020B: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0210: ldc.i4.s 14
+   IL_0212: bne.un.s IL_021b: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0214: ldc.i4.s 15
+   IL_0216: stsfld Terraria.Main::newMusic
+   IL_021B: ldsfld Terraria.Main::SceneMetrics
+   IL_0220: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0225: ldc.i4.s 15
+   IL_0227: bne.un.s IL_0230: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0229: ldc.i4.s 16
+   IL_022B: stsfld Terraria.Main::newMusic
+   IL_0230: ldsfld Terraria.Main::SceneMetrics
+   IL_0235: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_023A: ldc.i4.s 16
+   IL_023C: bne.un.s IL_0245: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_023E: ldc.i4.s 17
+   IL_0240: stsfld Terraria.Main::newMusic
+   IL_0245: ldsfld Terraria.Main::SceneMetrics
+   IL_024A: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_024F: ldc.i4.s 17
+   IL_0251: bne.un.s IL_025a: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0253: ldc.i4.s 18
+   IL_0255: stsfld Terraria.Main::newMusic
+   IL_025A: ldsfld Terraria.Main::SceneMetrics
+   IL_025F: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0264: ldc.i4.s 18
+   IL_0266: bne.un.s IL_026f: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0268: ldc.i4.s 19
+   IL_026A: stsfld Terraria.Main::newMusic
+   IL_026F: ldsfld Terraria.Main::SceneMetrics
+   IL_0274: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0279: ldc.i4.s 19
+   IL_027B: bne.un.s IL_0284: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_027D: ldc.i4.s 20
+   IL_027F: stsfld Terraria.Main::newMusic
+   IL_0284: ldsfld Terraria.Main::SceneMetrics
+   IL_0289: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_028E: ldc.i4.s 20
+   IL_0290: bne.un.s IL_0299: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0292: ldc.i4.s 21
+   IL_0294: stsfld Terraria.Main::newMusic
+   IL_0299: ldsfld Terraria.Main::SceneMetrics
+   IL_029E: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_02A3: ldc.i4.s 21
+   IL_02A5: bne.un.s IL_02ae: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_02A7: ldc.i4.s 22
+   IL_02A9: stsfld Terraria.Main::newMusic
+   IL_02AE: ldsfld Terraria.Main::SceneMetrics
+   IL_02B3: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_02B8: ldc.i4.s 22
+   IL_02BA: bne.un.s IL_02c3: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_02BC: ldc.i4.s 23
+   IL_02BE: stsfld Terraria.Main::newMusic
+   IL_02C3: ldsfld Terraria.Main::SceneMetrics
+   IL_02C8: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_02CD: ldc.i4.s 23
+   IL_02CF: bne.un.s IL_02d8: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_02D1: ldc.i4.s 24
+   IL_02D3: stsfld Terraria.Main::newMusic
+   IL_02D8: ldsfld Terraria.Main::SceneMetrics
+   IL_02DD: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_02E2: ldc.i4.s 24
+   IL_02E4: bne.un.s IL_02ed: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_02E6: ldc.i4.s 25
+   IL_02E8: stsfld Terraria.Main::newMusic
+   IL_02ED: ldsfld Terraria.Main::SceneMetrics
+   IL_02F2: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_02F7: ldc.i4.s 25
+   IL_02F9: bne.un.s IL_0302: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_02FB: ldc.i4.s 26
+   IL_02FD: stsfld Terraria.Main::newMusic
+   IL_0302: ldsfld Terraria.Main::SceneMetrics
+   IL_0307: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_030C: ldc.i4.s 26
+   IL_030E: bne.un.s IL_0317: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0310: ldc.i4.s 27
+   IL_0312: stsfld Terraria.Main::newMusic
+   IL_0317: ldsfld Terraria.Main::SceneMetrics
+   IL_031C: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0321: ldc.i4.s 27
+   IL_0323: bne.un.s IL_032c: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0325: ldc.i4.s 29
+   IL_0327: stsfld Terraria.Main::newMusic
+   IL_032C: ldsfld Terraria.Main::SceneMetrics
+   IL_0331: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0336: ldc.i4.s 28
+   IL_0338: bne.un.s IL_0341: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_033A: ldc.i4.s 30
+   IL_033C: stsfld Terraria.Main::newMusic
+   IL_0341: ldsfld Terraria.Main::SceneMetrics
+   IL_0346: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_034B: ldc.i4.s 29
+   IL_034D: bne.un.s IL_0356: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_034F: ldc.i4.s 31
+   IL_0351: stsfld Terraria.Main::newMusic
+   IL_0356: ldsfld Terraria.Main::SceneMetrics
+   IL_035B: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0360: ldc.i4.s 30
+   IL_0362: bne.un.s IL_036b: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0364: ldc.i4.s 32
+   IL_0366: stsfld Terraria.Main::newMusic
+   IL_036B: ldsfld Terraria.Main::SceneMetrics
+   IL_0370: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0375: ldc.i4.s 31
+   IL_0377: bne.un.s IL_0380: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0379: ldc.i4.s 33
+   IL_037B: stsfld Terraria.Main::newMusic
+   IL_0380: ldsfld Terraria.Main::SceneMetrics
+   IL_0385: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_038A: ldc.i4.s 32
+   IL_038C: bne.un.s IL_0395: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_038E: ldc.i4.s 38
+   IL_0390: stsfld Terraria.Main::newMusic
+   IL_0395: ldsfld Terraria.Main::SceneMetrics
+   IL_039A: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_039F: ldc.i4.s 33
+   IL_03A1: bne.un.s IL_03aa: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_03A3: ldc.i4.s 37
+   IL_03A5: stsfld Terraria.Main::newMusic
+   IL_03AA: ldsfld Terraria.Main::SceneMetrics
+   IL_03AF: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_03B4: ldc.i4.s 34
+   IL_03B6: bne.un.s IL_03bf: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_03B8: ldc.i4.s 35
+   IL_03BA: stsfld Terraria.Main::newMusic
+   IL_03BF: ldsfld Terraria.Main::SceneMetrics
+   IL_03C4: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_03C9: ldc.i4.s 35
+   IL_03CB: bne.un.s IL_03d4: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_03CD: ldc.i4.s 36
+   IL_03CF: stsfld Terraria.Main::newMusic
+   IL_03D4: ldsfld Terraria.Main::SceneMetrics
+   IL_03D9: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_03DE: ldc.i4.s 36
+   IL_03E0: bne.un.s IL_03e9: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_03E2: ldc.i4.s 34
+   IL_03E4: stsfld Terraria.Main::newMusic
+   IL_03E9: ldsfld Terraria.Main::SceneMetrics
+   IL_03EE: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_03F3: ldc.i4.s 37
+   IL_03F5: bne.un.s IL_03fe: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_03F7: ldc.i4.s 39
+   IL_03F9: stsfld Terraria.Main::newMusic
+   IL_03FE: ldsfld Terraria.Main::SceneMetrics
+   IL_0403: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0408: ldc.i4.s 38
+   IL_040A: bne.un.s IL_0413: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_040C: ldc.i4.s 40
+   IL_040E: stsfld Terraria.Main::newMusic
+   IL_0413: ldsfld Terraria.Main::SceneMetrics
+   IL_0418: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_041D: ldc.i4.s 39
+   IL_041F: bne.un.s IL_0428: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0421: ldc.i4.s 41
+   IL_0423: stsfld Terraria.Main::newMusic
+   IL_0428: ldsfld Terraria.Main::SceneMetrics
+   IL_042D: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0432: ldc.i4.s 40
+   IL_0434: bne.un.s IL_043d: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0436: ldc.i4.s 44
+   IL_0438: stsfld Terraria.Main::newMusic
+   IL_043D: ldsfld Terraria.Main::SceneMetrics
+   IL_0442: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0447: ldc.i4.s 41
+   IL_0449: bne.un.s IL_0452: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_044B: ldc.i4.s 48
+   IL_044D: stsfld Terraria.Main::newMusic
+   IL_0452: ldsfld Terraria.Main::SceneMetrics
+   IL_0457: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_045C: ldc.i4.s 42
+   IL_045E: bne.un.s IL_0467: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0460: ldc.i4.s 42
+   IL_0462: stsfld Terraria.Main::newMusic
+   IL_0467: ldsfld Terraria.Main::SceneMetrics
+   IL_046C: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0471: ldc.i4.s 43
+   IL_0473: bne.un.s IL_047c: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0475: ldc.i4.s 43
+   IL_0477: stsfld Terraria.Main::newMusic
+   IL_047C: ldsfld Terraria.Main::SceneMetrics
+   IL_0481: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0486: ldc.i4.s 44
+   IL_0488: bne.un.s IL_0491: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_048A: ldc.i4.s 46
+   IL_048C: stsfld Terraria.Main::newMusic
+   IL_0491: ldsfld Terraria.Main::SceneMetrics
+   IL_0496: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_049B: ldc.i4.s 45
+   IL_049D: bne.un.s IL_04a6: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_049F: ldc.i4.s 47
+   IL_04A1: stsfld Terraria.Main::newMusic
+   IL_04A6: ldsfld Terraria.Main::SceneMetrics
+   IL_04AB: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_04B0: ldc.i4.s 46
+   IL_04B2: bne.un.s IL_04bb: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_04B4: ldc.i4.s 49
+   IL_04B6: stsfld Terraria.Main::newMusic
+   IL_04BB: ldsfld Terraria.Main::SceneMetrics
+   IL_04C0: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_04C5: ldc.i4.s 47
+   IL_04C7: bne.un.s IL_04d0: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_04C9: ldc.i4.s 51
+   IL_04CB: stsfld Terraria.Main::newMusic
+   IL_04D0: ldsfld Terraria.Main::SceneMetrics
+   IL_04D5: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_04DA: ldc.i4.s 48
+   IL_04DC: bne.un.s IL_04e5: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_04DE: ldc.i4.s 52
+   IL_04E0: stsfld Terraria.Main::newMusic
+   IL_04E5: ldsfld Terraria.Main::SceneMetrics
+   IL_04EA: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_04EF: ldc.i4.s 49
+   IL_04F1: bne.un.s IL_04fa: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_04F3: ldc.i4.s 53
+   IL_04F5: stsfld Terraria.Main::newMusic
+   IL_04FA: ldsfld Terraria.Main::SceneMetrics
+   IL_04FF: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0504: ldc.i4.s 50
+   IL_0506: bne.un.s IL_050f: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0508: ldc.i4.s 54
+   IL_050A: stsfld Terraria.Main::newMusic
+   IL_050F: ldsfld Terraria.Main::SceneMetrics
+   IL_0514: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0519: ldc.i4.s 51
+   IL_051B: bne.un.s IL_0524: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_051D: ldc.i4.s 55
+   IL_051F: stsfld Terraria.Main::newMusic
+   IL_0524: ldsfld Terraria.Main::SceneMetrics
+   IL_0529: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_052E: ldc.i4.s 52
+   IL_0530: bne.un.s IL_0539: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0532: ldc.i4.s 56
+   IL_0534: stsfld Terraria.Main::newMusic
+   IL_0539: ldsfld Terraria.Main::SceneMetrics
+   IL_053E: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0543: ldc.i4.s 53
+   IL_0545: bne.un.s IL_054e: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0547: ldc.i4.s 57
+   IL_0549: stsfld Terraria.Main::newMusic
+   IL_054E: ldsfld Terraria.Main::SceneMetrics
+   IL_0553: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0558: ldc.i4.s 54
+   IL_055A: bne.un.s IL_0563: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_055C: ldc.i4.s 58
+   IL_055E: stsfld Terraria.Main::newMusic
+   IL_0563: ldsfld Terraria.Main::SceneMetrics
+   IL_0568: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_056D: ldc.i4.s 55
+   IL_056F: bne.un.s IL_0578: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0571: ldc.i4.s 59
+   IL_0573: stsfld Terraria.Main::newMusic
+   IL_0578: ldsfld Terraria.Main::SceneMetrics
+   IL_057D: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0582: ldc.i4.s 56
+   IL_0584: bne.un.s IL_058d: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0586: ldc.i4.s 60
+   IL_0588: stsfld Terraria.Main::newMusic
+   IL_058D: ldsfld Terraria.Main::SceneMetrics
+   IL_0592: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0597: ldc.i4.s 57
+   IL_0599: bne.un.s IL_05a2: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_059B: ldc.i4.s 61
+   IL_059D: stsfld Terraria.Main::newMusic
+   IL_05A2: ldsfld Terraria.Main::SceneMetrics
+   IL_05A7: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_05AC: ldc.i4.s 58
+   IL_05AE: bne.un.s IL_05b7: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_05B0: ldc.i4.s 62
+   IL_05B2: stsfld Terraria.Main::newMusic
+   IL_05B7: ldsfld Terraria.Main::SceneMetrics
+   IL_05BC: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_05C1: ldc.i4.s 59
+   IL_05C3: bne.un.s IL_05cc: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_05C5: ldc.i4.s 63
+   IL_05C7: stsfld Terraria.Main::newMusic
+   IL_05CC: ldsfld Terraria.Main::SceneMetrics
+   IL_05D1: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_05D6: ldc.i4.s 60
+   IL_05D8: bne.un.s IL_05e1: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_05DA: ldc.i4.s 64
+   IL_05DC: stsfld Terraria.Main::newMusic
+   IL_05E1: ldsfld Terraria.Main::SceneMetrics
+   IL_05E6: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_05EB: ldc.i4.s 61
+   IL_05ED: bne.un.s IL_05f6: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_05EF: ldc.i4.s 65
+   IL_05F1: stsfld Terraria.Main::newMusic
+   IL_05F6: ldsfld Terraria.Main::SceneMetrics
+   IL_05FB: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0600: ldc.i4.s 62
+   IL_0602: bne.un.s IL_060b: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0604: ldc.i4.s 66
+   IL_0606: stsfld Terraria.Main::newMusic
+   IL_060B: ldsfld Terraria.Main::SceneMetrics
+   IL_0610: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0615: ldc.i4.s 63
+   IL_0617: bne.un.s IL_0620: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0619: ldc.i4.s 67
+   IL_061B: stsfld Terraria.Main::newMusic
+   IL_0620: ldsfld Terraria.Main::SceneMetrics
+   IL_0625: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_062A: ldc.i4.s 64
+   IL_062C: bne.un.s IL_0635: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_062E: ldc.i4.s 68
+   IL_0630: stsfld Terraria.Main::newMusic
+   IL_0635: ldsfld Terraria.Main::SceneMetrics
+   IL_063A: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_063F: ldc.i4.s 65
+   IL_0641: bne.un.s IL_064a: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0643: ldc.i4.s 69
+   IL_0645: stsfld Terraria.Main::newMusic
+   IL_064A: ldsfld Terraria.Main::SceneMetrics
+   IL_064F: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0654: ldc.i4.s 66
+   IL_0656: bne.un.s IL_065f: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0658: ldc.i4.s 70
+   IL_065A: stsfld Terraria.Main::newMusic
+   IL_065F: ldsfld Terraria.Main::SceneMetrics
+   IL_0664: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0669: ldc.i4.s 67
+   IL_066B: bne.un.s IL_0674: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_066D: ldc.i4.s 71
+   IL_066F: stsfld Terraria.Main::newMusic
+   IL_0674: ldsfld Terraria.Main::SceneMetrics
+   IL_0679: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_067E: ldc.i4.s 68
+   IL_0680: bne.un.s IL_0689: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0682: ldc.i4.s 72
+   IL_0684: stsfld Terraria.Main::newMusic
+   IL_0689: ldsfld Terraria.Main::SceneMetrics
+   IL_068E: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0693: ldc.i4.s 69
+   IL_0695: bne.un.s IL_069e: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0697: ldc.i4.s 73
+   IL_0699: stsfld Terraria.Main::newMusic
+   IL_069E: ldsfld Terraria.Main::SceneMetrics
+   IL_06A3: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_06A8: ldc.i4.s 70
+   IL_06AA: bne.un.s IL_06b3: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_06AC: ldc.i4.s 74
+   IL_06AE: stsfld Terraria.Main::newMusic
+   IL_06B3: ldsfld Terraria.Main::SceneMetrics
+   IL_06B8: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_06BD: ldc.i4.s 71
+   IL_06BF: bne.un.s IL_06c8: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_06C1: ldc.i4.s 75
+   IL_06C3: stsfld Terraria.Main::newMusic
+   IL_06C8: ldsfld Terraria.Main::SceneMetrics
+   IL_06CD: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_06D2: ldc.i4.s 72
+   IL_06D4: bne.un.s IL_06dd: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_06D6: ldc.i4.s 76
+   IL_06D8: stsfld Terraria.Main::newMusic
+   IL_06DD: ldsfld Terraria.Main::SceneMetrics
+   IL_06E2: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_06E7: ldc.i4.s 73
+   IL_06E9: bne.un.s IL_06f2: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_06EB: ldc.i4.s 77
+   IL_06ED: stsfld Terraria.Main::newMusic
+   IL_06F2: ldsfld Terraria.Main::SceneMetrics
+   IL_06F7: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_06FC: ldc.i4.s 74
+   IL_06FE: bne.un.s IL_0707: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0700: ldc.i4.s 78
+   IL_0702: stsfld Terraria.Main::newMusic
+   IL_0707: ldsfld Terraria.Main::SceneMetrics
+   IL_070C: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0711: ldc.i4.s 75
+   IL_0713: bne.un.s IL_071c: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0715: ldc.i4.s 79
+   IL_0717: stsfld Terraria.Main::newMusic
+   IL_071C: ldsfld Terraria.Main::SceneMetrics
+   IL_0721: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0726: ldc.i4.s 76
+   IL_0728: bne.un.s IL_0731: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_072A: ldc.i4.s 80
+   IL_072C: stsfld Terraria.Main::newMusic
+   IL_0731: ldsfld Terraria.Main::SceneMetrics
+   IL_0736: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_073B: ldc.i4.s 77
+   IL_073D: bne.un.s IL_0746: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_073F: ldc.i4.s 81
+   IL_0741: stsfld Terraria.Main::newMusic
+   IL_0746: ldsfld Terraria.Main::SceneMetrics
+   IL_074B: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0750: ldc.i4.s 78
+   IL_0752: bne.un.s IL_075b: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0754: ldc.i4.s 82
+   IL_0756: stsfld Terraria.Main::newMusic
+   IL_075B: ldsfld Terraria.Main::SceneMetrics
+   IL_0760: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0765: ldc.i4.s 79
+   IL_0767: bne.un.s IL_0770: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0769: ldc.i4.s 83
+   IL_076B: stsfld Terraria.Main::newMusic
+   IL_0770: ldsfld Terraria.Main::SceneMetrics
+   IL_0775: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_077A: ldc.i4.s 80
+   IL_077C: bne.un.s IL_0785: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_077E: ldc.i4.s 84
+   IL_0780: stsfld Terraria.Main::newMusic
+   IL_0785: ldsfld Terraria.Main::SceneMetrics
+   IL_078A: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_078F: ldc.i4.s 81
+   IL_0791: bne.un.s IL_079a: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0793: ldc.i4.s 85
+   IL_0795: stsfld Terraria.Main::newMusic
+   IL_079A: ldsfld Terraria.Main::SceneMetrics
+   IL_079F: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_07A4: ldc.i4.s 82
+   IL_07A6: bne.un.s IL_07af: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_07A8: ldc.i4.s 86
+   IL_07AA: stsfld Terraria.Main::newMusic
+   IL_07AF: ldsfld Terraria.Main::SceneMetrics
+   IL_07B4: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_07B9: ldc.i4.s 83
+   IL_07BB: bne.un.s IL_07c4: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_07BD: ldc.i4.s 87
+   IL_07BF: stsfld Terraria.Main::newMusic
+   IL_07C4: ldsfld Terraria.Main::SceneMetrics
+   IL_07C9: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_07CE: ldc.i4.s 84
+   IL_07D0: bne.un.s IL_07d9: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_07D2: ldc.i4.s 88
+   IL_07D4: stsfld Terraria.Main::newMusic
+   IL_07D9: ldsfld Terraria.Main::SceneMetrics
+   IL_07DE: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_07E3: ldc.i4.s 85
+   IL_07E5: bne.un.s IL_07ee: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_07E7: ldc.i4.s 89
+   IL_07E9: stsfld Terraria.Main::newMusic
+   IL_07EE: ldsfld Terraria.Main::SceneMetrics
+   IL_07F3: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_07F8: ldc.i4.s 86
+   IL_07FA: bne.un.s IL_0803: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_07FC: ldc.i4.s 90
+   IL_07FE: stsfld Terraria.Main::newMusic
+   IL_0803: ldsfld Terraria.Main::SceneMetrics
+   IL_0808: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_080D: ldc.i4.s 87
+   IL_080F: bne.un.s IL_0818: ldsfld Terraria.SceneMetrics Terraria.Main::SceneMetrics
+   IL_0811: ldc.i4.s 91
+   IL_0813: stsfld Terraria.Main::newMusic
+   IL_0818: ldsfld Terraria.Main::SceneMetrics
+   IL_081D: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0822: ldsfld Terraria.Main::maxMusic
+   IL_0827: blt.s IL_0838: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_0829: ldsfld Terraria.Main::SceneMetrics
+   IL_082E: callvirt Terraria.SceneMetrics::get_ActiveMusicBox()
+   IL_0833: stsfld Terraria.Main::newMusic
+   IL_0838: ldsfld Terraria.Main::gameMenu
+   IL_083D: brtrue.s IL_084b: ldc.i4.m1
+   IL_083F: ldsfld Terraria.Main::musicVolume
+   IL_0844: ldc.r4 0
+   IL_0849: bne.un.s IL_085c: ldsfld System.Single Terraria.Main::musicVolume
+   IL_084B: ldc.i4.m1 
+   IL_084C: stsfld Terraria.Main::musicBox2
+   IL_0851: ldsfld Terraria.Main::SceneMetrics
+   IL_0856: ldc.i4.m1 
+   IL_0857: callvirt Terraria.SceneMetrics::set_ActiveMusicBox(Int32)
+   IL_085C: ldsfld Terraria.Main::musicVolume
+   IL_0861: ldc.r4 0
+   IL_0866: bne.un.s IL_086e: ldsfld Terraria.Audio.IAudioSystem Terraria.Main::audioSystem
+   IL_0868: ldc.i4.0 
+   IL_0869: stsfld Terraria.Main::newMusic
+   IL_086E: ldsfld Terraria.Main::audioSystem
+   IL_0873: callvirt Terraria.Audio.IAudioSystem::Update()
+   IL_0878: ldsfld Terraria.Main::audioSystem
+   IL_087D: callvirt Terraria.Audio.IAudioSystem::UpdateMisc()
+   IL_0882: ldsfld Terraria.Main::newMusic
+   IL_0887: stsfld Terraria.Main::curMusic
+   IL_088C: ldc.r4 1
+   IL_0891: stloc.1 
+   IL_0892: ldsfld Terraria.NPC::MoonLordCountdown
+   IL_0897: ldc.i4.0 
+   IL_0898: ble.s IL_090d: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_089A: ldsfld Terraria.NPC::MoonLordCountdown
+   IL_089F: conv.r4 
+   IL_08A0: ldsfld Terraria.NPC::MaxMoonLordCountdown
+   IL_08A5: conv.r4 
+   IL_08A6: div 
+   IL_08A7: stloc.1 
+   IL_08A8: ldloc.1 
+   IL_08A9: ldloc.1 
+   IL_08AA: mul 
+   IL_08AB: stloc.1 
+   IL_08AC: ldsfld Terraria.NPC::MoonLordCountdown
+   IL_08B1: conv.r4 
+   IL_08B2: ldsfld Terraria.NPC::MaxMoonLordCountdown
+   IL_08B7: conv.r4 
+   IL_08B8: ldc.r4 0.2
+   IL_08BD: mul 
+   IL_08BE: ble.un.s IL_08d3: ldc.r4 0
+   IL_08C0: ldc.r4 0
+   IL_08C5: ldc.r4 1
+   IL_08CA: ldloc.1 
+   IL_08CB: call Microsoft.Xna.Framework.MathHelper::Lerp(Single,Single,Single)
+   IL_08D0: stloc.1 
+   IL_08D1: br.s IL_08df: ldsfld System.Int32 Terraria.NPC::MoonLordCountdown
+   IL_08D3: ldc.r4 0
+   IL_08D8: stloc.1 
+   IL_08D9: ldc.i4.0 
+   IL_08DA: stsfld Terraria.Main::curMusic
+   IL_08DF: ldsfld Terraria.NPC::MoonLordCountdown
+   IL_08E4: ldc.i4.1 
+   IL_08E5: bne.un.s IL_090d: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_08E7: ldsfld Terraria.Main::curMusic
+   IL_08EC: ldc.i4.1 
+   IL_08ED: blt.s IL_090d: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_08EF: ldsfld Terraria.Main::curMusic
+   IL_08F4: ldsfld Terraria.Main::musicFade
+   IL_08F9: ldlen 
+   IL_08FA: conv.i4 
+   IL_08FB: bge.s IL_090d: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_08FD: ldsfld Terraria.Main::musicFade
+   IL_0902: ldsfld Terraria.Main::curMusic
+   IL_0907: ldc.r4 0
+   IL_090C: stelem.r4 
+   IL_090D: ldsfld Terraria.Main::musicFade
+   IL_0912: ldsfld Terraria.Main::curMusic
+   IL_0917: ldelem.r4 
+   IL_0918: ldc.r4 0.25
+   IL_091D: cgt 
+   IL_091F: stloc.2 
+   IL_0920: ldc.i4.1 
+   IL_0921: stloc.3 
+   IL_0922: br IL_0dc7: ldloc.3
+   IL_0927: ldsfld Terraria.Main::musicFade
+   IL_092C: ldloc.3 
+   IL_092D: ldelem.r4 
+   IL_092E: ldsfld Terraria.Main::musicVolume
+   IL_0933: mul 
+   IL_0934: ldloc.1 
+   IL_0935: mul 
+   IL_0936: stloc.s V_4
+   IL_0938: ldloc.3 
+   IL_0939: ldc.i4.s 62
+   IL_093B: blt.s IL_094e: ldloc.3
+   IL_093D: ldloc.3 
+   IL_093E: ldc.i4.s 88
+   IL_0940: bgt.s IL_094e: ldloc.3
+   IL_0942: ldloc.s V_4
+   IL_0944: ldc.r4 0.9
+   IL_0949: mul 
+   IL_094A: stloc.s V_4
+   IL_094C: br.s IL_096d: ldsfld System.Single Terraria.Main::shimmerAlpha
+   IL_094E: ldloc.3 
+   IL_094F: ldc.i4.s 52
+   IL_0951: bne.un.s IL_096d: ldsfld System.Single Terraria.Main::shimmerAlpha
+   IL_0953: ldloc.s V_4
+   IL_0955: ldc.r4 1.15
+   IL_095A: mul 
+   IL_095B: stloc.s V_4
+   IL_095D: ldloc.s V_4
+   IL_095F: ldc.r4 1
+   IL_0964: ble.un.s IL_096d: ldsfld System.Single Terraria.Main::shimmerAlpha
+   IL_0966: ldc.r4 1
+   IL_096B: stloc.s V_4
+   IL_096D: ldsfld Terraria.Main::shimmerAlpha
+   IL_0972: stloc.s V_5
+   IL_0974: ldloc.3 
+   IL_0975: ldc.i4.s 28
+   IL_0977: beq.s IL_0986: ldc.r4 0.5
+   IL_0979: ldloc.3 
+   IL_097A: ldc.i4.s 45
+   IL_097C: beq IL_0b8d: ldc.r4 0.7
+   IL_0981: br IL_0d87: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0986: ldc.r4 0.5
+   IL_098B: stloc.s V_6
+   IL_098D: ldsfld Terraria.Main::cloudAlpha
+   IL_0992: ldc.r4 9
+   IL_0997: div 
+   IL_0998: ldc.r4 10
+   IL_099D: mul 
+   IL_099E: ldloc.s V_6
+   IL_09A0: mul 
+   IL_09A1: ldc.r4 1
+   IL_09A6: ldloc.s V_6
+   IL_09A8: sub 
+   IL_09A9: add 
+   IL_09AA: stloc.s V_7
+   IL_09AC: ldloc.s V_5
+   IL_09AE: ldc.r4 0
+   IL_09B3: ble.un.s IL_09c2: ldloc.s V_7
+   IL_09B5: ldloc.s V_7
+   IL_09B7: ldc.r4 1
+   IL_09BC: ldloc.s V_5
+   IL_09BE: sub 
+   IL_09BF: mul 
+   IL_09C0: stloc.s V_7
+   IL_09C2: ldloc.s V_7
+   IL_09C4: ldc.r4 1
+   IL_09C9: ble.un.s IL_09d2: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_09CB: ldc.r4 1
+   IL_09D0: stloc.s V_7
+   IL_09D2: ldsfld Terraria.Main::gameMenu
+   IL_09D7: brfalse.s IL_09e0: ldloc.s V_7
+   IL_09D9: ldc.r4 0
+   IL_09DE: stloc.s V_7
+   IL_09E0: ldloc.s V_7
+   IL_09E2: ldsfld Terraria.Main::atmo
+   IL_09E7: conv.r8 
+   IL_09E8: ldc.r8 4
+   IL_09F1: call System.Math::Pow(Double,Double)
+   IL_09F6: conv.r4 
+   IL_09F7: mul 
+   IL_09F8: stloc.s V_7
+   IL_09FA: ldsfld Terraria.Main::remixWorld
+   IL_09FF: brfalse IL_0ae1: ldsfld System.Single Terraria.Main::cloudAlpha
+   IL_0A04: ldsfld Terraria.Main::cloudAlpha
+   IL_0A09: ldc.r4 0
+   IL_0A0E: ble.un IL_0ab0: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0A13: ldsfld Terraria.Main::player
+   IL_0A18: ldsfld Terraria.Main::myPlayer
+   IL_0A1D: ldelem.ref 
+   IL_0A1E: ldflda Terraria.Entity::position
+   IL_0A23: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0A28: ldc.r4 16
+   IL_0A2D: div 
+   IL_0A2E: conv.r8 
+   IL_0A2F: ldsfld Terraria.Main::rockLayer
+   IL_0A34: ble.un.s IL_0ab0: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0A36: ldsfld Terraria.Main::player
+   IL_0A3B: ldsfld Terraria.Main::myPlayer
+   IL_0A40: ldelem.ref 
+   IL_0A41: ldflda Terraria.Entity::position
+   IL_0A46: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0A4B: ldc.r4 16
+   IL_0A50: div 
+   IL_0A51: ldsfld Terraria.Main::maxTilesY
+   IL_0A56: ldc.i4 350
+   IL_0A5B: sub 
+   IL_0A5C: conv.r4 
+   IL_0A5D: bge.un.s IL_0ab0: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0A5F: ldsfld Terraria.Main::player
+   IL_0A64: ldsfld Terraria.Main::myPlayer
+   IL_0A69: ldelem.ref 
+   IL_0A6A: callvirt Terraria.Player::get_ZoneSnow()
+   IL_0A6F: brtrue.s IL_0ab0: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0A71: ldsfld Terraria.Main::player
+   IL_0A76: ldsfld Terraria.Main::myPlayer
+   IL_0A7B: ldelem.ref 
+   IL_0A7C: callvirt Terraria.Player::get_ZoneDungeon()
+   IL_0A81: brtrue.s IL_0ab0: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0A83: ldsfld Terraria.Main::musicFade
+   IL_0A88: ldloc.3 
+   IL_0A89: ldelem.r4 
+   IL_0A8A: stloc.s V_8
+   IL_0A8C: ldsfld Terraria.Main::audioSystem
+   IL_0A91: ldloc.3 
+   IL_0A92: ldloc.0 
+   IL_0A93: ldloca.s V_8
+   IL_0A95: ldsfld Terraria.Main::ambientVolume
+   IL_0A9A: ldloc.s V_7
+   IL_0A9C: mul 
+   IL_0A9D: callvirt Terraria.Audio.IAudioSystem::UpdateAmbientCueState(Int32,Boolean,Single&,Single)
+   IL_0AA2: ldsfld Terraria.Main::musicFade
+   IL_0AA7: ldloc.3 
+   IL_0AA8: ldloc.s V_8
+   IL_0AAA: stelem.r4 
+   IL_0AAB: br IL_0dc3: ldloc.3
+   IL_0AB0: ldsfld Terraria.Main::musicFade
+   IL_0AB5: ldloc.3 
+   IL_0AB6: ldelem.r4 
+   IL_0AB7: stloc.s V_9
+   IL_0AB9: ldsfld Terraria.Main::audioSystem
+   IL_0ABE: ldloc.3 
+   IL_0ABF: ldc.r4 0.005
+   IL_0AC4: ldloca.s V_9
+   IL_0AC6: ldsfld Terraria.Main::ambientVolume
+   IL_0ACB: ldloc.s V_7
+   IL_0ACD: mul 
+   IL_0ACE: callvirt Terraria.Audio.IAudioSystem::UpdateAmbientCueTowardStopping(Int32,Single,Single&,Single)
+   IL_0AD3: ldsfld Terraria.Main::musicFade
+   IL_0AD8: ldloc.3 
+   IL_0AD9: ldloc.s V_9
+   IL_0ADB: stelem.r4 
+   IL_0ADC: br IL_0dc3: ldloc.3
+   IL_0AE1: ldsfld Terraria.Main::cloudAlpha
+   IL_0AE6: ldc.r4 0
+   IL_0AEB: ble.un.s IL_0b5c: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0AED: ldsfld Terraria.Main::player
+   IL_0AF2: ldsfld Terraria.Main::myPlayer
+   IL_0AF7: ldelem.ref 
+   IL_0AF8: ldflda Terraria.Entity::position
+   IL_0AFD: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0B02: conv.r8 
+   IL_0B03: ldsfld Terraria.Main::worldSurface
+   IL_0B08: ldc.r8 16
+   IL_0B11: mul 
+   IL_0B12: ldsfld Terraria.Main::screenHeight
+   IL_0B17: ldc.i4.2 
+   IL_0B18: div 
+   IL_0B19: conv.r8 
+   IL_0B1A: add 
+   IL_0B1B: bge.un.s IL_0b5c: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0B1D: ldsfld Terraria.Main::player
+   IL_0B22: ldsfld Terraria.Main::myPlayer
+   IL_0B27: ldelem.ref 
+   IL_0B28: callvirt Terraria.Player::get_ZoneSnow()
+   IL_0B2D: brtrue.s IL_0b5c: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0B2F: ldsfld Terraria.Main::musicFade
+   IL_0B34: ldloc.3 
+   IL_0B35: ldelem.r4 
+   IL_0B36: stloc.s V_10
+   IL_0B38: ldsfld Terraria.Main::audioSystem
+   IL_0B3D: ldloc.3 
+   IL_0B3E: ldloc.0 
+   IL_0B3F: ldloca.s V_10
+   IL_0B41: ldsfld Terraria.Main::ambientVolume
+   IL_0B46: ldloc.s V_7
+   IL_0B48: mul 
+   IL_0B49: callvirt Terraria.Audio.IAudioSystem::UpdateAmbientCueState(Int32,Boolean,Single&,Single)
+   IL_0B4E: ldsfld Terraria.Main::musicFade
+   IL_0B53: ldloc.3 
+   IL_0B54: ldloc.s V_10
+   IL_0B56: stelem.r4 
+   IL_0B57: br IL_0dc3: ldloc.3
+   IL_0B5C: ldsfld Terraria.Main::musicFade
+   IL_0B61: ldloc.3 
+   IL_0B62: ldelem.r4 
+   IL_0B63: stloc.s V_11
+   IL_0B65: ldsfld Terraria.Main::audioSystem
+   IL_0B6A: ldloc.3 
+   IL_0B6B: ldc.r4 0.005
+   IL_0B70: ldloca.s V_11
+   IL_0B72: ldsfld Terraria.Main::ambientVolume
+   IL_0B77: ldloc.s V_7
+   IL_0B79: mul 
+   IL_0B7A: callvirt Terraria.Audio.IAudioSystem::UpdateAmbientCueTowardStopping(Int32,Single,Single&,Single)
+   IL_0B7F: ldsfld Terraria.Main::musicFade
+   IL_0B84: ldloc.3 
+   IL_0B85: ldloc.s V_11
+   IL_0B87: stelem.r4 
+   IL_0B88: br IL_0dc3: ldloc.3
+   IL_0B8D: ldc.r4 0.7
+   IL_0B92: stloc.s V_12
+   IL_0B94: ldsfld Terraria.Main::windSpeedCurrent
+   IL_0B99: call System.Math::Abs(Single)
+   IL_0B9E: ldloc.s V_12
+   IL_0BA0: mul 
+   IL_0BA1: ldc.r4 1
+   IL_0BA6: ldloc.s V_12
+   IL_0BA8: sub 
+   IL_0BA9: add 
+   IL_0BAA: stloc.s V_13
+   IL_0BAC: ldloc.s V_5
+   IL_0BAE: ldc.r4 0
+   IL_0BB3: ble.un.s IL_0bc2: ldloc.s V_13
+   IL_0BB5: ldloc.s V_13
+   IL_0BB7: ldc.r4 1
+   IL_0BBC: ldloc.s V_5
+   IL_0BBE: sub 
+   IL_0BBF: mul 
+   IL_0BC0: stloc.s V_13
+   IL_0BC2: ldloc.s V_13
+   IL_0BC4: ldc.r4 1
+   IL_0BC9: ble.un.s IL_0bd2: ldloc.s V_13
+   IL_0BCB: ldc.r4 1
+   IL_0BD0: stloc.s V_13
+   IL_0BD2: ldloc.s V_13
+   IL_0BD4: ldc.r4 0.9
+   IL_0BD9: mul 
+   IL_0BDA: stloc.s V_13
+   IL_0BDC: ldc.r4 20
+   IL_0BE1: stloc.s V_14
+   IL_0BE3: ldloc.s V_13
+   IL_0BE5: ldsfld Terraria.Main::atmo
+   IL_0BEA: conv.r8 
+   IL_0BEB: ldc.r8 4
+   IL_0BF4: call System.Math::Pow(Double,Double)
+   IL_0BF9: conv.r4 
+   IL_0BFA: mul 
+   IL_0BFB: stloc.s V_13
+   IL_0BFD: ldsfld Terraria.Main::remixWorld
+   IL_0C02: brfalse IL_0ce4: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_0C07: ldsfld Terraria.Main::gameMenu
+   IL_0C0C: brtrue IL_0cb3: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0C11: ldsfld Terraria.Main::windSpeedCurrent
+   IL_0C16: call System.Math::Abs(Single)
+   IL_0C1B: ldloc.s V_14
+   IL_0C1D: ldc.r4 50
+   IL_0C22: div 
+   IL_0C23: blt.un IL_0cb3: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0C28: ldsfld Terraria.Main::player
+   IL_0C2D: ldsfld Terraria.Main::myPlayer
+   IL_0C32: ldelem.ref 
+   IL_0C33: ldflda Terraria.Entity::position
+   IL_0C38: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0C3D: ldc.r4 16
+   IL_0C42: div 
+   IL_0C43: conv.r8 
+   IL_0C44: ldsfld Terraria.Main::rockLayer
+   IL_0C49: ble.un.s IL_0cb3: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0C4B: ldsfld Terraria.Main::player
+   IL_0C50: ldsfld Terraria.Main::myPlayer
+   IL_0C55: ldelem.ref 
+   IL_0C56: ldflda Terraria.Entity::position
+   IL_0C5B: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0C60: ldc.r4 16
+   IL_0C65: div 
+   IL_0C66: ldsfld Terraria.Main::maxTilesY
+   IL_0C6B: ldc.i4 350
+   IL_0C70: sub 
+   IL_0C71: conv.r4 
+   IL_0C72: bge.un.s IL_0cb3: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0C74: ldsfld Terraria.Main::player
+   IL_0C79: ldsfld Terraria.Main::myPlayer
+   IL_0C7E: ldelem.ref 
+   IL_0C7F: callvirt Terraria.Player::get_ZoneDungeon()
+   IL_0C84: brtrue.s IL_0cb3: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0C86: ldsfld Terraria.Main::musicFade
+   IL_0C8B: ldloc.3 
+   IL_0C8C: ldelem.r4 
+   IL_0C8D: stloc.s V_15
+   IL_0C8F: ldsfld Terraria.Main::audioSystem
+   IL_0C94: ldloc.3 
+   IL_0C95: ldloc.0 
+   IL_0C96: ldloca.s V_15
+   IL_0C98: ldsfld Terraria.Main::ambientVolume
+   IL_0C9D: ldloc.s V_13
+   IL_0C9F: mul 
+   IL_0CA0: callvirt Terraria.Audio.IAudioSystem::UpdateAmbientCueState(Int32,Boolean,Single&,Single)
+   IL_0CA5: ldsfld Terraria.Main::musicFade
+   IL_0CAA: ldloc.3 
+   IL_0CAB: ldloc.s V_15
+   IL_0CAD: stelem.r4 
+   IL_0CAE: br IL_0dc3: ldloc.3
+   IL_0CB3: ldsfld Terraria.Main::musicFade
+   IL_0CB8: ldloc.3 
+   IL_0CB9: ldelem.r4 
+   IL_0CBA: stloc.s V_16
+   IL_0CBC: ldsfld Terraria.Main::audioSystem
+   IL_0CC1: ldloc.3 
+   IL_0CC2: ldc.r4 0.005
+   IL_0CC7: ldloca.s V_16
+   IL_0CC9: ldsfld Terraria.Main::ambientVolume
+   IL_0CCE: ldloc.s V_13
+   IL_0CD0: mul 
+   IL_0CD1: callvirt Terraria.Audio.IAudioSystem::UpdateAmbientCueTowardStopping(Int32,Single,Single&,Single)
+   IL_0CD6: ldsfld Terraria.Main::musicFade
+   IL_0CDB: ldloc.3 
+   IL_0CDC: ldloc.s V_16
+   IL_0CDE: stelem.r4 
+   IL_0CDF: br IL_0dc3: ldloc.3
+   IL_0CE4: ldsfld Terraria.Main::gameMenu
+   IL_0CE9: brtrue.s IL_0d59: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0CEB: ldsfld Terraria.Main::windSpeedCurrent
+   IL_0CF0: call System.Math::Abs(Single)
+   IL_0CF5: ldloc.s V_14
+   IL_0CF7: ldc.r4 50
+   IL_0CFC: div 
+   IL_0CFD: blt.un.s IL_0d59: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0CFF: ldsfld Terraria.Main::player
+   IL_0D04: ldsfld Terraria.Main::myPlayer
+   IL_0D09: ldelem.ref 
+   IL_0D0A: ldflda Terraria.Entity::position
+   IL_0D0F: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0D14: conv.r8 
+   IL_0D15: ldsfld Terraria.Main::worldSurface
+   IL_0D1A: ldc.r8 16
+   IL_0D23: mul 
+   IL_0D24: ldsfld Terraria.Main::screenHeight
+   IL_0D29: ldc.i4.2 
+   IL_0D2A: div 
+   IL_0D2B: conv.r8 
+   IL_0D2C: add 
+   IL_0D2D: bge.un.s IL_0d59: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0D2F: ldsfld Terraria.Main::musicFade
+   IL_0D34: ldloc.3 
+   IL_0D35: ldelem.r4 
+   IL_0D36: stloc.s V_17
+   IL_0D38: ldsfld Terraria.Main::audioSystem
+   IL_0D3D: ldloc.3 
+   IL_0D3E: ldloc.0 
+   IL_0D3F: ldloca.s V_17
+   IL_0D41: ldsfld Terraria.Main::ambientVolume
+   IL_0D46: ldloc.s V_13
+   IL_0D48: mul 
+   IL_0D49: callvirt Terraria.Audio.IAudioSystem::UpdateAmbientCueState(Int32,Boolean,Single&,Single)
+   IL_0D4E: ldsfld Terraria.Main::musicFade
+   IL_0D53: ldloc.3 
+   IL_0D54: ldloc.s V_17
+   IL_0D56: stelem.r4 
+   IL_0D57: br.s IL_0dc3: ldloc.3
+   IL_0D59: ldsfld Terraria.Main::musicFade
+   IL_0D5E: ldloc.3 
+   IL_0D5F: ldelem.r4 
+   IL_0D60: stloc.s V_18
+   IL_0D62: ldsfld Terraria.Main::audioSystem
+   IL_0D67: ldloc.3 
+   IL_0D68: ldc.r4 0.005
+   IL_0D6D: ldloca.s V_18
+   IL_0D6F: ldsfld Terraria.Main::ambientVolume
+   IL_0D74: ldloc.s V_13
+   IL_0D76: mul 
+   IL_0D77: callvirt Terraria.Audio.IAudioSystem::UpdateAmbientCueTowardStopping(Int32,Single,Single&,Single)
+   IL_0D7C: ldsfld Terraria.Main::musicFade
+   IL_0D81: ldloc.3 
+   IL_0D82: ldloc.s V_18
+   IL_0D84: stelem.r4 
+   IL_0D85: br.s IL_0dc3: ldloc.3
+   IL_0D87: ldsfld Terraria.Main::musicFade
+   IL_0D8C: ldloc.3 
+   IL_0D8D: ldelem.r4 
+   IL_0D8E: stloc.s V_19
+   IL_0D90: ldloc.3 
+   IL_0D91: ldsfld Terraria.Main::curMusic
+   IL_0D96: bne.un.s IL_0daa: ldsfld Terraria.Audio.IAudioSystem Terraria.Main::audioSystem
+   IL_0D98: ldsfld Terraria.Main::audioSystem
+   IL_0D9D: ldloc.0 
+   IL_0D9E: ldloc.3 
+   IL_0D9F: ldloc.s V_4
+   IL_0DA1: ldloca.s V_19
+   IL_0DA3: callvirt Terraria.Audio.IAudioSystem::UpdateCommonTrack(Boolean,Int32,Single,Single&)
+   IL_0DA8: br.s IL_0dba: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0DAA: ldsfld Terraria.Main::audioSystem
+   IL_0DAF: ldloc.3 
+   IL_0DB0: ldloc.s V_4
+   IL_0DB2: ldloca.s V_19
+   IL_0DB4: ldloc.2 
+   IL_0DB5: callvirt Terraria.Audio.IAudioSystem::UpdateCommonTrackTowardStopping(Int32,Single,Single&,Boolean)
+   IL_0DBA: ldsfld Terraria.Main::musicFade
+   IL_0DBF: ldloc.3 
+   IL_0DC0: ldloc.s V_19
+   IL_0DC2: stelem.r4 
+   IL_0DC3: ldloc.3 
+   IL_0DC4: ldc.i4.1 
+   IL_0DC5: add 
+   IL_0DC6: stloc.3 
+   IL_0DC7: ldloc.3 
+   IL_0DC8: ldsfld Terraria.Main::musicFade
+   IL_0DCD: ldlen 
+   IL_0DCE: conv.i4 
+   IL_0DCF: blt IL_0927: ldsfld System.Single[] Terraria.Main::musicFade
+   IL_0DD4: ldsfld Terraria.Main::audioSystem
+   IL_0DD9: callvirt Terraria.Audio.IAudioSystem::UpdateAudioEngine()
+   IL_0DDE: ldsfld Terraria.Main::musicError
+   IL_0DE3: ldc.i4.0 
+   IL_0DE4: ble.s IL_0df2: leave.s IL_0e1c
+   IL_0DE6: ldsfld Terraria.Main::musicError
+   IL_0DEB: ldc.i4.1 
+   IL_0DEC: sub 
+   IL_0DED: stsfld Terraria.Main::musicError
+   IL_0DF2: leave.s IL_0e1c: ret
+   IL_0DF4: pop 
+   IL_0DF5: ldsfld Terraria.Main::musicError
+   IL_0DFA: ldc.i4.1 
+   IL_0DFB: add 
+   IL_0DFC: stsfld Terraria.Main::musicError
+   IL_0E01: ldsfld Terraria.Main::musicError
+   IL_0E06: ldc.i4.s 100
+   IL_0E08: blt.s IL_0e1a: leave.s IL_0e1c
+   IL_0E0A: ldc.i4.0 
+   IL_0E0B: stsfld Terraria.Main::musicError
+   IL_0E10: ldc.r4 0
+   IL_0E15: stsfld Terraria.Main::musicVolume
+   IL_0E1A: leave.s IL_0e1c: ret
+   IL_0E1C: ret 
+
+### Terraria.Main::DrawUnderworldBackground
+   LOCAL Microsoft.Xna.Framework.Vector2 0
+   LOCAL System.Single 1
+   LOCAL System.Int32 2
+   IL_0000: ldsflda Terraria.Main::screenPosition
+   IL_0005: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_000A: ldsfld Terraria.Main::screenHeight
+   IL_000F: conv.r4 
+   IL_0010: add 
+   IL_0011: ldsfld Terraria.Main::maxTilesY
+   IL_0016: ldc.i4 220
+   IL_001B: sub 
+   IL_001C: conv.r4 
+   IL_001D: ldc.r4 16
+   IL_0022: mul 
+   IL_0023: blt.s IL_00a4: ret
+   IL_0025: ldsfld Terraria.Main::screenPosition
+   IL_002A: ldsfld Terraria.Main::screenWidth
+   IL_002F: ldc.i4.1 
+   IL_0030: shr 
+   IL_0031: conv.r4 
+   IL_0032: ldsfld Terraria.Main::screenHeight
+   IL_0037: ldc.i4.1 
+   IL_0038: shr 
+   IL_0039: conv.r4 
+   IL_003A: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_003F: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_0044: stloc.0 
+   IL_0045: ldsfld Terraria.Main::GameViewMatrix
+   IL_004A: callvirt Terraria.Graphics.SpriteViewMatrix::get_Zoom()
+   IL_004F: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0054: ldc.r4 1
+   IL_0059: sub 
+   IL_005A: ldc.r4 0.5
+   IL_005F: mul 
+   IL_0060: ldc.r4 200
+   IL_0065: mul 
+   IL_0066: stloc.1 
+   IL_0067: ldsfld Terraria.Graphics.Effects.SkyManager::Instance
+   IL_006C: callvirt Terraria.Graphics.Effects.SkyManager::ResetDepthTracker()
+   IL_0071: ldc.i4.4 
+   IL_0072: stloc.2 
+   IL_0073: br.s IL_0082: ldloc.2
+   IL_0075: ldarg.1 
+   IL_0076: ldloc.0 
+   IL_0077: ldloc.1 
+   IL_0078: ldloc.2 
+   IL_0079: call Terraria.Main::DrawUnderworldBackgroudLayer(Boolean,Vector2,Single,Int32)
+   IL_007E: ldloc.2 
+   IL_007F: ldc.i4.1 
+   IL_0080: sub 
+   IL_0081: stloc.2 
+   IL_0082: ldloc.2 
+   IL_0083: ldc.i4.0 
+   IL_0084: bge.s IL_0075: ldarg.1
+   IL_0086: ldsfld Terraria.Main::mapFullscreen
+   IL_008B: brtrue.s IL_009c: ldarg.0
+   IL_008D: ldsfld Terraria.Graphics.Effects.SkyManager::Instance
+   IL_0092: ldsfld Terraria.Main::spriteBatch
+   IL_0097: callvirt Terraria.Graphics.Effects.SkyManager::DrawRemainingDepth(SpriteBatch)
+   IL_009C: ldarg.0 
+   IL_009D: ldc.i4.s 12
+   IL_009F: call Terraria.Main::DrawSurfaceBG_DrawChangeOverlay(Int32)
+   IL_00A4: ret 
+
+### Terraria.Main::DoDraw
+   LOCAL System.Diagnostics.Stopwatch 0
+   LOCAL System.Double 1
+   LOCAL System.Single 2
+   LOCAL Microsoft.Xna.Framework.Color 3
+   LOCAL Microsoft.Xna.Framework.Color 4
+   LOCAL System.Single 5
+   LOCAL System.Single 6
+   LOCAL Terraria.Main/InfoToSetBackColor 7
+   LOCAL System.Single 8
+   LOCAL System.Single 9
+   LOCAL System.Boolean 10
+   LOCAL System.Boolean 11
+   LOCAL Terraria.Main/SceneArea 12
+   LOCAL Terraria.Main/SceneArea 13
+   LOCAL System.Int32 14
+   LOCAL Microsoft.Xna.Framework.Matrix 15
+   LOCAL System.Single 16
+   LOCAL System.TimeSpan 17
+   LOCAL System.Int32 18
+   LOCAL System.Int32 19
+   LOCAL System.Diagnostics.Stopwatch 20
+   LOCAL System.Int32 21
+   LOCAL System.Int32 22
+   LOCAL System.Int32 23
+   LOCAL Microsoft.Xna.Framework.Vector2 24
+   LOCAL ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D> 25
+   LOCAL Microsoft.Xna.Framework.Rectangle 26
+   LOCAL System.Int32 27
+   LOCAL System.Int32 28
+   LOCAL System.Nullable`1<Microsoft.Xna.Framework.Rectangle> 29
+   LOCAL System.Int32 30
+   LOCAL Microsoft.Xna.Framework.Matrix 31
+   LOCAL Microsoft.Xna.Framework.Point 32
+   LOCAL Microsoft.Xna.Framework.Point 33
+   LOCAL System.Single 34
+   LOCAL System.Int32 35
+   LOCAL System.Int32 36
+   LOCAL Microsoft.Xna.Framework.Vector2 37
+   LOCAL Microsoft.Xna.Framework.Vector2 38
+   LOCAL System.Single 39
+   LOCAL System.Single 40
+   LOCAL System.Single 41
+   LOCAL System.Single 42
+   LOCAL System.Single 43
+   LOCAL Microsoft.Xna.Framework.Color 44
+   LOCAL System.Int32 45
+   LOCAL System.Single 46
+   LOCAL System.Single 47
+   LOCAL System.Single 48
+   LOCAL System.Int32 49
+   IL_0000: newobj System.Diagnostics.Stopwatch::.ctor()
+   IL_0005: stloc.0 
+   IL_0006: ldloc.0 
+   IL_0007: callvirt System.Diagnostics.Stopwatch::Start()
+   IL_000C: ldsfld Terraria.Main::showSplash
+   IL_0011: brfalse.s IL_0034: ldsfld System.UInt64 Terraria.Main::_drawCycleCounter
+   IL_0013: ldarg.0 
+   IL_0014: ldarg.1 
+   IL_0015: call Terraria.Main::DrawSplash(GameTime)
+   IL_001A: ldloc.0 
+   IL_001B: callvirt System.Diagnostics.Stopwatch::get_Elapsed()
+   IL_0020: stloc.s V_17
+   IL_0022: ldloca.s V_17
+   IL_0024: call System.TimeSpan::get_TotalMilliseconds()
+   IL_0029: call Terraria.TimeLogger::SplashDrawTime(Double)
+   IL_002E: call Terraria.TimeLogger::EndDrawFrame()
+   IL_0033: ret 
+   IL_0034: ldsfld Terraria.Main::_drawCycleCounter
+   IL_0039: brtrue.s IL_004a: ldsfld System.UInt64 Terraria.Main::_drawCycleCounter
+   IL_003B: ldsfld Terraria.Main::TileFrameSeed
+   IL_0040: call Terraria.Utils::RandomNextSeed(UInt64)
+   IL_0045: stsfld Terraria.Main::TileFrameSeed
+   IL_004A: ldsfld Terraria.Main::_drawCycleCounter
+   IL_004F: ldc.i4.1 
+   IL_0050: conv.i8 
+   IL_0051: add 
+   IL_0052: ldc.i4.5 
+   IL_0053: conv.i8 
+   IL_0054: rem.un 
+   IL_0055: stsfld Terraria.Main::_drawCycleCounter
+   IL_005A: ldsfld Terraria.Main::MenuUI
+   IL_005F: ldsfld Terraria.Main::gameMenu
+   IL_0064: brfalse.s IL_0074: ldc.i4.0
+   IL_0066: ldsfld Terraria.Main::menuMode
+   IL_006B: ldc.i4 888
+   IL_0070: ceq 
+   IL_0072: br.s IL_0075: stfld System.Boolean Terraria.UI.UserInterface::IsVisible
+   IL_0074: ldc.i4.0 
+   IL_0075: stfld Terraria.UI.UserInterface::IsVisible
+   IL_007A: ldsfld Terraria.Main::InGameUI
+   IL_007F: ldsfld Terraria.Main::gameMenu
+   IL_0084: brtrue.s IL_0095: ldc.i4.0
+   IL_0086: ldsfld Terraria.Main::InGameUI
+   IL_008B: callvirt Terraria.UI.UserInterface::get_CurrentState()
+   IL_0090: ldnull 
+   IL_0091: cgt.un 
+   IL_0093: br.s IL_0096: stfld System.Boolean Terraria.UI.UserInterface::IsVisible
+   IL_0095: ldc.i4.0 
+   IL_0096: stfld Terraria.UI.UserInterface::IsVisible
+   IL_009B: call Terraria.GameInput.PlayerInput::UpdateMainMouse()
+   IL_00A0: ldarg.0 
+   IL_00A1: call Terraria.Main::RefreshPlayerDrawOrder()
+   IL_00A6: ldsfld Terraria.Graphics.Capture.CaptureManager::Instance
+   IL_00AB: callvirt Terraria.Graphics.Capture.CaptureManager::DrawTick()
+   IL_00B0: call Terraria.TimeLogger::NewDrawFrame()
+   IL_00B5: ldsfld Terraria.Main::gameMenu
+   IL_00BA: brtrue.s IL_00c7: ldc.i4.0
+   IL_00BC: ldarg.0 
+   IL_00BD: ldfld Terraria.Main::TilesRenderer
+   IL_00C2: callvirt Terraria.GameContent.Drawing.TileDrawing::PreparePaintForTilesOnScreen()
+   IL_00C7: ldc.i4.0 
+   IL_00C8: stloc.s V_18
+   IL_00CA: br.s IL_00ee: ldloc.s V_18
+   IL_00CC: ldsfld Terraria.Main::ContentThatNeedsRenderTargets
+   IL_00D1: ldloc.s V_18
+   IL_00D3: callvirt System.Collections.Generic.List`1<Terraria.GameContent.INeedRenderTargetContent>::get_Item(Int32)
+   IL_00D8: ldarg.0 
+   IL_00D9: call Microsoft.Xna.Framework.Game::get_GraphicsDevice()
+   IL_00DE: ldsfld Terraria.Main::spriteBatch
+   IL_00E3: callvirt Terraria.GameContent.INeedRenderTargetContent::PrepareRenderTarget(GraphicsDevice,SpriteBatch)
+   IL_00E8: ldloc.s V_18
+   IL_00EA: ldc.i4.1 
+   IL_00EB: add 
+   IL_00EC: stloc.s V_18
+   IL_00EE: ldloc.s V_18
+   IL_00F0: ldsfld Terraria.Main::ContentThatNeedsRenderTargets
+   IL_00F5: callvirt System.Collections.Generic.List`1<Terraria.GameContent.INeedRenderTargetContent>::get_Count()
+   IL_00FA: blt.s IL_00cc: ldsfld System.Collections.Generic.List`1<Terraria.GameContent.INeedRenderTargetContent> Terraria.Main::ContentThatNeedsRenderTargets
+   IL_00FC: ldarg.0 
+   IL_00FD: ldfld Terraria.Main::TilePaintSystem
+   IL_0102: callvirt Terraria.GameContent.TilePaintSystemV2::PrepareAllRequests()
+   IL_0107: ldc.i4.0 
+   IL_0108: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_010D: ldsfld Terraria.Main::loadMap
+   IL_0112: brfalse.s IL_0126: call System.Boolean Terraria.Lighting::get_UpdateEveryFrame()
+   IL_0114: ldc.i4.0 
+   IL_0115: stsfld Terraria.Main::refreshMap
+   IL_011A: ldarg.0 
+   IL_011B: call Terraria.Main::DrawToMap()
+   IL_0120: ldc.i4.1 
+   IL_0121: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_0126: call Terraria.Lighting::get_UpdateEveryFrame()
+   IL_012B: brfalse.s IL_0135: ldc.i4.0
+   IL_012D: ldc.i4.1 
+   IL_012E: stsfld Terraria.Main::drawToScreen
+   IL_0133: br.s IL_013b: ldsfld System.Boolean Terraria.Main::drawToScreen
+   IL_0135: ldc.i4.0 
+   IL_0136: stsfld Terraria.Main::drawToScreen
+   IL_013B: ldsfld Terraria.Main::drawToScreen
+   IL_0140: brfalse.s IL_014f: ldsfld System.Boolean Terraria.Main::drawToScreen
+   IL_0142: ldsfld Terraria.Main::targetSet
+   IL_0147: brfalse.s IL_014f: ldsfld System.Boolean Terraria.Main::drawToScreen
+   IL_0149: ldarg.0 
+   IL_014A: call Terraria.Main::ReleaseTargets()
+   IL_014F: ldsfld Terraria.Main::drawToScreen
+   IL_0154: brtrue.s IL_0163: ldsfld System.Int32 Terraria.Main::fpsCount
+   IL_0156: ldsfld Terraria.Main::targetSet
+   IL_015B: brtrue.s IL_0163: ldsfld System.Int32 Terraria.Main::fpsCount
+   IL_015D: ldarg.0 
+   IL_015E: call Terraria.Main::InitTargets()
+   IL_0163: ldsfld Terraria.Main::fpsCount
+   IL_0168: ldc.i4.1 
+   IL_0169: add 
+   IL_016A: stsfld Terraria.Main::fpsCount
+   IL_016F: ldarg.0 
+   IL_0170: call Microsoft.Xna.Framework.Game::get_IsActive()
+   IL_0175: brtrue.s IL_017d: ldsfld System.Boolean Terraria.Main::dedServ
+   IL_0177: ldc.i4.1 
+   IL_0178: stsfld Terraria.Main::maxQ
+   IL_017D: ldsfld Terraria.Main::dedServ
+   IL_0182: brtrue.s IL_019c: ldsfld System.Int32 Terraria.Main::drawsCountedForFPS
+   IL_0184: ldarg.0 
+   IL_0185: call Terraria.Main::UpdateDisplaySettings()
+   IL_018A: ldsfld Terraria.Main::OnPreDraw
+   IL_018F: brfalse.s IL_019c: ldsfld System.Int32 Terraria.Main::drawsCountedForFPS
+   IL_0191: ldsfld Terraria.Main::OnPreDraw
+   IL_0196: ldarg.1 
+   IL_0197: callvirt System.Action`1<Microsoft.Xna.Framework.GameTime>::Invoke(!0)
+   IL_019C: ldsfld Terraria.Main::drawsCountedForFPS
+   IL_01A1: ldc.i4.1 
+   IL_01A2: add 
+   IL_01A3: stsfld Terraria.Main::drawsCountedForFPS
+   IL_01A8: ldsfld Terraria.Main::screenPosition
+   IL_01AD: stsfld Terraria.Main::screenLastPosition
+   IL_01B2: ldsfld Terraria.Main::stackSplit
+   IL_01B7: brtrue.s IL_01d6: ldsfld System.Int32 Terraria.Main::stackCounter
+   IL_01B9: ldc.i4.0 
+   IL_01BA: stsfld Terraria.Main::timesTriedToFastStack
+   IL_01BF: ldc.i4.0 
+   IL_01C0: stsfld Terraria.Main::stackCounter
+   IL_01C5: ldc.i4.7 
+   IL_01C6: stsfld Terraria.Main::stackDelay
+   IL_01CB: ldc.i4.0 
+   IL_01CC: stsfld Terraria.Main::superFastStack
+   IL_01D1: br IL_0275: ldsfld System.Int32 Terraria.Main::myPlayer
+   IL_01D6: ldsfld Terraria.Main::stackCounter
+   IL_01DB: ldc.i4.1 
+   IL_01DC: add 
+   IL_01DD: stsfld Terraria.Main::stackCounter
+   IL_01E2: ldc.i4.s 30
+   IL_01E4: stloc.s V_19
+   IL_01E6: ldsfld Terraria.Main::stackDelay
+   IL_01EB: ldc.i4.7 
+   IL_01EC: beq.s IL_0221: ldc.i4.s 30
+   IL_01EE: ldsfld Terraria.Main::stackDelay
+   IL_01F3: ldc.i4.6 
+   IL_01F4: beq.s IL_021d: ldc.i4.s 25
+   IL_01F6: ldsfld Terraria.Main::stackDelay
+   IL_01FB: ldc.i4.5 
+   IL_01FC: beq.s IL_0219: ldc.i4.s 20
+   IL_01FE: ldsfld Terraria.Main::stackDelay
+   IL_0203: ldc.i4.4 
+   IL_0204: beq.s IL_0215: ldc.i4.s 15
+   IL_0206: ldsfld Terraria.Main::stackDelay
+   IL_020B: ldc.i4.3 
+   IL_020C: bne.un.s IL_0212: ldc.i4.5
+   IL_020E: ldc.i4.s 10
+   IL_0210: br.s IL_0223: stloc.s V_19
+   IL_0212: ldc.i4.5 
+   IL_0213: br.s IL_0223: stloc.s V_19
+   IL_0215: ldc.i4.s 15
+   IL_0217: br.s IL_0223: stloc.s V_19
+   IL_0219: ldc.i4.s 20
+   IL_021B: br.s IL_0223: stloc.s V_19
+   IL_021D: ldc.i4.s 25
+   IL_021F: br.s IL_0223: stloc.s V_19
+   IL_0221: ldc.i4.s 30
+   IL_0223: stloc.s V_19
+   IL_0225: ldsfld Terraria.Main::stackCounter
+   IL_022A: ldloc.s V_19
+   IL_022C: blt.s IL_0275: ldsfld System.Int32 Terraria.Main::myPlayer
+   IL_022E: ldsfld Terraria.Main::stackDelay
+   IL_0233: ldc.i4.1 
+   IL_0234: sub 
+   IL_0235: stsfld Terraria.Main::stackDelay
+   IL_023A: ldsfld Terraria.Main::stackDelay
+   IL_023F: ldc.i4.2 
+   IL_0240: bge.s IL_0254: ldsfld System.Int32 Terraria.Main::timesTriedToFastStack
+   IL_0242: ldc.i4.2 
+   IL_0243: stsfld Terraria.Main::stackDelay
+   IL_0248: ldsfld Terraria.Main::superFastStack
+   IL_024D: ldc.i4.1 
+   IL_024E: add 
+   IL_024F: stsfld Terraria.Main::superFastStack
+   IL_0254: ldsfld Terraria.Main::timesTriedToFastStack
+   IL_0259: ldc.i4.s 10
+   IL_025B: bge.s IL_0263: ldsfld System.Int32 Terraria.Main::timesTriedToFastStack
+   IL_025D: ldc.i4.0 
+   IL_025E: stsfld Terraria.Main::superFastStack
+   IL_0263: ldsfld Terraria.Main::timesTriedToFastStack
+   IL_0268: ldc.i4.1 
+   IL_0269: add 
+   IL_026A: stsfld Terraria.Main::timesTriedToFastStack
+   IL_026F: ldc.i4.0 
+   IL_0270: stsfld Terraria.Main::stackCounter
+   IL_0275: ldsfld Terraria.Main::myPlayer
+   IL_027A: ldc.i4.0 
+   IL_027B: blt.s IL_02ae: ldsfld System.Int32 Terraria.Main::mapTime
+   IL_027D: ldsfld Terraria.Main::player
+   IL_0282: ldsfld Terraria.Main::myPlayer
+   IL_0287: ldelem.ref 
+   IL_0288: ldsfld Terraria.Main::player
+   IL_028D: ldsfld Terraria.Main::myPlayer
+   IL_0292: ldelem.ref 
+   IL_0293: ldfld Terraria.Player::mouseInterface
+   IL_0298: stfld Terraria.Player::lastMouseInterface
+   IL_029D: ldsfld Terraria.Main::player
+   IL_02A2: ldsfld Terraria.Main::myPlayer
+   IL_02A7: ldelem.ref 
+   IL_02A8: ldc.i4.0 
+   IL_02A9: stfld Terraria.Player::mouseInterface
+   IL_02AE: ldsfld Terraria.Main::mapTime
+   IL_02B3: ldc.i4.0 
+   IL_02B4: ble.s IL_02c2: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_02B6: ldsfld Terraria.Main::mapTime
+   IL_02BB: ldc.i4.1 
+   IL_02BC: sub 
+   IL_02BD: stsfld Terraria.Main::mapTime
+   IL_02C2: ldsfld Terraria.Main::gameMenu
+   IL_02C7: brfalse.s IL_02d3: newobj System.Void Terraria.Item::.ctor()
+   IL_02C9: ldsfld Terraria.Main::mapTimeMax
+   IL_02CE: stsfld Terraria.Main::mapTime
+   IL_02D3: newobj Terraria.Item::.ctor()
+   IL_02D8: stsfld Terraria.Main::HoverItem
+   IL_02DD: call Terraria.Main::DoDraw_UpdateCameraPosition()
+   IL_02E2: call Terraria.Main::CheckMonoliths()
+   IL_02E7: ldsfld Terraria.Main::sunCircle
+   IL_02EC: ldc.r4 0.01
+   IL_02F1: add 
+   IL_02F2: stsfld Terraria.Main::sunCircle
+   IL_02F7: ldsfld Terraria.Main::sunCircle
+   IL_02FC: conv.r8 
+   IL_02FD: ldc.r8 6.285
+   IL_0306: ble.un.s IL_0318: call System.Void Terraria.TimeLogger::DetailedDrawReset()
+   IL_0308: ldsfld Terraria.Main::sunCircle
+   IL_030D: ldc.r4 6.285
+   IL_0312: sub 
+   IL_0313: stsfld Terraria.Main::sunCircle
+   IL_0318: call Terraria.TimeLogger::DetailedDrawReset()
+   IL_031D: ldsfld Terraria.Main::gameMenu
+   IL_0322: brtrue IL_091f: ldsfld System.Boolean Terraria.Main::loadMap
+   IL_0327: ldarg.0 
+   IL_0328: ldfld Terraria.Main::waterfallManager
+   IL_032D: ldc.i4.0 
+   IL_032E: callvirt Terraria.WaterfallManager::FindWaterfalls(Boolean)
+   IL_0333: ldc.i4.2 
+   IL_0334: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_0339: ldsfld Terraria.Main::renderNow
+   IL_033E: brfalse IL_04d3: ldsfld System.Int32 Terraria.Main::renderCount
+   IL_0343: ldsfld Terraria.Main::screenPosition
+   IL_0348: stsfld Terraria.Main::screenLastPosition
+   IL_034D: ldc.i4.0 
+   IL_034E: stsfld Terraria.Main::renderNow
+   IL_0353: ldc.i4.s 99
+   IL_0355: stsfld Terraria.Main::renderCount
+   IL_035A: ldarg.0 
+   IL_035B: ldarg.1 
+   IL_035C: callvirt Microsoft.Xna.Framework.Game::Draw(GameTime)
+   IL_0361: ldarg.0 
+   IL_0362: ldfld Terraria.Main::firstTileX
+   IL_0367: ldarg.0 
+   IL_0368: ldfld Terraria.Main::lastTileX
+   IL_036D: ldarg.0 
+   IL_036E: ldfld Terraria.Main::firstTileY
+   IL_0373: ldarg.0 
+   IL_0374: ldfld Terraria.Main::lastTileY
+   IL_0379: call Terraria.Lighting::LightTiles(Int32,Int32,Int32,Int32)
+   IL_037E: ldarg.0 
+   IL_037F: ldfld Terraria.Main::firstTileX
+   IL_0384: ldarg.0 
+   IL_0385: ldfld Terraria.Main::lastTileX
+   IL_038A: ldarg.0 
+   IL_038B: ldfld Terraria.Main::firstTileY
+   IL_0390: ldarg.0 
+   IL_0391: ldfld Terraria.Main::lastTileY
+   IL_0396: call Terraria.Lighting::LightTiles(Int32,Int32,Int32,Int32)
+   IL_039B: ldarg.0 
+   IL_039C: call Terraria.Main::RenderTiles()
+   IL_03A1: ldsflda Terraria.Main::sceneTilePos
+   IL_03A6: ldsflda Terraria.Main::screenPosition
+   IL_03AB: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_03B0: ldsfld Terraria.Main::offScreenRange
+   IL_03B5: conv.r4 
+   IL_03B6: sub 
+   IL_03B7: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_03BC: ldsflda Terraria.Main::sceneTilePos
+   IL_03C1: ldsflda Terraria.Main::screenPosition
+   IL_03C6: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_03CB: ldsfld Terraria.Main::offScreenRange
+   IL_03D0: conv.r4 
+   IL_03D1: sub 
+   IL_03D2: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_03D7: ldarg.0 
+   IL_03D8: call Terraria.Main::RenderBackground()
+   IL_03DD: ldsflda Terraria.Main::sceneBackgroundPos
+   IL_03E2: ldsflda Terraria.Main::screenPosition
+   IL_03E7: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_03EC: ldsfld Terraria.Main::offScreenRange
+   IL_03F1: conv.r4 
+   IL_03F2: sub 
+   IL_03F3: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_03F8: ldsflda Terraria.Main::sceneBackgroundPos
+   IL_03FD: ldsflda Terraria.Main::screenPosition
+   IL_0402: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0407: ldsfld Terraria.Main::offScreenRange
+   IL_040C: conv.r4 
+   IL_040D: sub 
+   IL_040E: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0413: ldarg.0 
+   IL_0414: call Terraria.Main::RenderWalls()
+   IL_0419: ldsflda Terraria.Main::sceneWallPos
+   IL_041E: ldsflda Terraria.Main::screenPosition
+   IL_0423: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0428: ldsfld Terraria.Main::offScreenRange
+   IL_042D: conv.r4 
+   IL_042E: sub 
+   IL_042F: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_0434: ldsflda Terraria.Main::sceneWallPos
+   IL_0439: ldsflda Terraria.Main::screenPosition
+   IL_043E: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0443: ldsfld Terraria.Main::offScreenRange
+   IL_0448: conv.r4 
+   IL_0449: sub 
+   IL_044A: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_044F: ldarg.0 
+   IL_0450: call Terraria.Main::RenderTiles2()
+   IL_0455: ldsflda Terraria.Main::sceneTile2Pos
+   IL_045A: ldsflda Terraria.Main::screenPosition
+   IL_045F: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0464: ldsfld Terraria.Main::offScreenRange
+   IL_0469: conv.r4 
+   IL_046A: sub 
+   IL_046B: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_0470: ldsflda Terraria.Main::sceneTile2Pos
+   IL_0475: ldsflda Terraria.Main::screenPosition
+   IL_047A: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_047F: ldsfld Terraria.Main::offScreenRange
+   IL_0484: conv.r4 
+   IL_0485: sub 
+   IL_0486: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_048B: ldarg.0 
+   IL_048C: call Terraria.Main::RenderWater()
+   IL_0491: ldsflda Terraria.Main::sceneWaterPos
+   IL_0496: ldsflda Terraria.Main::screenPosition
+   IL_049B: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_04A0: ldsfld Terraria.Main::offScreenRange
+   IL_04A5: conv.r4 
+   IL_04A6: sub 
+   IL_04A7: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_04AC: ldsflda Terraria.Main::sceneWaterPos
+   IL_04B1: ldsflda Terraria.Main::screenPosition
+   IL_04B6: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_04BB: ldsfld Terraria.Main::offScreenRange
+   IL_04C0: conv.r4 
+   IL_04C1: sub 
+   IL_04C2: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_04C7: ldc.i4.s 99
+   IL_04C9: stsfld Terraria.Main::renderCount
+   IL_04CE: br IL_0645: ldsfld System.Boolean Terraria.Main::render
+   IL_04D3: ldsfld Terraria.Main::renderCount
+   IL_04D8: ldc.i4.3 
+   IL_04D9: bne.un.s IL_0517: ldsfld System.Int32 Terraria.Main::renderCount
+   IL_04DB: ldarg.0 
+   IL_04DC: call Terraria.Main::RenderTiles()
+   IL_04E1: ldsflda Terraria.Main::sceneTilePos
+   IL_04E6: ldsflda Terraria.Main::screenPosition
+   IL_04EB: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_04F0: ldsfld Terraria.Main::offScreenRange
+   IL_04F5: conv.r4 
+   IL_04F6: sub 
+   IL_04F7: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_04FC: ldsflda Terraria.Main::sceneTilePos
+   IL_0501: ldsflda Terraria.Main::screenPosition
+   IL_0506: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_050B: ldsfld Terraria.Main::offScreenRange
+   IL_0510: conv.r4 
+   IL_0511: sub 
+   IL_0512: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0517: ldsfld Terraria.Main::renderCount
+   IL_051C: ldsfld Terraria.Lighting::LegacyEngine
+   IL_0521: callvirt Terraria.Graphics.Light.LegacyLighting::get_Mode()
+   IL_0526: brfalse.s IL_052b: ldc.i4.2
+   IL_0528: ldc.i4.3 
+   IL_0529: br.s IL_052c: bne.un.s IL_056a
+   IL_052B: ldc.i4.2 
+   IL_052C: bne.un.s IL_056a: ldsfld System.Int32 Terraria.Main::renderCount
+   IL_052E: ldarg.0 
+   IL_052F: call Terraria.Main::RenderTiles2()
+   IL_0534: ldsflda Terraria.Main::sceneTile2Pos
+   IL_0539: ldsflda Terraria.Main::screenPosition
+   IL_053E: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0543: ldsfld Terraria.Main::offScreenRange
+   IL_0548: conv.r4 
+   IL_0549: sub 
+   IL_054A: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_054F: ldsflda Terraria.Main::sceneTile2Pos
+   IL_0554: ldsflda Terraria.Main::screenPosition
+   IL_0559: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_055E: ldsfld Terraria.Main::offScreenRange
+   IL_0563: conv.r4 
+   IL_0564: sub 
+   IL_0565: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_056A: ldsfld Terraria.Main::renderCount
+   IL_056F: ldsfld Terraria.Lighting::LegacyEngine
+   IL_0574: callvirt Terraria.Graphics.Light.LegacyLighting::get_Mode()
+   IL_0579: brfalse.s IL_057e: ldc.i4.0
+   IL_057B: ldc.i4.3 
+   IL_057C: br.s IL_057f: bne.un.s IL_05bd
+   IL_057E: ldc.i4.0 
+   IL_057F: bne.un.s IL_05bd: ldsfld System.Int32 Terraria.Main::renderCount
+   IL_0581: ldarg.0 
+   IL_0582: call Terraria.Main::RenderWalls()
+   IL_0587: ldsflda Terraria.Main::sceneWallPos
+   IL_058C: ldsflda Terraria.Main::screenPosition
+   IL_0591: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0596: ldsfld Terraria.Main::offScreenRange
+   IL_059B: conv.r4 
+   IL_059C: sub 
+   IL_059D: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_05A2: ldsflda Terraria.Main::sceneWallPos
+   IL_05A7: ldsflda Terraria.Main::screenPosition
+   IL_05AC: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_05B1: ldsfld Terraria.Main::offScreenRange
+   IL_05B6: conv.r4 
+   IL_05B7: sub 
+   IL_05B8: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_05BD: ldsfld Terraria.Main::renderCount
+   IL_05C2: ldc.i4.2 
+   IL_05C3: bne.un.s IL_0601: ldsfld System.Int32 Terraria.Main::renderCount
+   IL_05C5: ldarg.0 
+   IL_05C6: call Terraria.Main::RenderBackground()
+   IL_05CB: ldsflda Terraria.Main::sceneBackgroundPos
+   IL_05D0: ldsflda Terraria.Main::screenPosition
+   IL_05D5: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_05DA: ldsfld Terraria.Main::offScreenRange
+   IL_05DF: conv.r4 
+   IL_05E0: sub 
+   IL_05E1: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_05E6: ldsflda Terraria.Main::sceneBackgroundPos
+   IL_05EB: ldsflda Terraria.Main::screenPosition
+   IL_05F0: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_05F5: ldsfld Terraria.Main::offScreenRange
+   IL_05FA: conv.r4 
+   IL_05FB: sub 
+   IL_05FC: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0601: ldsfld Terraria.Main::renderCount
+   IL_0606: ldc.i4.1 
+   IL_0607: bne.un.s IL_0645: ldsfld System.Boolean Terraria.Main::render
+   IL_0609: ldarg.0 
+   IL_060A: call Terraria.Main::RenderWater()
+   IL_060F: ldsflda Terraria.Main::sceneWaterPos
+   IL_0614: ldsflda Terraria.Main::screenPosition
+   IL_0619: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_061E: ldsfld Terraria.Main::offScreenRange
+   IL_0623: conv.r4 
+   IL_0624: sub 
+   IL_0625: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_062A: ldsflda Terraria.Main::sceneWaterPos
+   IL_062F: ldsflda Terraria.Main::screenPosition
+   IL_0634: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0639: ldsfld Terraria.Main::offScreenRange
+   IL_063E: conv.r4 
+   IL_063F: sub 
+   IL_0640: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0645: ldsfld Terraria.Main::render
+   IL_064A: brfalse IL_091f: ldsfld System.Boolean Terraria.Main::loadMap
+   IL_064F: ldsfld Terraria.Main::gameMenu
+   IL_0654: brtrue IL_091f: ldsfld System.Boolean Terraria.Main::loadMap
+   IL_0659: ldsflda Terraria.Main::sceneTilePos
+   IL_065E: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0663: ldsflda Terraria.Main::screenPosition
+   IL_0668: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_066D: ldsfld Terraria.Main::offScreenRange
+   IL_0672: conv.r4 
+   IL_0673: sub 
+   IL_0674: sub 
+   IL_0675: call System.Math::Abs(Single)
+   IL_067A: ldsfld Terraria.Main::offScreenRange
+   IL_067F: conv.r4 
+   IL_0680: bgt.s IL_06ab: ldarg.0
+   IL_0682: ldsflda Terraria.Main::sceneTilePos
+   IL_0687: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_068C: ldsflda Terraria.Main::screenPosition
+   IL_0691: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0696: ldsfld Terraria.Main::offScreenRange
+   IL_069B: conv.r4 
+   IL_069C: sub 
+   IL_069D: sub 
+   IL_069E: call System.Math::Abs(Single)
+   IL_06A3: ldsfld Terraria.Main::offScreenRange
+   IL_06A8: conv.r4 
+   IL_06A9: ble.un.s IL_06e7: ldsflda Microsoft.Xna.Framework.Vector2 Terraria.Main::sceneTile2Pos
+   IL_06AB: ldarg.0 
+   IL_06AC: call Terraria.Main::RenderTiles()
+   IL_06B1: ldsflda Terraria.Main::sceneTilePos
+   IL_06B6: ldsflda Terraria.Main::screenPosition
+   IL_06BB: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_06C0: ldsfld Terraria.Main::offScreenRange
+   IL_06C5: conv.r4 
+   IL_06C6: sub 
+   IL_06C7: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_06CC: ldsflda Terraria.Main::sceneTilePos
+   IL_06D1: ldsflda Terraria.Main::screenPosition
+   IL_06D6: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_06DB: ldsfld Terraria.Main::offScreenRange
+   IL_06E0: conv.r4 
+   IL_06E1: sub 
+   IL_06E2: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_06E7: ldsflda Terraria.Main::sceneTile2Pos
+   IL_06EC: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_06F1: ldsflda Terraria.Main::screenPosition
+   IL_06F6: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_06FB: ldsfld Terraria.Main::offScreenRange
+   IL_0700: conv.r4 
+   IL_0701: sub 
+   IL_0702: sub 
+   IL_0703: call System.Math::Abs(Single)
+   IL_0708: ldsfld Terraria.Main::offScreenRange
+   IL_070D: conv.r4 
+   IL_070E: bgt.s IL_0739: ldarg.0
+   IL_0710: ldsflda Terraria.Main::sceneTile2Pos
+   IL_0715: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_071A: ldsflda Terraria.Main::screenPosition
+   IL_071F: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0724: ldsfld Terraria.Main::offScreenRange
+   IL_0729: conv.r4 
+   IL_072A: sub 
+   IL_072B: sub 
+   IL_072C: call System.Math::Abs(Single)
+   IL_0731: ldsfld Terraria.Main::offScreenRange
+   IL_0736: conv.r4 
+   IL_0737: ble.un.s IL_0775: ldsflda Microsoft.Xna.Framework.Vector2 Terraria.Main::sceneBackgroundPos
+   IL_0739: ldarg.0 
+   IL_073A: call Terraria.Main::RenderTiles2()
+   IL_073F: ldsflda Terraria.Main::sceneTile2Pos
+   IL_0744: ldsflda Terraria.Main::screenPosition
+   IL_0749: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_074E: ldsfld Terraria.Main::offScreenRange
+   IL_0753: conv.r4 
+   IL_0754: sub 
+   IL_0755: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_075A: ldsflda Terraria.Main::sceneTile2Pos
+   IL_075F: ldsflda Terraria.Main::screenPosition
+   IL_0764: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0769: ldsfld Terraria.Main::offScreenRange
+   IL_076E: conv.r4 
+   IL_076F: sub 
+   IL_0770: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0775: ldsflda Terraria.Main::sceneBackgroundPos
+   IL_077A: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_077F: ldsflda Terraria.Main::screenPosition
+   IL_0784: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0789: ldsfld Terraria.Main::offScreenRange
+   IL_078E: conv.r4 
+   IL_078F: sub 
+   IL_0790: sub 
+   IL_0791: call System.Math::Abs(Single)
+   IL_0796: ldsfld Terraria.Main::offScreenRange
+   IL_079B: conv.r4 
+   IL_079C: bgt.s IL_07c7: ldarg.0
+   IL_079E: ldsflda Terraria.Main::sceneBackgroundPos
+   IL_07A3: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_07A8: ldsflda Terraria.Main::screenPosition
+   IL_07AD: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_07B2: ldsfld Terraria.Main::offScreenRange
+   IL_07B7: conv.r4 
+   IL_07B8: sub 
+   IL_07B9: sub 
+   IL_07BA: call System.Math::Abs(Single)
+   IL_07BF: ldsfld Terraria.Main::offScreenRange
+   IL_07C4: conv.r4 
+   IL_07C5: ble.un.s IL_0803: ldsflda Microsoft.Xna.Framework.Vector2 Terraria.Main::sceneWallPos
+   IL_07C7: ldarg.0 
+   IL_07C8: call Terraria.Main::RenderBackground()
+   IL_07CD: ldsflda Terraria.Main::sceneBackgroundPos
+   IL_07D2: ldsflda Terraria.Main::screenPosition
+   IL_07D7: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_07DC: ldsfld Terraria.Main::offScreenRange
+   IL_07E1: conv.r4 
+   IL_07E2: sub 
+   IL_07E3: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_07E8: ldsflda Terraria.Main::sceneBackgroundPos
+   IL_07ED: ldsflda Terraria.Main::screenPosition
+   IL_07F2: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_07F7: ldsfld Terraria.Main::offScreenRange
+   IL_07FC: conv.r4 
+   IL_07FD: sub 
+   IL_07FE: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0803: ldsflda Terraria.Main::sceneWallPos
+   IL_0808: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_080D: ldsflda Terraria.Main::screenPosition
+   IL_0812: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0817: ldsfld Terraria.Main::offScreenRange
+   IL_081C: conv.r4 
+   IL_081D: sub 
+   IL_081E: sub 
+   IL_081F: call System.Math::Abs(Single)
+   IL_0824: ldsfld Terraria.Main::offScreenRange
+   IL_0829: conv.r4 
+   IL_082A: bgt.s IL_0855: ldarg.0
+   IL_082C: ldsflda Terraria.Main::sceneWallPos
+   IL_0831: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0836: ldsflda Terraria.Main::screenPosition
+   IL_083B: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0840: ldsfld Terraria.Main::offScreenRange
+   IL_0845: conv.r4 
+   IL_0846: sub 
+   IL_0847: sub 
+   IL_0848: call System.Math::Abs(Single)
+   IL_084D: ldsfld Terraria.Main::offScreenRange
+   IL_0852: conv.r4 
+   IL_0853: ble.un.s IL_0891: ldsflda Microsoft.Xna.Framework.Vector2 Terraria.Main::sceneWaterPos
+   IL_0855: ldarg.0 
+   IL_0856: call Terraria.Main::RenderWalls()
+   IL_085B: ldsflda Terraria.Main::sceneWallPos
+   IL_0860: ldsflda Terraria.Main::screenPosition
+   IL_0865: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_086A: ldsfld Terraria.Main::offScreenRange
+   IL_086F: conv.r4 
+   IL_0870: sub 
+   IL_0871: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_0876: ldsflda Terraria.Main::sceneWallPos
+   IL_087B: ldsflda Terraria.Main::screenPosition
+   IL_0880: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0885: ldsfld Terraria.Main::offScreenRange
+   IL_088A: conv.r4 
+   IL_088B: sub 
+   IL_088C: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0891: ldsflda Terraria.Main::sceneWaterPos
+   IL_0896: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_089B: ldsflda Terraria.Main::screenPosition
+   IL_08A0: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_08A5: ldsfld Terraria.Main::offScreenRange
+   IL_08AA: conv.r4 
+   IL_08AB: sub 
+   IL_08AC: sub 
+   IL_08AD: call System.Math::Abs(Single)
+   IL_08B2: ldsfld Terraria.Main::offScreenRange
+   IL_08B7: conv.r4 
+   IL_08B8: bgt.s IL_08e3: ldarg.0
+   IL_08BA: ldsflda Terraria.Main::sceneWaterPos
+   IL_08BF: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_08C4: ldsflda Terraria.Main::screenPosition
+   IL_08C9: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_08CE: ldsfld Terraria.Main::offScreenRange
+   IL_08D3: conv.r4 
+   IL_08D4: sub 
+   IL_08D5: sub 
+   IL_08D6: call System.Math::Abs(Single)
+   IL_08DB: ldsfld Terraria.Main::offScreenRange
+   IL_08E0: conv.r4 
+   IL_08E1: ble.un.s IL_091f: ldsfld System.Boolean Terraria.Main::loadMap
+   IL_08E3: ldarg.0 
+   IL_08E4: call Terraria.Main::RenderWater()
+   IL_08E9: ldsflda Terraria.Main::sceneWaterPos
+   IL_08EE: ldsflda Terraria.Main::screenPosition
+   IL_08F3: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_08F8: ldsfld Terraria.Main::offScreenRange
+   IL_08FD: conv.r4 
+   IL_08FE: sub 
+   IL_08FF: stfld Microsoft.Xna.Framework.Vector2::X
+   IL_0904: ldsflda Terraria.Main::sceneWaterPos
+   IL_0909: ldsflda Terraria.Main::screenPosition
+   IL_090E: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0913: ldsfld Terraria.Main::offScreenRange
+   IL_0918: conv.r4 
+   IL_0919: sub 
+   IL_091A: stfld Microsoft.Xna.Framework.Vector2::Y
+   IL_091F: ldsfld Terraria.Main::loadMap
+   IL_0924: brtrue IL_09d9: ldarg.0
+   IL_0929: ldsfld Terraria.Main::gameMenu
+   IL_092E: brtrue.s IL_0989: ldsfld System.Boolean Terraria.Main::updateMap
+   IL_0930: call Terraria.TimeLogger::DetailedDrawReset()
+   IL_0935: newobj System.Diagnostics.Stopwatch::.ctor()
+   IL_093A: stloc.s V_20
+   IL_093C: ldloc.s V_20
+   IL_093E: callvirt System.Diagnostics.Stopwatch::Start()
+   IL_0943: ldc.i4.0 
+   IL_0944: stloc.s V_21
+   IL_0946: br.s IL_0958: ldloc.s V_20
+   IL_0948: ldarg.0 
+   IL_0949: ldloc.s V_22
+   IL_094B: ldloc.s V_23
+   IL_094D: call Terraria.Main::DrawToMap_Section(Int32,Int32)
+   IL_0952: ldloc.s V_21
+   IL_0954: ldc.i4.1 
+   IL_0955: add 
+   IL_0956: stloc.s V_21
+   IL_0958: ldloc.s V_20
+   IL_095A: callvirt System.Diagnostics.Stopwatch::get_ElapsedMilliseconds()
+   IL_095F: ldc.i4.5 
+   IL_0960: conv.i8 
+   IL_0961: bge.s IL_0983: ldc.i4.3
+   IL_0963: ldsfld Terraria.Main::sectionManager
+   IL_0968: ldsfld Terraria.Main::player
+   IL_096D: ldsfld Terraria.Main::myPlayer
+   IL_0972: ldelem.ref 
+   IL_0973: ldfld Terraria.Entity::position
+   IL_0978: ldloca.s V_22
+   IL_097A: ldloca.s V_23
+   IL_097C: callvirt Terraria.WorldSections::GetNextMapDraw(Vector2,Int32&,Int32&)
+   IL_0981: brtrue.s IL_0948: ldarg.0
+   IL_0983: ldc.i4.3 
+   IL_0984: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_0989: ldsfld Terraria.Main::updateMap
+   IL_098E: brfalse.s IL_09d9: ldarg.0
+   IL_0990: ldarg.0 
+   IL_0991: call Microsoft.Xna.Framework.Game::get_IsActive()
+   IL_0996: brtrue.s IL_09a0: ldsfld System.Boolean Terraria.Main::refreshMap
+   IL_0998: ldsfld Terraria.Main::netMode
+   IL_099D: ldc.i4.1 
+   IL_099E: bne.un.s IL_09c5: ldsfld System.Int32 Terraria.Map.MapHelper::numUpdateTile
+   IL_09A0: ldsfld Terraria.Main::refreshMap
+   IL_09A5: brfalse.s IL_09b7: ldarg.0
+   IL_09A7: ldc.i4.0 
+   IL_09A8: stsfld Terraria.Main::refreshMap
+   IL_09AD: ldsfld Terraria.Main::sectionManager
+   IL_09B2: callvirt Terraria.WorldSections::ClearMapDraw()
+   IL_09B7: ldarg.0 
+   IL_09B8: call Terraria.Main::DrawToMap()
+   IL_09BD: ldc.i4.0 
+   IL_09BE: stsfld Terraria.Main::updateMap
+   IL_09C3: br.s IL_09d3: ldc.i4.4
+   IL_09C5: ldsfld Terraria.Map.MapHelper::numUpdateTile
+   IL_09CA: ldc.i4.0 
+   IL_09CB: ble.s IL_09d3: ldc.i4.4
+   IL_09CD: ldarg.0 
+   IL_09CE: call Terraria.Main::DrawToMap()
+   IL_09D3: ldc.i4.4 
+   IL_09D4: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_09D9: ldarg.0 
+   IL_09DA: ldc.r8 0.1
+   IL_09E3: stfld Terraria.Main::bgParallax
+   IL_09E8: ldarg.0 
+   IL_09E9: ldc.r8 0
+   IL_09F2: ldsflda Terraria.Main::screenPosition
+   IL_09F7: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_09FC: conv.r8 
+   IL_09FD: ldarg.0 
+   IL_09FE: ldfld Terraria.Main::bgParallax
+   IL_0A03: mul 
+   IL_0A04: ldsfld Terraria.Main::backgroundWidth
+   IL_0A09: ldsfld Terraria.Main::background
+   IL_0A0E: ldelem.i4 
+   IL_0A0F: conv.r8 
+   IL_0A10: call System.Math::IEEERemainder(Double,Double)
+   IL_0A15: sub 
+   IL_0A16: ldsfld Terraria.Main::backgroundWidth
+   IL_0A1B: ldsfld Terraria.Main::background
+   IL_0A20: ldelem.i4 
+   IL_0A21: ldc.i4.2 
+   IL_0A22: div 
+   IL_0A23: conv.r8 
+   IL_0A24: sub 
+   IL_0A25: conv.i4 
+   IL_0A26: stfld Terraria.Main::bgStartX
+   IL_0A2B: ldarg.0 
+   IL_0A2C: ldsfld Terraria.Main::screenWidth
+   IL_0A31: ldsfld Terraria.Main::backgroundWidth
+   IL_0A36: ldsfld Terraria.Main::background
+   IL_0A3B: ldelem.i4 
+   IL_0A3C: div 
+   IL_0A3D: ldc.i4.2 
+   IL_0A3E: add 
+   IL_0A3F: stfld Terraria.Main::bgLoops
+   IL_0A44: ldarg.0 
+   IL_0A45: ldc.i4.0 
+   IL_0A46: stfld Terraria.Main::bgStartY
+   IL_0A4B: ldarg.0 
+   IL_0A4C: ldc.i4.0 
+   IL_0A4D: stfld Terraria.Main::bgLoopsY
+   IL_0A52: ldarg.0 
+   IL_0A53: ldc.r4 0
+   IL_0A58: ldsflda Terraria.Main::screenPosition
+   IL_0A5D: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0A62: sub 
+   IL_0A63: conv.r8 
+   IL_0A64: ldsfld Terraria.Main::worldSurface
+   IL_0A69: ldc.r8 16
+   IL_0A72: mul 
+   IL_0A73: ldc.r8 600
+   IL_0A7C: sub 
+   IL_0A7D: div 
+   IL_0A7E: ldc.r8 200
+   IL_0A87: mul 
+   IL_0A88: conv.i4 
+   IL_0A89: stfld Terraria.Main::bgTopY
+   IL_0A8E: ldsfld Terraria.Main::gameMenu
+   IL_0A93: brtrue.s IL_0a9d: ldarg.0
+   IL_0A95: ldsfld Terraria.Main::netMode
+   IL_0A9A: ldc.i4.2 
+   IL_0A9B: bne.un.s IL_0aa8: ldsfld System.Double Terraria.Main::desiredWorldEventsUpdateRate
+   IL_0A9D: ldarg.0 
+   IL_0A9E: ldc.i4 -200
+   IL_0AA3: stfld Terraria.Main::bgTopY
+   IL_0AA8: ldsfld Terraria.Main::desiredWorldEventsUpdateRate
+   IL_0AAD: stloc.1 
+   IL_0AAE: ldc.r4 0.0005
+   IL_0AB3: ldloc.1 
+   IL_0AB4: conv.r4 
+   IL_0AB5: mul 
+   IL_0AB6: stloc.2 
+   IL_0AB7: ldsfld Terraria.Main::gameMenu
+   IL_0ABC: brfalse.s IL_0ac6: ldsfld System.Boolean Terraria.Main::raining
+   IL_0ABE: ldloc.2 
+   IL_0ABF: ldc.r4 20
+   IL_0AC4: mul 
+   IL_0AC5: stloc.2 
+   IL_0AC6: ldsfld Terraria.Main::raining
+   IL_0ACB: brfalse.s IL_0b2d: ldsfld System.Single Terraria.Main::cloudAlpha
+   IL_0ACD: ldsfld Terraria.Main::cloudAlpha
+   IL_0AD2: ldsfld Terraria.Main::maxRaining
+   IL_0AD7: ble.un.s IL_0afd: ldsfld System.Single Terraria.Main::cloudAlpha
+   IL_0AD9: ldsfld Terraria.Main::cloudAlpha
+   IL_0ADE: ldloc.2 
+   IL_0ADF: sub 
+   IL_0AE0: stsfld Terraria.Main::cloudAlpha
+   IL_0AE5: ldsfld Terraria.Main::cloudAlpha
+   IL_0AEA: ldsfld Terraria.Main::maxRaining
+   IL_0AEF: bge.un.s IL_0b4f: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_0AF1: ldsfld Terraria.Main::maxRaining
+   IL_0AF6: stsfld Terraria.Main::cloudAlpha
+   IL_0AFB: br.s IL_0b4f: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_0AFD: ldsfld Terraria.Main::cloudAlpha
+   IL_0B02: ldsfld Terraria.Main::maxRaining
+   IL_0B07: bge.un.s IL_0b4f: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_0B09: ldsfld Terraria.Main::cloudAlpha
+   IL_0B0E: ldloc.2 
+   IL_0B0F: add 
+   IL_0B10: stsfld Terraria.Main::cloudAlpha
+   IL_0B15: ldsfld Terraria.Main::cloudAlpha
+   IL_0B1A: ldsfld Terraria.Main::maxRaining
+   IL_0B1F: ble.un.s IL_0b4f: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_0B21: ldsfld Terraria.Main::maxRaining
+   IL_0B26: stsfld Terraria.Main::cloudAlpha
+   IL_0B2B: br.s IL_0b4f: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_0B2D: ldsfld Terraria.Main::cloudAlpha
+   IL_0B32: ldloc.2 
+   IL_0B33: sub 
+   IL_0B34: stsfld Terraria.Main::cloudAlpha
+   IL_0B39: ldsfld Terraria.Main::cloudAlpha
+   IL_0B3E: ldc.r4 0
+   IL_0B43: bge.un.s IL_0b4f: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_0B45: ldc.r4 0
+   IL_0B4A: stsfld Terraria.Main::cloudAlpha
+   IL_0B4F: ldsfld Terraria.Main::gameMenu
+   IL_0B54: brtrue.s IL_0b5e: ldc.i4 1000
+   IL_0B56: ldsfld Terraria.Main::netMode
+   IL_0B5B: ldc.i4.2 
+   IL_0B5C: bne.un.s IL_0b81: call Microsoft.Xna.Framework.Color Microsoft.Xna.Framework.Color::get_White()
+   IL_0B5E: ldc.i4 1000
+   IL_0B63: stsfld Terraria.Main::bgDelay
+   IL_0B68: ldsfld Terraria.Main::SceneMetrics
+   IL_0B6D: ldsfld Terraria.Main::bgAlphaFrontLayer
+   IL_0B72: ldc.i4.1 
+   IL_0B73: ldelem.r4 
+   IL_0B74: ldsfld Terraria.SceneMetrics::CorruptionTileMax
+   IL_0B79: conv.r4 
+   IL_0B7A: mul 
+   IL_0B7B: conv.i4 
+   IL_0B7C: callvirt Terraria.SceneMetrics::set_EvilTileCount(Int32)
+   IL_0B81: call Microsoft.Xna.Framework.Color::get_White()
+   IL_0B86: stloc.3 
+   IL_0B87: call Microsoft.Xna.Framework.Color::get_White()
+   IL_0B8C: stloc.s V_4
+   IL_0B8E: ldsfld Terraria.Main::SceneMetrics
+   IL_0B93: callvirt Terraria.SceneMetrics::get_MushroomTileCount()
+   IL_0B98: ldsfld Terraria.SceneMetrics::MushroomTileMax
+   IL_0B9D: div 
+   IL_0B9E: conv.r4 
+   IL_0B9F: stloc.s V_5
+   IL_0BA1: ldsfld Terraria.Main::SmoothedMushroomLightInfluence
+   IL_0BA6: stloc.s V_6
+   IL_0BA8: ldloc.s V_5
+   IL_0BAA: ldc.r4 0
+   IL_0BAF: ble.un.s IL_0bd3: ldloc.s V_6
+   IL_0BB1: ldloc.s V_5
+   IL_0BB3: ldloc.s V_6
+   IL_0BB5: ble.un.s IL_0bc1: ldloc.s V_5
+   IL_0BB7: ldloc.s V_6
+   IL_0BB9: ldc.r4 0.01
+   IL_0BBE: add 
+   IL_0BBF: stloc.s V_6
+   IL_0BC1: ldloc.s V_5
+   IL_0BC3: ldloc.s V_6
+   IL_0BC5: bge.un.s IL_0bdd: ldloc.s V_6
+   IL_0BC7: ldloc.s V_6
+   IL_0BC9: ldc.r4 0.01
+   IL_0BCE: sub 
+   IL_0BCF: stloc.s V_6
+   IL_0BD1: br.s IL_0bdd: ldloc.s V_6
+   IL_0BD3: ldloc.s V_6
+   IL_0BD5: ldc.r4 0.02
+   IL_0BDA: sub 
+   IL_0BDB: stloc.s V_6
+   IL_0BDD: ldloc.s V_6
+   IL_0BDF: ldc.r4 0
+   IL_0BE4: bge.un.s IL_0bed: ldloc.s V_6
+   IL_0BE6: ldc.r4 0
+   IL_0BEB: stloc.s V_6
+   IL_0BED: ldloc.s V_6
+   IL_0BEF: ldc.r4 1
+   IL_0BF4: ble.un.s IL_0bfd: ldloc.s V_6
+   IL_0BF6: ldc.r4 1
+   IL_0BFB: stloc.s V_6
+   IL_0BFD: ldloc.s V_6
+   IL_0BFF: stsfld Terraria.Main::SmoothedMushroomLightInfluence
+   IL_0C04: ldloca.s V_7
+   IL_0C06: initobj Terraria.Main/InfoToSetBackColor
+   IL_0C0C: ldloca.s V_7
+   IL_0C0E: ldsfld Terraria.Main::gameMenu
+   IL_0C13: brtrue.s IL_0c1f: ldc.i4.1
+   IL_0C15: ldsfld Terraria.Main::netMode
+   IL_0C1A: ldc.i4.2 
+   IL_0C1B: ceq 
+   IL_0C1D: br.s IL_0c20: stfld System.Boolean Terraria.Main/InfoToSetBackColor::isInGameMenuOrIsServer
+   IL_0C1F: ldc.i4.1 
+   IL_0C20: stfld Terraria.Main/InfoToSetBackColor::isInGameMenuOrIsServer
+   IL_0C25: ldloca.s V_7
+   IL_0C27: ldsfld Terraria.Main::SceneMetrics
+   IL_0C2C: callvirt Terraria.SceneMetrics::get_EvilTileCount()
+   IL_0C31: conv.r4 
+   IL_0C32: ldsfld Terraria.SceneMetrics::CorruptionTileMax
+   IL_0C37: conv.r4 
+   IL_0C38: div 
+   IL_0C39: stfld Terraria.Main/InfoToSetBackColor::CorruptionBiomeInfluence
+   IL_0C3E: ldloca.s V_7
+   IL_0C40: ldsfld Terraria.Main::SceneMetrics
+   IL_0C45: callvirt Terraria.SceneMetrics::get_BloodTileCount()
+   IL_0C4A: conv.r4 
+   IL_0C4B: ldsfld Terraria.SceneMetrics::CrimsonTileMax
+   IL_0C50: conv.r4 
+   IL_0C51: div 
+   IL_0C52: stfld Terraria.Main/InfoToSetBackColor::CrimsonBiomeInfluence
+   IL_0C57: ldloca.s V_7
+   IL_0C59: ldsfld Terraria.Main::SceneMetrics
+   IL_0C5E: callvirt Terraria.SceneMetrics::get_JungleTileCount()
+   IL_0C63: conv.r4 
+   IL_0C64: ldsfld Terraria.SceneMetrics::JungleTileMax
+   IL_0C69: conv.r4 
+   IL_0C6A: div 
+   IL_0C6B: stfld Terraria.Main/InfoToSetBackColor::JungleBiomeInfluence
+   IL_0C70: ldloca.s V_7
+   IL_0C72: ldsfld Terraria.Main::SmoothedMushroomLightInfluence
+   IL_0C77: stfld Terraria.Main/InfoToSetBackColor::MushroomBiomeInfluence
+   IL_0C7C: ldloca.s V_7
+   IL_0C7E: ldsfld Terraria.Main::GraveyardVisualIntensity
+   IL_0C83: stfld Terraria.Main/InfoToSetBackColor::GraveyardInfluence
+   IL_0C88: ldloca.s V_7
+   IL_0C8A: ldsfld Terraria.Main::bloodMoon
+   IL_0C8F: brtrue.s IL_0c9d: ldc.i4.1
+   IL_0C91: ldsfld Terraria.Main::SceneMetrics
+   IL_0C96: callvirt Terraria.SceneMetrics::get_BloodMoonMonolith()
+   IL_0C9B: br.s IL_0c9e: stfld System.Boolean Terraria.Main/InfoToSetBackColor::BloodMoonActive
+   IL_0C9D: ldc.i4.1 
+   IL_0C9E: stfld Terraria.Main/InfoToSetBackColor::BloodMoonActive
+   IL_0CA3: ldloca.s V_7
+   IL_0CA5: call Terraria.GameContent.Events.LanternNight::get_LanternsUp()
+   IL_0CAA: stfld Terraria.Main/InfoToSetBackColor::LanternNightActive
+   IL_0CAF: ldloc.s V_7
+   IL_0CB1: ldloca.s V_4
+   IL_0CB3: ldloca.s V_3
+   IL_0CB5: call Terraria.Main::SetBackColor(InfoToSetBackColor,Color&,Color&)
+   IL_0CBA: ldsfld Terraria.Main::gameMenu
+   IL_0CBF: brtrue.s IL_0cc9: ldarg.0
+   IL_0CC1: ldsfld Terraria.Main::netMode
+   IL_0CC6: ldc.i4.2 
+   IL_0CC7: bne.un.s IL_0cd0: call System.Void Terraria.Main::ApplyColorOfTheSkiesToTiles()
+   IL_0CC9: ldarg.0 
+   IL_0CCA: ldc.i4.0 
+   IL_0CCB: stfld Terraria.Main::bgTopY
+   IL_0CD0: call Terraria.Main::ApplyColorOfTheSkiesToTiles()
+   IL_0CD5: call Terraria.Main::UpdateAtmosphereTransparencyToSkyColor()
+   IL_0CDA: ldarg.0 
+   IL_0CDB: call Microsoft.Xna.Framework.Game::get_GraphicsDevice()
+   IL_0CE0: call Microsoft.Xna.Framework.Color::get_Black()
+   IL_0CE5: callvirt Microsoft.Xna.Framework.Graphics.GraphicsDevice::Clear(Color)
+   IL_0CEA: ldarg.0 
+   IL_0CEB: ldarg.1 
+   IL_0CEC: call Microsoft.Xna.Framework.Game::Draw(GameTime)
+   IL_0CF1: ldsfld Terraria.Main::screenWidth
+   IL_0CF6: conv.r4 
+   IL_0CF7: ldsfld Terraria.ModLoader.ModLoader::removeForcedMinimumZoom
+   IL_0CFC: brtrue.s IL_0d05: ldc.r4 8192
+   IL_0CFE: ldsfld Terraria.Main::MinimumZoomComparerX
+   IL_0D03: br.s IL_0d0a: div
+   IL_0D05: ldc.r4 8192
+   IL_0D0A: div 
+   IL_0D0B: stloc.s V_8
+   IL_0D0D: ldsfld Terraria.Main::screenHeight
+   IL_0D12: conv.r4 
+   IL_0D13: ldsfld Terraria.ModLoader.ModLoader::removeForcedMinimumZoom
+   IL_0D18: brtrue.s IL_0d21: ldc.r4 8192
+   IL_0D1A: ldsfld Terraria.Main::MinimumZoomComparerY
+   IL_0D1F: br.s IL_0d26: div
+   IL_0D21: ldc.r4 8192
+   IL_0D26: div 
+   IL_0D27: stloc.s V_9
+   IL_0D29: ldc.r4 1
+   IL_0D2E: ldloc.s V_8
+   IL_0D30: call System.Math::Max(Single,Single)
+   IL_0D35: ldloc.s V_9
+   IL_0D37: call System.Math::Max(Single,Single)
+   IL_0D3C: stsfld Terraria.Main::ForcedMinimumZoom
+   IL_0D41: ldsfld Terraria.Main::GameViewMatrix
+   IL_0D46: ldsfld Terraria.Main::gameMenu
+   IL_0D4B: brtrue.s IL_0d64: ldc.i4.0
+   IL_0D4D: ldsfld Terraria.Main::player
+   IL_0D52: ldsfld Terraria.Main::myPlayer
+   IL_0D57: ldelem.ref 
+   IL_0D58: ldfld Terraria.Player::gravDir
+   IL_0D5D: ldc.r4 1
+   IL_0D62: bne.un.s IL_0d67: ldc.i4.2
+   IL_0D64: ldc.i4.0 
+   IL_0D65: br.s IL_0d68: callvirt System.Void Terraria.Graphics.SpriteViewMatrix::set_Effects(Microsoft.Xna.Framework.Graphics.SpriteEffects)
+   IL_0D67: ldc.i4.2 
+   IL_0D68: callvirt Terraria.Graphics.SpriteViewMatrix::set_Effects(SpriteEffects)
+   IL_0D6D: ldsfld Terraria.Main::BackgroundViewMatrix
+   IL_0D72: ldsfld Terraria.Main::GameViewMatrix
+   IL_0D77: callvirt Terraria.Graphics.SpriteViewMatrix::get_Effects()
+   IL_0D7C: callvirt Terraria.Graphics.SpriteViewMatrix::set_Effects(SpriteEffects)
+   IL_0D81: ldsfld Terraria.Main::BackgroundViewMatrix
+   IL_0D86: ldsfld Terraria.Main::ForcedMinimumZoom
+   IL_0D8B: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single)
+   IL_0D90: callvirt Terraria.Graphics.SpriteViewMatrix::set_Zoom(Vector2)
+   IL_0D95: ldsfld Terraria.Main::GameViewMatrix
+   IL_0D9A: ldsfld Terraria.Main::ForcedMinimumZoom
+   IL_0D9F: ldsfld Terraria.Main::GameZoomTarget
+   IL_0DA4: ldc.r4 1
+   IL_0DA9: ldc.r4 2
+   IL_0DAE: call Microsoft.Xna.Framework.MathHelper::Clamp(Single,Single,Single)
+   IL_0DB3: mul 
+   IL_0DB4: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single)
+   IL_0DB9: callvirt Terraria.Graphics.SpriteViewMatrix::set_Zoom(Vector2)
+   IL_0DBE: ldsflda Terraria.Main::GameViewMatrix
+   IL_0DC3: call Terraria.ModLoader.SystemLoader::ModifyTransformMatrix(SpriteViewMatrix&)
+   IL_0DC8: ldsfld Terraria.Main::gameMenu
+   IL_0DCD: brtrue.s IL_0de6: ldsfld Microsoft.Xna.Framework.Graphics.RasterizerState Microsoft.Xna.Framework.Graphics.RasterizerState::CullCounterClockwise
+   IL_0DCF: ldsfld Terraria.Main::player
+   IL_0DD4: ldsfld Terraria.Main::myPlayer
+   IL_0DD9: ldelem.ref 
+   IL_0DDA: ldfld Terraria.Player::gravDir
+   IL_0DDF: ldc.r4 1
+   IL_0DE4: bne.un.s IL_0df2: ldsfld Microsoft.Xna.Framework.Graphics.RasterizerState Microsoft.Xna.Framework.Graphics.RasterizerState::CullClockwise
+   IL_0DE6: ldsfld Microsoft.Xna.Framework.Graphics.RasterizerState::CullCounterClockwise
+   IL_0DEB: stsfld Terraria.Main::Rasterizer
+   IL_0DF0: br.s IL_0dfc: ldsfld System.Boolean Terraria.Main::gameMenu
+   IL_0DF2: ldsfld Microsoft.Xna.Framework.Graphics.RasterizerState::CullClockwise
+   IL_0DF7: stsfld Terraria.Main::Rasterizer
+   IL_0DFC: ldsfld Terraria.Main::gameMenu
+   IL_0E01: stloc.s V_10
+   IL_0E03: ldsfld Terraria.Main::dontStarveWorld
+   IL_0E08: brfalse.s IL_0e4b: ldloc.s V_10
+   IL_0E0A: ldsfld Terraria.WorldGen::generatingWorld
+   IL_0E0F: brfalse.s IL_0e4b: ldloc.s V_10
+   IL_0E11: ldsfld Terraria.Graphics.Effects.Filters::Scene
+   IL_0E16: ldstr "Sepia"
+   IL_0E1B: callvirt Terraria.Graphics.Effects.EffectManager`1<Terraria.Graphics.Effects.Filter>::get_Item(String)
+   IL_0E20: callvirt Terraria.Graphics.Effects.Filter::IsActive()
+   IL_0E25: brtrue.s IL_0e46: ldc.i4.0
+   IL_0E27: ldsfld Terraria.Graphics.Effects.Filters::Scene
+   IL_0E2C: ldstr "Sepia"
+   IL_0E31: ldloca.s V_24
+   IL_0E33: initobj Microsoft.Xna.Framework.Vector2
+   IL_0E39: ldloc.s V_24
+   IL_0E3B: call System.Array::Empty()
+   IL_0E40: callvirt Terraria.Graphics.Effects.EffectManager`1<Terraria.Graphics.Effects.Filter>::Activate(String,Vector2,Object[])
+   IL_0E45: pop 
+   IL_0E46: ldc.i4.0 
+   IL_0E47: stloc.s V_10
+   IL_0E49: br.s IL_0e79: ldsfld Terraria.Graphics.Effects.FilterManager Terraria.Graphics.Effects.Filters::Scene
+   IL_0E4B: ldloc.s V_10
+   IL_0E4D: brfalse.s IL_0e79: ldsfld Terraria.Graphics.Effects.FilterManager Terraria.Graphics.Effects.Filters::Scene
+   IL_0E4F: ldsfld Terraria.Graphics.Effects.Filters::Scene
+   IL_0E54: ldstr "Sepia"
+   IL_0E59: callvirt Terraria.Graphics.Effects.EffectManager`1<Terraria.Graphics.Effects.Filter>::get_Item(String)
+   IL_0E5E: callvirt Terraria.Graphics.Effects.Filter::IsActive()
+   IL_0E63: brfalse.s IL_0e79: ldsfld Terraria.Graphics.Effects.FilterManager Terraria.Graphics.Effects.Filters::Scene
+   IL_0E65: ldsfld Terraria.Graphics.Effects.Filters::Scene
+   IL_0E6A: ldstr "Sepia"
+   IL_0E6F: call System.Array::Empty()
+   IL_0E74: callvirt Terraria.Graphics.Effects.EffectManager`1<Terraria.Graphics.Effects.Filter>::Deactivate(String,Object[])
+   IL_0E79: ldsfld Terraria.Graphics.Effects.Filters::Scene
+   IL_0E7E: ldstr "Sepia"
+   IL_0E83: callvirt Terraria.Graphics.Effects.EffectManager`1<Terraria.Graphics.Effects.Filter>::get_Item(String)
+   IL_0E88: callvirt Terraria.Graphics.Effects.Filter::IsInUse()
+   IL_0E8D: brfalse.s IL_0e92: ldsfld System.Boolean Terraria.Main::drawToScreen
+   IL_0E8F: ldc.i4.0 
+   IL_0E90: stloc.s V_10
+   IL_0E92: ldsfld Terraria.Main::drawToScreen
+   IL_0E97: brtrue.s IL_0ea3: ldc.i4.1
+   IL_0E99: ldsfld Terraria.Main::netMode
+   IL_0E9E: ldc.i4.2 
+   IL_0E9F: ceq 
+   IL_0EA1: br.s IL_0ea4: ldloc.s V_10
+   IL_0EA3: ldc.i4.1 
+   IL_0EA4: ldloc.s V_10
+   IL_0EA6: or 
+   IL_0EA7: brtrue.s IL_0ec3: ldc.i4.0
+   IL_0EA9: ldsfld Terraria.Main::mapFullscreen
+   IL_0EAE: brtrue.s IL_0ec3: ldc.i4.0
+   IL_0EB0: call Terraria.Lighting::get_NotRetro()
+   IL_0EB5: brfalse.s IL_0ec3: ldc.i4.0
+   IL_0EB7: ldsfld Terraria.Graphics.Effects.Filters::Scene
+   IL_0EBC: callvirt Terraria.Graphics.Effects.FilterManager::CanCapture()
+   IL_0EC1: br.s IL_0ec4: stloc.s V_11
+   IL_0EC3: ldc.i4.0 
+   IL_0EC4: stloc.s V_11
+   IL_0EC6: ldloc.s V_11
+   IL_0EC8: brfalse.s IL_0ede: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_0ECA: ldsfld Terraria.Graphics.Effects.Filters::Scene
+   IL_0ECF: ldsfld Terraria.Main::screenTarget
+   IL_0ED4: call Microsoft.Xna.Framework.Color::get_Black()
+   IL_0ED9: callvirt Terraria.Graphics.Effects.FilterManager::BeginCapture(RenderTarget2D,Color)
+   IL_0EDE: ldsfld Terraria.Main::spriteBatch
+   IL_0EE3: ldc.i4.0 
+   IL_0EE4: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_0EE9: call Terraria.Main::get_DefaultSamplerState()
+   IL_0EEE: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_0EF3: ldsfld Terraria.Main::Rasterizer
+   IL_0EF8: ldnull 
+   IL_0EF9: ldsfld Terraria.Main::BackgroundViewMatrix
+   IL_0EFE: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_0F03: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_0F08: call Terraria.TimeLogger::DetailedDrawReset()
+   IL_0F0D: ldloca.s V_12
+   IL_0F0F: initobj Terraria.Main/SceneArea
+   IL_0F15: ldloca.s V_12
+   IL_0F17: ldarg.0 
+   IL_0F18: ldfld Terraria.Main::bgTopY
+   IL_0F1D: stfld Terraria.Main/SceneArea::bgTopY
+   IL_0F22: ldloca.s V_12
+   IL_0F24: ldsfld Terraria.Main::screenHeight
+   IL_0F29: conv.r4 
+   IL_0F2A: stfld Terraria.Main/SceneArea::totalHeight
+   IL_0F2F: ldloca.s V_12
+   IL_0F31: ldsfld Terraria.Main::screenWidth
+   IL_0F36: conv.r4 
+   IL_0F37: stfld Terraria.Main/SceneArea::totalWidth
+   IL_0F3C: ldloca.s V_12
+   IL_0F3E: call Microsoft.Xna.Framework.Vector2::get_Zero()
+   IL_0F43: stfld Terraria.Main/SceneArea::SceneLocalScreenPositionOffset
+   IL_0F48: ldloc.s V_12
+   IL_0F4A: stloc.s V_13
+   IL_0F4C: ldsfld Terraria.Main::mapFullscreen
+   IL_0F51: brtrue IL_10b5: ldsfld Terraria.Graphics.Effects.OverlayManager Terraria.Graphics.Effects.Overlays::Scene
+   IL_0F56: ldarg.0 
+   IL_0F57: ldc.i4.0 
+   IL_0F58: stfld Terraria.Main::unityMouseOver
+   IL_0F5D: ldsflda Terraria.Main::screenPosition
+   IL_0F62: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0F67: conv.r8 
+   IL_0F68: ldsfld Terraria.Main::worldSurface
+   IL_0F6D: ldc.r8 16
+   IL_0F76: mul 
+   IL_0F77: ldc.r8 16
+   IL_0F80: add 
+   IL_0F81: bge.un IL_1037: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_0F86: ldsfld Terraria.GameContent.TextureAssets::Background
+   IL_0F8B: ldsfld Terraria.Main::background
+   IL_0F90: ldelem.ref 
+   IL_0F91: stloc.s V_25
+   IL_0F93: ldloca.s V_26
+   IL_0F95: ldarg.0 
+   IL_0F96: ldfld Terraria.Main::bgStartX
+   IL_0F9B: ldarg.0 
+   IL_0F9C: ldfld Terraria.Main::bgTopY
+   IL_0FA1: ldloc.s V_25
+   IL_0FA3: call Terraria.Utils::Width(Asset`1)
+   IL_0FA8: ldsfld Terraria.Main::screenHeight
+   IL_0FAD: ldloc.s V_25
+   IL_0FAF: call Terraria.Utils::Height(Asset`1)
+   IL_0FB4: call System.Math::Max(Int32,Int32)
+   IL_0FB9: call Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_0FBE: ldloca.s V_26
+   IL_0FC0: call Microsoft.Xna.Framework.Rectangle::get_Bottom()
+   IL_0FC5: ldloc.s V_25
+   IL_0FC7: call Terraria.Utils::Height(Asset`1)
+   IL_0FCC: bge.s IL_0fec: ldc.i4.0
+   IL_0FCE: ldloc.s V_25
+   IL_0FD0: call Terraria.Utils::Height(Asset`1)
+   IL_0FD5: ldloca.s V_26
+   IL_0FD7: call Microsoft.Xna.Framework.Rectangle::get_Bottom()
+   IL_0FDC: sub 
+   IL_0FDD: stloc.s V_27
+   IL_0FDF: ldloca.s V_26
+   IL_0FE1: ldflda Microsoft.Xna.Framework.Rectangle::Height
+   IL_0FE6: dup 
+   IL_0FE7: ldind.i4 
+   IL_0FE8: ldloc.s V_27
+   IL_0FEA: add 
+   IL_0FEB: stind.i4 
+   IL_0FEC: ldc.i4.0 
+   IL_0FED: stloc.s V_30
+   IL_0FEF: br.s IL_1027: ldloc.s V_30
+   IL_0FF1: ldloca.s V_26
+   IL_0FF3: ldarg.0 
+   IL_0FF4: ldfld Terraria.Main::bgStartX
+   IL_0FF9: ldloc.s V_25
+   IL_0FFB: call Terraria.Utils::Width(Asset`1)
+   IL_1000: ldloc.s V_30
+   IL_1002: mul 
+   IL_1003: add 
+   IL_1004: stfld Microsoft.Xna.Framework.Rectangle::X
+   IL_1009: ldsfld Terraria.Main::spriteBatch
+   IL_100E: ldloc.s V_25
+   IL_1010: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_1015: ldloc.s V_26
+   IL_1017: ldsfld Terraria.Main::ColorOfTheSkies
+   IL_101C: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Draw(Texture2D,Rectangle,Color)
+   IL_1021: ldloc.s V_30
+   IL_1023: ldc.i4.1 
+   IL_1024: add 
+   IL_1025: stloc.s V_30
+   IL_1027: ldloc.s V_30
+   IL_1029: ldarg.0 
+   IL_102A: ldfld Terraria.Main::bgLoops
+   IL_102F: blt.s IL_0ff1: ldloca.s V_26
+   IL_1031: ldc.i4.6 
+   IL_1032: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_1037: ldsfld Terraria.Main::spriteBatch
+   IL_103C: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_1041: ldsfld Terraria.Main::spriteBatch
+   IL_1046: ldc.i4.0 
+   IL_1047: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_104C: call Terraria.Main::get_DefaultSamplerState()
+   IL_1051: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_1056: ldsfld Terraria.Main::Rasterizer
+   IL_105B: ldnull 
+   IL_105C: ldsfld Terraria.Main::BackgroundViewMatrix
+   IL_1061: callvirt Terraria.Graphics.SpriteViewMatrix::get_EffectMatrix()
+   IL_1066: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_106B: ldsfld Terraria.Main::shimmerAlpha
+   IL_1070: ldc.r4 1
+   IL_1075: beq.s IL_1080: ldsflda Microsoft.Xna.Framework.Vector2 Terraria.Main::screenPosition
+   IL_1077: ldarg.0 
+   IL_1078: ldloc.s V_13
+   IL_107A: ldc.i4.0 
+   IL_107B: call Terraria.Main::DrawStarsInBackground(SceneArea,Boolean)
+   IL_1080: ldsflda Terraria.Main::screenPosition
+   IL_1085: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_108A: ldc.r4 16
+   IL_108F: div 
+   IL_1090: conv.r8 
+   IL_1091: ldsfld Terraria.Main::worldSurface
+   IL_1096: ldc.r8 2
+   IL_109F: add 
+   IL_10A0: bge.un.s IL_10af: ldc.i4.7
+   IL_10A2: ldarg.0 
+   IL_10A3: ldloc.s V_13
+   IL_10A5: ldloc.3 
+   IL_10A6: ldloc.s V_4
+   IL_10A8: ldloc.s V_6
+   IL_10AA: call Terraria.Main::DrawSunAndMoon(SceneArea,Color,Color,Single)
+   IL_10AF: ldc.i4.7 
+   IL_10B0: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_10B5: ldsfld Terraria.Graphics.Effects.Overlays::Scene
+   IL_10BA: ldsfld Terraria.Main::spriteBatch
+   IL_10BF: ldc.i4.0 
+   IL_10C0: ldc.i4.0 
+   IL_10C1: callvirt Terraria.Graphics.Effects.OverlayManager::Draw(SpriteBatch,RenderLayers,Boolean)
+   IL_10C6: ldsfld Terraria.Main::spriteBatch
+   IL_10CB: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_10D0: ldsfld Terraria.Main::screenPosition
+   IL_10D5: ldsfld Terraria.Main::screenWidth
+   IL_10DA: ldsfld Terraria.Main::screenHeight
+   IL_10DF: stloc.s V_14
+   IL_10E1: ldsfld Terraria.Main::screenWidth
+   IL_10E6: conv.r4 
+   IL_10E7: ldsfld Terraria.Main::BackgroundViewMatrix
+   IL_10EC: callvirt Terraria.Graphics.SpriteViewMatrix::get_Zoom()
+   IL_10F1: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_10F6: div 
+   IL_10F7: conv.i4 
+   IL_10F8: stsfld Terraria.Main::screenWidth
+   IL_10FD: ldsfld Terraria.Main::screenHeight
+   IL_1102: conv.r4 
+   IL_1103: ldsfld Terraria.Main::BackgroundViewMatrix
+   IL_1108: callvirt Terraria.Graphics.SpriteViewMatrix::get_Zoom()
+   IL_110D: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1112: div 
+   IL_1113: conv.i4 
+   IL_1114: stsfld Terraria.Main::screenHeight
+   IL_1119: ldsfld Terraria.Main::screenPosition
+   IL_111E: ldsfld Terraria.Main::BackgroundViewMatrix
+   IL_1123: callvirt Terraria.Graphics.SpriteViewMatrix::get_Translation()
+   IL_1128: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_112D: stsfld Terraria.Main::screenPosition
+   IL_1132: ldsfld Terraria.Main::BackgroundViewMatrix
+   IL_1137: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_113C: stloc.s V_15
+   IL_113E: ldloca.s V_15
+   IL_1140: dup 
+   IL_1141: call Microsoft.Xna.Framework.Matrix::get_Translation()
+   IL_1146: ldsfld Terraria.Main::BackgroundViewMatrix
+   IL_114B: callvirt Terraria.Graphics.SpriteViewMatrix::get_ZoomMatrix()
+   IL_1150: stloc.s V_31
+   IL_1152: ldloca.s V_31
+   IL_1154: call Microsoft.Xna.Framework.Matrix::get_Translation()
+   IL_1159: ldc.r4 1
+   IL_115E: ldsfld Terraria.Main::BackgroundViewMatrix
+   IL_1163: callvirt Terraria.Graphics.SpriteViewMatrix::get_Effects()
+   IL_1168: box Microsoft.Xna.Framework.Graphics.SpriteEffects
+   IL_116D: ldc.i4.2 
+   IL_116E: box Microsoft.Xna.Framework.Graphics.SpriteEffects
+   IL_1173: call System.Enum::HasFlag(Enum)
+   IL_1178: brtrue.s IL_1181: ldc.r4 -1
+   IL_117A: ldc.r4 1
+   IL_117F: br.s IL_1186: ldc.r4 1
+   IL_1181: ldc.r4 -1
+   IL_1186: ldc.r4 1
+   IL_118B: newobj Microsoft.Xna.Framework.Vector3::.ctor(Single,Single,Single)
+   IL_1190: call Microsoft.Xna.Framework.Vector3::op_Multiply(Vector3,Vector3)
+   IL_1195: call Microsoft.Xna.Framework.Vector3::op_Subtraction(Vector3,Vector3)
+   IL_119A: call Microsoft.Xna.Framework.Matrix::set_Translation(Vector3)
+   IL_119F: ldsfld Terraria.Main::spriteBatch
+   IL_11A4: ldc.i4.0 
+   IL_11A5: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_11AA: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::LinearClamp
+   IL_11AF: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_11B4: ldsfld Terraria.Main::Rasterizer
+   IL_11B9: ldnull 
+   IL_11BA: ldloc.s V_15
+   IL_11BC: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_11C1: ldloc.s V_15
+   IL_11C3: stsfld Terraria.Main/CurrentFrameFlags/Hacks::CurrentBackgroundMatrixForCreditsRoll
+   IL_11C8: ldarg.0 
+   IL_11C9: call Terraria.Main::DrawBG()
+   IL_11CE: stsfld Terraria.Main::screenWidth
+   IL_11D3: ldloc.s V_14
+   IL_11D5: stsfld Terraria.Main::screenHeight
+   IL_11DA: stsfld Terraria.Main::screenPosition
+   IL_11DF: ldsfld Terraria.Main::spriteBatch
+   IL_11E4: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_11E9: ldsfld Terraria.Main::spriteBatch
+   IL_11EE: ldc.i4.0 
+   IL_11EF: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_11F4: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::LinearClamp
+   IL_11F9: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_11FE: ldsfld Terraria.Main::Rasterizer
+   IL_1203: ldnull 
+   IL_1204: ldsfld Terraria.Main::GameViewMatrix
+   IL_1209: callvirt Terraria.Graphics.SpriteViewMatrix::get_TransformationMatrix()
+   IL_120E: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_1213: ldarg.0 
+   IL_1214: call Terraria.Main::DrawBackgroundBlackFill()
+   IL_1219: ldsfld Terraria.Main::spriteBatch
+   IL_121E: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_1223: ldsfld Terraria.Graphics.Effects.Overlays::Scene
+   IL_1228: ldsfld Terraria.Main::spriteBatch
+   IL_122D: ldc.i4.1 
+   IL_122E: ldc.i4.1 
+   IL_122F: callvirt Terraria.Graphics.Effects.OverlayManager::Draw(SpriteBatch,RenderLayers,Boolean)
+   IL_1234: ldsfld Terraria.Main::spriteBatch
+   IL_1239: ldc.i4.0 
+   IL_123A: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_123F: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::LinearClamp
+   IL_1244: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_1249: ldsfld Terraria.Main::Rasterizer
+   IL_124E: ldnull 
+   IL_124F: call Terraria.Main::get_UIScaleMatrix()
+   IL_1254: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_1259: ldsfld Terraria.Main::gameMenu
+   IL_125E: brtrue.s IL_126b: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_1260: ldsfld Terraria.Main::netMode
+   IL_1265: ldc.i4.2 
+   IL_1266: bne.un IL_12ec: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_126B: ldsfld Terraria.Main::spriteBatch
+   IL_1270: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_1275: ldarg.0 
+   IL_1276: ldloca.s V_32
+   IL_1278: ldloca.s V_33
+   IL_127A: call Terraria.Main::PreDrawMenu(Point&,Point&)
+   IL_127F: ldsfld Terraria.Main::spriteBatch
+   IL_1284: ldc.i4.0 
+   IL_1285: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_128A: ldsfld Microsoft.Xna.Framework.Graphics.SamplerState::LinearClamp
+   IL_128F: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_1294: ldsfld Terraria.Main::Rasterizer
+   IL_1299: ldnull 
+   IL_129A: call Terraria.Main::get_UIScaleMatrix()
+   IL_129F: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_12A4: ldarg.0 
+   IL_12A5: ldarg.1 
+   IL_12A6: call Terraria.Main::DrawMenu(GameTime)
+   IL_12AB: ldloc.s V_32
+   IL_12AD: ldloc.s V_33
+   IL_12AF: call Terraria.Main::PostDrawMenu(Point,Point)
+   IL_12B4: ldloc.0 
+   IL_12B5: callvirt System.Diagnostics.Stopwatch::get_Elapsed()
+   IL_12BA: stloc.s V_17
+   IL_12BC: ldloca.s V_17
+   IL_12BE: call System.TimeSpan::get_TotalMilliseconds()
+   IL_12C3: call Terraria.TimeLogger::MenuDrawTime(Double)
+   IL_12C8: call Terraria.TimeLogger::EndDrawFrame()
+   IL_12CD: ldloc.s V_11
+   IL_12CF: brfalse.s IL_12eb: ret
+   IL_12D1: ldsfld Terraria.Graphics.Effects.Filters::Scene
+   IL_12D6: ldnull 
+   IL_12D7: ldsfld Terraria.Main::screenTarget
+   IL_12DC: ldsfld Terraria.Main::screenTargetSwap
+   IL_12E1: call Microsoft.Xna.Framework.Color::get_Black()
+   IL_12E6: callvirt Terraria.Graphics.Effects.FilterManager::EndCapture(RenderTarget2D,RenderTarget2D,RenderTarget2D,Color)
+   IL_12EB: ret 
+   IL_12EC: ldsfld Terraria.Main::spriteBatch
+   IL_12F1: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_12F6: ldsfld Terraria.Main::spriteBatch
+   IL_12FB: ldc.i4.0 
+   IL_12FC: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_1301: call Terraria.Main::get_DefaultSamplerState()
+   IL_1306: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_130B: ldsfld Terraria.Main::Rasterizer
+   IL_1310: ldnull 
+   IL_1311: call Terraria.Main::get_Transform()
+   IL_1316: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_131B: ldarg.0 
+   IL_131C: call Terraria.Main::DoLightTiles()
+   IL_1321: call Terraria.TimeLogger::DetailedDrawReset()
+   IL_1326: ldsfld Terraria.Main::mapFullscreen
+   IL_132B: brfalse IL_1453: ldsfld System.Single Terraria.Main::shimmerAlpha
+   IL_1330: ldsfld Terraria.Main::player
+   IL_1335: ldsfld Terraria.Main::myPlayer
+   IL_133A: ldelem.ref 
+   IL_133B: callvirt Terraria.Player::get_talkNPC()
+   IL_1340: ldc.i4.0 
+   IL_1341: bge.s IL_1369: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_1343: ldsfld Terraria.Main::player
+   IL_1348: ldsfld Terraria.Main::myPlayer
+   IL_134D: ldelem.ref 
+   IL_134E: ldfld Terraria.Player::sign
+   IL_1353: ldc.i4.0 
+   IL_1354: bge.s IL_1369: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_1356: ldsfld Terraria.Main::playerInventory
+   IL_135B: brfalse.s IL_1379: ldarg.0
+   IL_135D: ldsfld Terraria.Graphics.Capture.CaptureManager::Instance
+   IL_1362: callvirt Terraria.Graphics.Capture.CaptureManager::get_Active()
+   IL_1367: brtrue.s IL_1379: ldarg.0
+   IL_1369: ldsfld Terraria.Main::player
+   IL_136E: ldsfld Terraria.Main::myPlayer
+   IL_1373: ldelem.ref 
+   IL_1374: callvirt Terraria.Player::ToggleInv()
+   IL_1379: ldarg.0 
+   IL_137A: ldarg.1 
+   IL_137B: call Terraria.Main::DrawMap(GameTime)
+   IL_1380: ldsfld Terraria.Main::spriteBatch
+   IL_1385: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_138A: ldsfld Terraria.Main::spriteBatch
+   IL_138F: ldc.i4.0 
+   IL_1390: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_1395: ldsfld Terraria.Main::SamplerStateForCursor
+   IL_139A: ldnull 
+   IL_139B: ldnull 
+   IL_139C: ldnull 
+   IL_139D: call Terraria.Main::get_UIScaleMatrix()
+   IL_13A2: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_13A7: call Terraria.GameInput.PlayerInput::SetZoom_UI()
+   IL_13AC: ldarg.0 
+   IL_13AD: call Terraria.Main::DrawFPS()
+   IL_13B2: ldarg.0 
+   IL_13B3: call Terraria.Main::DrawPlayerChat()
+   IL_13B8: call Terraria.Main::DrawPendingMouseText()
+   IL_13BD: ldc.i4.0 
+   IL_13BE: call Terraria.Main::DrawThickCursor(Boolean)
+   IL_13C3: ldc.i4.0 
+   IL_13C4: call Terraria.Main::DrawCursor(Vector2,Boolean)
+   IL_13C9: call Terraria.GameInput.PlayerInput::SetZoom_Unscaled()
+   IL_13CE: ldsfld Terraria.Main::spriteBatch
+   IL_13D3: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_13D8: ldsfld Terraria.Main::spriteBatch
+   IL_13DD: ldc.i4.0 
+   IL_13DE: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_13E3: call Terraria.Main::get_DefaultSamplerState()
+   IL_13E8: ldnull 
+   IL_13E9: ldnull 
+   IL_13EA: ldnull 
+   IL_13EB: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect)
+   IL_13F0: ldloc.0 
+   IL_13F1: callvirt System.Diagnostics.Stopwatch::get_Elapsed()
+   IL_13F6: stloc.s V_17
+   IL_13F8: ldloca.s V_17
+   IL_13FA: call System.TimeSpan::get_TotalMilliseconds()
+   IL_13FF: call Terraria.TimeLogger::MapDrawTime(Double)
+   IL_1404: call Terraria.TimeLogger::EndDrawFrame()
+   IL_1409: ldc.i4.0 
+   IL_140A: call Terraria.GameInput.PlayerInput::SetDesiredZoomContext(ZoomContext)
+   IL_140F: ldsfld Terraria.Graphics.Capture.CaptureManager::Instance
+   IL_1414: callvirt Terraria.Graphics.Capture.CaptureManager::Update()
+   IL_1419: ldsfld Terraria.Graphics.Capture.CaptureManager::Instance
+   IL_141E: callvirt Terraria.Graphics.Capture.CaptureManager::get_Active()
+   IL_1423: brfalse.s IL_1434: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_1425: ldsfld Terraria.Graphics.Capture.CaptureManager::Instance
+   IL_142A: ldsfld Terraria.Main::spriteBatch
+   IL_142F: callvirt Terraria.Graphics.Capture.CaptureManager::Draw(SpriteBatch)
+   IL_1434: ldsfld Terraria.Main::spriteBatch
+   IL_1439: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_143E: ldsfld Terraria.Main::mouseLeft
+   IL_1443: brfalse.s IL_144c: ldc.i4.1
+   IL_1445: ldc.i4.0 
+   IL_1446: stsfld Terraria.Main::mouseLeftRelease
+   IL_144B: ret 
+   IL_144C: ldc.i4.1 
+   IL_144D: stsfld Terraria.Main::mouseLeftRelease
+   IL_1452: ret 
+   IL_1453: ldsfld Terraria.Main::shimmerAlpha
+   IL_1458: ldc.r4 0
+   IL_145D: ble.un.s IL_14d6: ldsfld Terraria.Graphics.Effects.OverlayManager Terraria.Graphics.Effects.Overlays::Scene
+   IL_145F: ldsfld Terraria.Main::spriteBatch
+   IL_1464: ldsfld Terraria.GameContent.TextureAssets::MagicPixel
+   IL_1469: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_146E: call Microsoft.Xna.Framework.Vector2::get_Zero()
+   IL_1473: ldloca.s V_29
+   IL_1475: initobj System.Nullable`1<Microsoft.Xna.Framework.Rectangle>
+   IL_147B: ldloc.s V_29
+   IL_147D: call Microsoft.Xna.Framework.Color::get_Black()
+   IL_1482: ldsfld Terraria.Main::shimmerAlpha
+   IL_1487: call Microsoft.Xna.Framework.Color::op_Multiply(Color,Single)
+   IL_148C: ldc.r4 0
+   IL_1491: call Microsoft.Xna.Framework.Vector2::get_Zero()
+   IL_1496: ldsfld Terraria.Main::Camera
+   IL_149B: callvirt Terraria.Graphics.Camera::get_UnscaledSize()
+   IL_14A0: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_14A5: ldsfld Terraria.Main::offScreenRange
+   IL_14AA: ldc.i4.2 
+   IL_14AB: mul 
+   IL_14AC: conv.r4 
+   IL_14AD: add 
+   IL_14AE: ldsfld Terraria.Main::Camera
+   IL_14B3: callvirt Terraria.Graphics.Camera::get_UnscaledSize()
+   IL_14B8: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_14BD: ldsfld Terraria.Main::offScreenRange
+   IL_14C2: ldc.i4.2 
+   IL_14C3: mul 
+   IL_14C4: conv.r4 
+   IL_14C5: add 
+   IL_14C6: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_14CB: ldc.i4.0 
+   IL_14CC: ldc.r4 0
+   IL_14D1: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Draw(Texture2D,Vector2,Nullable`1,Color,Single,Vector2,Vector2,SpriteEffects,Single)
+   IL_14D6: ldsfld Terraria.Graphics.Effects.Overlays::Scene
+   IL_14DB: ldsfld Terraria.Main::spriteBatch
+   IL_14E0: ldc.i4.3 
+   IL_14E1: ldc.i4.0 
+   IL_14E2: callvirt Terraria.Graphics.Effects.OverlayManager::Draw(SpriteBatch,RenderLayers,Boolean)
+   IL_14E7: call Microsoft.Xna.Framework.Color::get_White()
+   IL_14EC: pop 
+   IL_14ED: ldsfld Terraria.Main::drawToScreen
+   IL_14F2: brfalse.s IL_14fd: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_14F4: ldarg.0 
+   IL_14F5: ldc.i4.1 
+   IL_14F6: call Terraria.Main::DrawWaters(Boolean)
+   IL_14FB: br.s IL_1528: ldsfld Terraria.Graphics.Effects.OverlayManager Terraria.Graphics.Effects.Overlays::Scene
+   IL_14FD: ldsfld Terraria.Main::spriteBatch
+   IL_1502: ldarg.0 
+   IL_1503: ldfld Terraria.Main::backWaterTarget
+   IL_1508: ldsfld Terraria.Main::sceneBackgroundPos
+   IL_150D: ldsfld Terraria.Main::screenPosition
+   IL_1512: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_1517: call Microsoft.Xna.Framework.Color::get_White()
+   IL_151C: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Draw(Texture2D,Vector2,Color)
+   IL_1521: ldc.i4.s 11
+   IL_1523: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_1528: ldsfld Terraria.Graphics.Effects.Overlays::Scene
+   IL_152D: ldsfld Terraria.Main::spriteBatch
+   IL_1532: ldc.i4.4 
+   IL_1533: ldc.i4.0 
+   IL_1534: callvirt Terraria.Graphics.Effects.OverlayManager::Draw(SpriteBatch,RenderLayers,Boolean)
+   IL_1539: ldsflda Terraria.Main::sceneBackgroundPos
+   IL_153E: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_1543: ldsflda Terraria.Main::screenPosition
+   IL_1548: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_154D: sub 
+   IL_154E: ldsfld Terraria.Main::offScreenRange
+   IL_1553: conv.r4 
+   IL_1554: add 
+   IL_1555: ldsfld Terraria.Main::caveParallax
+   IL_155A: mul 
+   IL_155B: ldsfld Terraria.Main::offScreenRange
+   IL_1560: conv.r4 
+   IL_1561: sub 
+   IL_1562: stloc.s V_16
+   IL_1564: ldsfld Terraria.Main::shimmerAlpha
+   IL_1569: ldc.r4 0
+   IL_156E: ble.un.s IL_15d5: ldsfld System.Boolean Terraria.Main::drawToScreen
+   IL_1570: ldsfld Terraria.Main::spriteBatch
+   IL_1575: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_157A: ldsfld Terraria.Main::spriteBatch
+   IL_157F: ldc.i4.0 
+   IL_1580: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_1585: call Terraria.Main::get_DefaultSamplerState()
+   IL_158A: ldnull 
+   IL_158B: ldnull 
+   IL_158C: ldnull 
+   IL_158D: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect)
+   IL_1592: call Terraria.GameInput.PlayerInput::SetZoom_Unscaled()
+   IL_1597: ldarg.0 
+   IL_1598: ldloc.s V_13
+   IL_159A: ldc.i4.1 
+   IL_159B: call Terraria.Main::DrawStarsInBackground(SceneArea,Boolean)
+   IL_15A0: ldsfld Terraria.Main::spriteBatch
+   IL_15A5: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_15AA: ldc.i4.1 
+   IL_15AB: call Terraria.GameInput.PlayerInput::SetDesiredZoomContext(ZoomContext)
+   IL_15B0: ldsfld Terraria.Main::spriteBatch
+   IL_15B5: ldc.i4.0 
+   IL_15B6: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_15BB: call Terraria.Main::get_DefaultSamplerState()
+   IL_15C0: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_15C5: ldsfld Terraria.Main::Rasterizer
+   IL_15CA: ldnull 
+   IL_15CB: call Terraria.Main::get_Transform()
+   IL_15D0: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_15D5: ldsfld Terraria.Main::drawToScreen
+   IL_15DA: brfalse.s IL_15f8: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_15DC: ldsfld Terraria.Main::tileBatch
+   IL_15E1: callvirt Terraria.Graphics.TileBatch::Begin()
+   IL_15E6: ldarg.0 
+   IL_15E7: call Terraria.Main::DrawBackground()
+   IL_15EC: ldsfld Terraria.Main::tileBatch
+   IL_15F1: callvirt Terraria.Graphics.TileBatch::End()
+   IL_15F6: br.s IL_1630: ldsfld Terraria.Graphics.Effects.OverlayManager Terraria.Graphics.Effects.Overlays::Scene
+   IL_15F8: ldsfld Terraria.Main::spriteBatch
+   IL_15FD: ldarg.0 
+   IL_15FE: ldfld Terraria.Main::backgroundTarget
+   IL_1603: ldloc.s V_16
+   IL_1605: ldsflda Terraria.Main::sceneBackgroundPos
+   IL_160A: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_160F: ldsflda Terraria.Main::screenPosition
+   IL_1614: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1619: sub 
+   IL_161A: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_161F: call Microsoft.Xna.Framework.Color::get_White()
+   IL_1624: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Draw(Texture2D,Vector2,Color)
+   IL_1629: ldc.i4.s 12
+   IL_162B: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_1630: ldsfld Terraria.Graphics.Effects.Overlays::Scene
+   IL_1635: ldsfld Terraria.Main::spriteBatch
+   IL_163A: ldc.i4.2 
+   IL_163B: ldc.i4.0 
+   IL_163C: callvirt Terraria.Graphics.Effects.OverlayManager::Draw(SpriteBatch,RenderLayers,Boolean)
+   IL_1641: ldsfld Terraria.Main::spriteBatch
+   IL_1646: call Terraria.GameContent.Events.ScreenDarkness::DrawBack(SpriteBatch)
+   IL_164B: ldsfld Terraria.Main::magmaBGFrameCounter
+   IL_1650: ldc.i4.1 
+   IL_1651: add 
+   IL_1652: stsfld Terraria.Main::magmaBGFrameCounter
+   IL_1657: ldsfld Terraria.Main::magmaBGFrameCounter
+   IL_165C: ldc.i4.8 
+   IL_165D: blt.s IL_167f: ldarg.0
+   IL_165F: ldc.i4.0 
+   IL_1660: stsfld Terraria.Main::magmaBGFrameCounter
+   IL_1665: ldsfld Terraria.Main::magmaBGFrame
+   IL_166A: ldc.i4.1 
+   IL_166B: add 
+   IL_166C: stsfld Terraria.Main::magmaBGFrame
+   IL_1671: ldsfld Terraria.Main::magmaBGFrame
+   IL_1676: ldc.i4.3 
+   IL_1677: blt.s IL_167f: ldarg.0
+   IL_1679: ldc.i4.0 
+   IL_167A: stsfld Terraria.Main::magmaBGFrame
+   IL_167F: ldarg.0 
+   IL_1680: call Terraria.Main::DoDraw_WallsTilesNPCs()
+   IL_1685: ldsfld Terraria.Graphics.Effects.Overlays::Scene
+   IL_168A: ldsfld Terraria.Main::spriteBatch
+   IL_168F: ldc.i4.6 
+   IL_1690: ldc.i4.0 
+   IL_1691: callvirt Terraria.Graphics.Effects.OverlayManager::Draw(SpriteBatch,RenderLayers,Boolean)
+   IL_1696: ldsfld Terraria.Main::mapFullscreen
+   IL_169B: brtrue.s IL_16be: call System.Void Terraria.TimeLogger::DetailedDrawReset()
+   IL_169D: ldsfld Terraria.Main::mapStyle
+   IL_16A2: ldc.i4.2 
+   IL_16A3: bne.un.s IL_16be: call System.Void Terraria.TimeLogger::DetailedDrawReset()
+   IL_16A5: ldarg.0 
+   IL_16A6: ldarg.1 
+   IL_16A7: call Terraria.Main::DrawMap(GameTime)
+   IL_16AC: leave.s IL_16be: call System.Void Terraria.TimeLogger::DetailedDrawReset()
+   IL_16AE: ldsfld Terraria.Main::ignoreErrors
+   IL_16B3: brtrue.s IL_16b7: call System.Void Terraria.TimeLogger::DrawException(System.Exception)
+   IL_16B5: rethrow 
+   IL_16B7: call Terraria.TimeLogger::DrawException(Exception)
+   IL_16BC: leave.s IL_16be: call System.Void Terraria.TimeLogger::DetailedDrawReset()
+   IL_16BE: call Terraria.TimeLogger::DetailedDrawReset()
+   IL_16C3: ldsfld Terraria.Main::spriteBatch
+   IL_16C8: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_16CD: call Terraria.ModLoader.SystemLoader::PostDrawTiles()
+   IL_16D2: ldc.i4.s 35
+   IL_16D4: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_16D9: ldc.i4.0 
+   IL_16DA: stsfld Terraria.Main::HasInteractibleObjectThatIsNotATile
+   IL_16DF: ldarg.0 
+   IL_16E0: call Terraria.Main::SortDrawCacheWorms()
+   IL_16E5: ldarg.0 
+   IL_16E6: ldarg.0 
+   IL_16E7: ldfld Terraria.Main::DrawCacheFirstFractals
+   IL_16EC: ldc.i4.1 
+   IL_16ED: call Terraria.Main::DrawSuperSpecialProjectiles(List`1,Boolean)
+   IL_16F2: ldarg.0 
+   IL_16F3: ldarg.0 
+   IL_16F4: ldfld Terraria.Main::DrawCacheProjsBehindProjectiles
+   IL_16F9: ldc.i4.1 
+   IL_16FA: call Terraria.Main::DrawCachedProjs(List`1,Boolean)
+   IL_16FF: ldarg.0 
+   IL_1700: call Terraria.Main::DrawProjectiles()
+   IL_1705: ldsfld Terraria.Main::spriteBatch
+   IL_170A: ldc.i4.1 
+   IL_170B: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_1710: call Terraria.Main::get_DefaultSamplerState()
+   IL_1715: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_171A: ldsfld Terraria.Main::Rasterizer
+   IL_171F: ldnull 
+   IL_1720: call Terraria.Main::get_Transform()
+   IL_1725: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_172A: ldsfld Terraria.Main::ParticleSystem_World_BehindPlayers
+   IL_172F: ldflda Terraria.Graphics.Renderers.ParticleRenderer::Settings
+   IL_1734: ldsfld Terraria.Main::screenPosition
+   IL_1739: call Microsoft.Xna.Framework.Vector2::op_UnaryNegation(Vector2)
+   IL_173E: stfld Terraria.Graphics.Renderers.ParticleRendererSettings::AnchorPosition
+   IL_1743: ldsfld Terraria.Main::ParticleSystem_World_BehindPlayers
+   IL_1748: ldsfld Terraria.Main::spriteBatch
+   IL_174D: callvirt Terraria.Graphics.Renderers.ParticleRenderer::Draw(SpriteBatch)
+   IL_1752: ldsfld Terraria.Main::spriteBatch
+   IL_1757: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_175C: ldarg.0 
+   IL_175D: call Terraria.Main::DrawPlayers_AfterProjectiles()
+   IL_1762: ldarg.0 
+   IL_1763: ldarg.0 
+   IL_1764: ldfld Terraria.Main::DrawCacheProjsOverPlayers
+   IL_1769: ldc.i4.1 
+   IL_176A: call Terraria.Main::DrawCachedProjs(List`1,Boolean)
+   IL_176F: ldsfld Terraria.Main::spriteBatch
+   IL_1774: ldc.i4.1 
+   IL_1775: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_177A: call Terraria.Main::get_DefaultSamplerState()
+   IL_177F: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_1784: ldsfld Terraria.Main::Rasterizer
+   IL_1789: ldnull 
+   IL_178A: call Terraria.Main::get_Transform()
+   IL_178F: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_1794: ldsfld Terraria.Main::ParticleSystem_World_OverPlayers
+   IL_1799: ldflda Terraria.Graphics.Renderers.ParticleRenderer::Settings
+   IL_179E: ldsfld Terraria.Main::screenPosition
+   IL_17A3: call Microsoft.Xna.Framework.Vector2::op_UnaryNegation(Vector2)
+   IL_17A8: stfld Terraria.Graphics.Renderers.ParticleRendererSettings::AnchorPosition
+   IL_17AD: ldsfld Terraria.Main::ParticleSystem_World_OverPlayers
+   IL_17B2: ldsfld Terraria.Main::spriteBatch
+   IL_17B7: callvirt Terraria.Graphics.Renderers.ParticleRenderer::Draw(SpriteBatch)
+   IL_17BC: ldsfld Terraria.Main::spriteBatch
+   IL_17C1: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_17C6: ldsfld Terraria.Main::spriteBatch
+   IL_17CB: ldc.i4.0 
+   IL_17CC: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_17D1: call Terraria.Main::get_DefaultSamplerState()
+   IL_17D6: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_17DB: ldsfld Terraria.Main::Rasterizer
+   IL_17E0: ldnull 
+   IL_17E1: call Terraria.Main::get_Transform()
+   IL_17E6: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_17EB: ldarg.0 
+   IL_17EC: ldarg.0 
+   IL_17ED: ldfld Terraria.Main::DrawCacheNPCsOverPlayers
+   IL_17F2: ldc.i4.0 
+   IL_17F3: call Terraria.Main::DrawCachedNPCs(List`1,Boolean)
+   IL_17F8: ldsfld Terraria.Main::gamePaused
+   IL_17FD: brtrue.s IL_1853: ldarg.0
+   IL_17FF: ldsfld Terraria.Main::essScale
+   IL_1804: ldsfld Terraria.Main::essDir
+   IL_1809: conv.r4 
+   IL_180A: ldc.r4 0.01
+   IL_180F: mul 
+   IL_1810: add 
+   IL_1811: stsfld Terraria.Main::essScale
+   IL_1816: ldsfld Terraria.Main::essScale
+   IL_181B: ldc.r4 1
+   IL_1820: ble.un.s IL_1832: ldsfld System.Single Terraria.Main::essScale
+   IL_1822: ldc.i4.m1 
+   IL_1823: stsfld Terraria.Main::essDir
+   IL_1828: ldc.r4 1
+   IL_182D: stsfld Terraria.Main::essScale
+   IL_1832: ldsfld Terraria.Main::essScale
+   IL_1837: conv.r8 
+   IL_1838: ldc.r8 0.7
+   IL_1841: bge.un.s IL_1853: ldarg.0
+   IL_1843: ldc.i4.1 
+   IL_1844: stsfld Terraria.Main::essDir
+   IL_1849: ldc.r4 0.7
+   IL_184E: stsfld Terraria.Main::essScale
+   IL_1853: ldarg.0 
+   IL_1854: call Terraria.Main::DrawItems()
+   IL_1859: ldc.i4.s 22
+   IL_185B: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_1860: ldarg.0 
+   IL_1861: call Terraria.Main::DrawRain()
+   IL_1866: ldsfld Terraria.Main::ignoreErrors
+   IL_186B: brfalse.s IL_187c: ldarg.0
+   IL_186D: ldarg.0 
+   IL_186E: call Terraria.Main::DrawGore()
+   IL_1873: leave.s IL_1882: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_1875: call Terraria.TimeLogger::DrawException(Exception)
+   IL_187A: leave.s IL_1882: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_187C: ldarg.0 
+   IL_187D: call Terraria.Main::DrawGore()
+   IL_1882: ldsfld Terraria.Main::spriteBatch
+   IL_1887: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_188C: ldarg.0 
+   IL_188D: call Terraria.Main::DrawDust()
+   IL_1892: ldsfld Terraria.Main::spriteBatch
+   IL_1897: ldc.i4.0 
+   IL_1898: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_189D: call Terraria.Main::get_DefaultSamplerState()
+   IL_18A2: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_18A7: ldsfld Terraria.Main::Rasterizer
+   IL_18AC: ldnull 
+   IL_18AD: call Terraria.Main::get_Transform()
+   IL_18B2: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_18B7: ldsfld Terraria.Graphics.Effects.Overlays::Scene
+   IL_18BC: ldsfld Terraria.Main::spriteBatch
+   IL_18C1: ldc.i4.7 
+   IL_18C2: ldc.i4.0 
+   IL_18C3: callvirt Terraria.Graphics.Effects.OverlayManager::Draw(SpriteBatch,RenderLayers,Boolean)
+   IL_18C8: ldsfld Terraria.Main::drawToScreen
+   IL_18CD: brfalse.s IL_18e5: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_18CF: ldarg.0 
+   IL_18D0: ldc.i4.0 
+   IL_18D1: call Terraria.Main::DrawWaters(Boolean)
+   IL_18D6: call Terraria.GameContent.UI.WiresUI/Settings::get_DrawWires()
+   IL_18DB: brfalse.s IL_191c: ldsfld System.Single Terraria.Main::shimmerAlpha
+   IL_18DD: ldarg.0 
+   IL_18DE: call Terraria.Main::DrawWires()
+   IL_18E3: br.s IL_191c: ldsfld System.Single Terraria.Main::shimmerAlpha
+   IL_18E5: ldsfld Terraria.Main::spriteBatch
+   IL_18EA: ldsfld Terraria.Main::waterTarget
+   IL_18EF: ldsfld Terraria.Main::sceneWaterPos
+   IL_18F4: ldsfld Terraria.Main::screenPosition
+   IL_18F9: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_18FE: call Microsoft.Xna.Framework.Color::get_White()
+   IL_1903: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Draw(Texture2D,Vector2,Color)
+   IL_1908: call Terraria.GameContent.UI.WiresUI/Settings::get_DrawWires()
+   IL_190D: brfalse.s IL_1915: ldc.i4.s 26
+   IL_190F: ldarg.0 
+   IL_1910: call Terraria.Main::DrawWires()
+   IL_1915: ldc.i4.s 26
+   IL_1917: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_191C: ldsfld Terraria.Main::shimmerAlpha
+   IL_1921: ldc.r4 0
+   IL_1926: ble.un.s IL_1996: ldsfld Terraria.Graphics.Effects.OverlayManager Terraria.Graphics.Effects.Overlays::Scene
+   IL_1928: ldsfld Terraria.Main::spriteBatch
+   IL_192D: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_1932: ldsfld Terraria.Main::spriteBatch
+   IL_1937: ldc.i4.0 
+   IL_1938: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_193D: call Terraria.Main::get_DefaultSamplerState()
+   IL_1942: ldnull 
+   IL_1943: ldnull 
+   IL_1944: ldnull 
+   IL_1945: ldsfld Terraria.Main::BackgroundViewMatrix
+   IL_194A: callvirt Terraria.Graphics.SpriteViewMatrix::get_EffectMatrix()
+   IL_194F: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_1954: call Terraria.GameInput.PlayerInput::SetZoom_Unscaled()
+   IL_1959: ldarg.0 
+   IL_195A: ldloc.s V_13
+   IL_195C: call Terraria.Main::DrawStarsInForeground(SceneArea)
+   IL_1961: ldsfld Terraria.Main::spriteBatch
+   IL_1966: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_196B: ldc.i4.1 
+   IL_196C: call Terraria.GameInput.PlayerInput::SetDesiredZoomContext(ZoomContext)
+   IL_1971: ldsfld Terraria.Main::spriteBatch
+   IL_1976: ldc.i4.0 
+   IL_1977: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_197C: call Terraria.Main::get_DefaultSamplerState()
+   IL_1981: ldsfld Microsoft.Xna.Framework.Graphics.DepthStencilState::None
+   IL_1986: ldsfld Terraria.Main::Rasterizer
+   IL_198B: ldnull 
+   IL_198C: call Terraria.Main::get_Transform()
+   IL_1991: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_1996: ldsfld Terraria.Graphics.Effects.Overlays::Scene
+   IL_199B: ldsfld Terraria.Main::spriteBatch
+   IL_19A0: ldc.i4.8 
+   IL_19A1: ldc.i4.0 
+   IL_19A2: callvirt Terraria.Graphics.Effects.OverlayManager::Draw(SpriteBatch,RenderLayers,Boolean)
+   IL_19A7: ldarg.0 
+   IL_19A8: ldarg.0 
+   IL_19A9: ldfld Terraria.Main::DrawCacheProjsOverWiresUI
+   IL_19AE: ldc.i4.0 
+   IL_19AF: call Terraria.Main::DrawCachedProjs(List`1,Boolean)
+   IL_19B4: ldarg.0 
+   IL_19B5: call Terraria.Main::DrawInfernoRings()
+   IL_19BA: ldsfld Terraria.Main::spriteBatch
+   IL_19BF: call Terraria.GameContent.Events.ScreenDarkness::DrawFront(SpriteBatch)
+   IL_19C4: ldsfld Terraria.Main::spriteBatch
+   IL_19C9: call Terraria.GameContent.Events.MoonlordDeathDrama::DrawWhite(SpriteBatch)
+   IL_19CE: ldsfld Terraria.Main::spriteBatch
+   IL_19D3: call Terraria.GameContent.Events.ScreenObstruction::Draw(SpriteBatch)
+   IL_19D8: call Terraria.TimeLogger::DetailedDrawReset()
+   IL_19DD: ldsfld Terraria.Main::spriteBatch
+   IL_19E2: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_19E7: ldsfld Terraria.Graphics.Effects.Overlays::Scene
+   IL_19EC: ldsfld Terraria.Main::spriteBatch
+   IL_19F1: ldc.i4.s 9
+   IL_19F3: ldc.i4.1 
+   IL_19F4: callvirt Terraria.Graphics.Effects.OverlayManager::Draw(SpriteBatch,RenderLayers,Boolean)
+   IL_19F9: ldloc.s V_11
+   IL_19FB: brfalse.s IL_1a17: ldc.i4.s 36
+   IL_19FD: ldsfld Terraria.Graphics.Effects.Filters::Scene
+   IL_1A02: ldnull 
+   IL_1A03: ldsfld Terraria.Main::screenTarget
+   IL_1A08: ldsfld Terraria.Main::screenTargetSwap
+   IL_1A0D: call Microsoft.Xna.Framework.Color::get_Black()
+   IL_1A12: callvirt Terraria.Graphics.Effects.FilterManager::EndCapture(RenderTarget2D,RenderTarget2D,RenderTarget2D,Color)
+   IL_1A17: ldc.i4.s 36
+   IL_1A19: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_1A1E: ldsfld Terraria.Main::hideUI
+   IL_1A23: brtrue IL_1f89: ldc.i4.1
+   IL_1A28: ldsfld Terraria.Main::spriteBatch
+   IL_1A2D: ldc.i4.0 
+   IL_1A2E: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_1A33: call Terraria.Main::get_DefaultSamplerState()
+   IL_1A38: ldnull 
+   IL_1A39: ldnull 
+   IL_1A3A: ldnull 
+   IL_1A3B: call Terraria.Main::get_UIScaleMatrix()
+   IL_1A40: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_1A45: call Terraria.TimeLogger::DetailedDrawReset()
+   IL_1A4A: ldarg.0 
+   IL_1A4B: call Terraria.Main::DrawPlayerChatBubbles()
+   IL_1A50: ldsfld Terraria.Main::spriteBatch
+   IL_1A55: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_1A5A: ldsfld Terraria.Main::spriteBatch
+   IL_1A5F: ldc.i4.0 
+   IL_1A60: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_1A65: call Terraria.Main::get_DefaultSamplerState()
+   IL_1A6A: ldnull 
+   IL_1A6B: ldnull 
+   IL_1A6C: ldnull 
+   IL_1A6D: ldsfld Terraria.Main::GameViewMatrix
+   IL_1A72: callvirt Terraria.Graphics.SpriteViewMatrix::get_ZoomMatrix()
+   IL_1A77: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_1A7C: call Terraria.CombatText::get_TargetScale()
+   IL_1A81: stloc.s V_34
+   IL_1A83: ldc.i4.0 
+   IL_1A84: stloc.s V_35
+   IL_1A86: br IL_1e59: ldloc.s V_35
+   IL_1A8B: ldsfld Terraria.Main::combatText
+   IL_1A90: ldloc.s V_35
+   IL_1A92: ldelem.ref 
+   IL_1A93: ldfld Terraria.CombatText::active
+   IL_1A98: brfalse IL_1e53: ldloc.s V_35
+   IL_1A9D: ldc.i4.0 
+   IL_1A9E: stloc.s V_36
+   IL_1AA0: ldsfld Terraria.Main::combatText
+   IL_1AA5: ldloc.s V_35
+   IL_1AA7: ldelem.ref 
+   IL_1AA8: ldfld Terraria.CombatText::crit
+   IL_1AAD: brfalse.s IL_1ab2: ldsfld ReLogic.Content.Asset`1<ReLogic.Graphics.DynamicSpriteFont>[] Terraria.GameContent.FontAssets::CombatText
+   IL_1AAF: ldc.i4.1 
+   IL_1AB0: stloc.s V_36
+   IL_1AB2: ldsfld Terraria.GameContent.FontAssets::CombatText
+   IL_1AB7: ldloc.s V_36
+   IL_1AB9: ldelem.ref 
+   IL_1ABA: callvirt ReLogic.Content.Asset`1<ReLogic.Graphics.DynamicSpriteFont>::get_Value()
+   IL_1ABF: ldsfld Terraria.Main::combatText
+   IL_1AC4: ldloc.s V_35
+   IL_1AC6: ldelem.ref 
+   IL_1AC7: ldfld Terraria.CombatText::text
+   IL_1ACC: callvirt ReLogic.Graphics.DynamicSpriteFont::MeasureString(String)
+   IL_1AD1: stloc.s V_37
+   IL_1AD3: ldloca.s V_38
+   IL_1AD5: ldloc.s V_37
+   IL_1AD7: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_1ADC: ldc.r4 0.5
+   IL_1AE1: mul 
+   IL_1AE2: ldloc.s V_37
+   IL_1AE4: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1AE9: ldc.r4 0.5
+   IL_1AEE: mul 
+   IL_1AEF: call Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_1AF4: ldsfld Terraria.Main::combatText
+   IL_1AF9: ldloc.s V_35
+   IL_1AFB: ldelem.ref 
+   IL_1AFC: ldfld Terraria.CombatText::scale
+   IL_1B01: ldloc.s V_34
+   IL_1B03: div 
+   IL_1B04: stloc.s V_39
+   IL_1B06: ldsfld Terraria.Main::combatText
+   IL_1B0B: ldloc.s V_35
+   IL_1B0D: ldelem.ref 
+   IL_1B0E: ldflda Terraria.CombatText::color
+   IL_1B13: call Microsoft.Xna.Framework.Color::get_R()
+   IL_1B18: conv.r4 
+   IL_1B19: stloc.s V_40
+   IL_1B1B: ldsfld Terraria.Main::combatText
+   IL_1B20: ldloc.s V_35
+   IL_1B22: ldelem.ref 
+   IL_1B23: ldflda Terraria.CombatText::color
+   IL_1B28: call Microsoft.Xna.Framework.Color::get_G()
+   IL_1B2D: conv.r4 
+   IL_1B2E: stloc.s V_41
+   IL_1B30: ldsfld Terraria.Main::combatText
+   IL_1B35: ldloc.s V_35
+   IL_1B37: ldelem.ref 
+   IL_1B38: ldflda Terraria.CombatText::color
+   IL_1B3D: call Microsoft.Xna.Framework.Color::get_B()
+   IL_1B42: conv.r4 
+   IL_1B43: stloc.s V_42
+   IL_1B45: ldsfld Terraria.Main::combatText
+   IL_1B4A: ldloc.s V_35
+   IL_1B4C: ldelem.ref 
+   IL_1B4D: ldflda Terraria.CombatText::color
+   IL_1B52: call Microsoft.Xna.Framework.Color::get_A()
+   IL_1B57: conv.r4 
+   IL_1B58: stloc.s V_43
+   IL_1B5A: ldloc.s V_40
+   IL_1B5C: ldloc.s V_39
+   IL_1B5E: ldsfld Terraria.Main::combatText
+   IL_1B63: ldloc.s V_35
+   IL_1B65: ldelem.ref 
+   IL_1B66: ldfld Terraria.CombatText::alpha
+   IL_1B6B: mul 
+   IL_1B6C: ldc.r4 0.3
+   IL_1B71: mul 
+   IL_1B72: mul 
+   IL_1B73: stloc.s V_40
+   IL_1B75: ldloc.s V_42
+   IL_1B77: ldloc.s V_39
+   IL_1B79: ldsfld Terraria.Main::combatText
+   IL_1B7E: ldloc.s V_35
+   IL_1B80: ldelem.ref 
+   IL_1B81: ldfld Terraria.CombatText::alpha
+   IL_1B86: mul 
+   IL_1B87: ldc.r4 0.3
+   IL_1B8C: mul 
+   IL_1B8D: mul 
+   IL_1B8E: stloc.s V_42
+   IL_1B90: ldloc.s V_41
+   IL_1B92: ldloc.s V_39
+   IL_1B94: ldsfld Terraria.Main::combatText
+   IL_1B99: ldloc.s V_35
+   IL_1B9B: ldelem.ref 
+   IL_1B9C: ldfld Terraria.CombatText::alpha
+   IL_1BA1: mul 
+   IL_1BA2: ldc.r4 0.3
+   IL_1BA7: mul 
+   IL_1BA8: mul 
+   IL_1BA9: stloc.s V_41
+   IL_1BAB: ldloc.s V_43
+   IL_1BAD: ldloc.s V_39
+   IL_1BAF: ldsfld Terraria.Main::combatText
+   IL_1BB4: ldloc.s V_35
+   IL_1BB6: ldelem.ref 
+   IL_1BB7: ldfld Terraria.CombatText::alpha
+   IL_1BBC: mul 
+   IL_1BBD: mul 
+   IL_1BBE: stloc.s V_43
+   IL_1BC0: ldloca.s V_44
+   IL_1BC2: ldloc.s V_40
+   IL_1BC4: conv.i4 
+   IL_1BC5: ldloc.s V_41
+   IL_1BC7: conv.i4 
+   IL_1BC8: ldloc.s V_42
+   IL_1BCA: conv.i4 
+   IL_1BCB: ldloc.s V_43
+   IL_1BCD: conv.i4 
+   IL_1BCE: call Microsoft.Xna.Framework.Color::.ctor(Int32,Int32,Int32,Int32)
+   IL_1BD3: ldc.i4.0 
+   IL_1BD4: stloc.s V_45
+   IL_1BD6: br IL_1e4b: ldloc.s V_45
+   IL_1BDB: ldc.r4 0
+   IL_1BE0: stloc.s V_46
+   IL_1BE2: ldc.r4 0
+   IL_1BE7: stloc.s V_47
+   IL_1BE9: ldloc.s V_45
+   IL_1BEB: switch Mono.Cecil.Cil.Instruction[]
+   IL_1C00: br.s IL_1c32: ldsfld Terraria.CombatText[] Terraria.Main::combatText
+   IL_1C02: ldloc.s V_46
+   IL_1C04: ldloc.s V_34
+   IL_1C06: sub 
+   IL_1C07: stloc.s V_46
+   IL_1C09: br IL_1cdd: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_1C0E: ldloc.s V_46
+   IL_1C10: ldloc.s V_34
+   IL_1C12: add 
+   IL_1C13: stloc.s V_46
+   IL_1C15: br IL_1cdd: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_1C1A: ldloc.s V_47
+   IL_1C1C: ldloc.s V_34
+   IL_1C1E: sub 
+   IL_1C1F: stloc.s V_47
+   IL_1C21: br IL_1cdd: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_1C26: ldloc.s V_47
+   IL_1C28: ldloc.s V_34
+   IL_1C2A: add 
+   IL_1C2B: stloc.s V_47
+   IL_1C2D: br IL_1cdd: ldsfld Terraria.Player[] Terraria.Main::player
+   IL_1C32: ldsfld Terraria.Main::combatText
+   IL_1C37: ldloc.s V_35
+   IL_1C39: ldelem.ref 
+   IL_1C3A: ldflda Terraria.CombatText::color
+   IL_1C3F: call Microsoft.Xna.Framework.Color::get_R()
+   IL_1C44: conv.r4 
+   IL_1C45: ldloc.s V_39
+   IL_1C47: mul 
+   IL_1C48: ldsfld Terraria.Main::combatText
+   IL_1C4D: ldloc.s V_35
+   IL_1C4F: ldelem.ref 
+   IL_1C50: ldfld Terraria.CombatText::alpha
+   IL_1C55: mul 
+   IL_1C56: stloc.s V_40
+   IL_1C58: ldsfld Terraria.Main::combatText
+   IL_1C5D: ldloc.s V_35
+   IL_1C5F: ldelem.ref 
+   IL_1C60: ldflda Terraria.CombatText::color
+   IL_1C65: call Microsoft.Xna.Framework.Color::get_B()
+   IL_1C6A: conv.r4 
+   IL_1C6B: ldloc.s V_39
+   IL_1C6D: mul 
+   IL_1C6E: ldsfld Terraria.Main::combatText
+   IL_1C73: ldloc.s V_35
+   IL_1C75: ldelem.ref 
+   IL_1C76: ldfld Terraria.CombatText::alpha
+   IL_1C7B: mul 
+   IL_1C7C: stloc.s V_42
+   IL_1C7E: ldsfld Terraria.Main::combatText
+   IL_1C83: ldloc.s V_35
+   IL_1C85: ldelem.ref 
+   IL_1C86: ldflda Terraria.CombatText::color
+   IL_1C8B: call Microsoft.Xna.Framework.Color::get_G()
+   IL_1C90: conv.r4 
+   IL_1C91: ldloc.s V_39
+   IL_1C93: mul 
+   IL_1C94: ldsfld Terraria.Main::combatText
+   IL_1C99: ldloc.s V_35
+   IL_1C9B: ldelem.ref 
+   IL_1C9C: ldfld Terraria.CombatText::alpha
+   IL_1CA1: mul 
+   IL_1CA2: stloc.s V_41
+   IL_1CA4: ldsfld Terraria.Main::combatText
+   IL_1CA9: ldloc.s V_35
+   IL_1CAB: ldelem.ref 
+   IL_1CAC: ldflda Terraria.CombatText::color
+   IL_1CB1: call Microsoft.Xna.Framework.Color::get_A()
+   IL_1CB6: conv.r4 
+   IL_1CB7: ldloc.s V_39
+   IL_1CB9: mul 
+   IL_1CBA: ldsfld Terraria.Main::combatText
+   IL_1CBF: ldloc.s V_35
+   IL_1CC1: ldelem.ref 
+   IL_1CC2: ldfld Terraria.CombatText::alpha
+   IL_1CC7: mul 
+   IL_1CC8: stloc.s V_43
+   IL_1CCA: ldloca.s V_44
+   IL_1CCC: ldloc.s V_40
+   IL_1CCE: conv.i4 
+   IL_1CCF: ldloc.s V_41
+   IL_1CD1: conv.i4 
+   IL_1CD2: ldloc.s V_42
+   IL_1CD4: conv.i4 
+   IL_1CD5: ldloc.s V_43
+   IL_1CD7: conv.i4 
+   IL_1CD8: call Microsoft.Xna.Framework.Color::.ctor(Int32,Int32,Int32,Int32)
+   IL_1CDD: ldsfld Terraria.Main::player
+   IL_1CE2: ldsfld Terraria.Main::myPlayer
+   IL_1CE7: ldelem.ref 
+   IL_1CE8: ldfld Terraria.Player::gravDir
+   IL_1CED: ldc.r4 -1
+   IL_1CF2: bne.un IL_1da8: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_1CF7: ldsfld Terraria.Main::combatText
+   IL_1CFC: ldloc.s V_35
+   IL_1CFE: ldelem.ref 
+   IL_1CFF: ldflda Terraria.CombatText::position
+   IL_1D04: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1D09: ldsflda Terraria.Main::screenPosition
+   IL_1D0E: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1D13: sub 
+   IL_1D14: stloc.s V_48
+   IL_1D16: ldsfld Terraria.Main::screenHeight
+   IL_1D1B: conv.r4 
+   IL_1D1C: ldloc.s V_48
+   IL_1D1E: sub 
+   IL_1D1F: stloc.s V_48
+   IL_1D21: ldsfld Terraria.Main::spriteBatch
+   IL_1D26: ldsfld Terraria.GameContent.FontAssets::CombatText
+   IL_1D2B: ldloc.s V_36
+   IL_1D2D: ldelem.ref 
+   IL_1D2E: callvirt ReLogic.Content.Asset`1<ReLogic.Graphics.DynamicSpriteFont>::get_Value()
+   IL_1D33: ldsfld Terraria.Main::combatText
+   IL_1D38: ldloc.s V_35
+   IL_1D3A: ldelem.ref 
+   IL_1D3B: ldfld Terraria.CombatText::text
+   IL_1D40: ldsfld Terraria.Main::combatText
+   IL_1D45: ldloc.s V_35
+   IL_1D47: ldelem.ref 
+   IL_1D48: ldflda Terraria.CombatText::position
+   IL_1D4D: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_1D52: ldsflda Terraria.Main::screenPosition
+   IL_1D57: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_1D5C: sub 
+   IL_1D5D: ldloc.s V_46
+   IL_1D5F: add 
+   IL_1D60: ldloc.s V_38
+   IL_1D62: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_1D67: add 
+   IL_1D68: ldloc.s V_48
+   IL_1D6A: ldloc.s V_47
+   IL_1D6C: add 
+   IL_1D6D: ldloc.s V_38
+   IL_1D6F: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1D74: add 
+   IL_1D75: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_1D7A: ldloc.s V_44
+   IL_1D7C: ldsfld Terraria.Main::combatText
+   IL_1D81: ldloc.s V_35
+   IL_1D83: ldelem.ref 
+   IL_1D84: ldfld Terraria.CombatText::rotation
+   IL_1D89: ldloc.s V_38
+   IL_1D8B: ldsfld Terraria.Main::combatText
+   IL_1D90: ldloc.s V_35
+   IL_1D92: ldelem.ref 
+   IL_1D93: ldfld Terraria.CombatText::scale
+   IL_1D98: ldc.i4.0 
+   IL_1D99: ldc.r4 0
+   IL_1D9E: call ReLogic.Graphics.DynamicSpriteFontExtensionMethods::DrawString(SpriteBatch,DynamicSpriteFont,String,Vector2,Color,Single,Vector2,Single,SpriteEffects,Single)
+   IL_1DA3: br IL_1e45: ldloc.s V_45
+   IL_1DA8: ldsfld Terraria.Main::spriteBatch
+   IL_1DAD: ldsfld Terraria.GameContent.FontAssets::CombatText
+   IL_1DB2: ldloc.s V_36
+   IL_1DB4: ldelem.ref 
+   IL_1DB5: callvirt ReLogic.Content.Asset`1<ReLogic.Graphics.DynamicSpriteFont>::get_Value()
+   IL_1DBA: ldsfld Terraria.Main::combatText
+   IL_1DBF: ldloc.s V_35
+   IL_1DC1: ldelem.ref 
+   IL_1DC2: ldfld Terraria.CombatText::text
+   IL_1DC7: ldsfld Terraria.Main::combatText
+   IL_1DCC: ldloc.s V_35
+   IL_1DCE: ldelem.ref 
+   IL_1DCF: ldflda Terraria.CombatText::position
+   IL_1DD4: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_1DD9: ldsflda Terraria.Main::screenPosition
+   IL_1DDE: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_1DE3: sub 
+   IL_1DE4: ldloc.s V_46
+   IL_1DE6: add 
+   IL_1DE7: ldloc.s V_38
+   IL_1DE9: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_1DEE: add 
+   IL_1DEF: ldsfld Terraria.Main::combatText
+   IL_1DF4: ldloc.s V_35
+   IL_1DF6: ldelem.ref 
+   IL_1DF7: ldflda Terraria.CombatText::position
+   IL_1DFC: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1E01: ldsflda Terraria.Main::screenPosition
+   IL_1E06: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1E0B: sub 
+   IL_1E0C: ldloc.s V_47
+   IL_1E0E: add 
+   IL_1E0F: ldloc.s V_38
+   IL_1E11: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_1E16: add 
+   IL_1E17: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_1E1C: ldloc.s V_44
+   IL_1E1E: ldsfld Terraria.Main::combatText
+   IL_1E23: ldloc.s V_35
+   IL_1E25: ldelem.ref 
+   IL_1E26: ldfld Terraria.CombatText::rotation
+   IL_1E2B: ldloc.s V_38
+   IL_1E2D: ldsfld Terraria.Main::combatText
+   IL_1E32: ldloc.s V_35
+   IL_1E34: ldelem.ref 
+   IL_1E35: ldfld Terraria.CombatText::scale
+   IL_1E3A: ldc.i4.0 
+   IL_1E3B: ldc.r4 0
+   IL_1E40: call ReLogic.Graphics.DynamicSpriteFontExtensionMethods::DrawString(SpriteBatch,DynamicSpriteFont,String,Vector2,Color,Single,Vector2,Single,SpriteEffects,Single)
+   IL_1E45: ldloc.s V_45
+   IL_1E47: ldc.i4.1 
+   IL_1E48: add 
+   IL_1E49: stloc.s V_45
+   IL_1E4B: ldloc.s V_45
+   IL_1E4D: ldc.i4.5 
+   IL_1E4E: blt IL_1bdb: ldc.r4 0
+   IL_1E53: ldloc.s V_35
+   IL_1E55: ldc.i4.1 
+   IL_1E56: add 
+   IL_1E57: stloc.s V_35
+   IL_1E59: ldloc.s V_35
+   IL_1E5B: ldc.i4.s 100
+   IL_1E5D: blt IL_1a8b: ldsfld Terraria.CombatText[] Terraria.Main::combatText
+   IL_1E62: call Terraria.PopupText::get_TargetScale()
+   IL_1E67: stloc.s V_34
+   IL_1E69: ldloc.s V_34
+   IL_1E6B: ldc.r4 0
+   IL_1E70: bne.un.s IL_1e79: ldloc.s V_34
+   IL_1E72: ldc.r4 1
+   IL_1E77: stloc.s V_34
+   IL_1E79: ldloc.s V_34
+   IL_1E7B: call Terraria.Main::DrawItemTextPopups(Single)
+   IL_1E80: call Terraria.GameInput.PlayerInput::SetZoom_UI()
+   IL_1E85: ldsfld Terraria.Main::spriteBatch
+   IL_1E8A: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_1E8F: ldsfld Terraria.Main::spriteBatch
+   IL_1E94: ldc.i4.0 
+   IL_1E95: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_1E9A: call Terraria.Main::get_DefaultSamplerState()
+   IL_1E9F: ldnull 
+   IL_1EA0: ldnull 
+   IL_1EA1: ldnull 
+   IL_1EA2: call Terraria.Main::get_UIScaleMatrix()
+   IL_1EA7: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_1EAC: call Terraria.Main::DrawNetplayStatusText()
+   IL_1EB1: ldarg.0 
+   IL_1EB2: call Terraria.Main::DrawFPS()
+   IL_1EB7: ldsfld Terraria.Main::spriteBatch
+   IL_1EBC: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_1EC1: ldsfld Terraria.Main::spriteBatch
+   IL_1EC6: ldc.i4.0 
+   IL_1EC7: ldsfld Microsoft.Xna.Framework.Graphics.BlendState::AlphaBlend
+   IL_1ECC: call Terraria.Main::get_DefaultSamplerState()
+   IL_1ED1: ldnull 
+   IL_1ED2: ldnull 
+   IL_1ED3: ldnull 
+   IL_1ED4: ldsfld Terraria.Main::GameViewMatrix
+   IL_1ED9: callvirt Terraria.Graphics.SpriteViewMatrix::get_ZoomMatrix()
+   IL_1EDE: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Begin(SpriteSortMode,BlendState,SamplerState,DepthStencilState,RasterizerState,Effect,Matrix)
+   IL_1EE3: call Terraria.GameInput.PlayerInput::SetZoom_World()
+   IL_1EE8: ldsfld Terraria.Main::BlackFadeIn
+   IL_1EED: ldc.i4.0 
+   IL_1EEE: ble.s IL_1f51: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_1EF0: ldsfld Terraria.Main::BlackFadeIn
+   IL_1EF5: ldc.i4.0 
+   IL_1EF6: bge.s IL_1efe: ldsfld System.Int32 Terraria.Main::BlackFadeIn
+   IL_1EF8: ldc.i4.0 
+   IL_1EF9: stsfld Terraria.Main::BlackFadeIn
+   IL_1EFE: ldsfld Terraria.Main::BlackFadeIn
+   IL_1F03: stloc.s V_49
+   IL_1F05: ldloc.s V_49
+   IL_1F07: ldc.i4 255
+   IL_1F0C: ble.s IL_1f15: ldsfld System.Int32 Terraria.Main::BlackFadeIn
+   IL_1F0E: ldc.i4 255
+   IL_1F13: stloc.s V_49
+   IL_1F15: ldsfld Terraria.Main::BlackFadeIn
+   IL_1F1A: ldc.i4.s 25
+   IL_1F1C: sub 
+   IL_1F1D: stsfld Terraria.Main::BlackFadeIn
+   IL_1F22: ldsfld Terraria.Main::spriteBatch
+   IL_1F27: ldsfld Terraria.GameContent.TextureAssets::SplashTexture16x9
+   IL_1F2C: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_1F31: ldc.i4.0 
+   IL_1F32: ldc.i4.0 
+   IL_1F33: ldsfld Terraria.Main::screenWidth
+   IL_1F38: ldsfld Terraria.Main::screenHeight
+   IL_1F3D: newobj Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_1F42: ldc.i4.0 
+   IL_1F43: ldc.i4.0 
+   IL_1F44: ldc.i4.0 
+   IL_1F45: ldloc.s V_49
+   IL_1F47: newobj Microsoft.Xna.Framework.Color::.ctor(Int32,Int32,Int32,Int32)
+   IL_1F4C: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Draw(Texture2D,Rectangle,Color)
+   IL_1F51: ldsfld Terraria.Main::spriteBatch
+   IL_1F56: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::End()
+   IL_1F5B: ldsfld Terraria.Main::mapFullscreen
+   IL_1F60: brtrue.s IL_1f80: ldc.i4.s 27
+   IL_1F62: ldsfld Terraria.Main::ignoreErrors
+   IL_1F67: brfalse.s IL_1f79: ldarg.0
+   IL_1F69: ldarg.0 
+   IL_1F6A: ldarg.1 
+   IL_1F6B: call Terraria.Main::DrawInterface(GameTime)
+   IL_1F70: leave.s IL_1f80: ldc.i4.s 27
+   IL_1F72: call Terraria.TimeLogger::DrawException(Exception)
+   IL_1F77: leave.s IL_1f80: ldc.i4.s 27
+   IL_1F79: ldarg.0 
+   IL_1F7A: ldarg.1 
+   IL_1F7B: call Terraria.Main::DrawInterface(GameTime)
+   IL_1F80: ldc.i4.s 27
+   IL_1F82: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_1F87: br.s IL_1f8f: ldc.i4.s 37
+   IL_1F89: ldc.i4.1 
+   IL_1F8A: stsfld Terraria.Main::maxQ
+   IL_1F8F: ldc.i4.s 37
+   IL_1F91: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_1F96: ldsfld Terraria.Main::mouseLeft
+   IL_1F9B: brfalse.s IL_1fa5: ldc.i4.1
+   IL_1F9D: ldc.i4.0 
+   IL_1F9E: stsfld Terraria.Main::mouseLeftRelease
+   IL_1FA3: br.s IL_1fab: ldsfld System.Boolean Terraria.Main::mouseRight
+   IL_1FA5: ldc.i4.1 
+   IL_1FA6: stsfld Terraria.Main::mouseLeftRelease
+   IL_1FAB: ldsfld Terraria.Main::mouseRight
+   IL_1FB0: brfalse.s IL_1fba: ldc.i4.1
+   IL_1FB2: ldc.i4.0 
+   IL_1FB3: stsfld Terraria.Main::mouseRightRelease
+   IL_1FB8: br.s IL_1fc0: ldsfld System.Boolean Terraria.Main::mouseMiddle
+   IL_1FBA: ldc.i4.1 
+   IL_1FBB: stsfld Terraria.Main::mouseRightRelease
+   IL_1FC0: ldsfld Terraria.Main::mouseMiddle
+   IL_1FC5: brfalse.s IL_1fcf: ldc.i4.1
+   IL_1FC7: ldc.i4.0 
+   IL_1FC8: stsfld Terraria.Main::mouseMiddleRelease
+   IL_1FCD: br.s IL_1fd5: ldsfld System.Boolean Terraria.Main::mouseXButton1
+   IL_1FCF: ldc.i4.1 
+   IL_1FD0: stsfld Terraria.Main::mouseMiddleRelease
+   IL_1FD5: ldsfld Terraria.Main::mouseXButton1
+   IL_1FDA: brfalse.s IL_1fe4: ldc.i4.1
+   IL_1FDC: ldc.i4.0 
+   IL_1FDD: stsfld Terraria.Main::mouseXButton1Release
+   IL_1FE2: br.s IL_1fea: ldsfld System.Boolean Terraria.Main::mouseXButton2
+   IL_1FE4: ldc.i4.1 
+   IL_1FE5: stsfld Terraria.Main::mouseXButton1Release
+   IL_1FEA: ldsfld Terraria.Main::mouseXButton2
+   IL_1FEF: brfalse.s IL_1ff9: ldc.i4.1
+   IL_1FF1: ldc.i4.0 
+   IL_1FF2: stsfld Terraria.Main::mouseXButton2Release
+   IL_1FF7: br.s IL_1fff: ldsfld Terraria.GameInput.TriggersPack Terraria.GameInput.PlayerInput::Triggers
+   IL_1FF9: ldc.i4.1 
+   IL_1FFA: stsfld Terraria.Main::mouseXButton2Release
+   IL_1FFF: ldsfld Terraria.GameInput.PlayerInput::Triggers
+   IL_2004: ldfld Terraria.GameInput.TriggersPack::Current
+   IL_2009: callvirt Terraria.GameInput.TriggersSet::get_MouseRight()
+   IL_200E: brtrue.s IL_202e: ldsfld System.Int32 Terraria.Main::stackSplit
+   IL_2010: ldsfld Terraria.GameInput.PlayerInput::Triggers
+   IL_2015: ldfld Terraria.GameInput.TriggersPack::Current
+   IL_201A: callvirt Terraria.GameInput.TriggersSet::get_MouseLeft()
+   IL_201F: brtrue.s IL_202e: ldsfld System.Int32 Terraria.Main::stackSplit
+   IL_2021: ldsfld Terraria.Main::preventStackSplitReset
+   IL_2026: brtrue.s IL_202e: ldsfld System.Int32 Terraria.Main::stackSplit
+   IL_2028: ldc.i4.0 
+   IL_2029: stsfld Terraria.Main::stackSplit
+   IL_202E: ldsfld Terraria.Main::stackSplit
+   IL_2033: ldc.i4.0 
+   IL_2034: ble.s IL_204f: ldsfld System.Int32 Terraria.Main::renderCount
+   IL_2036: ldsfld Terraria.Main::stackSplit
+   IL_203B: ldc.i4.1 
+   IL_203C: sub 
+   IL_203D: stsfld Terraria.Main::stackSplit
+   IL_2042: ldsfld Terraria.Main::stackSplit
+   IL_2047: brtrue.s IL_204f: ldsfld System.Int32 Terraria.Main::renderCount
+   IL_2049: ldc.i4.0 
+   IL_204A: stsfld Terraria.Main::preventStackSplitReset
+   IL_204F: ldsfld Terraria.Main::renderCount
+   IL_2054: ldloc.0 
+   IL_2055: callvirt System.Diagnostics.Stopwatch::get_Elapsed()
+   IL_205A: stloc.s V_17
+   IL_205C: ldloca.s V_17
+   IL_205E: call System.TimeSpan::get_TotalMilliseconds()
+   IL_2063: call Terraria.TimeLogger::RenderTime(Int32,Double)
+   IL_2068: call Terraria.TimeLogger::EndDrawFrame()
+   IL_206D: ret 

@@ -1,0 +1,382 @@
+﻿### SubworldLibrary.SubworldSystem::FinishMove
+   IL_0000: ldsfld Terraria.NetMessage::buffer
+   IL_0005: ldarg.0 
+   IL_0006: ldelem.ref 
+   IL_0007: ldc.i4.1 
+   IL_0008: stfld Terraria.MessageBuffer::broadcast
+   IL_000D: ldsfld Terraria.Main::player
+   IL_0012: ldarg.0 
+   IL_0013: ldelem.ref 
+   IL_0014: ldc.i4.0 
+   IL_0015: stfld Terraria.Entity::active
+   IL_001A: ldsfld Terraria.Netplay::Clients
+   IL_001F: ldarg.0 
+   IL_0020: ldelem.ref 
+   IL_0021: stloc.0 
+   IL_0022: ldsfld SubworldLibrary.SubworldSystem::pendingMoves
+   IL_0027: ldarg.0 
+   IL_0028: ldelem.i4 
+   IL_0029: stloc.1 
+   IL_002A: ldloc.1 
+   IL_002B: ldc.i4 65535
+   IL_0030: bne.un IL_00c9: ldsfld System.Int32[] SubworldLibrary.SubworldSystem::playerLocations
+   IL_0035: ldsfld Terraria.Main::autoShutdown
+   IL_003A: brfalse.s IL_005a: ldsfld System.Int32[] SubworldLibrary.SubworldSystem::playerLocations
+   IL_003C: ldloc.0 
+   IL_003D: ldfld Terraria.RemoteClient::Socket
+   IL_0042: callvirt Terraria.Net.Sockets.ISocket::GetRemoteAddress()
+   IL_0047: callvirt Terraria.Net.RemoteAddress::IsLocalHost()
+   IL_004C: brfalse.s IL_005a: ldsfld System.Int32[] SubworldLibrary.SubworldSystem::playerLocations
+   IL_004E: ldc.i4.0 
+   IL_004F: stsfld Terraria.Main::autoShutdown
+   IL_0054: ldarg.0 
+   IL_0055: stsfld SubworldLibrary.SubworldSystem::suppressAutoShutdown
+   IL_005A: ldsfld SubworldLibrary.SubworldSystem::playerLocations
+   IL_005F: ldarg.0 
+   IL_0060: ldc.i4.m1 
+   IL_0061: stelem.i4 
+   IL_0062: ldsfld SubworldLibrary.SubworldSystem::deniedSockets
+   IL_0067: ldloc.0 
+   IL_0068: ldfld Terraria.RemoteClient::Socket
+   IL_006D: callvirt System.Collections.Generic.HashSet`1<Terraria.Net.Sockets.ISocket>::Remove(!0)
+   IL_0072: pop 
+   IL_0073: ldloc.0 
+   IL_0074: ldc.i4.1 
+   IL_0075: stfld Terraria.RemoteClient::State
+   IL_007A: ldloc.0 
+   IL_007B: callvirt Terraria.RemoteClient::ResetSections()
+   IL_0080: ldloc.0 
+   IL_0081: ldfld Terraria.RemoteClient::Socket
+   IL_0086: ldc.i4.5 
+   IL_0087: newarr System.Byte
+   IL_008C: dup 
+   IL_008D: ldc.i4.0 
+   IL_008E: ldc.i4.5 
+   IL_008F: stelem.i1 
+   IL_0090: dup 
+   IL_0091: ldc.i4.2 
+   IL_0092: ldc.i4.3 
+   IL_0093: stelem.i1 
+   IL_0094: dup 
+   IL_0095: ldc.i4.3 
+   IL_0096: ldarg.0 
+   IL_0097: conv.u1 
+   IL_0098: stelem.i1 
+   IL_0099: ldc.i4.0 
+   IL_009A: ldc.i4.5 
+   IL_009B: ldsfld SubworldLibrary.SubworldSystem/<>O::<4>__NoOp
+   IL_00A0: dup 
+   IL_00A1: brtrue.s IL_00b6: ldsfld System.Collections.Generic.HashSet`1<Terraria.Net.Sockets.ISocket> SubworldLibrary.SubworldSystem::deniedSockets
+   IL_00A3: pop 
+   IL_00A4: ldnull 
+   IL_00A5: ldftn SubworldLibrary.SubworldSystem::NoOp(Object)
+   IL_00AB: newobj Terraria.Net.Sockets.SocketSendCallback::.ctor(Object,IntPtr)
+   IL_00B0: dup 
+   IL_00B1: stsfld SubworldLibrary.SubworldSystem/<>O::<4>__NoOp
+   IL_00B6: ldsfld SubworldLibrary.SubworldSystem::deniedSockets
+   IL_00BB: callvirt Terraria.Net.Sockets.ISocket::AsyncSend(Byte[],Int32,Int32,SocketSendCallback,Object)
+   IL_00C0: ldsfld SubworldLibrary.SubworldSystem::pendingMoves
+   IL_00C5: ldarg.0 
+   IL_00C6: ldc.i4.m1 
+   IL_00C7: stelem.i4 
+   IL_00C8: ret 
+   IL_00C9: ldsfld SubworldLibrary.SubworldSystem::playerLocations
+   IL_00CE: ldarg.0 
+   IL_00CF: ldloc.1 
+   IL_00D0: stelem.i4 
+   IL_00D1: ldsfld SubworldLibrary.SubworldSystem::deniedSockets
+   IL_00D6: ldloc.0 
+   IL_00D7: ldfld Terraria.RemoteClient::Socket
+   IL_00DC: callvirt System.Collections.Generic.HashSet`1<Terraria.Net.Sockets.ISocket>::Add(!0)
+   IL_00E1: pop 
+   IL_00E2: ldsfld SubworldLibrary.SubworldSystem::subworlds
+   IL_00E7: ldloc.1 
+   IL_00E8: callvirt System.Collections.Generic.List`1<SubworldLibrary.Subworld>::get_Item(Int32)
+   IL_00ED: ldfld SubworldLibrary.Subworld::link
+   IL_00F2: stloc.2 
+   IL_00F3: ldloc.2 
+   IL_00F4: brfalse.s IL_013e: ldsfld System.Int32[] SubworldLibrary.SubworldSystem::pendingMoves
+   IL_00F6: ldloc.2 
+   IL_00F7: callvirt SubworldLibrary.SubserverLink::get_Connected()
+   IL_00FC: brfalse.s IL_013e: ldsfld System.Int32[] SubworldLibrary.SubworldSystem::pendingMoves
+   IL_00FE: ldloc.0 
+   IL_00FF: ldfld Terraria.RemoteClient::Socket
+   IL_0104: ldc.i4.5 
+   IL_0105: newarr System.Byte
+   IL_010A: dup 
+   IL_010B: ldc.i4.0 
+   IL_010C: ldc.i4.5 
+   IL_010D: stelem.i1 
+   IL_010E: dup 
+   IL_010F: ldc.i4.2 
+   IL_0110: ldc.i4.3 
+   IL_0111: stelem.i1 
+   IL_0112: dup 
+   IL_0113: ldc.i4.3 
+   IL_0114: ldarg.0 
+   IL_0115: conv.u1 
+   IL_0116: stelem.i1 
+   IL_0117: ldc.i4.0 
+   IL_0118: ldc.i4.5 
+   IL_0119: ldsfld SubworldLibrary.SubworldSystem/<>O::<4>__NoOp
+   IL_011E: dup 
+   IL_011F: brtrue.s IL_0134: ldsfld System.Collections.Generic.HashSet`1<Terraria.Net.Sockets.ISocket> SubworldLibrary.SubworldSystem::deniedSockets
+   IL_0121: pop 
+   IL_0122: ldnull 
+   IL_0123: ldftn SubworldLibrary.SubworldSystem::NoOp(Object)
+   IL_0129: newobj Terraria.Net.Sockets.SocketSendCallback::.ctor(Object,IntPtr)
+   IL_012E: dup 
+   IL_012F: stsfld SubworldLibrary.SubworldSystem/<>O::<4>__NoOp
+   IL_0134: ldsfld SubworldLibrary.SubworldSystem::deniedSockets
+   IL_0139: callvirt Terraria.Net.Sockets.ISocket::AsyncSend(Byte[],Int32,Int32,SocketSendCallback,Object)
+   IL_013E: ldsfld SubworldLibrary.SubworldSystem::pendingMoves
+   IL_0143: ldarg.0 
+   IL_0144: ldc.i4.m1 
+   IL_0145: stelem.i4 
+   IL_0146: ret 
+### SubworldLibrary.SubworldSystem::LoadSubworld
+   IL_0000: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_0005: callvirt SubworldLibrary.Subworld::get_DisplayName()
+   IL_000A: callvirt Terraria.Localization.LocalizedText::get_Value()
+   IL_000F: stsfld Terraria.Main::worldName
+   IL_0014: ldsfld Terraria.Main::netMode
+   IL_0019: ldc.i4.2 
+   IL_001A: bne.un.s IL_0026: ldarg.0
+   IL_001C: ldsfld Terraria.Main::worldName
+   IL_0021: call System.Console::set_Title(String)
+   IL_0026: ldarg.0 
+   IL_0027: ldarg.1 
+   IL_0028: newobj Terraria.IO.WorldFileData::.ctor(String,Boolean)
+   IL_002D: dup 
+   IL_002E: ldsfld Terraria.Main::worldName
+   IL_0033: stfld Terraria.IO.FileData::Name
+   IL_0038: dup 
+   IL_0039: call System.DateTime::get_Now()
+   IL_003E: stfld Terraria.IO.WorldFileData::CreationTime
+   IL_0043: dup 
+   IL_0044: ldc.i4.2 
+   IL_0045: call Terraria.IO.FileMetadata::FromCurrentSettings(FileType)
+   IL_004A: stfld Terraria.IO.FileData::Metadata
+   IL_004F: dup 
+   IL_0050: ldc.i8 1198295875585
+   IL_0059: stfld Terraria.IO.WorldFileData::WorldGeneratorVersion
+   IL_005E: dup 
+   IL_005F: call System.Guid::NewGuid()
+   IL_0064: stfld Terraria.IO.WorldFileData::UniqueId
+   IL_0069: stloc.0 
+   IL_006A: ldloc.0 
+   IL_006B: stsfld Terraria.Main::ActiveWorldFileData
+   IL_0070: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_0075: callvirt SubworldLibrary.Subworld::get_Width()
+   IL_007A: stsfld Terraria.Main::maxTilesX
+   IL_007F: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_0084: callvirt SubworldLibrary.Subworld::get_Height()
+   IL_0089: stsfld Terraria.Main::maxTilesY
+   IL_008E: ldsfld Terraria.Main::maxTilesX
+   IL_0093: ldc.i4.2 
+   IL_0094: div 
+   IL_0095: stsfld Terraria.Main::spawnTileX
+   IL_009A: ldsfld Terraria.Main::maxTilesY
+   IL_009F: ldc.i4.2 
+   IL_00A0: div 
+   IL_00A1: stsfld Terraria.Main::spawnTileY
+   IL_00A6: call Terraria.WorldGen::setWorldSize()
+   IL_00AB: call Terraria.WorldGen::clearWorld()
+   IL_00B0: ldsfld Terraria.Main::maxTilesY
+   IL_00B5: conv.r8 
+   IL_00B6: ldc.r8 0.3
+   IL_00BF: mul 
+   IL_00C0: stsfld Terraria.Main::worldSurface
+   IL_00C5: ldsfld Terraria.Main::maxTilesY
+   IL_00CA: conv.r8 
+   IL_00CB: ldc.r8 0.5
+   IL_00D4: mul 
+   IL_00D5: stsfld Terraria.Main::rockLayer
+   IL_00DA: ldsfld Terraria.Main::maxTilesY
+   IL_00DF: stsfld Terraria.WorldBuilding.GenVars::waterLine
+   IL_00E4: ldc.i4 18000
+   IL_00E9: stsfld Terraria.Main::weatherCounter
+   IL_00EE: call Terraria.Cloud::resetClouds()
+   IL_00F3: call SubworldLibrary.SubworldSystem::ReadCopiedMainWorldData()
+   IL_00F8: ldc.r8 0
+   IL_0101: stloc.1 
+   IL_0102: ldc.i4.0 
+   IL_0103: stloc.3 
+   IL_0104: br.s IL_0122: ldloc.3
+   IL_0106: ldloc.1 
+   IL_0107: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_010C: callvirt SubworldLibrary.Subworld::get_Tasks()
+   IL_0111: ldloc.3 
+   IL_0112: callvirt System.Collections.Generic.List`1<Terraria.WorldBuilding.GenPass>::get_Item(Int32)
+   IL_0117: ldfld Terraria.WorldBuilding.GenPass::Weight
+   IL_011C: add 
+   IL_011D: stloc.1 
+   IL_011E: ldloc.3 
+   IL_011F: ldc.i4.1 
+   IL_0120: add 
+   IL_0121: stloc.3 
+   IL_0122: ldloc.3 
+   IL_0123: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_0128: callvirt SubworldLibrary.Subworld::get_Tasks()
+   IL_012D: callvirt System.Collections.Generic.List`1<Terraria.WorldBuilding.GenPass>::get_Count()
+   IL_0132: blt.s IL_0106: ldloc.1
+   IL_0134: newobj Terraria.WorldBuilding.GenerationProgress::.ctor()
+   IL_0139: stsfld Terraria.WorldBuilding.WorldGenerator::CurrentGenerationProgress
+   IL_013E: ldsfld Terraria.WorldBuilding.WorldGenerator::CurrentGenerationProgress
+   IL_0143: ldloc.1 
+   IL_0144: stfld Terraria.WorldBuilding.GenerationProgress::TotalWeight
+   IL_0149: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_014E: callvirt SubworldLibrary.Subworld::get_Config()
+   IL_0153: stloc.2 
+   IL_0154: ldc.i4.1 
+   IL_0155: stsfld Terraria.WorldGen::generatingWorld
+   IL_015A: ldc.i4.0 
+   IL_015B: stloc.s V_4
+   IL_015D: br.s IL_01d2: ldloc.s V_4
+   IL_015F: ldloc.0 
+   IL_0160: callvirt Terraria.IO.WorldFileData::get_Seed()
+   IL_0165: newobj Terraria.Utilities.UnifiedRandom::.ctor(Int32)
+   IL_016A: stsfld Terraria.WorldGen::_genRand
+   IL_016F: ldloc.0 
+   IL_0170: callvirt Terraria.IO.WorldFileData::get_Seed()
+   IL_0175: newobj Terraria.Utilities.UnifiedRandom::.ctor(Int32)
+   IL_017A: call Terraria.Main::set_rand(UnifiedRandom)
+   IL_017F: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_0184: callvirt SubworldLibrary.Subworld::get_Tasks()
+   IL_0189: ldloc.s V_4
+   IL_018B: callvirt System.Collections.Generic.List`1<Terraria.WorldBuilding.GenPass>::get_Item(Int32)
+   IL_0190: stloc.s V_5
+   IL_0192: ldsfld Terraria.WorldBuilding.WorldGenerator::CurrentGenerationProgress
+   IL_0197: ldloc.s V_5
+   IL_0199: ldfld Terraria.WorldBuilding.GenPass::Weight
+   IL_019E: callvirt Terraria.WorldBuilding.GenerationProgress::Start(Double)
+   IL_01A3: ldloc.s V_5
+   IL_01A5: ldsfld Terraria.WorldBuilding.WorldGenerator::CurrentGenerationProgress
+   IL_01AA: ldloc.2 
+   IL_01AB: brtrue.s IL_01b0: ldloc.2
+   IL_01AD: ldnull 
+   IL_01AE: br.s IL_01bd: callvirt System.Void Terraria.WorldBuilding.GenPass::Apply(Terraria.WorldBuilding.GenerationProgress,Terraria.IO.GameConfiguration)
+   IL_01B0: ldloc.2 
+   IL_01B1: ldloc.s V_5
+   IL_01B3: ldfld Terraria.WorldBuilding.GenPass::Name
+   IL_01B8: call Terraria.WorldBuilding.WorldGenConfiguration::GetPassConfiguration(String)
+   IL_01BD: callvirt Terraria.WorldBuilding.GenPass::Apply(GenerationProgress,GameConfiguration)
+   IL_01C2: ldsfld Terraria.WorldBuilding.WorldGenerator::CurrentGenerationProgress
+   IL_01C7: callvirt Terraria.WorldBuilding.GenerationProgress::End()
+   IL_01CC: ldloc.s V_4
+   IL_01CE: ldc.i4.1 
+   IL_01CF: add 
+   IL_01D0: stloc.s V_4
+   IL_01D2: ldloc.s V_4
+   IL_01D4: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_01D9: callvirt SubworldLibrary.Subworld::get_Tasks()
+   IL_01DE: callvirt System.Collections.Generic.List`1<Terraria.WorldBuilding.GenPass>::get_Count()
+   IL_01E3: blt IL_015f: ldloc.0
+   IL_01E8: ldnull 
+   IL_01E9: stsfld Terraria.WorldBuilding.WorldGenerator::CurrentGenerationProgress
+   IL_01EE: ldc.i4.2 
+   IL_01EF: call Terraria.IO.FileMetadata::FromCurrentSettings(FileType)
+   IL_01F4: stsfld Terraria.Main::WorldFileMetadata
+   IL_01F9: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_01FE: callvirt SubworldLibrary.Subworld::get_ShouldSave()
+   IL_0203: brfalse.s IL_020c: ldc.i4.0
+   IL_0205: ldarg.1 
+   IL_0206: ldc.i4.0 
+   IL_0207: call Terraria.IO.WorldFile::SaveWorld(Boolean,Boolean)
+   IL_020C: ldc.i4.0 
+   IL_020D: stsfld Terraria.WorldGen::generatingWorld
+   IL_0212: call Terraria.ModLoader.SystemLoader::OnWorldLoad()
+   IL_0217: ret 
+### SubworldLibrary.SubworldSystem::PostLoadWorldFile
+   IL_0000: ldsfld Terraria.Main::maxTilesY
+   IL_0005: stsfld Terraria.WorldBuilding.GenVars::waterLine
+   IL_000A: ldc.i4.2 
+   IL_000B: ldc.i4.m1 
+   IL_000C: ldc.i4.m1 
+   IL_000D: call Terraria.Liquid::QuickWater(Int32,Int32,Int32)
+   IL_0012: call Terraria.WorldGen::WaterCheck()
+   IL_0017: ldc.i4.1 
+   IL_0018: stsfld Terraria.Liquid::quickSettle
+   IL_001D: ldc.i4.0 
+   IL_001E: stloc.0 
+   IL_001F: ldsfld Terraria.Liquid::numLiquid
+   IL_0024: ldsfld Terraria.LiquidBuffer::numLiquidBuffer
+   IL_0029: add 
+   IL_002A: stloc.1 
+   IL_002B: ldc.r4 0
+   IL_0030: stloc.2 
+   IL_0031: br.s IL_00b0: ldsfld System.Int32 Terraria.Liquid::numLiquid
+   IL_0033: ldloc.0 
+   IL_0034: ldc.i4.1 
+   IL_0035: add 
+   IL_0036: stloc.0 
+   IL_0037: ldloc.1 
+   IL_0038: ldsfld Terraria.Liquid::numLiquid
+   IL_003D: sub 
+   IL_003E: ldsfld Terraria.LiquidBuffer::numLiquidBuffer
+   IL_0043: add 
+   IL_0044: conv.r4 
+   IL_0045: ldloc.1 
+   IL_0046: conv.r4 
+   IL_0047: div 
+   IL_0048: stloc.3 
+   IL_0049: ldsfld Terraria.Liquid::numLiquid
+   IL_004E: ldsfld Terraria.LiquidBuffer::numLiquidBuffer
+   IL_0053: add 
+   IL_0054: ldloc.1 
+   IL_0055: ble.s IL_0063: ldloc.3
+   IL_0057: ldsfld Terraria.Liquid::numLiquid
+   IL_005C: ldsfld Terraria.LiquidBuffer::numLiquidBuffer
+   IL_0061: add 
+   IL_0062: stloc.1 
+   IL_0063: ldloc.3 
+   IL_0064: ldloc.2 
+   IL_0065: ble.un.s IL_006b: ldloc.2
+   IL_0067: ldloc.3 
+   IL_0068: stloc.2 
+   IL_0069: br.s IL_006d: ldsfld Terraria.Localization.LocalizedText[] Terraria.Lang::gen
+   IL_006B: ldloc.2 
+   IL_006C: stloc.3 
+   IL_006D: ldsfld Terraria.Lang::gen
+   IL_0072: ldc.i4.s 27
+   IL_0074: ldelem.ref 
+   IL_0075: callvirt Terraria.Localization.LocalizedText::get_Value()
+   IL_007A: ldstr " "
+   IL_007F: ldloc.3 
+   IL_0080: ldc.r4 100
+   IL_0085: mul 
+   IL_0086: ldc.r4 2
+   IL_008B: div 
+   IL_008C: ldc.r4 50
+   IL_0091: add 
+   IL_0092: conv.i4 
+   IL_0093: stloc.s V_4
+   IL_0095: ldloca.s V_4
+   IL_0097: call System.Int32::ToString()
+   IL_009C: ldstr "%"
+   IL_00A1: call System.String::Concat(String,String,String,String)
+   IL_00A6: call Terraria.Main::set_statusText(String)
+   IL_00AB: call Terraria.Liquid::UpdateLiquid()
+   IL_00B0: ldsfld Terraria.Liquid::numLiquid
+   IL_00B5: ldc.i4.0 
+   IL_00B6: ble.s IL_00c3: ldc.i4.0
+   IL_00B8: ldloc.0 
+   IL_00B9: ldc.i4 100000
+   IL_00BE: blt IL_0033: ldloc.0
+   IL_00C3: ldc.i4.0 
+   IL_00C4: stsfld Terraria.Liquid::quickSettle
+   IL_00C9: call Terraria.WorldGen::get_genRand()
+   IL_00CE: ldc.i4 3600
+   IL_00D3: ldc.i4 18000
+   IL_00D8: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32,Int32)
+   IL_00DD: stsfld Terraria.Main::weatherCounter
+   IL_00E2: call Terraria.Cloud::resetClouds()
+   IL_00E7: call Terraria.WorldGen::WaterCheck()
+   IL_00EC: call Terraria.NPC::setFireFlyChance()
+   IL_00F1: ldsfld Terraria.Main::slimeRainTime
+   IL_00F6: ldc.r8 0
+   IL_00FF: ble.un.s IL_0107: call System.Void Terraria.NPC::SetWorldSpecificMonstersByWorldID()
+   IL_0101: ldc.i4.0 
+   IL_0102: call Terraria.Main::StartSlimeRain(Boolean)
+   IL_0107: call Terraria.NPC::SetWorldSpecificMonstersByWorldID()
+   IL_010C: ret 

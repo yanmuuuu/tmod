@@ -1,0 +1,24 @@
+ASSEMBLY SubworldLibrary, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+LOADED in 21 ms
+
+### SubworldLibrary.SubworldSystem::get_Current
+   IL_0000: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_0005: ret 
+
+### SubworldLibrary.SubworldSystem::get_CurrentPath
+   IL_0000: ldsfld SubworldLibrary.SubworldSystem::main
+   IL_0005: callvirt Terraria.IO.FileData::get_IsCloudSave()
+   IL_000A: brtrue.s IL_0013: ldsfld System.String Terraria.Main::CloudWorldPath
+   IL_000C: ldsfld Terraria.Main::WorldPath
+   IL_0011: br.s IL_0018: ldsfld Terraria.IO.WorldFileData SubworldLibrary.SubworldSystem::main
+   IL_0013: ldsfld Terraria.Main::CloudWorldPath
+   IL_0018: ldsfld SubworldLibrary.SubworldSystem::main
+   IL_001D: ldflda Terraria.IO.WorldFileData::UniqueId
+   IL_0022: constrained. System.Guid
+   IL_0028: callvirt System.Object::ToString()
+   IL_002D: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_0032: callvirt SubworldLibrary.Subworld::get_FileName()
+   IL_0037: ldstr ".wld"
+   IL_003C: call System.String::Concat(String,String)
+   IL_0041: call System.IO.Path::Combine(String,String,String)
+   IL_0046: ret 

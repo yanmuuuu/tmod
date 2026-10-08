@@ -95,8 +95,10 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 				bool charging = Projectile.localAI[0] < ArchivistNpc.BeamWindup;
 
 				if (!charging && (int)Projectile.localAI[0] % 4 == 0) {
-					Vector2 direction = angle.ToRotationVector2();
-					Common.Effects.WastelandFxSystem.Bolt(origin, origin + direction * MaxLength, new Color(190, 220, 255));
+					// ⚠️ 这里原来还叠了一道 620px 长的折线闪电（WastelandFxSystem.Bolt，
+					// origin → origin + direction * MaxLength，近白色）。光束自己已经有贴图了，
+					// 那道白线纯属"影响视线的光线"，玩家明确要求去掉 —— **以后合并也不许加回来**。
+					// 只保留枪口那一点小光斑。
 					Common.Effects.WastelandFxSystem.Glow(origin, new Color(210, 230, 255), 1.4f, 6);
 				}
 			}

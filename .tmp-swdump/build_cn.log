@@ -1,0 +1,12 @@
+﻿Reading properties: WastelandSoulCN
+Building: WastelandSoulCN
+Compiling WastelandSoulCN.dll
+Compilation finished with 0 errors and 0 warnings
+Packaging: WastelandSoulCN
+dotnet.exe : WARN: Image loading failed: unknown image type
+所在位置 行:1 字符: 183
++ ... ModLoader'; & dotnet 'e:\steam\steamapps\common\tModLoader\tModLoader ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARN: Image loa...nown image type:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

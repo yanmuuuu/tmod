@@ -1,0 +1,47 @@
+# 由 tools/gen_3d_models.py 程序化生成
+# 故意不含 map_Kd：加载期创建 GPU 贴图会让客户端在
+# PostSetupContent（工作线程）触发 ThreadStateException。
+# Deliberately no map_Kd: creating GPU textures at load time would
+# throw ThreadStateException on the worker thread.
+
+newmtl WL_Steel
+Kd 0.680000 0.710000 0.760000
+Ka 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+
+newmtl WL_DarkSteel
+Kd 0.320000 0.340000 0.390000
+Ka 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+
+newmtl WL_Accent
+Kd 0.830000 0.450000 0.200000
+Ka 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+
+newmtl WL_Glow
+Kd 0.400000 0.860000 0.920000
+Ka 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+
+newmtl WL_GoldTrim
+Kd 0.850000 0.680000 0.280000
+Ka 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1
+
+newmtl WL_Robe
+Kd 0.520000 0.260000 0.200000
+Ka 0.000000 0.000000 0.000000
+Ks 0.000000 0.000000 0.000000
+d 1.000000
+illum 1

@@ -1,0 +1,606 @@
+[03:54:34.269] [Main Thread/INFO] [tML]: Starting tModLoader client 1.4.4.9+2026.08.3.0|2026.08|stable|Stable|c9545cf27d56c456321e1896274c02adf67d0140|5250950117352386884 built 2026/10/1 8:04
+[03:54:34.274] [Main Thread/INFO] [tML]: Log date: 2026/10/8
+[03:54:34.274] [Main Thread/INFO] [tML]: Running on Windows (v10.0.26200.0) X64 NetCore 8.0.0
+[03:54:34.276] [Main Thread/INFO] [tML]: CPU: 16 processors. RAM: 23.7 GB
+[03:54:34.276] [Main Thread/INFO] [tML]: FrameworkDescription: .NET 8.0.0
+[03:54:34.276] [Main Thread/INFO] [tML]: Executable: E:\steam\steamapps\common\tModLoader\tModLoader.dll
+[03:54:34.277] [Main Thread/INFO] [tML]: Working Directory: E:\steam\steamapps\common\tModLoader
+[03:54:34.526] [Main Thread/INFO] [tML]: Attempt to Port from "C:/Users/p老师\Documents\My Games\Terraria\tModLoader" to "C:/Users/p老师\Documents\My Games\Terraria\tModLoader-1.4.3" aborted, "2026.8.3.0" is a newer version.
+[03:54:34.527] [Main Thread/WARN] [tML]: Saves paths had incorrect slashes somehow: "C:/Users/p老师\Documents\My Games\Terraria\tModLoader"=>"C:\Users\p老师\Documents\My Games\Terraria\tModLoader", "C:/Users/p老师\Documents\My Games\Terraria\tModLoader"=>"C:\Users\p老师\Documents\My Games\Terraria\tModLoader"
+[03:54:34.527] [Main Thread/INFO] [tML]: Saves Are Located At: C:\Users\p老师\Documents\My Games\Terraria\tModLoader
+[03:54:34.536] [Main Thread/INFO] [tML]: Display DPI: Diagonal DPI is 144. Vertical DPI is 144. Horizontal DPI is 144
+[03:54:34.536] [Main Thread/INFO] [tML]: High DPI Display detected: setting FNA to highdpi mode
+[03:54:34.538] [Main Thread/DEBUG] [FNA]: Querying linked library versions...
+[03:54:34.539] [Main Thread/DEBUG] [FNA]: SDL v2.28.2
+[03:54:34.539] [Main Thread/DEBUG] [FNA]: FNA3D v23.10.0
+[03:54:34.541] [Main Thread/DEBUG] [FNA]: FAudio v22.9.1
+[03:54:34.777] [Main Thread/INFO] [tML]: Distribution Platform: Steam. Detection method: CWD is /steamapps/
+[03:54:34.784] [Main Thread/DEBUG] [tML]: Process.Start (UseShellExecute = False): "E:\steam\steamapps\common\tModLoader\dotnet\dotnet.exe" tModLoader.dll -terrariasteamclient 1732
+[03:54:35.162] [Main Thread/DEBUG] [TerrariaSteamClient]: Recv: init_success
+[03:54:35.162] [Main Thread/DEBUG] [TerrariaSteamClient]: Send: acknowledged
+[03:54:35.534] [Main Thread/INFO] [FNA]: SDL.SDL_Init(SDL.SDL_INIT_VIDEO)...
+[03:54:35.535] [Main Thread/INFO] [FNA]: Success
+[03:54:35.535] [Main Thread/INFO] [FNA]: SDL.SDL_InitSubSystem(SDL.SDL_INIT_GAMECONTROLLER)...
+[03:54:35.585] [Main Thread/INFO] [FNA]: Success
+[03:54:35.726] [Main Thread/DEBUG] [tML]: Native Resolve: Steamworks.NET, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null -> steam_api
+[03:54:35.727] [Main Thread/DEBUG] [tML]: 	delegating to Steamworks.NET.AnyCPU resolver
+[03:54:35.880] [Main Thread/INFO] [tML]: Attempt to Port from "E:\steam\userdata\1231494050\105600\remote\tModLoader" to "E:\steam\userdata\1231494050\105600\remote\tModLoader-1.4.3" aborted, "2026.8.3.0" is a newer version.
+[03:54:35.894] [Main Thread/INFO] [Terraria]: Steam Cloud Quota: 941.2 MB available
+[03:54:35.901] [Main Thread/INFO] [tML]: Steam beta branch: None
+[03:54:35.902] [Main Thread/INFO] [tML]: SteamBackend: Running standard Steam Desktop Client API
+[03:54:35.907] [Main Thread/INFO] [tML]: Current 1281930 Workshop Folder Directory: E:\steam\steamapps\common\tModLoader\..\..\workshop
+[03:54:36.053] [Main Thread/INFO] [FNA]: SDL Video Diver: windows
+[03:54:36.053] [Main Thread/INFO] [FNA]: FNA3D Driver: D3D11
+[03:54:36.053] [Main Thread/INFO] [FNA]: D3D11 Adapter: NVIDIA GeForce RTX 4060 Laptop GPU
+[03:54:36.062] [Main Thread/INFO] [tML]: Terraria Steam Install Location assumed to be: E:\steam\steamapps\common\Terraria
+[03:54:36.358] [Main Thread/INFO] [tML]: Maximum Resolution is 2560 x 1440
+[03:54:36.363] [Main Thread/DEBUG] [Terraria]: Device Created, Adapter: Generic PnP Monitor, DisplayMode: {{Width:2560 Height:1440 Format:Color}}, Profile: HiDef, Width: 2560, Height: 1440, Fullscreen: False, Display: \\.\DISPLAY1
+[03:54:36.366] [Main Thread/DEBUG] [Terraria]: Device Reset, Adapter: Generic PnP Monitor, DisplayMode: {{Width:2560 Height:1440 Format:Color}}, Profile: HiDef, Width: 2560, Height: 1440, Fullscreen: False -> True, Display: \\.\DISPLAY1
+[03:54:36.367] [Main Thread/DEBUG] [Terraria]: Device Reset, Adapter: Generic PnP Monitor, DisplayMode: {{Width:2560 Height:1440 Format:Color}}, Profile: HiDef, Width: 2560, Height: 1440, Fullscreen: True, Display: \\.\DISPLAY1
+[03:54:36.374] [Main Thread/INFO] [tML]: Language: zh-Hans
+[03:54:36.765] [Main Thread/INFO] [FNA]: SDL Audio Driver: 
+[03:54:37.679] [8/DEBUG] [tML]: SSDP search line separator: CRLF
+[03:54:38.177] [8/DEBUG] [tML]: Hook System.Runtime.Loader.AssemblyLoadContext::ValidateAssemblyNameWithSimpleName(Assembly, string) added by tModLoader
+[03:54:43.482] [Main Thread/INFO] [tML]: Finding Mods...
+[03:54:43.560] [Main Thread/INFO] [tML]: 3 most recently changed workshop mods: LogSpiralLibrary v0.2.0.2 2026/10/7, PropertyPanelLibrary v0.1.0.1 2026/10/7, CoolerItemVisualEffect v0.1.20.4 2026/10/7
+[03:54:43.567] [Main Thread/INFO] [tML]: Finding Mods...
+[03:54:43.922] [Main Thread/INFO] [tML]: Finding Mods...
+[03:54:43.934] [Main Thread/INFO] [tML]: Finding Mods...
+[03:54:45.092] [.NET TP Worker/INFO] [tML]: Finding Mods...
+[03:54:45.102] [.NET TP Worker/DEBUG] [tML]: Skipped 伊蕾娜 2.1.0 for tML 2022.9.47.47 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.102] [.NET TP Worker/DEBUG] [tML]: Skipped 伊蕾娜 2.2.4 for tML 2024.7.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.103] [.NET TP Worker/DEBUG] [tML]: Skipped 伊蕾娜 2.1.985 for tML 2024.2.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.103] [.NET TP Worker/DEBUG] [tML]: Skipped 伊蕾娜 2.3.2 for tML 2024.12.3.1 from Workshop. Reason: a local copy with the same version (but different hash) exists.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Selected 伊蕾娜 2.3.2 for tML 2024.12.3.1 from Local.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Skipped AlchemistNPCLite 1.8.20 for tML 2022.9.47.61 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Skipped AlchemistNPCLite 1.9.8 for tML 2025.2.3.2 from Workshop. Reason: a newer version exists.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Skipped AlchemistNPCLite 1.9.7 for tML 2024.10.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Skipped AlchemistNPCLite 1.9.5 for tML 2024.3.3.4 from Local. Reason: a newer version exists.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Selected AlchemistNPCLite 1.9.9 for tML 2025.10.3.1 from Workshop.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Skipped Antisocial 1.5 for tML 2022.8.54.6 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Skipped Antisocial 1.6.0.3 for tML 2023.8.3.3 from Workshop. Reason: a newer version exists.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Skipped Antisocial 1.6.0.2 for tML 2023.6.25.27 from Workshop. Reason: a newer version exists.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Skipped Antisocial 1.6.0.3 for tML 2023.8.3.3 from Local. Reason: a newer version exists.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Selected Antisocial 1.7 for tML 2025.6.3.0 from Workshop.
+[03:54:45.104] [.NET TP Worker/DEBUG] [tML]: Selected AutoTrash 0.8.1 for tML 2025.9.3.0 from Local.
+[03:54:45.105] [.NET TP Worker/DEBUG] [tML]: Skipped BossChecklist 1.5.1 for tML 2022.9.47.50 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.105] [.NET TP Worker/DEBUG] [tML]: Skipped BossChecklist 2.2.3.1 for tML 2025.4.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.105] [.NET TP Worker/DEBUG] [tML]: Skipped BossChecklist 2.2.3 for tML 2025.3.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.105] [.NET TP Worker/DEBUG] [tML]: Selected BossChecklist 2.2.4 for tML 2026.3.3.0 from Workshop.
+[03:54:45.105] [.NET TP Worker/DEBUG] [tML]: Skipped BossCursor 2.0.0 for tML 2022.5.103.14 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.105] [.NET TP Worker/DEBUG] [tML]: Skipped BossCursor 3.0.0 for tML 2023.6.23.0 from Workshop. Reason: a newer version exists.
+[03:54:45.106] [.NET TP Worker/DEBUG] [tML]: Selected BossCursor 3.0.1 for tML 2025.6.3.0 from Workshop.
+[03:54:45.106] [.NET TP Worker/DEBUG] [tML]: Skipped CalamityCN 2.3.18 for tML 2022.9.47.82 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.106] [.NET TP Worker/DEBUG] [tML]: Skipped CalamityCN 4.0.3.7 for tML 2026.6.3.6 from Workshop. Reason: a newer version exists.
+[03:54:45.106] [.NET TP Worker/DEBUG] [tML]: Skipped CalamityCN 4.0.3.3 for tML 2026.5.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.106] [.NET TP Worker/DEBUG] [tML]: Selected CalamityCN 4.0.3.8 for tML 2026.8.3.0 from Workshop.
+[03:54:45.106] [.NET TP Worker/DEBUG] [tML]: Skipped CalamityMod 2.0.2.3 for tML 2022.9.47.46 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.106] [.NET TP Worker/DEBUG] [tML]: Skipped CalamityMod 2.2.1 for tML 2026.4.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.106] [.NET TP Worker/DEBUG] [tML]: Skipped CalamityMod 2.1.2 for tML 2025.12.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.106] [.NET TP Worker/DEBUG] [tML]: Skipped CalamityMod 2.2.4 for tML 2026.6.3.4 from Workshop. Reason: a local copy with the same version (but different hash) exists.
+[03:54:45.106] [.NET TP Worker/DEBUG] [tML]: Selected CalamityMod 2.2.4 for tML 2026.6.3.4 from Local (2026.6CalamityMod.tmod).
+[03:54:45.107] [.NET TP Worker/DEBUG] [tML]: Skipped CalamityModMusic 2.0.2.2 for tML 2022.9.47.30 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.107] [.NET TP Worker/DEBUG] [tML]: Skipped CalamityModMusic 2.0.5 for tML 2025.4.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.107] [.NET TP Worker/DEBUG] [tML]: Skipped CalamityModMusic 2.0.4.3 for tML 2024.4.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.107] [.NET TP Worker/DEBUG] [tML]: Skipped CalamityModMusic 2.1 for tML 2025.12.3.0 from Workshop. Reason: a local copy with the same version (but different hash) exists.
+[03:54:45.107] [.NET TP Worker/DEBUG] [tML]: Selected CalamityModMusic 2.1 for tML 2025.12.3.0 from Local (2025.12CalamityModMusic.tmod).
+[03:54:45.107] [.NET TP Worker/DEBUG] [tML]: Skipped CalamitySimpleWhipAddon 1.15.14 for tML 2026.6.3.6 from Workshop. Reason: a newer version exists.
+[03:54:45.107] [.NET TP Worker/DEBUG] [tML]: Skipped CalamitySimpleWhipAddon 1.15.12 for tML 2026.5.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.107] [.NET TP Worker/DEBUG] [tML]: Selected CalamitySimpleWhipAddon 1.20.2 for tML 2026.7.3.0 from Workshop.
+[03:54:45.107] [.NET TP Worker/DEBUG] [tML]: Selected Census 0.5.2.6 for tML 2024.8.3.2 from Local.
+[03:54:45.108] [.NET TP Worker/DEBUG] [tML]: Selected CheatSheet 0.7.6.1 for tML 2024.8.3.2 from Local.
+[03:54:45.108] [.NET TP Worker/DEBUG] [tML]: Selected CollisionLib 3.2 for tML 2024.5.3.1 from Local.
+[03:54:45.108] [.NET TP Worker/DEBUG] [tML]: Skipped CoolerItemVisualEffect 0.1.16.4 for tML 2022.9.47.23 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.108] [.NET TP Worker/DEBUG] [tML]: Skipped CoolerItemVisualEffect 0.1.20.1 for tML 2025.11.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.108] [.NET TP Worker/DEBUG] [tML]: Skipped CoolerItemVisualEffect 0.1.20.0 for tML 2025.10.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.108] [.NET TP Worker/DEBUG] [tML]: Selected CoolerItemVisualEffect 0.1.20.4 for tML 2026.1.3.2 from Workshop.
+[03:54:45.108] [.NET TP Worker/DEBUG] [tML]: Skipped Daybreak 2.3.1 for tML 2025.9.3.4 from Workshop. Reason: a newer version exists.
+[03:54:45.108] [.NET TP Worker/DEBUG] [tML]: Skipped Daybreak 2.1.0 for tML 2025.8.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.108] [.NET TP Worker/DEBUG] [tML]: Selected Daybreak 2.4.0 for tML 2026.4.3.0 from Workshop.
+[03:54:45.108] [.NET TP Worker/DEBUG] [tML]: Skipped ImproveGame 1.6.3.3 for tML 2022.9.47.47 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.109] [.NET TP Worker/DEBUG] [tML]: Skipped ImproveGame 1.8.1.22 for tML 2026.1.3.2 from Workshop. Reason: a newer version exists.
+[03:54:45.109] [.NET TP Worker/DEBUG] [tML]: Skipped ImproveGame 1.8.1.14 for tML 2025.9.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.109] [.NET TP Worker/DEBUG] [tML]: Skipped ImproveGame 1.7.1.7 for tML 2024.4.3.0 from Local. Reason: a newer version exists.
+[03:54:45.109] [.NET TP Worker/DEBUG] [tML]: Selected ImproveGame 1.8.2 for tML 2026.3.3.0 from Workshop.
+[03:54:45.109] [.NET TP Worker/DEBUG] [tML]: Skipped InnoVault 1.9.98 for tML 2026.4.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.110] [.NET TP Worker/DEBUG] [tML]: Skipped InnoVault 1.9.92 for tML 2026.3.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.110] [.NET TP Worker/DEBUG] [tML]: Skipped InnoVault 1.9.101 for tML 2026.5.3.0 from Workshop. Reason: a local copy with the same version (but different hash) exists.
+[03:54:45.110] [.NET TP Worker/DEBUG] [tML]: Selected InnoVault 1.9.101 for tML 2026.5.3.0 from Local.
+[03:54:45.110] [.NET TP Worker/DEBUG] [tML]: Skipped ItemBorder 1.75 for tML 2022.9.47.14 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.110] [.NET TP Worker/DEBUG] [tML]: Skipped ItemBorder 2.9 for tML 2026.3.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.110] [.NET TP Worker/DEBUG] [tML]: Skipped ItemBorder 2.7 for tML 2025.6.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.110] [.NET TP Worker/DEBUG] [tML]: Selected ItemBorder 2.10 for tML 2026.4.3.0 from Workshop.
+[03:54:45.110] [.NET TP Worker/DEBUG] [tML]: Skipped LogSpiralLibrary 0.2.0.1 for tML 2025.11.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.110] [.NET TP Worker/DEBUG] [tML]: Skipped LogSpiralLibrary 0.2.0.0 for tML 2025.10.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.111] [.NET TP Worker/DEBUG] [tML]: Selected LogSpiralLibrary 0.2.0.2 for tML 2026.1.3.2 from Workshop.
+[03:54:45.111] [.NET TP Worker/DEBUG] [tML]: Skipped Luminance 1.0.13 for tML 2025.8.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.111] [.NET TP Worker/DEBUG] [tML]: Skipped Luminance 1.0.12 for tML 2025.2.3.3 from Workshop. Reason: a newer version exists.
+[03:54:45.111] [.NET TP Worker/DEBUG] [tML]: Selected Luminance 1.0.14 for tML 2026.4.3.0 from Workshop.
+[03:54:45.111] [.NET TP Worker/DEBUG] [tML]: Skipped MagicBuilder 1.2 for tML 2023.6.25.31 from Workshop. Reason: a newer version exists.
+[03:54:45.111] [.NET TP Worker/DEBUG] [tML]: Selected MagicBuilder 1.4.4.12 for tML 2024.10.3.0 from Workshop.
+[03:54:45.112] [.NET TP Worker/DEBUG] [tML]: Skipped MaxStackExtra 1.4.0.2 for tML 0.12 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.112] [.NET TP Worker/DEBUG] [tML]: Skipped MaxStackExtra 1.4.0.3 for tML 2023.6.25.31 from Workshop. Reason: a local copy with the same version (but different hash) exists.
+[03:54:45.112] [.NET TP Worker/DEBUG] [tML]: Selected MaxStackExtra 1.4.0.3 for tML 2023.6.25.31 from Local.
+[03:54:45.112] [.NET TP Worker/DEBUG] [tML]: Skipped MEAC 0.1.7 for tML 2022.8.54.4 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.112] [.NET TP Worker/DEBUG] [tML]: Skipped MEAC 0.2.3 for tML 2023.11.3.3 from Workshop. Reason: a newer version exists.
+[03:54:45.112] [.NET TP Worker/DEBUG] [tML]: Selected MEAC 0.3 for tML 2025.3.3.1 from Workshop.
+[03:54:45.112] [.NET TP Worker/DEBUG] [tML]: Skipped NoxusBoss 1.0.8 for tML 2022.9.47.64 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.112] [.NET TP Worker/DEBUG] [tML]: Skipped NoxusBoss 1.2.29 for tML 2025.9.3.4 from Workshop. Reason: a newer version exists.
+[03:54:45.112] [.NET TP Worker/DEBUG] [tML]: Skipped NoxusBoss 1.2.30 for tML 2025.12.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.113] [.NET TP Worker/DEBUG] [tML]: Selected NoxusBoss 1.2.31 for tML 2026.4.3.0 from Workshop.
+[03:54:45.113] [.NET TP Worker/DEBUG] [tML]: Skipped PointShop 1.3.1 for tML 2022.9.47.23 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.113] [.NET TP Worker/DEBUG] [tML]: Skipped PointShop 2.1.26.3081 for tML 2026.1.3.2 from Workshop. Reason: a newer version exists.
+[03:54:45.113] [.NET TP Worker/DEBUG] [tML]: Skipped PointShop 2.1.25.12061 for tML 2025.10.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.113] [.NET TP Worker/DEBUG] [tML]: Skipped PointShop 1.4 for tML 2023.6.25.36 from Local. Reason: a newer version exists.
+[03:54:45.113] [.NET TP Worker/DEBUG] [tML]: Selected PointShop 2.1.27 for tML 2026.3.3.0 from Workshop.
+[03:54:45.113] [.NET TP Worker/DEBUG] [tML]: Skipped PropertyPanelLibrary 0.1.0.0 for tML 2025.10.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.113] [.NET TP Worker/DEBUG] [tML]: Selected PropertyPanelLibrary 0.1.0.1 for tML 2026.1.3.2 from Workshop.
+[03:54:45.113] [.NET TP Worker/DEBUG] [tML]: Skipped RecipeBrowser 0.9.9 for tML 2022.9.47.50 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.113] [.NET TP Worker/DEBUG] [tML]: Skipped RecipeBrowser 0.12 for tML 2025.9.3.3 from Workshop. Reason: a newer version exists.
+[03:54:45.114] [.NET TP Worker/DEBUG] [tML]: Skipped RecipeBrowser 0.10.13 for tML 2025.6.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.114] [.NET TP Worker/DEBUG] [tML]: Skipped RecipeBrowser 0.12 for tML 2025.9.3.3 from Local. Reason: a newer version exists.
+[03:54:45.114] [.NET TP Worker/DEBUG] [tML]: Selected RecipeBrowser 0.12.0.1 for tML 2026.7.3.0 from Workshop.
+[03:54:45.114] [.NET TP Worker/DEBUG] [tML]: Selected ShorterRespawn 1.1.1.2 for tML 2023.6.25.27 from Local.
+[03:54:45.114] [.NET TP Worker/DEBUG] [tML]: Skipped SilkyUIFramework 0.2.27.3091 for tML 2026.1.3.2 from Workshop. Reason: a newer version exists.
+[03:54:45.114] [.NET TP Worker/DEBUG] [tML]: Skipped SilkyUIFramework 0.2.26.1181 for tML 2025.11.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.114] [.NET TP Worker/DEBUG] [tML]: Selected SilkyUIFramework 0.3.0 for tML 2026.3.3.0 from Workshop.
+[03:54:45.114] [.NET TP Worker/DEBUG] [tML]: Selected StructureHelper 3.1.1 for tML 2026.3.3.0 from Local.
+[03:54:45.114] [.NET TP Worker/DEBUG] [tML]: Skipped SubworldLibrary 2.2.1.3 for tML 2022.9.47.82 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Skipped SubworldLibrary 2.2.3.3 for tML 2025.9.3.4 from Workshop. Reason: a newer version exists.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Skipped SubworldLibrary 2.2.3.2 for tML 2025.6.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Skipped SubworldLibrary 2.3.0.1 for tML 2026.6.3.6 from Workshop. Reason: a local copy with the same version (but different hash) exists.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Selected SubworldLibrary 2.3.0.1 for tML 2026.6.3.6 from Local.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Skipped SummonersAssociation 0.4.8.11 for tML 2022.8.54.6 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Skipped SummonersAssociation 0.5.3 for tML 2024.11.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Skipped SummonersAssociation 0.5.2.2 for tML 2024.10.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Selected SummonersAssociation 0.5.4 for tML 2025.8.3.1 from Workshop.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Selected TownNPCHome 1.4 for tML 2024.1.3.0 from Local.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Selected WanderingWitchKR 0.4 for tML 2025.5.3.0 from Local.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Selected WastelandSoul 0.1 for tML 2026.8.3.0 from Local.
+[03:54:45.116] [.NET TP Worker/DEBUG] [tML]: Selected WastelandSoulCN 0.1 for tML 2026.8.3.0 from Local.
+[03:54:45.116] [.NET TP Worker/DEBUG] [tML]: Skipped WeaponDisplay 1.13 for tML 2022.9.47.8 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.116] [.NET TP Worker/DEBUG] [tML]: Skipped WeaponDisplay 1.20.1 for tML 2023.6.25.31 from Workshop. Reason: a local copy with the same version (but different hash) exists.
+[03:54:45.116] [.NET TP Worker/DEBUG] [tML]: Selected WeaponDisplay 1.20.1 for tML 2023.6.25.31 from Local.
+[03:54:45.116] [.NET TP Worker/DEBUG] [tML]: Selected WheresMyItems 0.8 for tML 2025.5.3.0 from Local.
+[03:54:45.116] [.NET TP Worker/DEBUG] [tML]: Skipped WingSlotExtra 1.3.4 for tML 2022.8.54.4 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.116] [.NET TP Worker/DEBUG] [tML]: Skipped WingSlotExtra 1.3.6 for tML 2023.5.38.0 from Workshop. Reason: a newer version exists.
+[03:54:45.116] [.NET TP Worker/DEBUG] [tML]: Skipped WingSlotExtra 1.4.4 for tML 2023.12.3.1 from Workshop. Reason: a newer version exists.
+[03:54:45.116] [.NET TP Worker/DEBUG] [tML]: Skipped WingSlotExtra 1.4.4 for tML 2023.12.3.1 from Local. Reason: a newer version exists.
+[03:54:45.117] [.NET TP Worker/DEBUG] [tML]: Selected WingSlotExtra 1.4.5 for tML 2025.3.3.1 from Workshop.
+[03:54:45.119] [.NET TP Worker/INFO] [tML]: 查找模组……
+[03:54:45.307] [.NET TP Worker/INFO] [tML]: 加载程序集: BossChecklist (Boss Checklist) v2.2.4
+[03:54:45.347] [.NET TP Worker/INFO] [tML]: 加载程序集: Census (Census - Town NPC Checklist) v0.5.2.6
+[03:54:45.381] [.NET TP Worker/INFO] [tML]: 加载程序集: CheatSheet (Cheat Sheet) v0.7.6.1
+[03:54:45.464] [.NET TP Worker/INFO] [tML]: 加载程序集: SilkyUIFramework (SilkyUI) v0.3.0
+[03:54:45.838] [.NET TP Worker/INFO] [tML]: 加载程序集: PropertyPanelLibrary (属性面板PropertyPanel) v0.1.0.1
+[03:54:45.957] [.NET TP Worker/INFO] [tML]: 加载程序集: LogSpiralLibrary (错数前置库~LogSpiral's Library) v0.2.0.2
+[03:54:46.126] [.NET TP Worker/INFO] [tML]: 加载程序集: CoolerItemVisualEffect (C.I.V.E.) v0.1.20.4
+[03:54:46.258] [.NET TP Worker/INFO] [tML]: 加载程序集: ImproveGame (Quality of Terraria 更好的体验) v1.8.2
+[03:54:46.582] [.NET TP Worker/INFO] [tML]: 加载程序集: InnoVault (InnoVault) v1.9.101
+[03:54:46.691] [.NET TP Worker/INFO] [tML]: 加载程序集: MagicBuilder (Magic Builder) v1.4.4.12
+[03:54:46.751] [.NET TP Worker/INFO] [tML]: 加载程序集: MEAC (MEAC) v0.3
+[03:54:46.857] [.NET TP Worker/INFO] [tML]: 加载程序集: SubworldLibrary (Subworld Library) v2.3.0.1
+[03:54:46.959] [.NET TP Worker/INFO] [tML]: 加载程序集: WastelandSoulCN (废土魂穿 汉化补丁) v0.1
+[03:54:46.963] [.NET TP Worker/INFO] [tML]: 加载程序集: WastelandSoul (废土魂穿) v0.1
+[03:54:46.991] [.NET TP Worker/INFO] [tML]: 加载程序集: WeaponDisplay (ArmamentDisplay) v1.20.1
+[03:54:47.038] [.NET TP Worker/INFO] [tML]: 初始化……
+[03:54:47.051] [.NET TP Worker/INFO] [tML]: 自动加载中：ModLoader (tModLoader) v2026.8.3.0
+[03:54:47.096] [.NET TP Worker/INFO] [tML]: 自动加载中：BossChecklist (Boss Checklist) v2.2.4
+[03:54:47.139] [.NET TP Worker/WARN] [BossChecklist]: Failed to load icon_small.png. Reason: icon_small.png does not exist.
+[03:54:47.373] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateTime_StartDay(ref bool) added by BossChecklist
+[03:54:47.385] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateTime_StartNight(ref bool) added by BossChecklist
+[03:54:47.410] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::ApplyMusicBox(Item) added by BossChecklist
+[03:54:47.413] [.NET TP Worker/WARN] [tML]: BossChecklist spent 199ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:47.420] [.NET TP Worker/INFO] [tML]: 自动加载中：Census (Census - Town NPC Checklist) v0.5.2.6
+[03:54:47.438] [.NET TP Worker/WARN] [Census]: Failed to load icon_small.png. Reason: icon_small.png does not exist.
+[03:54:47.478] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::UpdateTime_SpawnTownNPCs() added by Census
+[03:54:47.478] [.NET TP Worker/WARN] [tML]: Census spent 11ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:47.478] [.NET TP Worker/INFO] [tML]: 自动加载中：CheatSheet (Cheat Sheet) v0.7.6.1
+[03:54:47.485] [.NET TP Worker/WARN] [CheatSheet]: Failed to load icon_small.png. Reason: icon_small.png does not exist.
+[03:54:47.487] [.NET TP Worker/INFO] [tML]: 自动加载中：SilkyUIFramework (SilkyUI) v0.3.0
+[03:54:47.502] [.NET TP Worker/WARN] [SilkyUIFramework]: Failed to load icon_small.png. Reason: icon_small.png does not exist.
+[03:54:47.508] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawPlayerChatBubbles() added by SilkyUIFramework
+[03:54:47.511] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawInterface(GameTime) added by SilkyUIFramework
+[03:54:47.513] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateUIStates(GameTime) added by SilkyUIFramework
+[03:54:47.527] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawThickCursor(bool) added by SilkyUIFramework
+[03:54:47.629] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DoDraw(GameTime) added by SilkyUIFramework
+[03:54:47.656] [.NET TP Worker/INFO] [tML]: 自动加载中：PropertyPanelLibrary (属性面板PropertyPanel) v0.1.0.1
+[03:54:47.695] [.NET TP Worker/WARN] [tML]: PropertyPanelLibrary spent 29ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:47.696] [.NET TP Worker/INFO] [tML]: 自动加载中：LogSpiralLibrary (错数前置库~LogSpiral's Library) v0.2.0.2
+[03:54:47.751] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.Config.UI.ConfigElement::DrawSelf(SpriteBatch) added by LogSpiralLibrary
+[03:54:47.757] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.UI.UIElement::GetClippingRectangle(SpriteBatch) added by LogSpiralLibrary
+[03:54:47.776] [.NET TP Worker/WARN] [tML]: LogSpiralLibrary.CodeLibrary.DataStructures.SequenceStructures.Contents.MIDI.Core.MIDIPlayer has reference fields (<CurrentScore>k__BackingField, <SequenceModel>k__BackingField) that may not be safe to share between clones.
+[03:54:47.792] [.NET TP Worker/INFO] [tML]: Finding Mods...
+[03:54:47.800] [Main Thread/DEBUG] [tML]: ILHook Terraria.Main::DoDraw(GameTime) added by LogSpiralLibrary
+[03:54:47.819] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Graphics.Effects.FilterManager::EndCapture(RenderTarget2D, RenderTarget2D, RenderTarget2D, Color) added by LogSpiralLibrary
+[03:54:47.824] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawProjectiles() added by LogSpiralLibrary
+[03:54:49.239] [.NET TP Worker/DEBUG] [tML]: Hook SilkyUIFramework.Animation.AnimationTimer::ImmediateCompleted() added by LogSpiralLibrary
+[03:54:49.242] [.NET TP Worker/DEBUG] [tML]: Hook SilkyUIFramework.Animation.AnimationTimer::ImmediateReverseCompleted() added by LogSpiralLibrary
+[03:54:49.243] [.NET TP Worker/WARN] [tML]: LogSpiralLibrary spent 1434ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:49.244] [.NET TP Worker/INFO] [tML]: 自动加载中：CoolerItemVisualEffect (C.I.V.E.) v0.1.20.4
+[03:54:49.302] [.NET TP Worker/WARN] [CoolerItemVisualEffect]: Failed to load icon_small.png. Reason: icon_small.png is not 30x30.
+[03:54:49.344] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::ItemCheck_EmitUseVisuals(Item, Rectangle) added by CoolerItemVisualEffect
+[03:54:49.379] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::ItemCheck_OwnerOnlyCode(ref ItemCheckContext, Item, int, Rectangle) added by CoolerItemVisualEffect
+[03:54:49.390] [.NET TP Worker/DEBUG] [tML]: Assembly Resolve:  -> LogSpiralLibrary.XmlSerializers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null, processorArchitecture=MSIL
+[03:54:49.399] [.NET TP Worker/DEBUG] [tML]: Assembly Resolve: System.Reflection.Metadata, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a -> System.Reflection.Metadata.resources, Version=8.0.0.0, Culture=zh-Hans, PublicKeyToken=b03f5f7f11d50a3a
+[03:54:49.399] [.NET TP Worker/DEBUG] [tML]: Assembly Resolve: System.Reflection.Metadata, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a -> System.Reflection.Metadata.resources, Version=8.0.0.0, Culture=zh, PublicKeyToken=b03f5f7f11d50a3a
+[03:54:49.402] [.NET TP Worker/WARN] [tML]: 静默捕获异常: 
+[03:54:49.404] [.NET TP Worker/WARN] [tML]: 静默捕获异常: 
+[03:54:49.430] [.NET TP Worker/WARN] [tML]: CoolerItemVisualEffect spent 19ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:49.438] [.NET TP Worker/INFO] [tML]: 自动加载中：ImproveGame (Quality of Terraria 更好的体验) v1.8.2
+[03:54:49.567] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.Config.UI.UIModConfig::WrapIt(UIElement, ref int, PropertyFieldWrapper, object, int, object, Type, int) added by ImproveGame
+[03:54:49.571] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.ModLoader.Config.UI.ConfigElement::DrawSelf(SpriteBatch) added by ImproveGame
+[03:54:49.582] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.Config.UI.UIModConfig::OnActivate() added by ImproveGame
+[03:54:49.586] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.Config.UI.UIModConfig::SaveConfig(UIMouseEvent, UIElement) added by ImproveGame
+[03:54:49.593] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::HandleBeingInChestRange() added by ImproveGame
+[03:54:49.602] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::GetItem(int, Item, GetItemSettings) added by ImproveGame
+[03:54:49.607] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::ItemCheck_UseMiningTools_TryHittingWall(Item, int, int) added by ImproveGame
+[03:54:49.608] [.NET TP Worker/WARN] [tML]: ImproveGame.Common.GlobalItems.ImprovePrefixItem has reference fields (Prefixs) that may not be safe to share between clones.
+[03:54:49.611] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.TeleportPylonsSystem::IsPlayerNearAPylon(Player) added by ImproveGame
+[03:54:49.621] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.TeleportPylonsSystem::HandleTeleportRequest(TeleportPylonInfo, int) added by ImproveGame
+[03:54:49.623] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::InInteractionRange(int, int, TileReachCheckSettings) added by ImproveGame
+[03:54:49.645] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.UI.ItemSlot::OverrideLeftClick(Item[], int, int) added by ImproveGame
+[03:54:49.648] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::ApplyItemAnimation(Item) added by ImproveGame
+[03:54:49.663] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Chest::PutItemInNearbyChest(Item, Vector2) added by ImproveGame
+[03:54:49.668] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawInterface_36_Cursor() added by ImproveGame
+[03:54:49.678] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.UI.Elements.UIKeybindingListItem::DrawSelf(SpriteBatch) added by ImproveGame
+[03:54:49.682] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.UI.Elements.UIKeybindingListItem::GenInput(List`1) added by ImproveGame
+[03:54:49.688] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.UI.States.UIManageControls::CreateBindingGroup(int, List`1, InputMode) added by ImproveGame
+[03:54:49.693] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Netplay::StartServer() added by ImproveGame
+[03:54:49.701] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.TimeLogger::NewDrawFrame() added by ImproveGame
+[03:54:49.714] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::PickAmmo(Item, ref int, ref float, ref bool, ref int, ref float, out int, bool) added by ImproveGame
+[03:54:49.716] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::ChooseAmmo(Item) added by ImproveGame
+[03:54:49.719] [.NET TP Worker/INFO] [tML]: JITModsAsync completed in 2674ms
+[03:54:49.723] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::SetDisplayMode(int, int, bool) added by ImproveGame
+[03:54:49.728] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::CheckMonoliths() added by ImproveGame
+[03:54:49.757] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.WorldGen::GrowTree(int, int) added by ImproveGame
+[03:54:49.761] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.WorldGen::GrowPalmTree(int, int) added by ImproveGame
+[03:54:49.762] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.WorldGen::SetGemTreeDrops(int, int, Tile, ref int, ref int) added by ImproveGame
+[03:54:49.765] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::DropTombstone(long, NetworkText, int) added by ImproveGame
+[03:54:49.789] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.UI.ItemSlot::Draw(SpriteBatch, Item[], int, int, Vector2, Color) added by ImproveGame
+[03:54:49.791] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DamageVar(float, int, float) added by ImproveGame
+[03:54:49.801] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.WorldGen::ShakeTree(int, int) added by ImproveGame
+[03:54:49.806] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.WorldGen::GrowAlch(int, int) added by ImproveGame
+[03:54:49.808] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.Drawing.TileDrawing::IsAlchemyPlantHarvestable(int) added by ImproveGame
+[03:54:49.835] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::PlaceThing_Tiles_BlockPlacementForAssortedThings(bool) added by ImproveGame
+[03:54:49.837] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.WorldGen::IsHarvestableHerbWithSeed(int, int) added by ImproveGame
+[03:54:49.840] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.WorldGen::GrowPumpkin(int, int, int) added by ImproveGame
+[03:54:49.857] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.WorldGen::UpdateWorld_GrassGrowth(int, int, int, int, int, int, bool) added by ImproveGame
+[03:54:49.860] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.WorldGen::UnspawnTravelNPC() added by ImproveGame
+[03:54:49.863] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.NPC::CountKillForBannersAndDropThem() added by ImproveGame
+[03:54:50.168] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.NPC::VanillaHitEffect(int, double, bool) added by ImproveGame
+[03:54:50.170] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.NPC::VanillaHitEffect(int, double, bool) added by ImproveGame
+[03:54:50.185] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::UpdateDead() added by ImproveGame
+[03:54:50.190] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.WorldGen::UpdateWorld_Inner() added by ImproveGame
+[03:54:50.195] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.WorldGen::ScoreRoom(int, int) added by ImproveGame
+[03:54:50.196] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.HairstyleUnlocksHelper::ListWarrantsRemake() added by ImproveGame
+[03:54:50.199] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.HairstyleUnlocksHelper::RebuildList() added by ImproveGame
+[03:54:50.226] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::MouseText_DrawItemTooltip_GetLinesInfo(Item, ref int, ref int, float, ref int, String[], Boolean[], Boolean[], String[], out int) added by ImproveGame
+[03:54:50.227] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::ChooseAmmo(Item) added by ImproveGame
+[03:54:50.236] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.UI.ItemSlot::Draw(SpriteBatch, Item[], int, int, Vector2, Color) added by ImproveGame
+[03:54:50.239] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Projectile::GetFishingPondState(int, int, out bool, out bool, out int, out int) added by ImproveGame
+[03:54:50.250] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DoUpdate(ref GameTime) added by ImproveGame
+[03:54:50.252] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::AddBuff_DetermineBuffTimeToAdd(int, int) added by ImproveGame
+[03:54:50.254] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::CheckSpawn(int, int) added by ImproveGame
+[03:54:50.255] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.GameContent.ShopHelper::GetShoppingSettings(Player, NPC) added by ImproveGame
+[03:54:50.258] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DrawInfernoRings() added by ImproveGame
+[03:54:50.260] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Projectile::FishingCheck_ProbeForQuestFish(ref FishingAttempt) added by ImproveGame
+[03:54:50.261] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.PlayerSleepingHelper::DoesPlayerHaveReasonToActUpInBed(Player) added by ImproveGame
+[03:54:50.262] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Graphics.Light.TileLightScanner::LightIsBlocked(Tile) added by ImproveGame
+[03:54:50.264] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::HasUnityPotion() added by ImproveGame
+[03:54:50.265] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::TakeUnityPotion() added by ImproveGame
+[03:54:50.271] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Projectile::ExplodeTiles(Vector2, int, int, int, int, int, bool) added by ImproveGame
+[03:54:50.273] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::UpdateGraveyard(bool) added by ImproveGame
+[03:54:50.279] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateAudio() added by ImproveGame
+[03:54:50.281] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.AmbientWindSystem::Update() added by ImproveGame
+[03:54:50.286] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Graphics.Renderers.LegacyPlayerRenderer::DrawPlayerFull(Camera, Player) added by ImproveGame
+[03:54:50.291] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::AdjTiles() added by ImproveGame
+[03:54:50.293] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Recipe::FindRecipes(bool) added by ImproveGame
+[03:54:50.295] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.WorldGen::moveRoom(int, int, int) added by ImproveGame
+[03:54:50.296] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateTime_SpawnTownNPCs() added by ImproveGame
+[03:54:50.298] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.WorldGen::QuickFindHome(int) added by ImproveGame
+[03:54:50.300] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::GetBestiaryProgressReport() added by ImproveGame
+[03:54:50.304] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::PickTile(int, int, int) added by ImproveGame
+[03:54:50.308] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::ItemCheck_UseMiningTools_ActuallyUseMiningTool(Item, out bool, int, int) added by ImproveGame
+[03:54:50.313] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateWeather(GameTime, int) added by ImproveGame
+[03:54:50.314] [.NET TP Worker/WARN] [tML]: ImproveGame.Content.Items.SelectorItem has reference fields (_syncRunner) that may not be safe to share between clones.
+[03:54:50.315] [.NET TP Worker/WARN] [tML]: ImproveGame.Content.Items.CreateWand has reference fields (_cachedMaterialSources) that may not be safe to share between clones.
+[03:54:50.316] [.NET TP Worker/WARN] [tML]: ImproveGame.Content.Items.LiquidWand has reference fields (CanInfiniteUse, _syncRunner) that may not be safe to share between clones.
+[03:54:50.316] [.NET TP Worker/WARN] [tML]: ImproveGame.Content.Items.SpaceWand has reference fields (_syncRunner) that may not be safe to share between clones.
+[03:54:50.322] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.WorldGen::Pyramid(int, int) added by ImproveGame
+[03:54:50.335] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.Biomes.MarbleBiome::Place(Point, StructureMap) added by ImproveGame
+[03:54:50.337] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.Biomes.GraniteBiome::Place(Point, StructureMap) added by ImproveGame
+[03:54:50.341] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.Biomes.HiveBiome::Place(Point, StructureMap) added by ImproveGame
+[03:54:50.354] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DoDraw(GameTime) added by ImproveGame
+[03:54:50.371] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::UpdateBiomes() added by ImproveGame
+[03:54:50.373] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::TryGetBuffTime(int, out int) added by ImproveGame
+[03:54:50.409] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DrawInventory() added by ImproveGame
+[03:54:50.412] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DrawInterface_Resources_Buffs() added by ImproveGame
+[03:54:50.431] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DrawInventory() added by ImproveGame
+[03:54:50.433] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DrawInterface_Resources_Buffs() added by ImproveGame
+[03:54:50.436] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.NPC::SlimeRainSpawns(int) added by ImproveGame
+[03:54:50.443] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Chest::AskForChestToEatItem(Vector2, int) added by ImproveGame
+[03:54:50.444] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.UI.ItemSlot::SetGlow(int, float, bool) added by ImproveGame
+[03:54:50.449] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.Config.UI.UIModConfigList::PopulateConfigs() added by ImproveGame
+[03:54:50.450] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.MenuLoader::UpdateAndDrawModMenu(SpriteBatch, GameTime, Color, float, float) added by ImproveGame
+[03:54:50.452] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::CanPauseGame() added by ImproveGame
+[03:54:50.454] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.UI.IngameFancyUI::Close() added by ImproveGame
+[03:54:50.456] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.UI.Chat.ItemTagHandler+ItemSnippet::UniqueDraw(bool, out Vector2, SpriteBatch, Vector2, Color, float) added by ImproveGame
+[03:54:50.458] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.UI.Elements.UIPanel::DrawSelf(SpriteBatch) added by ImproveGame
+[03:54:50.462] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.ModLoader.Config.UI.NPCDefinitionOptionElement::DrawSelf(SpriteBatch) added by ImproveGame
+[03:54:50.464] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.ModLoader.Config.UI.BuffDefinitionOptionElement::DrawSelf(SpriteBatch) added by ImproveGame
+[03:54:50.467] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.ModLoader.Config.UI.ProjectileDefinitionOptionElement::DrawSelf(SpriteBatch) added by ImproveGame
+[03:54:50.470] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.ModLoader.Config.UI.ItemDefinitionOptionElement::DrawSelf(SpriteBatch) added by ImproveGame
+[03:54:50.473] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.ModLoader.Config.UI.TileDefinitionOptionElement::DrawSelf(SpriteBatch) added by ImproveGame
+[03:54:50.488] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Recipe::AddToAvailableRecipes(int) added by ImproveGame
+[03:54:50.490] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Recipe::TryRefocusingRecipe(int) added by ImproveGame
+[03:54:50.491] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.NPC::FindFrame() added by ImproveGame
+[03:54:50.492] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawPlayerChatBubbles() added by ImproveGame
+[03:54:50.493] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawInterface(GameTime) added by ImproveGame
+[03:54:50.494] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.UI.UIElement::GetClippingRectangle(SpriteBatch) added by ImproveGame
+[03:54:50.719] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateUIStates(GameTime) added by ImproveGame
+[03:54:50.721] [.NET TP Worker/WARN] [tML]: ImproveGame spent 266ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:50.721] [.NET TP Worker/INFO] [tML]: 自动加载中：InnoVault (InnoVault) v1.9.101
+[03:54:50.861] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DrawMenu(GameTime) added by InnoVault
+[03:54:50.863] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.UI.UIModItem::Draw(SpriteBatch) added by InnoVault
+[03:54:50.866] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.TileLoader::KillMultiTile(int, int, int, int, int) added by InnoVault
+[03:54:50.877] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Graphics.Effects.FilterManager::EndCapture(RenderTarget2D, RenderTarget2D, RenderTarget2D, Color) added by InnoVault
+[03:54:50.896] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawDust() added by InnoVault
+[03:54:50.898] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DoDraw_WallsAndBlacks() added by InnoVault
+[03:54:50.900] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DoDraw_DrawNPCsOverTiles() added by InnoVault
+[03:54:50.901] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Graphics.Renderers.LegacyPlayerRenderer::DrawPlayers(Camera, IEnumerable`1) added by InnoVault
+[03:54:50.902] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawInfernoRings() added by InnoVault
+[03:54:50.905] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Dust::NewDust(Vector2, int, int, int, float, float, int, Color, float) added by InnoVault
+[03:54:50.907] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Dust::NewDustDirect(Vector2, int, int, int, float, float, int, Color, float) added by InnoVault
+[03:54:50.909] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Dust::NewDustPerfect(Vector2, int, Nullable`1, int, Color, float) added by InnoVault
+[03:54:50.930] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Dust::UpdateDust() added by InnoVault
+[03:54:50.931] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawDust() added by InnoVault
+[03:54:50.934] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::Shoot(Item, Player, EntitySource_ItemUse_WithAmmo, Vector2, Vector2, int, int, float, bool) added by InnoVault
+[03:54:50.935] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::ModifyShootStats(Item, Player, ref Vector2, ref Vector2, ref int, ref int, ref float) added by InnoVault
+[03:54:50.937] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::OnHitNPC(Item, Player, NPC, ref HitInfo, int) added by InnoVault
+[03:54:50.939] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::OnHitPvp(Item, Player, Player, HurtInfo) added by InnoVault
+[03:54:50.941] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::ModifyHitNPC(Item, Player, NPC, ref HitModifiers) added by InnoVault
+[03:54:50.942] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::CanUseItem(Item, Player) added by InnoVault
+[03:54:50.944] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::ConsumeItem(Item, Player) added by InnoVault
+[03:54:50.946] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::PreDrawInInventory(Item, SpriteBatch, Vector2, Rectangle, Color, Color, Vector2, float) added by InnoVault
+[03:54:50.948] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::PostDrawInInventory(Item, SpriteBatch, Vector2, Rectangle, Color, Color, Vector2, float) added by InnoVault
+[03:54:50.949] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::UseItem(Item, Player) added by InnoVault
+[03:54:50.951] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::UseAnimation(Item, Player) added by InnoVault
+[03:54:50.953] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::UseStyle(Item, Player, Rectangle) added by InnoVault
+[03:54:50.954] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::UseItemFrame(Item, Player) added by InnoVault
+[03:54:50.956] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::ModifyWeaponCrit(Item, Player, ref float) added by InnoVault
+[03:54:50.958] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::ModifyItemLoot(Item, ItemLoot) added by InnoVault
+[03:54:50.960] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::CanConsumeAmmo(Item, Item, Player) added by InnoVault
+[03:54:50.969] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::ModifyWeaponDamage(Item, Player, ref StatModifier) added by InnoVault
+[03:54:50.972] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::UpdateAccessory(Item, Player, bool) added by InnoVault
+[03:54:50.973] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::AltFunctionUse(Item, Player) added by InnoVault
+[03:54:50.974] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::MeleePrefix(Item) added by InnoVault
+[03:54:50.975] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::RangedPrefix(Item) added by InnoVault
+[03:54:50.977] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::AllowPrefix(Item, int) added by InnoVault
+[03:54:50.980] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ItemLoader::ModifyTooltips(Item, ref int, String[], ref String[], ref Boolean[], ref Boolean[], ref int, out Nullable`1[], int) added by InnoVault
+[03:54:50.982] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Item::get_Name() added by InnoVault
+[03:54:50.983] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Item::AffixName() added by InnoVault
+[03:54:50.985] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Item::Shimmering() added by InnoVault
+[03:54:50.989] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Item::GetShimmered() added by InnoVault
+[03:54:51.018] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::ItemCheck_Shoot(int, Item, int) added by InnoVault
+[03:54:51.043] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::UpdateArmorSets(int) added by InnoVault
+[03:54:51.044] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawMenu(GameTime) added by InnoVault
+[03:54:51.044] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.MenuLoader::UpdateAndDrawModMenu(SpriteBatch, GameTime, Color, float, float) added by InnoVault
+[03:54:51.045] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.UI.Interface::AddMenuButtons(Main, int, String[], Single[], ref int, ref int, ref int, ref int) added by InnoVault
+[03:54:51.048] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::OnHitByItem(NPC, Player, Item, ref HitInfo, int) added by InnoVault
+[03:54:51.050] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::OnHitByProjectile(NPC, Projectile, ref HitInfo, int) added by InnoVault
+[03:54:51.051] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::ModifyIncomingHit(NPC, ref HitModifiers) added by InnoVault
+[03:54:51.053] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::FindFrame(NPC, int) added by InnoVault
+[03:54:51.055] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::SetChatButtons(ref string, ref string) added by InnoVault
+[03:54:51.056] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.NPC::UsesPartyHat() added by InnoVault
+[03:54:51.057] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::UsesPartyHat(NPC) added by InnoVault
+[03:54:51.060] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::NPCAI(NPC) added by InnoVault
+[03:54:51.062] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::PreDraw(NPC, SpriteBatch, Vector2, Color) added by InnoVault
+[03:54:51.063] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::PostDraw(NPC, SpriteBatch, Vector2, Color) added by InnoVault
+[03:54:51.065] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::CheckDead(NPC) added by InnoVault
+[03:54:51.067] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::SpecialOnKill(NPC) added by InnoVault
+[03:54:51.068] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::CheckActive(NPC) added by InnoVault
+[03:54:51.070] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::PreKill(NPC) added by InnoVault
+[03:54:51.071] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawNPCHeadBoss(Entity, byte, float, float, SpriteEffects, int, float, float) added by InnoVault
+[03:54:51.073] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.NPC::GetBossHeadTextureIndex() added by InnoVault
+[03:54:51.074] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.NPC::GetBossHeadRotation() added by InnoVault
+[03:54:51.075] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.NPC::GetBossHeadSpriteEffects() added by InnoVault
+[03:54:51.187] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::Update(int) added by InnoVault
+[03:54:51.188] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Graphics.Renderers.LegacyPlayerRenderer::DrawPlayers(Camera, IEnumerable`1) added by InnoVault
+[03:54:51.191] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.PlayerLoader::ModifyHitNPCWithItem(Player, Item, NPC, ref HitModifiers) added by InnoVault
+[03:54:51.192] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.PlayerLoader::ModifyHitNPCWithProj(Player, Projectile, NPC, ref HitModifiers) added by InnoVault
+[03:54:51.194] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.PlayerLoader::OnHitNPC(Player, NPC, ref HitInfo, int) added by InnoVault
+[03:54:51.195] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::GiveImmuneTimeForCollisionAttack(int) added by InnoVault
+[03:54:51.198] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::Hurt(PlayerDeathReason, int, int, out HurtInfo, bool, bool, int, bool, float, float, float) added by InnoVault
+[03:54:51.200] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.PlayerLoader::PreKill(Player, double, int, bool, ref bool, ref bool, ref PlayerDeathReason) added by InnoVault
+[03:54:51.201] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::ItemCheck_EmitUseVisuals(Item, Rectangle) added by InnoVault
+[03:54:51.202] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ProjectileLoader::ProjectileAI(Projectile) added by InnoVault
+[03:54:51.204] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ProjectileLoader::PreDraw(Projectile, ref Color) added by InnoVault
+[03:54:51.206] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ProjectileLoader::PostDraw(Projectile, Color) added by InnoVault
+[03:54:51.207] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.ProjectileLoader::GrappleCanLatchOnTo(Projectile, Player, int, int) added by InnoVault
+[03:54:51.216] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateAudio_DecideOnTOWMusic() added by InnoVault
+[03:54:51.225] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateAudio_DecideOnNewMusic() added by InnoVault
+[03:54:51.227] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateAudio() added by InnoVault
+[03:54:51.229] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.TileLoader::RightClick(int, int) added by InnoVault
+[03:54:51.230] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DoDraw_WallsAndBlacks() added by InnoVault
+[03:54:51.234] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Collision::TileCollision(Vector2, Vector2, int, int, bool, bool, int) added by InnoVault
+[03:54:51.237] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Collision::SolidCollision(Vector2, int, int) added by InnoVault
+[03:54:51.239] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Collision::SolidCollision(Vector2, int, int, bool) added by InnoVault
+[03:54:51.240] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Collision::SolidTiles(Vector2, int, int) added by InnoVault
+[03:54:51.241] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Collision::SolidTiles(Vector2, int, int, bool) added by InnoVault
+[03:54:51.244] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.BossBarLoader::GotoSavedStyle() added by InnoVault
+[03:54:51.245] [.NET TP Worker/WARN] [tML]: InnoVault spent 27ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:51.245] [.NET TP Worker/INFO] [tML]: 自动加载中：MagicBuilder (Magic Builder) v1.4.4.12
+[03:54:51.252] [.NET TP Worker/WARN] [MagicBuilder]: Failed to load icon_small.png. Reason: icon_small.png does not exist.
+[03:54:51.253] [.NET TP Worker/WARN] [tML]: MagicBuilder.Items.Item has reference fields (theme, structure) that may not be safe to share between clones.
+[03:54:51.254] [.NET TP Worker/INFO] [tML]: 自动加载中：MEAC (MEAC) v0.3
+[03:54:51.268] [.NET TP Worker/WARN] [MEAC]: Failed to load icon_small.png. Reason: icon_small.png does not exist.
+[03:54:51.274] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.ModLoader.NPCLoader::NPCAI(NPC) added by MEAC
+[03:54:51.276] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Graphics.Effects.FilterManager::EndCapture(RenderTarget2D, RenderTarget2D, RenderTarget2D, Color) added by MEAC
+[03:54:51.283] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawInterface(GameTime) added by MEAC
+[03:54:51.285] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateAudio_DecideOnNewMusic() added by MEAC
+[03:54:51.285] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::UpdateAudio() added by MEAC
+[03:54:51.286] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawProjectiles() added by MEAC
+[03:54:51.289] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Projectile::UpdateEnchantmentVisuals() added by MEAC
+[03:54:51.290] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::DrawInfernoRings() added by MEAC
+[03:54:51.291] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Main::SetDisplayMode(int, int, bool) added by MEAC
+[03:54:51.291] [.NET TP Worker/WARN] [tML]: MEAC spent 11ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:51.291] [.NET TP Worker/INFO] [tML]: 自动加载中：SubworldLibrary (Subworld Library) v2.3.0.1
+[03:54:51.326] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.WorldGen::clearWorld() added by SubworldLibrary
+[03:54:51.341] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DoUpdateInWorld(Stopwatch) added by SubworldLibrary
+[03:54:51.342] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.WorldGen::UpdateWorld() added by SubworldLibrary
+[03:54:51.408] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::Update(int) added by SubworldLibrary
+[03:54:51.418] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.NPC::UpdateNPC_UpdateGravity() added by SubworldLibrary
+[03:54:51.431] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Liquid::Update() added by SubworldLibrary
+[03:54:51.433] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::SavePlayer(PlayerFileData, bool) added by SubworldLibrary
+[03:54:51.434] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.IO.WorldFile::SaveWorld(bool, bool) added by SubworldLibrary
+[03:54:51.447] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DoDraw(GameTime) added by SubworldLibrary
+[03:54:51.477] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DrawBackground() added by SubworldLibrary
+[03:54:51.498] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::OldDrawBackground() added by SubworldLibrary
+[03:54:51.503] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::UpdateAudio() added by SubworldLibrary
+[03:54:51.537] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.IngameOptions::Draw(Main, SpriteBatch) added by SubworldLibrary
+[03:54:51.539] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Graphics.Light.TileLightScanner::GetTileLight(int, int, out Vector3) added by SubworldLibrary
+[03:54:51.549] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::UpdateBiomes() added by SubworldLibrary
+[03:54:51.551] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DrawUnderworldBackground(bool) added by SubworldLibrary
+[03:54:51.554] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Netplay::AddCurrentServerToRecentList() added by SubworldLibrary
+[03:54:51.556] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::EraseWorld(int) added by SubworldLibrary
+[03:54:51.556] [.NET TP Worker/WARN] [tML]: SubworldLibrary spent 25ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:51.556] [.NET TP Worker/INFO] [tML]: 自动加载中：WastelandSoulCN (废土魂穿 汉化补丁) v0.1
+[03:54:51.592] [.NET TP Worker/WARN] [tML]: WastelandSoulCN spent 28ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:51.592] [.NET TP Worker/INFO] [tML]: 自动加载中：WastelandSoul (废土魂穿) v0.1
+[03:54:51.636] [.NET TP Worker/WARN] [tML]: WastelandSoul spent 24ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:51.636] [.NET TP Worker/INFO] [tML]: 自动加载中：WeaponDisplay (ArmamentDisplay) v1.20.1
+[03:54:51.652] [.NET TP Worker/WARN] [WeaponDisplay]: Failed to load icon_small.png. Reason: icon_small.png does not exist.
+[03:54:51.655] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::ItemCheck_MeleeHitNPCs(Item, Rectangle, int, float) added by WeaponDisplay
+[03:54:51.658] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.Player::ItemCheck_ManageRightClickFeatures_ShieldRaise(bool) added by WeaponDisplay
+[03:54:51.670] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.DataStructures.PlayerDrawLayers::DrawPlayer_27_HeldItem(ref PlayerDrawSet) added by WeaponDisplay
+[03:54:51.670] [.NET TP Worker/INFO] [tML]: 增容中……
+[03:54:52.157] [.NET TP Worker/INFO] [tML]: 特殊调整内容：ModLoader (tModLoader) v2026.8.3.0
+[03:54:52.160] [.NET TP Worker/INFO] [tML]: 特殊调整内容：BossChecklist (Boss Checklist) v2.2.4
+[03:54:52.160] [.NET TP Worker/INFO] [tML]: 特殊调整内容：Census (Census - Town NPC Checklist) v0.5.2.6
+[03:54:52.160] [.NET TP Worker/INFO] [tML]: 特殊调整内容：CheatSheet (Cheat Sheet) v0.7.6.1
+[03:54:52.161] [.NET TP Worker/INFO] [tML]: 特殊调整内容：SilkyUIFramework (SilkyUI) v0.3.0
+[03:54:52.161] [.NET TP Worker/INFO] [tML]: 特殊调整内容：PropertyPanelLibrary (属性面板PropertyPanel) v0.1.0.1
+[03:54:52.161] [.NET TP Worker/INFO] [tML]: 特殊调整内容：LogSpiralLibrary (错数前置库~LogSpiral's Library) v0.2.0.2
+[03:54:52.162] [.NET TP Worker/INFO] [tML]: 特殊调整内容：CoolerItemVisualEffect (C.I.V.E.) v0.1.20.4
+[03:54:52.162] [.NET TP Worker/INFO] [tML]: 特殊调整内容：ImproveGame (更好的体验) v1.8.2
+[03:54:52.164] [.NET TP Worker/INFO] [tML]: 特殊调整内容：InnoVault (InnoVault) v1.9.101
+[03:54:52.166] [.NET TP Worker/INFO] [tML]: 特殊调整内容：MagicBuilder (Magic Builder) v1.4.4.12
+[03:54:52.167] [.NET TP Worker/INFO] [tML]: 特殊调整内容：MEAC (MEAC) v0.3
+[03:54:52.186] [.NET TP Worker/INFO] [tML]: 特殊调整内容：SubworldLibrary (Subworld Library) v2.3.0.1
+[03:54:52.186] [.NET TP Worker/INFO] [tML]: 特殊调整内容：WastelandSoulCN (废土魂穿 汉化补丁) v0.1
+[03:54:52.187] [.NET TP Worker/INFO] [tML]: 特殊调整内容：WastelandSoul (废土魂穿) v0.1
+[03:54:52.215] [.NET TP Worker/INFO] [tML]: 特殊调整内容：WeaponDisplay (ArmamentDisplay) v1.20.1
+[03:54:52.269] [.NET TP Worker/INFO] [tML]: 完成最后步骤：ModLoader (tModLoader) v2026.8.3.0
+[03:54:52.272] [.NET TP Worker/INFO] [tML]: 完成最后步骤：BossChecklist (Boss Checklist) v2.2.4
+[03:54:52.274] [.NET TP Worker/INFO] [tML]: 完成最后步骤：Census (Census - Town NPC Checklist) v0.5.2.6
+[03:54:52.276] [.NET TP Worker/INFO] [tML]: 完成最后步骤：CheatSheet (Cheat Sheet) v0.7.6.1
+[03:54:52.285] [.NET TP Worker/INFO] [tML]: 完成最后步骤：SilkyUIFramework (SilkyUI) v0.3.0
+[03:54:52.289] [.NET TP Worker/INFO] [tML]: 完成最后步骤：PropertyPanelLibrary (属性面板PropertyPanel) v0.1.0.1
+[03:54:52.291] [.NET TP Worker/INFO] [tML]: 完成最后步骤：LogSpiralLibrary (错数前置库~LogSpiral's Library) v0.2.0.2
+[03:54:52.315] [.NET TP Worker/INFO] [tML]: 完成最后步骤：CoolerItemVisualEffect (C.I.V.E.) v0.1.20.4
+[03:54:52.470] [.NET TP Worker/WARN] [tML]: CoolerItemVisualEffect spent 151ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:52.471] [.NET TP Worker/INFO] [tML]: 完成最后步骤：ImproveGame (更好的体验) v1.8.2
+[03:54:52.479] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.Bestiary.CommonEnemyUICollectionInfoProvider::GetEntryUICollectionInfo() added by ImproveGame
+[03:54:52.480] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.Bestiary.CritterUICollectionInfoProvider::GetEntryUICollectionInfo() added by ImproveGame
+[03:54:52.482] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.Bestiary.GoldCritterUICollectionInfoProvider::GetEntryUICollectionInfo() added by ImproveGame
+[03:54:52.483] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.Bestiary.HighestOfMultipleUICollectionInfoProvider::GetEntryUICollectionInfo() added by ImproveGame
+[03:54:52.484] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.Bestiary.SalamanderShellyDadUICollectionInfoProvider::GetEntryUICollectionInfo() added by ImproveGame
+[03:54:52.485] [.NET TP Worker/DEBUG] [tML]: Hook Terraria.GameContent.Bestiary.TownNPCUICollectionInfoProvider::GetEntryUICollectionInfo() added by ImproveGame
+[03:54:52.526] [.NET TP Worker/WARN] [tML]: ImproveGame spent 37ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:52.526] [.NET TP Worker/INFO] [tML]: 完成最后步骤：InnoVault (InnoVault) v1.9.101
+[03:54:52.538] [.NET TP Worker/DEBUG] [InnoVault]: Registered custom asset loader: InnoVault.Models3D.Runtime.Model3DLoadenHandle
+[03:54:52.818] [.NET TP Worker/INFO] [tML]: 完成最后步骤：MagicBuilder (Magic Builder) v1.4.4.12
+[03:54:52.820] [.NET TP Worker/INFO] [tML]: 完成最后步骤：MEAC (MEAC) v0.3
+[03:54:52.821] [.NET TP Worker/INFO] [tML]: 完成最后步骤：SubworldLibrary (Subworld Library) v2.3.0.1
+[03:54:52.823] [.NET TP Worker/INFO] [tML]: 完成最后步骤：WastelandSoulCN (废土魂穿 汉化补丁) v0.1
+[03:54:52.835] [.NET TP Worker/INFO] [tML]: 完成最后步骤：WastelandSoul (废土魂穿) v0.1
+[03:54:52.837] [.NET TP Worker/INFO] [tML]: 完成最后步骤：WeaponDisplay (ArmamentDisplay) v1.20.1
+[03:54:52.841] [.NET TP Worker/INFO] [tML]: Mods using the most RAM: LogSpiralLibrary 141.1 MB, WastelandSoul 37.6 MB, ImproveGame 37.5 MB
+[03:54:52.852] [.NET TP Worker/INFO] [tML]: RAM physical: tModLoader usage: 1.2 GB, All processes usage: 15.0 GB, Available: 8.7 GB, Total Installed: 23.7 GB
+[03:54:52.853] [.NET TP Worker/INFO] [tML]: RAM virtual: tModLoader usage: 2.8 GB, All processes usage: 14.5 GB
+[03:54:52.907] [.NET TP Worker/DEBUG] [tML]: GlobalItem registration stats. Count: 35, Slots per Entity: 9
+[03:54:52.927] [.NET TP Worker/DEBUG] [tML]: GlobalNPC registration stats. Count: 17, Slots per Entity: 7
+[03:54:52.940] [.NET TP Worker/DEBUG] [tML]: GlobalProjectile registration stats. Count: 6, Slots per Entity: 4
+[03:54:53.021] [.NET TP Worker/INFO] [tML]: 添加合成配方……
+[03:54:53.082] [.NET TP Worker/INFO] [BossChecklist]: BossChecklist (v2.0.0)最近更新了Boss日志的Mod调用. 查看GitHub Wiki指南以了解最近的改动! 已更新的BossChecklist的Mod.Call文档在此处: https://github.com/JavidPack/BossChecklist/wiki/[1.4.4]-Boss-Log-Entry-Mod-Call
+[03:54:53.082] [.NET TP Worker/INFO] [BossChecklist]: BossChecklist v1.4.0最近更新了原版条目的进度值
+[03:54:53.082] [.NET TP Worker/INFO] [BossChecklist]: Boss日志的集成信息将不会被记录.
+[03:54:54.167] [.NET TP Worker/INFO] [tML]: Finding Mods...
+[03:54:54.176] [.NET TP Worker/INFO] [tML]: Mod Load Completed in 9059ms
+[03:54:54.202] [Main Thread/DEBUG] [tML]: Web Request: https://api.steampowered.com/ISteamNews/GetNewsForApp/v2/?appid=1281930&count=1&feeds=steam_community_announcements
+[03:54:54.206] [.NET TP Worker/DEBUG] [tML]: Web Request: http://127.0.0.1:7892/
+[03:55:24.391] [Main Thread/INFO] [BossChecklist]: Log.Indicator.ProgressionMode
+[03:55:28.801] [.NET TP Worker/INFO] [Terraria]: Loading World: 不满的人类壶穴, IsCloud=False, Width: 4200, Height: 1200, Evil: 0, GameMode: 0
+[03:55:28.811] [.NET TP Worker/INFO] [StatusText]: 正在加载世界数据：
+[03:55:29.003] [.NET TP Worker/INFO] [StatusText]: 正在安置液体
+[03:55:29.271] [.NET TP Worker/INFO] [StatusText]: 正在加载地图数据：
+[03:55:29.292] [.NET TP Worker/INFO] [StatusText]: 正在绘制地图：
+[03:55:29.326] [Main Thread/INFO] [Terraria]: Entering world with player: 111, IsCloud=False, Width: 4200, Height: 1200, Evil: 0, GameMode: 0
+[03:55:29.660] [Main Thread/INFO] [WastelandSoul]: [WastelandSoul] 3D 探针加载成功：Wasteland3DProbe｜4 个网格分组 / 264 顶点 / 132 三角形 / 6 个材质 / 骨骼=0 / 动画=0
+[03:56:09.210] [.NET TP Worker/DEBUG] [tML]: Assembly Resolve: System.Net.Sockets, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a -> System.Net.Sockets.resources, Version=8.0.0.0, Culture=zh-CN, PublicKeyToken=b03f5f7f11d50a3a
+[03:56:09.210] [.NET TP Worker/DEBUG] [tML]: Assembly Resolve: System.Net.Sockets, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a -> System.Net.Sockets.resources, Version=8.0.0.0, Culture=zh-Hans, PublicKeyToken=b03f5f7f11d50a3a
+[03:56:09.210] [.NET TP Worker/DEBUG] [tML]: Assembly Resolve: System.Net.Sockets, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a -> System.Net.Sockets.resources, Version=8.0.0.0, Culture=zh, PublicKeyToken=b03f5f7f11d50a3a
+[03:56:11.644] [.NET TP Worker/INFO] [StatusText]: 正在保存地图数据：
+[03:56:11.709] [.NET TP Worker/INFO] [StatusText]: 正在备份玩家文件……
+[03:56:11.849] [.NET TP Worker/INFO] [StatusText]: 正在保存世界数据：
+[03:56:11.900] [.NET TP Worker/INFO] [StatusText]: 正在验证世界保存数据：
+[03:56:11.921] [.NET TP Worker/INFO] [StatusText]: 正在备份世界文件
+[03:56:11.927] [.NET TP Worker/INFO] [StatusText]: 保存修改后的世界数据
+[03:56:12.173] [.NET TP Worker/INFO] [StatusText]: 正在清除地图数据：
+[03:56:12.250] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉] 本次进入：本机首次生成
+[03:56:12.250] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 已注册 6 个生成步骤（世界 900x1300）
+[03:56:12.254] [Main Thread/INFO] [Terraria]: Entering world with player: 111, IsCloud=False, Width: 900, Height: 1300, Evil: 0, GameMode: 0
+[03:56:12.385] [Main Thread/WARN] [LogSpiralLibrary]: Already registered the factory named CoolerItemVisualEffect:MeleeModify_0
+[03:56:12.405] [Main Thread/INFO] [WastelandSoul]: FireplaceEntrySystem: 壁炉是本存档首次生成，1.5 秒后自动补一次「出去再进来」
+[03:56:13.772] [.NET TP Worker/INFO] [StatusText]: 正在备份玩家文件……
+[03:56:13.802] [.NET TP Worker/INFO] [StatusText]: 正在清除地图数据：
+[03:56:13.864] [.NET TP Worker/INFO] [StatusText]: 正在加载世界数据：
+[03:56:13.996] [.NET TP Worker/INFO] [StatusText]: 正在安置液体
+[03:56:14.074] [.NET TP Worker/INFO] [StatusText]: 正在加载地图数据：
+[03:56:14.081] [.NET TP Worker/INFO] [StatusText]: 正在绘制地图：
+[03:56:14.103] [Main Thread/INFO] [Terraria]: Entering world with player: 111, IsCloud=False, Width: 4200, Height: 1200, Evil: 0, GameMode: 0
+[03:56:14.228] [Main Thread/WARN] [LogSpiralLibrary]: Already registered the factory named CoolerItemVisualEffect:MeleeModify_0
+[03:56:15.105] [.NET TP Worker/INFO] [StatusText]: 正在保存地图数据：
+[03:56:15.160] [.NET TP Worker/INFO] [StatusText]: 正在备份玩家文件……
+[03:56:15.229] [.NET TP Worker/INFO] [StatusText]: 正在保存世界数据：
+[03:56:15.277] [.NET TP Worker/INFO] [StatusText]: 正在验证世界保存数据：
+[03:56:15.289] [.NET TP Worker/INFO] [StatusText]: 正在备份世界文件
+[03:56:15.294] [.NET TP Worker/INFO] [StatusText]: 保存修改后的世界数据
+[03:56:15.491] [.NET TP Worker/INFO] [StatusText]: 正在清除地图数据：
+[03:56:15.556] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 1 1/6 灰烬原野 开始：世界 900x1300（布局期望 900x1300）
+[03:56:17.436] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 灰烬草地表 695 列
+[03:56:17.444] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 地表碎石 70 处
+[03:56:17.444] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 灰烬树 0 棵
+[03:56:17.647] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 自然矿洞 121 处
+[03:56:17.651] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 矿道 1 条
+[03:56:17.651] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 2 2/6 壁炉堡垒 开始：世界 900x1300（布局期望 900x1300）
+[03:56:18.106] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 3 3/6 祈塔 开始：世界 900x1300（布局期望 900x1300）
+[03:56:18.161] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 4 4/6 地下通道 开始：世界 900x1300（布局期望 900x1300）
+[03:56:18.306] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 5 5/6 椭球地宫 开始：世界 900x1300（布局期望 900x1300）
+[03:56:18.549] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 地宫照明：火把 50、吊灯 21、书架 0、藤蔓 0 格
+[03:56:18.549] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 地宫：房间 7 间，椭球 744x264 @ (450, 1150)，壳厚 5
+[03:56:18.549] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 5 5/6 椭球地宫 完成：累计写入 1157219 格
+[03:56:18.549] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 6 6/6 收尾 开始：世界 900x1300（布局期望 900x1300）
+[03:56:19.740] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 全部完成：累计写入 1157219 格；出生点 (400, 650)；worldSurface=840
+[03:56:19.740] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉] 本次进入：本机首次生成
+[03:56:19.740] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 已注册 6 个生成步骤（世界 900x1300）
+[03:56:19.753] [Main Thread/INFO] [Terraria]: Entering world with player: 111, IsCloud=False, Width: 900, Height: 1300, Evil: 0, GameMode: 0
+[03:56:19.878] [Main Thread/WARN] [LogSpiralLibrary]: Already registered the factory named CoolerItemVisualEffect:MeleeModify_0
+[03:56:19.902] [Main Thread/INFO] [WastelandSoul]: FireplaceEntrySystem: 已重新进入壁炉，本次收尾完成
+[03:56:29.878] [.NET TP Worker/ERROR] [InnoVault]: [LoadWorldTileProcessor] The waiting for VaultSave.LoadenWorld to complete has timed out.
+[04:03:52.589] [.NET TP Worker/INFO] [StatusText]: 正在备份玩家文件……
+[04:03:52.610] [.NET TP Worker/INFO] [StatusText]: 正在清除地图数据：
+[04:03:52.690] [.NET TP Worker/INFO] [StatusText]: 正在加载世界数据：
+[04:03:52.820] [.NET TP Worker/INFO] [StatusText]: 正在安置液体
+[04:03:52.895] [.NET TP Worker/INFO] [StatusText]: 正在加载地图数据：
+[04:03:52.901] [.NET TP Worker/INFO] [StatusText]: 正在绘制地图：
+[04:03:52.921] [Main Thread/INFO] [Terraria]: Entering world with player: 111, IsCloud=False, Width: 4200, Height: 1200, Evil: 0, GameMode: 0
+[04:03:53.062] [Main Thread/WARN] [LogSpiralLibrary]: Already registered the factory named CoolerItemVisualEffect:MeleeModify_0
+[04:03:54.655] [.NET TP Worker/INFO] [StatusText]: 正在保存地图数据：
+[04:03:54.707] [.NET TP Worker/INFO] [StatusText]: 正在备份玩家文件……
+[04:03:54.772] [.NET TP Worker/INFO] [StatusText]: 正在保存世界数据：
+[04:03:54.820] [.NET TP Worker/INFO] [StatusText]: 正在验证世界保存数据：
+[04:03:54.832] [.NET TP Worker/INFO] [StatusText]: 正在备份世界文件
+[04:03:54.839] [.NET TP Worker/INFO] [StatusText]: 保存修改后的世界数据
+[04:03:55.717] [Main Thread/DEBUG] [TerrariaSteamClient]: Send: shutdown

@@ -1,0 +1,3 @@
+Terraria.Projectile::Kill  @IL_26D14  call Terraria.WorldGen::BlockBelowMakesSandFall
+Terraria.WorldGen::TileFrame  @IL_8206  call Terraria.WorldGen::SpawnFallingBlockProjectile
+Terraria.WorldGen::SpawnFallingBlockProjectile  @IL_002A  call Terraria.WorldGen::BlockBelowMakesSandFall

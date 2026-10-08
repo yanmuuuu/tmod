@@ -1,0 +1,2243 @@
+﻿TYPE Terraria.Main : Microsoft.Xna.Framework.Game
+  FIELD private static System.String versionStringBecauseTheyreTheSame
+  FIELD public static System.Int32 curRelease
+  FIELD public static System.String assemblyVersionNumber
+  FIELD public static System.String copyrightText
+  FIELD public static System.UInt64 WorldGeneratorVersion
+  FIELD public static System.Int32 mapDelay
+  FIELD public static ReLogic.Content.IAssetRepository Assets
+  FIELD public static Terraria.GameContent.AssetSourceController AssetSourceController
+  FIELD private System.Boolean modreq(System.Runtime.CompilerServices.IsVolatile) _musicLoaded
+  FIELD private System.Boolean modreq(System.Runtime.CompilerServices.IsVolatile) _artLoaded
+  FIELD private System.Boolean modreq(System.Runtime.CompilerServices.IsVolatile) _begunMainAsyncLoad
+  FIELD public static System.Int32 CurrentDrawnEntityShader
+  FIELD public static Terraria.Entity CurrentDrawnEntity
+  FIELD private static System.Boolean GameAskedToQuit
+  FIELD public static System.Single ForcedMinimumZoom
+  FIELD public static Terraria.Graphics.SpriteViewMatrix GameViewMatrix
+  FIELD public static Terraria.Graphics.SpriteViewMatrix BackgroundViewMatrix
+  FIELD private static Microsoft.Xna.Framework.Matrix _currentWantedZoomMatrix
+  FIELD private static Microsoft.Xna.Framework.Matrix _uiScaleMatrix
+  FIELD private static System.Single _uiScaleWanted
+  FIELD private static System.Single _uiScaleUsed
+  FIELD public static System.Single GameZoomTarget
+  FIELD public static System.Boolean LightingEveryFrame
+  FIELD public static System.Boolean SettingsUnlock_WorldEvil
+  FIELD public static System.Boolean SettingsEnabled_MinersWobble
+  FIELD public static System.Boolean SettingsEnabled_AutoReuseAllItems
+  FIELD public static System.Boolean SettingBlockGamepadsEntirely
+  FIELD public static System.Boolean SettingDontScaleMainMenuUp
+  FIELD public static System.Boolean SettingsEnabled_OpaqueBoxBehindTooltips
+  FIELD public static System.Boolean SettingMusicReplayDelayEnabled
+  FIELD public static System.Boolean HidePassword
+  FIELD public static System.Boolean ReversedUpDownArmorSetBonuses
+  FIELD public static Microsoft.Xna.Framework.Color MouseBorderColor
+  FIELD public static System.Boolean MouseShowBuildingGrid
+  FIELD public static System.Boolean AllowUnfocusedInputOnGamepad
+  FIELD public static System.Boolean InvisibleCursorForGamepad
+  FIELD public static System.Boolean GamepadDisableCursorItemIconInner
+  FIELD public static System.Boolean GamepadDisableInstructionsDisplay
+  FIELD public static System.Boolean CrouchingEnabled
+  FIELD private static Terraria.GameContent.GameNotificationType _flashNotificationType
+  FIELD public static System.Single MouseBuildingGridAlpha
+  FIELD public static System.Boolean CaptureModeDisabled
+  FIELD public System.Boolean unityMouseOver
+  FIELD public static Terraria.Main instance
+  FIELD public static ReLogic.Peripherals.RGB.ChromaEngine Chroma
+  FIELD public static Terraria.GameContent.ChromaHotkeyPainter ChromaPainter
+  FIELD public static Terraria.Graphics.Camera Camera
+  FIELD public static Terraria.Graphics.Renderers.IPlayerRenderer PlayerRenderer
+  FIELD public static Terraria.Graphics.Renderers.IPlayerRenderer PotionOfReturnRenderer
+  FIELD public static Terraria.Graphics.Renderers.MapHeadRenderer MapPlayerRenderer
+  FIELD public static Terraria.Graphics.Renderers.NPCHeadRenderer TownNPCHeadRenderer
+  FIELD public static Terraria.Graphics.Renderers.NPCHeadRenderer BossNPCHeadRenderer
+  FIELD public static System.Collections.Generic.List`1<Terraria.DataStructures.TitleLinkButton> TitleLinks
+  FIELD public static System.String versionNumber
+  FIELD public static System.String versionNumber2
+  FIELD public static System.Boolean AnnouncementBoxDisabled
+  FIELD public static System.Int32 AnnouncementBoxRange
+  FIELD public static System.String AutogenSeedName
+  FIELD private static Terraria.DataStructures.GameModeData _currentGameModeInfo
+  FIELD public static System.Collections.Generic.Dictionary`2<System.Int32,Terraria.DataStructures.GameModeData> RegisteredGameModes
+  FIELD private static System.Nullable`1<System.Boolean> _overrideForExpertMode
+  FIELD private static System.Nullable`1<System.Boolean> _overrideForMasterMode
+  FIELD public static System.Boolean drunkWorld
+  FIELD public static System.Boolean getGoodWorld
+  FIELD public static System.Boolean tenthAnniversaryWorld
+  FIELD public static System.Boolean dontStarveWorld
+  FIELD public static System.Boolean notTheBeesWorld
+  FIELD public static System.Boolean remixWorld
+  FIELD public static System.Boolean noTrapsWorld
+  FIELD public static System.Boolean zenithWorld
+  FIELD public static Microsoft.Xna.Framework.Vector2 destroyerHB
+  FIELD public static Terraria.IO.FavoritesFile LocalFavoriteData
+  FIELD public static Terraria.IO.FavoritesFile CloudFavoritesData
+  FIELD public static Terraria.IO.FileMetadata WorldFileMetadata
+  FIELD public static Terraria.IO.FileMetadata MapFileMetadata
+  FIELD public static Terraria.Map.PingMapLayer Pings
+  FIELD public static Terraria.Map.MapIconOverlay MapIcons
+  FIELD public static Terraria.GameContent.Creative.CreativeUI CreativeMenu
+  FIELD private static Microsoft.Xna.Framework.Vector2 _lastPingMousePosition
+  FIELD private static System.Double _lastPingMouseDownTime
+  FIELD private Terraria.Achievements.AchievementManager _achievements
+  FIELD private Terraria.UI.AchievementAdvisor _achievementAdvisor
+  FIELD public static Terraria.GameContent.UI.BigProgressBar.BigProgressBarSystem BigBossProgressBar
+  FIELD public static Terraria.UI.UserInterface MenuUI
+  FIELD public static Terraria.UI.UserInterface InGameUI
+  FIELD private static Terraria.Main/OnPlayerSelected _pendingCharacterSelect
+  FIELD public static System.Boolean drawBackGore
+  FIELD public static System.UInt64 LobbyId
+  FIELD private static Microsoft.Xna.Framework.Color[] _mapColorCacheArray
+  FIELD public Terraria.WaterfallManager waterfallManager
+  FIELD public static Terraria.WorldSections sectionManager
+  FIELD public static System.Boolean ServerSideCharacter
+  FIELD public static System.String clientUUID
+  FIELD public static System.Boolean ContentLoaded
+  FIELD private static System.Int32 toolTipDistance
+  FIELD public static System.Single GlobalTimeWrappedHourly
+  FIELD public static System.Boolean GlobalTimerPaused
+  FIELD public static Microsoft.Xna.Framework.GameTime gameTimeCache
+  FIELD public static System.UInt64 TileFrameSeed
+  FIELD private static System.UInt64 _drawCycleCounter
+  FIELD public static Microsoft.Xna.Framework.Content.ContentManager ShaderContentManager
+  FIELD public static Terraria.Ref`1<Microsoft.Xna.Framework.Graphics.Effect> ScreenShaderRef
+  FIELD public static Terraria.Ref`1<Microsoft.Xna.Framework.Graphics.Effect> PixelShaderRef
+  FIELD public static Terraria.Ref`1<Microsoft.Xna.Framework.Graphics.Effect> TileShaderRef
+  FIELD public static Terraria.Ref`1<Microsoft.Xna.Framework.Graphics.Effect> VertexPixelShaderRef
+  FIELD public static System.Int32 WaveQuality
+  FIELD public static System.Boolean UseStormEffects
+  FIELD public static System.Boolean UseHeatDistortion
+  FIELD public static System.Collections.Generic.List`1<System.Collections.IEnumerator> DelayedProcesses
+  FIELD public static System.Int32 npcStreamSpeed
+  FIELD public static System.Int32 musicError
+  FIELD public static System.Boolean dedServFPS
+  FIELD public static System.Int32 dedServCount1
+  FIELD public static System.Int32 dedServCount2
+  FIELD public static System.Boolean superFast
+  FIELD public static readonly System.Int32 offLimitBorderTiles
+  FIELD public static readonly System.Int32 maxMusic
+  FIELD public static System.Int32 MaxBannerTypes
+  FIELD public static readonly System.Int32 maxBackgrounds
+  FIELD public static System.Int32 MaxShopIDs
+  FIELD private static System.Single cameraLerp
+  FIELD private static System.Int32 cameraLerpTimer
+  FIELD private static System.Int32 cameraLerpTimeToggle
+  FIELD private static System.Boolean cameraGamePadLerp
+  FIELD public static Microsoft.Xna.Framework.Vector2[] OffsetsNPCOffhand
+  FIELD public static Microsoft.Xna.Framework.Vector2[] OffsetsPlayerOffhand
+  FIELD public static Microsoft.Xna.Framework.Vector2[] OffsetsPlayerOnhand
+  FIELD public static Microsoft.Xna.Framework.Vector2[] OffsetsPlayerHeadgear
+  FIELD public static Microsoft.Xna.Framework.Vector2 CurrentPan
+  FIELD public static System.Single sunCircle
+  FIELD public static System.Int32 BlackFadeIn
+  FIELD public static System.Boolean noWindowBorder
+  FIELD public static Microsoft.Xna.Framework.Graphics.RasterizerState Rasterizer
+  FIELD private System.String _cachedTitle
+  FIELD public static System.Int32 undergroundBackground
+  FIELD public static System.Int32 oldUndergroundBackground
+  FIELD public static System.Boolean skipMenu
+  FIELD public static System.Boolean verboseNetplay
+  FIELD public static System.Boolean stopTimeOuts
+  FIELD public static System.Boolean showSpam
+  FIELD public static System.Boolean showItemOwner
+  FIELD public static System.Boolean[] townNPCCanSpawn
+  FIELD public static System.Int32 musicBox2
+  FIELD public static System.Int32 musicBoxNotModifiedByVolume
+  FIELD public static System.Byte HealthBarDrawSettings
+  FIELD public static System.Boolean runningCollectorsEdition
+  FIELD public static System.Single wFrCounter
+  FIELD public static System.Single wFrame
+  FIELD public static System.Single upTimer
+  FIELD public static System.Single upTimerMax
+  FIELD public static System.Single upTimerMaxDelay
+  FIELD public static System.Boolean drawDiag
+  FIELD public static System.Boolean drawRelease
+  FIELD public static System.Boolean drawBetterDebug
+  FIELD public static System.Boolean betterDebugRelease
+  FIELD public static System.Boolean renderNow
+  FIELD public static System.Boolean drawToScreen
+  FIELD public static System.Boolean targetSet
+  FIELD public static System.Int32 mouseX
+  FIELD public static System.Int32 mouseY
+  FIELD public static System.Int32 lastMouseX
+  FIELD public static System.Int32 lastMouseY
+  FIELD private static System.Collections.Concurrent.ConcurrentQueue`1<System.Action> _mainThreadActions
+  FIELD public static System.Boolean mouseLeft
+  FIELD public static System.Boolean mouseRight
+  FIELD public static System.Boolean isMouseLeftConsumedByUI
+  FIELD public static System.Single essScale
+  FIELD public static System.Int32 essDir
+  FIELD public static System.Single[] cloudBGX
+  FIELD public static System.Single cloudBGAlpha
+  FIELD public static System.Single cloudBGActive
+  FIELD public static System.Int32[] cloudBG
+  FIELD public static System.Int32[] treeMntBGSet1
+  FIELD public static System.Int32[] treeMntBGSet2
+  FIELD public static System.Int32[] treeMntBGSet3
+  FIELD public static System.Int32[] treeMntBGSet4
+  FIELD public static System.Int32[] treeBGSet1
+  FIELD public static System.Int32[] treeBGSet2
+  FIELD public static System.Int32[] treeBGSet3
+  FIELD public static System.Int32[] treeBGSet4
+  FIELD public static System.Int32[] corruptBG
+  FIELD public static System.Int32[] jungleBG
+  FIELD public static System.Int32[] snowMntBG
+  FIELD public static System.Int32[] snowBG
+  FIELD public static System.Int32[] hallowBG
+  FIELD public static System.Int32[] crimsonBG
+  FIELD public static System.Int32[] desertBG
+  FIELD public static System.Int32[] mushroomBG
+  FIELD public static System.Int32 oceanBG
+  FIELD public static System.Int32[] underworldBG
+  FIELD public static System.Int32[] treeX
+  FIELD public static System.Int32[] treeStyle
+  FIELD public static System.Int32[] caveBackX
+  FIELD public static System.Int32[] caveBackStyle
+  FIELD public static System.Int32 iceBackStyle
+  FIELD public static System.Int32 hellBackStyle
+  FIELD public static System.Int32 jungleBackStyle
+  FIELD public static System.String debugWords
+  FIELD public static System.Boolean gamePad
+  FIELD public static System.Boolean xMas
+  FIELD public static System.Boolean halloween
+  FIELD public static System.Boolean forceXMasForToday
+  FIELD public static System.Boolean forceHalloweenForToday
+  FIELD public static System.Boolean DisableIntenseVisualEffects
+  FIELD public static System.Int32 snowDust
+  FIELD public static System.Boolean changeTheTitle
+  FIELD public static System.Boolean hairWindow
+  FIELD public static System.Boolean clothesWindow
+  FIELD public static System.Boolean ingameOptionsWindow
+  FIELD public static System.Boolean inFancyUI
+  FIELD public static System.Int32 keyCount
+  FIELD public static System.String[] keyString
+  FIELD public static System.Int32[] keyInt
+  FIELD public static System.Byte gFade
+  FIELD public static System.Single gFader
+  FIELD public static System.Byte gFadeDir
+  FIELD public static System.Boolean shouldDrawNetDiagnosticsUI
+  FIELD private static Terraria.UI.INetDiagnosticsUI _activeNetDiagnosticsUI
+  FIELD public static Terraria.GameContent.UI.IMultiplayerClosePlayersOverlay ActiveClosePlayersTeamOverlay
+  FIELD public static System.Double UpdateTimeAccumulator
+  FIELD public static System.Boolean drawSkip
+  FIELD public static System.Int32 fpsCount
+  FIELD public static System.Diagnostics.Stopwatch fpsTimer
+  FIELD public System.Boolean gammaTest
+  FIELD private static System.Boolean USE_ASYNC_LOAD
+  FIELD private static System.Boolean _isAsyncLoadComplete
+  FIELD public static System.Boolean showSplash
+  FIELD public static System.Boolean ignoreErrors
+  FIELD public static System.String defaultIP
+  FIELD public static System.Double dayRate
+  FIELD public static System.Double desiredWorldTilesUpdateRate
+  FIELD public static System.Int32 maxScreenW
+  FIELD public static System.Int32 maxScreenH
+  FIELD public static System.Int32 minScreenW
+  FIELD public static System.Int32 minScreenH
+  FIELD public static System.Single iS
+  FIELD public static System.Boolean render
+  FIELD public static System.Int32 qaStyle
+  FIELD public static System.Int32 buffScanAreaWidth
+  FIELD public static System.Int32 buffScanAreaHeight
+  FIELD public static System.Single musicPitch
+  FIELD public static System.Boolean[] projHostile
+  FIELD public static System.Boolean[] projHook
+  FIELD public static System.Boolean[] pvpBuff
+  FIELD public static System.Boolean[] persistentBuff
+  FIELD public static System.Boolean[] vanityPet
+  FIELD public static System.Boolean[] lightPet
+  FIELD public static System.Boolean[] meleeBuff
+  FIELD public static System.Boolean[] debuff
+  FIELD public static System.Boolean[] buffNoSave
+  FIELD public static System.Boolean[] buffNoTimeDisplay
+  FIELD public static System.Boolean[] buffDoubleApply
+  FIELD public static System.Int32 maxMP
+  FIELD public static System.String[] recentWorld
+  FIELD public static System.String[] recentIP
+  FIELD public static System.Int32[] recentPort
+  FIELD public static System.Boolean shortRender
+  FIELD public static System.Boolean BackgroundEnabled
+  FIELD public static System.Int32 instantBGTransitionCounter
+  FIELD public static System.Int32 bgDelay
+  FIELD public static System.Int32 bgStyle
+  FIELD protected static System.Int32 BG_STYLES_COUNT
+  FIELD public static System.Single[] bgAlphaFrontLayer
+  FIELD public static System.Single[] bgAlphaFarBackLayer
+  FIELD public static System.Int32[] bgFrame
+  FIELD public static System.Int32[] bgFrameCounter
+  FIELD public static System.Int32 EquipPage
+  FIELD public static System.Int32 EquipPageSelected
+  FIELD public System.Int32 mouseNPCIndex
+  FIELD public System.Int32 mouseNPCType
+  FIELD public static System.Int32 wofNPCIndex
+  FIELD public static System.Int32 wofDrawAreaTop
+  FIELD public static System.Int32 wofDrawAreaBottom
+  FIELD public static System.Int32 wofDrawFrameIndex
+  FIELD public static System.Int32 offScreenRange
+  FIELD public Microsoft.Xna.Framework.Graphics.RenderTarget2D backWaterTarget
+  FIELD public static Microsoft.Xna.Framework.Graphics.RenderTarget2D waterTarget
+  FIELD public Microsoft.Xna.Framework.Graphics.RenderTarget2D tileTarget
+  FIELD public Microsoft.Xna.Framework.Graphics.RenderTarget2D blackTarget
+  FIELD public Microsoft.Xna.Framework.Graphics.RenderTarget2D tile2Target
+  FIELD public Microsoft.Xna.Framework.Graphics.RenderTarget2D wallTarget
+  FIELD public Microsoft.Xna.Framework.Graphics.RenderTarget2D backgroundTarget
+  FIELD public static Microsoft.Xna.Framework.Graphics.RenderTarget2D screenTarget
+  FIELD public static Microsoft.Xna.Framework.Graphics.RenderTarget2D screenTargetSwap
+  FIELD public static System.Int32 maxMapUpdates
+  FIELD public static System.Boolean refreshMap
+  FIELD public static System.Int32 loadMapLastX
+  FIELD public static System.Boolean loadMapLock
+  FIELD public static System.Boolean loadMap
+  FIELD public static System.Boolean mapReady
+  FIELD public static System.Int32 textureMaxWidth
+  FIELD public static System.Int32 textureMaxHeight
+  FIELD public static System.Boolean updateMap
+  FIELD public static System.Int32 mapMinX
+  FIELD public static System.Int32 mapMaxX
+  FIELD public static System.Int32 mapMinY
+  FIELD public static System.Int32 mapMaxY
+  FIELD public static System.Int32 mapTimeMax
+  FIELD public static System.Int32 mapTime
+  FIELD public static System.Boolean clearMap
+  FIELD public static System.Int32 mapTargetX
+  FIELD public static System.Int32 mapTargetY
+  FIELD public Microsoft.Xna.Framework.Graphics.RenderTarget2D[0...,0...] mapTarget
+  FIELD public Microsoft.Xna.Framework.Graphics.RenderTarget2D mapSectionTexture
+  FIELD public static System.Boolean[0...,0...] initMap
+  FIELD public static System.Boolean[0...,0...] mapWasContentLost
+  FIELD public static System.Int32 numInfoIcons
+  FIELD public static Microsoft.Xna.Framework.Color OurFavoriteColor
+  FIELD public static System.Boolean mapInit
+  FIELD public static System.Boolean mapEnabled
+  FIELD public static System.Int32 mapStyle
+  FIELD public static System.Single grabMapX
+  FIELD public static System.Single grabMapY
+  FIELD public static System.Int32 miniMapX
+  FIELD public static System.Int32 miniMapY
+  FIELD public static System.Int32 miniMapWidth
+  FIELD public static System.Int32 miniMapHeight
+  FIELD public static System.Single mapMinimapDefaultScale
+  FIELD public static System.Single mapMinimapScale
+  FIELD public static System.Single mapMinimapAlpha
+  FIELD public static System.Single mapOverlayScale
+  FIELD public static System.Single mapOverlayAlpha
+  FIELD public static System.Boolean mapFullscreen
+  FIELD public static System.Boolean resetMapFull
+  FIELD public static System.Single mapFullscreenScale
+  FIELD public static Microsoft.Xna.Framework.Vector2 mapFullscreenPos
+  FIELD private static System.Boolean IsEnginePreloaded
+  FIELD private static System.Boolean IsEngineLoaded
+  FIELD private static System.UInt32 _gameUpdateCount
+  FIELD public static System.Boolean SkipAssemblyLoad
+  FIELD private System.Int32 firstTileX
+  FIELD private System.Int32 lastTileX
+  FIELD private System.Int32 firstTileY
+  FIELD private System.Int32 lastTileY
+  FIELD protected System.Double bgParallax
+  FIELD protected System.Int32 bgStartX
+  FIELD protected System.Int32 bgLoops
+  FIELD private System.Int32 bgStartY
+  FIELD private System.Int32 bgLoopsY
+  FIELD protected System.Int32 bgTopY
+  FIELD public static System.Int32 renderCount
+  FIELD private static System.Int32 MF_BYPOSITION
+  FIELD public static Microsoft.Xna.Framework.GraphicsDeviceManager graphics
+  FIELD public static Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch
+  FIELD public static Terraria.Graphics.TileBatch tileBatch
+  FIELD public static ReLogic.Graphics.BasicDebugDrawer DebugDrawer
+  FIELD public static Microsoft.Xna.Framework.Graphics.SamplerState SamplerStateForCursor
+  FIELD public static Terraria.WorldBuilding.GenerationProgress AutogenProgress
+  FIELD protected static System.Diagnostics.Process tServer
+  FIELD private static System.Diagnostics.Stopwatch saveTime
+  FIELD public static Microsoft.Xna.Framework.Input.KeyboardState keyState
+  FIELD public static Microsoft.Xna.Framework.Input.KeyboardState oldKeyState
+  FIELD public static Microsoft.Xna.Framework.Color mcColor
+  FIELD public static Microsoft.Xna.Framework.Color hcColor
+  FIELD public static Microsoft.Xna.Framework.Color creativeModeColor
+  FIELD public static Microsoft.Xna.Framework.Color legendaryModeColor
+  FIELD public static Microsoft.Xna.Framework.Color highVersionColor
+  FIELD public static Microsoft.Xna.Framework.Color errorColor
+  FIELD public static System.Boolean craftingHide
+  FIELD public static System.Boolean armorHide
+  FIELD public static System.Single shimmerAlpha
+  FIELD public static System.Single shimmerDarken
+  FIELD public static System.Single shimmerBrightenDelay
+  FIELD public static System.Single craftingAlpha
+  FIELD public static System.Single armorAlpha
+  FIELD public static System.Single[] buffAlpha
+  FIELD public static System.Boolean afterPartyOfDoom
+  FIELD public static System.Boolean hardMode
+  FIELD public System.Single chestLootScale
+  FIELD public System.Boolean chestLootHover
+  FIELD public System.Single chestStackScale
+  FIELD public System.Boolean chestStackHover
+  FIELD public System.Single chestDepositScale
+  FIELD public System.Boolean chestDepositHover
+  FIELD public System.Single chestRenameScale
+  FIELD public System.Boolean chestRenameHover
+  FIELD public System.Single chestCancelScale
+  FIELD public System.Boolean chestCancelHover
+  FIELD public static Microsoft.Xna.Framework.Vector2 sceneWaterPos
+  FIELD public static Microsoft.Xna.Framework.Vector2 sceneTilePos
+  FIELD public static Microsoft.Xna.Framework.Vector2 sceneTile2Pos
+  FIELD public static Microsoft.Xna.Framework.Vector2 sceneWallPos
+  FIELD public static Microsoft.Xna.Framework.Vector2 sceneBackgroundPos
+  FIELD public static System.Boolean maxQ
+  FIELD public static System.Single gfxQuality
+  FIELD public static System.Single gfxRate
+  FIELD public System.Int32 DiscoStyle
+  FIELD public static System.Int32 DiscoR
+  FIELD public static System.Int32 DiscoB
+  FIELD public static System.Int32 DiscoG
+  FIELD public static System.Int32 teamCooldown
+  FIELD public static System.Int32 teamCooldownLen
+  FIELD public static System.Boolean gamePaused
+  FIELD public static System.Boolean gameInactive
+  FIELD public static System.Int32 updatesCountedForFPS
+  FIELD public static System.Int32 drawsCountedForFPS
+  FIELD public static System.Int32 uCount
+  FIELD public static System.Int32 updateRate
+  FIELD public static System.Int32 frameRate
+  FIELD public static System.Boolean RGBRelease
+  FIELD public static System.Boolean qRelease
+  FIELD public static System.Boolean netRelease
+  FIELD public static System.Boolean frameRelease
+  FIELD public static System.Boolean showFrameRate
+  FIELD public static System.Int32 magmaBGFrame
+  FIELD public static System.Int32 magmaBGFrameCounter
+  FIELD public static System.Int32 saveTimer
+  FIELD public static System.Boolean autoJoin
+  FIELD public static System.Boolean serverStarting
+  FIELD public static System.Single leftWorld
+  FIELD public static System.Single rightWorld
+  FIELD public static System.Single topWorld
+  FIELD public static System.Single bottomWorld
+  FIELD public static System.Int32 maxTilesX
+  FIELD public static System.Int32 maxTilesY
+  FIELD public static System.Int32 sectionWidth
+  FIELD public static System.Int32 sectionHeight
+  FIELD public static System.Int32 maxSectionsX
+  FIELD public static System.Int32 maxSectionsY
+  FIELD public static System.Int32 maxDust
+  FIELD public static System.Int32 maxDustToDraw
+  FIELD public static System.Int32 maxCombatText
+  FIELD public static System.Int32 maxItemText
+  FIELD public static System.Int32 maxPlayers
+  FIELD public static System.Int32 maxNetPlayers
+  FIELD public static readonly System.Int32 maxChests
+  FIELD public static readonly System.Int32 maxItems
+  FIELD public static readonly System.Int32 maxProjectiles
+  FIELD public static readonly System.Int32 maxNPCs
+  FIELD protected static Terraria.GameContent.UI.States.UICharacterSelect _characterSelectMenu
+  FIELD protected static Terraria.GameContent.UI.States.UIWorldSelect _worldSelectMenu
+  FIELD public static Terraria.GameContent.UI.States.UIManageControls ManageControlsMenu
+  FIELD public static Terraria.GameContent.UI.States.UIAchievementsMenu AchievementsMenu
+  FIELD public static System.Int32 maxRain
+  FIELD public static System.Int32 slimeWarningTime
+  FIELD public static System.Int32 slimeWarningDelay
+  FIELD public static System.Single slimeRainNPCSlots
+  FIELD public static System.Boolean[] slimeRainNPC
+  FIELD public static System.Double slimeRainTime
+  FIELD public static System.Boolean slimeRain
+  FIELD public static System.Int32 slimeRainKillCount
+  FIELD private static System.Double slimeRainMaxTime
+  FIELD private static System.Double slimeRainMinTime
+  FIELD private static System.Double slimeRainMaxDelay
+  FIELD private static System.Double slimeRainMinDelay
+  FIELD private static System.Double LeinforsBalanceRequestForSlimeRainChance
+  FIELD private static System.Double slimeRainChance
+  FIELD public static System.Int32 maxGore
+  FIELD public static System.Int32 InventoryItemSlotsStart
+  FIELD public static System.Int32 InventoryItemSlotsCount
+  FIELD public static System.Int32 InventoryCoinSlotsStart
+  FIELD public static System.Int32 InventoryCoinSlotsCount
+  FIELD public static System.Int32 InventoryAmmoSlotsStart
+  FIELD public static System.Int32 InventoryAmmoSlotsCount
+  FIELD public static System.Int32 InventorySlotsTotal
+  FIELD public System.Int32 invBottom
+  FIELD public static System.Int32 maxLiquidTypes
+  FIELD public static System.Single cameraX
+  FIELD public static System.Boolean drewLava
+  FIELD public static System.Single[] liquidAlpha
+  FIELD public static System.Int32 waterStyle
+  FIELD public static System.Int32 WorldRollingBackupsCountToKeep
+  FIELD private static System.Boolean TOWMusicUnlocked
+  FIELD public static System.Boolean swapMusic
+  FIELD public static System.Single caveParallax
+  FIELD public static System.Int32 dungeonX
+  FIELD public static System.Int32 dungeonY
+  FIELD public static Terraria.Liquid[] liquid
+  FIELD public static Terraria.LiquidBuffer[] liquidBuffer
+  FIELD public static System.Boolean dedServ
+  FIELD public static System.Int32 spamCount
+  FIELD public static System.Int32 curMusic
+  FIELD public static System.Int32 dayMusic
+  FIELD public static System.Int32 ugMusic
+  FIELD public static System.Int32 newMusic
+  FIELD public static System.Boolean showItemText
+  FIELD public static System.Boolean autoSave
+  FIELD public static System.Boolean validateSaves
+  FIELD public static System.Boolean bannerMouseOver
+  FIELD public static System.String buffString
+  FIELD public static System.String libPath
+  FIELD public static System.Int32 lo
+  FIELD public static System.Int32 LogoA
+  FIELD public static System.Int32 LogoB
+  FIELD public static System.Boolean LogoT
+  FIELD private static System.String _statusText
+  FIELD public static System.String worldName
+  FIELD public static System.Int32 worldID
+  FIELD public static System.Int32 background
+  FIELD public static System.Int32 caveBackground
+  FIELD public static System.Single ugBackTransition
+  FIELD public static Microsoft.Xna.Framework.Color tileColor
+  FIELD public static System.Double worldSurface
+  FIELD public static System.Double rockLayer
+  FIELD public static Microsoft.Xna.Framework.Color[] teamColor
+  FIELD public static System.Double dayLength
+  FIELD public static System.Double nightLength
+  FIELD public static System.Boolean dayTime
+  FIELD public static System.Double time
+  FIELD public static System.Double timeForVisualEffects
+  FIELD public static System.Int32 moonPhase
+  FIELD public static System.Int16 sunModY
+  FIELD public static System.Int16 moonModY
+  FIELD public static System.Boolean alreadyGrabbingSunOrMoon
+  FIELD public static System.Boolean bloodMoon
+  FIELD public static System.Boolean pumpkinMoon
+  FIELD public static System.Boolean snowMoon
+  FIELD public static System.Single cloudAlpha
+  FIELD public static System.Single maxRaining
+  FIELD public static System.Single oldMaxRaining
+  FIELD public static System.Double rainTime
+  FIELD public static System.Boolean raining
+  FIELD public static System.Boolean eclipse
+  FIELD public static System.Single eclipseLight
+  FIELD public static System.Int32 checkForSpawns
+  FIELD public static System.Int32 helpText
+  FIELD public static System.Int32 BartenderHelpTextIndex
+  FIELD public static System.Boolean autoGen
+  FIELD public static System.Boolean autoPause
+  FIELD public static System.Int32[] projFrames
+  FIELD public static System.Boolean[] projPet
+  FIELD public static System.Single demonTorch
+  FIELD public static System.Int32 demonTorchDir
+  FIELD public static System.Single martianLight
+  FIELD public static System.Int32 martianLightDir
+  FIELD public static System.Single masterColor
+  FIELD public static System.Int32 masterColorDir
+  FIELD public static System.Boolean placementPreview
+  FIELD public static Terraria.SceneMetrics SceneMetrics
+  FIELD public static System.Int32 maxStars
+  FIELD public static System.Int32 numStars
+  FIELD public static System.Int32 maxStarTypes
+  FIELD public static System.Int32 maxClouds
+  FIELD public static System.Int32 weatherCounter
+  FIELD public static System.Int32 numClouds
+  FIELD public static System.Int32 numCloudsTemp
+  FIELD public static System.Single windSpeedCurrent
+  FIELD public static System.Single windSpeedTarget
+  FIELD public static System.Int32 windCounter
+  FIELD public static System.Int32 extremeWindCounter
+  FIELD public static System.Boolean windPhysics
+  FIELD public static System.Single windPhysicsStrength
+  FIELD public static System.Boolean SettingsEnabled_TilesSwayInWind
+  FIELD public static Terraria.Cloud[] cloud
+  FIELD public static System.Boolean resetClouds
+  FIELD public static System.Single SmoothedMushroomLightInfluence
+  FIELD public static System.Int32 fadeCounter
+  FIELD public static System.Single invAlpha
+  FIELD public static System.Single invDir
+  FIELD public static Terraria.Utilities.UnifiedRandom _rand
+  FIELD public static System.Boolean allChestStackHover
+  FIELD public static System.Boolean inventorySortMouseOver
+  FIELD public static System.Single GraveyardVisualIntensity
+  FIELD public static System.Int32 maxMoons
+  FIELD public static System.Int32 moonType
+  FIELD public static System.Int32 numTileColors
+  FIELD public static System.Int32 numTreeStyles
+  FIELD public static System.Int32 numberOfHairstyles
+  FIELD public static System.Int32 maxHairStyles
+  FIELD public static System.Int32 maxCharSelectHair
+  FIELD public static System.Int32 maxHairOfStylistDefault
+  FIELD public static System.Boolean UseExperimentalFeatures
+  FIELD public static System.String DefaultSeed
+  FIELD public static Terraria.Audio.IAudioSystem audioSystem
+  FIELD public static System.Boolean[] musicNoCrossFade
+  FIELD public static System.Single[] musicFade
+  FIELD public static System.Single musicVolume
+  FIELD public static System.Single ambientVolume
+  FIELD public static System.Single soundVolume
+  FIELD public static Terraria.Net.ServerMode MenuServerMode
+  FIELD public static System.Boolean[] tileLighted
+  FIELD public static System.Boolean[] tileMergeDirt
+  FIELD public static System.Boolean[] tileCut
+  FIELD public static System.Boolean[] tileAlch
+  FIELD public static System.Int32[] tileShine
+  FIELD public static System.Boolean[] tileShine2
+  FIELD public static System.Boolean[] wallHouse
+  FIELD public static System.Boolean[] wallDungeon
+  FIELD public static System.Boolean[] wallLight
+  FIELD public static System.Int32[] wallBlend
+  FIELD public static System.Boolean[] tileStone
+  FIELD public static System.Boolean[] tileAxe
+  FIELD public static System.Boolean[] tileHammer
+  FIELD public static System.Boolean[] tileWaterDeath
+  FIELD public static System.Boolean[] tileLavaDeath
+  FIELD public static System.Boolean[] tileTable
+  FIELD public static System.Boolean[] tileBlockLight
+  FIELD public static System.Boolean[] tileNoSunLight
+  FIELD public static System.Boolean[] tileDungeon
+  FIELD public static System.Boolean[] tileSpelunker
+  FIELD public static System.Boolean[] tileSolidTop
+  FIELD public static System.Boolean[] tileSolid
+  FIELD public static System.Boolean[] tileBouncy
+  FIELD public static System.Int16[] tileOreFinderPriority
+  FIELD public static System.Byte[] tileLargeFrames
+  FIELD public static System.Byte[] wallLargeFrames
+  FIELD public static System.Boolean[] tileRope
+  FIELD public static System.Boolean[] tileBrick
+  FIELD public static System.Boolean[] tileMoss
+  FIELD public static System.Boolean[] tileNoAttach
+  FIELD public static System.Boolean[] tileNoFail
+  FIELD public static System.Boolean[] tileCracked
+  FIELD public static System.Boolean[] tileObsidianKill
+  FIELD public static System.Boolean[] tileFrameImportant
+  FIELD public static System.Boolean[] tilePile
+  FIELD public static System.Boolean[] tileBlendAll
+  FIELD public static System.Int16[] tileGlowMask
+  FIELD public static System.Boolean[] tileContainer
+  FIELD public static System.Boolean[] tileSign
+  FIELD public static System.Boolean[][] tileMerge
+  FIELD public static System.Int32 cageFrames
+  FIELD public static System.Boolean critterCage
+  FIELD public static System.Int32[] bunnyCageFrame
+  FIELD public static System.Int32[] bunnyCageFrameCounter
+  FIELD public static System.Int32[] squirrelCageFrame
+  FIELD public static System.Int32[] squirrelCageFrameCounter
+  FIELD public static System.Int32[] squirrelCageFrameOrange
+  FIELD public static System.Int32[] squirrelCageFrameCounterOrange
+  FIELD public static System.Int32[] mallardCageFrame
+  FIELD public static System.Int32[] mallardCageFrameCounter
+  FIELD public static System.Int32[] duckCageFrame
+  FIELD public static System.Int32[] duckCageFrameCounter
+  FIELD public static System.Int32[] grebeCageFrame
+  FIELD public static System.Int32[] grebeCageFrameCounter
+  FIELD public static System.Int32[] seagullCageFrame
+  FIELD public static System.Int32[] seagullCageFrameCounter
+  FIELD public static System.Int32[] birdCageFrame
+  FIELD public static System.Int32[] birdCageFrameCounter
+  FIELD public static System.Int32[] redBirdCageFrame
+  FIELD public static System.Int32[] redBirdCageFrameCounter
+  FIELD public static System.Int32[] blueBirdCageFrame
+  FIELD public static System.Int32[] blueBirdCageFrameCounter
+  FIELD public static System.Int32[] macawCageFrame
+  FIELD public static System.Int32[] macawCageFrameCounter
+  FIELD public static System.Byte[0...,0...] butterflyCageMode
+  FIELD public static System.Int32[0...,0...] butterflyCageFrame
+  FIELD public static System.Int32[0...,0...] butterflyCageFrameCounter
+  FIELD public static System.Int32[0...,0...] dragonflyJarFrameCounter
+  FIELD public static System.Int32[0...,0...] dragonflyJarFrame
+  FIELD public static System.Int32[0...,0...] scorpionCageFrame
+  FIELD public static System.Int32[0...,0...] scorpionCageFrameCounter
+  FIELD public static System.Int32[] snailCageFrame
+  FIELD public static System.Int32[] snailCageFrameCounter
+  FIELD public static System.Int32[] snail2CageFrame
+  FIELD public static System.Int32[] snail2CageFrameCounter
+  FIELD public static System.Byte[] fishBowlFrameMode
+  FIELD public static System.Int32[] fishBowlFrame
+  FIELD public static System.Int32[] fishBowlFrameCounter
+  FIELD public static System.Int32[] lavaFishBowlFrame
+  FIELD public static System.Int32[] lavaFishBowlFrameCounter
+  FIELD public static System.Int32[] frogCageFrame
+  FIELD public static System.Int32[] frogCageFrameCounter
+  FIELD public static System.Int32[] mouseCageFrame
+  FIELD public static System.Int32[] mouseCageFrameCounter
+  FIELD public static System.Int32[] turtleCageFrame
+  FIELD public static System.Int32[] turtleCageFrameCounter
+  FIELD public static System.Int32[] fairyJarFrame
+  FIELD public static System.Int32[] fairyJarFrameCounter
+  FIELD public static System.Byte[0...,0...] jellyfishCageMode
+  FIELD public static System.Int32[0...,0...] jellyfishCageFrame
+  FIELD public static System.Int32[0...,0...] jellyfishCageFrameCounter
+  FIELD public static System.Int32[] wormCageFrame
+  FIELD public static System.Int32[] wormCageFrameCounter
+  FIELD public static System.Int32[] maggotCageFrame
+  FIELD public static System.Int32[] maggotCageFrameCounter
+  FIELD public static System.Int32[] ratCageFrame
+  FIELD public static System.Int32[] ratCageFrameCounter
+  FIELD public static System.Int32[] ladybugCageFrame
+  FIELD public static System.Int32[] ladybugCageFrameCounter
+  FIELD public static System.Int32[] penguinCageFrame
+  FIELD public static System.Int32[] penguinCageFrameCounter
+  FIELD public static System.Int32[] waterStriderCageFrame
+  FIELD public static System.Int32[] waterStriderCageFrameCounter
+  FIELD public static System.Int32[] seahorseCageFrame
+  FIELD public static System.Int32[] seahorseCageFrameCounter
+  FIELD public static System.Int32[0...,0...] slugCageFrame
+  FIELD public static System.Int32[0...,0...] slugCageFrameCounter
+  FIELD public static System.Int32[] owlCageFrame
+  FIELD public static System.Int32[] owlCageFrameCounter
+  FIELD public static System.Int32[] grasshopperCageFrame
+  FIELD public static System.Int32[] grasshopperCageFrameCounter
+  FIELD public static System.Boolean[] tileSand
+  FIELD public static System.Boolean[] tileFlame
+  FIELD public static System.Boolean[] npcCatchable
+  FIELD public static System.Int32[] tileFrame
+  FIELD public static System.Int32[] tileFrameCounter
+  FIELD public static System.Byte[] wallFrame
+  FIELD public static System.Byte[] wallFrameCounter
+  FIELD public static System.Int32[] backgroundWidth
+  FIELD public static System.Int32[] backgroundHeight
+  FIELD public static Terraria.GameContent.HairstyleUnlocksHelper Hairstyles
+  FIELD public static System.Boolean tilesLoaded
+  FIELD public static Terraria.Map.WorldMap Map
+  FIELD public static Terraria.Tilemap tile
+  FIELD public static Terraria.Dust[] dust
+  FIELD public static Terraria.Star[] star
+  FIELD public static Terraria.Item[] item
+  FIELD public static System.Int32[] timeItemSlotCannotBeReusedFor
+  FIELD public static Terraria.NPC[] npc
+  FIELD public static Terraria.Gore[] gore
+  FIELD public static Terraria.Rain[] rain
+  FIELD public static Terraria.Projectile[] projectile
+  FIELD public static System.Int32[0...,0...] projectileIdentity
+  FIELD public static Terraria.CombatText[] combatText
+  FIELD public static Terraria.PopupText[] popupText
+  FIELD public static Terraria.Chest[] chest
+  FIELD public static Terraria.Sign[] sign
+  FIELD public static System.Int32[] itemFrame
+  FIELD public static System.Int32[] itemFrameCounter
+  FIELD public static Terraria.DataStructures.DrawAnimation[] itemAnimations
+  FIELD private static Terraria.DataStructures.DrawAnimation _coinOnWorldAnimation
+  FIELD private static Terraria.DataStructures.DrawAnimation _monkStaffT3OnWorldAnimation
+  FIELD public static System.Collections.Generic.List`1<System.Int32> itemAnimationsRegistered
+  FIELD public static Microsoft.Xna.Framework.Vector2 screenPosition
+  FIELD public static Microsoft.Xna.Framework.Vector2 screenLastPosition
+  FIELD public static System.Int32 screenWidth
+  FIELD public static System.Int32 screenHeight
+  FIELD public static System.Boolean screenMaximized
+  FIELD public static System.Boolean screenBorderless
+  FIELD public static System.Int32 screenBorderlessPendingResizes
+  FIELD public static System.Int32 teamNamePlateDistance
+  FIELD public static System.Int32 multiplayerNPCSmoothingRange
+  FIELD public static System.Boolean Setting_UseReducedMaxLiquids
+  FIELD public static System.Int32 PlayerOverheadChatMessageDisplayTime
+  FIELD public static System.Object CurrentInputTextTakerOverride
+  FIELD public static System.Boolean drawingPlayerChat
+  FIELD public static System.Boolean chatRelease
+  FIELD public static System.String chatText
+  FIELD public static System.Boolean inputTextEnter
+  FIELD public static System.Boolean inputTextEscape
+  FIELD public static System.Single[] hotbarScale
+  FIELD public static System.Byte mouseTextColor
+  FIELD public static System.Int32 mouseTextColorChange
+  FIELD public static System.Boolean mouseLeftRelease
+  FIELD public static System.Boolean mouseRightRelease
+  FIELD public static System.Boolean playerInventory
+  FIELD public static System.Int32 stackSplit
+  FIELD public static System.Boolean preventStackSplitReset
+  FIELD public static System.Int32 stackCounter
+  FIELD public static System.Int32 timesTriedToFastStack
+  FIELD public static System.Int32 stackDelay
+  FIELD public static System.Int32 superFastStack
+  FIELD public static Terraria.Item mouseItem
+  FIELD public static Terraria.Item guideItem
+  FIELD public static Terraria.Item reforgeItem
+  FIELD public static System.Single inventoryScale
+  FIELD public static System.Boolean hasFocus
+  FIELD public static Microsoft.Xna.Framework.Point rulerLineDisplayValues
+  FIELD public static System.Boolean recFastScroll
+  FIELD public static System.Boolean recBigList
+  FIELD public static System.Int32 recStart
+  FIELD public static Terraria.Recipe[] recipe
+  FIELD public static System.Int32[] availableRecipe
+  FIELD public static System.Single[] availableRecipeY
+  FIELD public static System.Int32 numAvailableRecipes
+  FIELD public static System.Int32 focusRecipe
+  FIELD public static System.Int32 myPlayer
+  FIELD public static Terraria.Player[] player
+  FIELD public static Terraria.Player[] playerVisualClone
+  FIELD public static System.Boolean[] countsAsHostForGameplay
+  FIELD public static System.Int32 spawnTileX
+  FIELD public static System.Int32 spawnTileY
+  FIELD public static System.Boolean npcChatRelease
+  FIELD public static System.Boolean editSign
+  FIELD public static System.Boolean editChest
+  FIELD public static System.Boolean blockInput
+  FIELD public static System.String blockKey
+  FIELD public static System.String defaultChestName
+  FIELD public static System.String npcChatText
+  FIELD public static System.Boolean npcChatFocus1
+  FIELD public static System.Boolean npcChatFocus2
+  FIELD public static System.Boolean npcChatFocus3
+  FIELD public static System.Boolean npcChatFocus4
+  FIELD public static System.Int32 oldNPCShop
+  FIELD public static System.Int32 npcChatCornerItem
+  FIELD public Terraria.Chest[] shop
+  FIELD public static Terraria.GameContent.ItemShopSellbackHelper shopSellbackHelper
+  FIELD public static System.Int32[] travelShop
+  FIELD public static System.Collections.Generic.List`1<System.String> anglerWhoFinishedToday
+  FIELD public static System.Boolean anglerQuestFinished
+  FIELD public static System.Int32 anglerQuest
+  FIELD public static System.Int32[] anglerQuestItemNetIDs
+  FIELD public static Terraria.GameContent.Ambience.AmbienceServer AmbienceServer
+  FIELD public static Terraria.GameContent.ItemDropRules.ItemDropDatabase ItemDropsDB
+  FIELD public static Terraria.GameContent.Bestiary.BestiaryDatabase BestiaryDB
+  FIELD public static Terraria.GameContent.ItemDropRules.ItemDropResolver ItemDropSolver
+  FIELD public static Terraria.GameContent.Bestiary.BestiaryUnlocksTracker BestiaryTracker
+  FIELD public static Terraria.GameContent.UI.States.UIBestiaryTest BestiaryUI
+  FIELD public static Terraria.GameContent.TeleportPylonsSystem PylonSystem
+  FIELD public static Terraria.GameContent.ShopHelper ShopHelper
+  FIELD public static Terraria.GameContent.Golf.GolfState LocalGolfState
+  FIELD public static Terraria.DataStructures.DroneCameraTracker DroneCameraTracker
+  FIELD public static Terraria.GameContent.UI.WorkshopPublishingIndicator WorkshopPublishingIndicator
+  FIELD public static Terraria.GameContent.UI.IssueReportsIndicator IssueReporterIndicator
+  FIELD public static System.Boolean Support4K
+  FIELD public static System.Single MinimumZoomComparerX
+  FIELD public static System.Single MinimumZoomComparerY
+  FIELD private static System.Int32 _renderTargetMaxSize
+  FIELD private static Microsoft.Xna.Framework.Graphics.GraphicsProfile _selectedGraphicsProfile
+  FIELD private static Microsoft.Xna.Framework.Graphics.GraphicsProfile _currentGraphicsProfile
+  FIELD public static System.Int32 LogicCheckScreenWidth
+  FIELD public static System.Int32 LogicCheckScreenHeight
+  FIELD private static Terraria.Main/WorldPreparationState _worldPreparationState
+  FIELD public static System.Single temporaryGUIScaleSlider
+  FIELD public static System.Boolean temporaryGUIScaleSliderUpdate
+  FIELD public static System.Boolean InGuideCraftMenu
+  FIELD public static System.Boolean InReforgeMenu
+  FIELD public static Terraria.Item HoverItem
+  FIELD private static System.Int32 backSpaceCount
+  FIELD private static System.Single backSpaceRate
+  FIELD public static System.String motd
+  FIELD public static System.Boolean toggleFullscreen
+  FIELD public static System.Int32 numDisplayModes
+  FIELD public static System.Int32[] displayWidth
+  FIELD public static System.Int32[] displayHeight
+  FIELD public static System.Boolean gameMenu
+  FIELD public static System.Boolean menuBGChangedDay
+  FIELD public static System.Boolean menuBGChangedNight
+  FIELD public static System.Boolean lockMenuBGChange
+  FIELD private static System.Int32 maxLoadPlayer
+  FIELD private static System.Int32 maxLoadWorld
+  FIELD public static System.Collections.Generic.List`1<Terraria.IO.PlayerFileData> PlayerList
+  FIELD public static Terraria.IO.PlayerFileData ActivePlayerFileData
+  FIELD public static Terraria.Player PendingPlayer
+  FIELD public static System.Collections.Generic.List`1<Terraria.IO.WorldFileData> WorldList
+  FIELD public static Terraria.IO.WorldFileData ActiveWorldFileData
+  FIELD public static System.String WorldPath
+  FIELD public static System.String CloudWorldPath
+  FIELD public static System.String PlayerPath
+  FIELD public static System.String CloudPlayerPath
+  FIELD public static Terraria.IO.Preferences Configuration
+  FIELD public static Terraria.IO.Preferences InputProfiles
+  FIELD public static Microsoft.Xna.Framework.Input.KeyboardState inputText
+  FIELD public static Microsoft.Xna.Framework.Input.KeyboardState oldInputText
+  FIELD public static System.Int32 PendingResolutionWidth
+  FIELD public static System.Int32 PendingResolutionHeight
+  FIELD public static System.Boolean PendingBorderlessState
+  FIELD public static System.Int32 invasionType
+  FIELD public static System.Double invasionX
+  FIELD public static System.Int32 invasionSize
+  FIELD public static System.Int32 invasionDelay
+  FIELD public static System.Int32 invasionWarn
+  FIELD public static System.Int32 invasionSizeStart
+  FIELD public static System.Boolean invasionProgressNearInvasion
+  FIELD public static System.Int32 invasionProgressMode
+  FIELD public static System.Int32 invasionProgressIcon
+  FIELD public static System.Int32 invasionProgress
+  FIELD public static System.Int32 invasionProgressMax
+  FIELD public static System.Int32 invasionProgressWave
+  FIELD public static System.Int32 invasionProgressDisplayLeft
+  FIELD public static System.Single invasionProgressAlpha
+  FIELD public static System.Boolean HasInteractibleObjectThatIsNotATile
+  FIELD public System.Int32 currentNPCShowingChatBubble
+  FIELD public static System.Int32[] npcFrameCount
+  FIELD public static System.Collections.Generic.Dictionary`2<System.Int32,System.Byte> npcLifeBytes
+  FIELD public static System.Boolean mouseExit
+  FIELD public static System.Single exitScale
+  FIELD public static System.Boolean mouseReforge
+  FIELD public static System.Single reforgeScale
+  FIELD public static Terraria.Player clientPlayer
+  FIELD public static System.String getIP
+  FIELD public static System.String getPort
+  FIELD public static System.Boolean menuMultiplayer
+  FIELD public static System.Boolean menuServer
+  FIELD public static System.Int32 netMode
+  FIELD private static System.Int32 _targetNetMode
+  FIELD private static System.Boolean _hasPendingNetmodeChange
+  FIELD public static System.Int32 MaxTimeout
+  FIELD public static System.Int32 netPlayCounter
+  FIELD public static System.Int32 lastNPCUpdate
+  FIELD public static System.Int32 lastItemUpdate
+  FIELD public static System.Int32 maxNPCUpdates
+  FIELD public static System.Int32 maxItemUpdates
+  FIELD public static System.String cUp
+  FIELD public static System.String cLeft
+  FIELD public static System.String cDown
+  FIELD public static System.String cRight
+  FIELD public static System.String cJump
+  FIELD public static System.String cThrowItem
+  FIELD public static System.String cHeal
+  FIELD public static System.String cMana
+  FIELD public static System.String cBuff
+  FIELD public static System.String cHook
+  FIELD public static System.String cTorch
+  FIELD public static System.String cInv
+  FIELD public static System.String cSmart
+  FIELD public static System.String cMount
+  FIELD public static System.String cFavoriteKey
+  FIELD public static System.Boolean cSmartCursorModeIsToggleAndNotHold
+  FIELD public static System.Boolean SmartCursorWanted_Mouse
+  FIELD public static System.Boolean SmartCursorWanted_GamePad
+  FIELD public static System.Boolean SmartCursorShowing
+  FIELD public static System.Int32 SmartCursorX
+  FIELD public static System.Int32 SmartCursorY
+  FIELD public static System.Boolean SmartInteractShowingGenuine
+  FIELD public static System.Boolean SmartInteractShowingFake
+  FIELD public static System.Int32 SmartInteractX
+  FIELD public static System.Int32 SmartInteractY
+  FIELD public static System.Int32 SmartInteractNPC
+  FIELD public static System.Int32 SmartInteractProj
+  FIELD public static System.Boolean SmartInteractPotionOfReturn
+  FIELD public static System.Collections.Generic.List`1<Microsoft.Xna.Framework.Point> SmartInteractTileCoords
+  FIELD public static System.Collections.Generic.List`1<Microsoft.Xna.Framework.Point> SmartInteractTileCoordsSelected
+  FIELD public static System.Int32 TileInteractionLX
+  FIELD public static System.Int32 TileInteractionLY
+  FIELD public static System.Int32 TileInteractionHX
+  FIELD public static System.Int32 TileInteractionHY
+  FIELD public static System.Int32 cursorOverride
+  FIELD public static System.Int32 signHover
+  FIELD public static System.String cMapZoomIn
+  FIELD public static System.String cMapZoomOut
+  FIELD public static System.String cMapAlphaUp
+  FIELD public static System.String cMapAlphaDown
+  FIELD public static System.String cMapFull
+  FIELD public static System.String cMapStyle
+  FIELD public static Microsoft.Xna.Framework.Input.Keys FavoriteKey
+  FIELD public static Terraria.DataStructures.ColorSlidersSet mouseColorSlider
+  FIELD public static Terraria.DataStructures.ColorSlidersSet mouseBorderColorSlider
+  FIELD public static Microsoft.Xna.Framework.Color mouseColor
+  FIELD public static Microsoft.Xna.Framework.Color cursorColor
+  FIELD public static System.Int32 cursorColorDirection
+  FIELD public static System.Single cursorAlpha
+  FIELD public static System.Single cursorScale
+  FIELD public static System.Boolean signBubble
+  FIELD public static System.Int32 signX
+  FIELD public static System.Int32 signY
+  FIELD public static System.Boolean hideUI
+  FIELD public static System.Boolean releaseUI
+  FIELD public static Terraria.Enums.FrameSkipMode FrameSkipMode
+  FIELD public static System.Boolean terrariasFixedTiming
+  FIELD private System.Int32 splashCounter
+  FIELD public System.Collections.Generic.List`1<System.Int32> DrawCacheNPCsMoonMoon
+  FIELD public System.Collections.Generic.List`1<System.Int32> DrawCacheNPCsOverPlayers
+  FIELD public System.Collections.Generic.List`1<System.Int32> DrawCacheNPCProjectiles
+  FIELD public System.Collections.Generic.List`1<System.Int32> DrawCacheNPCsBehindNonSolidTiles
+  FIELD public System.Collections.Generic.List`1<System.Int32> DrawCacheProjsBehindNPCsAndTiles
+  FIELD public System.Collections.Generic.List`1<System.Int32> DrawCacheProjsBehindNPCs
+  FIELD public System.Collections.Generic.List`1<System.Int32> DrawCacheProjsBehindProjectiles
+  FIELD public System.Collections.Generic.List`1<System.Int32> DrawCacheProjsOverWiresUI
+  FIELD public System.Collections.Generic.List`1<System.Int32> DrawCacheProjsOverPlayers
+  FIELD public System.Collections.Generic.List`1<System.Int32> DrawCacheFirstFractals
+  FIELD public static Terraria.Graphics.Renderers.ParticleRenderer ParticleSystem_World_OverPlayers
+  FIELD public static Terraria.Graphics.Renderers.ParticleRenderer ParticleSystem_World_BehindPlayers
+  FIELD private static Terraria.Graphics.WindowStateController _windowMover
+  FIELD public static Terraria.DataStructures.AnchoredEntitiesCollection sittingManager
+  FIELD public static Terraria.DataStructures.AnchoredEntitiesCollection sleepingManager
+  FIELD public static Terraria.GameContent.UI.Minimap.MinimapFrameManager MinimapFrameManagerInstance
+  FIELD public static Terraria.GameContent.UI.ResourceSets.PlayerResourceSetsManager ResourceSetsManager
+  FIELD private static System.Boolean shouldSetDefaultUIScale
+  FIELD private static System.Single newDefaultUIScale
+  FIELD public static System.Boolean IsInTheMiddleOfLoadingSettings
+  FIELD public static Microsoft.Xna.Framework.Point LastLoadedResolution
+  FIELD public static System.Boolean startFullscreen
+  FIELD public static System.String oldStatusText
+  FIELD public static System.String autoGenFileLocation
+  FIELD public static System.Boolean autoShutdown
+  FIELD private System.UInt32 previousExecutionState
+  FIELD public static System.Boolean fastForwardTimeToDawn
+  FIELD public static System.Int32 sundialCooldown
+  FIELD public static System.Boolean fastForwardTimeToDusk
+  FIELD public static System.Int32 moondialCooldown
+  FIELD private static System.Diagnostics.Stopwatch splashTimer
+  FIELD public static Terraria.DataStructures.GeneralIssueReporter IssueReporter
+  FIELD private Newtonsoft.Json.Linq.JArray _lastLoadedPacks
+  FIELD public static System.Boolean PreventUpdatingTargets
+  FIELD private System.Collections.IEnumerator _gameContentLoadProcess
+  FIELD public static System.Boolean _shouldUseWindyDayMusic
+  FIELD public static System.Boolean _shouldUseStormMusic
+  FIELD private System.Int32 lastMusicPlayed
+  FIELD public System.Boolean playOldTile
+  FIELD private static System.Single _minWind
+  FIELD private static System.Single _maxWind
+  FIELD private static System.Single _minRain
+  FIELD private static System.Single _maxRain
+  FIELD public static System.Single ambientWaterfallX
+  FIELD public static System.Single ambientWaterfallY
+  FIELD public static System.Single ambientWaterfallStrength
+  FIELD public static System.Single ambientLavafallX
+  FIELD public static System.Single ambientLavafallY
+  FIELD public static System.Single ambientLavafallStrength
+  FIELD public static System.Single ambientLavaX
+  FIELD public static System.Single ambientLavaY
+  FIELD public static System.Single ambientLavaStrength
+  FIELD public static System.Int32 ambientCounter
+  FIELD public static Terraria.GameContent.UI.Chat.IChatMonitor chatMonitor
+  FIELD public static System.Int32 ProjectileUpdateLoopIndex
+  FIELD public static Terraria.GameContent.UI.GameTipsDisplay gameTips
+  FIELD private System.Diagnostics.Stopwatch _worldUpdateTimeTester
+  FIELD public Terraria.GameContent.SpelunkerProjectileHelper SpelunkerProjectileHelper
+  FIELD public Terraria.GameContent.ChumBucketProjectileHelper ChumBucketProjectileHelper
+  FIELD public static System.Int32 weatherVaneBobframe
+  FIELD private System.Single logoRotation
+  FIELD private System.Single logoRotationDirection
+  FIELD private System.Single logoRotationSpeed
+  FIELD private System.Single logoScale
+  FIELD private System.Single logoScaleDirection
+  FIELD private System.Single logoScaleSpeed
+  FIELD private static System.Int32 maxMenuItems
+  FIELD private System.Single[] menuItemScale
+  FIELD private System.Int32 focusMenu
+  FIELD private System.Int32 selectedMenu
+  FIELD private System.Int32 selectedMenu2
+  FIELD public static System.Int32 selectedPlayer
+  FIELD public static System.Int32 selectedWorld
+  FIELD public static System.Int32 menuMode
+  FIELD public static System.Int32 menuSkip
+  FIELD private static System.Boolean _needsLanguageSelect
+  FIELD public static Terraria.Item tooltipPrefixComparisonItem
+  FIELD private Terraria.Main/MouseTextCache _mouseTextCache
+  FIELD public System.Int32 textBlinkerCount
+  FIELD public System.Int32 textBlinkerState
+  FIELD public static System.String newWorldName
+  FIELD private static Microsoft.Xna.Framework.Vector3 shimmerShine
+  FIELD public static System.Int32[] specX
+  FIELD public static System.Int32[] specY
+  FIELD public Terraria.GameContent.TilePaintSystemV2 TilePaintSystem
+  FIELD public Terraria.GameContent.Drawing.TileDrawing TilesRenderer
+  FIELD public Terraria.GameContent.Drawing.WallDrawing WallsRenderer
+  FIELD private Terraria.GameContent.AmbientWindSystem _ambientWindSys
+  FIELD private System.Collections.Generic.List`1<Terraria.Player> _playersThatDrawBehindNPCs
+  FIELD private System.Collections.Generic.List`1<Terraria.Player> _playersThatDrawAfterProjectiles
+  FIELD private System.Collections.Generic.List`1<Terraria.DataStructures.DrawData> _voidLensData
+  FIELD private System.Collections.Generic.List`1<Terraria.DataStructures.DrawData> _voidLensDataSillouette
+  FIELD private System.Collections.Generic.List`1<Terraria.DataStructures.DrawData> _voidLensDataSillouette2
+  FIELD private static Microsoft.Xna.Framework.Graphics.BlendState _multiplyBlendState
+  FIELD private static Terraria.GameContent.Animations.StardewValleyAnimation _stardewAnimation
+  FIELD private static Terraria.Utilities.UnifiedRandom _tempSeededRandom
+  FIELD private Terraria.Main/TextDisplayCache _textDisplayCache
+  FIELD private System.Collections.Generic.List`1<System.Int32> _occupantsListToDrawNPCHouses
+  FIELD private System.Collections.Generic.List`1<System.Int32> _npcsWithBannersToDraw
+  FIELD private System.Boolean _imeToggle
+  FIELD private static System.Int32 _lastHoveredLoadoutIndex
+  FIELD private System.Collections.Generic.List`1<System.Int32> _npcTypesThatAlreadyDrewAHead
+  FIELD protected System.Int32[] _npcIndexWhoHoldsHeadIndex
+  FIELD private static System.Collections.Generic.List`1<System.String> _requiredObjecsForCraftingText
+  FIELD private static System.Boolean _preventCraftingBecauseClickWasUsedToChangeFocusedRecipe
+  FIELD private static System.Int32 _currentRecipeBeingCrafted
+  FIELD private static System.Boolean hidePVPIcons
+  FIELD public static System.Boolean HoveringOverAnNPC
+  FIELD public static System.String hoverItemName
+  FIELD public static Microsoft.Xna.Framework.Color inventoryBack
+  FIELD public static System.Boolean mouseText
+  FIELD private static System.Int32 mH
+  FIELD public static System.Int32 rare
+  FIELD public static System.Int32 hairStart
+  FIELD private static System.Int32 oldHairStyle
+  FIELD private static Microsoft.Xna.Framework.Color oldHairColor
+  FIELD public static System.Int32 selClothes
+  FIELD private static Microsoft.Xna.Framework.Color[] oldClothesColor
+  FIELD private static System.Int32 oldClothesStyle
+  FIELD public static System.Int32 interactedDresserTopLeftX
+  FIELD public static System.Int32 interactedDresserTopLeftY
+  FIELD public static Terraria.Player dresserInterfaceDummy
+  FIELD private System.Boolean _needToSetupDrawInterfaceLayers
+  FIELD private System.Collections.Generic.List`1<Terraria.UI.GameInterfaceLayer> _gameInterfaceLayers
+  FIELD public static Microsoft.Xna.Framework.GameTime _drawInterfaceGameTime
+  FIELD private System.Byte instrumentMouseFixHack
+  FIELD private static System.Boolean _settingsButtonIsPushedToSide
+  FIELD private static System.Boolean _MouseOversCanClear
+  FIELD private static Microsoft.Xna.Framework.Vector2 _itemIconCacheScreenPosition
+  FIELD private static System.Int32 _itemIconCacheSelectedItemID
+  FIELD private static System.Int32 _itemIconCacheTime
+  FIELD private static System.Boolean _cannotDrawAccessoriesHorizontally
+  FIELD public static Microsoft.Xna.Framework.Color selColor
+  FIELD public static System.Int32 focusColor
+  FIELD public static System.Int32 colorDelay
+  FIELD public static System.Int32 setKey
+  FIELD public static System.Int32 bgScroll
+  FIELD public static System.Boolean autoPass
+  FIELD public static System.Int32 menuFocus
+  FIELD public static System.Single hBar
+  FIELD public static System.Single sBar
+  FIELD public static System.Single lBar
+  FIELD public static System.Single aBar
+  FIELD private System.Int32 grabColorSlider
+  FIELD public static System.Boolean blockMouse
+  FIELD private static System.Boolean _blockFancyUIWhileLoading
+  FIELD private System.Boolean[] menuWide
+  FIELD public static System.Single GamepadCursorAlpha
+  FIELD private System.Boolean _needsMenuUIRecalculation
+  FIELD public static System.Single MenuXMovement
+  FIELD public Terraria.DataStructures.RejectionMenuInfo RejectionMenuInfo
+  FIELD private System.Single _splashFrameCount
+  FIELD private System.Boolean quickSplash
+  FIELD private System.Single hellBlackBoxBottom
+  FIELD public static System.Single InitialMapScale
+  FIELD public static System.Single MapScale
+  FIELD private static System.Int32 _minimapTopRightAnchorOffsetTowardsLeft
+  FIELD private static System.Int32 _minimapTopRightAnchorOffsetTowardsBottom
+  FIELD public static System.Boolean cancelWormHole
+  FIELD private static Terraria.Graphics.VertexColors _glowPaintColors
+  FIELD protected System.Collections.Generic.List`1<System.Tuple`3<System.Int32,System.Int32,System.UInt16>> DrawWiresSpecialTiles
+  FIELD public static System.Single lightning
+  FIELD private static System.Single lightningDecay
+  FIELD private static System.Single lightningSpeed
+  FIELD private static System.Int32 thunderDelay
+  FIELD public static System.Int32 thunderDistance
+  FIELD private static System.String[] MonolithFilterNames
+  FIELD private static System.String[] MonolithSkyNames
+  FIELD private static System.Single backgroundLayerTransitionSpeed
+  FIELD public static System.Single atmo
+  FIELD protected static System.Single bgScale
+  FIELD protected static System.Int32 bgWidthScaled
+  FIELD public static Microsoft.Xna.Framework.Color ColorOfTheSkies
+  FIELD protected static Microsoft.Xna.Framework.Color ColorOfSurfaceBackgroundsBase
+  FIELD protected static Microsoft.Xna.Framework.Color ColorOfSurfaceBackgroundsModified
+  FIELD protected System.Single screenOff
+  FIELD protected System.Single scAdj
+  FIELD private System.Single cTop
+  FIELD private System.Boolean _isDrawingOrUpdating
+  FIELD public static System.Collections.Generic.List`1<Terraria.GameContent.INeedRenderTargetContent> ContentThatNeedsRenderTargets
+  FIELD private static System.Boolean _cameraPanHasBlackTransition
+  FIELD public Terraria.Graphics.CameraModifiers.CameraModifierStack CameraModifiers
+  FIELD public static System.Boolean starGame
+  FIELD public static System.Int32 starsHit
+  FIELD private static System.String _oldNetplayStatusText
+  FIELD private static Terraria.UI.Chat.TextSnippet[] _netplayStatusTextSnippets
+  FIELD public static System.Double ladyBugRainBoost
+  FIELD private static System.Boolean _canShowMeteorFall
+  FIELD private static System.Boolean _isResizingAndRemakingTargets
+  FIELD private static System.Boolean <CanUpdateGameplay>k__BackingField
+  FIELD private static System.UInt64 <UnpausedUpdateSeed>k__BackingField
+  FIELD private static System.Int32 <npcShop>k__BackingField
+  FIELD private static System.Action OnEnginePreload
+  FIELD private static System.Action`1<Microsoft.Xna.Framework.Vector2> OnResolutionChanged
+  FIELD private static System.Action OnEngineLoad
+  FIELD private static System.Action OnTickForThirdPartySoftwareOnly
+  FIELD private static System.Action OnTickForInternalCodeOnly
+  FIELD private static System.Action`1<Microsoft.Xna.Framework.GameTime> OnPreDraw
+  FIELD private static System.Action`1<Microsoft.Xna.Framework.GameTime> OnPostDraw
+  FIELD private static System.Action`2<Microsoft.Xna.Framework.Vector2,System.Single> OnPostFullscreenMapDraw
+  FIELD private static System.Action OnRenderTargetsReleased
+  FIELD private static Terraria.ResolutionChangeEvent OnRenderTargetsInitialized
+  FIELD private static ReLogic.Utilities.SlotId waterfallSoundSlot
+  FIELD private static ReLogic.Utilities.SlotId lavafallSoundSlot
+  FIELD public static System.Int32 DefaultDamageVariationPercent
+  FIELD public static System.Int32 soundError
+  FIELD public static System.Int32 ambientError
+  FIELD public static System.Boolean mouseMiddle
+  FIELD public static System.Boolean mouseXButton1
+  FIELD public static System.Boolean mouseXButton2
+  FIELD public static System.Boolean mouseMiddleRelease
+  FIELD public static System.Boolean mouseXButton1Release
+  FIELD public static System.Boolean mouseXButton2Release
+  FIELD public static Terraria.DataStructures.Point16 trashSlotOffset
+  FIELD public static System.Boolean hidePlayerCraftingMenu
+  FIELD public static System.Boolean showServerConsole
+  FIELD public static System.Boolean Support8K
+  FIELD public static System.Double desiredWorldEventsUpdateRate
+  FIELD public static System.Int32 worldEventUpdates
+  FIELD private System.Double _partialWorldEventUpdates
+  FIELD public static System.Collections.Generic.List`1<Terraria.DataStructures.TitleLinkButton> tModLoaderTitleLinks
+  FIELD private static readonly System.Net.Http.HttpClient client
+  FIELD private static System.Boolean hairstylesUpdatedForThisInteraction
+  FIELD private static Terraria.Player _currentPlayerOverride
+  FIELD private static System.Runtime.InteropServices.PosixSignalRegistration SIGINTHandler
+  FIELD private static System.Runtime.InteropServices.PosixSignalRegistration SIGTERMHandler
+  FIELD private static System.String newsText
+  FIELD private static System.String newsURL
+  FIELD private static System.Boolean newsChecked
+  FIELD private static System.Boolean newsIsNew
+  PROP System.String statusText {get,set}
+  PROP Terraria.Utilities.UnifiedRandom rand {get,set}
+  PROP System.Boolean CanUpdateGameplay {get}
+  PROP Microsoft.Xna.Framework.Vector2 ViewPosition {get}
+  PROP Microsoft.Xna.Framework.Vector2 ViewSize {get}
+  PROP Microsoft.Xna.Framework.Matrix CurrentWantedZoomMatrix {get}
+  PROP Microsoft.Xna.Framework.Matrix UIScaleMatrix {get}
+  PROP System.Single UIScaleWanted {get}
+  PROP System.Single UIScale {get,set}
+  PROP System.Single UIScaleMax {get}
+  PROP System.Boolean RenderTargetsRequired {get}
+  PROP System.Boolean IsItRaining {get}
+  PROP System.Boolean ThickMouse {get}
+  PROP System.Boolean GamepadDisableCursorItemIcon {get}
+  PROP System.String SavePath {get}
+  PROP Terraria.DataStructures.GameModeData GameModeInfo {get}
+  PROP System.Int32 GameMode {get,set}
+  PROP System.Boolean specialSeedWorld {get}
+  PROP System.Boolean masterMode {get}
+  PROP System.Boolean expertMode {get}
+  PROP Terraria.Achievements.AchievementManager Achievements {get}
+  PROP Terraria.UI.AchievementAdvisor AchievementAdvisor {get}
+  PROP System.UInt64 UnpausedUpdateSeed {get}
+  PROP Microsoft.Xna.Framework.Graphics.Effect screenShader {get}
+  PROP Microsoft.Xna.Framework.Graphics.Effect pixelShader {get}
+  PROP Microsoft.Xna.Framework.Graphics.Effect vertexPixelShader {get}
+  PROP Microsoft.Xna.Framework.Graphics.Effect tileShader {get}
+  PROP Microsoft.Xna.Framework.Matrix Transform {get}
+  PROP Microsoft.Xna.Framework.Vector2 MouseScreen {get}
+  PROP Microsoft.Xna.Framework.Vector2 MouseWorld {get}
+  PROP Terraria.UI.INetDiagnosticsUI ActiveNetDiagnosticsUI {get}
+  PROP System.UInt32 GameUpdateCount {get}
+  PROP Microsoft.Xna.Framework.Graphics.SamplerState DefaultSamplerState {get}
+  PROP System.Int32 UnderworldLayer {get}
+  PROP System.Single WindForVisuals {get}
+  PROP Terraria.Player LocalPlayer {get}
+  PROP Terraria.GameContent.Creative.CreativeUnlocksTracker LocalPlayerCreativeTracker {get}
+  PROP System.Int32 npcShop {get}
+  PROP System.String playerPathName {get}
+  PROP System.String worldPathName {get}
+  PROP System.Boolean SmartCursorWanted {get}
+  PROP System.Boolean SmartCursorIsUsed {get}
+  PROP System.Boolean HasSmartInteractTarget {get}
+  PROP System.Boolean IsItAHappyWindyDay {get}
+  PROP System.Boolean IsItStorming {get}
+  PROP System.Boolean WindyEnoughForKiteDrops {get}
+  PROP System.Boolean ShouldPVPDraw {get}
+  PROP System.Int32 RecommendedEquipmentAreaPushUp {get}
+  PROP System.Boolean ShouldDrawInfoIconsHorizontally {get}
+  PROP System.Boolean CanShowInfoAccs {get}
+  PROP Microsoft.Xna.Framework.Point ScreenSize {get}
+  PROP System.Boolean IsGraphicsDeviceAvailable {get}
+  PROP Microsoft.Xna.Framework.Color DiscoColor {get}
+  PROP Microsoft.Xna.Framework.Color MouseTextColorReal {get}
+  PROP System.Boolean PlayerLoaded {get}
+  PROP Terraria.Player CurrentPlayer {get}
+  PROP Terraria.ModLoader.ActiveEntityIterator`1<Terraria.Player> ActivePlayers {get}
+  PROP Terraria.ModLoader.ActiveEntityIterator`1<Terraria.NPC> ActiveNPCs {get}
+  PROP Terraria.ModLoader.ActiveEntityIterator`1<Terraria.Projectile> ActiveProjectiles {get}
+  PROP Terraria.ModLoader.ActiveEntityIterator`1<Terraria.Item> ActiveItems {get}
+  METHOD public static System.Void add_OnEnginePreload(System.Action value)
+  METHOD public static System.Void remove_OnEnginePreload(System.Action value)
+  METHOD public static System.Void add_OnResolutionChanged(System.Action`1<Microsoft.Xna.Framework.Vector2> value)
+  METHOD public static System.Void remove_OnResolutionChanged(System.Action`1<Microsoft.Xna.Framework.Vector2> value)
+  METHOD public static System.Void add_OnEngineLoad(System.Action value)
+  METHOD public static System.Void remove_OnEngineLoad(System.Action value)
+  METHOD public static System.Void add_OnTickForThirdPartySoftwareOnly(System.Action value)
+  METHOD public static System.Void remove_OnTickForThirdPartySoftwareOnly(System.Action value)
+  METHOD public static System.Void add_OnTickForInternalCodeOnly(System.Action value)
+  METHOD public static System.Void remove_OnTickForInternalCodeOnly(System.Action value)
+  METHOD public static System.Void add_OnPreDraw(System.Action`1<Microsoft.Xna.Framework.GameTime> value)
+  METHOD public static System.Void remove_OnPreDraw(System.Action`1<Microsoft.Xna.Framework.GameTime> value)
+  METHOD public static System.Void add_OnPostDraw(System.Action`1<Microsoft.Xna.Framework.GameTime> value)
+  METHOD public static System.Void remove_OnPostDraw(System.Action`1<Microsoft.Xna.Framework.GameTime> value)
+  METHOD public static System.Void add_OnPostFullscreenMapDraw(System.Action`2<Microsoft.Xna.Framework.Vector2,System.Single> value)
+  METHOD public static System.Void remove_OnPostFullscreenMapDraw(System.Action`2<Microsoft.Xna.Framework.Vector2,System.Single> value)
+  METHOD public static System.Void add_OnRenderTargetsReleased(System.Action value)
+  METHOD public static System.Void remove_OnRenderTargetsReleased(System.Action value)
+  METHOD public static System.Void add_OnRenderTargetsInitialized(Terraria.ResolutionChangeEvent value)
+  METHOD public static System.Void remove_OnRenderTargetsInitialized(Terraria.ResolutionChangeEvent value)
+  METHOD public static System.Void ToggleGameplayUpdates(System.Boolean state)
+  METHOD public static System.Void SetRecommendedZoomContext(Microsoft.Xna.Framework.Matrix matrix)
+  METHOD public static System.Void FindAnnouncementBoxStatus()
+  METHOD public static System.Boolean CanPlayCreditsRoll()
+  METHOD public static System.Void SetCameraLerp(System.Single lerp, System.Int32 time)
+  METHOD public static System.Void SetCameraGamepadLerp(System.Single lerp)
+  METHOD public static Microsoft.Xna.Framework.Vector2 ReverseGravitySupport(Microsoft.Xna.Framework.Vector2 pos, System.Single height)
+  METHOD public static Microsoft.Xna.Framework.Point ReverseGravitySupport(Microsoft.Xna.Framework.Point pos, System.Int32 height)
+  METHOD public static Microsoft.Xna.Framework.Rectangle ReverseGravitySupport(Microsoft.Xna.Framework.Rectangle box)
+  METHOD public System.Void SetMouseNPC(System.Int32 index, System.Int32 type)
+  METHOD public System.Void SetMouseNPC_ToHousingQuery()
+  METHOD private static System.Int32 RemoveMenu(System.IntPtr hMenu, System.Int32 nPosition, System.Int32 wFlags)
+  METHOD private static System.IntPtr GetSystemMenu(System.IntPtr hWnd, System.Boolean bRevert)
+  METHOD private static System.Int32 GetMenuItemCount(System.IntPtr hWnd)
+  METHOD public static System.IntPtr LoadLibrary(System.String dllToLoad)
+  METHOD public static Terraria.Enums.MoonPhase GetMoonPhase()
+  METHOD public static Microsoft.Xna.Framework.Vector2 DrawPlayerItemPos(System.Single gravdir, System.Int32 itemtype)
+  METHOD public static System.Void SetupTileMerge()
+  METHOD protected static System.Void SetupAllBlockMerge()
+  METHOD public static System.Void RegisterItemAnimation(System.Int32 index, Terraria.DataStructures.DrawAnimation animation)
+  METHOD public static System.Void InitializeItemAnimations()
+  METHOD public static System.Void AnglerQuestSwap()
+  METHOD public System.Void UpdateParticleSystems()
+  METHOD public static System.Void TrySetPreparationState(Terraria.Main/WorldPreparationState state)
+  METHOD public static System.Void UpdateWorldPreparationState()
+  METHOD public static System.Boolean InSmartCursorHighlightArea(System.Int32 x, System.Int32 y, System.Boolean& actuallySelected)
+  METHOD public static System.Void LoadWorlds()
+  METHOD private static System.Int32 WorldListSortMethod(Terraria.IO.WorldFileData data1, Terraria.IO.WorldFileData data2)
+  METHOD public static System.Void LoadPlayers()
+  METHOD private static System.Int32 PlayerListSortMethod(Terraria.IO.PlayerFileData data1, Terraria.IO.PlayerFileData data2)
+  METHOD protected System.Void OpenRecent()
+  METHOD public static System.Void SaveRecent()
+  METHOD public static System.Boolean SaveSettings()
+  METHOD protected System.Void CheckBunny()
+  METHOD private static System.Void TryPickingDefaultUIScale(System.Single displayHeight)
+  METHOD protected System.Void LoadSettings()
+  METHOD protected System.Void OpenLegacySettings()
+  METHOD private static System.Void ErasePlayer(System.Int32 i)
+  METHOD private static System.Void EraseWorld(System.Int32 i)
+  METHOD public static System.String GetPlayerPathFromName(System.String playerName, System.Boolean cloudSave)
+  METHOD public static System.String GetWorldPathFromName(System.String worldName, System.Boolean cloudSave)
+  METHOD public System.Void setServerWorldRollbacks(System.String rollBacksToKeep)
+  METHOD public System.Void autoCreate(System.String worldSize)
+  METHOD public System.Void NewMOTD(System.String newMOTD)
+  METHOD public static System.String ConvertToSafeArgument(System.String arg)
+  METHOD public static System.String ConvertFromSafeArgument(System.String arg)
+  METHOD public System.Void LoadDedConfig(System.String configPath)
+  METHOD public System.Void SetNetPlayers(System.Int32 mPlayers)
+  METHOD public System.Void SetWorld(System.String world, System.Boolean cloud)
+  METHOD public System.Void SetWorldName(System.String world)
+  METHOD public System.Void EnableAutoShutdown()
+  METHOD public static System.IntPtr FindWindow(System.String lpClassName, System.String lpWindowName)
+  METHOD private static System.Boolean ShowWindow(System.IntPtr hWnd, System.Int32 nCmdShow)
+  METHOD public System.Void AutoPass()
+  METHOD public System.Void AutoJoin(System.String IP, System.String player)
+  METHOD public System.Void AutoHost()
+  METHOD public System.Void loadLib(System.String path)
+  METHOD public System.Void NeverSleep()
+  METHOD public System.Void YouCanSleepNow()
+  METHOD public System.Void DedServ()
+  METHOD private System.Void DedServ_PostModLoad(System.Boolean& reloadMods)
+  METHOD private static System.Void WriteFancyWorldLoadErrorToConsole()
+  METHOD public static System.Void startDedInput()
+  METHOD public static System.Void startDedInputCallBack()
+  METHOD public static System.Void ExecuteCommand(System.String text, Terraria.ModLoader.CommandCaller commandCaller)
+  METHOD private static System.String ReadLineInput()
+  METHOD public static System.Boolean IsFastForwardingTime()
+  METHOD public static System.Void Sundialing()
+  METHOD public static System.Void Moondialing()
+  METHOD public static System.Void UpdateTimeRate()
+  METHOD public static System.Void UpdateTimeRate_Inner()
+  METHOD public System.Void .ctor()
+  METHOD private static System.Void SetDisplayMonitor()
+  METHOD private static System.Void SetMonitorOnce(System.Object sender, Microsoft.Xna.Framework.PreparingDeviceSettingsEventArgs e)
+  METHOD protected System.Void SetTitle()
+  METHOD private static System.Void SetTileValue()
+  METHOD private static System.Void ResetGameCounter()
+  METHOD protected virtual System.Void Initialize()
+  METHOD private System.Void BindSettingsTo(Terraria.IO.Preferences preferences)
+  METHOD private System.Void LoadResourcePacks(Terraria.IO.Preferences prefs)
+  METHOD private System.Void SaveResourcePacks(Terraria.IO.Preferences prefs)
+  METHOD private System.Void Initialize_AlmostEverything()
+  METHOD private System.Void Initialize_Entities()
+  METHOD private static System.Void Initialize_Items()
+  METHOD private static System.Void Initialize_TileAndNPCData2()
+  METHOD private static System.Void AddEchoFurnitureTile(System.Int32 tileId)
+  METHOD private static System.Void Initialize_TileAndNPCData1()
+  METHOD protected static System.Void Initialize_BuffDataFromMountData()
+  METHOD private static System.Void Initialize_TileAndNPCData1_Part2()
+  METHOD private System.Void ClientInitialize()
+  METHOD private static System.Void CacheSupportedDisplaySizes()
+  METHOD public static System.Void LoadTestLog(System.String logname)
+  METHOD protected static System.Void OnceFailedLoadingAnAsset(System.String assetPath, System.Exception e)
+  METHOD protected virtual System.Void LoadContent()
+  METHOD protected System.Collections.IEnumerator LoadContent_Deferred()
+  METHOD private System.Void TickLoadProcess()
+  METHOD private static System.Void PostContentLoadInitialize()
+  METHOD private System.Collections.IEnumerator LoadMusic_InSteps()
+  METHOD protected virtual System.Void UnloadContent()
+  METHOD public static System.Void CheckForMoonEventsStartingTemporarySeasons()
+  METHOD public static System.Void CheckForMoonEventsScoreDisplay()
+  METHOD public static System.Void stopMoonEvent()
+  METHOD public static System.Void startPumpkinMoon()
+  METHOD public static System.Void startSnowMoon()
+  METHOD protected System.Void UpdateAudio()
+  METHOD private System.Void UpdateAudio_DecideOnTOWMusic()
+  METHOD private System.Void UpdateAudio_DecideOnNewMusic()
+  METHOD private System.Void UpdateWindyDayState()
+  METHOD public static System.Void snowing()
+  METHOD public static System.Void checkXMas()
+  METHOD public static System.Void checkHalloween()
+  METHOD public System.Void updateCloudLayer()
+  METHOD public static System.Void TeleportEffect(Microsoft.Xna.Framework.Rectangle effectRect, System.Int32 Style, System.Int32 extraInfo, System.Single dustCountMult, Terraria.ID.TeleportationSide side, Microsoft.Xna.Framework.Vector2 otherPosition)
+  METHOD public static System.Void Ambience()
+  METHOD public static System.Void AnimateTiles_CritterCages()
+  METHOD private static System.Void UpdateOwlCageFrames()
+  METHOD private static System.Void UpdateDragonflyJarFrames()
+  METHOD private static System.Void UpdateOwlCageFrame(System.Int32[] frames, System.Int32[] frameCounters, System.Int32 style)
+  METHOD private static System.Void UpdateDragonflyJarFrame(System.Int32[0...,0...] frames, System.Int32[0...,0...] frameCounters, System.Int32 style, System.Int32 variation)
+  METHOD public static System.Void DoUpdate_AnimateItemIcons()
+  METHOD private static System.Void DoUpdate_AnimateItemIcons_Inner()
+  METHOD public static System.Void QueueMainThreadAction(System.Action action)
+  METHOD private static System.Void ConsumeAllMainThreadActions()
+  METHOD protected virtual System.Void Update(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD public System.Void UpdateViewZoomKeys()
+  METHOD public static System.Void NotifyOfEvent(Terraria.GameContent.GameNotificationType type)
+  METHOD protected System.Void DoUpdate(Microsoft.Xna.Framework.GameTime& gameTime)
+  METHOD protected static System.Void UpdateCreativeGameModeOverride()
+  METHOD private static System.Void TryPlayingCreditsRoll()
+  METHOD private static System.Boolean CanPauseGame()
+  METHOD private static System.Void DoUpdate_WhilePaused()
+  METHOD private static System.Void UpdateUIStates(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD private System.Void DoDebugFunctions()
+  METHOD private System.Void PreUpdateAllProjectiles()
+  METHOD private System.Void PostUpdateAllProjectiles()
+  METHOD private static System.Void TrySyncingMyPlayer()
+  METHOD private static System.Void TrySyncingItemArray(System.Boolean& syncedAnyInventoryContents, Terraria.Item[] my, Terraria.Item[] other, System.Int32 slotOffset)
+  METHOD public System.Boolean ShouldUpdateEntities()
+  METHOD private System.Void DoUpdateInWorld(System.Diagnostics.Stopwatch sw)
+  METHOD private static System.Void CheckBossIndexes()
+  METHOD public static System.Boolean IsNPCActiveAndOneOfTypes(System.Int32 npcIndex, System.Int32[] types)
+  METHOD private static System.Void UpdateOldNPCShop()
+  METHOD private static System.Void DoUpdate_AnimateCursorColors()
+  METHOD private static System.Void DoUpdate_AnimateTileGlows()
+  METHOD private static System.Void DoUpdate_Enter_ToggleChat()
+  METHOD public static System.Void OpenPlayerChat()
+  METHOD public static System.Void ClosePlayerChat()
+  METHOD private static System.Void DoUpdate_HandleChat()
+  METHOD private System.Void DoUpdate_HandleInput()
+  METHOD private static System.Void DoUpdate_AltEnter_ToggleFullscreen()
+  METHOD private static System.Void DoUpdate_F11_ToggleUI()
+  METHOD private static System.Void DoUpdate_F7_ToggleGraphicsDiagnostics()
+  METHOD private static System.Void DoUpdate_F8_ToggleNetDiagnostics()
+  METHOD private static System.Void DoUpdate_F9_ToggleLighting()
+  METHOD private static System.Void DoUpdate_F10_ToggleFPS()
+  METHOD private static System.Void AnimateTiles()
+  METHOD private static System.Void AnimateTiles_WeatherVane()
+  METHOD private static System.Void DoUpdate_AnimateWalls()
+  METHOD private System.Void DoUpdate_AnimateWaterfalls()
+  METHOD private static System.Void DoUpdate_AnimateVisualPlayerAura()
+  METHOD private System.Void DoUpdate_AnimateDiscoRGB()
+  METHOD private static System.Void DoUpdate_AnimateBackgrounds()
+  METHOD private static System.Void DoUpdate_AnimateBackgrounds_UpdateForest(System.Int32 bgIndex, System.Int32[] bgSet)
+  METHOD private static System.Void DoUpdate_AutoSave()
+  METHOD private static System.Void UpdateSettingUnlocks()
+  METHOD public static System.Void InputTextSign()
+  METHOD public static System.Void InputTextChest()
+  METHOD public static System.Void InputTextSignCancel()
+  METHOD private static System.Void UpdateMenu()
+  METHOD public static System.Void clrInput()
+  METHOD public static System.Int16 GetKeyState(System.Int32 keyCode)
+  METHOD public static System.String GetInputText(System.String oldString, System.Boolean allowMultiLine)
+  METHOD private static System.String PasteTextIn(System.Boolean allowMultiLine, System.String newKeys)
+  METHOD public System.Void MouseTextHackZoom(System.String text, System.String buffTooltip)
+  METHOD public System.Void MouseTextHackZoom(System.String text, System.Int32 itemRarity, System.Byte diff, System.String buffTooltip)
+  METHOD public System.Void MouseTextNoOverride(System.String cursorText, System.Int32 rare, System.Byte diff, System.Int32 hackedMouseX, System.Int32 hackedMouseY, System.Int32 hackedScreenWidth, System.Int32 hackedScreenHeight, System.Int32 pushWidthX)
+  METHOD public System.Void MouseText(System.String cursorText, System.Int32 rare, System.Byte diff, System.Int32 hackedMouseX, System.Int32 hackedMouseY, System.Int32 hackedScreenWidth, System.Int32 hackedScreenHeight, System.Int32 pushWidthX)
+  METHOD public System.Void MouseText(System.String cursorText, System.String buffTooltip, System.Int32 rare, System.Byte diff, System.Int32 hackedMouseX, System.Int32 hackedMouseY, System.Int32 hackedScreenWidth, System.Int32 hackedScreenHeight, System.Int32 pushWidthX, System.Boolean noOverride)
+  METHOD private System.Void MouseTextInner(Terraria.Main/MouseTextCache info)
+  METHOD private System.Void MouseText_DrawItemTooltip(Terraria.Main/MouseTextCache info, System.Int32 rare, System.Byte diff, System.Int32 X, System.Int32 Y)
+  METHOD public static System.Void MouseText_DrawItemTooltip_GetLinesInfo(Terraria.Item item, System.Int32& yoyoLogo, System.Int32& researchLine, System.Single oldKB, System.Int32& numLines, System.String[] toolTipLine, System.Boolean[] preFixLine, System.Boolean[] badPreFixLine, System.String[] toolTipNames, System.Int32& prefixlineIndex)
+  METHOD private System.Void MouseText_DrawBuffTooltip(System.String buffString, System.Int32& X, System.Int32& Y, System.Int32 buffNameHeight)
+  METHOD protected System.Void DrawFPS()
+  METHOD public static System.Void DrawGamepadInstructions()
+  METHOD public static Microsoft.Xna.Framework.Color shine(Microsoft.Xna.Framework.Color newColor, System.Int32 type)
+  METHOD public static System.Void shine(Microsoft.Xna.Framework.Vector3& newColor, System.Int32 type)
+  METHOD private System.Void DrawTileEntities(System.Boolean solidLayer, System.Boolean overRenderTargets, System.Boolean intoRenderTargets)
+  METHOD public System.Void ClearCachedTileDraws()
+  METHOD public System.Void ResetAllContentBasedRenderTargets()
+  METHOD protected static System.Boolean IsTileSpelunkable(System.Int32 tileX, System.Int32 tileY, Terraria.Tile t)
+  METHOD protected static System.Boolean IsTileSpelunkable(System.Int32 tileX, System.Int32 tileY, System.UInt16 typeCache, System.Int16 tileFrameX, System.Int16 tileFrameY)
+  METHOD protected static System.Boolean IsTileBiomeSightable(System.Int32 tileX, System.Int32 tileY, Terraria.Tile t, Microsoft.Xna.Framework.Color& sightColor)
+  METHOD protected static System.Boolean IsTileBiomeSightable(System.Int32 tileX, System.Int32 tileY, System.UInt16 type, System.Int16 tileFrameX, System.Int16 tileFrameY, Microsoft.Xna.Framework.Color& sightColor)
+  METHOD protected System.Void DrawTiles(System.Boolean solidLayer, System.Boolean forRenderTargets, System.Boolean intoRenderTargets, System.Int32 waterStyleOverride)
+  METHOD protected System.Void DrawGoreBehind()
+  METHOD protected System.Void DrawGore()
+  METHOD public System.Void DrawHealthBar(System.Single X, System.Single Y, System.Int32 Health, System.Int32 MaxHealth, System.Single alpha, System.Single scale, System.Boolean noFlip)
+  METHOD public static System.Single NPCAddHeight(Terraria.NPC theNPC)
+  METHOD protected System.Void DrawProjectiles()
+  METHOD public static System.Int32 GetProjectileDesiredShader(Terraria.Projectile proj)
+  METHOD private System.Void RefreshPlayerDrawOrder()
+  METHOD protected System.Void DrawPlayers_BehindNPCs()
+  METHOD protected System.Void DrawPlayers_AfterProjectiles()
+  METHOD protected System.Void DrawElderEye(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Vector2 worldPosition, System.Single opacity, System.Single scale, System.Int32 frameNumber, Microsoft.Xna.Framework.Color passedColor)
+  METHOD protected System.Void DrawNPCs(System.Boolean behindTiles)
+  METHOD public System.Void DrawNPCCheckAlt(Terraria.NPC n)
+  METHOD public System.Void DrawNPC(System.Int32 iNPCIndex, System.Boolean behindTiles)
+  METHOD public System.Void DrawNPCDirect_QueenSlimeWings(Terraria.NPC rCurrentNPC, Microsoft.Xna.Framework.Graphics.SpriteBatch mySpriteBatch, Microsoft.Xna.Framework.Vector2 screenPos, Microsoft.Xna.Framework.Vector2 drawCenter, Microsoft.Xna.Framework.Color originColor)
+  METHOD public System.Void DrawNPCDirect(Microsoft.Xna.Framework.Graphics.SpriteBatch mySpriteBatch, Terraria.NPC rCurrentNPC, System.Boolean behindTiles, Microsoft.Xna.Framework.Vector2 screenPos)
+  METHOD private System.Void DrawNPCDirect_Inner(Microsoft.Xna.Framework.Graphics.SpriteBatch mySpriteBatch, Terraria.NPC rCurrentNPC, System.Boolean behindTiles, Microsoft.Xna.Framework.Vector2 screenPos, Microsoft.Xna.Framework.Color& npcColor)
+  METHOD private static System.Void DrawNPCDirect_Deerclops(Microsoft.Xna.Framework.Graphics.SpriteBatch mySpriteBatch, Terraria.NPC rCurrentNPC, Microsoft.Xna.Framework.Vector2& screenPos, System.Int32 typeCache, Microsoft.Xna.Framework.Color& npcColor, Microsoft.Xna.Framework.Vector2& halfSize, Microsoft.Xna.Framework.Graphics.SpriteEffects npcSpriteEffect)
+  METHOD private static System.Void DrawNPCDirect_DeerclopsLeg(Microsoft.Xna.Framework.Graphics.SpriteBatch mySpriteBatch, Terraria.NPC rCurrentNPC, Microsoft.Xna.Framework.Vector2& screenPos, System.Int32 typeCache, Microsoft.Xna.Framework.Color& npcColor, Microsoft.Xna.Framework.Vector2& halfSize, Microsoft.Xna.Framework.Graphics.SpriteEffects npcSpriteEffect)
+  METHOD private static System.Void DrawNPCDirect_Faeling(Microsoft.Xna.Framework.Graphics.SpriteBatch mySpriteBatch, Terraria.NPC rCurrentNPC, Microsoft.Xna.Framework.Vector2& screenPos, System.Int32 typeCache, Microsoft.Xna.Framework.Color& npcColor, Microsoft.Xna.Framework.Vector2& halfSize, Microsoft.Xna.Framework.Graphics.SpriteEffects npcSpriteEffect)
+  METHOD private static System.Void DrawNPCDirect_HallowBoss(Microsoft.Xna.Framework.Graphics.SpriteBatch mySpriteBatch, Terraria.NPC rCurrentNPC, Microsoft.Xna.Framework.Vector2& screenPos, System.Int32 typeCache, Microsoft.Xna.Framework.Color& npcColor, Microsoft.Xna.Framework.Vector2& halfSize, Microsoft.Xna.Framework.Graphics.SpriteEffects npcSpriteEffect)
+  METHOD private static System.Void DrawNPCDirect_GetHallowBossArmFrame(Terraria.NPC rCurrentNPC, System.Int32& armFrame_Count, System.Int32& armFrameToUseLeft, System.Int32& armFrameToUseRight)
+  METHOD private static System.Void DrawNPC_SlimeItem(Terraria.NPC rCurrentNPC, System.Int32 typeCache, Microsoft.Xna.Framework.Color npcColor, System.Single addedRotation)
+  METHOD public static System.Void GetItemDrawFrame(System.Int32 item, Microsoft.Xna.Framework.Graphics.Texture2D& itemTexture, Microsoft.Xna.Framework.Rectangle& itemFrame)
+  METHOD protected System.Void DrawNPCExtras(Terraria.NPC n, System.Boolean beforeDraw, System.Single addHeight, System.Single addY, Microsoft.Xna.Framework.Color npcColor, Microsoft.Xna.Framework.Vector2 halfSize, Microsoft.Xna.Framework.Graphics.SpriteEffects npcSpriteEffect, Microsoft.Xna.Framework.Vector2 screenPosition)
+  METHOD private System.Void DrawProj_LightsBane(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_NightsEdge(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_Excalibur(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_TheHorsemansBlade(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_TrueExcalibur(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_TrueNightsEdge(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_TerraBlade2(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_TerraBlade2Shot(Terraria.Projectile proj)
+  METHOD public System.Void DrawProj(System.Int32 i)
+  METHOD private System.Void DrawContinuousTrail(Terraria.Projectile proj)
+  METHOD private static System.Void DrawTrail(Terraria.Projectile proj, Microsoft.Xna.Framework.Vector2 rotatableOffsetFromCenter, Microsoft.Xna.Framework.Color baseColor)
+  METHOD public System.Void DrawProjDirect(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_DrawVoidLens(Terraria.Projectile proj, System.Boolean& earlyReturn)
+  METHOD private System.Void DrawProj_Inner(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_DrawYoyoString(Terraria.Projectile proj, Microsoft.Xna.Framework.Vector2 mountedCenter)
+  METHOD private System.Void DrawProj_DrawSpecialProjs(Terraria.Projectile proj, System.Boolean& earlyReturn)
+  METHOD private System.Void DrawProj_DrawExtras(Terraria.Projectile proj, Microsoft.Xna.Framework.Vector2 mountedCenter, System.Single& polePosX, System.Single& polePosY)
+  METHOD private System.Void DrawProj_Inner_DoDrawProj(Terraria.Projectile proj, Microsoft.Xna.Framework.Vector2 mountedCenter, System.Single polePosX, System.Single polePosY)
+  METHOD private System.Void DrawProj_DrawNormalProjs(Terraria.Projectile proj, System.Single polePosX, System.Single polePosY, Microsoft.Xna.Framework.Vector2 mountedCenter, Microsoft.Xna.Framework.Color& projectileColor)
+  METHOD private static System.Void DrawProj_Flamethrower(Terraria.Projectile proj)
+  METHOD private static System.Void DrawProj_Spear(Terraria.Projectile proj, Microsoft.Xna.Framework.Color& projectileColor, Microsoft.Xna.Framework.Graphics.SpriteEffects& dir)
+  METHOD private static System.Void DrawPrettyStarSparkle(System.Single opacity, Microsoft.Xna.Framework.Graphics.SpriteEffects dir, Microsoft.Xna.Framework.Vector2 drawpos, Microsoft.Xna.Framework.Color drawColor, Microsoft.Xna.Framework.Color shineColor, System.Single flareCounter, System.Single fadeInStart, System.Single fadeInEnd, System.Single fadeOutStart, System.Single fadeOutEnd, System.Single rotation, Microsoft.Xna.Framework.Vector2 scale, Microsoft.Xna.Framework.Vector2 fatness)
+  METHOD private static System.Void DrawProj_FlailChains(Terraria.Projectile proj, Microsoft.Xna.Framework.Vector2 mountedCenter)
+  METHOD private static System.Void DrawProj_FlailChains_Old(Terraria.Projectile proj, Microsoft.Xna.Framework.Vector2 mountedCenter)
+  METHOD private static Microsoft.Xna.Framework.Color TryApplyingPlayerStringColor(System.Int32 playerStringColor, Microsoft.Xna.Framework.Color stringColor)
+  METHOD private static System.Void DrawProj_FishingLine(Terraria.Projectile proj, System.Single& polePosX, System.Single& polePosY, Microsoft.Xna.Framework.Vector2 mountedCenter)
+  METHOD private System.Void DrawProj_StardustGuardianPunching(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_PiercingStarlight(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_FairyQueenLance(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_FairyQueenRangedItemShot(Terraria.Projectile proj)
+  METHOD private System.Void DrawProj_EmpressBlade(Terraria.Projectile proj, System.Single hueOverride)
+  METHOD private System.Void DrawProj_CoolWhipMinion(Terraria.Projectile proj)
+  METHOD private System.Void DrawMurderAurora(Terraria.Projectile proj)
+  METHOD private System.Void DrawWhip(Terraria.Projectile proj)
+  METHOD public static Microsoft.Xna.Framework.Vector2 DrawWhip_BoneWhip(Terraria.Projectile proj, System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector2> controlPoints)
+  METHOD public static Microsoft.Xna.Framework.Vector2 DrawWhip_CoolWhip(Terraria.Projectile proj, System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector2> controlPoints)
+  METHOD public static Microsoft.Xna.Framework.Vector2 DrawWhip_FireWhip(Terraria.Projectile proj, System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector2> controlPoints)
+  METHOD public static Microsoft.Xna.Framework.Vector2 DrawWhip_RainbowWhip(Terraria.Projectile proj, System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector2> controlPoints)
+  METHOD public static Microsoft.Xna.Framework.Vector2 DrawWhip_ThornWhip(Terraria.Projectile proj, System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector2> controlPoints)
+  METHOD public static Microsoft.Xna.Framework.Vector2 DrawWhip_WhipSword(Terraria.Projectile proj, System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector2> controlPoints)
+  METHOD public static Microsoft.Xna.Framework.Vector2 DrawWhip_WhipMace(Terraria.Projectile proj, System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector2> controlPoints)
+  METHOD public static Microsoft.Xna.Framework.Vector2 DrawWhip_WhipScythe(Terraria.Projectile proj, System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector2> controlPoints)
+  METHOD public static Microsoft.Xna.Framework.Vector2 DrawWhip_WhipBland(Terraria.Projectile proj, System.Collections.Generic.List`1<Microsoft.Xna.Framework.Vector2> controlPoints)
+  METHOD private System.Void DrawTwinsPet(Terraria.Projectile proj)
+  METHOD private System.Void DrawMultisegmentPet(Terraria.Projectile proj)
+  METHOD private System.Void DrawKite(Terraria.Projectile proj)
+  METHOD public static Microsoft.Xna.Framework.Vector2 GetPlayerArmPosition(Terraria.Projectile proj)
+  METHOD private System.Void DrawProjWithStarryTrail(Terraria.Projectile proj, Microsoft.Xna.Framework.Color projectileColor, Microsoft.Xna.Framework.Graphics.SpriteEffects dir)
+  METHOD private static System.Int32 TryInteractingWithVoidLens(Terraria.Projectile proj)
+  METHOD private static System.Int32 TryInteractingWithMoneyTrough(Terraria.Projectile proj)
+  METHOD public static System.Void PlayInteractiveProjectileOpenCloseSound(System.Int32 projType, System.Boolean open)
+  METHOD public static System.Void PrintTimedMessage(System.String message, System.Object[] arguments)
+  METHOD private static System.Void TryInteractingWithMoneyTrough2(Terraria.Projectile proj)
+  METHOD public System.Void PrepareDrawnProjectileDrawing(Terraria.Projectile proj)
+  METHOD public System.Void PrepareDrawnEntityDrawing(Terraria.Entity entity, System.Int32 intendedShader, System.Nullable`1<Microsoft.Xna.Framework.Matrix> overrideMatrix)
+  METHOD public static System.Void EntitySpriteDraw(Microsoft.Xna.Framework.Graphics.Texture2D texture, Microsoft.Xna.Framework.Vector2 position, System.Nullable`1<Microsoft.Xna.Framework.Rectangle> sourceRectangle, Microsoft.Xna.Framework.Color color, System.Single rotation, Microsoft.Xna.Framework.Vector2 origin, System.Single scale, Microsoft.Xna.Framework.Graphics.SpriteEffects effects, System.Single worthless)
+  METHOD public static System.Void EntitySpriteDraw(Microsoft.Xna.Framework.Graphics.Texture2D texture, Microsoft.Xna.Framework.Vector2 position, System.Nullable`1<Microsoft.Xna.Framework.Rectangle> sourceRectangle, Microsoft.Xna.Framework.Color color, System.Single rotation, Microsoft.Xna.Framework.Vector2 origin, Microsoft.Xna.Framework.Vector2 scale, Microsoft.Xna.Framework.Graphics.SpriteEffects effects, System.Single worthless)
+  METHOD public static System.Void EntitySpriteDraw(Terraria.DataStructures.DrawData data)
+  METHOD public static Microsoft.Xna.Framework.Color buffColor(Microsoft.Xna.Framework.Color newColor, System.Single R, System.Single G, System.Single B, System.Single A)
+  METHOD protected System.Void CacheNPCDraws()
+  METHOD protected System.Void CacheProjDraws()
+  METHOD protected System.Void DrawCachedNPCs(System.Collections.Generic.List`1<System.Int32> npcCache, System.Boolean behindTiles)
+  METHOD protected System.Void DrawCachedProjs(System.Collections.Generic.List`1<System.Int32> projCache, System.Boolean startSpriteBatch)
+  METHOD protected System.Void DrawSuperSpecialProjectiles(System.Collections.Generic.List`1<System.Int32> projCache, System.Boolean startSpriteBatch)
+  METHOD protected System.Void SortDrawCacheWorms()
+  METHOD private System.Void SortBabyBirdProjectiles(System.Collections.Generic.List`1<System.Int32> list)
+  METHOD private System.Void SortStardustDragonProjectiles(System.Collections.Generic.List`1<System.Int32> list)
+  METHOD protected System.Void DrawWoF()
+  METHOD private static System.Void DrawWOFBody()
+  METHOD private static System.Void DrawWOFRopeToTheHungry(System.Int32 i)
+  METHOD private static System.Void DrawWOFTongueToPlayer(System.Int32 i)
+  METHOD public static Microsoft.Xna.Framework.Color quickAlpha(Microsoft.Xna.Framework.Color oldColor, System.Single Alpha)
+  METHOD private System.Void DrawItem_GetBasics(Terraria.Item item, System.Int32 slot, Microsoft.Xna.Framework.Graphics.Texture2D& texture, Microsoft.Xna.Framework.Rectangle& frame, Microsoft.Xna.Framework.Rectangle& glowmaskFrame)
+  METHOD private System.Void DrawItem_AnimateSlot(System.Int32 slot, System.Int32 gameFramesPerSpriteFrame, System.Int32 spriteFramesAmount)
+  METHOD protected System.Void DrawItem(Terraria.Item item, System.Int32 whoami)
+  METHOD public System.Void DrawItems()
+  METHOD protected System.Void DrawRain()
+  METHOD protected System.Void DrawDust()
+  METHOD private static System.Void HelpText()
+  METHOD protected System.Void GUIChatDrawInner()
+  METHOD public static System.Boolean CanDryadPlayStardewAnimation(Terraria.Player player, Terraria.NPC npc)
+  METHOD private System.Void OpenShop(System.Int32 shopIndex)
+  METHOD public static System.Void SetNPCShopIndex(System.Int32 index)
+  METHOD private static System.Void DrawNPCChatButtons(System.Int32 superColor, Microsoft.Xna.Framework.Color chatColor, System.Int32 numLines, System.String focusText, System.String focusText3)
+  METHOD public static System.Void CloseNPCChatOrSign()
+  METHOD public static System.Void SubmitSignText()
+  METHOD private System.Int32 NPCBannerSorter(System.Int32 npcIndex1, System.Int32 npcIndex2)
+  METHOD protected System.Void DrawNPCHousesInWorld()
+  METHOD public System.Void DrawWindowsIMEPanel(Microsoft.Xna.Framework.Vector2 position, System.Single xAnchor)
+  METHOD public System.Void HandleIME()
+  METHOD protected System.Void DrawPlayerChat()
+  METHOD protected System.Void DrawInventory()
+  METHOD private static System.Void DrawLoadoutButtons(System.Int32 inventoryTop, System.Boolean demonHeartSlotAvailable, System.Boolean masterModeSlotAvailable)
+  METHOD private System.Void DrawNPCHousesInUI()
+  METHOD private static System.Void DrawDefenseCounter(System.Int32 inventoryX, System.Int32 inventoryY)
+  METHOD private static System.Void DrawGuideCraftText(System.Int32 adjY, Microsoft.Xna.Framework.Color craftingTipColor, System.Int32& inventoryX, System.Int32& inventoryY)
+  METHOD private static System.Void DrawGuideCraftText_Old(System.Int32 adjY, Microsoft.Xna.Framework.Color craftingTipColor, System.Int32& inventoryX, System.Int32& inventoryY)
+  METHOD public static System.Void LockCraftingForThisCraftClickDuration()
+  METHOD private static System.Void HoverOverCraftingItemButton(System.Int32 recipeIndex)
+  METHOD private static System.Boolean TryAllowingToCraftRecipe(Terraria.Recipe currentRecipe, System.Boolean tryFittingItemInInventoryToAllowCrafting, System.Boolean& movedAnItemToAllowCrafting)
+  METHOD private static System.Void DrawTrashItemSlot(System.Int32 pivotTopLeftX, System.Int32 pivotTopLeftY)
+  METHOD private static System.Void DrawEmoteBubblesButton(System.Int32 pivotTopLeftX, System.Int32 pivotTopLeftY)
+  METHOD private static System.Void DrawBestiaryIcon(System.Int32 pivotTopLeftX, System.Int32 pivotTopLeftY)
+  METHOD private static System.Void SetRecipeMaterialDisplayName(System.Int32 i)
+  METHOD private System.Void DrawHotbarLockIcon(System.Int32 pivotTopLeftX, System.Int32 pivotTopLeftY, System.Boolean pushSideToolsUp)
+  METHOD public static System.Void CraftItem(Terraria.Recipe r)
+  METHOD private static System.Void DrawPVPIcons()
+  METHOD private static System.Int32 DrawPageIcons(System.Int32 yPos)
+  METHOD public System.Void DrawMouseOver()
+  METHOD private System.Void HoverOverNPCs(Microsoft.Xna.Framework.Rectangle mouseRectangle)
+  METHOD private static System.Boolean TryFreeingElderSlime(System.Int32 npcIndex)
+  METHOD private static System.Void DrawNPCChatBubble(System.Int32 i)
+  METHOD public System.Void GUIBarsDraw()
+  METHOD protected System.Void GUIBarsDrawInner()
+  METHOD public static System.Void DrawInterface_Resources_ClearBuffs()
+  METHOD public System.Void DrawInterface_Resources_Buffs()
+  METHOD public static System.String GetBuffTooltip(Terraria.Player player, System.Int32 buffType)
+  METHOD public static System.Boolean TryGetBuffTime(System.Int32 buffSlotOnPlayer, System.Int32& buffTimeValue)
+  METHOD public static System.Int32 DrawBuffIcon(System.Int32 drawBuffText, System.Int32 buffSlotOnPlayer, System.Int32 x, System.Int32 y)
+  METHOD public static System.Void TryRemovingBuff(System.Int32 i, System.Int32 b)
+  METHOD public static System.Void TryRemovingBuff_CheckBuffHideMisc(System.Int32 slot, System.Int32 buffID)
+  METHOD private static System.Void DrawInterface_Resources_Breath()
+  METHOD private static System.Void DrawInterface_Resources_GolfPower()
+  METHOD private static System.Void DrawInterface_GolfBallIndicator()
+  METHOD protected System.Void GUIHotbarDrawInner()
+  METHOD public static System.Void OpenHairWindow()
+  METHOD public static System.Void CancelHairWindow()
+  METHOD public static System.Void BuyHairWindow()
+  METHOD public static System.Int32 UnlockedMaxHair()
+  METHOD protected System.Void DrawHairWindow()
+  METHOD public static System.Void OpenClothesWindow()
+  METHOD public static System.Void CancelClothesWindow(System.Boolean quiet)
+  METHOD public static System.Void SaveClothesWindow()
+  METHOD protected System.Void DrawClothesWindow()
+  METHOD private System.Void DrawInterface_Tests()
+  METHOD private System.Void SetupDrawInterfaceLayers()
+  METHOD protected System.Void DrawInterface(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD private static System.Void DrawWallOfCopperShortswords()
+  METHOD private static System.Void DrawWallOfBoulders()
+  METHOD private static System.Void DrawInterface_41_InterfaceLogic4()
+  METHOD private static System.Void DrawPendingMouseText()
+  METHOD private System.Void DrawInterface_40_InteractItemIcon()
+  METHOD private System.Boolean TryGetAmmo(Terraria.Item sourceItem, Terraria.Item& ammoItem, Microsoft.Xna.Framework.Color& ammoColor, System.Single& ammoScale, Microsoft.Xna.Framework.Vector2& ammoOffset)
+  METHOD private System.Void DrawInterface_39_MouseOver()
+  METHOD private System.Void DrawInterface_38_MouseCarriedObject()
+  METHOD private static System.Void DrawInterface_37_DebugStuff()
+  METHOD private static System.Void DrawInterface_36_Cursor()
+  METHOD private static System.Void DrawInterface_35_YouDied()
+  METHOD private System.Void DrawInterface_34_PlayerChat()
+  METHOD private System.Void DrawInterface_33_MouseText()
+  METHOD private System.Void DrawInterface_InstrumentMouseText()
+  METHOD private static System.Void DrawInterface_32_GamepadRadialHotbars()
+  METHOD private System.Void DrawInterface_31_BuilderAccToggles()
+  METHOD public static System.Void DrawInterface_29_SettingsButton()
+  METHOD public static System.Void DrawSettingButton(System.Boolean& mouseOver, System.Single& scale, System.Int32 posX, System.Int32 posY, System.String text, System.String textSizeMatcher, System.Action clickAction)
+  METHOD private System.Void DrawInterface_28_InfoAccs()
+  METHOD private System.Void HackForGamepadInputHell()
+  METHOD private System.Void DrawInterface_27_Inventory()
+  METHOD private static System.Void DrawInterface_26_InterfaceLogic3()
+  METHOD private System.Void DrawInterface_25_ResourceBars()
+  METHOD private static System.Void DrawInterface_24_InterfaceLogic2()
+  METHOD private System.Void DrawInterface_23_NPCSignsDialog()
+  METHOD private System.Void DrawInterface_22_DresserWindow()
+  METHOD private System.Void DrawInterface_21_HairWindow()
+  METHOD private static System.Void DrawInterface_20_MultiplayerPlayerNames()
+  METHOD private static System.Void DrawInterface_19_SignTileBubble()
+  METHOD private static System.Void DrawInterface_18_DiagnoseVideo()
+  METHOD private static System.Void DrawInterface_17_DiagnoseNet()
+  METHOD private System.Void DrawInterface_16_MapOrMinimap()
+  METHOD private static System.Void DrawInterface_15_InvasionProgressBars()
+  METHOD private System.Void DrawInterface_14_EntityHealthBars()
+  METHOD private System.Void DrawInterface_Healthbar_Worm(Terraria.NPC head, System.Int32 tailID, System.Single scale)
+  METHOD private static System.Void DrawInterface_13_AchievementCompletePopups()
+  METHOD private static System.Boolean DrawInterface_12_IngameFancyUI()
+  METHOD private System.Boolean DrawInterface_11_IngameOptionsMenu()
+  METHOD private static System.Boolean DrawInterface_8_CheckF11UIHideToggle()
+  METHOD private static System.Boolean DrawInterface_10_CheckCaptureManager()
+  METHOD private static System.Void DrawInterface_9_WireSelection()
+  METHOD private static System.Void DrawInterface_0_InterfaceLogic1()
+  METHOD private System.Void DrawInterface_7_TownNPCHouseBanners()
+  METHOD private static System.Void DrawInterface_6_TileGridOption()
+  METHOD private static System.Void DrawInterface_5_GamepadLockOn()
+  METHOD private static System.Void DrawInterface_4_Ruler()
+  METHOD private static System.Void DrawInterface_3_LaserRuler()
+  METHOD private static System.Void DrawInterface_2_SmartCursorTargets()
+  METHOD private static System.Void DrawInterface_1_1_DrawEmoteBubblesInWorld()
+  METHOD private static System.Void DrawInterface_1_2_DrawEntityMarkersInWorld()
+  METHOD private static System.Void MouseOversTryToClear()
+  METHOD private static System.Void MouseOversClear()
+  METHOD public static System.Void ItemIconCacheUpdate(System.Int32 selectedItemID)
+  METHOD public static System.Void ItemIconCacheVerification()
+  METHOD public static System.Void DrawWallOfFish()
+  METHOD public static System.Void DrawWallOfStars()
+  METHOD private static System.Void DrawSmartCursor()
+  METHOD private static System.Void DrawSmartInteract()
+  METHOD private System.Void DrawInterface_30_Hotbar()
+  METHOD public System.Void GUIChatDraw()
+  METHOD public static System.Void DrawItemIcon(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Terraria.Item theItem, Microsoft.Xna.Framework.Vector2 screenPositionForItemCenter, Microsoft.Xna.Framework.Color itemLightColor, System.Single sizeLimit)
+  METHOD private System.Void DrawInfoAccs()
+  METHOD private System.Void DrawInfoAccs_AdjustInfoTextColorsForNPC(Terraria.NPC npc, Microsoft.Xna.Framework.Color& infoTextColor, Microsoft.Xna.Framework.Color& infoTextShadowColor)
+  METHOD private static System.Void GetInfoAccIconPosition(System.Int32 drawnCount, System.Int32 StartX, System.Int32& X, System.Int32& Y)
+  METHOD private System.Void DrawBuilderAccToggles(Microsoft.Xna.Framework.Vector2 start)
+  METHOD private static System.Void GetBuilderAccsCountToShow(Terraria.Player plr, System.Int32& blockReplaceIcons, System.Int32& torchGodIcons, System.Int32& totalDrawnIcons)
+  METHOD public static System.Void CheckInvasionProgressDisplay()
+  METHOD public static System.Void SyncAnInvasion(System.Int32 toWho)
+  METHOD public static System.Void ReportInvasionProgress(System.Int32 progress, System.Int32 progressMax, System.Int32 icon, System.Int32 progressWave)
+  METHOD public static System.Void DrawInvasionProgress()
+  METHOD protected System.Void QuitGame()
+  METHOD private System.Void Main_Exiting(System.Object sender, System.EventArgs e)
+  METHOD private static System.Void TryDisposingEverything()
+  METHOD protected Microsoft.Xna.Framework.Color randColor()
+  METHOD public static Microsoft.Xna.Framework.Color hslToRgb(Microsoft.Xna.Framework.Vector3 hslVector)
+  METHOD public static Microsoft.Xna.Framework.Color hslToRgb(System.Single Hue, System.Single Saturation, System.Single Luminosity, System.Byte a)
+  METHOD public static System.Double hue2rgb(System.Double c, System.Double t1, System.Double t2)
+  METHOD public static Microsoft.Xna.Framework.Vector3 rgbToHsl(Microsoft.Xna.Framework.Color newColor)
+  METHOD public static System.Void DrawCursor(Microsoft.Xna.Framework.Vector2 bonus, System.Boolean smart)
+  METHOD public static System.Void ClearSmartInteract()
+  METHOD public static Microsoft.Xna.Framework.Vector2 DrawThickCursor(System.Boolean smart)
+  METHOD private System.Void OnCharacterNamed(System.String text)
+  METHOD private System.Void OnSeedSelected(System.String text)
+  METHOD private System.Void OnWorldNamed(System.String text)
+  METHOD private static System.Action CreateGoToMenuEvent(System.Int32 menu)
+  METHOD public static System.Void GoToWorldSelect()
+  METHOD public static System.Void StartClientGameplay()
+  METHOD public static System.Void ReleaseHostAndPlayProcess()
+  METHOD private System.String SanitizePathArgument(System.String argumentName, System.String argumentPath)
+  METHOD protected System.Void DrawMenu(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD public static System.Void CycleFrameSkipMode()
+  METHOD private static System.Void OnSubmitServerPasswordFromRequest(System.String passwordCandidate)
+  METHOD private static System.Void OnSubmitServerPasswordFromRequest()
+  METHOD private static System.Void CanceledGivingServerPassword()
+  METHOD private System.Void OnSubmitServerPassword(System.String passwordCandidate)
+  METHOD private System.Void OnSubmitServerPassword()
+  METHOD private static System.Void ExitServerPasswordMenu()
+  METHOD private static System.Boolean IsGoodPortAddress(System.String text)
+  METHOD private static System.Void OnSubmitServerPort(System.String candidatePort)
+  METHOD public static System.Void OnSubmitServerIP(System.String inputText)
+  METHOD private static System.Void DrawSocialMediaButtons(Microsoft.Xna.Framework.Color menuColor, System.Single upBump)
+  METHOD private static System.Void DrawVersionNumber(Microsoft.Xna.Framework.Color menuColor, System.Single upBump)
+  METHOD private static System.Void ClearVisualPostProcessEffects()
+  METHOD private static System.Void PostDrawMenu(Microsoft.Xna.Framework.Point screenSizeCache, Microsoft.Xna.Framework.Point screenSizeCacheAfterScaling)
+  METHOD private System.Void PreDrawMenu(Microsoft.Xna.Framework.Point& screenSizeCache, Microsoft.Xna.Framework.Point& screenSizeCacheAfterScaling)
+  METHOD private static System.Boolean IsBorderlessDisplayAvailable()
+  METHOD public static System.Void OpenCharacterSelectUI()
+  METHOD public static System.Void OpenReportsMenu()
+  METHOD public static System.Void OpenWorldSelectUI()
+  METHOD public static System.Void OpenResourcePacksMenu(Terraria.UI.UIState uiStateToGoBackTo)
+  METHOD private static System.Void CycleClothingStyle(Terraria.Player plr)
+  METHOD private static System.Boolean IsValidPlayerStyle(Terraria.Player plr)
+  METHOD private static System.Void CycleClothingStyle_Inner(Terraria.Player plr)
+  METHOD public static System.Void ResetKeyBindings()
+  METHOD public static System.Void CursorColor()
+  METHOD protected System.Void DrawSplash(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD private System.Void DrawSplash_LoadingFlower(Microsoft.Xna.Framework.Color splashColor)
+  METHOD private System.Void DrawSplash_LoadingStar(Microsoft.Xna.Framework.Color splashColor)
+  METHOD protected System.Void DrawUnderworldBackground(System.Boolean flat)
+  METHOD private static System.Void DrawUnderworldBackgroudLayer(System.Boolean flat, Microsoft.Xna.Framework.Vector2 screenOffset, System.Single pushUp, System.Int32 layerTextureIndex)
+  METHOD protected System.Void DrawBackground()
+  METHOD public static Microsoft.Xna.Framework.Point GetScreenOverdrawOffset()
+  METHOD protected System.Void OldDrawBackground()
+  METHOD private static System.Boolean ShouldDrawBackgroundTileAt(System.Int32 i, System.Int32 j)
+  METHOD public static System.Boolean WallLightAt(System.Int32 i, System.Int32 j)
+  METHOD public static System.Boolean WallLightAt(System.Int32 i, System.Int32 j, System.Boolean showInvisibleWalls)
+  METHOD protected System.Void RenderBackground()
+  METHOD protected System.Void DrawToMap()
+  METHOD protected System.Void DrawToMap_Section(System.Int32 secX, System.Int32 secY)
+  METHOD public static System.String ValueToCoins(System.Int64 value)
+  METHOD private static System.Void UpdateMinimapAnchors()
+  METHOD protected System.Void DrawMap(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD private static System.Void DrawMapFullscreenBackground(Microsoft.Xna.Framework.Vector2 screenPosition, System.Int32 screenWidth, System.Int32 screenHeight)
+  METHOD private static System.Boolean DrawPlayerDeathMarker(System.Single X, System.Single Y, System.Single scale, System.Single left, System.Single top, System.Single headScale, System.Int32 i)
+  METHOD private System.Void DrawMiscMapIcons(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Vector2 mapTopLeft, Microsoft.Xna.Framework.Vector2 mapX2Y2AndOff, System.Nullable`1<Microsoft.Xna.Framework.Rectangle> mapRect, System.Single mapScale, System.Single drawScale, System.String& mouseTextString)
+  METHOD private System.Void DrawMapIcons_PotionOfReturnAppearAfterUsePosition(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Vector2 mapTopLeft, Microsoft.Xna.Framework.Vector2 mapX2Y2AndOff, System.Nullable`1<Microsoft.Xna.Framework.Rectangle> mapRect, System.Single mapScale, System.Single drawScale, System.String& mouseTextString)
+  METHOD private System.Void DrawMapIcons_PotionOfReturnHomePosition(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Vector2 mapTopLeft, Microsoft.Xna.Framework.Vector2 mapX2Y2AndOff, System.Nullable`1<Microsoft.Xna.Framework.Rectangle> mapRect, System.Single mapScale, System.Single drawScale, System.String& mouseTextString)
+  METHOD private System.Void DrawMapIcons_LastGolfballHit(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch, Microsoft.Xna.Framework.Vector2 mapTopLeft, Microsoft.Xna.Framework.Vector2 mapX2Y2AndOff, System.Nullable`1<Microsoft.Xna.Framework.Rectangle> mapRect, System.Single mapScale, System.Single drawScale, System.String& mouseTextString)
+  METHOD public static System.Void TriggerPing(Microsoft.Xna.Framework.Vector2 position)
+  METHOD private static System.Void DrawNPCHeadFriendly(Terraria.Entity theNPC, System.Byte alpha, System.Single headScale, Microsoft.Xna.Framework.Graphics.SpriteEffects dir, System.Int32 townHeadId, System.Single x, System.Single y)
+  METHOD private static System.Void DrawNPCHeadBoss(Terraria.Entity theNPC, System.Byte alpha, System.Single headScale, System.Single rotation, Microsoft.Xna.Framework.Graphics.SpriteEffects effects, System.Int32 bossHeadId, System.Single x, System.Single y)
+  METHOD private static System.Void DrawWithOutlines(Terraria.Entity entity, Microsoft.Xna.Framework.Graphics.Texture2D tex, Microsoft.Xna.Framework.Vector2 position, System.Nullable`1<Microsoft.Xna.Framework.Rectangle> rect, Microsoft.Xna.Framework.Color color, System.Single rotation, Microsoft.Xna.Framework.Vector2 origin, System.Single scale, Microsoft.Xna.Framework.Graphics.SpriteEffects effects)
+  METHOD public static Microsoft.Xna.Framework.Color GetPlayerHeadBordersColor(Terraria.Player plr)
+  METHOD private static System.String DrawMap_FindChestName(Terraria.Localization.LocalizedText[] chestNames, Terraria.Tile chestTile, System.Int32 x, System.Int32 y, System.Int32 fullTileWidth)
+  METHOD public System.Void DrawSimpleSurfaceBackground(Microsoft.Xna.Framework.Vector2 areaPosition, System.Int32 areaWidth, System.Int32 areaHeight)
+  METHOD public System.Void DrawCapture(Microsoft.Xna.Framework.Rectangle area, Terraria.Graphics.Capture.CaptureSettings settings)
+  METHOD protected System.Void RenderTiles()
+  METHOD protected System.Void RenderTiles2()
+  METHOD protected System.Void RenderWater()
+  METHOD public static System.Int32 CalculateWaterStyle(System.Boolean ignoreFountains)
+  METHOD public static System.Boolean IsLiquidStyleWater(System.Int32 liquidStyle)
+  METHOD private System.Void DrawWaters(System.Boolean isBackground)
+  METHOD protected System.Void DrawLiquid(System.Boolean bg, System.Int32 waterStyle, System.Single Alpha, System.Boolean drawSinglePassLiquids)
+  METHOD public static System.Void DrawTileInWater(Microsoft.Xna.Framework.Vector2 drawOffset, System.Int32 x, System.Int32 y)
+  METHOD public System.Void oldDrawWater(System.Boolean bg, System.Int32 Style, System.Single Alpha)
+  METHOD protected System.Boolean FullTile(System.Int32 x, System.Int32 y)
+  METHOD protected System.Void DrawBlack(System.Boolean force)
+  METHOD public static System.Boolean ShouldShowInvisibleWalls()
+  METHOD protected System.Void RenderBlack()
+  METHOD protected System.Void DrawWalls()
+  METHOD protected System.Void RenderWalls()
+  METHOD protected System.Void ReleaseTargets()
+  METHOD protected System.Boolean checkMap(System.Int32 i, System.Int32 j)
+  METHOD protected System.Void InitMap()
+  METHOD protected System.Void InitTargets()
+  METHOD protected System.Void EnsureRenderTargetContent()
+  METHOD protected System.Void InitTargets(System.Int32 width, System.Int32 height)
+  METHOD protected System.Void DrawWires()
+  METHOD public static System.Int32 ConvertPaintIdToTileShaderIndex(System.Int32 paintIndexOnTile, System.Boolean isUsedForPaintingGrass, System.Boolean useWallShaderHacks)
+  METHOD public static System.Void ResetWindCounter(System.Boolean resetExtreme)
+  METHOD public static System.Void NewLightning()
+  METHOD public System.Void UpdateWeather(Microsoft.Xna.Framework.GameTime gameTime, System.Int32 currentDayRateIteration)
+  METHOD public System.Void LoadBackground(System.Int32 i)
+  METHOD public System.Void LoadItem(System.Int32 i)
+  METHOD public System.Void LoadNPC(System.Int32 i)
+  METHOD public System.Void LoadProjectile(System.Int32 i)
+  METHOD public System.Void LoadGore(System.Int32 i)
+  METHOD public System.Void LoadWall(System.Int32 i)
+  METHOD public System.Void LoadTiles(System.Int32 i)
+  METHOD public System.Void LoadItemFlames(System.Int32 i)
+  METHOD public System.Void LoadWings(System.Int32 i)
+  METHOD public System.Void LoadHair(System.Int32 i)
+  METHOD public System.Void LoadArmorHead(System.Int32 i)
+  METHOD public System.Void LoadArmorBody(System.Int32 i)
+  METHOD public System.Void LoadArmorLegs(System.Int32 i)
+  METHOD public System.Void LoadAccHandsOn(System.Int32 i)
+  METHOD public System.Void LoadAccHandsOff(System.Int32 i)
+  METHOD public System.Void LoadAccBack(System.Int32 i)
+  METHOD public System.Void LoadAccFront(System.Int32 i)
+  METHOD public System.Void LoadAccShoes(System.Int32 i)
+  METHOD public System.Void LoadAccWaist(System.Int32 i)
+  METHOD public System.Void LoadAccShield(System.Int32 i)
+  METHOD public System.Void LoadAccNeck(System.Int32 i)
+  METHOD public System.Void LoadAccFace(System.Int32 i)
+  METHOD public System.Void LoadAccBalloon(System.Int32 i)
+  METHOD public System.Void LoadAccBeard(System.Int32 i)
+  METHOD public System.Void LoadFlameRing()
+  METHOD protected System.Void DrawSurfaceBG()
+  METHOD private static System.Single DrawSurfaceBG_GetFogPower()
+  METHOD private System.Void DrawSurfaceBG_DrawBackMountainsLayer(System.Int32 bgTextureIndex)
+  METHOD private System.Int32 DrawSurfaceBG_GetLayerYOffset(System.Int32 bgTextureIndex)
+  METHOD private System.Single GetForestToForestBackgroundLerperValue()
+  METHOD private System.Void DrawSurfaceBG_BackMountainsStep1(System.Double backgroundTopMagicNumber, System.Single bgGlobalScaleMultiplier, System.Int32 pushBGTopHack)
+  METHOD private System.Void DrawSurfaceBG_BackMountainsStep2(System.Int32 pushBGTopHack)
+  METHOD private System.Void UpdateOceanWaterLineForAmbience()
+  METHOD private System.Void DrawSurfaceBG_Mushroom(System.Double backgroundTopMagicNumber, System.Single bgGlobalScaleMultiplier, System.Int32 pushBGTopHack, System.Int32[] bgTexIndexes)
+  METHOD private System.Void DrawSurfaceBG_Crimson(System.Double backgroundTopMagicNumber, System.Single bgGlobalScaleMultiplier, System.Int32 pushBGTopHack, System.Int32[] bgTexIndexes)
+  METHOD private System.Void DrawSurfaceBG_Snow(System.Double backgroundTopMagicNumber, System.Single bgGlobalScaleMultiplier, System.Int32 pushBGTopHack, System.Int32[] bgTexIndexes)
+  METHOD private System.Void SetBackgroundOffsets(System.Int32 backgroundID, System.Double backgroundTopMagicNumber, System.Int32 pushBGTopHack)
+  METHOD private System.Void DrawSurfaceBG_Hallow(System.Double backgroundTopMagicNumber, System.Single bgGlobalScaleMultiplier, System.Int32 pushBGTopHack, System.Int32[] bgTexIndexes)
+  METHOD private System.Void DrawSurfaceBG_GoodEvilDesert(System.Double backgroundTopMagicNumber, System.Single bgGlobalScaleMultiplier, System.Int32 pushBGTopHack)
+  METHOD private System.Void DrawSurfaceBG_Jungle(System.Double backgroundTopMagicNumber, System.Single bgGlobalScaleMultiplier, System.Int32 pushBGTopHack, System.Int32[] bgTexIndexes)
+  METHOD private System.Void DrawSurfaceBG_Desert(System.Double backgroundTopMagicNumber, System.Single bgGlobalScaleMultiplier, System.Int32 pushBGTopHack, System.Int32[] bgTexIndexes)
+  METHOD private System.Void DrawSurfaceBG_DrawChangeOverlay(System.Int32 backgroundAreaId)
+  METHOD private System.Void DrawSurfaceBG_Corrupt(System.Double backgroundTopMagicNumber, System.Single bgGlobalScaleMultiplier, System.Int32 pushBGTopHack, System.Int32[] bgTexIndexes)
+  METHOD private System.Nullable`1<Microsoft.Xna.Framework.Rectangle> GetBackgroundRect(System.Int32 backgroundTextureIndex)
+  METHOD private System.UInt32 GetBackgroundCounter()
+  METHOD private System.Void DrawSurfaceBG_Forest(System.Double backgroundTopMagicNumber, System.Single bgGlobalScaleMultiplier, System.Int32 pushBGTopHack, System.Int32[] bgTexIndexes)
+  METHOD private System.Void DrawBackgroundBlackFill()
+  METHOD public System.Void DrawTileCracks(System.Int32 crackType, Terraria.HitTile hitter)
+  METHOD private static System.Void CheckMonoliths()
+  METHOD private System.Void GraphicsDeviceLost(System.Object sender, System.EventArgs evt)
+  METHOD protected virtual System.Void Draw(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD private System.Void Draw_Inner(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD private System.Void DoDraw(Microsoft.Xna.Framework.GameTime gameTime)
+  METHOD private static System.Void DrawItemTextPopups(System.Single scaleTarget)
+  METHOD private static System.Void DoDraw_UpdateCameraPosition()
+  METHOD public static System.Boolean IsItDay()
+  METHOD public static System.Double starGameMath(System.Double value)
+  METHOD private System.Void DrawSunAndMoon(Terraria.Main/SceneArea sceneArea, Microsoft.Xna.Framework.Color moonColor, Microsoft.Xna.Framework.Color sunColor, System.Single tempMushroomInfluence)
+  METHOD private System.Void DrawStarsInBackground(Terraria.Main/SceneArea sceneArea, System.Boolean artificial)
+  METHOD private System.Void DrawStarsInForeground(Terraria.Main/SceneArea sceneArea)
+  METHOD private System.Void DrawStar(Terraria.Main/SceneArea& sceneArea, System.Single starOpacity, Microsoft.Xna.Framework.Color bgColorForStars, System.Int32 i, Terraria.Star theStar, System.Boolean artificial, System.Boolean foreground)
+  METHOD private static System.Void ApplyColorOfTheSkiesToTiles()
+  METHOD private static System.Void UpdateAtmosphereTransparencyToSkyColor()
+  METHOD private System.Void Debug_PrettifyMap()
+  METHOD private static System.Void DrawNetplayStatusText()
+  METHOD private System.Void DrawPlayerChatBubbles()
+  METHOD private System.Void DrawRainInMenu()
+  METHOD private System.Void DoDraw_WallsTilesNPCs()
+  METHOD private System.Void DoDraw_Waterfalls()
+  METHOD private System.Void DoDraw_Tiles_Solid()
+  METHOD private System.Void DoDraw_Tiles_NonSolid()
+  METHOD private System.Void DoDraw_DrawNPCsOverTiles()
+  METHOD private System.Void DoDraw_DrawNPCsBehindTiles()
+  METHOD private System.Void DrawBackGore()
+  METHOD private System.Void DoDraw_WallsAndBlacks()
+  METHOD private static System.Void SetBackColor(Terraria.Main/InfoToSetBackColor info, Microsoft.Xna.Framework.Color& sunColor, Microsoft.Xna.Framework.Color& moonColor)
+  METHOD private System.Void DoLightTiles()
+  METHOD public static System.Void GetAreaToLight(System.Int32& firstTileX, System.Int32& lastTileX, System.Int32& firstTileY, System.Int32& lastTileY)
+  METHOD private static System.Void ClampScreenPositionToWorld()
+  METHOD private System.Void DrawBG()
+  METHOD private System.Void UpdateBGVisibility_FrontLayer(System.Nullable`1<System.Int32> targetBiomeOverride, System.Nullable`1<System.Single> transitionAmountOverride)
+  METHOD private System.Void UpdateBGVisibility_BackLayer(System.Nullable`1<System.Int32> targetBiomeOverride, System.Nullable`1<System.Single> transitionAmountOverride)
+  METHOD public static System.Int32 GetPreferredBGStyleForPlayer()
+  METHOD private System.Void DrawBG_ModifyBGFarBackLayerAlpha(System.Int32 desiredBG, System.Nullable`1<System.Int32> desiredBG2, System.Nullable`1<System.Single> transitionAmountOverride)
+  METHOD public System.Void DrawInfernoRings()
+  METHOD private static System.Void UpdateInvasion()
+  METHOD private static System.Void UpdateInvasion_Inner()
+  METHOD private static System.Void InvasionWarning()
+  METHOD public static System.Boolean CanStartInvasion(System.Int32 type, System.Boolean ignoreDelay)
+  METHOD public static System.Void StartInvasion(System.Int32 type)
+  METHOD public static System.Void FakeLoadInvasionStart()
+  METHOD private static System.Void UpdateClient()
+  METHOD private static System.Void UpdateServer()
+  METHOD public static System.Void NewText(System.Object o, System.Nullable`1<Microsoft.Xna.Framework.Color> color)
+  METHOD public static System.Void NewText(System.String newText, System.Byte R, System.Byte G, System.Byte B)
+  METHOD public static System.Void NewTextMultiline(System.String text, System.Boolean force, Microsoft.Xna.Framework.Color c, System.Int32 WidthLimit)
+  METHOD public static System.Void StopRain()
+  METHOD public static System.Void StartRain()
+  METHOD private static System.Void ChangeRain()
+  METHOD public static System.Void StartSlimeRain(System.Boolean announce)
+  METHOD public static System.Void StopSlimeRain(System.Boolean announce)
+  METHOD private static System.Void UpdateTime()
+  METHOD public static System.Boolean AnyPlayerReadyToFightKingSlime()
+  METHOD public static System.Void SkipToTime(System.Int32 timeToSet, System.Boolean setIsDayTime)
+  METHOD public static System.Boolean ShouldNormalEventsBeAbleToStart()
+  METHOD public static System.Void UpdateTime_StartNight(System.Boolean& stopEvents)
+  METHOD public static System.Void UpdateTime_StartDay(System.Boolean& stopEvents)
+  METHOD private static System.Void HandleMeteorFall()
+  METHOD private static System.Void UpdateSlimeRainWarning()
+  METHOD public static Terraria.GameContent.Bestiary.BestiaryUnlockProgressReport GetBestiaryProgressReport()
+  METHOD private static System.Void UpdateTime_SpawnTownNPCs()
+  METHOD public static System.Int32 DamageVar(System.Single dmg, System.Single luck)
+  METHOD public static System.Int32 DamageVar(System.Single dmg, System.Int32 percent, System.Single luck)
+  METHOD public System.Void OnTileChangeEvent(System.Int32 x, System.Int32 y, System.Int32 count, Terraria.ID.TileChangeType eventType)
+  METHOD public static System.Void ClearPendingPlayerSelectCallbacks()
+  METHOD public static System.Void SelectPlayer(Terraria.IO.PlayerFileData data)
+  METHOD public static System.Void ToggleFullScreen()
+  METHOD public static System.Void SetFullScreen(System.Boolean fullscreen)
+  METHOD public static System.Void SetResolution(System.Int32 width, System.Int32 height)
+  METHOD public static System.Void SetDisplayMode(System.Int32 width, System.Int32 height, System.Boolean fullscreen)
+  METHOD public static System.Void FixUIScale()
+  METHOD public System.Void FullscreenStartup()
+  METHOD public System.Void UpdateDisplaySettings()
+  METHOD public static System.Void OpenPlayerSelect(Terraria.Main/OnPlayerSelected method)
+  METHOD public static System.Void SwitchNetMode(System.Int32 mode)
+  METHOD public static System.Void WeGameRequireExitGame()
+  METHOD private static System.Int32 BorderedHeight(System.Int32 height, System.Boolean state)
+  METHOD public static System.Boolean IsTileSpelunkable(System.Int32 tileX, System.Int32 tileY)
+  METHOD public static System.Boolean IsTileBiomeSightable(System.Int32 tileX, System.Int32 tileY, Microsoft.Xna.Framework.Color& sightColor)
+  METHOD public static System.Void InfoDisplayPageHandler(System.Int32 startX, System.String& mouseText, System.Int32& startingDisplay, System.Int32& endingDisplay)
+  METHOD public static System.Void BuilderTogglePageHandler(System.Int32 startY, System.Int32 activeToggles, System.Boolean& moveDownForButton, System.Int32& startIndex, System.Int32& endIndex)
+  METHOD private System.Void DrawBuilderAccToggles_Inner(Microsoft.Xna.Framework.Vector2 start)
+  METHOD public static System.Void SyncRain()
+  METHOD protected System.Void InitTMLContentManager()
+  METHOD private static System.Void DrawtModLoaderSocialMediaButtons(Microsoft.Xna.Framework.Color menuColor, System.Single upBump)
+  METHOD public static System.Threading.Tasks.Task RunOnMainThread(System.Action action)
+  METHOD public static System.Threading.Tasks.Task`1<T> RunOnMainThread(System.Func`1<T> func)
+  METHOD public static System.Void AddSignalTraps()
+  METHOD private static System.Void HandleNews(Microsoft.Xna.Framework.Color menuColor)
+  METHOD private static System.Void PrepareLoadedModsAndConfigsForSingleplayer()
+  METHOD private static System.Void .cctor()
+  METHOD protected static System.Void <Ambience>g__HandleAmbientSound|1387_0(Terraria.Audio.SoundStyle& soundStyle, ReLogic.Utilities.SlotId& slot, System.Single volume, Microsoft.Xna.Framework.Vector2 position)
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_9()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_12()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_14()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_18()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_19()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_20()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_22()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_24()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_25()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_27()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_28()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_30()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_31()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_35()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_36()
+  METHOD private System.Boolean <SetupDrawInterfaceLayers>b__1627_37()
+  METHOD protected static System.Void <DrawSurfaceBG>g__DrawCloud|1826_0(System.Int32 cloudIndex, Microsoft.Xna.Framework.Color color, System.Single yOffset)
+  METHOD protected static System.Void <AddSignalTraps>g__Handle|1977_0(System.Runtime.InteropServices.PosixSignalContext ctx)
+### Terraria.WorldSections::.ctor
+   IL_0000: ldarg.0 
+   IL_0001: call System.Object::.ctor()
+   IL_0006: ldarg.0 
+   IL_0007: ldarg.1 
+   IL_0008: stfld Terraria.WorldSections::width
+   IL_000D: ldarg.0 
+   IL_000E: ldarg.2 
+   IL_000F: stfld Terraria.WorldSections::height
+   IL_0014: ldarg.0 
+   IL_0015: ldarg.0 
+   IL_0016: ldfld Terraria.WorldSections::width
+   IL_001B: ldarg.0 
+   IL_001C: ldfld Terraria.WorldSections::height
+   IL_0021: mul 
+   IL_0022: newarr Terraria.BitsByte
+   IL_0027: stfld Terraria.WorldSections::data
+   IL_002C: ldarg.0 
+   IL_002D: ldarg.0 
+   IL_002E: ldfld Terraria.WorldSections::width
+   IL_0033: ldarg.0 
+   IL_0034: ldfld Terraria.WorldSections::height
+   IL_0039: mul 
+   IL_003A: stfld Terraria.WorldSections::mapSectionsLeft
+   IL_003F: ldarg.0 
+   IL_0040: ldflda Terraria.WorldSections::prevFrame
+   IL_0045: call Terraria.WorldSections/IterationState::Reset()
+   IL_004A: ldarg.0 
+   IL_004B: ldflda Terraria.WorldSections::prevMap
+   IL_0050: call Terraria.WorldSections/IterationState::Reset()
+   IL_0055: ret 
+### Terraria.WorldSections::SetSectionLoaded
+   IL_0000: ldarg.1 
+   IL_0001: ldc.i4.0 
+   IL_0002: blt.s IL_0035: ret
+   IL_0004: ldarg.1 
+   IL_0005: ldarg.0 
+   IL_0006: ldfld Terraria.WorldSections::width
+   IL_000B: bge.s IL_0035: ret
+   IL_000D: ldarg.2 
+   IL_000E: ldc.i4.0 
+   IL_000F: blt.s IL_0035: ret
+   IL_0011: ldarg.2 
+   IL_0012: ldarg.0 
+   IL_0013: ldfld Terraria.WorldSections::height
+   IL_0018: bge.s IL_0035: ret
+   IL_001A: ldarg.0 
+   IL_001B: ldarg.0 
+   IL_001C: ldfld Terraria.WorldSections::data
+   IL_0021: ldarg.2 
+   IL_0022: ldarg.0 
+   IL_0023: ldfld Terraria.WorldSections::width
+   IL_0028: mul 
+   IL_0029: ldarg.1 
+   IL_002A: add 
+   IL_002B: ldelema Terraria.BitsByte
+   IL_0030: call Terraria.WorldSections::SetSectionLoaded(BitsByte&)
+   IL_0035: ret 
+### Terraria.WorldSections::SetSectionLoaded
+   IL_0000: ldarg.1 
+   IL_0001: ldc.i4.0 
+   IL_0002: call Terraria.BitsByte::get_Item(Int32)
+   IL_0007: brtrue.s IL_0020: ldarg.1
+   IL_0009: ldarg.1 
+   IL_000A: ldc.i4.0 
+   IL_000B: ldc.i4.1 
+   IL_000C: call Terraria.BitsByte::set_Item(Int32,Boolean)
+   IL_0011: ldarg.0 
+   IL_0012: ldarg.0 
+   IL_0013: ldfld Terraria.WorldSections::frameSectionsLeft
+   IL_0018: ldc.i4.1 
+   IL_0019: add 
+   IL_001A: stfld Terraria.WorldSections::frameSectionsLeft
+   IL_001F: ret 
+   IL_0020: ldarg.1 
+   IL_0021: ldc.i4.1 
+   IL_0022: call Terraria.BitsByte::get_Item(Int32)
+   IL_0027: brfalse.s IL_003f: ret
+   IL_0029: ldarg.1 
+   IL_002A: ldc.i4.1 
+   IL_002B: ldc.i4.0 
+   IL_002C: call Terraria.BitsByte::set_Item(Int32,Boolean)
+   IL_0031: ldarg.0 
+   IL_0032: ldarg.0 
+   IL_0033: ldfld Terraria.WorldSections::frameSectionsLeft
+   IL_0038: ldc.i4.1 
+   IL_0039: add 
+   IL_003A: stfld Terraria.WorldSections::frameSectionsLeft
+   IL_003F: ret 
+### Terraria.WorldSections::SetAllSectionsLoaded
+   IL_0000: ldc.i4.0 
+   IL_0001: stloc.0 
+   IL_0002: br.s IL_001a: ldloc.0
+   IL_0004: ldarg.0 
+   IL_0005: ldarg.0 
+   IL_0006: ldfld Terraria.WorldSections::data
+   IL_000B: ldloc.0 
+   IL_000C: ldelema Terraria.BitsByte
+   IL_0011: call Terraria.WorldSections::SetSectionLoaded(BitsByte&)
+   IL_0016: ldloc.0 
+   IL_0017: ldc.i4.1 
+   IL_0018: add 
+   IL_0019: stloc.0 
+   IL_001A: ldloc.0 
+   IL_001B: ldarg.0 
+   IL_001C: ldfld Terraria.WorldSections::data
+   IL_0021: ldlen 
+   IL_0022: conv.i4 
+   IL_0023: blt.s IL_0004: ldarg.0
+   IL_0025: ret 
+### Terraria.GameContent.Drawing.TileDrawing::Update
+   IL_0000: ldsfld Terraria.Main::dedServ
+   IL_0005: brtrue IL_0120: ret
+   IL_000A: call Terraria.Main::get_WindForVisuals()
+   IL_000F: call System.Math::Abs(Single)
+   IL_0014: conv.r8 
+   IL_0015: stloc.0 
+   IL_0016: ldc.r4 0.08
+   IL_001B: ldc.r4 1.2
+   IL_0020: ldloc.0 
+   IL_0021: conv.r4 
+   IL_0022: ldc.i4.1 
+   IL_0023: call Terraria.Utils::GetLerpValue(Single,Single,Single,Boolean)
+   IL_0028: conv.r8 
+   IL_0029: stloc.0 
+   IL_002A: ldarg.0 
+   IL_002B: ldarg.0 
+   IL_002C: ldfld Terraria.GameContent.Drawing.TileDrawing::_treeWindCounter
+   IL_0031: ldc.r8 0.00416666666666667
+   IL_003A: ldc.r8 0.00416666666666667
+   IL_0043: ldloc.0 
+   IL_0044: mul 
+   IL_0045: ldc.r8 2
+   IL_004E: mul 
+   IL_004F: add 
+   IL_0050: add 
+   IL_0051: stfld Terraria.GameContent.Drawing.TileDrawing::_treeWindCounter
+   IL_0056: ldarg.0 
+   IL_0057: ldarg.0 
+   IL_0058: ldfld Terraria.GameContent.Drawing.TileDrawing::_grassWindCounter
+   IL_005D: ldc.r8 0.00555555555555556
+   IL_0066: ldc.r8 0.00555555555555556
+   IL_006F: ldloc.0 
+   IL_0070: mul 
+   IL_0071: ldc.r8 4
+   IL_007A: mul 
+   IL_007B: add 
+   IL_007C: add 
+   IL_007D: stfld Terraria.GameContent.Drawing.TileDrawing::_grassWindCounter
+   IL_0082: ldarg.0 
+   IL_0083: ldarg.0 
+   IL_0084: ldfld Terraria.GameContent.Drawing.TileDrawing::_sunflowerWindCounter
+   IL_0089: ldc.r8 0.00238095238095238
+   IL_0092: ldc.r8 0.00238095238095238
+   IL_009B: ldloc.0 
+   IL_009C: mul 
+   IL_009D: ldc.r8 5
+   IL_00A6: mul 
+   IL_00A7: add 
+   IL_00A8: add 
+   IL_00A9: stfld Terraria.GameContent.Drawing.TileDrawing::_sunflowerWindCounter
+   IL_00AE: ldarg.0 
+   IL_00AF: ldarg.0 
+   IL_00B0: ldfld Terraria.GameContent.Drawing.TileDrawing::_vineWindCounter
+   IL_00B5: ldc.r8 0.00833333333333333
+   IL_00BE: ldc.r8 0.00833333333333333
+   IL_00C7: ldloc.0 
+   IL_00C8: mul 
+   IL_00C9: ldc.r8 0.400000005960464
+   IL_00D2: mul 
+   IL_00D3: add 
+   IL_00D4: add 
+   IL_00D5: stfld Terraria.GameContent.Drawing.TileDrawing::_vineWindCounter
+   IL_00DA: ldarg.0 
+   IL_00DB: call Terraria.GameContent.Drawing.TileDrawing::UpdateLeafFrequency()
+   IL_00E0: ldarg.0 
+   IL_00E1: call Terraria.GameContent.Drawing.TileDrawing::EnsureWindGridSize()
+   IL_00E6: ldarg.0 
+   IL_00E7: ldfld Terraria.GameContent.Drawing.TileDrawing::_windGrid
+   IL_00EC: callvirt Terraria.GameContent.Drawing.WindGrid::Update()
+   IL_00F1: ldarg.0 
+   IL_00F2: call Terraria.Main::ShouldShowInvisibleWalls()
+   IL_00F7: stfld Terraria.GameContent.Drawing.TileDrawing::_shouldShowInvisibleBlocks
+   IL_00FC: ldarg.0 
+   IL_00FD: ldfld Terraria.GameContent.Drawing.TileDrawing::_shouldShowInvisibleBlocks_LastFrame
+   IL_0102: ldarg.0 
+   IL_0103: ldfld Terraria.GameContent.Drawing.TileDrawing::_shouldShowInvisibleBlocks
+   IL_0108: beq.s IL_0120: ret
+   IL_010A: ldarg.0 
+   IL_010B: ldarg.0 
+   IL_010C: ldfld Terraria.GameContent.Drawing.TileDrawing::_shouldShowInvisibleBlocks
+   IL_0111: stfld Terraria.GameContent.Drawing.TileDrawing::_shouldShowInvisibleBlocks_LastFrame
+   IL_0116: ldsfld Terraria.Main::sectionManager
+   IL_011B: callvirt Terraria.WorldSections::SetAllFramedSectionsAsNeedingRefresh()
+   IL_0120: ret 
+### Terraria.GameContent.Drawing.TileDrawing::GetScreenDrawArea
+   IL_0000: ldarg.3 
+   IL_0001: ldarg.1 
+   IL_0002: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0007: ldarg.2 
+   IL_0008: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_000D: sub 
+   IL_000E: ldc.r4 16
+   IL_0013: div 
+   IL_0014: ldc.r4 1
+   IL_0019: sub 
+   IL_001A: conv.i4 
+   IL_001B: stind.i4 
+   IL_001C: ldarg.s lastTileX
+   IL_001E: ldarg.1 
+   IL_001F: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0024: ldsfld Terraria.Main::screenWidth
+   IL_0029: conv.r4 
+   IL_002A: add 
+   IL_002B: ldarg.2 
+   IL_002C: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0031: add 
+   IL_0032: ldc.r4 16
+   IL_0037: div 
+   IL_0038: conv.i4 
+   IL_0039: ldc.i4.2 
+   IL_003A: add 
+   IL_003B: stind.i4 
+   IL_003C: ldarg.s firstTileY
+   IL_003E: ldarg.1 
+   IL_003F: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0044: ldarg.2 
+   IL_0045: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_004A: sub 
+   IL_004B: ldc.r4 16
+   IL_0050: div 
+   IL_0051: ldc.r4 1
+   IL_0056: sub 
+   IL_0057: conv.i4 
+   IL_0058: stind.i4 
+   IL_0059: ldarg.s lastTileY
+   IL_005B: ldarg.1 
+   IL_005C: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0061: ldsfld Terraria.Main::screenHeight
+   IL_0066: conv.r4 
+   IL_0067: add 
+   IL_0068: ldarg.2 
+   IL_0069: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_006E: add 
+   IL_006F: ldc.r4 16
+   IL_0074: div 
+   IL_0075: conv.i4 
+   IL_0076: ldc.i4.5 
+   IL_0077: add 
+   IL_0078: stind.i4 
+   IL_0079: ldarg.3 
+   IL_007A: ldind.i4 
+   IL_007B: ldc.i4.4 
+   IL_007C: bge.s IL_0081: ldarg.s lastTileX
+   IL_007E: ldarg.3 
+   IL_007F: ldc.i4.4 
+   IL_0080: stind.i4 
+   IL_0081: ldarg.s lastTileX
+   IL_0083: ldind.i4 
+   IL_0084: ldsfld Terraria.Main::maxTilesX
+   IL_0089: ldc.i4.4 
+   IL_008A: sub 
+   IL_008B: ble.s IL_0097: ldarg.s firstTileY
+   IL_008D: ldarg.s lastTileX
+   IL_008F: ldsfld Terraria.Main::maxTilesX
+   IL_0094: ldc.i4.4 
+   IL_0095: sub 
+   IL_0096: stind.i4 
+   IL_0097: ldarg.s firstTileY
+   IL_0099: ldind.i4 
+   IL_009A: ldc.i4.4 
+   IL_009B: bge.s IL_00a1: ldarg.s lastTileY
+   IL_009D: ldarg.s firstTileY
+   IL_009F: ldc.i4.4 
+   IL_00A0: stind.i4 
+   IL_00A1: ldarg.s lastTileY
+   IL_00A3: ldind.i4 
+   IL_00A4: ldsfld Terraria.Main::maxTilesY
+   IL_00A9: ldc.i4.4 
+   IL_00AA: sub 
+   IL_00AB: ble.s IL_00b7: ldsfld Terraria.WorldSections Terraria.Main::sectionManager
+   IL_00AD: ldarg.s lastTileY
+   IL_00AF: ldsfld Terraria.Main::maxTilesY
+   IL_00B4: ldc.i4.4 
+   IL_00B5: sub 
+   IL_00B6: stind.i4 
+   IL_00B7: ldsfld Terraria.Main::sectionManager
+   IL_00BC: callvirt Terraria.WorldSections::get_AnyUnfinishedSections()
+   IL_00C1: brfalse.s IL_00de: ldsfld Terraria.WorldSections Terraria.Main::sectionManager
+   IL_00C3: call Terraria.TimeLogger::DetailedDrawReset()
+   IL_00C8: ldarg.3 
+   IL_00C9: ldind.i4 
+   IL_00CA: ldarg.s firstTileY
+   IL_00CC: ldind.i4 
+   IL_00CD: ldarg.s lastTileX
+   IL_00CF: ldind.i4 
+   IL_00D0: ldarg.s lastTileY
+   IL_00D2: ldind.i4 
+   IL_00D3: call Terraria.WorldGen::SectionTileFrameWithCheck(Int32,Int32,Int32,Int32)
+   IL_00D8: ldc.i4.5 
+   IL_00D9: call Terraria.TimeLogger::DetailedDrawTime(Int32)
+   IL_00DE: ldsfld Terraria.Main::sectionManager
+   IL_00E3: callvirt Terraria.WorldSections::get_AnyNeedRefresh()
+   IL_00E8: brfalse.s IL_00fa: ret
+   IL_00EA: ldarg.3 
+   IL_00EB: ldind.i4 
+   IL_00EC: ldarg.s firstTileY
+   IL_00EE: ldind.i4 
+   IL_00EF: ldarg.s lastTileX
+   IL_00F1: ldind.i4 
+   IL_00F2: ldarg.s lastTileY
+   IL_00F4: ldind.i4 
+   IL_00F5: call Terraria.WorldGen::RefreshSections(Int32,Int32,Int32,Int32)
+   IL_00FA: ret 

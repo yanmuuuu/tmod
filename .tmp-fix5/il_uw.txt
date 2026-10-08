@@ -1,0 +1,740 @@
+ASSEMBLY tModLoader, Version=1.4.4.9, Culture=neutral, PublicKeyToken=null
+LOADED in 30 ms
+
+### Terraria.Main::DrawUnderworldBackgroudLayer
+   LOCAL System.Int32 0
+   LOCAL ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D> 1
+   LOCAL Microsoft.Xna.Framework.Graphics.Texture2D 2
+   LOCAL Microsoft.Xna.Framework.Vector2 3
+   LOCAL System.Single 4
+   LOCAL Microsoft.Xna.Framework.Vector2 5
+   LOCAL Microsoft.Xna.Framework.Rectangle 6
+   LOCAL System.Single 7
+   LOCAL Microsoft.Xna.Framework.Vector2 8
+   LOCAL System.Int32 9
+   LOCAL System.Single 10
+   LOCAL System.Int32 11
+   LOCAL System.Int32 12
+   LOCAL System.Int32 13
+   LOCAL Microsoft.Xna.Framework.Vector2 14
+   LOCAL System.Int32 15
+   LOCAL System.Int32 16
+   LOCAL System.Int32 17
+   LOCAL System.Int32 18
+   LOCAL System.Int32 19
+   LOCAL System.Int32 20
+   LOCAL System.Int32 21
+   IL_0000: ldsfld Terraria.Main::underworldBG
+   IL_0005: ldarg.3 
+   IL_0006: ldelem.i4 
+   IL_0007: stloc.0 
+   IL_0008: ldsfld Terraria.GameContent.TextureAssets::Underworld
+   IL_000D: ldloc.0 
+   IL_000E: ldelem.ref 
+   IL_000F: stloc.1 
+   IL_0010: ldloc.1 
+   IL_0011: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_IsLoaded()
+   IL_0016: brtrue.s IL_0029: ldloc.1
+   IL_0018: ldsfld Terraria.Main::Assets
+   IL_001D: ldloc.1 
+   IL_001E: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Name()
+   IL_0023: callvirt ReLogic.Content.IAssetRepository::Request(String)
+   IL_0028: pop 
+   IL_0029: ldloc.1 
+   IL_002A: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_002F: stloc.2 
+   IL_0030: ldloc.2 
+   IL_0031: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_0036: conv.r4 
+   IL_0037: ldloc.2 
+   IL_0038: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_003D: conv.r4 
+   IL_003E: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_0043: ldc.r4 0.5
+   IL_0048: call Microsoft.Xna.Framework.Vector2::op_Multiply(Vector2,Single)
+   IL_004D: stloc.3 
+   IL_004E: ldarg.0 
+   IL_004F: brtrue.s IL_005d: ldc.r4 1
+   IL_0051: ldarg.3 
+   IL_0052: ldc.i4.2 
+   IL_0053: mul 
+   IL_0054: conv.r4 
+   IL_0055: ldc.r4 3
+   IL_005A: add 
+   IL_005B: br.s IL_0062: stloc.s V_4
+   IL_005D: ldc.r4 1
+   IL_0062: stloc.s V_4
+   IL_0064: ldloca.s V_5
+   IL_0066: ldc.r4 1
+   IL_006B: ldloc.s V_4
+   IL_006D: div 
+   IL_006E: call Microsoft.Xna.Framework.Vector2::.ctor(Single)
+   IL_0073: ldloca.s V_6
+   IL_0075: ldc.i4.0 
+   IL_0076: ldc.i4.0 
+   IL_0077: ldloc.2 
+   IL_0078: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_007D: ldloc.2 
+   IL_007E: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_0083: call Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_0088: ldc.r4 1.3
+   IL_008D: stloc.s V_7
+   IL_008F: call Microsoft.Xna.Framework.Vector2::get_Zero()
+   IL_0094: stloc.s V_8
+   IL_0096: ldc.i4.0 
+   IL_0097: stloc.s V_9
+   IL_0099: ldloc.0 
+   IL_009A: ldc.i4.1 
+   IL_009B: sub 
+   IL_009C: switch Mono.Cecil.Cil.Instruction[]
+   IL_00D5: br IL_03ba: ldarg.0
+   IL_00DA: ldsfld Terraria.Main::GlobalTimeWrappedHourly
+   IL_00DF: ldc.r4 8
+   IL_00E4: mul 
+   IL_00E5: conv.i4 
+   IL_00E6: ldc.i4.4 
+   IL_00E7: rem 
+   IL_00E8: stloc.s V_15
+   IL_00EA: ldloca.s V_6
+   IL_00EC: ldloc.s V_15
+   IL_00EE: ldc.i4.1 
+   IL_00EF: shr 
+   IL_00F0: ldloc.2 
+   IL_00F1: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_00F6: ldc.i4.1 
+   IL_00F7: shr 
+   IL_00F8: mul 
+   IL_00F9: ldloc.s V_15
+   IL_00FB: ldc.i4.2 
+   IL_00FC: rem 
+   IL_00FD: ldloc.2 
+   IL_00FE: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_0103: ldc.i4.1 
+   IL_0104: shr 
+   IL_0105: mul 
+   IL_0106: ldloc.2 
+   IL_0107: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_010C: ldc.i4.1 
+   IL_010D: shr 
+   IL_010E: ldloc.2 
+   IL_010F: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_0114: ldc.i4.1 
+   IL_0115: shr 
+   IL_0116: call Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_011B: ldloc.3 
+   IL_011C: ldc.r4 0.5
+   IL_0121: call Microsoft.Xna.Framework.Vector2::op_Multiply(Vector2,Single)
+   IL_0126: stloc.3 
+   IL_0127: ldloca.s V_8
+   IL_0129: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_012E: dup 
+   IL_012F: ldind.r4 
+   IL_0130: ldc.r4 175
+   IL_0135: add 
+   IL_0136: stind.r4 
+   IL_0137: br IL_03ba: ldarg.0
+   IL_013C: ldloca.s V_8
+   IL_013E: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_0143: dup 
+   IL_0144: ldind.r4 
+   IL_0145: ldc.r4 100
+   IL_014A: add 
+   IL_014B: stind.r4 
+   IL_014C: br IL_03ba: ldarg.0
+   IL_0151: ldloca.s V_8
+   IL_0153: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_0158: dup 
+   IL_0159: ldind.r4 
+   IL_015A: ldc.r4 75
+   IL_015F: add 
+   IL_0160: stind.r4 
+   IL_0161: br IL_03ba: ldarg.0
+   IL_0166: ldc.r4 0.5
+   IL_016B: stloc.s V_7
+   IL_016D: ldloca.s V_8
+   IL_016F: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_0174: dup 
+   IL_0175: ldind.r4 
+   IL_0176: ldc.r4 0
+   IL_017B: sub 
+   IL_017C: stind.r4 
+   IL_017D: br IL_03ba: ldarg.0
+   IL_0182: ldloca.s V_8
+   IL_0184: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_0189: dup 
+   IL_018A: ldind.r4 
+   IL_018B: ldloc.s V_9
+   IL_018D: conv.r4 
+   IL_018E: add 
+   IL_018F: stind.r4 
+   IL_0190: br IL_03ba: ldarg.0
+   IL_0195: ldsfld Terraria.Main::GlobalTimeWrappedHourly
+   IL_019A: ldc.r4 8
+   IL_019F: mul 
+   IL_01A0: conv.i4 
+   IL_01A1: ldc.i4.4 
+   IL_01A2: rem 
+   IL_01A3: stloc.s V_16
+   IL_01A5: ldloca.s V_6
+   IL_01A7: ldloc.s V_16
+   IL_01A9: ldc.i4.2 
+   IL_01AA: rem 
+   IL_01AB: ldloc.2 
+   IL_01AC: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_01B1: ldc.i4.1 
+   IL_01B2: shr 
+   IL_01B3: mul 
+   IL_01B4: ldloc.s V_16
+   IL_01B6: ldc.i4.1 
+   IL_01B7: shr 
+   IL_01B8: ldloc.2 
+   IL_01B9: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_01BE: ldc.i4.1 
+   IL_01BF: shr 
+   IL_01C0: mul 
+   IL_01C1: ldloc.2 
+   IL_01C2: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_01C7: ldc.i4.1 
+   IL_01C8: shr 
+   IL_01C9: ldloc.2 
+   IL_01CA: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_01CF: ldc.i4.1 
+   IL_01D0: shr 
+   IL_01D1: call Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_01D6: ldloc.3 
+   IL_01D7: ldc.r4 0.5
+   IL_01DC: call Microsoft.Xna.Framework.Vector2::op_Multiply(Vector2,Single)
+   IL_01E1: stloc.3 
+   IL_01E2: ldloca.s V_8
+   IL_01E4: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_01E9: dup 
+   IL_01EA: ldind.r4 
+   IL_01EB: ldloc.s V_9
+   IL_01ED: conv.r4 
+   IL_01EE: add 
+   IL_01EF: stind.r4 
+   IL_01F0: ldloca.s V_8
+   IL_01F2: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_01F7: dup 
+   IL_01F8: ldind.r4 
+   IL_01F9: ldc.r4 -60
+   IL_01FE: add 
+   IL_01FF: stind.r4 
+   IL_0200: br IL_03ba: ldarg.0
+   IL_0205: ldsfld Terraria.Main::GlobalTimeWrappedHourly
+   IL_020A: ldc.r4 8
+   IL_020F: mul 
+   IL_0210: conv.i4 
+   IL_0211: ldc.i4.4 
+   IL_0212: rem 
+   IL_0213: stloc.s V_17
+   IL_0215: ldloca.s V_6
+   IL_0217: ldloc.s V_17
+   IL_0219: ldc.i4.2 
+   IL_021A: rem 
+   IL_021B: ldloc.2 
+   IL_021C: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_0221: ldc.i4.1 
+   IL_0222: shr 
+   IL_0223: mul 
+   IL_0224: ldloc.s V_17
+   IL_0226: ldc.i4.1 
+   IL_0227: shr 
+   IL_0228: ldloc.2 
+   IL_0229: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_022E: ldc.i4.1 
+   IL_022F: shr 
+   IL_0230: mul 
+   IL_0231: ldloc.2 
+   IL_0232: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_0237: ldc.i4.1 
+   IL_0238: shr 
+   IL_0239: ldloc.2 
+   IL_023A: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_023F: ldc.i4.1 
+   IL_0240: shr 
+   IL_0241: call Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_0246: ldloc.3 
+   IL_0247: ldc.r4 0.5
+   IL_024C: call Microsoft.Xna.Framework.Vector2::op_Multiply(Vector2,Single)
+   IL_0251: stloc.3 
+   IL_0252: ldloca.s V_8
+   IL_0254: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_0259: dup 
+   IL_025A: ldind.r4 
+   IL_025B: ldloc.s V_9
+   IL_025D: conv.r4 
+   IL_025E: add 
+   IL_025F: stind.r4 
+   IL_0260: ldloca.s V_8
+   IL_0262: ldflda Microsoft.Xna.Framework.Vector2::X
+   IL_0267: dup 
+   IL_0268: ldind.r4 
+   IL_0269: ldc.r4 400
+   IL_026E: sub 
+   IL_026F: stind.r4 
+   IL_0270: ldloca.s V_8
+   IL_0272: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_0277: dup 
+   IL_0278: ldind.r4 
+   IL_0279: ldc.r4 90
+   IL_027E: add 
+   IL_027F: stind.r4 
+   IL_0280: br IL_03ba: ldarg.0
+   IL_0285: ldsfld Terraria.Main::GlobalTimeWrappedHourly
+   IL_028A: ldc.r4 8
+   IL_028F: mul 
+   IL_0290: conv.i4 
+   IL_0291: ldc.i4.4 
+   IL_0292: rem 
+   IL_0293: stloc.s V_18
+   IL_0295: ldloca.s V_6
+   IL_0297: ldloc.s V_18
+   IL_0299: ldc.i4.2 
+   IL_029A: rem 
+   IL_029B: ldloc.2 
+   IL_029C: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_02A1: ldc.i4.1 
+   IL_02A2: shr 
+   IL_02A3: mul 
+   IL_02A4: ldloc.s V_18
+   IL_02A6: ldc.i4.1 
+   IL_02A7: shr 
+   IL_02A8: ldloc.2 
+   IL_02A9: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_02AE: ldc.i4.1 
+   IL_02AF: shr 
+   IL_02B0: mul 
+   IL_02B1: ldloc.2 
+   IL_02B2: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_02B7: ldc.i4.1 
+   IL_02B8: shr 
+   IL_02B9: ldloc.2 
+   IL_02BA: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_02BF: ldc.i4.1 
+   IL_02C0: shr 
+   IL_02C1: call Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_02C6: ldloc.3 
+   IL_02C7: ldc.r4 0.5
+   IL_02CC: call Microsoft.Xna.Framework.Vector2::op_Multiply(Vector2,Single)
+   IL_02D1: stloc.3 
+   IL_02D2: ldloca.s V_8
+   IL_02D4: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_02D9: dup 
+   IL_02DA: ldind.r4 
+   IL_02DB: ldloc.s V_9
+   IL_02DD: conv.r4 
+   IL_02DE: add 
+   IL_02DF: stind.r4 
+   IL_02E0: ldloca.s V_8
+   IL_02E2: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_02E7: dup 
+   IL_02E8: ldind.r4 
+   IL_02E9: ldc.r4 90
+   IL_02EE: add 
+   IL_02EF: stind.r4 
+   IL_02F0: br IL_03ba: ldarg.0
+   IL_02F5: ldloca.s V_8
+   IL_02F7: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_02FC: dup 
+   IL_02FD: ldind.r4 
+   IL_02FE: ldloc.s V_9
+   IL_0300: conv.r4 
+   IL_0301: add 
+   IL_0302: stind.r4 
+   IL_0303: ldloca.s V_8
+   IL_0305: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_030A: dup 
+   IL_030B: ldind.r4 
+   IL_030C: ldc.r4 30
+   IL_0311: sub 
+   IL_0312: stind.r4 
+   IL_0313: br IL_03ba: ldarg.0
+   IL_0318: ldloca.s V_8
+   IL_031A: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_031F: dup 
+   IL_0320: ldind.r4 
+   IL_0321: ldc.r4 250
+   IL_0326: ldloc.s V_4
+   IL_0328: mul 
+   IL_0329: add 
+   IL_032A: stind.r4 
+   IL_032B: br IL_03ba: ldarg.0
+   IL_0330: ldloca.s V_8
+   IL_0332: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_0337: dup 
+   IL_0338: ldind.r4 
+   IL_0339: ldc.r4 100
+   IL_033E: ldloc.s V_4
+   IL_0340: mul 
+   IL_0341: add 
+   IL_0342: stind.r4 
+   IL_0343: br.s IL_03ba: ldarg.0
+   IL_0345: ldloca.s V_8
+   IL_0347: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_034C: dup 
+   IL_034D: ldind.r4 
+   IL_034E: ldc.r4 20
+   IL_0353: ldloc.s V_4
+   IL_0355: mul 
+   IL_0356: add 
+   IL_0357: stind.r4 
+   IL_0358: br.s IL_03ba: ldarg.0
+   IL_035A: ldloca.s V_8
+   IL_035C: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_0361: dup 
+   IL_0362: ldind.r4 
+   IL_0363: ldc.r4 20
+   IL_0368: ldloc.s V_4
+   IL_036A: mul 
+   IL_036B: add 
+   IL_036C: stind.r4 
+   IL_036D: ldsfld Terraria.Main::GlobalTimeWrappedHourly
+   IL_0372: ldc.r4 8
+   IL_0377: mul 
+   IL_0378: conv.i4 
+   IL_0379: ldc.i4.4 
+   IL_037A: rem 
+   IL_037B: stloc.s V_19
+   IL_037D: ldloca.s V_6
+   IL_037F: ldloc.s V_19
+   IL_0381: ldc.i4.2 
+   IL_0382: rem 
+   IL_0383: ldloc.2 
+   IL_0384: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_0389: ldc.i4.1 
+   IL_038A: shr 
+   IL_038B: mul 
+   IL_038C: ldloc.s V_19
+   IL_038E: ldc.i4.1 
+   IL_038F: shr 
+   IL_0390: ldloc.2 
+   IL_0391: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_0396: ldc.i4.1 
+   IL_0397: shr 
+   IL_0398: mul 
+   IL_0399: ldloc.2 
+   IL_039A: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Width()
+   IL_039F: ldc.i4.1 
+   IL_03A0: shr 
+   IL_03A1: ldloc.2 
+   IL_03A2: callvirt Microsoft.Xna.Framework.Graphics.Texture2D::get_Height()
+   IL_03A7: ldc.i4.1 
+   IL_03A8: shr 
+   IL_03A9: call Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_03AE: ldloc.3 
+   IL_03AF: ldc.r4 0.5
+   IL_03B4: call Microsoft.Xna.Framework.Vector2::op_Multiply(Vector2,Single)
+   IL_03B9: stloc.3 
+   IL_03BA: ldarg.0 
+   IL_03BB: brfalse.s IL_03c7: ldloc.3
+   IL_03BD: ldloc.s V_7
+   IL_03BF: ldc.r4 1.5
+   IL_03C4: mul 
+   IL_03C5: stloc.s V_7
+   IL_03C7: ldloc.3 
+   IL_03C8: ldloc.s V_7
+   IL_03CA: call Microsoft.Xna.Framework.Vector2::op_Multiply(Vector2,Single)
+   IL_03CF: stloc.3 
+   IL_03D0: ldsfld Terraria.Graphics.Effects.SkyManager::Instance
+   IL_03D5: ldsfld Terraria.Main::spriteBatch
+   IL_03DA: ldc.r4 1
+   IL_03DF: ldloc.s V_5
+   IL_03E1: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_03E6: div 
+   IL_03E7: callvirt Terraria.Graphics.Effects.SkyManager::DrawToDepth(SpriteBatch,Single)
+   IL_03EC: ldarg.0 
+   IL_03ED: brfalse.s IL_0416: ldloca.s V_8
+   IL_03EF: ldloca.s V_8
+   IL_03F1: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_03F6: dup 
+   IL_03F7: ldind.r4 
+   IL_03F8: ldsfld Terraria.GameContent.TextureAssets::Underworld
+   IL_03FD: ldc.i4.0 
+   IL_03FE: ldelem.ref 
+   IL_03FF: call Terraria.Utils::Height(Asset`1)
+   IL_0404: ldc.i4.1 
+   IL_0405: shr 
+   IL_0406: conv.r4 
+   IL_0407: ldc.r4 1.3
+   IL_040C: mul 
+   IL_040D: ldloc.3 
+   IL_040E: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0413: sub 
+   IL_0414: add 
+   IL_0415: stind.r4 
+   IL_0416: ldloca.s V_8
+   IL_0418: ldflda Microsoft.Xna.Framework.Vector2::Y
+   IL_041D: dup 
+   IL_041E: ldind.r4 
+   IL_041F: ldarg.2 
+   IL_0420: sub 
+   IL_0421: stind.r4 
+   IL_0422: ldloc.s V_7
+   IL_0424: ldloc.s V_6
+   IL_0426: ldfld Microsoft.Xna.Framework.Rectangle::Width
+   IL_042B: conv.r4 
+   IL_042C: mul 
+   IL_042D: stloc.s V_10
+   IL_042F: ldarg.1 
+   IL_0430: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0435: ldloc.s V_5
+   IL_0437: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_043C: mul 
+   IL_043D: ldloc.3 
+   IL_043E: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0443: sub 
+   IL_0444: ldloc.s V_8
+   IL_0446: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_044B: add 
+   IL_044C: ldsfld Terraria.Main::screenWidth
+   IL_0451: ldc.i4.1 
+   IL_0452: shr 
+   IL_0453: conv.r4 
+   IL_0454: sub 
+   IL_0455: conv.i4 
+   IL_0456: conv.r4 
+   IL_0457: ldloc.s V_10
+   IL_0459: div 
+   IL_045A: conv.i4 
+   IL_045B: stloc.s V_11
+   IL_045D: ldloc.3 
+   IL_045E: call Terraria.Utils::Floor(Vector2)
+   IL_0463: stloc.3 
+   IL_0464: ldsfld Terraria.Main::screenWidth
+   IL_0469: conv.r4 
+   IL_046A: ldloc.s V_10
+   IL_046C: div 
+   IL_046D: conv.r8 
+   IL_046E: call System.Math::Ceiling(Double)
+   IL_0473: conv.i4 
+   IL_0474: stloc.s V_12
+   IL_0476: ldloc.s V_7
+   IL_0478: ldloc.s V_6
+   IL_047A: ldfld Microsoft.Xna.Framework.Rectangle::Width
+   IL_047F: ldc.i4.1 
+   IL_0480: sub 
+   IL_0481: conv.r4 
+   IL_0482: ldloc.s V_5
+   IL_0484: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_0489: div 
+   IL_048A: mul 
+   IL_048B: conv.i4 
+   IL_048C: stloc.s V_13
+   IL_048E: ldloc.s V_11
+   IL_0490: ldc.i4.2 
+   IL_0491: sub 
+   IL_0492: ldloc.s V_13
+   IL_0494: mul 
+   IL_0495: conv.r4 
+   IL_0496: call Terraria.Main::get_UnderworldLayer()
+   IL_049B: conv.r4 
+   IL_049C: ldc.r4 16
+   IL_04A1: mul 
+   IL_04A2: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_04A7: ldloc.3 
+   IL_04A8: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_04AD: ldarg.1 
+   IL_04AE: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_04B3: ldloc.s V_5
+   IL_04B5: call Microsoft.Xna.Framework.Vector2::op_Multiply(Vector2,Vector2)
+   IL_04BA: ldarg.1 
+   IL_04BB: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_04C0: ldsfld Terraria.Main::screenPosition
+   IL_04C5: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_04CA: ldloc.3 
+   IL_04CB: call Microsoft.Xna.Framework.Vector2::op_Subtraction(Vector2,Vector2)
+   IL_04D0: ldloc.s V_8
+   IL_04D2: call Microsoft.Xna.Framework.Vector2::op_Addition(Vector2,Vector2)
+   IL_04D7: stloc.s V_14
+   IL_04D9: ldloc.s V_14
+   IL_04DB: call Terraria.Utils::Floor(Vector2)
+   IL_04E0: stloc.s V_14
+   IL_04E2: br.s IL_04f7: ldloc.s V_14
+   IL_04E4: ldloc.s V_11
+   IL_04E6: ldc.i4.1 
+   IL_04E7: add 
+   IL_04E8: stloc.s V_11
+   IL_04EA: ldloca.s V_14
+   IL_04EC: ldflda Microsoft.Xna.Framework.Vector2::X
+   IL_04F1: dup 
+   IL_04F2: ldind.r4 
+   IL_04F3: ldloc.s V_10
+   IL_04F5: add 
+   IL_04F6: stind.r4 
+   IL_04F7: ldloc.s V_14
+   IL_04F9: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_04FE: ldloc.s V_10
+   IL_0500: add 
+   IL_0501: ldc.r4 0
+   IL_0506: blt.s IL_04e4: ldloc.s V_11
+   IL_0508: ldloc.s V_11
+   IL_050A: ldc.i4.2 
+   IL_050B: sub 
+   IL_050C: stloc.s V_20
+   IL_050E: br IL_05b0: ldloc.s V_20
+   IL_0513: ldsfld Terraria.Main::spriteBatch
+   IL_0518: ldloc.2 
+   IL_0519: ldloc.s V_14
+   IL_051B: ldloc.s V_6
+   IL_051D: newobj System.Nullable`1<Microsoft.Xna.Framework.Rectangle>::.ctor(!0)
+   IL_0522: call Microsoft.Xna.Framework.Color::get_White()
+   IL_0527: ldc.r4 0
+   IL_052C: call Microsoft.Xna.Framework.Vector2::get_Zero()
+   IL_0531: ldloc.s V_7
+   IL_0533: ldc.i4.0 
+   IL_0534: ldc.r4 0
+   IL_0539: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Draw(Texture2D,Vector2,Nullable`1,Color,Single,Vector2,Single,SpriteEffects,Single)
+   IL_053E: ldarg.3 
+   IL_053F: brtrue.s IL_059d: ldloca.s V_14
+   IL_0541: ldloc.s V_14
+   IL_0543: ldfld Microsoft.Xna.Framework.Vector2::Y
+   IL_0548: ldloc.s V_6
+   IL_054A: ldfld Microsoft.Xna.Framework.Rectangle::Height
+   IL_054F: conv.r4 
+   IL_0550: ldloc.s V_7
+   IL_0552: mul 
+   IL_0553: add 
+   IL_0554: conv.i4 
+   IL_0555: stloc.s V_21
+   IL_0557: ldsfld Terraria.Main::spriteBatch
+   IL_055C: ldsfld Terraria.GameContent.TextureAssets::BlackTile
+   IL_0561: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Value()
+   IL_0566: ldloc.s V_14
+   IL_0568: ldfld Microsoft.Xna.Framework.Vector2::X
+   IL_056D: conv.i4 
+   IL_056E: ldloc.s V_21
+   IL_0570: ldloc.s V_6
+   IL_0572: ldfld Microsoft.Xna.Framework.Rectangle::Width
+   IL_0577: conv.r4 
+   IL_0578: ldloc.s V_7
+   IL_057A: mul 
+   IL_057B: conv.i4 
+   IL_057C: ldc.i4.0 
+   IL_057D: ldsfld Terraria.Main::screenHeight
+   IL_0582: ldloc.s V_21
+   IL_0584: sub 
+   IL_0585: call System.Math::Max(Int32,Int32)
+   IL_058A: newobj Microsoft.Xna.Framework.Rectangle::.ctor(Int32,Int32,Int32,Int32)
+   IL_058F: ldc.i4.s 11
+   IL_0591: ldc.i4.3 
+   IL_0592: ldc.i4.7 
+   IL_0593: newobj Microsoft.Xna.Framework.Color::.ctor(Int32,Int32,Int32)
+   IL_0598: callvirt Microsoft.Xna.Framework.Graphics.SpriteBatch::Draw(Texture2D,Rectangle,Color)
+   IL_059D: ldloca.s V_14
+   IL_059F: ldflda Microsoft.Xna.Framework.Vector2::X
+   IL_05A4: dup 
+   IL_05A5: ldind.r4 
+   IL_05A6: ldloc.s V_10
+   IL_05A8: add 
+   IL_05A9: stind.r4 
+   IL_05AA: ldloc.s V_20
+   IL_05AC: ldc.i4.1 
+   IL_05AD: add 
+   IL_05AE: stloc.s V_20
+   IL_05B0: ldloc.s V_20
+   IL_05B2: ldloc.s V_11
+   IL_05B4: ldc.i4.4 
+   IL_05B5: add 
+   IL_05B6: ldloc.s V_12
+   IL_05B8: add 
+   IL_05B9: ble IL_0513: ldsfld Microsoft.Xna.Framework.Graphics.SpriteBatch Terraria.Main::spriteBatch
+   IL_05BE: ret 
+
+### Terraria.Main::LoadBackground
+   IL_0000: ldarg.1 
+   IL_0001: ldc.i4.0 
+   IL_0002: blt IL_00a2: ret
+   IL_0007: ldsfld Terraria.GameContent.TextureAssets::Background
+   IL_000C: ldarg.1 
+   IL_000D: ldelem.ref 
+   IL_000E: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_State()
+   IL_0013: brtrue IL_00a2: ret
+   IL_0018: ldsfld Terraria.Main::Assets
+   IL_001D: ldsfld Terraria.GameContent.TextureAssets::Background
+   IL_0022: ldarg.1 
+   IL_0023: ldelem.ref 
+   IL_0024: callvirt ReLogic.Content.Asset`1<Microsoft.Xna.Framework.Graphics.Texture2D>::get_Name()
+   IL_0029: callvirt ReLogic.Content.IAssetRepository::Request(String)
+   IL_002E: pop 
+   IL_002F: ldsfld Terraria.Main::backgroundWidth
+   IL_0034: ldarg.1 
+   IL_0035: ldsfld Terraria.GameContent.TextureAssets::Background
+   IL_003A: ldarg.1 
+   IL_003B: ldelem.ref 
+   IL_003C: call Terraria.Utils::Width(Asset`1)
+   IL_0041: stelem.i4 
+   IL_0042: ldsfld Terraria.Main::backgroundHeight
+   IL_0047: ldarg.1 
+   IL_0048: ldsfld Terraria.GameContent.TextureAssets::Background
+   IL_004D: ldarg.1 
+   IL_004E: ldelem.ref 
+   IL_004F: call Terraria.Utils::Height(Asset`1)
+   IL_0054: stelem.i4 
+   IL_0055: ldarg.1 
+   IL_0056: ldc.i4 235
+   IL_005B: bgt.s IL_0070: ldarg.1
+   IL_005D: ldarg.1 
+   IL_005E: ldc.i4 219
+   IL_0063: sub 
+   IL_0064: ldc.i4.2 
+   IL_0065: ble.un.s IL_0082: ldsfld System.Int32[] Terraria.Main::backgroundWidth
+   IL_0067: ldarg.1 
+   IL_0068: ldc.i4 235
+   IL_006D: beq.s IL_0082: ldsfld System.Int32[] Terraria.Main::backgroundWidth
+   IL_006F: ret 
+   IL_0070: ldarg.1 
+   IL_0071: ldc.i4 271
+   IL_0076: sub 
+   IL_0077: ldc.i4.2 
+   IL_0078: ble.un.s IL_0082: ldsfld System.Int32[] Terraria.Main::backgroundWidth
+   IL_007A: ldarg.1 
+   IL_007B: ldc.i4 281
+   IL_0080: bne.un.s IL_00a2: ret
+   IL_0082: ldsfld Terraria.Main::backgroundWidth
+   IL_0087: ldarg.1 
+   IL_0088: ldelema System.Int32
+   IL_008D: dup 
+   IL_008E: ldind.i4 
+   IL_008F: ldc.i4.2 
+   IL_0090: div 
+   IL_0091: stind.i4 
+   IL_0092: ldsfld Terraria.Main::backgroundHeight
+   IL_0097: ldarg.1 
+   IL_0098: ldelema System.Int32
+   IL_009D: dup 
+   IL_009E: ldind.i4 
+   IL_009F: ldc.i4.2 
+   IL_00A0: div 
+   IL_00A1: stind.i4 
+   IL_00A2: ret 
+
+### Terraria.ModLoader.GlobalBackgroundStyle::Register
+   IL_0000: ldarg.0 
+   IL_0001: call Terraria.ModLoader.ModTypeLookup`1<Terraria.ModLoader.GlobalBackgroundStyle>::Register(T)
+   IL_0006: ldsfld Terraria.ModLoader.GlobalBackgroundStyleLoader::globalBackgroundStyles
+   IL_000B: ldarg.0 
+   IL_000C: callvirt System.Collections.Generic.ICollection`1<Terraria.ModLoader.GlobalBackgroundStyle>::Add(!0)
+   IL_0011: ret 
+
+### Terraria.ModLoader.GlobalBackgroundStyle::SetupContent
+   IL_0000: ldarg.0 
+   IL_0001: callvirt Terraria.ModLoader.ModType::SetStaticDefaults()
+   IL_0006: ret 
+
+### Terraria.ModLoader.GlobalBackgroundStyle::ChooseUndergroundBackgroundStyle
+   IL_0000: ret 
+
+### Terraria.ModLoader.GlobalBackgroundStyle::ChooseSurfaceBackgroundStyle
+   IL_0000: ret 
+
+### Terraria.ModLoader.GlobalBackgroundStyle::FillUndergroundTextureArray
+   IL_0000: ret 
+
+### Terraria.ModLoader.GlobalBackgroundStyle::ModifyFarSurfaceFades
+   IL_0000: ret 
+
+### Terraria.ModLoader.GlobalBackgroundStyle::.ctor
+   IL_0000: ldarg.0 
+   IL_0001: call Terraria.ModLoader.ModType::.ctor()
+   IL_0006: ret 

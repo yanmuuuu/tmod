@@ -171,12 +171,32 @@ namespace WastelandSoul.Content.NPCs.Town
 		}
 
 		/// <summary>
-		/// 小动作期间强制用帧表中的低头 / 抬头帧（4-7 那一段）。
-		/// <para/>帧表布局：0-3 / 8-11 / 12-15 = 左右朝向行走（正背面按你的要求不再需要，
-		/// 所以原版"朝上"那一排 4-7 被用来放低头/抬头），16-20 站立，21-24 使用。
+		/// 朝向与帧。
+		///
+		/// <para/>玩家要求：**向左走就朝左、向右走就朝右**，并且**不要正面 / 背面朝像**。
+		/// 所以：
+		/// <list type="number">
+		/// <item>帧表（<c>MechanicalCompanion.png</c>，25 帧）已经重排成**全部侧身像**
+		/// （见 <c>tools/reorient_companion.py</c>）：0-3 行走 / 4 站立 / 5 低头 / 6 站立 / 7 抬头 /
+		/// 8-15 行走 / 16-20 站立 / 21-24 攻击；</item>
+		/// <item>左右不各画一套，而是**按走路方向设 spriteDirection**，让游戏水平翻转 ——
+		/// 这样"走路方向 = 朝向"永远一致，也不会再冒出正面像；</item>
+		/// <item>小动作（低头/抬头）仍然强制用 5 / 7 帧，并且只在站定时触发（见 <see cref="AI"/>）。</item>
+		/// </list>
 		/// </summary>
 		public override void FindFrame(int frameHeight)
 		{
+			// 1) 朝向 = 走路方向（站着不动时保持上一次朝向）
+			if (NPC.velocity.X > 0.05f) {
+				NPC.direction = 1;
+			}
+			else if (NPC.velocity.X < -0.05f) {
+				NPC.direction = -1;
+			}
+
+			NPC.spriteDirection = NPC.direction;
+
+			// 2) 小动作期间强制用低头 / 抬头帧
 			if (NPC.localAI[1] > 0f) {
 				int frame = NPC.localAI[2] == 1f ? 5 : 7;   // 5 = 低头，7 = 抬头
 				NPC.frame.Y = frame * frameHeight;
@@ -184,7 +204,7 @@ namespace WastelandSoul.Content.NPCs.Town
 				return;
 			}
 
-			// 其余情况交给原版城镇 NPC 的帧逻辑（AnimationType = Guide）
+			// 3) 其余情况交给原版城镇 NPC 的帧逻辑（AnimationType = Guide）
 		}
 
 		/// <summary>
@@ -321,27 +341,15 @@ namespace WastelandSoul.Content.NPCs.Town
 			return new Item(ModContent.ItemType<T>()) { shopCustomPrice = chips };
 		}
 
+		/// <summary>
+		/// 身上（背包或银行）带着灵魂碎片时，第二个按钮就是「交付记忆碎片」。
+		/// <para/>**四段都走这条路**：记忆还没恢复的那枚用来推进剧情；
+		/// 要是那段记忆早就恢复过（比如第一段是壁炉数据终端触发的），这枚就是**补交** ——
+		/// 照样能交、照样被消耗，只是不再重播那段剧情。
+		/// </summary>
 		private static bool HasNextFragment()
 		{
-			Player player = Main.LocalPlayer;
-
-			if (WastelandStorySystem.dataTerminalRead && WastelandStorySystem.scavengerDefeated && !WastelandStorySystem.firstMemoryRestored) {
-				return true;
-			}
-
-			if (WastelandStorySystem.archivistDefeated && !WastelandStorySystem.secondMemoryRestored && player.HasItem(WastelandMemorySystem.SoulFragmentTypeForBoss(2))) {
-				return true;
-			}
-
-			if (WastelandStorySystem.ashHeartDefeated && !WastelandStorySystem.thirdMemoryRestored && player.HasItem(WastelandMemorySystem.SoulFragmentTypeForBoss(3))) {
-				return true;
-			}
-
-			if (WastelandStorySystem.fireplaceGuardianDefeated && !WastelandStorySystem.fourthMemoryRestored && player.HasItem(WastelandMemorySystem.SoulFragmentTypeForBoss(4))) {
-				return true;
-			}
-
-			return false;
+			return WastelandMemorySystem.NextCarriedFragmentIndex(Main.LocalPlayer) > 0;
 		}
 
 		private string GetStoryDialogue()
@@ -389,51 +397,44 @@ namespace WastelandSoul.Content.NPCs.Town
 			return Language.GetTextValue(DialogueKey + "StoryHunt");
 		}
 
+		/// <summary>
+		/// 交付碎片的对话：**消耗碎片 → 她自己更新记忆 → 回一句台词**。
+		/// <para/>四段共用一个入口（<see cref="WastelandMemorySystem.TryHandIn"/>）：
+		/// 记忆还没恢复的那枚推进剧情；已经恢复过的那枚当**补交**处理 ——
+		/// 碎片被消耗掉、给她一句「已归档」，但**不重播**那段记忆。
+		/// </summary>
 		private string GetMemoryDialogue()
 		{
 			Player player = Main.LocalPlayer;
+			int bossIndex = WastelandMemorySystem.NextCarriedFragmentIndex(player);
 
-			if (WastelandStorySystem.fireplaceGuardianDefeated && !WastelandStorySystem.fourthMemoryRestored) {
-				if (WastelandMemorySystem.TryDeliver(player, 4)) {
-					WastelandStorySystem.RestoreFourthMemory();
-					return Language.GetTextValue(DialogueKey + "MemoryFourth");
-				}
-
-				return Language.GetTextValue(DialogueKey + "MemoryFourthNeedFragment");
+			if (bossIndex <= 0) {
+				return Language.GetTextValue(DialogueKey + "MemoryBlank");
 			}
 
-			if (WastelandStorySystem.ashHeartDefeated && !WastelandStorySystem.thirdMemoryRestored) {
-				if (WastelandMemorySystem.TryDeliver(player, 3)) {
-					WastelandStorySystem.RestoreThirdMemory();
-					return Language.GetTextValue(DialogueKey + "MemoryThird");
-				}
+			bool alreadyRecovered = WastelandMemorySystem.MemoryAlreadyRecovered(player, bossIndex);
 
-				return Language.GetTextValue(DialogueKey + "MemoryThirdNeedFragment");
+			if (!WastelandMemorySystem.TryHandIn(player, bossIndex)) {
+				return Language.GetTextValue(DialogueKey + "MemoryBlank");
 			}
 
-			if (WastelandStorySystem.archivistDefeated && !WastelandStorySystem.secondMemoryRestored) {
-				if (WastelandMemorySystem.TryDeliver(player, 2)) {
-					WastelandStorySystem.RestoreSecondMemory();
+			if (alreadyRecovered) {
+				return Language.GetTextValue(DialogueKey + "MemorySupplemented");
+			}
+
+			switch (bossIndex) {
+				case 1:
+					// 第一段的正文由 RestoreFirstMemory 播报，这里只回一句进度，不重复台词
+					return Language.GetTextValue(DialogueKey + "MemoryRecovered");
+				case 2:
 					return Language.GetTextValue(DialogueKey + "MemorySecond");
-				}
-
-				return Language.GetTextValue(DialogueKey + "MemorySecondNeedFragment");
+				case 3:
+					return Language.GetTextValue(DialogueKey + "MemoryThird");
+				case 4:
+					return Language.GetTextValue(DialogueKey + "MemoryFourth");
+				default:
+					return Language.GetTextValue(DialogueKey + "MemoryBlank");
 			}
-
-			if (WastelandStorySystem.scavengerDefeated && WastelandStorySystem.dataTerminalRead && !WastelandStorySystem.firstMemoryRestored) {
-				WastelandMemorySystem.TryDeliver(player, 1);
-				WastelandStorySystem.RestoreFirstMemory();
-				WastelandPlayer modPlayer = player.GetModPlayer<WastelandPlayer>();
-				modPlayer.heardFirstMemory = true;
-				modPlayer.knowsWatchmanProtocol = true;
-				return Language.GetTextValue(DialogueKey + "MemoryFirst");
-			}
-
-			if (WastelandStorySystem.scavengerDefeated && !WastelandStorySystem.dataTerminalRead) {
-				return Language.GetTextValue(DialogueKey + "StoryFireplace");
-			}
-
-			return Language.GetTextValue(DialogueKey + "MemoryBlank");
 		}
 
 		// ==================== 城镇 NPC 自卫攻击 ====================

@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using WastelandSoul.Common.Bosses;
+using WastelandSoul.Common.Systems;
 using WastelandSoul.Content.Items.Materials;
 
 namespace WastelandSoul.Common.ItemBases
@@ -12,7 +13,9 @@ namespace WastelandSoul.Common.ItemBases
 	/// Boss 掉落袋基类：把该 Boss 的掉落装进一个袋子，打开时保证：
 	/// <list type="number">
 	/// <item>材料给到**保底数量**（每项自带最小/最大）</item>
-	/// <item>**灵魂碎片 100% 掉落**（剧情伏笔）</item>
+	/// <item>**灵魂碎片每个世界只给一次**（剧情道具）——
+	///       这段记忆还没恢复、而且玩家背包/银行里也没有这枚碎片时才发，
+	///       免得反复打同一个 Boss 刷出一堆用不掉的碎片把背包塞满（见 <see cref="WastelandSoulHelper"/>）</item>
 	/// <item>从装备池里随机取装备，并随机附加**原版词条**（前缀），
 	///       词条池按 Boss 时期分档，强度对齐该阶段</item>
 	/// </list>
@@ -85,10 +88,12 @@ namespace WastelandSoul.Common.ItemBases
 				player.QuickSpawnItem(player.GetSource_OpenItem(Type), type, count);
 			}
 
-			// 2) 灵魂碎片：必定掉落
+			// 2) 灵魂碎片：**每个世界只给一次**
+			//    门槛 = 这段记忆还没恢复 且 玩家背包/银行里没有这枚碎片（见 WastelandSoulHelper）；
+			//    记忆已经恢复、或碎片还在他手里时直接跳过，不占掉落。
 			int soul = WastelandBossRegistry.ResolveSoulFragmentType(BossIndex);
 
-			if (soul > 0) {
+			if (soul > 0 && WastelandSoulHelper.ShouldGrantSoulFragment(player, BossIndex)) {
 				player.QuickSpawnItem(player.GetSource_OpenItem(Type), soul);
 			}
 
@@ -138,9 +143,17 @@ namespace WastelandSoul.Common.ItemBases
 	}
 
 	/// <summary>
-	/// 灵魂碎片的收集判定（供袋子与对话共用）。
+	/// 灵魂碎片的收集判定（供掉落袋与对话共用）。
+	/// <para/>规则本体在 <see cref="WastelandMemorySystem.ShouldGrantSoulFragment"/>：
+	/// 「这段记忆还没恢复」**且**「玩家背包/银行里没有这枚碎片」才发 —— 也就是**每个世界只给一次**。
+	/// <para/>袋子里只调这一个入口，免得把一串剧情条件写进掉落代码里。
 	/// </summary>
 	public static class WastelandSoulHelper
 	{
+		/// <summary>这名玩家现在该不该拿到第 bossIndex 枚碎片（序号越界或记忆已恢复 → 不发）。</summary>
+		public static bool ShouldGrantSoulFragment(Player player, int bossIndex)
+		{
+			return WastelandMemorySystem.ShouldGrantSoulFragment(player, bossIndex);
+		}
 	}
 }

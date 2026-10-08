@@ -103,5 +103,80 @@ namespace WastelandSoul.Common.Bosses
 					return 0;
 			}
 		}
+
+		/// <summary>该 Boss 的召唤物物品类型（0 = 没有）。BossChecklist 的清单条目要用。</summary>
+		public static int ResolveSummonItemType(string internalName)
+		{
+			switch (internalName) {
+				case "Scavenger":
+					return ModContent.ItemType<Content.Items.Summons.ScavengerSignalSensor>();
+				case "Archivist":
+					return ModContent.ItemType<Content.Items.Summons.ArchivistEcho>();
+				case "AshHeart":
+					return ModContent.ItemType<Content.Items.Summons.AshHeartEmber>();
+				case "FireplaceGuardian":
+					return ModContent.ItemType<Content.Items.Summons.FireplaceKey>();
+				default:
+					return 0;
+			}
+		}
+
+		/// <summary>该 Boss 的掉落袋物品类型（0 = 没有）。</summary>
+		public static int ResolveBagItemType(string internalName)
+		{
+			switch (internalName) {
+				case "Scavenger":
+					return ModContent.ItemType<Content.Items.Bags.ScavengerBag>();
+				case "Archivist":
+					return ModContent.ItemType<Content.Items.Bags.ArchivistBag>();
+				case "AshHeart":
+					return ModContent.ItemType<Content.Items.Bags.AshHeartBag>();
+				case "FireplaceGuardian":
+					return ModContent.ItemType<Content.Items.Bags.FireplaceBag>();
+				default:
+					return 0;
+			}
+		}
+
+		/// <summary>
+		/// 该 Boss 的奖杯物品类型（0 = 没有）。BossChecklist 的收集项要用。
+		/// <para/>奖杯是 10% 掉落，掉落规则写在各自的 <c>ModifyNPCLoot</c> 里
+		/// （清道夫那条挂在"被玩家正常击败"的条件上，自毁不给）。
+		/// </summary>
+		public static int ResolveTrophyItemType(string internalName)
+		{
+			switch (internalName) {
+				case "Scavenger":
+					return ModContent.ItemType<Content.Items.Decor.ScavengerTrophy>();
+				case "Archivist":
+					return ModContent.ItemType<Content.Items.Decor.ArchivistTrophy>();
+				case "AshHeart":
+					return ModContent.ItemType<Content.Items.Decor.AshHeartTrophy>();
+				case "FireplaceGuardian":
+					return ModContent.ItemType<Content.Items.Decor.FireplaceGuardianTrophy>();
+				default:
+					return 0;
+			}
+		}
+
+		/// <summary>
+		/// 该 Boss 的旗帜物品类型（0 = 没有）。旗帜是**可制作**的装饰
+		/// （Boss 材料 x5 + 丝线 x3，织布机），也一起进 BossChecklist 的收集项。
+		/// </summary>
+		public static int ResolveBannerItemType(string internalName)
+		{
+			switch (internalName) {
+				case "Scavenger":
+					return ModContent.ItemType<Content.Items.Decor.ScavengerBanner>();
+				case "Archivist":
+					return ModContent.ItemType<Content.Items.Decor.ArchivistBanner>();
+				case "AshHeart":
+					return ModContent.ItemType<Content.Items.Decor.AshHeartBanner>();
+				case "FireplaceGuardian":
+					return ModContent.ItemType<Content.Items.Decor.FireplaceGuardianBanner>();
+				default:
+					return 0;
+			}
+		}
 	}
 }

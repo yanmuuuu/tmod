@@ -9,6 +9,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using WastelandSoul.Common.Systems;
 using WastelandSoul.Content.Items.Bags;
+using WastelandSoul.Content.Items.Decor;
 using WastelandSoul.Content.Projectiles.Archivist;
 
 namespace WastelandSoul.Content.NPCs.Bosses.Archivist
@@ -571,6 +572,8 @@ namespace WastelandSoul.Content.NPCs.Bosses.Archivist
 		{
 			// 统一走掉落袋：保底材料 + 灵魂碎片·其二 + 随机词条专属武器
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArchivistBag>(), 1));
+			// 10% 奖杯（与原版 Boss 掉落奖杯的做法一致）
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArchivistTrophy>(), 10));
 		}
 
 		public override void OnKill()

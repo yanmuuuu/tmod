@@ -1,0 +1,4 @@
+Torches = 4
+Campfire = 215
+Fireplace = 405
+BrazierSuspended = 592

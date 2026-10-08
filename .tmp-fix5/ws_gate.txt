@@ -1,0 +1,262 @@
+[03:54:45.114] [.NET TP Worker/DEBUG] [tML]: Skipped SubworldLibrary 2.2.1.3 for tML 2022.9.47.82 from Workshop. Reason: mod is for a different Terraria version/LTS release stream.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Skipped SubworldLibrary 2.2.3.3 for tML 2025.9.3.4 from Workshop. Reason: a newer version exists.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Skipped SubworldLibrary 2.2.3.2 for tML 2025.6.3.0 from Workshop. Reason: a newer version exists.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Skipped SubworldLibrary 2.3.0.1 for tML 2026.6.3.6 from Workshop. Reason: a local copy with the same version (but different hash) exists.
+[03:54:45.115] [.NET TP Worker/DEBUG] [tML]: Selected SubworldLibrary 2.3.0.1 for tML 2026.6.3.6 from Local.
+[03:54:46.857] [.NET TP Worker/INFO] [tML]: 加载程序集: SubworldLibrary (Subworld Library) v2.3.0.1
+[03:54:51.291] [.NET TP Worker/INFO] [tML]: 自动加载中：SubworldLibrary (Subworld Library) v2.3.0.1
+[03:54:51.326] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.WorldGen::clearWorld() added by SubworldLibrary
+[03:54:51.341] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DoUpdateInWorld(Stopwatch) added by SubworldLibrary
+[03:54:51.342] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.WorldGen::UpdateWorld() added by SubworldLibrary
+[03:54:51.408] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::Update(int) added by SubworldLibrary
+[03:54:51.418] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.NPC::UpdateNPC_UpdateGravity() added by SubworldLibrary
+[03:54:51.431] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Liquid::Update() added by SubworldLibrary
+[03:54:51.433] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::SavePlayer(PlayerFileData, bool) added by SubworldLibrary
+[03:54:51.434] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.IO.WorldFile::SaveWorld(bool, bool) added by SubworldLibrary
+[03:54:51.447] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DoDraw(GameTime) added by SubworldLibrary
+[03:54:51.477] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DrawBackground() added by SubworldLibrary
+[03:54:51.498] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::OldDrawBackground() added by SubworldLibrary
+[03:54:51.503] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::UpdateAudio() added by SubworldLibrary
+[03:54:51.537] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.IngameOptions::Draw(Main, SpriteBatch) added by SubworldLibrary
+[03:54:51.539] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Graphics.Light.TileLightScanner::GetTileLight(int, int, out Vector3) added by SubworldLibrary
+[03:54:51.549] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Player::UpdateBiomes() added by SubworldLibrary
+[03:54:51.551] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::DrawUnderworldBackground(bool) added by SubworldLibrary
+[03:54:51.554] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Netplay::AddCurrentServerToRecentList() added by SubworldLibrary
+[03:54:51.556] [.NET TP Worker/DEBUG] [tML]: ILHook Terraria.Main::EraseWorld(int) added by SubworldLibrary
+[03:54:51.556] [.NET TP Worker/WARN] [tML]: SubworldLibrary spent 25ms blocking on asset loading. Avoid using AssetRequestMode.ImmediateLoad during mod loading where possible
+[03:54:52.186] [.NET TP Worker/INFO] [tML]: 特殊调整内容：SubworldLibrary (Subworld Library) v2.3.0.1
+[03:54:52.821] [.NET TP Worker/INFO] [tML]: 完成最后步骤：SubworldLibrary (Subworld Library) v2.3.0.1
+[03:56:12.250] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉] 本次进入：本机首次生成
+[03:56:12.250] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 已注册 6 个生成步骤（世界 900x1300）
+[03:56:12.405] [Main Thread/INFO] [WastelandSoul]: FireplaceEntrySystem: 壁炉是本存档首次生成，1.5 秒后自动补一次「出去再进来」
+[03:56:15.556] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 1 1/6 灰烬原野 开始：世界 900x1300（布局期望 900x1300）
+[03:56:17.436] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 灰烬草地表 695 列
+[03:56:17.444] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 地表碎石 70 处
+[03:56:17.444] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 灰烬树 0 棵
+[03:56:17.647] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 自然矿洞 121 处
+[03:56:17.651] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 矿道 1 条
+[03:56:17.651] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 2 2/6 壁炉堡垒 开始：世界 900x1300（布局期望 900x1300）
+[03:56:18.106] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 3 3/6 祈塔 开始：世界 900x1300（布局期望 900x1300）
+[03:56:18.161] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 4 4/6 地下通道 开始：世界 900x1300（布局期望 900x1300）
+[03:56:18.306] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 5 5/6 椭球地宫 开始：世界 900x1300（布局期望 900x1300）
+[03:56:18.549] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 地宫照明：火把 50、吊灯 21、书架 0、藤蔓 0 格
+[03:56:18.549] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 地宫：房间 7 间，椭球 744x264 @ (450, 1150)，壳厚 5
+[03:56:18.549] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 5 5/6 椭球地宫 完成：累计写入 1157219 格
+[03:56:18.549] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 步骤 6 6/6 收尾 开始：世界 900x1300（布局期望 900x1300）
+[03:56:19.740] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 全部完成：累计写入 1157219 格；出生点 (400, 650)；worldSurface=840
+[03:56:19.740] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉] 本次进入：本机首次生成
+[03:56:19.740] [.NET TP Worker/INFO] [WastelandSoul]: [壁炉生成] 已注册 6 个生成步骤（世界 900x1300）
+[03:56:19.902] [Main Thread/INFO] [WastelandSoul]: FireplaceEntrySystem: 已重新进入壁炉，本次收尾完成
+[04:00:05.796] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:06.755] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:07.756] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:08.756] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:09.756] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:10.755] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:11.755] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:12.755] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:13.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:14.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:15.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:16.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:17.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:18.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:19.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:20.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:21.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:22.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:23.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:24.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:25.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:26.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:27.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:28.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:29.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:30.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:31.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:32.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:33.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:34.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:35.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:36.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:37.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:38.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:39.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:40.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:41.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:42.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:43.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:44.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:45.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:46.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:47.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:48.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:49.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:50.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:51.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:52.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:53.753] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:54.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:55.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:56.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:57.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:58.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:00:59.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:00.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:01.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:02.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:03.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:04.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:05.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:06.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:07.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:08.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:09.755] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:10.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:11.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:12.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:13.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:14.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:15.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:16.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:17.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:18.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:19.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:20.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:21.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:22.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:23.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:24.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:25.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:26.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:27.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:28.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:29.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:30.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:31.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:32.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:33.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:34.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:35.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:36.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:37.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:38.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:39.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:40.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:41.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:42.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:43.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:44.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:45.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:46.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:47.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:48.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:49.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:50.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:51.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:52.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:53.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:54.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:55.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:56.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:57.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:58.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:01:59.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:00.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:01.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:02.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:03.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:04.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:05.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:06.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:07.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:08.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:09.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:10.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:11.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:12.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:13.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:14.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:15.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:16.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:17.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:18.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:19.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:20.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:21.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:22.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:23.756] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:24.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:25.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:26.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:27.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:28.754] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:46.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:47.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:48.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:49.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:50.026] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:51.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:52.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:53.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:54.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:55.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:56.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:57.022] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:58.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:02:59.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:00.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:01.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:02.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:03.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:04.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:05.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:06.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:07.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:08.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:09.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:10.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:11.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:12.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:13.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:14.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:15.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:16.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:17.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:18.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:19.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:20.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:21.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:22.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:23.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:24.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:25.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:26.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:27.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:28.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:29.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:30.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:31.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:32.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:33.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:34.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:35.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:36.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:37.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:38.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:39.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:40.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:41.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:42.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:43.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:44.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:45.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:46.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:47.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:48.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:49.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:50.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:51.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+--- gate warnings total: 210
+[04:00:05.796] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试
+[04:03:51.021] [Main Thread/WARN] [WastelandSoul]: FireplaceGateSystem: 出生点附近 40 格内都放不下壁炉入口，下一轮继续重试

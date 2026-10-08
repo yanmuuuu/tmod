@@ -1,0 +1,5912 @@
+ASSEMBLY tModLoader, Version=1.4.4.9, Culture=neutral, PublicKeyToken=null
+LOADED in 30 ms
+
+### Terraria.WorldGen::PlaceTile
+   LOCAL System.Int32 0
+   LOCAL System.Boolean 1
+   LOCAL Terraria.Tile 2
+   LOCAL Terraria.Tile 3
+   LOCAL System.Int32 4
+   LOCAL System.Int32 5
+   LOCAL System.Int32 6
+   LOCAL System.Boolean 7
+   LOCAL Microsoft.Xna.Framework.Point 8
+   LOCAL System.Int32 9
+   LOCAL System.Int32 10
+   LOCAL Terraria.Tile 11
+   LOCAL Terraria.Tile 12
+   LOCAL Terraria.Tile 13
+   LOCAL System.Int32 14
+   LOCAL System.Int32 15
+   LOCAL System.Int32 16
+   LOCAL System.Int32 17
+   LOCAL System.Int32 18
+   LOCAL System.Int32 19
+   LOCAL System.Int32 20
+   LOCAL Microsoft.Xna.Framework.Color 21
+   IL_0000: ldarg.2 
+   IL_0001: stloc.0 
+   IL_0002: volatile. 
+   IL_0004: ldsfld Terraria.WorldGen::gen
+   IL_0009: brfalse.s IL_003f: ldc.i4.0
+   IL_000B: ldsflda Terraria.Main::tile
+   IL_0010: ldarg.0 
+   IL_0011: ldarg.1 
+   IL_0012: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0017: stloc.2 
+   IL_0018: ldloca.s V_2
+   IL_001A: call Terraria.Tile::active()
+   IL_001F: brfalse.s IL_003f: ldc.i4.0
+   IL_0021: ldsflda Terraria.Main::tile
+   IL_0026: ldarg.0 
+   IL_0027: ldarg.1 
+   IL_0028: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_002D: stloc.2 
+   IL_002E: ldloca.s V_2
+   IL_0030: call Terraria.Tile::get_type()
+   IL_0035: ldind.u2 
+   IL_0036: ldc.i4 488
+   IL_003B: bne.un.s IL_003f: ldc.i4.0
+   IL_003D: ldc.i4.0 
+   IL_003E: ret 
+   IL_003F: ldc.i4.0 
+   IL_0040: stloc.1 
+   IL_0041: ldarg.0 
+   IL_0042: ldc.i4.0 
+   IL_0043: blt IL_2cc8: ldloc.1
+   IL_0048: ldarg.1 
+   IL_0049: ldc.i4.0 
+   IL_004A: blt IL_2cc8: ldloc.1
+   IL_004F: ldarg.0 
+   IL_0050: ldsfld Terraria.Main::maxTilesX
+   IL_0055: bge IL_2cc8: ldloc.1
+   IL_005A: ldarg.1 
+   IL_005B: ldsfld Terraria.Main::maxTilesY
+   IL_0060: bge IL_2cc8: ldloc.1
+   IL_0065: ldsflda Terraria.Main::tile
+   IL_006A: ldarg.0 
+   IL_006B: ldarg.1 
+   IL_006C: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0071: stloc.3 
+   IL_0072: ldloc.3 
+   IL_0073: ldnull 
+   IL_0074: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_0079: brfalse.s IL_0090: ldloca.s V_3
+   IL_007B: ldloca.s V_3
+   IL_007D: initobj Terraria.Tile
+   IL_0083: ldsflda Terraria.Main::tile
+   IL_0088: ldarg.0 
+   IL_0089: ldarg.1 
+   IL_008A: ldloc.3 
+   IL_008B: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_0090: ldloca.s V_3
+   IL_0092: call Terraria.Tile::active()
+   IL_0097: brfalse.s IL_00ca: ldarg.s forced
+   IL_0099: ldloc.0 
+   IL_009A: ldc.i4.s 23
+   IL_009C: bne.un.s IL_00b0: ldloc.0
+   IL_009E: ldloca.s V_3
+   IL_00A0: call Terraria.Tile::get_type()
+   IL_00A5: ldind.u2 
+   IL_00A6: ldc.i4.s 59
+   IL_00A8: bne.un.s IL_00b0: ldloc.0
+   IL_00AA: ldc.i4 661
+   IL_00AF: stloc.0 
+   IL_00B0: ldloc.0 
+   IL_00B1: ldc.i4 199
+   IL_00B6: bne.un.s IL_00ca: ldarg.s forced
+   IL_00B8: ldloca.s V_3
+   IL_00BA: call Terraria.Tile::get_type()
+   IL_00BF: ldind.u2 
+   IL_00C0: ldc.i4.s 59
+   IL_00C2: bne.un.s IL_00ca: ldarg.s forced
+   IL_00C4: ldc.i4 662
+   IL_00C9: stloc.0 
+   IL_00CA: ldarg.s forced
+   IL_00CC: brtrue IL_021b: ldloc.0
+   IL_00D1: ldarg.0 
+   IL_00D2: ldarg.1 
+   IL_00D3: ldc.i4.0 
+   IL_00D4: call Terraria.Collision::EmptyTile(Int32,Int32,Boolean)
+   IL_00D9: brtrue IL_021b: ldloc.0
+   IL_00DE: ldsfld Terraria.Main::tileSolid
+   IL_00E3: ldloc.0 
+   IL_00E4: ldelem.u1 
+   IL_00E5: brfalse IL_021b: ldloc.0
+   IL_00EA: ldloc.0 
+   IL_00EB: ldc.i4.s 23
+   IL_00ED: bne.un.s IL_0105: ldloc.0
+   IL_00EF: ldloca.s V_3
+   IL_00F1: call Terraria.Tile::get_type()
+   IL_00F6: ldind.u2 
+   IL_00F7: brtrue.s IL_0105: ldloc.0
+   IL_00F9: ldloca.s V_3
+   IL_00FB: call Terraria.Tile::active()
+   IL_0100: brtrue IL_021b: ldloc.0
+   IL_0105: ldloc.0 
+   IL_0106: ldc.i4 199
+   IL_010B: bne.un.s IL_0123: ldloc.0
+   IL_010D: ldloca.s V_3
+   IL_010F: call Terraria.Tile::get_type()
+   IL_0114: ldind.u2 
+   IL_0115: brtrue.s IL_0123: ldloc.0
+   IL_0117: ldloca.s V_3
+   IL_0119: call Terraria.Tile::active()
+   IL_011E: brtrue IL_021b: ldloc.0
+   IL_0123: ldloc.0 
+   IL_0124: ldc.i4.2 
+   IL_0125: bne.un.s IL_013d: ldloc.0
+   IL_0127: ldloca.s V_3
+   IL_0129: call Terraria.Tile::get_type()
+   IL_012E: ldind.u2 
+   IL_012F: brtrue.s IL_013d: ldloc.0
+   IL_0131: ldloca.s V_3
+   IL_0133: call Terraria.Tile::active()
+   IL_0138: brtrue IL_021b: ldloc.0
+   IL_013D: ldloc.0 
+   IL_013E: ldc.i4.s 109
+   IL_0140: bne.un.s IL_0158: ldloc.0
+   IL_0142: ldloca.s V_3
+   IL_0144: call Terraria.Tile::get_type()
+   IL_0149: ldind.u2 
+   IL_014A: brtrue.s IL_0158: ldloc.0
+   IL_014C: ldloca.s V_3
+   IL_014E: call Terraria.Tile::active()
+   IL_0153: brtrue IL_021b: ldloc.0
+   IL_0158: ldloc.0 
+   IL_0159: ldc.i4.s 60
+   IL_015B: bne.un.s IL_0175: ldloc.0
+   IL_015D: ldloca.s V_3
+   IL_015F: call Terraria.Tile::get_type()
+   IL_0164: ldind.u2 
+   IL_0165: ldc.i4.s 59
+   IL_0167: bne.un.s IL_0175: ldloc.0
+   IL_0169: ldloca.s V_3
+   IL_016B: call Terraria.Tile::active()
+   IL_0170: brtrue IL_021b: ldloc.0
+   IL_0175: ldloc.0 
+   IL_0176: ldc.i4 661
+   IL_017B: bne.un.s IL_0195: ldloc.0
+   IL_017D: ldloca.s V_3
+   IL_017F: call Terraria.Tile::get_type()
+   IL_0184: ldind.u2 
+   IL_0185: ldc.i4.s 59
+   IL_0187: bne.un.s IL_0195: ldloc.0
+   IL_0189: ldloca.s V_3
+   IL_018B: call Terraria.Tile::active()
+   IL_0190: brtrue IL_021b: ldloc.0
+   IL_0195: ldloc.0 
+   IL_0196: ldc.i4 662
+   IL_019B: bne.un.s IL_01b2: ldloc.0
+   IL_019D: ldloca.s V_3
+   IL_019F: call Terraria.Tile::get_type()
+   IL_01A4: ldind.u2 
+   IL_01A5: ldc.i4.s 59
+   IL_01A7: bne.un.s IL_01b2: ldloc.0
+   IL_01A9: ldloca.s V_3
+   IL_01AB: call Terraria.Tile::active()
+   IL_01B0: brtrue.s IL_021b: ldloc.0
+   IL_01B2: ldloc.0 
+   IL_01B3: ldc.i4.s 70
+   IL_01B5: bne.un.s IL_01cc: ldloc.0
+   IL_01B7: ldloca.s V_3
+   IL_01B9: call Terraria.Tile::get_type()
+   IL_01BE: ldind.u2 
+   IL_01BF: ldc.i4.s 59
+   IL_01C1: bne.un.s IL_01cc: ldloc.0
+   IL_01C3: ldloca.s V_3
+   IL_01C5: call Terraria.Tile::active()
+   IL_01CA: brtrue.s IL_021b: ldloc.0
+   IL_01CC: ldloc.0 
+   IL_01CD: ldc.i4 633
+   IL_01D2: bne.un.s IL_01e9: ldsfld System.Boolean[] Terraria.Main::tileMoss
+   IL_01D4: ldloca.s V_3
+   IL_01D6: call Terraria.Tile::get_type()
+   IL_01DB: ldind.u2 
+   IL_01DC: ldc.i4.s 57
+   IL_01DE: bne.un.s IL_01e9: ldsfld System.Boolean[] Terraria.Main::tileMoss
+   IL_01E0: ldloca.s V_3
+   IL_01E2: call Terraria.Tile::active()
+   IL_01E7: brtrue.s IL_021b: ldloc.0
+   IL_01E9: ldsfld Terraria.Main::tileMoss
+   IL_01EE: ldloc.0 
+   IL_01EF: ldelem.u1 
+   IL_01F0: brfalse IL_2cc8: ldloc.1
+   IL_01F5: ldloca.s V_3
+   IL_01F7: call Terraria.Tile::get_type()
+   IL_01FC: ldind.u2 
+   IL_01FD: ldc.i4.1 
+   IL_01FE: beq.s IL_020f: ldloca.s V_3
+   IL_0200: ldloca.s V_3
+   IL_0202: call Terraria.Tile::get_type()
+   IL_0207: ldind.u2 
+   IL_0208: ldc.i4.s 38
+   IL_020A: bne.un IL_2cc8: ldloc.1
+   IL_020F: ldloca.s V_3
+   IL_0211: call Terraria.Tile::active()
+   IL_0216: brfalse IL_2cc8: ldloc.1
+   IL_021B: ldloc.0 
+   IL_021C: ldc.i4.s 23
+   IL_021E: bne.un.s IL_0235: ldloc.0
+   IL_0220: ldloca.s V_3
+   IL_0222: call Terraria.Tile::get_type()
+   IL_0227: ldind.u2 
+   IL_0228: brtrue.s IL_0233: ldc.i4.0
+   IL_022A: ldloca.s V_3
+   IL_022C: call Terraria.Tile::active()
+   IL_0231: brtrue.s IL_0235: ldloc.0
+   IL_0233: ldc.i4.0 
+   IL_0234: ret 
+   IL_0235: ldloc.0 
+   IL_0236: ldc.i4 199
+   IL_023B: bne.un.s IL_0252: ldloc.0
+   IL_023D: ldloca.s V_3
+   IL_023F: call Terraria.Tile::get_type()
+   IL_0244: ldind.u2 
+   IL_0245: brtrue.s IL_0250: ldc.i4.0
+   IL_0247: ldloca.s V_3
+   IL_0249: call Terraria.Tile::active()
+   IL_024E: brtrue.s IL_0252: ldloc.0
+   IL_0250: ldc.i4.0 
+   IL_0251: ret 
+   IL_0252: ldloc.0 
+   IL_0253: ldc.i4.2 
+   IL_0254: bne.un.s IL_026b: ldloc.0
+   IL_0256: ldloca.s V_3
+   IL_0258: call Terraria.Tile::get_type()
+   IL_025D: ldind.u2 
+   IL_025E: brtrue.s IL_0269: ldc.i4.0
+   IL_0260: ldloca.s V_3
+   IL_0262: call Terraria.Tile::active()
+   IL_0267: brtrue.s IL_026b: ldloc.0
+   IL_0269: ldc.i4.0 
+   IL_026A: ret 
+   IL_026B: ldloc.0 
+   IL_026C: ldc.i4.s 109
+   IL_026E: bne.un.s IL_0285: ldloc.0
+   IL_0270: ldloca.s V_3
+   IL_0272: call Terraria.Tile::get_type()
+   IL_0277: ldind.u2 
+   IL_0278: brtrue.s IL_0283: ldc.i4.0
+   IL_027A: ldloca.s V_3
+   IL_027C: call Terraria.Tile::active()
+   IL_0281: brtrue.s IL_0285: ldloc.0
+   IL_0283: ldc.i4.0 
+   IL_0284: ret 
+   IL_0285: ldloc.0 
+   IL_0286: ldc.i4.s 60
+   IL_0288: bne.un.s IL_02a1: ldloc.0
+   IL_028A: ldloca.s V_3
+   IL_028C: call Terraria.Tile::get_type()
+   IL_0291: ldind.u2 
+   IL_0292: ldc.i4.s 59
+   IL_0294: bne.un.s IL_029f: ldc.i4.0
+   IL_0296: ldloca.s V_3
+   IL_0298: call Terraria.Tile::active()
+   IL_029D: brtrue.s IL_02a1: ldloc.0
+   IL_029F: ldc.i4.0 
+   IL_02A0: ret 
+   IL_02A1: ldloc.0 
+   IL_02A2: ldc.i4 661
+   IL_02A7: bne.un.s IL_02c0: ldloc.0
+   IL_02A9: ldloca.s V_3
+   IL_02AB: call Terraria.Tile::get_type()
+   IL_02B0: ldind.u2 
+   IL_02B1: ldc.i4.s 59
+   IL_02B3: bne.un.s IL_02be: ldc.i4.0
+   IL_02B5: ldloca.s V_3
+   IL_02B7: call Terraria.Tile::active()
+   IL_02BC: brtrue.s IL_02c0: ldloc.0
+   IL_02BE: ldc.i4.0 
+   IL_02BF: ret 
+   IL_02C0: ldloc.0 
+   IL_02C1: ldc.i4 662
+   IL_02C6: bne.un.s IL_02df: ldloc.0
+   IL_02C8: ldloca.s V_3
+   IL_02CA: call Terraria.Tile::get_type()
+   IL_02CF: ldind.u2 
+   IL_02D0: ldc.i4.s 59
+   IL_02D2: bne.un.s IL_02dd: ldc.i4.0
+   IL_02D4: ldloca.s V_3
+   IL_02D6: call Terraria.Tile::active()
+   IL_02DB: brtrue.s IL_02df: ldloc.0
+   IL_02DD: ldc.i4.0 
+   IL_02DE: ret 
+   IL_02DF: ldloc.0 
+   IL_02E0: ldc.i4.s 70
+   IL_02E2: bne.un.s IL_02fb: ldloc.0
+   IL_02E4: ldloca.s V_3
+   IL_02E6: call Terraria.Tile::get_type()
+   IL_02EB: ldind.u2 
+   IL_02EC: ldc.i4.s 59
+   IL_02EE: bne.un.s IL_02f9: ldc.i4.0
+   IL_02F0: ldloca.s V_3
+   IL_02F2: call Terraria.Tile::active()
+   IL_02F7: brtrue.s IL_02fb: ldloc.0
+   IL_02F9: ldc.i4.0 
+   IL_02FA: ret 
+   IL_02FB: ldloc.0 
+   IL_02FC: ldc.i4 633
+   IL_0301: bne.un.s IL_031a: ldsfld System.Boolean[] Terraria.Main::tileMoss
+   IL_0303: ldloca.s V_3
+   IL_0305: call Terraria.Tile::get_type()
+   IL_030A: ldind.u2 
+   IL_030B: ldc.i4.s 57
+   IL_030D: bne.un.s IL_0318: ldc.i4.0
+   IL_030F: ldloca.s V_3
+   IL_0311: call Terraria.Tile::active()
+   IL_0316: brtrue.s IL_031a: ldsfld System.Boolean[] Terraria.Main::tileMoss
+   IL_0318: ldc.i4.0 
+   IL_0319: ret 
+   IL_031A: ldsfld Terraria.Main::tileMoss
+   IL_031F: ldloc.0 
+   IL_0320: ldelem.u1 
+   IL_0321: brfalse IL_03ce: ldloc.0
+   IL_0326: ldloca.s V_3
+   IL_0328: call Terraria.Tile::get_type()
+   IL_032D: ldind.u2 
+   IL_032E: ldc.i4.1 
+   IL_032F: beq.s IL_033d: ldloca.s V_3
+   IL_0331: ldloca.s V_3
+   IL_0333: call Terraria.Tile::get_type()
+   IL_0338: ldind.u2 
+   IL_0339: ldc.i4.s 38
+   IL_033B: bne.un.s IL_0346: ldc.i4.0
+   IL_033D: ldloca.s V_3
+   IL_033F: call Terraria.Tile::active()
+   IL_0344: brtrue.s IL_0348: ldloca.s V_3
+   IL_0346: ldc.i4.0 
+   IL_0347: ret 
+   IL_0348: ldloca.s V_3
+   IL_034A: call Terraria.Tile::get_type()
+   IL_034F: ldind.u2 
+   IL_0350: ldc.i4.s 38
+   IL_0352: bne.un.s IL_03ce: ldloc.0
+   IL_0354: ldloc.0 
+   IL_0355: ldc.i4 536
+   IL_035A: bgt.s IL_0376: ldloc.0
+   IL_035C: ldloc.0 
+   IL_035D: ldc.i4 381
+   IL_0362: beq.s IL_0390: ldc.i4 517
+   IL_0364: ldloc.0 
+   IL_0365: ldc.i4 534
+   IL_036A: beq.s IL_0398: ldc.i4 535
+   IL_036C: ldloc.0 
+   IL_036D: ldc.i4 536
+   IL_0372: beq.s IL_03a0: ldc.i4 537
+   IL_0374: br.s IL_03c0: ldc.i4 512
+   IL_0376: ldloc.0 
+   IL_0377: ldc.i4 539
+   IL_037C: beq.s IL_03a8: ldc.i4 540
+   IL_037E: ldloc.0 
+   IL_037F: ldc.i4 625
+   IL_0384: beq.s IL_03b0: ldc.i4 626
+   IL_0386: ldloc.0 
+   IL_0387: ldc.i4 627
+   IL_038C: beq.s IL_03b8: ldc.i4 628
+   IL_038E: br.s IL_03c0: ldc.i4 512
+   IL_0390: ldc.i4 517
+   IL_0395: stloc.0 
+   IL_0396: br.s IL_03ce: ldloc.0
+   IL_0398: ldc.i4 535
+   IL_039D: stloc.0 
+   IL_039E: br.s IL_03ce: ldloc.0
+   IL_03A0: ldc.i4 537
+   IL_03A5: stloc.0 
+   IL_03A6: br.s IL_03ce: ldloc.0
+   IL_03A8: ldc.i4 540
+   IL_03AD: stloc.0 
+   IL_03AE: br.s IL_03ce: ldloc.0
+   IL_03B0: ldc.i4 626
+   IL_03B5: stloc.0 
+   IL_03B6: br.s IL_03ce: ldloc.0
+   IL_03B8: ldc.i4 628
+   IL_03BD: stloc.0 
+   IL_03BE: br.s IL_03ce: ldloc.0
+   IL_03C0: ldc.i4 512
+   IL_03C5: ldloc.0 
+   IL_03C6: add 
+   IL_03C7: ldc.i4 179
+   IL_03CC: sub 
+   IL_03CD: stloc.0 
+   IL_03CE: ldloc.0 
+   IL_03CF: ldc.i4.s 81
+   IL_03D1: bne.un IL_04b3: ldloc.0
+   IL_03D6: ldsflda Terraria.Main::tile
+   IL_03DB: ldarg.0 
+   IL_03DC: ldarg.1 
+   IL_03DD: ldc.i4.1 
+   IL_03DE: sub 
+   IL_03DF: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_03E4: ldnull 
+   IL_03E5: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_03EA: brfalse.s IL_0403: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_03EC: ldsflda Terraria.Main::tile
+   IL_03F1: ldarg.0 
+   IL_03F2: ldarg.1 
+   IL_03F3: ldc.i4.1 
+   IL_03F4: sub 
+   IL_03F5: ldloca.s V_2
+   IL_03F7: initobj Terraria.Tile
+   IL_03FD: ldloc.2 
+   IL_03FE: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_0403: ldsflda Terraria.Main::tile
+   IL_0408: ldarg.0 
+   IL_0409: ldarg.1 
+   IL_040A: ldc.i4.1 
+   IL_040B: add 
+   IL_040C: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0411: ldnull 
+   IL_0412: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_0417: brfalse.s IL_0430: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0419: ldsflda Terraria.Main::tile
+   IL_041E: ldarg.0 
+   IL_041F: ldarg.1 
+   IL_0420: ldc.i4.1 
+   IL_0421: add 
+   IL_0422: ldloca.s V_2
+   IL_0424: initobj Terraria.Tile
+   IL_042A: ldloc.2 
+   IL_042B: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_0430: ldsflda Terraria.Main::tile
+   IL_0435: ldarg.0 
+   IL_0436: ldarg.1 
+   IL_0437: ldc.i4.1 
+   IL_0438: sub 
+   IL_0439: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_043E: stloc.2 
+   IL_043F: ldloca.s V_2
+   IL_0441: call Terraria.Tile::active()
+   IL_0446: brfalse.s IL_044a: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0448: ldc.i4.0 
+   IL_0449: ret 
+   IL_044A: ldsflda Terraria.Main::tile
+   IL_044F: ldarg.0 
+   IL_0450: ldarg.1 
+   IL_0451: ldc.i4.1 
+   IL_0452: add 
+   IL_0453: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0458: stloc.2 
+   IL_0459: ldloca.s V_2
+   IL_045B: call Terraria.Tile::active()
+   IL_0460: brfalse.s IL_04b1: ldc.i4.0
+   IL_0462: ldsfld Terraria.Main::tileSolid
+   IL_0467: ldsflda Terraria.Main::tile
+   IL_046C: ldarg.0 
+   IL_046D: ldarg.1 
+   IL_046E: ldc.i4.1 
+   IL_046F: add 
+   IL_0470: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0475: stloc.2 
+   IL_0476: ldloca.s V_2
+   IL_0478: call Terraria.Tile::get_type()
+   IL_047D: ldind.u2 
+   IL_047E: ldelem.u1 
+   IL_047F: brfalse.s IL_04b1: ldc.i4.0
+   IL_0481: ldsflda Terraria.Main::tile
+   IL_0486: ldarg.0 
+   IL_0487: ldarg.1 
+   IL_0488: ldc.i4.1 
+   IL_0489: add 
+   IL_048A: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_048F: stloc.2 
+   IL_0490: ldloca.s V_2
+   IL_0492: call Terraria.Tile::halfBrick()
+   IL_0497: brtrue.s IL_04b1: ldc.i4.0
+   IL_0499: ldsflda Terraria.Main::tile
+   IL_049E: ldarg.0 
+   IL_049F: ldarg.1 
+   IL_04A0: ldc.i4.1 
+   IL_04A1: add 
+   IL_04A2: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_04A7: stloc.2 
+   IL_04A8: ldloca.s V_2
+   IL_04AA: call Terraria.Tile::slope()
+   IL_04AF: brfalse.s IL_04b3: ldloc.0
+   IL_04B1: ldc.i4.0 
+   IL_04B2: ret 
+   IL_04B3: ldloc.0 
+   IL_04B4: ldc.i4 373
+   IL_04B9: beq.s IL_04d3: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_04BB: ldloc.0 
+   IL_04BC: ldc.i4 375
+   IL_04C1: beq.s IL_04d3: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_04C3: ldloc.0 
+   IL_04C4: ldc.i4 374
+   IL_04C9: beq.s IL_04d3: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_04CB: ldloc.0 
+   IL_04CC: ldc.i4 461
+   IL_04D1: bne.un.s IL_0503: ldloca.s V_3
+   IL_04D3: ldsflda Terraria.Main::tile
+   IL_04D8: ldarg.0 
+   IL_04D9: ldarg.1 
+   IL_04DA: ldc.i4.1 
+   IL_04DB: sub 
+   IL_04DC: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_04E1: ldnull 
+   IL_04E2: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_04E7: brtrue.s IL_0501: ldc.i4.0
+   IL_04E9: ldsflda Terraria.Main::tile
+   IL_04EE: ldarg.0 
+   IL_04EF: ldarg.1 
+   IL_04F0: ldc.i4.1 
+   IL_04F1: sub 
+   IL_04F2: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_04F7: stloc.2 
+   IL_04F8: ldloca.s V_2
+   IL_04FA: call Terraria.Tile::bottomSlope()
+   IL_04FF: brfalse.s IL_0503: ldloca.s V_3
+   IL_0501: ldc.i4.0 
+   IL_0502: ret 
+   IL_0503: ldloca.s V_3
+   IL_0505: call Terraria.Tile::get_liquid()
+   IL_050A: ldind.u1 
+   IL_050B: ldc.i4.0 
+   IL_050C: bgt.s IL_051a: ldloc.0
+   IL_050E: ldloca.s V_3
+   IL_0510: call Terraria.Tile::checkingLiquid()
+   IL_0515: brfalse IL_0605: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::ResetsHalfBrickPlacementAttempt
+   IL_051A: ldloc.0 
+   IL_051B: stloc.s V_4
+   IL_051D: ldloc.s V_4
+   IL_051F: ldc.i4.4 
+   IL_0520: beq IL_05c6: ldarg.s style
+   IL_0525: br IL_05d9: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::Torch
+   IL_052A: ldloc.s V_4
+   IL_052C: ldc.i4.3 
+   IL_052D: beq IL_0603: ldc.i4.0
+   IL_0532: br IL_05f7: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::TreeSapling
+   IL_0537: ldloc.s V_4
+   IL_0539: ldc.i4.s 72
+   IL_053B: bgt.s IL_0583: ldloc.s V_4
+   IL_053D: ldloc.s V_4
+   IL_053F: ldc.i4.s 32
+   IL_0541: bgt.s IL_0563: ldloc.s V_4
+   IL_0543: ldloc.s V_4
+   IL_0545: ldc.i4.s 24
+   IL_0547: beq IL_0603: ldc.i4.0
+   IL_054C: ldloc.s V_4
+   IL_054E: ldc.i4.s 27
+   IL_0550: beq IL_0603: ldc.i4.0
+   IL_0555: ldloc.s V_4
+   IL_0557: ldc.i4.s 32
+   IL_0559: beq IL_0603: ldc.i4.0
+   IL_055E: br IL_0605: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::ResetsHalfBrickPlacementAttempt
+   IL_0563: ldloc.s V_4
+   IL_0565: ldc.i4.s 51
+   IL_0567: beq IL_0603: ldc.i4.0
+   IL_056C: ldloc.s V_4
+   IL_056E: ldc.i4.s 69
+   IL_0570: beq IL_0603: ldc.i4.0
+   IL_0575: ldloc.s V_4
+   IL_0577: ldc.i4.s 72
+   IL_0579: beq IL_0603: ldc.i4.0
+   IL_057E: br IL_0605: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::ResetsHalfBrickPlacementAttempt
+   IL_0583: ldloc.s V_4
+   IL_0585: ldc.i4 529
+   IL_058A: bgt.s IL_05a9: ldloc.s V_4
+   IL_058C: ldloc.s V_4
+   IL_058E: ldc.i4 201
+   IL_0593: beq.s IL_0603: ldc.i4.0
+   IL_0595: ldloc.s V_4
+   IL_0597: ldc.i4 352
+   IL_059C: beq.s IL_0603: ldc.i4.0
+   IL_059E: ldloc.s V_4
+   IL_05A0: ldc.i4 529
+   IL_05A5: beq.s IL_0603: ldc.i4.0
+   IL_05A7: br.s IL_0605: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::ResetsHalfBrickPlacementAttempt
+   IL_05A9: ldloc.s V_4
+   IL_05AB: ldc.i4 624
+   IL_05B0: beq.s IL_0603: ldc.i4.0
+   IL_05B2: ldloc.s V_4
+   IL_05B4: ldc.i4 637
+   IL_05B9: beq.s IL_0603: ldc.i4.0
+   IL_05BB: ldloc.s V_4
+   IL_05BD: ldc.i4 656
+   IL_05C2: beq.s IL_0603: ldc.i4.0
+   IL_05C4: br.s IL_0605: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::ResetsHalfBrickPlacementAttempt
+   IL_05C6: ldarg.s style
+   IL_05C8: ldc.i4.8 
+   IL_05C9: beq.s IL_0605: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::ResetsHalfBrickPlacementAttempt
+   IL_05CB: ldarg.s style
+   IL_05CD: ldc.i4.s 11
+   IL_05CF: beq.s IL_0605: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::ResetsHalfBrickPlacementAttempt
+   IL_05D1: ldarg.s style
+   IL_05D3: ldc.i4.s 17
+   IL_05D5: beq.s IL_0605: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::ResetsHalfBrickPlacementAttempt
+   IL_05D7: ldc.i4.0 
+   IL_05D8: ret 
+   IL_05D9: ldsfld Terraria.ID.TileID/Sets::Torch
+   IL_05DE: ldloc.0 
+   IL_05DF: ldelem.u1 
+   IL_05E0: brfalse IL_052a: ldloc.s V_4
+   IL_05E5: ldloc.0 
+   IL_05E6: ldarg.s style
+   IL_05E8: ldc.i4.0 
+   IL_05E9: call Terraria.ObjectData.TileObjectData::GetTileData(Int32,Int32,Int32)
+   IL_05EE: callvirt Terraria.ObjectData.TileObjectData::get_WaterPlacement()
+   IL_05F3: brfalse.s IL_0605: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::ResetsHalfBrickPlacementAttempt
+   IL_05F5: ldc.i4.0 
+   IL_05F6: ret 
+   IL_05F7: ldsfld Terraria.ID.TileID/Sets::TreeSapling
+   IL_05FC: ldloc.0 
+   IL_05FD: ldelem.u1 
+   IL_05FE: brfalse IL_0537: ldloc.s V_4
+   IL_0603: ldc.i4.0 
+   IL_0604: ret 
+   IL_0605: ldsfld Terraria.ID.TileID/Sets::ResetsHalfBrickPlacementAttempt
+   IL_060A: ldloc.0 
+   IL_060B: ldelem.u1 
+   IL_060C: brfalse.s IL_0641: ldloc.0
+   IL_060E: ldloca.s V_3
+   IL_0610: call Terraria.Tile::active()
+   IL_0615: brfalse.s IL_0627: ldloca.s V_3
+   IL_0617: ldsfld Terraria.Main::tileFrameImportant
+   IL_061C: ldloca.s V_3
+   IL_061E: call Terraria.Tile::get_type()
+   IL_0623: ldind.u2 
+   IL_0624: ldelem.u1 
+   IL_0625: brtrue.s IL_0641: ldloc.0
+   IL_0627: ldloca.s V_3
+   IL_0629: ldc.i4.0 
+   IL_062A: call Terraria.Tile::halfBrick(Boolean)
+   IL_062F: ldloca.s V_3
+   IL_0631: call Terraria.Tile::get_frameY()
+   IL_0636: ldc.i4.0 
+   IL_0637: stind.i2 
+   IL_0638: ldloca.s V_3
+   IL_063A: call Terraria.Tile::get_frameX()
+   IL_063F: ldc.i4.0 
+   IL_0640: stind.i2 
+   IL_0641: ldloc.0 
+   IL_0642: ldc.i4 624
+   IL_0647: bne.un.s IL_06bd: ldloc.0
+   IL_0649: ldloca.s V_3
+   IL_064B: call Terraria.Tile::active()
+   IL_0650: brfalse.s IL_0675: ldarg.0
+   IL_0652: ldsfld Terraria.Main::tileCut
+   IL_0657: ldloca.s V_3
+   IL_0659: call Terraria.Tile::get_type()
+   IL_065E: ldind.u2 
+   IL_065F: ldelem.u1 
+   IL_0660: brtrue.s IL_0675: ldarg.0
+   IL_0662: ldsfld Terraria.ID.TileID/Sets::BreakableWhenPlacing
+   IL_0667: ldloca.s V_3
+   IL_0669: call Terraria.Tile::get_type()
+   IL_066E: ldind.u2 
+   IL_066F: ldelem.u1 
+   IL_0670: brfalse IL_2bb4: ldloca.s V_3
+   IL_0675: ldarg.0 
+   IL_0676: ldarg.1 
+   IL_0677: call Terraria.WorldGen::HasValidGroundForAbigailsFlowerBelowSpot(Int32,Int32)
+   IL_067C: brfalse IL_2bb4: ldloca.s V_3
+   IL_0681: ldloca.s V_3
+   IL_0683: ldc.i4.1 
+   IL_0684: call Terraria.Tile::active(Boolean)
+   IL_0689: ldloca.s V_3
+   IL_068B: call Terraria.Tile::get_type()
+   IL_0690: ldc.i4 624
+   IL_0695: stind.i2 
+   IL_0696: ldloca.s V_3
+   IL_0698: ldc.i4.0 
+   IL_0699: call Terraria.Tile::halfBrick(Boolean)
+   IL_069E: ldloca.s V_3
+   IL_06A0: ldc.i4.0 
+   IL_06A1: call Terraria.Tile::slope(Byte)
+   IL_06A6: ldloca.s V_3
+   IL_06A8: call Terraria.Tile::get_frameX()
+   IL_06AD: ldc.i4.0 
+   IL_06AE: stind.i2 
+   IL_06AF: ldloca.s V_3
+   IL_06B1: call Terraria.Tile::get_frameY()
+   IL_06B6: ldc.i4.0 
+   IL_06B7: stind.i2 
+   IL_06B8: br IL_2bb4: ldloca.s V_3
+   IL_06BD: ldloc.0 
+   IL_06BE: ldc.i4 656
+   IL_06C3: bne.un.s IL_0739: ldloc.0
+   IL_06C5: ldloca.s V_3
+   IL_06C7: call Terraria.Tile::active()
+   IL_06CC: brfalse.s IL_06f1: ldarg.0
+   IL_06CE: ldsfld Terraria.Main::tileCut
+   IL_06D3: ldloca.s V_3
+   IL_06D5: call Terraria.Tile::get_type()
+   IL_06DA: ldind.u2 
+   IL_06DB: ldelem.u1 
+   IL_06DC: brtrue.s IL_06f1: ldarg.0
+   IL_06DE: ldsfld Terraria.ID.TileID/Sets::BreakableWhenPlacing
+   IL_06E3: ldloca.s V_3
+   IL_06E5: call Terraria.Tile::get_type()
+   IL_06EA: ldind.u2 
+   IL_06EB: ldelem.u1 
+   IL_06EC: brfalse IL_2bb4: ldloca.s V_3
+   IL_06F1: ldarg.0 
+   IL_06F2: ldarg.1 
+   IL_06F3: call Terraria.WorldGen::HasValidGroundForGlowTulipBelowSpot(Int32,Int32)
+   IL_06F8: brfalse IL_2bb4: ldloca.s V_3
+   IL_06FD: ldloca.s V_3
+   IL_06FF: ldc.i4.1 
+   IL_0700: call Terraria.Tile::active(Boolean)
+   IL_0705: ldloca.s V_3
+   IL_0707: call Terraria.Tile::get_type()
+   IL_070C: ldc.i4 656
+   IL_0711: stind.i2 
+   IL_0712: ldloca.s V_3
+   IL_0714: ldc.i4.0 
+   IL_0715: call Terraria.Tile::halfBrick(Boolean)
+   IL_071A: ldloca.s V_3
+   IL_071C: ldc.i4.0 
+   IL_071D: call Terraria.Tile::slope(Byte)
+   IL_0722: ldloca.s V_3
+   IL_0724: call Terraria.Tile::get_frameX()
+   IL_0729: ldc.i4.0 
+   IL_072A: stind.i2 
+   IL_072B: ldloca.s V_3
+   IL_072D: call Terraria.Tile::get_frameY()
+   IL_0732: ldc.i4.0 
+   IL_0733: stind.i2 
+   IL_0734: br IL_2bb4: ldloca.s V_3
+   IL_0739: ldloc.0 
+   IL_073A: ldc.i4.3 
+   IL_073B: beq.s IL_075a: ldarg.0
+   IL_073D: ldloc.0 
+   IL_073E: ldc.i4.s 24
+   IL_0740: beq.s IL_075a: ldarg.0
+   IL_0742: ldloc.0 
+   IL_0743: ldc.i4.s 110
+   IL_0745: beq.s IL_075a: ldarg.0
+   IL_0747: ldloc.0 
+   IL_0748: ldc.i4 201
+   IL_074D: beq.s IL_075a: ldarg.0
+   IL_074F: ldloc.0 
+   IL_0750: ldc.i4 637
+   IL_0755: bne.un IL_0ab0: ldloc.0
+   IL_075A: ldarg.0 
+   IL_075B: ldarg.1 
+   IL_075C: ldloc.0 
+   IL_075D: call Terraria.WorldGen::IsFitToPlaceFlowerIn(Int32,Int32,Int32)
+   IL_0762: brfalse IL_2bb4: ldloca.s V_3
+   IL_0767: ldloc.0 
+   IL_0768: ldc.i4.s 24
+   IL_076A: bne.un.s IL_0799: ldloc.0
+   IL_076C: call Terraria.WorldGen::get_genRand()
+   IL_0771: ldc.i4.s 13
+   IL_0773: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0778: brtrue.s IL_0799: ldloc.0
+   IL_077A: ldloca.s V_3
+   IL_077C: ldc.i4.1 
+   IL_077D: call Terraria.Tile::active(Boolean)
+   IL_0782: ldloca.s V_3
+   IL_0784: call Terraria.Tile::get_type()
+   IL_0789: ldc.i4.s 32
+   IL_078B: stind.i2 
+   IL_078C: ldarg.0 
+   IL_078D: ldarg.1 
+   IL_078E: ldc.i4.1 
+   IL_078F: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_0794: br IL_2bb4: ldloca.s V_3
+   IL_0799: ldloc.0 
+   IL_079A: ldc.i4 201
+   IL_079F: bne.un.s IL_07d1: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_07A1: call Terraria.WorldGen::get_genRand()
+   IL_07A6: ldc.i4.s 13
+   IL_07A8: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_07AD: brtrue.s IL_07d1: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_07AF: ldloca.s V_3
+   IL_07B1: ldc.i4.1 
+   IL_07B2: call Terraria.Tile::active(Boolean)
+   IL_07B7: ldloca.s V_3
+   IL_07B9: call Terraria.Tile::get_type()
+   IL_07BE: ldc.i4 352
+   IL_07C3: stind.i2 
+   IL_07C4: ldarg.0 
+   IL_07C5: ldarg.1 
+   IL_07C6: ldc.i4.1 
+   IL_07C7: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_07CC: br IL_2bb4: ldloca.s V_3
+   IL_07D1: ldsflda Terraria.Main::tile
+   IL_07D6: ldarg.0 
+   IL_07D7: ldarg.1 
+   IL_07D8: ldc.i4.1 
+   IL_07D9: add 
+   IL_07DA: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_07DF: stloc.2 
+   IL_07E0: ldloca.s V_2
+   IL_07E2: call Terraria.Tile::get_type()
+   IL_07E7: ldind.u2 
+   IL_07E8: ldc.i4.s 78
+   IL_07EA: beq.s IL_082b: ldloca.s V_3
+   IL_07EC: ldsflda Terraria.Main::tile
+   IL_07F1: ldarg.0 
+   IL_07F2: ldarg.1 
+   IL_07F3: ldc.i4.1 
+   IL_07F4: add 
+   IL_07F5: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_07FA: stloc.2 
+   IL_07FB: ldloca.s V_2
+   IL_07FD: call Terraria.Tile::get_type()
+   IL_0802: ldind.u2 
+   IL_0803: ldc.i4 380
+   IL_0808: beq.s IL_082b: ldloca.s V_3
+   IL_080A: ldsflda Terraria.Main::tile
+   IL_080F: ldarg.0 
+   IL_0810: ldarg.1 
+   IL_0811: ldc.i4.1 
+   IL_0812: add 
+   IL_0813: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0818: stloc.2 
+   IL_0819: ldloca.s V_2
+   IL_081B: call Terraria.Tile::get_type()
+   IL_0820: ldind.u2 
+   IL_0821: ldc.i4 579
+   IL_0826: bne.un IL_08c6: ldloca.s V_3
+   IL_082B: ldloca.s V_3
+   IL_082D: ldc.i4.1 
+   IL_082E: call Terraria.Tile::active(Boolean)
+   IL_0833: ldloca.s V_3
+   IL_0835: call Terraria.Tile::get_type()
+   IL_083A: ldloc.0 
+   IL_083B: conv.u2 
+   IL_083C: stind.i2 
+   IL_083D: call Terraria.WorldGen::get_genRand()
+   IL_0842: ldc.i4.s 22
+   IL_0844: newarr System.Int32
+   IL_0849: dup 
+   IL_084A: ldtoken <PrivateImplementationDetails>::F0B6F01201DECF4EC7CB4E62E6134490AF760EE59A43C9C0C332FE601063957B
+   IL_084F: call System.Runtime.CompilerServices.RuntimeHelpers::InitializeArray(Array,RuntimeFieldHandle)
+   IL_0854: call Terraria.Utils::NextFromList(UnifiedRandom,T[])
+   IL_0859: stloc.s V_5
+   IL_085B: ldloc.s V_5
+   IL_085D: ldc.i4.s 30
+   IL_085F: bgt.s IL_0883: ldloc.s V_5
+   IL_0861: ldloc.s V_5
+   IL_0863: ldc.i4.s 24
+   IL_0865: bgt.s IL_0875: ldloc.s V_5
+   IL_0867: ldloc.s V_5
+   IL_0869: ldc.i4.s 21
+   IL_086B: beq.s IL_08a3: ldloc.s V_5
+   IL_086D: ldloc.s V_5
+   IL_086F: ldc.i4.s 24
+   IL_0871: beq.s IL_08a3: ldloc.s V_5
+   IL_0873: br.s IL_08b3: ldloca.s V_3
+   IL_0875: ldloc.s V_5
+   IL_0877: ldc.i4.s 27
+   IL_0879: beq.s IL_08a3: ldloc.s V_5
+   IL_087B: ldloc.s V_5
+   IL_087D: ldc.i4.s 30
+   IL_087F: beq.s IL_08a3: ldloc.s V_5
+   IL_0881: br.s IL_08b3: ldloca.s V_3
+   IL_0883: ldloc.s V_5
+   IL_0885: ldc.i4.s 36
+   IL_0887: bgt.s IL_0897: ldloc.s V_5
+   IL_0889: ldloc.s V_5
+   IL_088B: ldc.i4.s 33
+   IL_088D: beq.s IL_08a3: ldloc.s V_5
+   IL_088F: ldloc.s V_5
+   IL_0891: ldc.i4.s 36
+   IL_0893: beq.s IL_08a3: ldloc.s V_5
+   IL_0895: br.s IL_08b3: ldloca.s V_3
+   IL_0897: ldloc.s V_5
+   IL_0899: ldc.i4.s 39
+   IL_089B: beq.s IL_08a3: ldloc.s V_5
+   IL_089D: ldloc.s V_5
+   IL_089F: ldc.i4.s 42
+   IL_08A1: bne.un.s IL_08b3: ldloca.s V_3
+   IL_08A3: ldloc.s V_5
+   IL_08A5: call Terraria.WorldGen::get_genRand()
+   IL_08AA: ldc.i4.3 
+   IL_08AB: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_08B0: add 
+   IL_08B1: stloc.s V_5
+   IL_08B3: ldloca.s V_3
+   IL_08B5: call Terraria.Tile::get_frameX()
+   IL_08BA: ldloc.s V_5
+   IL_08BC: ldc.i4.s 18
+   IL_08BE: mul 
+   IL_08BF: conv.i2 
+   IL_08C0: stind.i2 
+   IL_08C1: br IL_2bb4: ldloca.s V_3
+   IL_08C6: ldloca.s V_3
+   IL_08C8: call Terraria.Tile::get_wall()
+   IL_08CD: ldind.u2 
+   IL_08CE: ldc.i4.0 
+   IL_08CF: blt IL_2bb4: ldloca.s V_3
+   IL_08D4: ldsfld Terraria.ID.WallID/Sets::AllowsPlantsToGrow
+   IL_08D9: ldloca.s V_3
+   IL_08DB: call Terraria.Tile::get_wall()
+   IL_08E0: ldind.u2 
+   IL_08E1: ldelem.u1 
+   IL_08E2: brfalse IL_2bb4: ldloca.s V_3
+   IL_08E7: ldsflda Terraria.Main::tile
+   IL_08EC: ldarg.0 
+   IL_08ED: ldarg.1 
+   IL_08EE: ldc.i4.1 
+   IL_08EF: add 
+   IL_08F0: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_08F5: stloc.2 
+   IL_08F6: ldloca.s V_2
+   IL_08F8: call Terraria.Tile::get_wall()
+   IL_08FD: ldind.u2 
+   IL_08FE: ldc.i4.0 
+   IL_08FF: blt IL_2bb4: ldloca.s V_3
+   IL_0904: ldsflda Terraria.Main::tile
+   IL_0909: ldarg.0 
+   IL_090A: ldarg.1 
+   IL_090B: ldc.i4.1 
+   IL_090C: add 
+   IL_090D: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0912: stloc.2 
+   IL_0913: ldloca.s V_2
+   IL_0915: call Terraria.Tile::get_wall()
+   IL_091A: ldind.u2 
+   IL_091B: call Terraria.ModLoader.WallLoader::get_WallCount()
+   IL_0920: bge IL_2bb4: ldloca.s V_3
+   IL_0925: ldsfld Terraria.ID.WallID/Sets::AllowsPlantsToGrow
+   IL_092A: ldsflda Terraria.Main::tile
+   IL_092F: ldarg.0 
+   IL_0930: ldarg.1 
+   IL_0931: ldc.i4.1 
+   IL_0932: add 
+   IL_0933: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0938: stloc.2 
+   IL_0939: ldloca.s V_2
+   IL_093B: call Terraria.Tile::get_wall()
+   IL_0940: ldind.u2 
+   IL_0941: ldelem.u1 
+   IL_0942: brfalse IL_2bb4: ldloca.s V_3
+   IL_0947: call Terraria.WorldGen::get_genRand()
+   IL_094C: ldc.i4.s 50
+   IL_094E: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0953: brfalse.s IL_0970: ldloca.s V_3
+   IL_0955: ldloc.0 
+   IL_0956: ldc.i4.s 24
+   IL_0958: beq.s IL_0962: call Terraria.Utilities.UnifiedRandom Terraria.WorldGen::get_genRand()
+   IL_095A: ldloc.0 
+   IL_095B: ldc.i4 201
+   IL_0960: bne.un.s IL_09ae: call Terraria.Utilities.UnifiedRandom Terraria.WorldGen::get_genRand()
+   IL_0962: call Terraria.WorldGen::get_genRand()
+   IL_0967: ldc.i4.s 40
+   IL_0969: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_096E: brtrue.s IL_09ae: call Terraria.Utilities.UnifiedRandom Terraria.WorldGen::get_genRand()
+   IL_0970: ldloca.s V_3
+   IL_0972: ldc.i4.1 
+   IL_0973: call Terraria.Tile::active(Boolean)
+   IL_0978: ldloca.s V_3
+   IL_097A: call Terraria.Tile::get_type()
+   IL_097F: ldloc.0 
+   IL_0980: conv.u2 
+   IL_0981: stind.i2 
+   IL_0982: ldloc.0 
+   IL_0983: ldc.i4 201
+   IL_0988: bne.un.s IL_099c: ldloca.s V_3
+   IL_098A: ldloca.s V_3
+   IL_098C: call Terraria.Tile::get_frameX()
+   IL_0991: ldc.i4 270
+   IL_0996: stind.i2 
+   IL_0997: br IL_2bb4: ldloca.s V_3
+   IL_099C: ldloca.s V_3
+   IL_099E: call Terraria.Tile::get_frameX()
+   IL_09A3: ldc.i4 144
+   IL_09A8: stind.i2 
+   IL_09A9: br IL_2bb4: ldloca.s V_3
+   IL_09AE: call Terraria.WorldGen::get_genRand()
+   IL_09B3: ldc.i4.s 35
+   IL_09B5: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_09BA: brfalse.s IL_09f4: ldloca.s V_3
+   IL_09BC: ldsflda Terraria.Main::tile
+   IL_09C1: ldarg.0 
+   IL_09C2: ldarg.1 
+   IL_09C3: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_09C8: stloc.2 
+   IL_09C9: ldloca.s V_2
+   IL_09CB: call Terraria.Tile::get_wall()
+   IL_09D0: ldind.u2 
+   IL_09D1: ldc.i4.s 63
+   IL_09D3: blt IL_0a82: ldloca.s V_3
+   IL_09D8: ldsflda Terraria.Main::tile
+   IL_09DD: ldarg.0 
+   IL_09DE: ldarg.1 
+   IL_09DF: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_09E4: stloc.2 
+   IL_09E5: ldloca.s V_2
+   IL_09E7: call Terraria.Tile::get_wall()
+   IL_09EC: ldind.u2 
+   IL_09ED: ldc.i4.s 70
+   IL_09EF: bgt IL_0a82: ldloca.s V_3
+   IL_09F4: ldloca.s V_3
+   IL_09F6: ldc.i4.1 
+   IL_09F7: call Terraria.Tile::active(Boolean)
+   IL_09FC: ldloca.s V_3
+   IL_09FE: call Terraria.Tile::get_type()
+   IL_0A03: ldloc.0 
+   IL_0A04: conv.u2 
+   IL_0A05: stind.i2 
+   IL_0A06: call Terraria.WorldGen::get_genRand()
+   IL_0A0B: ldc.i4.s 14
+   IL_0A0D: newarr System.Int32
+   IL_0A12: dup 
+   IL_0A13: ldtoken <PrivateImplementationDetails>::10239A48B57DA3006DE31CB0F73BB153C8C73A604C0E2225CA45891369882B8F
+   IL_0A18: call System.Runtime.CompilerServices.RuntimeHelpers::InitializeArray(Array,RuntimeFieldHandle)
+   IL_0A1D: call Terraria.Utils::NextFromList(UnifiedRandom,T[])
+   IL_0A22: stloc.s V_6
+   IL_0A24: ldloc.0 
+   IL_0A25: ldc.i4 201
+   IL_0A2A: bne.un.s IL_0a4a: ldloc.0
+   IL_0A2C: call Terraria.WorldGen::get_genRand()
+   IL_0A31: ldc.i4.s 16
+   IL_0A33: newarr System.Int32
+   IL_0A38: dup 
+   IL_0A39: ldtoken <PrivateImplementationDetails>::53BAA247CEF51C2DBDFE933AF11F1494F3F55E12FC8AA797AD74A3F87A257EF4
+   IL_0A3E: call System.Runtime.CompilerServices.RuntimeHelpers::InitializeArray(Array,RuntimeFieldHandle)
+   IL_0A43: call Terraria.Utils::NextFromList(UnifiedRandom,T[])
+   IL_0A48: stloc.s V_6
+   IL_0A4A: ldloc.0 
+   IL_0A4B: ldc.i4 637
+   IL_0A50: bne.un.s IL_0a6f: ldloca.s V_3
+   IL_0A52: call Terraria.WorldGen::get_genRand()
+   IL_0A57: ldc.i4.5 
+   IL_0A58: newarr System.Int32
+   IL_0A5D: dup 
+   IL_0A5E: ldtoken <PrivateImplementationDetails>::73E6E64B64CCADF091BE8790DD4A758DB959C64B0FB0C09024A160357331B89E
+   IL_0A63: call System.Runtime.CompilerServices.RuntimeHelpers::InitializeArray(Array,RuntimeFieldHandle)
+   IL_0A68: call Terraria.Utils::NextFromList(UnifiedRandom,T[])
+   IL_0A6D: stloc.s V_6
+   IL_0A6F: ldloca.s V_3
+   IL_0A71: call Terraria.Tile::get_frameX()
+   IL_0A76: ldloc.s V_6
+   IL_0A78: ldc.i4.s 18
+   IL_0A7A: mul 
+   IL_0A7B: conv.i2 
+   IL_0A7C: stind.i2 
+   IL_0A7D: br IL_2bb4: ldloca.s V_3
+   IL_0A82: ldloca.s V_3
+   IL_0A84: ldc.i4.1 
+   IL_0A85: call Terraria.Tile::active(Boolean)
+   IL_0A8A: ldloca.s V_3
+   IL_0A8C: call Terraria.Tile::get_type()
+   IL_0A91: ldloc.0 
+   IL_0A92: conv.u2 
+   IL_0A93: stind.i2 
+   IL_0A94: ldloca.s V_3
+   IL_0A96: call Terraria.Tile::get_frameX()
+   IL_0A9B: call Terraria.WorldGen::get_genRand()
+   IL_0AA0: ldc.i4.6 
+   IL_0AA1: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0AA6: ldc.i4.s 18
+   IL_0AA8: mul 
+   IL_0AA9: conv.i2 
+   IL_0AAA: stind.i2 
+   IL_0AAB: br IL_2bb4: ldloca.s V_3
+   IL_0AB0: ldloc.0 
+   IL_0AB1: ldc.i4.s 61
+   IL_0AB3: bne.un IL_0c94: ldloc.0
+   IL_0AB8: ldarg.1 
+   IL_0AB9: ldc.i4.1 
+   IL_0ABA: add 
+   IL_0ABB: ldsfld Terraria.Main::maxTilesY
+   IL_0AC0: bge IL_2bb4: ldloca.s V_3
+   IL_0AC5: ldsflda Terraria.Main::tile
+   IL_0ACA: ldarg.0 
+   IL_0ACB: ldarg.1 
+   IL_0ACC: ldc.i4.1 
+   IL_0ACD: add 
+   IL_0ACE: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0AD3: stloc.2 
+   IL_0AD4: ldloca.s V_2
+   IL_0AD6: call Terraria.Tile::active()
+   IL_0ADB: brfalse IL_2bb4: ldloca.s V_3
+   IL_0AE0: ldsflda Terraria.Main::tile
+   IL_0AE5: ldarg.0 
+   IL_0AE6: ldarg.1 
+   IL_0AE7: ldc.i4.1 
+   IL_0AE8: add 
+   IL_0AE9: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0AEE: stloc.2 
+   IL_0AEF: ldloca.s V_2
+   IL_0AF1: call Terraria.Tile::slope()
+   IL_0AF6: brtrue IL_2bb4: ldloca.s V_3
+   IL_0AFB: ldsflda Terraria.Main::tile
+   IL_0B00: ldarg.0 
+   IL_0B01: ldarg.1 
+   IL_0B02: ldc.i4.1 
+   IL_0B03: add 
+   IL_0B04: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0B09: stloc.2 
+   IL_0B0A: ldloca.s V_2
+   IL_0B0C: call Terraria.Tile::halfBrick()
+   IL_0B11: brtrue IL_2bb4: ldloca.s V_3
+   IL_0B16: ldsflda Terraria.Main::tile
+   IL_0B1B: ldarg.0 
+   IL_0B1C: ldarg.1 
+   IL_0B1D: ldc.i4.1 
+   IL_0B1E: add 
+   IL_0B1F: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0B24: stloc.2 
+   IL_0B25: ldloca.s V_2
+   IL_0B27: call Terraria.Tile::get_type()
+   IL_0B2C: ldind.u2 
+   IL_0B2D: ldc.i4.s 60
+   IL_0B2F: bne.un IL_2bb4: ldloca.s V_3
+   IL_0B34: ldarg.1 
+   IL_0B35: conv.r8 
+   IL_0B36: ldsfld Terraria.Main::rockLayer
+   IL_0B3B: bgt.s IL_0b4b: ldc.i4.1
+   IL_0B3D: ldsfld Terraria.Main::remixWorld
+   IL_0B42: brtrue.s IL_0b4b: ldc.i4.1
+   IL_0B44: ldsfld Terraria.WorldGen::remixWorldGen
+   IL_0B49: br.s IL_0b4c: stloc.s V_7
+   IL_0B4B: ldc.i4.1 
+   IL_0B4C: stloc.s V_7
+   IL_0B4E: call Terraria.WorldGen::get_genRand()
+   IL_0B53: ldc.i4.s 16
+   IL_0B55: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0B5A: brtrue.s IL_0b84: call Terraria.Utilities.UnifiedRandom Terraria.WorldGen::get_genRand()
+   IL_0B5C: ldarg.1 
+   IL_0B5D: conv.r8 
+   IL_0B5E: ldsfld Terraria.Main::worldSurface
+   IL_0B63: ble.un.s IL_0b84: call Terraria.Utilities.UnifiedRandom Terraria.WorldGen::get_genRand()
+   IL_0B65: ldloca.s V_3
+   IL_0B67: ldc.i4.1 
+   IL_0B68: call Terraria.Tile::active(Boolean)
+   IL_0B6D: ldloca.s V_3
+   IL_0B6F: call Terraria.Tile::get_type()
+   IL_0B74: ldc.i4.s 69
+   IL_0B76: stind.i2 
+   IL_0B77: ldarg.0 
+   IL_0B78: ldarg.1 
+   IL_0B79: ldc.i4.1 
+   IL_0B7A: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_0B7F: br IL_2bb4: ldloca.s V_3
+   IL_0B84: call Terraria.WorldGen::get_genRand()
+   IL_0B89: ldc.i4.s 60
+   IL_0B8B: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0B90: ldc.i4.0 
+   IL_0B91: ceq 
+   IL_0B93: ldloc.s V_7
+   IL_0B95: and 
+   IL_0B96: brfalse.s IL_0bbc: call Terraria.Utilities.UnifiedRandom Terraria.WorldGen::get_genRand()
+   IL_0B98: ldloca.s V_3
+   IL_0B9A: ldc.i4.1 
+   IL_0B9B: call Terraria.Tile::active(Boolean)
+   IL_0BA0: ldloca.s V_3
+   IL_0BA2: call Terraria.Tile::get_type()
+   IL_0BA7: ldloc.0 
+   IL_0BA8: conv.u2 
+   IL_0BA9: stind.i2 
+   IL_0BAA: ldloca.s V_3
+   IL_0BAC: call Terraria.Tile::get_frameX()
+   IL_0BB1: ldc.i4 144
+   IL_0BB6: stind.i2 
+   IL_0BB7: br IL_2bb4: ldloca.s V_3
+   IL_0BBC: call Terraria.WorldGen::get_genRand()
+   IL_0BC1: ldc.i4 230
+   IL_0BC6: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0BCB: ldc.i4.0 
+   IL_0BCC: ceq 
+   IL_0BCE: ldloc.s V_7
+   IL_0BD0: and 
+   IL_0BD1: brfalse.s IL_0bf7: call Terraria.Utilities.UnifiedRandom Terraria.WorldGen::get_genRand()
+   IL_0BD3: ldloca.s V_3
+   IL_0BD5: ldc.i4.1 
+   IL_0BD6: call Terraria.Tile::active(Boolean)
+   IL_0BDB: ldloca.s V_3
+   IL_0BDD: call Terraria.Tile::get_type()
+   IL_0BE2: ldloc.0 
+   IL_0BE3: conv.u2 
+   IL_0BE4: stind.i2 
+   IL_0BE5: ldloca.s V_3
+   IL_0BE7: call Terraria.Tile::get_frameX()
+   IL_0BEC: ldc.i4 162
+   IL_0BF1: stind.i2 
+   IL_0BF2: br IL_2bb4: ldloca.s V_3
+   IL_0BF7: call Terraria.WorldGen::get_genRand()
+   IL_0BFC: ldc.i4.s 15
+   IL_0BFE: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0C03: brtrue.s IL_0c66: ldloca.s V_3
+   IL_0C05: ldloca.s V_3
+   IL_0C07: ldc.i4.1 
+   IL_0C08: call Terraria.Tile::active(Boolean)
+   IL_0C0D: ldloca.s V_3
+   IL_0C0F: call Terraria.Tile::get_type()
+   IL_0C14: ldloc.0 
+   IL_0C15: conv.u2 
+   IL_0C16: stind.i2 
+   IL_0C17: call Terraria.WorldGen::get_genRand()
+   IL_0C1C: ldc.i4.3 
+   IL_0C1D: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0C22: brfalse.s IL_0c43: ldloca.s V_3
+   IL_0C24: ldloca.s V_3
+   IL_0C26: call Terraria.Tile::get_frameX()
+   IL_0C2B: call Terraria.WorldGen::get_genRand()
+   IL_0C30: ldc.i4.2 
+   IL_0C31: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0C36: ldc.i4.s 18
+   IL_0C38: mul 
+   IL_0C39: ldc.i4.s 108
+   IL_0C3B: add 
+   IL_0C3C: conv.i2 
+   IL_0C3D: stind.i2 
+   IL_0C3E: br IL_2bb4: ldloca.s V_3
+   IL_0C43: ldloca.s V_3
+   IL_0C45: call Terraria.Tile::get_frameX()
+   IL_0C4A: call Terraria.WorldGen::get_genRand()
+   IL_0C4F: ldc.i4.s 13
+   IL_0C51: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0C56: ldc.i4.s 18
+   IL_0C58: mul 
+   IL_0C59: ldc.i4 180
+   IL_0C5E: add 
+   IL_0C5F: conv.i2 
+   IL_0C60: stind.i2 
+   IL_0C61: br IL_2bb4: ldloca.s V_3
+   IL_0C66: ldloca.s V_3
+   IL_0C68: ldc.i4.1 
+   IL_0C69: call Terraria.Tile::active(Boolean)
+   IL_0C6E: ldloca.s V_3
+   IL_0C70: call Terraria.Tile::get_type()
+   IL_0C75: ldloc.0 
+   IL_0C76: conv.u2 
+   IL_0C77: stind.i2 
+   IL_0C78: ldloca.s V_3
+   IL_0C7A: call Terraria.Tile::get_frameX()
+   IL_0C7F: call Terraria.WorldGen::get_genRand()
+   IL_0C84: ldc.i4.6 
+   IL_0C85: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0C8A: ldc.i4.s 18
+   IL_0C8C: mul 
+   IL_0C8D: conv.i2 
+   IL_0C8E: stind.i2 
+   IL_0C8F: br IL_2bb4: ldloca.s V_3
+   IL_0C94: ldloc.0 
+   IL_0C95: ldc.i4 518
+   IL_0C9A: bne.un.s IL_0ca9: ldloc.0
+   IL_0C9C: ldarg.0 
+   IL_0C9D: ldarg.1 
+   IL_0C9E: call Terraria.WorldGen::PlaceLilyPad(Int32,Int32)
+   IL_0CA3: pop 
+   IL_0CA4: br IL_2bb4: ldloca.s V_3
+   IL_0CA9: ldloc.0 
+   IL_0CAA: ldc.i4 519
+   IL_0CAF: bne.un.s IL_0cbe: ldloc.0
+   IL_0CB1: ldarg.0 
+   IL_0CB2: ldarg.1 
+   IL_0CB3: call Terraria.WorldGen::PlaceCatTail(Int32,Int32)
+   IL_0CB8: pop 
+   IL_0CB9: br IL_2bb4: ldloca.s V_3
+   IL_0CBE: ldloc.0 
+   IL_0CBF: ldc.i4 529
+   IL_0CC4: bne.un.s IL_0cd3: ldloc.0
+   IL_0CC6: ldarg.0 
+   IL_0CC7: ldarg.1 
+   IL_0CC8: call Terraria.WorldGen::PlantSeaOat(Int32,Int32)
+   IL_0CCD: pop 
+   IL_0CCE: br IL_2bb4: ldloca.s V_3
+   IL_0CD3: ldloc.0 
+   IL_0CD4: ldc.i4 571
+   IL_0CD9: bne.un.s IL_0ce8: ldloc.0
+   IL_0CDB: ldarg.0 
+   IL_0CDC: ldarg.1 
+   IL_0CDD: call Terraria.WorldGen::PlaceBamboo(Int32,Int32)
+   IL_0CE2: pop 
+   IL_0CE3: br IL_2bb4: ldloca.s V_3
+   IL_0CE8: ldloc.0 
+   IL_0CE9: ldc.i4 549
+   IL_0CEE: bne.un.s IL_0d01: ldloc.0
+   IL_0CF0: ldc.i4 549
+   IL_0CF5: ldarg.0 
+   IL_0CF6: ldarg.1 
+   IL_0CF7: call Terraria.WorldGen::PlaceUnderwaterPlant(UInt16,Int32,Int32)
+   IL_0CFC: br IL_2bb4: ldloca.s V_3
+   IL_0D01: ldloc.0 
+   IL_0D02: ldc.i4.s 71
+   IL_0D04: bne.un IL_0e3b: ldloc.0
+   IL_0D09: ldarg.1 
+   IL_0D0A: ldc.i4.1 
+   IL_0D0B: add 
+   IL_0D0C: ldsfld Terraria.Main::maxTilesY
+   IL_0D11: bge IL_2bb4: ldloca.s V_3
+   IL_0D16: ldsflda Terraria.Main::tile
+   IL_0D1B: ldarg.0 
+   IL_0D1C: ldarg.1 
+   IL_0D1D: ldc.i4.1 
+   IL_0D1E: add 
+   IL_0D1F: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0D24: stloc.2 
+   IL_0D25: ldloca.s V_2
+   IL_0D27: call Terraria.Tile::active()
+   IL_0D2C: brfalse IL_2bb4: ldloca.s V_3
+   IL_0D31: ldsflda Terraria.Main::tile
+   IL_0D36: ldarg.0 
+   IL_0D37: ldarg.1 
+   IL_0D38: ldc.i4.1 
+   IL_0D39: add 
+   IL_0D3A: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0D3F: stloc.2 
+   IL_0D40: ldloca.s V_2
+   IL_0D42: call Terraria.Tile::slope()
+   IL_0D47: brtrue IL_2bb4: ldloca.s V_3
+   IL_0D4C: ldsflda Terraria.Main::tile
+   IL_0D51: ldarg.0 
+   IL_0D52: ldarg.1 
+   IL_0D53: ldc.i4.1 
+   IL_0D54: add 
+   IL_0D55: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0D5A: stloc.2 
+   IL_0D5B: ldloca.s V_2
+   IL_0D5D: call Terraria.Tile::halfBrick()
+   IL_0D62: brtrue IL_2bb4: ldloca.s V_3
+   IL_0D67: ldsflda Terraria.Main::tile
+   IL_0D6C: ldarg.0 
+   IL_0D6D: ldarg.1 
+   IL_0D6E: ldc.i4.1 
+   IL_0D6F: add 
+   IL_0D70: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0D75: stloc.2 
+   IL_0D76: ldloca.s V_2
+   IL_0D78: call Terraria.Tile::get_type()
+   IL_0D7D: ldind.u2 
+   IL_0D7E: ldc.i4.s 70
+   IL_0D80: bne.un IL_2bb4: ldloca.s V_3
+   IL_0D85: ldloca.s V_8
+   IL_0D87: ldc.i4.m1 
+   IL_0D88: ldc.i4.m1 
+   IL_0D89: call Microsoft.Xna.Framework.Point::.ctor(Int32,Int32)
+   IL_0D8E: ldarg.1 
+   IL_0D8F: conv.r8 
+   IL_0D90: ldsfld Terraria.Main::worldSurface
+   IL_0D95: ble.un.s IL_0da0: ldloc.s V_8
+   IL_0D97: ldarg.0 
+   IL_0D98: ldarg.1 
+   IL_0D99: call Terraria.WorldGen::PlaceCatTail(Int32,Int32)
+   IL_0D9E: stloc.s V_8
+   IL_0DA0: ldloc.s V_8
+   IL_0DA2: ldfld Microsoft.Xna.Framework.Point::X
+   IL_0DA7: ldloc.s V_8
+   IL_0DA9: ldfld Microsoft.Xna.Framework.Point::Y
+   IL_0DAE: ldc.i4.0 
+   IL_0DAF: call Terraria.WorldGen::InWorld(Int32,Int32,Int32)
+   IL_0DB4: brfalse.s IL_0e0d: ldloca.s V_3
+   IL_0DB6: volatile. 
+   IL_0DB8: ldsfld Terraria.WorldGen::gen
+   IL_0DBD: brfalse IL_2bb4: ldloca.s V_3
+   IL_0DC2: call Terraria.WorldGen::get_genRand()
+   IL_0DC7: ldc.i4.s 14
+   IL_0DC9: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0DCE: stloc.s V_9
+   IL_0DD0: ldc.i4.0 
+   IL_0DD1: stloc.s V_10
+   IL_0DD3: br.s IL_0dee: ldloc.s V_10
+   IL_0DD5: ldloc.s V_8
+   IL_0DD7: ldfld Microsoft.Xna.Framework.Point::X
+   IL_0DDC: ldloc.s V_8
+   IL_0DDE: ldfld Microsoft.Xna.Framework.Point::Y
+   IL_0DE3: call Terraria.WorldGen::GrowCatTail(Int32,Int32)
+   IL_0DE8: ldloc.s V_10
+   IL_0DEA: ldc.i4.1 
+   IL_0DEB: add 
+   IL_0DEC: stloc.s V_10
+   IL_0DEE: ldloc.s V_10
+   IL_0DF0: ldloc.s V_9
+   IL_0DF2: blt.s IL_0dd5: ldloc.s V_8
+   IL_0DF4: ldloc.s V_8
+   IL_0DF6: ldfld Microsoft.Xna.Framework.Point::X
+   IL_0DFB: ldloc.s V_8
+   IL_0DFD: ldfld Microsoft.Xna.Framework.Point::Y
+   IL_0E02: ldc.i4.1 
+   IL_0E03: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_0E08: br IL_2bb4: ldloca.s V_3
+   IL_0E0D: ldloca.s V_3
+   IL_0E0F: ldc.i4.1 
+   IL_0E10: call Terraria.Tile::active(Boolean)
+   IL_0E15: ldloca.s V_3
+   IL_0E17: call Terraria.Tile::get_type()
+   IL_0E1C: ldloc.0 
+   IL_0E1D: conv.u2 
+   IL_0E1E: stind.i2 
+   IL_0E1F: ldloca.s V_3
+   IL_0E21: call Terraria.Tile::get_frameX()
+   IL_0E26: call Terraria.WorldGen::get_genRand()
+   IL_0E2B: ldc.i4.5 
+   IL_0E2C: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0E31: ldc.i4.s 18
+   IL_0E33: mul 
+   IL_0E34: conv.i2 
+   IL_0E35: stind.i2 
+   IL_0E36: br IL_2bb4: ldloca.s V_3
+   IL_0E3B: ldloc.0 
+   IL_0E3C: ldc.i4 129
+   IL_0E41: bne.un.s IL_0ea3: ldloc.0
+   IL_0E43: ldarg.0 
+   IL_0E44: ldc.i4.1 
+   IL_0E45: sub 
+   IL_0E46: ldarg.1 
+   IL_0E47: ldc.i4.0 
+   IL_0E48: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0E4D: brtrue.s IL_0e76: ldloca.s V_3
+   IL_0E4F: ldarg.0 
+   IL_0E50: ldc.i4.1 
+   IL_0E51: add 
+   IL_0E52: ldarg.1 
+   IL_0E53: ldc.i4.0 
+   IL_0E54: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0E59: brtrue.s IL_0e76: ldloca.s V_3
+   IL_0E5B: ldarg.0 
+   IL_0E5C: ldarg.1 
+   IL_0E5D: ldc.i4.1 
+   IL_0E5E: sub 
+   IL_0E5F: ldc.i4.0 
+   IL_0E60: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0E65: brtrue.s IL_0e76: ldloca.s V_3
+   IL_0E67: ldarg.0 
+   IL_0E68: ldarg.1 
+   IL_0E69: ldc.i4.1 
+   IL_0E6A: add 
+   IL_0E6B: ldc.i4.0 
+   IL_0E6C: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0E71: brfalse IL_2bb4: ldloca.s V_3
+   IL_0E76: ldloca.s V_3
+   IL_0E78: ldc.i4.1 
+   IL_0E79: call Terraria.Tile::active(Boolean)
+   IL_0E7E: ldloca.s V_3
+   IL_0E80: call Terraria.Tile::get_type()
+   IL_0E85: ldloc.0 
+   IL_0E86: conv.u2 
+   IL_0E87: stind.i2 
+   IL_0E88: ldloca.s V_3
+   IL_0E8A: call Terraria.Tile::get_frameX()
+   IL_0E8F: ldarg.s style
+   IL_0E91: ldc.i4.s 18
+   IL_0E93: mul 
+   IL_0E94: conv.i2 
+   IL_0E95: stind.i2 
+   IL_0E96: ldarg.0 
+   IL_0E97: ldarg.1 
+   IL_0E98: ldc.i4.1 
+   IL_0E99: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_0E9E: br IL_2bb4: ldloca.s V_3
+   IL_0EA3: ldloc.0 
+   IL_0EA4: ldc.i4 178
+   IL_0EA9: bne.un.s IL_0f22: ldloc.0
+   IL_0EAB: ldarg.0 
+   IL_0EAC: ldc.i4.1 
+   IL_0EAD: sub 
+   IL_0EAE: ldarg.1 
+   IL_0EAF: ldc.i4.1 
+   IL_0EB0: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0EB5: brtrue.s IL_0ede: ldloca.s V_3
+   IL_0EB7: ldarg.0 
+   IL_0EB8: ldc.i4.1 
+   IL_0EB9: add 
+   IL_0EBA: ldarg.1 
+   IL_0EBB: ldc.i4.1 
+   IL_0EBC: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0EC1: brtrue.s IL_0ede: ldloca.s V_3
+   IL_0EC3: ldarg.0 
+   IL_0EC4: ldarg.1 
+   IL_0EC5: ldc.i4.1 
+   IL_0EC6: sub 
+   IL_0EC7: ldc.i4.0 
+   IL_0EC8: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0ECD: brtrue.s IL_0ede: ldloca.s V_3
+   IL_0ECF: ldarg.0 
+   IL_0ED0: ldarg.1 
+   IL_0ED1: ldc.i4.1 
+   IL_0ED2: add 
+   IL_0ED3: ldc.i4.0 
+   IL_0ED4: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0ED9: brfalse IL_2bb4: ldloca.s V_3
+   IL_0EDE: ldloca.s V_3
+   IL_0EE0: ldc.i4.1 
+   IL_0EE1: call Terraria.Tile::active(Boolean)
+   IL_0EE6: ldloca.s V_3
+   IL_0EE8: call Terraria.Tile::get_type()
+   IL_0EED: ldloc.0 
+   IL_0EEE: conv.u2 
+   IL_0EEF: stind.i2 
+   IL_0EF0: ldloca.s V_3
+   IL_0EF2: call Terraria.Tile::get_frameX()
+   IL_0EF7: ldarg.s style
+   IL_0EF9: ldc.i4.s 18
+   IL_0EFB: mul 
+   IL_0EFC: conv.i2 
+   IL_0EFD: stind.i2 
+   IL_0EFE: ldloca.s V_3
+   IL_0F00: call Terraria.Tile::get_frameY()
+   IL_0F05: call Terraria.WorldGen::get_genRand()
+   IL_0F0A: ldc.i4.3 
+   IL_0F0B: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0F10: ldc.i4.s 18
+   IL_0F12: mul 
+   IL_0F13: conv.i2 
+   IL_0F14: stind.i2 
+   IL_0F15: ldarg.0 
+   IL_0F16: ldarg.1 
+   IL_0F17: ldc.i4.1 
+   IL_0F18: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_0F1D: br IL_2bb4: ldloca.s V_3
+   IL_0F22: ldloc.0 
+   IL_0F23: ldc.i4 184
+   IL_0F28: bne.un IL_1114: ldloc.0
+   IL_0F2D: ldsfld Terraria.Main::tileMoss
+   IL_0F32: ldsflda Terraria.Main::tile
+   IL_0F37: ldarg.0 
+   IL_0F38: ldc.i4.1 
+   IL_0F39: sub 
+   IL_0F3A: ldarg.1 
+   IL_0F3B: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0F40: stloc.2 
+   IL_0F41: ldloca.s V_2
+   IL_0F43: call Terraria.Tile::get_type()
+   IL_0F48: ldind.u2 
+   IL_0F49: ldelem.u1 
+   IL_0F4A: brfalse.s IL_0f5b: ldsfld System.Boolean[] Terraria.Main::tileMoss
+   IL_0F4C: ldarg.0 
+   IL_0F4D: ldc.i4.1 
+   IL_0F4E: sub 
+   IL_0F4F: ldarg.1 
+   IL_0F50: ldc.i4.0 
+   IL_0F51: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0F56: brtrue IL_0fdc: ldloca.s V_3
+   IL_0F5B: ldsfld Terraria.Main::tileMoss
+   IL_0F60: ldsflda Terraria.Main::tile
+   IL_0F65: ldarg.0 
+   IL_0F66: ldc.i4.1 
+   IL_0F67: add 
+   IL_0F68: ldarg.1 
+   IL_0F69: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0F6E: stloc.2 
+   IL_0F6F: ldloca.s V_2
+   IL_0F71: call Terraria.Tile::get_type()
+   IL_0F76: ldind.u2 
+   IL_0F77: ldelem.u1 
+   IL_0F78: brfalse.s IL_0f86: ldsfld System.Boolean[] Terraria.Main::tileMoss
+   IL_0F7A: ldarg.0 
+   IL_0F7B: ldc.i4.1 
+   IL_0F7C: add 
+   IL_0F7D: ldarg.1 
+   IL_0F7E: ldc.i4.0 
+   IL_0F7F: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0F84: brtrue.s IL_0fdc: ldloca.s V_3
+   IL_0F86: ldsfld Terraria.Main::tileMoss
+   IL_0F8B: ldsflda Terraria.Main::tile
+   IL_0F90: ldarg.0 
+   IL_0F91: ldarg.1 
+   IL_0F92: ldc.i4.1 
+   IL_0F93: sub 
+   IL_0F94: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0F99: stloc.2 
+   IL_0F9A: ldloca.s V_2
+   IL_0F9C: call Terraria.Tile::get_type()
+   IL_0FA1: ldind.u2 
+   IL_0FA2: ldelem.u1 
+   IL_0FA3: brfalse.s IL_0fb1: ldsfld System.Boolean[] Terraria.Main::tileMoss
+   IL_0FA5: ldarg.0 
+   IL_0FA6: ldarg.1 
+   IL_0FA7: ldc.i4.1 
+   IL_0FA8: sub 
+   IL_0FA9: ldc.i4.0 
+   IL_0FAA: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0FAF: brtrue.s IL_0fdc: ldloca.s V_3
+   IL_0FB1: ldsfld Terraria.Main::tileMoss
+   IL_0FB6: ldsflda Terraria.Main::tile
+   IL_0FBB: ldarg.0 
+   IL_0FBC: ldarg.1 
+   IL_0FBD: ldc.i4.1 
+   IL_0FBE: add 
+   IL_0FBF: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0FC4: stloc.2 
+   IL_0FC5: ldloca.s V_2
+   IL_0FC7: call Terraria.Tile::get_type()
+   IL_0FCC: ldind.u2 
+   IL_0FCD: ldelem.u1 
+   IL_0FCE: brfalse.s IL_101b: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::tileMossBrick
+   IL_0FD0: ldarg.0 
+   IL_0FD1: ldarg.1 
+   IL_0FD2: ldc.i4.1 
+   IL_0FD3: add 
+   IL_0FD4: ldc.i4.0 
+   IL_0FD5: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0FDA: brfalse.s IL_101b: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::tileMossBrick
+   IL_0FDC: ldloca.s V_3
+   IL_0FDE: ldc.i4.1 
+   IL_0FDF: call Terraria.Tile::active(Boolean)
+   IL_0FE4: ldloca.s V_3
+   IL_0FE6: call Terraria.Tile::get_type()
+   IL_0FEB: ldloc.0 
+   IL_0FEC: conv.u2 
+   IL_0FED: stind.i2 
+   IL_0FEE: ldloca.s V_3
+   IL_0FF0: call Terraria.Tile::get_frameX()
+   IL_0FF5: ldarg.s style
+   IL_0FF7: ldc.i4.s 18
+   IL_0FF9: mul 
+   IL_0FFA: conv.i2 
+   IL_0FFB: stind.i2 
+   IL_0FFC: ldloca.s V_3
+   IL_0FFE: call Terraria.Tile::get_frameY()
+   IL_1003: call Terraria.WorldGen::get_genRand()
+   IL_1008: ldc.i4.3 
+   IL_1009: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_100E: ldc.i4.s 18
+   IL_1010: mul 
+   IL_1011: conv.i2 
+   IL_1012: stind.i2 
+   IL_1013: ldarg.0 
+   IL_1014: ldarg.1 
+   IL_1015: ldc.i4.1 
+   IL_1016: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_101B: ldsfld Terraria.ID.TileID/Sets::tileMossBrick
+   IL_1020: ldsflda Terraria.Main::tile
+   IL_1025: ldarg.0 
+   IL_1026: ldc.i4.1 
+   IL_1027: sub 
+   IL_1028: ldarg.1 
+   IL_1029: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_102E: stloc.2 
+   IL_102F: ldloca.s V_2
+   IL_1031: call Terraria.Tile::get_type()
+   IL_1036: ldind.u2 
+   IL_1037: ldelem.u1 
+   IL_1038: brfalse.s IL_1049: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::tileMossBrick
+   IL_103A: ldarg.0 
+   IL_103B: ldc.i4.1 
+   IL_103C: sub 
+   IL_103D: ldarg.1 
+   IL_103E: ldc.i4.0 
+   IL_103F: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_1044: brtrue IL_10d0: ldloca.s V_3
+   IL_1049: ldsfld Terraria.ID.TileID/Sets::tileMossBrick
+   IL_104E: ldsflda Terraria.Main::tile
+   IL_1053: ldarg.0 
+   IL_1054: ldc.i4.1 
+   IL_1055: add 
+   IL_1056: ldarg.1 
+   IL_1057: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_105C: stloc.2 
+   IL_105D: ldloca.s V_2
+   IL_105F: call Terraria.Tile::get_type()
+   IL_1064: ldind.u2 
+   IL_1065: ldelem.u1 
+   IL_1066: brfalse.s IL_1074: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::tileMossBrick
+   IL_1068: ldarg.0 
+   IL_1069: ldc.i4.1 
+   IL_106A: add 
+   IL_106B: ldarg.1 
+   IL_106C: ldc.i4.0 
+   IL_106D: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_1072: brtrue.s IL_10d0: ldloca.s V_3
+   IL_1074: ldsfld Terraria.ID.TileID/Sets::tileMossBrick
+   IL_1079: ldsflda Terraria.Main::tile
+   IL_107E: ldarg.0 
+   IL_107F: ldarg.1 
+   IL_1080: ldc.i4.1 
+   IL_1081: sub 
+   IL_1082: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1087: stloc.2 
+   IL_1088: ldloca.s V_2
+   IL_108A: call Terraria.Tile::get_type()
+   IL_108F: ldind.u2 
+   IL_1090: ldelem.u1 
+   IL_1091: brfalse.s IL_109f: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::tileMossBrick
+   IL_1093: ldarg.0 
+   IL_1094: ldarg.1 
+   IL_1095: ldc.i4.1 
+   IL_1096: sub 
+   IL_1097: ldc.i4.0 
+   IL_1098: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_109D: brtrue.s IL_10d0: ldloca.s V_3
+   IL_109F: ldsfld Terraria.ID.TileID/Sets::tileMossBrick
+   IL_10A4: ldsflda Terraria.Main::tile
+   IL_10A9: ldarg.0 
+   IL_10AA: ldarg.1 
+   IL_10AB: ldc.i4.1 
+   IL_10AC: add 
+   IL_10AD: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_10B2: stloc.2 
+   IL_10B3: ldloca.s V_2
+   IL_10B5: call Terraria.Tile::get_type()
+   IL_10BA: ldind.u2 
+   IL_10BB: ldelem.u1 
+   IL_10BC: brfalse IL_2bb4: ldloca.s V_3
+   IL_10C1: ldarg.0 
+   IL_10C2: ldarg.1 
+   IL_10C3: ldc.i4.1 
+   IL_10C4: add 
+   IL_10C5: ldc.i4.0 
+   IL_10C6: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_10CB: brfalse IL_2bb4: ldloca.s V_3
+   IL_10D0: ldloca.s V_3
+   IL_10D2: ldc.i4.1 
+   IL_10D3: call Terraria.Tile::active(Boolean)
+   IL_10D8: ldloca.s V_3
+   IL_10DA: call Terraria.Tile::get_type()
+   IL_10DF: ldloc.0 
+   IL_10E0: conv.u2 
+   IL_10E1: stind.i2 
+   IL_10E2: ldloca.s V_3
+   IL_10E4: call Terraria.Tile::get_frameX()
+   IL_10E9: ldarg.s style
+   IL_10EB: ldc.i4.s 18
+   IL_10ED: mul 
+   IL_10EE: conv.i2 
+   IL_10EF: stind.i2 
+   IL_10F0: ldloca.s V_3
+   IL_10F2: call Terraria.Tile::get_frameY()
+   IL_10F7: call Terraria.WorldGen::get_genRand()
+   IL_10FC: ldc.i4.3 
+   IL_10FD: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_1102: ldc.i4.s 18
+   IL_1104: mul 
+   IL_1105: conv.i2 
+   IL_1106: stind.i2 
+   IL_1107: ldarg.0 
+   IL_1108: ldarg.1 
+   IL_1109: ldc.i4.1 
+   IL_110A: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_110F: br IL_2bb4: ldloca.s V_3
+   IL_1114: ldloc.0 
+   IL_1115: ldc.i4 485
+   IL_111A: bne.un.s IL_1130: ldloc.0
+   IL_111C: ldarg.0 
+   IL_111D: ldarg.1 
+   IL_111E: ldloc.0 
+   IL_111F: ldarg.3 
+   IL_1120: ldarg.s style
+   IL_1122: ldc.i4.0 
+   IL_1123: ldc.i4.m1 
+   IL_1124: ldc.i4.m1 
+   IL_1125: call Terraria.WorldGen::PlaceObject(Int32,Int32,Int32,Boolean,Int32,Int32,Int32,Int32)
+   IL_112A: pop 
+   IL_112B: br IL_2bb4: ldloca.s V_3
+   IL_1130: ldloc.0 
+   IL_1131: ldc.i4 171
+   IL_1136: bne.un.s IL_1149: ldloc.0
+   IL_1138: ldarg.0 
+   IL_1139: ldarg.1 
+   IL_113A: ldc.i4 171
+   IL_113F: call Terraria.WorldGen::PlaceXmasTree(Int32,Int32,UInt16)
+   IL_1144: br IL_2bb4: ldloca.s V_3
+   IL_1149: ldloc.0 
+   IL_114A: ldc.i4 254
+   IL_114F: bne.un.s IL_1161: ldloc.0
+   IL_1151: ldarg.0 
+   IL_1152: ldarg.1 
+   IL_1153: ldloc.0 
+   IL_1154: conv.u2 
+   IL_1155: ldarg.s style
+   IL_1157: call Terraria.WorldGen::Place2x2Style(Int32,Int32,UInt16,Int32)
+   IL_115C: br IL_2bb4: ldloca.s V_3
+   IL_1161: ldloc.0 
+   IL_1162: ldc.i4 335
+   IL_1167: beq.s IL_1179: ldarg.0
+   IL_1169: ldloc.0 
+   IL_116A: ldc.i4 564
+   IL_116F: beq.s IL_1179: ldarg.0
+   IL_1171: ldloc.0 
+   IL_1172: ldc.i4 594
+   IL_1177: bne.un.s IL_1188: ldloc.0
+   IL_1179: ldarg.0 
+   IL_117A: ldarg.1 
+   IL_117B: ldloc.0 
+   IL_117C: conv.u2 
+   IL_117D: ldc.i4.0 
+   IL_117E: call Terraria.WorldGen::Place2x2(Int32,Int32,UInt16,Int32)
+   IL_1183: br IL_2bb4: ldloca.s V_3
+   IL_1188: ldloc.0 
+   IL_1189: ldc.i4 654
+   IL_118E: beq.s IL_11f0: ldarg.0
+   IL_1190: ldloc.0 
+   IL_1191: ldc.i4 319
+   IL_1196: beq.s IL_11f0: ldarg.0
+   IL_1198: ldloc.0 
+   IL_1199: ldc.i4 132
+   IL_119E: beq.s IL_11f0: ldarg.0
+   IL_11A0: ldloc.0 
+   IL_11A1: ldc.i4 484
+   IL_11A6: beq.s IL_11f0: ldarg.0
+   IL_11A8: ldloc.0 
+   IL_11A9: ldc.i4 138
+   IL_11AE: beq.s IL_11f0: ldarg.0
+   IL_11B0: ldloc.0 
+   IL_11B1: ldc.i4 664
+   IL_11B6: beq.s IL_11f0: ldarg.0
+   IL_11B8: ldloc.0 
+   IL_11B9: ldc.i4 142
+   IL_11BE: beq.s IL_11f0: ldarg.0
+   IL_11C0: ldloc.0 
+   IL_11C1: ldc.i4 143
+   IL_11C6: beq.s IL_11f0: ldarg.0
+   IL_11C8: ldloc.0 
+   IL_11C9: ldc.i4 282
+   IL_11CE: beq.s IL_11f0: ldarg.0
+   IL_11D0: ldloc.0 
+   IL_11D1: ldc.i4 288
+   IL_11D6: blt.s IL_11e0: ldloc.0
+   IL_11D8: ldloc.0 
+   IL_11D9: ldc.i4 295
+   IL_11DE: ble.s IL_11f0: ldarg.0
+   IL_11E0: ldloc.0 
+   IL_11E1: ldc.i4 316
+   IL_11E6: blt.s IL_11ff: ldloc.0
+   IL_11E8: ldloc.0 
+   IL_11E9: ldc.i4 318
+   IL_11EE: bgt.s IL_11ff: ldloc.0
+   IL_11F0: ldarg.0 
+   IL_11F1: ldarg.1 
+   IL_11F2: ldloc.0 
+   IL_11F3: conv.u2 
+   IL_11F4: ldc.i4.0 
+   IL_11F5: call Terraria.WorldGen::Place2x2(Int32,Int32,UInt16,Int32)
+   IL_11FA: br IL_2bb4: ldloca.s V_3
+   IL_11FF: ldloc.0 
+   IL_1200: ldc.i4 411
+   IL_1205: bne.un.s IL_1216: ldloc.0
+   IL_1207: ldarg.0 
+   IL_1208: ldarg.1 
+   IL_1209: ldloc.0 
+   IL_120A: conv.u2 
+   IL_120B: ldc.i4.0 
+   IL_120C: call Terraria.WorldGen::Place2x2(Int32,Int32,UInt16,Int32)
+   IL_1211: br IL_2bb4: ldloca.s V_3
+   IL_1216: ldloc.0 
+   IL_1217: ldc.i4 457
+   IL_121C: bne.un.s IL_1232: ldloc.0
+   IL_121E: ldarg.0 
+   IL_121F: ldarg.1 
+   IL_1220: ldc.i4 457
+   IL_1225: ldarg.s style
+   IL_1227: call Terraria.WorldGen::Place2x2Horizontal(Int32,Int32,UInt16,Int32)
+   IL_122C: pop 
+   IL_122D: br IL_2bb4: ldloca.s V_3
+   IL_1232: ldloc.0 
+   IL_1233: ldc.i4 137
+   IL_1238: bne.un.s IL_125f: ldloc.0
+   IL_123A: ldloca.s V_3
+   IL_123C: ldc.i4.1 
+   IL_123D: call Terraria.Tile::active(Boolean)
+   IL_1242: ldloca.s V_3
+   IL_1244: call Terraria.Tile::get_type()
+   IL_1249: ldloc.0 
+   IL_124A: conv.u2 
+   IL_124B: stind.i2 
+   IL_124C: ldloca.s V_3
+   IL_124E: call Terraria.Tile::get_frameY()
+   IL_1253: ldc.i4.s 18
+   IL_1255: ldarg.s style
+   IL_1257: mul 
+   IL_1258: conv.i2 
+   IL_1259: stind.i2 
+   IL_125A: br IL_2bb4: ldloca.s V_3
+   IL_125F: ldloc.0 
+   IL_1260: ldc.i4 136
+   IL_1265: bne.un IL_1561: ldloc.0
+   IL_126A: ldsflda Terraria.Main::tile
+   IL_126F: ldarg.0 
+   IL_1270: ldc.i4.1 
+   IL_1271: sub 
+   IL_1272: ldarg.1 
+   IL_1273: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1278: ldnull 
+   IL_1279: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_127E: brfalse.s IL_1297: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1280: ldsflda Terraria.Main::tile
+   IL_1285: ldarg.0 
+   IL_1286: ldc.i4.1 
+   IL_1287: sub 
+   IL_1288: ldarg.1 
+   IL_1289: ldloca.s V_2
+   IL_128B: initobj Terraria.Tile
+   IL_1291: ldloc.2 
+   IL_1292: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_1297: ldsflda Terraria.Main::tile
+   IL_129C: ldarg.0 
+   IL_129D: ldc.i4.1 
+   IL_129E: add 
+   IL_129F: ldarg.1 
+   IL_12A0: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_12A5: ldnull 
+   IL_12A6: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_12AB: brfalse.s IL_12c4: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_12AD: ldsflda Terraria.Main::tile
+   IL_12B2: ldarg.0 
+   IL_12B3: ldc.i4.1 
+   IL_12B4: add 
+   IL_12B5: ldarg.1 
+   IL_12B6: ldloca.s V_2
+   IL_12B8: initobj Terraria.Tile
+   IL_12BE: ldloc.2 
+   IL_12BF: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_12C4: ldsflda Terraria.Main::tile
+   IL_12C9: ldarg.0 
+   IL_12CA: ldarg.1 
+   IL_12CB: ldc.i4.1 
+   IL_12CC: add 
+   IL_12CD: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_12D2: ldnull 
+   IL_12D3: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_12D8: brfalse.s IL_12f1: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_12DA: ldsflda Terraria.Main::tile
+   IL_12DF: ldarg.0 
+   IL_12E0: ldarg.1 
+   IL_12E1: ldc.i4.1 
+   IL_12E2: add 
+   IL_12E3: ldloca.s V_2
+   IL_12E5: initobj Terraria.Tile
+   IL_12EB: ldloc.2 
+   IL_12EC: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_12F1: ldsflda Terraria.Main::tile
+   IL_12F6: ldarg.0 
+   IL_12F7: ldc.i4.1 
+   IL_12F8: sub 
+   IL_12F9: ldarg.1 
+   IL_12FA: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_12FF: stloc.2 
+   IL_1300: ldloca.s V_2
+   IL_1302: call Terraria.Tile::nactive()
+   IL_1307: brfalse IL_13ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_130C: ldsflda Terraria.Main::tile
+   IL_1311: ldarg.0 
+   IL_1312: ldc.i4.1 
+   IL_1313: sub 
+   IL_1314: ldarg.1 
+   IL_1315: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_131A: stloc.2 
+   IL_131B: ldloca.s V_2
+   IL_131D: call Terraria.Tile::halfBrick()
+   IL_1322: brtrue IL_13ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1327: ldsfld Terraria.ID.TileID/Sets::NotReallySolid
+   IL_132C: ldsflda Terraria.Main::tile
+   IL_1331: ldarg.0 
+   IL_1332: ldc.i4.1 
+   IL_1333: sub 
+   IL_1334: ldarg.1 
+   IL_1335: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_133A: stloc.2 
+   IL_133B: ldloca.s V_2
+   IL_133D: call Terraria.Tile::get_type()
+   IL_1342: ldind.u2 
+   IL_1343: ldelem.u1 
+   IL_1344: brtrue IL_13ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1349: ldsflda Terraria.Main::tile
+   IL_134E: ldarg.0 
+   IL_134F: ldc.i4.1 
+   IL_1350: sub 
+   IL_1351: ldarg.1 
+   IL_1352: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1357: stloc.2 
+   IL_1358: ldloca.s V_2
+   IL_135A: call Terraria.Tile::slope()
+   IL_135F: brtrue IL_13ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1364: ldarg.0 
+   IL_1365: ldc.i4.1 
+   IL_1366: sub 
+   IL_1367: ldarg.1 
+   IL_1368: ldc.i4.0 
+   IL_1369: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_136E: brtrue IL_1542: ldloca.s V_3
+   IL_1373: ldsfld Terraria.ID.TileID/Sets::IsBeam
+   IL_1378: ldsflda Terraria.Main::tile
+   IL_137D: ldarg.0 
+   IL_137E: ldc.i4.1 
+   IL_137F: sub 
+   IL_1380: ldarg.1 
+   IL_1381: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1386: stloc.2 
+   IL_1387: ldloca.s V_2
+   IL_1389: call Terraria.Tile::get_type()
+   IL_138E: ldind.u2 
+   IL_138F: ldelem.u1 
+   IL_1390: brtrue IL_1542: ldloca.s V_3
+   IL_1395: ldsflda Terraria.Main::tile
+   IL_139A: ldarg.0 
+   IL_139B: ldc.i4.1 
+   IL_139C: sub 
+   IL_139D: ldarg.1 
+   IL_139E: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_13A3: stloc.2 
+   IL_13A4: ldloca.s V_2
+   IL_13A6: call Terraria.Tile::get_type()
+   IL_13AB: ldind.u2 
+   IL_13AC: ldc.i4.5 
+   IL_13AD: bne.un.s IL_13ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_13AF: ldsflda Terraria.Main::tile
+   IL_13B4: ldarg.0 
+   IL_13B5: ldc.i4.1 
+   IL_13B6: sub 
+   IL_13B7: ldarg.1 
+   IL_13B8: ldc.i4.1 
+   IL_13B9: sub 
+   IL_13BA: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_13BF: stloc.2 
+   IL_13C0: ldloca.s V_2
+   IL_13C2: call Terraria.Tile::get_type()
+   IL_13C7: ldind.u2 
+   IL_13C8: ldc.i4.5 
+   IL_13C9: bne.un.s IL_13ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_13CB: ldsflda Terraria.Main::tile
+   IL_13D0: ldarg.0 
+   IL_13D1: ldc.i4.1 
+   IL_13D2: sub 
+   IL_13D3: ldarg.1 
+   IL_13D4: ldc.i4.1 
+   IL_13D5: add 
+   IL_13D6: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_13DB: stloc.2 
+   IL_13DC: ldloca.s V_2
+   IL_13DE: call Terraria.Tile::get_type()
+   IL_13E3: ldind.u2 
+   IL_13E4: ldc.i4.5 
+   IL_13E5: beq IL_1542: ldloca.s V_3
+   IL_13EA: ldsflda Terraria.Main::tile
+   IL_13EF: ldarg.0 
+   IL_13F0: ldc.i4.1 
+   IL_13F1: add 
+   IL_13F2: ldarg.1 
+   IL_13F3: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_13F8: stloc.2 
+   IL_13F9: ldloca.s V_2
+   IL_13FB: call Terraria.Tile::nactive()
+   IL_1400: brfalse IL_14e0: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1405: ldsflda Terraria.Main::tile
+   IL_140A: ldarg.0 
+   IL_140B: ldc.i4.1 
+   IL_140C: add 
+   IL_140D: ldarg.1 
+   IL_140E: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1413: stloc.2 
+   IL_1414: ldloca.s V_2
+   IL_1416: call Terraria.Tile::halfBrick()
+   IL_141B: brtrue IL_14e0: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1420: ldsfld Terraria.ID.TileID/Sets::NotReallySolid
+   IL_1425: ldsflda Terraria.Main::tile
+   IL_142A: ldarg.0 
+   IL_142B: ldc.i4.1 
+   IL_142C: add 
+   IL_142D: ldarg.1 
+   IL_142E: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1433: stloc.2 
+   IL_1434: ldloca.s V_2
+   IL_1436: call Terraria.Tile::get_type()
+   IL_143B: ldind.u2 
+   IL_143C: ldelem.u1 
+   IL_143D: brtrue IL_14e0: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1442: ldsflda Terraria.Main::tile
+   IL_1447: ldarg.0 
+   IL_1448: ldc.i4.1 
+   IL_1449: add 
+   IL_144A: ldarg.1 
+   IL_144B: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1450: stloc.2 
+   IL_1451: ldloca.s V_2
+   IL_1453: call Terraria.Tile::slope()
+   IL_1458: brtrue IL_14e0: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_145D: ldarg.0 
+   IL_145E: ldc.i4.1 
+   IL_145F: add 
+   IL_1460: ldarg.1 
+   IL_1461: ldc.i4.0 
+   IL_1462: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_1467: brtrue IL_1542: ldloca.s V_3
+   IL_146C: ldsfld Terraria.ID.TileID/Sets::IsBeam
+   IL_1471: ldsflda Terraria.Main::tile
+   IL_1476: ldarg.0 
+   IL_1477: ldc.i4.1 
+   IL_1478: add 
+   IL_1479: ldarg.1 
+   IL_147A: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_147F: stloc.2 
+   IL_1480: ldloca.s V_2
+   IL_1482: call Terraria.Tile::get_type()
+   IL_1487: ldind.u2 
+   IL_1488: ldelem.u1 
+   IL_1489: brtrue IL_1542: ldloca.s V_3
+   IL_148E: ldsflda Terraria.Main::tile
+   IL_1493: ldarg.0 
+   IL_1494: ldc.i4.1 
+   IL_1495: add 
+   IL_1496: ldarg.1 
+   IL_1497: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_149C: stloc.2 
+   IL_149D: ldloca.s V_2
+   IL_149F: call Terraria.Tile::get_type()
+   IL_14A4: ldind.u2 
+   IL_14A5: ldc.i4.5 
+   IL_14A6: bne.un.s IL_14e0: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_14A8: ldsflda Terraria.Main::tile
+   IL_14AD: ldarg.0 
+   IL_14AE: ldc.i4.1 
+   IL_14AF: add 
+   IL_14B0: ldarg.1 
+   IL_14B1: ldc.i4.1 
+   IL_14B2: sub 
+   IL_14B3: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_14B8: stloc.2 
+   IL_14B9: ldloca.s V_2
+   IL_14BB: call Terraria.Tile::get_type()
+   IL_14C0: ldind.u2 
+   IL_14C1: ldc.i4.5 
+   IL_14C2: bne.un.s IL_14e0: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_14C4: ldsflda Terraria.Main::tile
+   IL_14C9: ldarg.0 
+   IL_14CA: ldc.i4.1 
+   IL_14CB: add 
+   IL_14CC: ldarg.1 
+   IL_14CD: ldc.i4.1 
+   IL_14CE: add 
+   IL_14CF: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_14D4: stloc.2 
+   IL_14D5: ldloca.s V_2
+   IL_14D7: call Terraria.Tile::get_type()
+   IL_14DC: ldind.u2 
+   IL_14DD: ldc.i4.5 
+   IL_14DE: beq.s IL_1542: ldloca.s V_3
+   IL_14E0: ldsflda Terraria.Main::tile
+   IL_14E5: ldarg.0 
+   IL_14E6: ldarg.1 
+   IL_14E7: ldc.i4.1 
+   IL_14E8: add 
+   IL_14E9: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_14EE: stloc.2 
+   IL_14EF: ldloca.s V_2
+   IL_14F1: call Terraria.Tile::nactive()
+   IL_14F6: brfalse.s IL_1534: ldloca.s V_3
+   IL_14F8: ldsflda Terraria.Main::tile
+   IL_14FD: ldarg.0 
+   IL_14FE: ldarg.1 
+   IL_14FF: ldc.i4.1 
+   IL_1500: add 
+   IL_1501: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1506: stloc.2 
+   IL_1507: ldloca.s V_2
+   IL_1509: call Terraria.Tile::halfBrick()
+   IL_150E: brtrue.s IL_1534: ldloca.s V_3
+   IL_1510: ldarg.0 
+   IL_1511: ldarg.1 
+   IL_1512: ldc.i4.1 
+   IL_1513: add 
+   IL_1514: ldc.i4.0 
+   IL_1515: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_151A: brfalse.s IL_1534: ldloca.s V_3
+   IL_151C: ldsflda Terraria.Main::tile
+   IL_1521: ldarg.0 
+   IL_1522: ldarg.1 
+   IL_1523: ldc.i4.1 
+   IL_1524: add 
+   IL_1525: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_152A: stloc.2 
+   IL_152B: ldloca.s V_2
+   IL_152D: call Terraria.Tile::slope()
+   IL_1532: brfalse.s IL_1542: ldloca.s V_3
+   IL_1534: ldloca.s V_3
+   IL_1536: call Terraria.Tile::get_wall()
+   IL_153B: ldind.u2 
+   IL_153C: ldc.i4.0 
+   IL_153D: ble IL_2bb4: ldloca.s V_3
+   IL_1542: ldloca.s V_3
+   IL_1544: ldc.i4.1 
+   IL_1545: call Terraria.Tile::active(Boolean)
+   IL_154A: ldloca.s V_3
+   IL_154C: call Terraria.Tile::get_type()
+   IL_1551: ldloc.0 
+   IL_1552: conv.u2 
+   IL_1553: stind.i2 
+   IL_1554: ldarg.0 
+   IL_1555: ldarg.1 
+   IL_1556: ldc.i4.1 
+   IL_1557: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_155C: br IL_2bb4: ldloca.s V_3
+   IL_1561: ldloc.0 
+   IL_1562: ldc.i4 442
+   IL_1567: bne.un IL_1861: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::Torch
+   IL_156C: ldsflda Terraria.Main::tile
+   IL_1571: ldarg.0 
+   IL_1572: ldc.i4.1 
+   IL_1573: sub 
+   IL_1574: ldarg.1 
+   IL_1575: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_157A: ldnull 
+   IL_157B: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_1580: brfalse.s IL_1599: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1582: ldsflda Terraria.Main::tile
+   IL_1587: ldarg.0 
+   IL_1588: ldc.i4.1 
+   IL_1589: sub 
+   IL_158A: ldarg.1 
+   IL_158B: ldloca.s V_2
+   IL_158D: initobj Terraria.Tile
+   IL_1593: ldloc.2 
+   IL_1594: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_1599: ldsflda Terraria.Main::tile
+   IL_159E: ldarg.0 
+   IL_159F: ldc.i4.1 
+   IL_15A0: add 
+   IL_15A1: ldarg.1 
+   IL_15A2: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_15A7: ldnull 
+   IL_15A8: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_15AD: brfalse.s IL_15c6: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_15AF: ldsflda Terraria.Main::tile
+   IL_15B4: ldarg.0 
+   IL_15B5: ldc.i4.1 
+   IL_15B6: add 
+   IL_15B7: ldarg.1 
+   IL_15B8: ldloca.s V_2
+   IL_15BA: initobj Terraria.Tile
+   IL_15C0: ldloc.2 
+   IL_15C1: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_15C6: ldsflda Terraria.Main::tile
+   IL_15CB: ldarg.0 
+   IL_15CC: ldarg.1 
+   IL_15CD: ldc.i4.1 
+   IL_15CE: add 
+   IL_15CF: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_15D4: ldnull 
+   IL_15D5: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_15DA: brfalse.s IL_15f3: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_15DC: ldsflda Terraria.Main::tile
+   IL_15E1: ldarg.0 
+   IL_15E2: ldarg.1 
+   IL_15E3: ldc.i4.1 
+   IL_15E4: add 
+   IL_15E5: ldloca.s V_2
+   IL_15E7: initobj Terraria.Tile
+   IL_15ED: ldloc.2 
+   IL_15EE: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_15F3: ldsflda Terraria.Main::tile
+   IL_15F8: ldarg.0 
+   IL_15F9: ldc.i4.1 
+   IL_15FA: sub 
+   IL_15FB: ldarg.1 
+   IL_15FC: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1601: stloc.2 
+   IL_1602: ldloca.s V_2
+   IL_1604: call Terraria.Tile::nactive()
+   IL_1609: brfalse IL_16ec: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_160E: ldsflda Terraria.Main::tile
+   IL_1613: ldarg.0 
+   IL_1614: ldc.i4.1 
+   IL_1615: sub 
+   IL_1616: ldarg.1 
+   IL_1617: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_161C: stloc.2 
+   IL_161D: ldloca.s V_2
+   IL_161F: call Terraria.Tile::halfBrick()
+   IL_1624: brtrue IL_16ec: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1629: ldsfld Terraria.ID.TileID/Sets::NotReallySolid
+   IL_162E: ldsflda Terraria.Main::tile
+   IL_1633: ldarg.0 
+   IL_1634: ldc.i4.1 
+   IL_1635: sub 
+   IL_1636: ldarg.1 
+   IL_1637: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_163C: stloc.2 
+   IL_163D: ldloca.s V_2
+   IL_163F: call Terraria.Tile::get_type()
+   IL_1644: ldind.u2 
+   IL_1645: ldelem.u1 
+   IL_1646: brtrue IL_16ec: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_164B: ldsflda Terraria.Main::tile
+   IL_1650: ldarg.0 
+   IL_1651: ldc.i4.1 
+   IL_1652: sub 
+   IL_1653: ldarg.1 
+   IL_1654: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1659: stloc.2 
+   IL_165A: ldloca.s V_2
+   IL_165C: call Terraria.Tile::slope()
+   IL_1661: brtrue IL_16ec: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1666: ldarg.0 
+   IL_1667: ldc.i4.1 
+   IL_1668: sub 
+   IL_1669: ldarg.1 
+   IL_166A: ldc.i4.0 
+   IL_166B: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_1670: brtrue IL_1842: ldloca.s V_3
+   IL_1675: ldsfld Terraria.ID.TileID/Sets::IsBeam
+   IL_167A: ldsflda Terraria.Main::tile
+   IL_167F: ldarg.0 
+   IL_1680: ldc.i4.1 
+   IL_1681: sub 
+   IL_1682: ldarg.1 
+   IL_1683: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1688: stloc.2 
+   IL_1689: ldloca.s V_2
+   IL_168B: call Terraria.Tile::get_type()
+   IL_1690: ldind.u2 
+   IL_1691: ldelem.u1 
+   IL_1692: brtrue IL_1842: ldloca.s V_3
+   IL_1697: ldsflda Terraria.Main::tile
+   IL_169C: ldarg.0 
+   IL_169D: ldc.i4.1 
+   IL_169E: sub 
+   IL_169F: ldarg.1 
+   IL_16A0: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_16A5: stloc.2 
+   IL_16A6: ldloca.s V_2
+   IL_16A8: call Terraria.Tile::get_type()
+   IL_16AD: ldind.u2 
+   IL_16AE: ldc.i4.5 
+   IL_16AF: bne.un.s IL_16ec: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_16B1: ldsflda Terraria.Main::tile
+   IL_16B6: ldarg.0 
+   IL_16B7: ldc.i4.1 
+   IL_16B8: sub 
+   IL_16B9: ldarg.1 
+   IL_16BA: ldc.i4.1 
+   IL_16BB: sub 
+   IL_16BC: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_16C1: stloc.2 
+   IL_16C2: ldloca.s V_2
+   IL_16C4: call Terraria.Tile::get_type()
+   IL_16C9: ldind.u2 
+   IL_16CA: ldc.i4.5 
+   IL_16CB: bne.un.s IL_16ec: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_16CD: ldsflda Terraria.Main::tile
+   IL_16D2: ldarg.0 
+   IL_16D3: ldc.i4.1 
+   IL_16D4: sub 
+   IL_16D5: ldarg.1 
+   IL_16D6: ldc.i4.1 
+   IL_16D7: add 
+   IL_16D8: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_16DD: stloc.2 
+   IL_16DE: ldloca.s V_2
+   IL_16E0: call Terraria.Tile::get_type()
+   IL_16E5: ldind.u2 
+   IL_16E6: ldc.i4.5 
+   IL_16E7: beq IL_1842: ldloca.s V_3
+   IL_16EC: ldsflda Terraria.Main::tile
+   IL_16F1: ldarg.0 
+   IL_16F2: ldc.i4.1 
+   IL_16F3: add 
+   IL_16F4: ldarg.1 
+   IL_16F5: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_16FA: stloc.2 
+   IL_16FB: ldloca.s V_2
+   IL_16FD: call Terraria.Tile::nactive()
+   IL_1702: brfalse IL_17e2: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1707: ldsflda Terraria.Main::tile
+   IL_170C: ldarg.0 
+   IL_170D: ldc.i4.1 
+   IL_170E: add 
+   IL_170F: ldarg.1 
+   IL_1710: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1715: stloc.2 
+   IL_1716: ldloca.s V_2
+   IL_1718: call Terraria.Tile::halfBrick()
+   IL_171D: brtrue IL_17e2: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1722: ldsfld Terraria.ID.TileID/Sets::NotReallySolid
+   IL_1727: ldsflda Terraria.Main::tile
+   IL_172C: ldarg.0 
+   IL_172D: ldc.i4.1 
+   IL_172E: add 
+   IL_172F: ldarg.1 
+   IL_1730: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1735: stloc.2 
+   IL_1736: ldloca.s V_2
+   IL_1738: call Terraria.Tile::get_type()
+   IL_173D: ldind.u2 
+   IL_173E: ldelem.u1 
+   IL_173F: brtrue IL_17e2: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1744: ldsflda Terraria.Main::tile
+   IL_1749: ldarg.0 
+   IL_174A: ldc.i4.1 
+   IL_174B: add 
+   IL_174C: ldarg.1 
+   IL_174D: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1752: stloc.2 
+   IL_1753: ldloca.s V_2
+   IL_1755: call Terraria.Tile::slope()
+   IL_175A: brtrue IL_17e2: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_175F: ldarg.0 
+   IL_1760: ldc.i4.1 
+   IL_1761: add 
+   IL_1762: ldarg.1 
+   IL_1763: ldc.i4.0 
+   IL_1764: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_1769: brtrue IL_1842: ldloca.s V_3
+   IL_176E: ldsfld Terraria.ID.TileID/Sets::IsBeam
+   IL_1773: ldsflda Terraria.Main::tile
+   IL_1778: ldarg.0 
+   IL_1779: ldc.i4.1 
+   IL_177A: add 
+   IL_177B: ldarg.1 
+   IL_177C: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1781: stloc.2 
+   IL_1782: ldloca.s V_2
+   IL_1784: call Terraria.Tile::get_type()
+   IL_1789: ldind.u2 
+   IL_178A: ldelem.u1 
+   IL_178B: brtrue IL_1842: ldloca.s V_3
+   IL_1790: ldsflda Terraria.Main::tile
+   IL_1795: ldarg.0 
+   IL_1796: ldc.i4.1 
+   IL_1797: add 
+   IL_1798: ldarg.1 
+   IL_1799: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_179E: stloc.2 
+   IL_179F: ldloca.s V_2
+   IL_17A1: call Terraria.Tile::get_type()
+   IL_17A6: ldind.u2 
+   IL_17A7: ldc.i4.5 
+   IL_17A8: bne.un.s IL_17e2: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_17AA: ldsflda Terraria.Main::tile
+   IL_17AF: ldarg.0 
+   IL_17B0: ldc.i4.1 
+   IL_17B1: add 
+   IL_17B2: ldarg.1 
+   IL_17B3: ldc.i4.1 
+   IL_17B4: sub 
+   IL_17B5: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_17BA: stloc.2 
+   IL_17BB: ldloca.s V_2
+   IL_17BD: call Terraria.Tile::get_type()
+   IL_17C2: ldind.u2 
+   IL_17C3: ldc.i4.5 
+   IL_17C4: bne.un.s IL_17e2: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_17C6: ldsflda Terraria.Main::tile
+   IL_17CB: ldarg.0 
+   IL_17CC: ldc.i4.1 
+   IL_17CD: add 
+   IL_17CE: ldarg.1 
+   IL_17CF: ldc.i4.1 
+   IL_17D0: add 
+   IL_17D1: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_17D6: stloc.2 
+   IL_17D7: ldloca.s V_2
+   IL_17D9: call Terraria.Tile::get_type()
+   IL_17DE: ldind.u2 
+   IL_17DF: ldc.i4.5 
+   IL_17E0: beq.s IL_1842: ldloca.s V_3
+   IL_17E2: ldsflda Terraria.Main::tile
+   IL_17E7: ldarg.0 
+   IL_17E8: ldarg.1 
+   IL_17E9: ldc.i4.1 
+   IL_17EA: add 
+   IL_17EB: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_17F0: stloc.2 
+   IL_17F1: ldloca.s V_2
+   IL_17F3: call Terraria.Tile::nactive()
+   IL_17F8: brfalse IL_2bb4: ldloca.s V_3
+   IL_17FD: ldsflda Terraria.Main::tile
+   IL_1802: ldarg.0 
+   IL_1803: ldarg.1 
+   IL_1804: ldc.i4.1 
+   IL_1805: add 
+   IL_1806: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_180B: stloc.2 
+   IL_180C: ldloca.s V_2
+   IL_180E: call Terraria.Tile::halfBrick()
+   IL_1813: brtrue IL_2bb4: ldloca.s V_3
+   IL_1818: ldarg.0 
+   IL_1819: ldarg.1 
+   IL_181A: ldc.i4.1 
+   IL_181B: add 
+   IL_181C: ldc.i4.0 
+   IL_181D: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_1822: brfalse IL_2bb4: ldloca.s V_3
+   IL_1827: ldsflda Terraria.Main::tile
+   IL_182C: ldarg.0 
+   IL_182D: ldarg.1 
+   IL_182E: ldc.i4.1 
+   IL_182F: add 
+   IL_1830: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1835: stloc.2 
+   IL_1836: ldloca.s V_2
+   IL_1838: call Terraria.Tile::slope()
+   IL_183D: brtrue IL_2bb4: ldloca.s V_3
+   IL_1842: ldloca.s V_3
+   IL_1844: ldc.i4.1 
+   IL_1845: call Terraria.Tile::active(Boolean)
+   IL_184A: ldloca.s V_3
+   IL_184C: call Terraria.Tile::get_type()
+   IL_1851: ldloc.0 
+   IL_1852: conv.u2 
+   IL_1853: stind.i2 
+   IL_1854: ldarg.0 
+   IL_1855: ldarg.1 
+   IL_1856: ldc.i4.1 
+   IL_1857: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_185C: br IL_2bb4: ldloca.s V_3
+   IL_1861: ldsfld Terraria.ID.TileID/Sets::Torch
+   IL_1866: ldloc.0 
+   IL_1867: ldelem.u1 
+   IL_1868: brfalse IL_1b69: ldloc.0
+   IL_186D: ldsflda Terraria.Main::tile
+   IL_1872: ldarg.0 
+   IL_1873: ldc.i4.1 
+   IL_1874: sub 
+   IL_1875: ldarg.1 
+   IL_1876: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_187B: ldnull 
+   IL_187C: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_1881: brfalse.s IL_189a: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1883: ldsflda Terraria.Main::tile
+   IL_1888: ldarg.0 
+   IL_1889: ldc.i4.1 
+   IL_188A: sub 
+   IL_188B: ldarg.1 
+   IL_188C: ldloca.s V_2
+   IL_188E: initobj Terraria.Tile
+   IL_1894: ldloc.2 
+   IL_1895: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_189A: ldsflda Terraria.Main::tile
+   IL_189F: ldarg.0 
+   IL_18A0: ldc.i4.1 
+   IL_18A1: add 
+   IL_18A2: ldarg.1 
+   IL_18A3: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_18A8: ldnull 
+   IL_18A9: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_18AE: brfalse.s IL_18c7: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_18B0: ldsflda Terraria.Main::tile
+   IL_18B5: ldarg.0 
+   IL_18B6: ldc.i4.1 
+   IL_18B7: add 
+   IL_18B8: ldarg.1 
+   IL_18B9: ldloca.s V_2
+   IL_18BB: initobj Terraria.Tile
+   IL_18C1: ldloc.2 
+   IL_18C2: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_18C7: ldsflda Terraria.Main::tile
+   IL_18CC: ldarg.0 
+   IL_18CD: ldarg.1 
+   IL_18CE: ldc.i4.1 
+   IL_18CF: add 
+   IL_18D0: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_18D5: ldnull 
+   IL_18D6: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_18DB: brfalse.s IL_18f4: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_18DD: ldsflda Terraria.Main::tile
+   IL_18E2: ldarg.0 
+   IL_18E3: ldarg.1 
+   IL_18E4: ldc.i4.1 
+   IL_18E5: add 
+   IL_18E6: ldloca.s V_2
+   IL_18E8: initobj Terraria.Tile
+   IL_18EE: ldloc.2 
+   IL_18EF: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_18F4: ldsflda Terraria.Main::tile
+   IL_18F9: ldarg.0 
+   IL_18FA: ldc.i4.1 
+   IL_18FB: sub 
+   IL_18FC: ldarg.1 
+   IL_18FD: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1902: stloc.s V_11
+   IL_1904: ldsflda Terraria.Main::tile
+   IL_1909: ldarg.0 
+   IL_190A: ldc.i4.1 
+   IL_190B: add 
+   IL_190C: ldarg.1 
+   IL_190D: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1912: stloc.s V_12
+   IL_1914: ldsflda Terraria.Main::tile
+   IL_1919: ldarg.0 
+   IL_191A: ldarg.1 
+   IL_191B: ldc.i4.1 
+   IL_191C: add 
+   IL_191D: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1922: stloc.s V_13
+   IL_1924: ldloca.s V_3
+   IL_1926: call Terraria.Tile::get_wall()
+   IL_192B: ldind.u2 
+   IL_192C: ldc.i4.0 
+   IL_192D: bgt IL_1b3c: ldloca.s V_3
+   IL_1932: ldloca.s V_11
+   IL_1934: call Terraria.Tile::active()
+   IL_1939: brfalse IL_19ee: ldloca.s V_12
+   IL_193E: ldloca.s V_11
+   IL_1940: call Terraria.Tile::slope()
+   IL_1945: brfalse.s IL_1956: ldsfld System.Boolean[] Terraria.Main::tileSolid
+   IL_1947: ldloca.s V_11
+   IL_1949: call Terraria.Tile::slope()
+   IL_194E: ldc.i4.2 
+   IL_194F: rem 
+   IL_1950: ldc.i4.1 
+   IL_1951: beq IL_19ee: ldloca.s V_12
+   IL_1956: ldsfld Terraria.Main::tileSolid
+   IL_195B: ldloca.s V_11
+   IL_195D: call Terraria.Tile::get_type()
+   IL_1962: ldind.u2 
+   IL_1963: ldelem.u1 
+   IL_1964: brfalse.s IL_1989: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::IsBeam
+   IL_1966: ldsfld Terraria.Main::tileSolidTop
+   IL_196B: ldloca.s V_11
+   IL_196D: call Terraria.Tile::get_type()
+   IL_1972: ldind.u2 
+   IL_1973: ldelem.u1 
+   IL_1974: brtrue.s IL_1989: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::IsBeam
+   IL_1976: ldsfld Terraria.ID.TileID/Sets::NotReallySolid
+   IL_197B: ldloca.s V_11
+   IL_197D: call Terraria.Tile::get_type()
+   IL_1982: ldind.u2 
+   IL_1983: ldelem.u1 
+   IL_1984: brfalse IL_1b3c: ldloca.s V_3
+   IL_1989: ldsfld Terraria.ID.TileID/Sets::IsBeam
+   IL_198E: ldloca.s V_11
+   IL_1990: call Terraria.Tile::get_type()
+   IL_1995: ldind.u2 
+   IL_1996: ldelem.u1 
+   IL_1997: brtrue IL_1b3c: ldloca.s V_3
+   IL_199C: ldloca.s V_11
+   IL_199E: call Terraria.Tile::get_type()
+   IL_19A3: ldind.u2 
+   IL_19A4: call Terraria.WorldGen::IsTreeType(Int32)
+   IL_19A9: brfalse.s IL_19ee: ldloca.s V_12
+   IL_19AB: ldsflda Terraria.Main::tile
+   IL_19B0: ldarg.0 
+   IL_19B1: ldc.i4.1 
+   IL_19B2: sub 
+   IL_19B3: ldarg.1 
+   IL_19B4: ldc.i4.1 
+   IL_19B5: sub 
+   IL_19B6: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_19BB: stloc.2 
+   IL_19BC: ldloca.s V_2
+   IL_19BE: call Terraria.Tile::get_type()
+   IL_19C3: ldind.u2 
+   IL_19C4: call Terraria.WorldGen::IsTreeType(Int32)
+   IL_19C9: brfalse.s IL_19ee: ldloca.s V_12
+   IL_19CB: ldsflda Terraria.Main::tile
+   IL_19D0: ldarg.0 
+   IL_19D1: ldc.i4.1 
+   IL_19D2: sub 
+   IL_19D3: ldarg.1 
+   IL_19D4: ldc.i4.1 
+   IL_19D5: add 
+   IL_19D6: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_19DB: stloc.2 
+   IL_19DC: ldloca.s V_2
+   IL_19DE: call Terraria.Tile::get_type()
+   IL_19E3: ldind.u2 
+   IL_19E4: call Terraria.WorldGen::IsTreeType(Int32)
+   IL_19E9: brtrue IL_1b3c: ldloca.s V_3
+   IL_19EE: ldloca.s V_12
+   IL_19F0: call Terraria.Tile::active()
+   IL_19F5: brfalse IL_1aa9: ldloca.s V_13
+   IL_19FA: ldloca.s V_12
+   IL_19FC: call Terraria.Tile::slope()
+   IL_1A01: brfalse.s IL_1a11: ldsfld System.Boolean[] Terraria.Main::tileSolid
+   IL_1A03: ldloca.s V_12
+   IL_1A05: call Terraria.Tile::slope()
+   IL_1A0A: ldc.i4.2 
+   IL_1A0B: rem 
+   IL_1A0C: brfalse IL_1aa9: ldloca.s V_13
+   IL_1A11: ldsfld Terraria.Main::tileSolid
+   IL_1A16: ldloca.s V_12
+   IL_1A18: call Terraria.Tile::get_type()
+   IL_1A1D: ldind.u2 
+   IL_1A1E: ldelem.u1 
+   IL_1A1F: brfalse.s IL_1a44: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::IsBeam
+   IL_1A21: ldsfld Terraria.Main::tileSolidTop
+   IL_1A26: ldloca.s V_12
+   IL_1A28: call Terraria.Tile::get_type()
+   IL_1A2D: ldind.u2 
+   IL_1A2E: ldelem.u1 
+   IL_1A2F: brtrue.s IL_1a44: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::IsBeam
+   IL_1A31: ldsfld Terraria.ID.TileID/Sets::NotReallySolid
+   IL_1A36: ldloca.s V_12
+   IL_1A38: call Terraria.Tile::get_type()
+   IL_1A3D: ldind.u2 
+   IL_1A3E: ldelem.u1 
+   IL_1A3F: brfalse IL_1b3c: ldloca.s V_3
+   IL_1A44: ldsfld Terraria.ID.TileID/Sets::IsBeam
+   IL_1A49: ldloca.s V_12
+   IL_1A4B: call Terraria.Tile::get_type()
+   IL_1A50: ldind.u2 
+   IL_1A51: ldelem.u1 
+   IL_1A52: brtrue IL_1b3c: ldloca.s V_3
+   IL_1A57: ldloca.s V_12
+   IL_1A59: call Terraria.Tile::get_type()
+   IL_1A5E: ldind.u2 
+   IL_1A5F: call Terraria.WorldGen::IsTreeType(Int32)
+   IL_1A64: brfalse.s IL_1aa9: ldloca.s V_13
+   IL_1A66: ldsflda Terraria.Main::tile
+   IL_1A6B: ldarg.0 
+   IL_1A6C: ldc.i4.1 
+   IL_1A6D: add 
+   IL_1A6E: ldarg.1 
+   IL_1A6F: ldc.i4.1 
+   IL_1A70: sub 
+   IL_1A71: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1A76: stloc.2 
+   IL_1A77: ldloca.s V_2
+   IL_1A79: call Terraria.Tile::get_type()
+   IL_1A7E: ldind.u2 
+   IL_1A7F: call Terraria.WorldGen::IsTreeType(Int32)
+   IL_1A84: brfalse.s IL_1aa9: ldloca.s V_13
+   IL_1A86: ldsflda Terraria.Main::tile
+   IL_1A8B: ldarg.0 
+   IL_1A8C: ldc.i4.1 
+   IL_1A8D: add 
+   IL_1A8E: ldarg.1 
+   IL_1A8F: ldc.i4.1 
+   IL_1A90: add 
+   IL_1A91: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1A96: stloc.2 
+   IL_1A97: ldloca.s V_2
+   IL_1A99: call Terraria.Tile::get_type()
+   IL_1A9E: ldind.u2 
+   IL_1A9F: call Terraria.WorldGen::IsTreeType(Int32)
+   IL_1AA4: brtrue IL_1b3c: ldloca.s V_3
+   IL_1AA9: ldloca.s V_13
+   IL_1AAB: call Terraria.Tile::active()
+   IL_1AB0: brfalse IL_2bb4: ldloca.s V_3
+   IL_1AB5: ldsfld Terraria.Main::tileSolid
+   IL_1ABA: ldloca.s V_13
+   IL_1ABC: call Terraria.Tile::get_type()
+   IL_1AC1: ldind.u2 
+   IL_1AC2: ldelem.u1 
+   IL_1AC3: brfalse IL_2bb4: ldloca.s V_3
+   IL_1AC8: ldsfld Terraria.ID.TileID/Sets::Platforms
+   IL_1ACD: ldloca.s V_13
+   IL_1ACF: call Terraria.Tile::get_type()
+   IL_1AD4: ldind.u2 
+   IL_1AD5: ldelem.u1 
+   IL_1AD6: brfalse.s IL_1ae3: ldsfld System.Boolean[] Terraria.Main::tileSolidTop
+   IL_1AD8: ldarg.0 
+   IL_1AD9: ldarg.1 
+   IL_1ADA: ldc.i4.1 
+   IL_1ADB: add 
+   IL_1ADC: call Terraria.WorldGen::TopEdgeCanBeAttachedTo(Int32,Int32)
+   IL_1AE1: brtrue.s IL_1b3c: ldloca.s V_3
+   IL_1AE3: ldsfld Terraria.Main::tileSolidTop
+   IL_1AE8: ldloca.s V_13
+   IL_1AEA: call Terraria.Tile::get_type()
+   IL_1AEF: ldind.u2 
+   IL_1AF0: ldelem.u1 
+   IL_1AF1: brfalse.s IL_1b11: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::NotReallySolid
+   IL_1AF3: ldloca.s V_13
+   IL_1AF5: call Terraria.Tile::get_type()
+   IL_1AFA: ldind.u2 
+   IL_1AFB: ldc.i4 380
+   IL_1B00: bne.un IL_2bb4: ldloca.s V_3
+   IL_1B05: ldloca.s V_13
+   IL_1B07: call Terraria.Tile::slope()
+   IL_1B0C: brtrue IL_2bb4: ldloca.s V_3
+   IL_1B11: ldsfld Terraria.ID.TileID/Sets::NotReallySolid
+   IL_1B16: ldloca.s V_13
+   IL_1B18: call Terraria.Tile::get_type()
+   IL_1B1D: ldind.u2 
+   IL_1B1E: ldelem.u1 
+   IL_1B1F: brtrue IL_2bb4: ldloca.s V_3
+   IL_1B24: ldloca.s V_13
+   IL_1B26: call Terraria.Tile::halfBrick()
+   IL_1B2B: brtrue IL_2bb4: ldloca.s V_3
+   IL_1B30: ldloca.s V_13
+   IL_1B32: call Terraria.Tile::slope()
+   IL_1B37: brtrue IL_2bb4: ldloca.s V_3
+   IL_1B3C: ldloca.s V_3
+   IL_1B3E: ldc.i4.1 
+   IL_1B3F: call Terraria.Tile::active(Boolean)
+   IL_1B44: ldloca.s V_3
+   IL_1B46: call Terraria.Tile::get_type()
+   IL_1B4B: ldloc.0 
+   IL_1B4C: conv.u2 
+   IL_1B4D: stind.i2 
+   IL_1B4E: ldloca.s V_3
+   IL_1B50: call Terraria.Tile::get_frameY()
+   IL_1B55: ldc.i4.s 22
+   IL_1B57: ldarg.s style
+   IL_1B59: mul 
+   IL_1B5A: conv.i2 
+   IL_1B5B: stind.i2 
+   IL_1B5C: ldarg.0 
+   IL_1B5D: ldarg.1 
+   IL_1B5E: ldc.i4.1 
+   IL_1B5F: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_1B64: br IL_2bb4: ldloca.s V_3
+   IL_1B69: ldloc.0 
+   IL_1B6A: ldc.i4.s 10
+   IL_1B6C: bne.un IL_1d83: ldloc.0
+   IL_1B71: ldsflda Terraria.Main::tile
+   IL_1B76: ldarg.0 
+   IL_1B77: ldarg.1 
+   IL_1B78: ldc.i4.1 
+   IL_1B79: sub 
+   IL_1B7A: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1B7F: ldnull 
+   IL_1B80: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_1B85: brfalse.s IL_1b9e: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1B87: ldsflda Terraria.Main::tile
+   IL_1B8C: ldarg.0 
+   IL_1B8D: ldarg.1 
+   IL_1B8E: ldc.i4.1 
+   IL_1B8F: sub 
+   IL_1B90: ldloca.s V_2
+   IL_1B92: initobj Terraria.Tile
+   IL_1B98: ldloc.2 
+   IL_1B99: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_1B9E: ldsflda Terraria.Main::tile
+   IL_1BA3: ldarg.0 
+   IL_1BA4: ldarg.1 
+   IL_1BA5: ldc.i4.2 
+   IL_1BA6: sub 
+   IL_1BA7: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1BAC: ldnull 
+   IL_1BAD: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_1BB2: brfalse.s IL_1bcb: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1BB4: ldsflda Terraria.Main::tile
+   IL_1BB9: ldarg.0 
+   IL_1BBA: ldarg.1 
+   IL_1BBB: ldc.i4.2 
+   IL_1BBC: sub 
+   IL_1BBD: ldloca.s V_2
+   IL_1BBF: initobj Terraria.Tile
+   IL_1BC5: ldloc.2 
+   IL_1BC6: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_1BCB: ldsflda Terraria.Main::tile
+   IL_1BD0: ldarg.0 
+   IL_1BD1: ldarg.1 
+   IL_1BD2: ldc.i4.3 
+   IL_1BD3: sub 
+   IL_1BD4: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1BD9: ldnull 
+   IL_1BDA: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_1BDF: brfalse.s IL_1bf8: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1BE1: ldsflda Terraria.Main::tile
+   IL_1BE6: ldarg.0 
+   IL_1BE7: ldarg.1 
+   IL_1BE8: ldc.i4.3 
+   IL_1BE9: sub 
+   IL_1BEA: ldloca.s V_2
+   IL_1BEC: initobj Terraria.Tile
+   IL_1BF2: ldloc.2 
+   IL_1BF3: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_1BF8: ldsflda Terraria.Main::tile
+   IL_1BFD: ldarg.0 
+   IL_1BFE: ldarg.1 
+   IL_1BFF: ldc.i4.1 
+   IL_1C00: add 
+   IL_1C01: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1C06: ldnull 
+   IL_1C07: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_1C0C: brfalse.s IL_1c25: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1C0E: ldsflda Terraria.Main::tile
+   IL_1C13: ldarg.0 
+   IL_1C14: ldarg.1 
+   IL_1C15: ldc.i4.1 
+   IL_1C16: add 
+   IL_1C17: ldloca.s V_2
+   IL_1C19: initobj Terraria.Tile
+   IL_1C1F: ldloc.2 
+   IL_1C20: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_1C25: ldsflda Terraria.Main::tile
+   IL_1C2A: ldarg.0 
+   IL_1C2B: ldarg.1 
+   IL_1C2C: ldc.i4.2 
+   IL_1C2D: add 
+   IL_1C2E: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1C33: ldnull 
+   IL_1C34: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_1C39: brfalse.s IL_1c52: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1C3B: ldsflda Terraria.Main::tile
+   IL_1C40: ldarg.0 
+   IL_1C41: ldarg.1 
+   IL_1C42: ldc.i4.2 
+   IL_1C43: add 
+   IL_1C44: ldloca.s V_2
+   IL_1C46: initobj Terraria.Tile
+   IL_1C4C: ldloc.2 
+   IL_1C4D: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_1C52: ldsflda Terraria.Main::tile
+   IL_1C57: ldarg.0 
+   IL_1C58: ldarg.1 
+   IL_1C59: ldc.i4.3 
+   IL_1C5A: add 
+   IL_1C5B: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1C60: ldnull 
+   IL_1C61: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_1C66: brfalse.s IL_1c7f: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1C68: ldsflda Terraria.Main::tile
+   IL_1C6D: ldarg.0 
+   IL_1C6E: ldarg.1 
+   IL_1C6F: ldc.i4.3 
+   IL_1C70: add 
+   IL_1C71: ldloca.s V_2
+   IL_1C73: initobj Terraria.Tile
+   IL_1C79: ldloc.2 
+   IL_1C7A: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_1C7F: ldsflda Terraria.Main::tile
+   IL_1C84: ldarg.0 
+   IL_1C85: ldarg.1 
+   IL_1C86: ldc.i4.1 
+   IL_1C87: sub 
+   IL_1C88: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1C8D: stloc.2 
+   IL_1C8E: ldloca.s V_2
+   IL_1C90: call Terraria.Tile::active()
+   IL_1C95: brtrue.s IL_1d00: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1C97: ldsflda Terraria.Main::tile
+   IL_1C9C: ldarg.0 
+   IL_1C9D: ldarg.1 
+   IL_1C9E: ldc.i4.2 
+   IL_1C9F: sub 
+   IL_1CA0: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1CA5: stloc.2 
+   IL_1CA6: ldloca.s V_2
+   IL_1CA8: call Terraria.Tile::active()
+   IL_1CAD: brtrue.s IL_1d00: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1CAF: ldsflda Terraria.Main::tile
+   IL_1CB4: ldarg.0 
+   IL_1CB5: ldarg.1 
+   IL_1CB6: ldc.i4.3 
+   IL_1CB7: sub 
+   IL_1CB8: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1CBD: stloc.2 
+   IL_1CBE: ldloca.s V_2
+   IL_1CC0: call Terraria.Tile::active()
+   IL_1CC5: brfalse.s IL_1d00: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1CC7: ldsfld Terraria.Main::tileSolid
+   IL_1CCC: ldsflda Terraria.Main::tile
+   IL_1CD1: ldarg.0 
+   IL_1CD2: ldarg.1 
+   IL_1CD3: ldc.i4.3 
+   IL_1CD4: sub 
+   IL_1CD5: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1CDA: stloc.2 
+   IL_1CDB: ldloca.s V_2
+   IL_1CDD: call Terraria.Tile::get_type()
+   IL_1CE2: ldind.u2 
+   IL_1CE3: ldelem.u1 
+   IL_1CE4: brfalse.s IL_1d00: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_1CE6: ldarg.0 
+   IL_1CE7: ldarg.1 
+   IL_1CE8: ldc.i4.1 
+   IL_1CE9: sub 
+   IL_1CEA: ldloc.0 
+   IL_1CEB: ldarg.s style
+   IL_1CED: call Terraria.WorldGen::PlaceDoor(Int32,Int32,Int32,Int32)
+   IL_1CF2: pop 
+   IL_1CF3: ldarg.0 
+   IL_1CF4: ldarg.1 
+   IL_1CF5: ldc.i4.1 
+   IL_1CF6: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_1CFB: br IL_2bb4: ldloca.s V_3
+   IL_1D00: ldsflda Terraria.Main::tile
+   IL_1D05: ldarg.0 
+   IL_1D06: ldarg.1 
+   IL_1D07: ldc.i4.1 
+   IL_1D08: add 
+   IL_1D09: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1D0E: stloc.2 
+   IL_1D0F: ldloca.s V_2
+   IL_1D11: call Terraria.Tile::active()
+   IL_1D16: brtrue.s IL_1d67: ldc.i4.0
+   IL_1D18: ldsflda Terraria.Main::tile
+   IL_1D1D: ldarg.0 
+   IL_1D1E: ldarg.1 
+   IL_1D1F: ldc.i4.2 
+   IL_1D20: add 
+   IL_1D21: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1D26: stloc.2 
+   IL_1D27: ldloca.s V_2
+   IL_1D29: call Terraria.Tile::active()
+   IL_1D2E: brtrue.s IL_1d67: ldc.i4.0
+   IL_1D30: ldsflda Terraria.Main::tile
+   IL_1D35: ldarg.0 
+   IL_1D36: ldarg.1 
+   IL_1D37: ldc.i4.3 
+   IL_1D38: add 
+   IL_1D39: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1D3E: stloc.2 
+   IL_1D3F: ldloca.s V_2
+   IL_1D41: call Terraria.Tile::active()
+   IL_1D46: brfalse.s IL_1d67: ldc.i4.0
+   IL_1D48: ldsfld Terraria.Main::tileSolid
+   IL_1D4D: ldsflda Terraria.Main::tile
+   IL_1D52: ldarg.0 
+   IL_1D53: ldarg.1 
+   IL_1D54: ldc.i4.3 
+   IL_1D55: add 
+   IL_1D56: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_1D5B: stloc.2 
+   IL_1D5C: ldloca.s V_2
+   IL_1D5E: call Terraria.Tile::get_type()
+   IL_1D63: ldind.u2 
+   IL_1D64: ldelem.u1 
+   IL_1D65: brtrue.s IL_1d69: ldarg.0
+   IL_1D67: ldc.i4.0 
+   IL_1D68: ret 
+   IL_1D69: ldarg.0 
+   IL_1D6A: ldarg.1 
+   IL_1D6B: ldc.i4.1 
+   IL_1D6C: add 
+   IL_1D6D: ldloc.0 
+   IL_1D6E: ldarg.s style
+   IL_1D70: call Terraria.WorldGen::PlaceDoor(Int32,Int32,Int32,Int32)
+   IL_1D75: pop 
+   IL_1D76: ldarg.0 
+   IL_1D77: ldarg.1 
+   IL_1D78: ldc.i4.1 
+   IL_1D79: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_1D7E: br IL_2bb4: ldloca.s V_3
+   IL_1D83: ldloc.0 
+   IL_1D84: ldc.i4 275
+   IL_1D89: blt.s IL_1d93: ldloc.0
+   IL_1D8B: ldloc.0 
+   IL_1D8C: ldc.i4 281
+   IL_1D91: ble.s IL_1dd3: ldarg.0
+   IL_1D93: ldloc.0 
+   IL_1D94: ldc.i4 296
+   IL_1D99: beq.s IL_1dd3: ldarg.0
+   IL_1D9B: ldloc.0 
+   IL_1D9C: ldc.i4 297
+   IL_1DA1: beq.s IL_1dd3: ldarg.0
+   IL_1DA3: ldloc.0 
+   IL_1DA4: ldc.i4 309
+   IL_1DA9: beq.s IL_1dd3: ldarg.0
+   IL_1DAB: ldloc.0 
+   IL_1DAC: ldc.i4 358
+   IL_1DB1: beq.s IL_1dd3: ldarg.0
+   IL_1DB3: ldloc.0 
+   IL_1DB4: ldc.i4 359
+   IL_1DB9: beq.s IL_1dd3: ldarg.0
+   IL_1DBB: ldloc.0 
+   IL_1DBC: ldc.i4 413
+   IL_1DC1: beq.s IL_1dd3: ldarg.0
+   IL_1DC3: ldloc.0 
+   IL_1DC4: ldc.i4 414
+   IL_1DC9: beq.s IL_1dd3: ldarg.0
+   IL_1DCB: ldloc.0 
+   IL_1DCC: ldc.i4 542
+   IL_1DD1: bne.un.s IL_1de3: ldloc.0
+   IL_1DD3: ldarg.0 
+   IL_1DD4: ldarg.1 
+   IL_1DD5: ldloc.0 
+   IL_1DD6: conv.u2 
+   IL_1DD7: ldc.i4.m1 
+   IL_1DD8: ldc.i4.0 
+   IL_1DD9: call Terraria.WorldGen::Place6x3(Int32,Int32,UInt16,Int32,Int32)
+   IL_1DDE: br IL_2bb4: ldloca.s V_3
+   IL_1DE3: ldloc.0 
+   IL_1DE4: ldc.i4 237
+   IL_1DE9: beq IL_1e84: ldarg.0
+   IL_1DEE: ldloc.0 
+   IL_1DEF: ldc.i4 244
+   IL_1DF4: beq IL_1e84: ldarg.0
+   IL_1DF9: ldloc.0 
+   IL_1DFA: ldc.i4 285
+   IL_1DFF: beq IL_1e84: ldarg.0
+   IL_1E04: ldloc.0 
+   IL_1E05: ldc.i4 286
+   IL_1E0A: beq.s IL_1e84: ldarg.0
+   IL_1E0C: ldloc.0 
+   IL_1E0D: ldc.i4 298
+   IL_1E12: beq.s IL_1e84: ldarg.0
+   IL_1E14: ldloc.0 
+   IL_1E15: ldc.i4 299
+   IL_1E1A: beq.s IL_1e84: ldarg.0
+   IL_1E1C: ldloc.0 
+   IL_1E1D: ldc.i4 310
+   IL_1E22: beq.s IL_1e84: ldarg.0
+   IL_1E24: ldloc.0 
+   IL_1E25: ldc.i4 339
+   IL_1E2A: beq.s IL_1e84: ldarg.0
+   IL_1E2C: ldloc.0 
+   IL_1E2D: ldc.i4 538
+   IL_1E32: beq.s IL_1e84: ldarg.0
+   IL_1E34: ldloc.0 
+   IL_1E35: ldc.i4 361
+   IL_1E3A: blt.s IL_1e44: ldloc.0
+   IL_1E3C: ldloc.0 
+   IL_1E3D: ldc.i4 364
+   IL_1E42: ble.s IL_1e84: ldarg.0
+   IL_1E44: ldloc.0 
+   IL_1E45: ldc.i4 532
+   IL_1E4A: beq.s IL_1e84: ldarg.0
+   IL_1E4C: ldloc.0 
+   IL_1E4D: ldc.i4 533
+   IL_1E52: beq.s IL_1e84: ldarg.0
+   IL_1E54: ldloc.0 
+   IL_1E55: ldc.i4 486
+   IL_1E5A: beq.s IL_1e84: ldarg.0
+   IL_1E5C: ldloc.0 
+   IL_1E5D: ldc.i4 488
+   IL_1E62: beq.s IL_1e84: ldarg.0
+   IL_1E64: ldloc.0 
+   IL_1E65: ldc.i4 544
+   IL_1E6A: beq.s IL_1e84: ldarg.0
+   IL_1E6C: ldloc.0 
+   IL_1E6D: ldc.i4 582
+   IL_1E72: beq.s IL_1e84: ldarg.0
+   IL_1E74: ldloc.0 
+   IL_1E75: ldc.i4 619
+   IL_1E7A: beq.s IL_1e84: ldarg.0
+   IL_1E7C: ldloc.0 
+   IL_1E7D: ldc.i4 629
+   IL_1E82: bne.un.s IL_1e93: ldloc.0
+   IL_1E84: ldarg.0 
+   IL_1E85: ldarg.1 
+   IL_1E86: ldloc.0 
+   IL_1E87: conv.u2 
+   IL_1E88: ldc.i4.0 
+   IL_1E89: call Terraria.WorldGen::Place3x2(Int32,Int32,UInt16,Int32)
+   IL_1E8E: br IL_2bb4: ldloca.s V_3
+   IL_1E93: ldloc.0 
+   IL_1E94: ldc.i4 128
+   IL_1E99: bne.un.s IL_1eb1: ldloc.0
+   IL_1E9B: ldarg.0 
+   IL_1E9C: ldarg.1 
+   IL_1E9D: ldarg.s style
+   IL_1E9F: call Terraria.WorldGen::PlaceMan(Int32,Int32,Int32)
+   IL_1EA4: ldarg.0 
+   IL_1EA5: ldarg.1 
+   IL_1EA6: ldc.i4.1 
+   IL_1EA7: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_1EAC: br IL_2bb4: ldloca.s V_3
+   IL_1EB1: ldloc.0 
+   IL_1EB2: ldc.i4 269
+   IL_1EB7: bne.un.s IL_1ecf: ldloc.0
+   IL_1EB9: ldarg.0 
+   IL_1EBA: ldarg.1 
+   IL_1EBB: ldarg.s style
+   IL_1EBD: call Terraria.WorldGen::PlaceWoman(Int32,Int32,Int32)
+   IL_1EC2: ldarg.0 
+   IL_1EC3: ldarg.1 
+   IL_1EC4: ldc.i4.1 
+   IL_1EC5: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_1ECA: br IL_2bb4: ldloca.s V_3
+   IL_1ECF: ldloc.0 
+   IL_1ED0: ldc.i4 334
+   IL_1ED5: bne.un.s IL_1efd: ldloc.0
+   IL_1ED7: ldc.i4.0 
+   IL_1ED8: stloc.s V_14
+   IL_1EDA: ldarg.s style
+   IL_1EDC: ldc.i4.m1 
+   IL_1EDD: bne.un.s IL_1ee2: ldarg.0
+   IL_1EDF: ldc.i4.1 
+   IL_1EE0: stloc.s V_14
+   IL_1EE2: ldarg.0 
+   IL_1EE3: ldarg.1 
+   IL_1EE4: ldc.i4 334
+   IL_1EE9: ldloc.s V_14
+   IL_1EEB: call Terraria.WorldGen::Place3x3Wall(Int32,Int32,UInt16,Int32)
+   IL_1EF0: ldarg.0 
+   IL_1EF1: ldarg.1 
+   IL_1EF2: ldc.i4.1 
+   IL_1EF3: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_1EF8: br IL_2bb4: ldloca.s V_3
+   IL_1EFD: ldloc.0 
+   IL_1EFE: ldc.i4 149
+   IL_1F03: bne.un.s IL_1f65: ldloc.0
+   IL_1F05: ldarg.0 
+   IL_1F06: ldc.i4.1 
+   IL_1F07: sub 
+   IL_1F08: ldarg.1 
+   IL_1F09: ldc.i4.0 
+   IL_1F0A: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_1F0F: brtrue.s IL_1f38: ldloca.s V_3
+   IL_1F11: ldarg.0 
+   IL_1F12: ldc.i4.1 
+   IL_1F13: add 
+   IL_1F14: ldarg.1 
+   IL_1F15: ldc.i4.0 
+   IL_1F16: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_1F1B: brtrue.s IL_1f38: ldloca.s V_3
+   IL_1F1D: ldarg.0 
+   IL_1F1E: ldarg.1 
+   IL_1F1F: ldc.i4.1 
+   IL_1F20: sub 
+   IL_1F21: ldc.i4.0 
+   IL_1F22: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_1F27: brtrue.s IL_1f38: ldloca.s V_3
+   IL_1F29: ldarg.0 
+   IL_1F2A: ldarg.1 
+   IL_1F2B: ldc.i4.1 
+   IL_1F2C: add 
+   IL_1F2D: ldc.i4.0 
+   IL_1F2E: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_1F33: brfalse IL_2bb4: ldloca.s V_3
+   IL_1F38: ldloca.s V_3
+   IL_1F3A: call Terraria.Tile::get_frameX()
+   IL_1F3F: ldc.i4.s 18
+   IL_1F41: ldarg.s style
+   IL_1F43: mul 
+   IL_1F44: conv.i2 
+   IL_1F45: stind.i2 
+   IL_1F46: ldloca.s V_3
+   IL_1F48: ldc.i4.1 
+   IL_1F49: call Terraria.Tile::active(Boolean)
+   IL_1F4E: ldloca.s V_3
+   IL_1F50: call Terraria.Tile::get_type()
+   IL_1F55: ldloc.0 
+   IL_1F56: conv.u2 
+   IL_1F57: stind.i2 
+   IL_1F58: ldarg.0 
+   IL_1F59: ldarg.1 
+   IL_1F5A: ldc.i4.1 
+   IL_1F5B: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_1F60: br IL_2bb4: ldloca.s V_3
+   IL_1F65: ldloc.0 
+   IL_1F66: ldc.i4 139
+   IL_1F6B: beq.s IL_1f72: ldarg.0
+   IL_1F6D: ldloc.0 
+   IL_1F6E: ldc.i4.s 35
+   IL_1F70: bne.un.s IL_1f8a: ldloc.0
+   IL_1F72: ldarg.0 
+   IL_1F73: ldarg.1 
+   IL_1F74: ldloc.0 
+   IL_1F75: conv.u2 
+   IL_1F76: ldarg.s style
+   IL_1F78: call Terraria.WorldGen::PlaceMB(Int32,Int32,UInt16,Int32)
+   IL_1F7D: ldarg.0 
+   IL_1F7E: ldarg.1 
+   IL_1F7F: ldc.i4.1 
+   IL_1F80: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_1F85: br IL_2bb4: ldloca.s V_3
+   IL_1F8A: ldloc.0 
+   IL_1F8B: ldc.i4 165
+   IL_1F90: bne.un.s IL_1fa7: ldloc.0
+   IL_1F92: ldarg.0 
+   IL_1F93: ldarg.1 
+   IL_1F94: ldc.i4.0 
+   IL_1F95: call Terraria.WorldGen::PlaceTight(Int32,Int32,Boolean)
+   IL_1F9A: ldarg.0 
+   IL_1F9B: ldarg.1 
+   IL_1F9C: ldc.i4.1 
+   IL_1F9D: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_1FA2: br IL_2bb4: ldloca.s V_3
+   IL_1FA7: ldloc.0 
+   IL_1FA8: ldc.i4 235
+   IL_1FAD: bne.un.s IL_1fc6: ldloc.0
+   IL_1FAF: ldarg.0 
+   IL_1FB0: ldarg.1 
+   IL_1FB1: ldloc.0 
+   IL_1FB2: conv.u2 
+   IL_1FB3: ldc.i4.0 
+   IL_1FB4: call Terraria.WorldGen::Place3x1(Int32,Int32,UInt16,Int32)
+   IL_1FB9: ldarg.0 
+   IL_1FBA: ldarg.1 
+   IL_1FBB: ldc.i4.1 
+   IL_1FBC: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_1FC1: br IL_2bb4: ldloca.s V_3
+   IL_1FC6: ldloc.0 
+   IL_1FC7: ldc.i4 240
+   IL_1FCC: bne.un.s IL_1fde: ldloc.0
+   IL_1FCE: ldarg.0 
+   IL_1FCF: ldarg.1 
+   IL_1FD0: ldloc.0 
+   IL_1FD1: conv.u2 
+   IL_1FD2: ldarg.s style
+   IL_1FD4: call Terraria.WorldGen::Place3x3Wall(Int32,Int32,UInt16,Int32)
+   IL_1FD9: br IL_2bb4: ldloca.s V_3
+   IL_1FDE: ldloc.0 
+   IL_1FDF: ldc.i4 440
+   IL_1FE4: bne.un.s IL_1ff6: ldloc.0
+   IL_1FE6: ldarg.0 
+   IL_1FE7: ldarg.1 
+   IL_1FE8: ldloc.0 
+   IL_1FE9: conv.u2 
+   IL_1FEA: ldarg.s style
+   IL_1FEC: call Terraria.WorldGen::Place3x3Wall(Int32,Int32,UInt16,Int32)
+   IL_1FF1: br IL_2bb4: ldloca.s V_3
+   IL_1FF6: ldloc.0 
+   IL_1FF7: ldc.i4 245
+   IL_1FFC: bne.un.s IL_200e: ldloc.0
+   IL_1FFE: ldarg.0 
+   IL_1FFF: ldarg.1 
+   IL_2000: ldloc.0 
+   IL_2001: conv.u2 
+   IL_2002: ldarg.s style
+   IL_2004: call Terraria.WorldGen::Place2x3Wall(Int32,Int32,UInt16,Int32)
+   IL_2009: br IL_2bb4: ldloca.s V_3
+   IL_200E: ldloc.0 
+   IL_200F: ldc.i4 246
+   IL_2014: bne.un.s IL_2026: ldloc.0
+   IL_2016: ldarg.0 
+   IL_2017: ldarg.1 
+   IL_2018: ldloc.0 
+   IL_2019: conv.u2 
+   IL_201A: ldarg.s style
+   IL_201C: call Terraria.WorldGen::Place3x2Wall(Int32,Int32,UInt16,Int32)
+   IL_2021: br IL_2bb4: ldloca.s V_3
+   IL_2026: ldloc.0 
+   IL_2027: ldc.i4 241
+   IL_202C: bne.un.s IL_203e: ldloc.0
+   IL_202E: ldarg.0 
+   IL_202F: ldarg.1 
+   IL_2030: ldloc.0 
+   IL_2031: conv.u2 
+   IL_2032: ldarg.s style
+   IL_2034: call Terraria.WorldGen::Place4x3Wall(Int32,Int32,UInt16,Int32)
+   IL_2039: br IL_2bb4: ldloca.s V_3
+   IL_203E: ldloc.0 
+   IL_203F: ldc.i4 242
+   IL_2044: bne.un.s IL_2056: ldloc.0
+   IL_2046: ldarg.0 
+   IL_2047: ldarg.1 
+   IL_2048: ldloc.0 
+   IL_2049: conv.u2 
+   IL_204A: ldarg.s style
+   IL_204C: call Terraria.WorldGen::Place6x4Wall(Int32,Int32,UInt16,Int32)
+   IL_2051: br IL_2bb4: ldloca.s V_3
+   IL_2056: ldloc.0 
+   IL_2057: ldc.i4.s 34
+   IL_2059: bne.un.s IL_2073: ldloc.0
+   IL_205B: ldarg.0 
+   IL_205C: ldarg.1 
+   IL_205D: ldloc.0 
+   IL_205E: conv.u2 
+   IL_205F: ldarg.s style
+   IL_2061: call Terraria.WorldGen::PlaceChand(Int32,Int32,UInt16,Int32)
+   IL_2066: ldarg.0 
+   IL_2067: ldarg.1 
+   IL_2068: ldc.i4.1 
+   IL_2069: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_206E: br IL_2bb4: ldloca.s V_3
+   IL_2073: ldloc.0 
+   IL_2074: ldc.i4.s 106
+   IL_2076: beq.s IL_20e8: ldarg.0
+   IL_2078: ldloc.0 
+   IL_2079: ldc.i4 212
+   IL_207E: beq.s IL_20e8: ldarg.0
+   IL_2080: ldloc.0 
+   IL_2081: ldc.i4 219
+   IL_2086: beq.s IL_20e8: ldarg.0
+   IL_2088: ldloc.0 
+   IL_2089: ldc.i4 220
+   IL_208E: beq.s IL_20e8: ldarg.0
+   IL_2090: ldloc.0 
+   IL_2091: ldc.i4 228
+   IL_2096: beq.s IL_20e8: ldarg.0
+   IL_2098: ldloc.0 
+   IL_2099: ldc.i4 231
+   IL_209E: beq.s IL_20e8: ldarg.0
+   IL_20A0: ldloc.0 
+   IL_20A1: ldc.i4 243
+   IL_20A6: beq.s IL_20e8: ldarg.0
+   IL_20A8: ldloc.0 
+   IL_20A9: ldc.i4 247
+   IL_20AE: beq.s IL_20e8: ldarg.0
+   IL_20B0: ldloc.0 
+   IL_20B1: ldc.i4 283
+   IL_20B6: beq.s IL_20e8: ldarg.0
+   IL_20B8: ldloc.0 
+   IL_20B9: ldc.i4 300
+   IL_20BE: blt.s IL_20c8: ldloc.0
+   IL_20C0: ldloc.0 
+   IL_20C1: ldc.i4 308
+   IL_20C6: ble.s IL_20e8: ldarg.0
+   IL_20C8: ldloc.0 
+   IL_20C9: ldc.i4 354
+   IL_20CE: beq.s IL_20e8: ldarg.0
+   IL_20D0: ldloc.0 
+   IL_20D1: ldc.i4 355
+   IL_20D6: beq.s IL_20e8: ldarg.0
+   IL_20D8: ldloc.0 
+   IL_20D9: ldc.i4 491
+   IL_20DE: beq.s IL_20e8: ldarg.0
+   IL_20E0: ldloc.0 
+   IL_20E1: ldc.i4 642
+   IL_20E6: bne.un.s IL_2100: ldloc.0
+   IL_20E8: ldarg.0 
+   IL_20E9: ldarg.1 
+   IL_20EA: ldloc.0 
+   IL_20EB: conv.u2 
+   IL_20EC: ldarg.s style
+   IL_20EE: call Terraria.WorldGen::Place3x3(Int32,Int32,UInt16,Int32)
+   IL_20F3: ldarg.0 
+   IL_20F4: ldarg.1 
+   IL_20F5: ldc.i4.1 
+   IL_20F6: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_20FB: br IL_2bb4: ldloca.s V_3
+   IL_2100: ldloc.0 
+   IL_2101: stloc.s V_4
+   IL_2103: ldloc.s V_4
+   IL_2105: ldc.i4.s 50
+   IL_2107: bgt.s IL_2148: ldloc.s V_4
+   IL_2109: ldloc.s V_4
+   IL_210B: ldc.i4.s 14
+   IL_210D: bgt.s IL_2126: ldloc.s V_4
+   IL_210F: ldloc.s V_4
+   IL_2111: ldc.i4.s 13
+   IL_2113: beq IL_2484: ldarg.0
+   IL_2118: ldloc.s V_4
+   IL_211A: ldc.i4.s 14
+   IL_211C: beq IL_24a7: ldarg.0
+   IL_2121: br IL_249b: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicDresser
+   IL_2126: ldloc.s V_4
+   IL_2128: ldc.i4.s 26
+   IL_212A: beq IL_24a7: ldarg.0
+   IL_212F: ldloc.s V_4
+   IL_2131: ldc.i4.s 33
+   IL_2133: beq IL_2484: ldarg.0
+   IL_2138: ldloc.s V_4
+   IL_213A: ldc.i4.s 49
+   IL_213C: sub 
+   IL_213D: ldc.i4.1 
+   IL_213E: ble.un IL_2484: ldarg.0
+   IL_2143: br IL_249b: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicDresser
+   IL_2148: ldloc.s V_4
+   IL_214A: ldc.i4.s 87
+   IL_214C: bgt.s IL_2167: ldloc.s V_4
+   IL_214E: ldloc.s V_4
+   IL_2150: ldc.i4.s 78
+   IL_2152: beq IL_2484: ldarg.0
+   IL_2157: ldloc.s V_4
+   IL_2159: ldc.i4.s 86
+   IL_215B: sub 
+   IL_215C: ldc.i4.1 
+   IL_215D: ble.un IL_24a7: ldarg.0
+   IL_2162: br IL_249b: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicDresser
+   IL_2167: ldloc.s V_4
+   IL_2169: ldc.i4 174
+   IL_216E: beq IL_2484: ldarg.0
+   IL_2173: ldloc.s V_4
+   IL_2175: ldc.i4 372
+   IL_217A: beq IL_2484: ldarg.0
+   IL_217F: ldloc.s V_4
+   IL_2181: ldc.i4 646
+   IL_2186: beq IL_2484: ldarg.0
+   IL_218B: br IL_249b: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicDresser
+   IL_2190: ldloc.s V_4
+   IL_2192: ldc.i4 215
+   IL_2197: bgt.s IL_21d5: ldloc.s V_4
+   IL_2199: ldloc.s V_4
+   IL_219B: ldc.i4.s 114
+   IL_219D: bgt.s IL_21b6: ldloc.s V_4
+   IL_219F: ldloc.s V_4
+   IL_21A1: ldc.i4.s 89
+   IL_21A3: beq IL_24a7: ldarg.0
+   IL_21A8: ldloc.s V_4
+   IL_21AA: ldc.i4.s 114
+   IL_21AC: beq IL_24a7: ldarg.0
+   IL_21B1: br IL_24f9: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::TreeSapling
+   IL_21B6: ldloc.s V_4
+   IL_21B8: ldc.i4 186
+   IL_21BD: sub 
+   IL_21BE: ldc.i4.1 
+   IL_21BF: ble.un IL_24a7: ldarg.0
+   IL_21C4: ldloc.s V_4
+   IL_21C6: ldc.i4 215
+   IL_21CB: beq IL_24a7: ldarg.0
+   IL_21D0: br IL_24f9: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::TreeSapling
+   IL_21D5: ldloc.s V_4
+   IL_21D7: ldc.i4 236
+   IL_21DC: bgt.s IL_21fd: ldloc.s V_4
+   IL_21DE: ldloc.s V_4
+   IL_21E0: ldc.i4 217
+   IL_21E5: sub 
+   IL_21E6: ldc.i4.1 
+   IL_21E7: ble.un IL_24a7: ldarg.0
+   IL_21EC: ldloc.s V_4
+   IL_21EE: ldc.i4 236
+   IL_21F3: beq IL_24bf: ldarg.0
+   IL_21F8: br IL_24f9: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::TreeSapling
+   IL_21FD: ldloc.s V_4
+   IL_21FF: ldc.i4 238
+   IL_2204: beq IL_24e1: ldarg.0
+   IL_2209: ldloc.s V_4
+   IL_220B: ldc.i4 377
+   IL_2210: beq IL_24a7: ldarg.0
+   IL_2215: ldloc.s V_4
+   IL_2217: ldc.i4 469
+   IL_221C: beq IL_24a7: ldarg.0
+   IL_2221: br IL_24f9: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::TreeSapling
+   IL_2226: ldloc.s V_4
+   IL_2228: ldc.i4 356
+   IL_222D: bgt IL_2356: ldloc.s V_4
+   IL_2232: ldloc.s V_4
+   IL_2234: ldc.i4 134
+   IL_2239: bgt IL_22c7: ldloc.s V_4
+   IL_223E: ldloc.s V_4
+   IL_2240: ldc.i4.s 93
+   IL_2242: bgt.s IL_228b: ldloc.s V_4
+   IL_2244: ldloc.s V_4
+   IL_2246: ldc.i4.s 29
+   IL_2248: bgt.s IL_2272: ldloc.s V_4
+   IL_224A: ldloc.s V_4
+   IL_224C: ldc.i4.s 15
+   IL_224E: sub 
+   IL_224F: switch Mono.Cecil.Cil.Instruction[]
+   IL_2264: ldloc.s V_4
+   IL_2266: ldc.i4.s 29
+   IL_2268: beq IL_2686: ldarg.0
+   IL_226D: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_2272: ldloc.s V_4
+   IL_2274: ldc.i4.s 77
+   IL_2276: beq IL_26ce: ldarg.0
+   IL_227B: ldloc.s V_4
+   IL_227D: ldc.i4.s 92
+   IL_227F: sub 
+   IL_2280: ldc.i4.1 
+   IL_2281: ble.un IL_269e: ldarg.0
+   IL_2286: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_228B: ldloc.s V_4
+   IL_228D: ldc.i4.s 105
+   IL_228F: bgt.s IL_22aa: ldloc.s V_4
+   IL_2291: ldloc.s V_4
+   IL_2293: ldc.i4.s 103
+   IL_2295: beq IL_2686: ldarg.0
+   IL_229A: ldloc.s V_4
+   IL_229C: ldc.i4.s 104
+   IL_229E: sub 
+   IL_229F: ldc.i4.1 
+   IL_22A0: ble.un IL_26b6: ldarg.0
+   IL_22A5: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_22AA: ldloc.s V_4
+   IL_22AC: ldc.i4 133
+   IL_22B1: beq IL_26ce: ldarg.0
+   IL_22B6: ldloc.s V_4
+   IL_22B8: ldc.i4 134
+   IL_22BD: beq IL_2686: ldarg.0
+   IL_22C2: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_22C7: ldloc.s V_4
+   IL_22C9: ldc.i4 320
+   IL_22CE: bgt.s IL_2313: ldloc.s V_4
+   IL_22D0: ldloc.s V_4
+   IL_22D2: ldc.i4 216
+   IL_22D7: bgt.s IL_22f6: ldloc.s V_4
+   IL_22D9: ldloc.s V_4
+   IL_22DB: ldc.i4 207
+   IL_22E0: beq IL_26e6: ldarg.0
+   IL_22E5: ldloc.s V_4
+   IL_22E7: ldc.i4 216
+   IL_22EC: beq IL_25ec: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_22F1: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_22F6: ldloc.s V_4
+   IL_22F8: ldc.i4 227
+   IL_22FD: beq IL_265a: ldarg.0
+   IL_2302: ldloc.s V_4
+   IL_2304: ldc.i4 320
+   IL_2309: beq IL_26b6: ldarg.0
+   IL_230E: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_2313: ldloc.s V_4
+   IL_2315: ldc.i4 338
+   IL_231A: bgt.s IL_2339: ldloc.s V_4
+   IL_231C: ldloc.s V_4
+   IL_231E: ldc.i4 337
+   IL_2323: beq IL_26b6: ldarg.0
+   IL_2328: ldloc.s V_4
+   IL_232A: ldc.i4 338
+   IL_232F: beq IL_25ec: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_2334: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_2339: ldloc.s V_4
+   IL_233B: ldc.i4 349
+   IL_2340: beq IL_26b6: ldarg.0
+   IL_2345: ldloc.s V_4
+   IL_2347: ldc.i4 356
+   IL_234C: beq IL_26b6: ldarg.0
+   IL_2351: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_2356: ldloc.s V_4
+   IL_2358: ldc.i4 480
+   IL_235D: bgt IL_23f1: ldloc.s V_4
+   IL_2362: ldloc.s V_4
+   IL_2364: ldc.i4 453
+   IL_2369: bgt.s IL_23ae: ldloc.s V_4
+   IL_236B: ldloc.s V_4
+   IL_236D: ldc.i4 390
+   IL_2372: bgt.s IL_2391: ldloc.s V_4
+   IL_2374: ldloc.s V_4
+   IL_2376: ldc.i4 378
+   IL_237B: beq IL_26b6: ldarg.0
+   IL_2380: ldloc.s V_4
+   IL_2382: ldc.i4 390
+   IL_2387: beq IL_25ec: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_238C: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_2391: ldloc.s V_4
+   IL_2393: ldc.i4 410
+   IL_2398: beq IL_26fe: ldarg.0
+   IL_239D: ldloc.s V_4
+   IL_239F: ldc.i4 453
+   IL_23A4: beq IL_269e: ldarg.0
+   IL_23A9: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_23AE: ldloc.s V_4
+   IL_23B0: ldc.i4 462
+   IL_23B5: bgt.s IL_23d4: ldloc.s V_4
+   IL_23B7: ldloc.s V_4
+   IL_23B9: ldc.i4 456
+   IL_23BE: beq IL_26b6: ldarg.0
+   IL_23C3: ldloc.s V_4
+   IL_23C5: ldc.i4 462
+   IL_23CA: beq IL_2686: ldarg.0
+   IL_23CF: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_23D4: ldloc.s V_4
+   IL_23D6: ldc.i4 465
+   IL_23DB: beq IL_2716: ldarg.0
+   IL_23E0: ldloc.s V_4
+   IL_23E2: ldc.i4 480
+   IL_23E7: beq IL_26fe: ldarg.0
+   IL_23EC: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_23F1: ldloc.s V_4
+   IL_23F3: ldc.i4 545
+   IL_23F8: bgt.s IL_243d: ldloc.s V_4
+   IL_23FA: ldloc.s V_4
+   IL_23FC: ldc.i4 509
+   IL_2401: bgt.s IL_2420: ldloc.s V_4
+   IL_2403: ldloc.s V_4
+   IL_2405: ldc.i4 506
+   IL_240A: beq IL_26b6: ldarg.0
+   IL_240F: ldloc.s V_4
+   IL_2411: ldc.i4 509
+   IL_2416: beq IL_26fe: ldarg.0
+   IL_241B: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_2420: ldloc.s V_4
+   IL_2422: ldc.i4 531
+   IL_2427: beq IL_2716: ldarg.0
+   IL_242C: ldloc.s V_4
+   IL_242E: ldc.i4 545
+   IL_2433: beq IL_26b6: ldarg.0
+   IL_2438: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_243D: ldloc.s V_4
+   IL_243F: ldc.i4 592
+   IL_2444: bgt.s IL_2465: ldloc.s V_4
+   IL_2446: ldloc.s V_4
+   IL_2448: ldc.i4 567
+   IL_244D: beq IL_2670: ldarg.0
+   IL_2452: ldloc.s V_4
+   IL_2454: ldc.i4 591
+   IL_2459: sub 
+   IL_245A: ldc.i4.1 
+   IL_245B: ble.un IL_2716: ldarg.0
+   IL_2460: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_2465: ldloc.s V_4
+   IL_2467: ldc.i4 657
+   IL_246C: sub 
+   IL_246D: ldc.i4.1 
+   IL_246E: ble.un IL_26fe: ldarg.0
+   IL_2473: ldloc.s V_4
+   IL_2475: ldc.i4 663
+   IL_247A: beq IL_26b6: ldarg.0
+   IL_247F: br IL_272e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BasicChest
+   IL_2484: ldarg.0 
+   IL_2485: ldarg.1 
+   IL_2486: ldloc.0 
+   IL_2487: ldarg.s style
+   IL_2489: call Terraria.WorldGen::PlaceOnTable1x1(Int32,Int32,Int32,Int32)
+   IL_248E: ldarg.0 
+   IL_248F: ldarg.1 
+   IL_2490: ldc.i4.1 
+   IL_2491: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2496: br IL_2bb4: ldloca.s V_3
+   IL_249B: ldsfld Terraria.ID.TileID/Sets::BasicDresser
+   IL_24A0: ldloc.0 
+   IL_24A1: ldelem.u1 
+   IL_24A2: brfalse IL_2190: ldloc.s V_4
+   IL_24A7: ldarg.0 
+   IL_24A8: ldarg.1 
+   IL_24A9: ldloc.0 
+   IL_24AA: conv.u2 
+   IL_24AB: ldarg.s style
+   IL_24AD: call Terraria.WorldGen::Place3x2(Int32,Int32,UInt16,Int32)
+   IL_24B2: ldarg.0 
+   IL_24B3: ldarg.1 
+   IL_24B4: ldc.i4.1 
+   IL_24B5: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_24BA: br IL_2bb4: ldloca.s V_3
+   IL_24BF: ldarg.0 
+   IL_24C0: ldarg.1 
+   IL_24C1: ldloc.0 
+   IL_24C2: conv.u2 
+   IL_24C3: call Terraria.WorldGen::get_genRand()
+   IL_24C8: ldc.i4.3 
+   IL_24C9: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_24CE: ldc.i4.0 
+   IL_24CF: call Terraria.WorldGen::PlaceJunglePlant(Int32,Int32,UInt16,Int32,Int32)
+   IL_24D4: ldarg.0 
+   IL_24D5: ldarg.1 
+   IL_24D6: ldc.i4.1 
+   IL_24D7: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_24DC: br IL_2bb4: ldloca.s V_3
+   IL_24E1: ldarg.0 
+   IL_24E2: ldarg.1 
+   IL_24E3: ldloc.0 
+   IL_24E4: conv.u2 
+   IL_24E5: ldc.i4.0 
+   IL_24E6: ldc.i4.0 
+   IL_24E7: call Terraria.WorldGen::PlaceJunglePlant(Int32,Int32,UInt16,Int32,Int32)
+   IL_24EC: ldarg.0 
+   IL_24ED: ldarg.1 
+   IL_24EE: ldc.i4.1 
+   IL_24EF: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_24F4: br IL_2bb4: ldloca.s V_3
+   IL_24F9: ldsfld Terraria.ID.TileID/Sets::TreeSapling
+   IL_24FE: ldloc.0 
+   IL_24FF: ldelem.u1 
+   IL_2500: brfalse IL_2226: ldloc.s V_4
+   IL_2505: ldsflda Terraria.Main::tile
+   IL_250A: ldarg.0 
+   IL_250B: ldarg.1 
+   IL_250C: ldc.i4.1 
+   IL_250D: add 
+   IL_250E: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_2513: ldnull 
+   IL_2514: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_2519: brfalse.s IL_2532: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_251B: ldsflda Terraria.Main::tile
+   IL_2520: ldarg.0 
+   IL_2521: ldarg.1 
+   IL_2522: ldc.i4.1 
+   IL_2523: add 
+   IL_2524: ldloca.s V_2
+   IL_2526: initobj Terraria.Tile
+   IL_252C: ldloc.2 
+   IL_252D: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_2532: ldsflda Terraria.Main::tile
+   IL_2537: ldarg.0 
+   IL_2538: ldarg.1 
+   IL_2539: ldc.i4.1 
+   IL_253A: add 
+   IL_253B: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_2540: stloc.2 
+   IL_2541: ldloca.s V_2
+   IL_2543: call Terraria.Tile::get_type()
+   IL_2548: ldind.u2 
+   IL_2549: stloc.s V_15
+   IL_254B: ldc.i4.s 20
+   IL_254D: stloc.s V_16
+   IL_254F: ldc.i4.0 
+   IL_2550: stloc.s V_17
+   IL_2552: ldsflda Terraria.Main::tile
+   IL_2557: ldarg.0 
+   IL_2558: ldarg.1 
+   IL_2559: ldc.i4.1 
+   IL_255A: add 
+   IL_255B: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_2560: stloc.2 
+   IL_2561: ldloca.s V_2
+   IL_2563: call Terraria.Tile::active()
+   IL_2568: brfalse IL_2bb4: ldloca.s V_3
+   IL_256D: ldloc.s V_15
+   IL_256F: ldc.i4.2 
+   IL_2570: beq.s IL_25d3: ldarg.0
+   IL_2572: ldloc.s V_15
+   IL_2574: ldc.i4.s 109
+   IL_2576: beq.s IL_25d3: ldarg.0
+   IL_2578: ldloc.s V_15
+   IL_257A: ldc.i4 147
+   IL_257F: beq.s IL_25d3: ldarg.0
+   IL_2581: ldloc.s V_15
+   IL_2583: ldc.i4.s 60
+   IL_2585: beq.s IL_25d3: ldarg.0
+   IL_2587: ldloc.s V_15
+   IL_2589: ldc.i4.s 23
+   IL_258B: beq.s IL_25d3: ldarg.0
+   IL_258D: ldloc.s V_15
+   IL_258F: ldc.i4 199
+   IL_2594: beq.s IL_25d3: ldarg.0
+   IL_2596: ldloc.s V_15
+   IL_2598: ldc.i4 661
+   IL_259D: beq.s IL_25d3: ldarg.0
+   IL_259F: ldloc.s V_15
+   IL_25A1: ldc.i4 662
+   IL_25A6: beq.s IL_25d3: ldarg.0
+   IL_25A8: ldloc.s V_15
+   IL_25AA: ldc.i4.s 53
+   IL_25AC: beq.s IL_25d3: ldarg.0
+   IL_25AE: ldloc.s V_15
+   IL_25B0: ldc.i4 234
+   IL_25B5: beq.s IL_25d3: ldarg.0
+   IL_25B7: ldloc.s V_15
+   IL_25B9: ldc.i4.s 116
+   IL_25BB: beq.s IL_25d3: ldarg.0
+   IL_25BD: ldloc.s V_15
+   IL_25BF: ldc.i4.s 112
+   IL_25C1: beq.s IL_25d3: ldarg.0
+   IL_25C3: ldloc.s V_15
+   IL_25C5: ldloca.s V_16
+   IL_25C7: ldloca.s V_17
+   IL_25C9: call Terraria.ModLoader.TileLoader::SaplingGrowthType(Int32,Int32&,Int32&)
+   IL_25CE: brfalse IL_2bb4: ldloca.s V_3
+   IL_25D3: ldarg.0 
+   IL_25D4: ldarg.1 
+   IL_25D5: ldloc.s V_16
+   IL_25D7: conv.u2 
+   IL_25D8: ldloc.s V_17
+   IL_25DA: call Terraria.WorldGen::Place1x2(Int32,Int32,UInt16,Int32)
+   IL_25DF: ldarg.0 
+   IL_25E0: ldarg.1 
+   IL_25E1: ldc.i4.1 
+   IL_25E2: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_25E7: br IL_2bb4: ldloca.s V_3
+   IL_25EC: ldsflda Terraria.Main::tile
+   IL_25F1: ldarg.0 
+   IL_25F2: ldarg.1 
+   IL_25F3: ldc.i4.1 
+   IL_25F4: sub 
+   IL_25F5: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_25FA: ldnull 
+   IL_25FB: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_2600: brfalse.s IL_2619: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_2602: ldsflda Terraria.Main::tile
+   IL_2607: ldarg.0 
+   IL_2608: ldarg.1 
+   IL_2609: ldc.i4.1 
+   IL_260A: sub 
+   IL_260B: ldloca.s V_2
+   IL_260D: initobj Terraria.Tile
+   IL_2613: ldloc.2 
+   IL_2614: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_2619: ldsflda Terraria.Main::tile
+   IL_261E: ldarg.0 
+   IL_261F: ldarg.1 
+   IL_2620: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_2625: ldnull 
+   IL_2626: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_262B: brfalse.s IL_2642: ldarg.0
+   IL_262D: ldsflda Terraria.Main::tile
+   IL_2632: ldarg.0 
+   IL_2633: ldarg.1 
+   IL_2634: ldloca.s V_2
+   IL_2636: initobj Terraria.Tile
+   IL_263C: ldloc.2 
+   IL_263D: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_2642: ldarg.0 
+   IL_2643: ldarg.1 
+   IL_2644: ldloc.0 
+   IL_2645: conv.u2 
+   IL_2646: ldarg.s style
+   IL_2648: call Terraria.WorldGen::Place1x2(Int32,Int32,UInt16,Int32)
+   IL_264D: ldarg.0 
+   IL_264E: ldarg.1 
+   IL_264F: ldc.i4.1 
+   IL_2650: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2655: br IL_2bb4: ldloca.s V_3
+   IL_265A: ldarg.0 
+   IL_265B: ldarg.1 
+   IL_265C: ldarg.s style
+   IL_265E: call Terraria.WorldGen::PlaceDye(Int32,Int32,Int32)
+   IL_2663: ldarg.0 
+   IL_2664: ldarg.1 
+   IL_2665: ldc.i4.1 
+   IL_2666: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_266B: br IL_2bb4: ldloca.s V_3
+   IL_2670: ldarg.0 
+   IL_2671: ldarg.1 
+   IL_2672: ldarg.s style
+   IL_2674: call Terraria.WorldGen::PlaceGnome(Int32,Int32,Int32)
+   IL_2679: ldarg.0 
+   IL_267A: ldarg.1 
+   IL_267B: ldc.i4.1 
+   IL_267C: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2681: br IL_2bb4: ldloca.s V_3
+   IL_2686: ldarg.0 
+   IL_2687: ldarg.1 
+   IL_2688: ldloc.0 
+   IL_2689: conv.u2 
+   IL_268A: ldarg.s style
+   IL_268C: call Terraria.WorldGen::Place2x1(Int32,Int32,UInt16,Int32)
+   IL_2691: ldarg.0 
+   IL_2692: ldarg.1 
+   IL_2693: ldc.i4.1 
+   IL_2694: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2699: br IL_2bb4: ldloca.s V_3
+   IL_269E: ldarg.0 
+   IL_269F: ldarg.1 
+   IL_26A0: ldloc.0 
+   IL_26A1: conv.u2 
+   IL_26A2: ldarg.s style
+   IL_26A4: call Terraria.WorldGen::Place1xX(Int32,Int32,UInt16,Int32)
+   IL_26A9: ldarg.0 
+   IL_26AA: ldarg.1 
+   IL_26AB: ldc.i4.1 
+   IL_26AC: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_26B1: br IL_2bb4: ldloca.s V_3
+   IL_26B6: ldarg.0 
+   IL_26B7: ldarg.1 
+   IL_26B8: ldloc.0 
+   IL_26B9: conv.u2 
+   IL_26BA: ldarg.s style
+   IL_26BC: call Terraria.WorldGen::Place2xX(Int32,Int32,UInt16,Int32)
+   IL_26C1: ldarg.0 
+   IL_26C2: ldarg.1 
+   IL_26C3: ldc.i4.1 
+   IL_26C4: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_26C9: br IL_2bb4: ldloca.s V_3
+   IL_26CE: ldarg.0 
+   IL_26CF: ldarg.1 
+   IL_26D0: ldloc.0 
+   IL_26D1: conv.u2 
+   IL_26D2: ldarg.s style
+   IL_26D4: call Terraria.WorldGen::Place3x2(Int32,Int32,UInt16,Int32)
+   IL_26D9: ldarg.0 
+   IL_26DA: ldarg.1 
+   IL_26DB: ldc.i4.1 
+   IL_26DC: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_26E1: br IL_2bb4: ldloca.s V_3
+   IL_26E6: ldarg.0 
+   IL_26E7: ldarg.1 
+   IL_26E8: ldloc.0 
+   IL_26E9: conv.u2 
+   IL_26EA: ldarg.s style
+   IL_26EC: call Terraria.WorldGen::Place2xX(Int32,Int32,UInt16,Int32)
+   IL_26F1: ldarg.0 
+   IL_26F2: ldarg.1 
+   IL_26F3: ldc.i4.1 
+   IL_26F4: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_26F9: br IL_2bb4: ldloca.s V_3
+   IL_26FE: ldarg.0 
+   IL_26FF: ldarg.1 
+   IL_2700: ldloc.0 
+   IL_2701: conv.u2 
+   IL_2702: ldarg.s style
+   IL_2704: call Terraria.WorldGen::Place2xX(Int32,Int32,UInt16,Int32)
+   IL_2709: ldarg.0 
+   IL_270A: ldarg.1 
+   IL_270B: ldc.i4.1 
+   IL_270C: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2711: br IL_2bb4: ldloca.s V_3
+   IL_2716: ldarg.0 
+   IL_2717: ldarg.1 
+   IL_2718: ldloc.0 
+   IL_2719: conv.u2 
+   IL_271A: ldarg.s style
+   IL_271C: call Terraria.WorldGen::Place2xX(Int32,Int32,UInt16,Int32)
+   IL_2721: ldarg.0 
+   IL_2722: ldarg.1 
+   IL_2723: ldc.i4.1 
+   IL_2724: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2729: br IL_2bb4: ldloca.s V_3
+   IL_272E: ldsfld Terraria.ID.TileID/Sets::BasicChest
+   IL_2733: ldloc.0 
+   IL_2734: ldelem.u1 
+   IL_2735: brfalse.s IL_2751: ldloc.0
+   IL_2737: ldarg.0 
+   IL_2738: ldarg.1 
+   IL_2739: ldloc.0 
+   IL_273A: conv.u2 
+   IL_273B: ldc.i4.0 
+   IL_273C: ldarg.s style
+   IL_273E: call Terraria.WorldGen::PlaceChest(Int32,Int32,UInt16,Boolean,Int32)
+   IL_2743: pop 
+   IL_2744: ldarg.0 
+   IL_2745: ldarg.1 
+   IL_2746: ldc.i4.1 
+   IL_2747: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_274C: br IL_2bb4: ldloca.s V_3
+   IL_2751: ldloc.0 
+   IL_2752: ldc.i4 144
+   IL_2757: bgt IL_27e2: ldloc.0
+   IL_275C: ldloc.0 
+   IL_275D: ldc.i4.s 55
+   IL_275F: bgt.s IL_2798: ldloc.0
+   IL_2761: ldloc.0 
+   IL_2762: ldc.i4.s 28
+   IL_2764: bgt.s IL_277b: ldloc.0
+   IL_2766: ldloc.0 
+   IL_2767: ldc.i4.s 27
+   IL_2769: beq IL_2936: ldarg.0
+   IL_276E: ldloc.0 
+   IL_276F: ldc.i4.s 28
+   IL_2771: beq IL_294c: ldarg.0
+   IL_2776: br IL_29a8: ldsfld System.Boolean[] Terraria.Main::tileAlch
+   IL_277B: ldloc.0 
+   IL_277C: ldc.i4.s 36
+   IL_277E: beq IL_28ef: ldarg.0
+   IL_2783: ldloc.0 
+   IL_2784: ldc.i4.s 42
+   IL_2786: beq IL_296e: ldarg.0
+   IL_278B: ldloc.0 
+   IL_278C: ldc.i4.s 55
+   IL_278E: beq IL_2986: ldarg.0
+   IL_2793: br IL_29a8: ldsfld System.Boolean[] Terraria.Main::tileAlch
+   IL_2798: ldloc.0 
+   IL_2799: ldc.i4.s 102
+   IL_279B: bgt.s IL_27bc: ldloc.0
+   IL_279D: ldloc.0 
+   IL_279E: ldc.i4.s 85
+   IL_27A0: beq IL_2997: ldarg.0
+   IL_27A5: ldloc.0 
+   IL_27A6: ldc.i4.s 91
+   IL_27A8: beq IL_28c0: ldarg.0
+   IL_27AD: ldloc.0 
+   IL_27AE: ldc.i4.s 101
+   IL_27B0: sub 
+   IL_27B1: ldc.i4.1 
+   IL_27B2: ble.un IL_2906: ldarg.0
+   IL_27B7: br IL_29a8: ldsfld System.Boolean[] Terraria.Main::tileAlch
+   IL_27BC: ldloc.0 
+   IL_27BD: ldc.i4 135
+   IL_27C2: beq IL_28ef: ldarg.0
+   IL_27C7: ldloc.0 
+   IL_27C8: ldc.i4 141
+   IL_27CD: beq IL_28ef: ldarg.0
+   IL_27D2: ldloc.0 
+   IL_27D3: ldc.i4 144
+   IL_27D8: beq IL_28ef: ldarg.0
+   IL_27DD: br IL_29a8: ldsfld System.Boolean[] Terraria.Main::tileAlch
+   IL_27E2: ldloc.0 
+   IL_27E3: ldc.i4 376
+   IL_27E8: bgt.s IL_2835: ldloc.0
+   IL_27EA: ldloc.0 
+   IL_27EB: ldc.i4 239
+   IL_27F0: bgt.s IL_280d: ldloc.0
+   IL_27F2: ldloc.0 
+   IL_27F3: ldc.i4 210
+   IL_27F8: beq IL_28ef: ldarg.0
+   IL_27FD: ldloc.0 
+   IL_27FE: ldc.i4 239
+   IL_2803: beq IL_28ef: ldarg.0
+   IL_2808: br IL_29a8: ldsfld System.Boolean[] Terraria.Main::tileAlch
+   IL_280D: ldloc.0 
+   IL_280E: ldc.i4 270
+   IL_2813: sub 
+   IL_2814: ldc.i4.1 
+   IL_2815: ble.un IL_296e: ldarg.0
+   IL_281A: ldloc.0 
+   IL_281B: ldc.i4 324
+   IL_2820: beq IL_28ef: ldarg.0
+   IL_2825: ldloc.0 
+   IL_2826: ldc.i4 376
+   IL_282B: beq IL_2997: ldarg.0
+   IL_2830: br IL_29a8: ldsfld System.Boolean[] Terraria.Main::tileAlch
+   IL_2835: ldloc.0 
+   IL_2836: ldc.i4 466
+   IL_283B: bgt.s IL_289e: ldloc.0
+   IL_283D: ldloc.0 
+   IL_283E: ldc.i4 419
+   IL_2843: sub 
+   IL_2844: switch Mono.Cecil.Cil.Instruction[]
+   IL_2875: ldloc.0 
+   IL_2876: ldc.i4 445
+   IL_287B: beq.s IL_28d8: ldarg.0
+   IL_287D: ldloc.0 
+   IL_287E: ldc.i4 463
+   IL_2883: sub 
+   IL_2884: switch Mono.Cecil.Cil.Instruction[]
+   IL_2899: br IL_29a8: ldsfld System.Boolean[] Terraria.Main::tileAlch
+   IL_289E: ldloc.0 
+   IL_289F: ldc.i4 476
+   IL_28A4: beq.s IL_28ef: ldarg.0
+   IL_28A6: ldloc.0 
+   IL_28A7: ldc.i4 494
+   IL_28AC: beq.s IL_28ef: ldarg.0
+   IL_28AE: ldloc.0 
+   IL_28AF: ldc.i4 510
+   IL_28B4: sub 
+   IL_28B5: ldc.i4.1 
+   IL_28B6: ble.un IL_2986: ldarg.0
+   IL_28BB: br IL_29a8: ldsfld System.Boolean[] Terraria.Main::tileAlch
+   IL_28C0: ldarg.0 
+   IL_28C1: ldarg.1 
+   IL_28C2: ldloc.0 
+   IL_28C3: conv.u2 
+   IL_28C4: ldarg.s style
+   IL_28C6: call Terraria.WorldGen::PlaceBanner(Int32,Int32,UInt16,Int32)
+   IL_28CB: ldarg.0 
+   IL_28CC: ldarg.1 
+   IL_28CD: ldc.i4.1 
+   IL_28CE: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_28D3: br IL_2bb4: ldloca.s V_3
+   IL_28D8: ldarg.0 
+   IL_28D9: ldarg.1 
+   IL_28DA: ldloc.0 
+   IL_28DB: ldarg.s style
+   IL_28DD: call Terraria.WorldGen::PlaceLogicTiles(Int32,Int32,Int32,Int32)
+   IL_28E2: ldarg.0 
+   IL_28E3: ldarg.1 
+   IL_28E4: ldc.i4.1 
+   IL_28E5: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_28EA: br IL_2bb4: ldloca.s V_3
+   IL_28EF: ldarg.0 
+   IL_28F0: ldarg.1 
+   IL_28F1: ldloc.0 
+   IL_28F2: ldarg.s style
+   IL_28F4: call Terraria.WorldGen::Place1x1(Int32,Int32,Int32,Int32)
+   IL_28F9: ldarg.0 
+   IL_28FA: ldarg.1 
+   IL_28FB: ldc.i4.1 
+   IL_28FC: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2901: br IL_2bb4: ldloca.s V_3
+   IL_2906: ldarg.0 
+   IL_2907: ldarg.1 
+   IL_2908: ldloc.0 
+   IL_2909: conv.u2 
+   IL_290A: ldarg.s style
+   IL_290C: call Terraria.WorldGen::Place3x4(Int32,Int32,UInt16,Int32)
+   IL_2911: ldarg.0 
+   IL_2912: ldarg.1 
+   IL_2913: ldc.i4.1 
+   IL_2914: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2919: br IL_2bb4: ldloca.s V_3
+   IL_291E: ldarg.0 
+   IL_291F: ldarg.1 
+   IL_2920: ldloc.0 
+   IL_2921: conv.u2 
+   IL_2922: ldarg.s style
+   IL_2924: call Terraria.WorldGen::Place5x4(Int32,Int32,UInt16,Int32)
+   IL_2929: ldarg.0 
+   IL_292A: ldarg.1 
+   IL_292B: ldc.i4.1 
+   IL_292C: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2931: br IL_2bb4: ldloca.s V_3
+   IL_2936: ldarg.0 
+   IL_2937: ldarg.1 
+   IL_2938: ldc.i4.s 27
+   IL_293A: call Terraria.WorldGen::PlaceSunflower(Int32,Int32,UInt16)
+   IL_293F: ldarg.0 
+   IL_2940: ldarg.1 
+   IL_2941: ldc.i4.1 
+   IL_2942: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2947: br IL_2bb4: ldloca.s V_3
+   IL_294C: ldarg.0 
+   IL_294D: ldarg.1 
+   IL_294E: ldc.i4.s 28
+   IL_2950: call Terraria.WorldGen::get_genRand()
+   IL_2955: ldc.i4.4 
+   IL_2956: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_295B: call Terraria.WorldGen::PlacePot(Int32,Int32,UInt16,Int32)
+   IL_2960: pop 
+   IL_2961: ldarg.0 
+   IL_2962: ldarg.1 
+   IL_2963: ldc.i4.1 
+   IL_2964: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2969: br IL_2bb4: ldloca.s V_3
+   IL_296E: ldarg.0 
+   IL_296F: ldarg.1 
+   IL_2970: ldloc.0 
+   IL_2971: conv.u2 
+   IL_2972: ldarg.s style
+   IL_2974: call Terraria.WorldGen::Place1x2Top(Int32,Int32,UInt16,Int32)
+   IL_2979: ldarg.0 
+   IL_297A: ldarg.1 
+   IL_297B: ldc.i4.1 
+   IL_297C: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2981: br IL_2bb4: ldloca.s V_3
+   IL_2986: ldarg.0 
+   IL_2987: ldarg.1 
+   IL_2988: ldloc.0 
+   IL_2989: conv.u2 
+   IL_298A: ldarg.s style
+   IL_298C: call Terraria.WorldGen::PlaceSign(Int32,Int32,UInt16,Int32)
+   IL_2991: pop 
+   IL_2992: br IL_2bb4: ldloca.s V_3
+   IL_2997: ldarg.0 
+   IL_2998: ldarg.1 
+   IL_2999: ldloc.0 
+   IL_299A: conv.u2 
+   IL_299B: ldarg.s style
+   IL_299D: call Terraria.WorldGen::Place2x2Horizontal(Int32,Int32,UInt16,Int32)
+   IL_29A2: pop 
+   IL_29A3: br IL_2bb4: ldloca.s V_3
+   IL_29A8: ldsfld Terraria.Main::tileAlch
+   IL_29AD: ldloc.0 
+   IL_29AE: ldelem.u1 
+   IL_29AF: brfalse.s IL_29c0: ldloc.0
+   IL_29B1: ldarg.0 
+   IL_29B2: ldarg.1 
+   IL_29B3: ldarg.s style
+   IL_29B5: call Terraria.WorldGen::PlaceAlch(Int32,Int32,Int32)
+   IL_29BA: pop 
+   IL_29BB: br IL_2bb4: ldloca.s V_3
+   IL_29C0: ldloc.0 
+   IL_29C1: stloc.s V_18
+   IL_29C3: ldloc.s V_18
+   IL_29C5: ldc.i4.s 126
+   IL_29C7: bgt.s IL_2a32: ldloc.s V_18
+   IL_29C9: ldloc.s V_18
+   IL_29CB: ldc.i4.s 79
+   IL_29CD: bgt.s IL_29e6: ldloc.s V_18
+   IL_29CF: ldloc.s V_18
+   IL_29D1: ldc.i4.s 19
+   IL_29D3: beq IL_2b01: ldloca.s V_3
+   IL_29D8: ldloc.s V_18
+   IL_29DA: ldc.i4.s 79
+   IL_29DC: beq IL_2a9a: ldc.i4.1
+   IL_29E1: br IL_2b52: ldloc.0
+   IL_29E6: ldloc.s V_18
+   IL_29E8: ldc.i4.s 81
+   IL_29EA: beq IL_2ad3: ldloca.s V_3
+   IL_29EF: ldloc.s V_18
+   IL_29F1: ldc.i4.s 90
+   IL_29F3: sub 
+   IL_29F4: switch Mono.Cecil.Cil.Instruction[]
+   IL_2A25: ldloc.s V_18
+   IL_2A27: ldc.i4.s 125
+   IL_2A29: sub 
+   IL_2A2A: ldc.i4.1 
+   IL_2A2B: ble.un.s IL_2a7a: ldarg.0
+   IL_2A2D: br IL_2b52: ldloc.0
+   IL_2A32: ldloc.s V_18
+   IL_2A34: ldc.i4 209
+   IL_2A39: bgt.s IL_2a54: ldloc.s V_18
+   IL_2A3B: ldloc.s V_18
+   IL_2A3D: ldc.i4 172
+   IL_2A42: sub 
+   IL_2A43: ldc.i4.1 
+   IL_2A44: ble.un.s IL_2a7a: ldarg.0
+   IL_2A46: ldloc.s V_18
+   IL_2A48: ldc.i4 209
+   IL_2A4D: beq.s IL_2ac3: ldarg.0
+   IL_2A4F: br IL_2b52: ldloc.0
+   IL_2A54: ldloc.s V_18
+   IL_2A56: ldc.i4 287
+   IL_2A5B: beq.s IL_2a7a: ldarg.0
+   IL_2A5D: ldloc.s V_18
+   IL_2A5F: ldc.i4 314
+   IL_2A64: beq IL_2b48: ldloc.3
+   IL_2A69: ldloc.s V_18
+   IL_2A6B: ldc.i4 380
+   IL_2A70: beq IL_2b26: ldloca.s V_3
+   IL_2A75: br IL_2b52: ldloc.0
+   IL_2A7A: ldarg.0 
+   IL_2A7B: ldarg.1 
+   IL_2A7C: ldloc.0 
+   IL_2A7D: conv.u2 
+   IL_2A7E: ldarg.s style
+   IL_2A80: call Terraria.WorldGen::Place2x2(Int32,Int32,UInt16,Int32)
+   IL_2A85: br IL_2bb4: ldloca.s V_3
+   IL_2A8A: ldarg.0 
+   IL_2A8B: ldarg.1 
+   IL_2A8C: ldloc.0 
+   IL_2A8D: conv.u2 
+   IL_2A8E: ldarg.s style
+   IL_2A90: call Terraria.WorldGen::Place2x2Style(Int32,Int32,UInt16,Int32)
+   IL_2A95: br IL_2bb4: ldloca.s V_3
+   IL_2A9A: ldc.i4.1 
+   IL_2A9B: stloc.s V_19
+   IL_2A9D: ldarg.s plr
+   IL_2A9F: ldc.i4.m1 
+   IL_2AA0: ble.s IL_2ab1: ldarg.0
+   IL_2AA2: ldsfld Terraria.Main::player
+   IL_2AA7: ldarg.s plr
+   IL_2AA9: ldelem.ref 
+   IL_2AAA: ldfld Terraria.Entity::direction
+   IL_2AAF: stloc.s V_19
+   IL_2AB1: ldarg.0 
+   IL_2AB2: ldarg.1 
+   IL_2AB3: ldloc.0 
+   IL_2AB4: conv.u2 
+   IL_2AB5: ldloc.s V_19
+   IL_2AB7: ldarg.s style
+   IL_2AB9: call Terraria.WorldGen::Place4x2(Int32,Int32,UInt16,Int32,Int32)
+   IL_2ABE: br IL_2bb4: ldloca.s V_3
+   IL_2AC3: ldarg.0 
+   IL_2AC4: ldarg.1 
+   IL_2AC5: ldloc.0 
+   IL_2AC6: conv.u2 
+   IL_2AC7: ldarg.s style
+   IL_2AC9: call Terraria.WorldGen::PlaceCannon(Int32,Int32,UInt16,Int32)
+   IL_2ACE: br IL_2bb4: ldloca.s V_3
+   IL_2AD3: ldloca.s V_3
+   IL_2AD5: call Terraria.Tile::get_frameX()
+   IL_2ADA: ldc.i4.s 26
+   IL_2ADC: call Terraria.WorldGen::get_genRand()
+   IL_2AE1: ldc.i4.6 
+   IL_2AE2: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_2AE7: mul 
+   IL_2AE8: conv.i2 
+   IL_2AE9: stind.i2 
+   IL_2AEA: ldloca.s V_3
+   IL_2AEC: ldc.i4.1 
+   IL_2AED: call Terraria.Tile::active(Boolean)
+   IL_2AF2: ldloca.s V_3
+   IL_2AF4: call Terraria.Tile::get_type()
+   IL_2AF9: ldloc.0 
+   IL_2AFA: conv.u2 
+   IL_2AFB: stind.i2 
+   IL_2AFC: br IL_2bb4: ldloca.s V_3
+   IL_2B01: ldloca.s V_3
+   IL_2B03: call Terraria.Tile::get_frameY()
+   IL_2B08: ldc.i4.s 18
+   IL_2B0A: ldarg.s style
+   IL_2B0C: mul 
+   IL_2B0D: conv.i2 
+   IL_2B0E: stind.i2 
+   IL_2B0F: ldloca.s V_3
+   IL_2B11: ldc.i4.1 
+   IL_2B12: call Terraria.Tile::active(Boolean)
+   IL_2B17: ldloca.s V_3
+   IL_2B19: call Terraria.Tile::get_type()
+   IL_2B1E: ldloc.0 
+   IL_2B1F: conv.u2 
+   IL_2B20: stind.i2 
+   IL_2B21: br IL_2bb4: ldloca.s V_3
+   IL_2B26: ldloca.s V_3
+   IL_2B28: call Terraria.Tile::get_frameY()
+   IL_2B2D: ldc.i4.s 18
+   IL_2B2F: ldarg.s style
+   IL_2B31: mul 
+   IL_2B32: conv.i2 
+   IL_2B33: stind.i2 
+   IL_2B34: ldloca.s V_3
+   IL_2B36: ldc.i4.1 
+   IL_2B37: call Terraria.Tile::active(Boolean)
+   IL_2B3C: ldloca.s V_3
+   IL_2B3E: call Terraria.Tile::get_type()
+   IL_2B43: ldloc.0 
+   IL_2B44: conv.u2 
+   IL_2B45: stind.i2 
+   IL_2B46: br.s IL_2bb4: ldloca.s V_3
+   IL_2B48: ldloc.3 
+   IL_2B49: ldarg.s style
+   IL_2B4B: call Terraria.Minecart::PlaceTrack(Tile,Int32)
+   IL_2B50: br.s IL_2bb4: ldloca.s V_3
+   IL_2B52: ldloc.0 
+   IL_2B53: ldsfld Terraria.ID.TileID::Count
+   IL_2B58: blt.s IL_2b77: ldloca.s V_3
+   IL_2B5A: ldloc.0 
+   IL_2B5B: ldarg.s style
+   IL_2B5D: ldc.i4.0 
+   IL_2B5E: call Terraria.ObjectData.TileObjectData::GetTileData(Int32,Int32,Int32)
+   IL_2B63: brfalse.s IL_2b77: ldloca.s V_3
+   IL_2B65: ldarg.0 
+   IL_2B66: ldarg.1 
+   IL_2B67: ldloc.0 
+   IL_2B68: conv.u2 
+   IL_2B69: ldarg.3 
+   IL_2B6A: ldarg.s style
+   IL_2B6C: ldc.i4.0 
+   IL_2B6D: ldc.i4.m1 
+   IL_2B6E: ldc.i4.m1 
+   IL_2B6F: call Terraria.WorldGen::PlaceObject(Int32,Int32,Int32,Boolean,Int32,Int32,Int32,Int32)
+   IL_2B74: pop 
+   IL_2B75: br.s IL_2bb4: ldloca.s V_3
+   IL_2B77: ldloca.s V_3
+   IL_2B79: ldc.i4.1 
+   IL_2B7A: call Terraria.Tile::active(Boolean)
+   IL_2B7F: ldloca.s V_3
+   IL_2B81: call Terraria.Tile::get_type()
+   IL_2B86: ldloc.0 
+   IL_2B87: conv.u2 
+   IL_2B88: stind.i2 
+   IL_2B89: ldsfld Terraria.Main::tenthAnniversaryWorld
+   IL_2B8E: brfalse.s IL_2bb4: ldloca.s V_3
+   IL_2B90: ldsfld Terraria.Main::remixWorld
+   IL_2B95: brtrue.s IL_2bb4: ldloca.s V_3
+   IL_2B97: ldloc.0 
+   IL_2B98: ldc.i4.s 53
+   IL_2B9A: beq.s IL_2bac: ldloca.s V_3
+   IL_2B9C: ldloc.0 
+   IL_2B9D: ldc.i4 396
+   IL_2BA2: beq.s IL_2bac: ldloca.s V_3
+   IL_2BA4: ldloc.0 
+   IL_2BA5: ldc.i4 397
+   IL_2BAA: bne.un.s IL_2bb4: ldloca.s V_3
+   IL_2BAC: ldloca.s V_3
+   IL_2BAE: ldc.i4.7 
+   IL_2BAF: call Terraria.Tile::color(Byte)
+   IL_2BB4: ldloca.s V_3
+   IL_2BB6: call Terraria.Tile::active()
+   IL_2BBB: brfalse IL_2cc8: ldloc.1
+   IL_2BC0: ldsfld Terraria.ID.TileID/Sets::BlocksWaterDrawingBehindSelf
+   IL_2BC5: ldloca.s V_3
+   IL_2BC7: call Terraria.Tile::get_type()
+   IL_2BCC: ldind.u2 
+   IL_2BCD: ldelem.u1 
+   IL_2BCE: brfalse.s IL_2bd8: ldarg.0
+   IL_2BD0: ldarg.0 
+   IL_2BD1: ldarg.1 
+   IL_2BD2: ldc.i4.1 
+   IL_2BD3: call Terraria.WorldGen::SquareWallFrame(Int32,Int32,Boolean)
+   IL_2BD8: ldarg.0 
+   IL_2BD9: ldarg.1 
+   IL_2BDA: ldc.i4.1 
+   IL_2BDB: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_2BE0: ldc.i4.1 
+   IL_2BE1: stloc.1 
+   IL_2BE2: ldarg.3 
+   IL_2BE3: brtrue IL_2cc8: ldloc.1
+   IL_2BE8: ldsfld Terraria.WorldGen::generatingWorld
+   IL_2BED: brtrue IL_2cc8: ldloc.1
+   IL_2BF2: ldloc.0 
+   IL_2BF3: ldc.i4.s 127
+   IL_2BF5: beq.s IL_2c0b: ldsfld Terraria.Audio.SoundStyle Terraria.ID.SoundID::Item30
+   IL_2BF7: ldloc.0 
+   IL_2BF8: ldc.i4 314
+   IL_2BFD: beq.s IL_2c25: ldsfld Terraria.Audio.SoundStyle Terraria.ID.SoundID::Item52
+   IL_2BFF: ldloc.0 
+   IL_2C00: ldc.i4 330
+   IL_2C05: sub 
+   IL_2C06: ldc.i4.3 
+   IL_2C07: ble.un.s IL_2c3f: ldc.i4.s 18
+   IL_2C09: br.s IL_2c5c: ldc.i4.0
+   IL_2C0B: ldsfld Terraria.ID.SoundID::Item30
+   IL_2C10: newobj System.Nullable`1<Terraria.Audio.SoundStyle>::.ctor(!0)
+   IL_2C15: ldarg.0 
+   IL_2C16: ldc.i4.s 16
+   IL_2C18: mul 
+   IL_2C19: ldarg.1 
+   IL_2C1A: ldc.i4.s 16
+   IL_2C1C: mul 
+   IL_2C1D: call Terraria.Audio.SoundEngine::PlaySound(Nullable`1,Int32,Int32)
+   IL_2C22: pop 
+   IL_2C23: br.s IL_2c76: ldloc.0
+   IL_2C25: ldsfld Terraria.ID.SoundID::Item52
+   IL_2C2A: newobj System.Nullable`1<Terraria.Audio.SoundStyle>::.ctor(!0)
+   IL_2C2F: ldarg.0 
+   IL_2C30: ldc.i4.s 16
+   IL_2C32: mul 
+   IL_2C33: ldarg.1 
+   IL_2C34: ldc.i4.s 16
+   IL_2C36: mul 
+   IL_2C37: call Terraria.Audio.SoundEngine::PlaySound(Nullable`1,Int32,Int32)
+   IL_2C3C: pop 
+   IL_2C3D: br.s IL_2c76: ldloc.0
+   IL_2C3F: ldc.i4.s 18
+   IL_2C41: ldarg.0 
+   IL_2C42: ldc.i4.s 16
+   IL_2C44: mul 
+   IL_2C45: ldarg.1 
+   IL_2C46: ldc.i4.s 16
+   IL_2C48: mul 
+   IL_2C49: ldc.i4.1 
+   IL_2C4A: ldc.r4 1
+   IL_2C4F: ldc.r4 0
+   IL_2C54: call Terraria.Audio.SoundEngine::PlaySound(Int32,Int32,Int32,Int32,Single,Single)
+   IL_2C59: pop 
+   IL_2C5A: br.s IL_2c76: ldloc.0
+   IL_2C5C: ldc.i4.0 
+   IL_2C5D: ldarg.0 
+   IL_2C5E: ldc.i4.s 16
+   IL_2C60: mul 
+   IL_2C61: ldarg.1 
+   IL_2C62: ldc.i4.s 16
+   IL_2C64: mul 
+   IL_2C65: ldc.i4.1 
+   IL_2C66: ldc.r4 1
+   IL_2C6B: ldc.r4 0
+   IL_2C70: call Terraria.Audio.SoundEngine::PlaySound(Int32,Int32,Int32,Int32,Single,Single)
+   IL_2C75: pop 
+   IL_2C76: ldloc.0 
+   IL_2C77: ldc.i4.s 22
+   IL_2C79: beq.s IL_2c83: ldc.i4.0
+   IL_2C7B: ldloc.0 
+   IL_2C7C: ldc.i4 140
+   IL_2C81: bne.un.s IL_2cc8: ldloc.1
+   IL_2C83: ldc.i4.0 
+   IL_2C84: stloc.s V_20
+   IL_2C86: br.s IL_2cc3: ldloc.s V_20
+   IL_2C88: ldarg.0 
+   IL_2C89: ldc.i4.s 16
+   IL_2C8B: mul 
+   IL_2C8C: conv.r4 
+   IL_2C8D: ldarg.1 
+   IL_2C8E: ldc.i4.s 16
+   IL_2C90: mul 
+   IL_2C91: conv.r4 
+   IL_2C92: newobj Microsoft.Xna.Framework.Vector2::.ctor(Single,Single)
+   IL_2C97: ldc.i4.s 16
+   IL_2C99: ldc.i4.s 16
+   IL_2C9B: ldc.i4.s 14
+   IL_2C9D: ldc.r4 0
+   IL_2CA2: ldc.r4 0
+   IL_2CA7: ldc.i4.0 
+   IL_2CA8: ldloca.s V_21
+   IL_2CAA: initobj Microsoft.Xna.Framework.Color
+   IL_2CB0: ldloc.s V_21
+   IL_2CB2: ldc.r4 1
+   IL_2CB7: call Terraria.Dust::NewDust(Vector2,Int32,Int32,Int32,Single,Single,Int32,Color,Single)
+   IL_2CBC: pop 
+   IL_2CBD: ldloc.s V_20
+   IL_2CBF: ldc.i4.1 
+   IL_2CC0: add 
+   IL_2CC1: stloc.s V_20
+   IL_2CC3: ldloc.s V_20
+   IL_2CC5: ldc.i4.3 
+   IL_2CC6: blt.s IL_2c88: ldarg.0
+   IL_2CC8: ldloc.1 
+   IL_2CC9: ret 
+
+### Terraria.WorldGen::KillTile
+   LOCAL Terraria.Tile 0
+   LOCAL System.Int32 1
+   LOCAL Terraria.Tile 2
+   LOCAL System.Int32 3
+   LOCAL System.Int32 4
+   LOCAL System.Int32 5
+   LOCAL System.Int32 6
+   LOCAL System.Int32 7
+   LOCAL System.Int32 8
+   LOCAL System.Int32 9
+   LOCAL System.Int32 10
+   LOCAL System.Int32 11
+   LOCAL System.Int32 12
+   LOCAL System.Int32 13
+   LOCAL Terraria.Item 14
+   LOCAL System.Int32 15
+   LOCAL System.Int32 16
+   LOCAL System.Int32 17
+   LOCAL System.Int32 18
+   LOCAL System.Int32 19
+   LOCAL System.Int32 20
+   LOCAL System.Int32 21
+   LOCAL System.Int32 22
+   LOCAL System.Int32 23
+   LOCAL Terraria.Tile 24
+   LOCAL System.Int32 25
+   LOCAL System.Int32 26
+   LOCAL System.Int32 27
+   LOCAL Terraria.DataStructures.EntitySource_TileBreak 28
+   LOCAL System.Int32 29
+   LOCAL System.Int32 30
+   LOCAL System.Int32 31
+   LOCAL System.Int32 32
+   LOCAL Terraria.Tile 33
+   LOCAL System.Int32 34
+   LOCAL Microsoft.Xna.Framework.Point 35
+   IL_0000: ldarg.0 
+   IL_0001: ldc.i4.0 
+   IL_0002: blt.s IL_0018: ret
+   IL_0004: ldarg.1 
+   IL_0005: ldc.i4.0 
+   IL_0006: blt.s IL_0018: ret
+   IL_0008: ldarg.0 
+   IL_0009: ldsfld Terraria.Main::maxTilesX
+   IL_000E: bge.s IL_0018: ret
+   IL_0010: ldarg.1 
+   IL_0011: ldsfld Terraria.Main::maxTilesY
+   IL_0016: blt.s IL_0019: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0018: ret 
+   IL_0019: ldsflda Terraria.Main::tile
+   IL_001E: ldarg.0 
+   IL_001F: ldarg.1 
+   IL_0020: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0025: stloc.0 
+   IL_0026: ldloc.0 
+   IL_0027: ldnull 
+   IL_0028: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_002D: brfalse.s IL_0044: ldloca.s V_0
+   IL_002F: ldloca.s V_0
+   IL_0031: initobj Terraria.Tile
+   IL_0037: ldsflda Terraria.Main::tile
+   IL_003C: ldarg.0 
+   IL_003D: ldarg.1 
+   IL_003E: ldloc.0 
+   IL_003F: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_0044: ldloca.s V_0
+   IL_0046: call Terraria.Tile::active()
+   IL_004B: brtrue.s IL_004e: ldarg.1
+   IL_004D: ret 
+   IL_004E: ldarg.1 
+   IL_004F: ldc.i4.1 
+   IL_0050: blt.s IL_007f: ldarg.0
+   IL_0052: ldsflda Terraria.Main::tile
+   IL_0057: ldarg.0 
+   IL_0058: ldarg.1 
+   IL_0059: ldc.i4.1 
+   IL_005A: sub 
+   IL_005B: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0060: ldnull 
+   IL_0061: call Terraria.Tile::op_Equality(Tile,ArgumentException)
+   IL_0066: brfalse.s IL_007f: ldarg.0
+   IL_0068: ldsflda Terraria.Main::tile
+   IL_006D: ldarg.0 
+   IL_006E: ldarg.1 
+   IL_006F: ldc.i4.1 
+   IL_0070: sub 
+   IL_0071: ldloca.s V_2
+   IL_0073: initobj Terraria.Tile
+   IL_0079: ldloc.2 
+   IL_007A: call Terraria.Tilemap::set_Item(Int32,Int32,Tile)
+   IL_007F: ldarg.0 
+   IL_0080: ldarg.1 
+   IL_0081: call Terraria.WorldGen::CheckTileBreakability(Int32,Int32)
+   IL_0086: dup 
+   IL_0087: ldc.i4.1 
+   IL_0088: bne.un.s IL_008d: ldc.i4.2
+   IL_008A: ldc.i4.1 
+   IL_008B: starg.s fail
+   IL_008D: ldc.i4.2 
+   IL_008E: bne.un.s IL_0091: ldarg.0
+   IL_0090: ret 
+   IL_0091: ldarg.0 
+   IL_0092: ldarg.1 
+   IL_0093: ldloca.s V_0
+   IL_0095: call Terraria.Tile::get_type()
+   IL_009A: ldind.u2 
+   IL_009B: ldarga.s fail
+   IL_009D: ldarga.s effectOnly
+   IL_009F: ldarga.s noItem
+   IL_00A1: call Terraria.ModLoader.TileLoader::KillTile(Int32,Int32,Int32,Boolean&,Boolean&,Boolean&)
+   IL_00A6: volatile. 
+   IL_00A8: ldsfld Terraria.WorldGen::gen
+   IL_00AD: brfalse.s IL_00b2: ldarg.3
+   IL_00AF: ldc.i4.1 
+   IL_00B0: starg.s noItem
+   IL_00B2: ldarg.3 
+   IL_00B3: brtrue.s IL_00ea: ldloca.s V_0
+   IL_00B5: ldsfld Terraria.WorldGen::stopDrops
+   IL_00BA: brtrue.s IL_00ea: ldloca.s V_0
+   IL_00BC: ldarg.s noItem
+   IL_00BE: brtrue.s IL_00ca: ldsfld System.Boolean Terraria.Main::dedServ
+   IL_00C0: ldarg.0 
+   IL_00C1: ldarg.1 
+   IL_00C2: call Terraria.GameContent.FixExploitManEaters::SpotProtected(Int32,Int32)
+   IL_00C7: brfalse.s IL_00ca: ldsfld System.Boolean Terraria.Main::dedServ
+   IL_00C9: ret 
+   IL_00CA: ldsfld Terraria.Main::dedServ
+   IL_00CF: brtrue.s IL_00ea: ldloca.s V_0
+   IL_00D1: volatile. 
+   IL_00D3: ldsfld Terraria.WorldGen::gen
+   IL_00D8: brtrue.s IL_00ea: ldloca.s V_0
+   IL_00DA: ldsfld Terraria.Main::gameMenu
+   IL_00DF: brtrue.s IL_00ea: ldloca.s V_0
+   IL_00E1: ldarg.0 
+   IL_00E2: ldarg.1 
+   IL_00E3: ldarg.2 
+   IL_00E4: ldloc.0 
+   IL_00E5: call Terraria.WorldGen::KillTile_PlaySounds(Int32,Int32,Boolean,Tile)
+   IL_00EA: ldloca.s V_0
+   IL_00EC: call Terraria.Tile::get_type()
+   IL_00F1: ldind.u2 
+   IL_00F2: ldc.i4 128
+   IL_00F7: beq.s IL_010b: ldarg.0
+   IL_00F9: ldloca.s V_0
+   IL_00FB: call Terraria.Tile::get_type()
+   IL_0100: ldind.u2 
+   IL_0101: ldc.i4 269
+   IL_0106: bne.un IL_0255: ldloca.s V_0
+   IL_010B: ldarg.0 
+   IL_010C: stloc.3 
+   IL_010D: ldloca.s V_0
+   IL_010F: call Terraria.Tile::get_frameX()
+   IL_0114: ldind.i2 
+   IL_0115: stloc.s V_4
+   IL_0117: ldloca.s V_0
+   IL_0119: call Terraria.Tile::get_frameX()
+   IL_011E: ldind.i2 
+   IL_011F: stloc.s V_5
+   IL_0121: br.s IL_012a: ldloc.s V_5
+   IL_0123: ldloc.s V_5
+   IL_0125: ldc.i4.s 100
+   IL_0127: sub 
+   IL_0128: stloc.s V_5
+   IL_012A: ldloc.s V_5
+   IL_012C: ldc.i4.s 100
+   IL_012E: bge.s IL_0123: ldloc.s V_5
+   IL_0130: br.s IL_0139: ldloc.s V_5
+   IL_0132: ldloc.s V_5
+   IL_0134: ldc.i4.s 36
+   IL_0136: sub 
+   IL_0137: stloc.s V_5
+   IL_0139: ldloc.s V_5
+   IL_013B: ldc.i4.s 36
+   IL_013D: bge.s IL_0132: ldloc.s V_5
+   IL_013F: ldloc.s V_5
+   IL_0141: ldc.i4.s 18
+   IL_0143: bne.un.s IL_0162: ldloc.s V_4
+   IL_0145: ldsflda Terraria.Main::tile
+   IL_014A: ldarg.0 
+   IL_014B: ldc.i4.1 
+   IL_014C: sub 
+   IL_014D: ldarg.1 
+   IL_014E: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0153: stloc.2 
+   IL_0154: ldloca.s V_2
+   IL_0156: call Terraria.Tile::get_frameX()
+   IL_015B: ldind.i2 
+   IL_015C: stloc.s V_4
+   IL_015E: ldloc.3 
+   IL_015F: ldc.i4.1 
+   IL_0160: sub 
+   IL_0161: stloc.3 
+   IL_0162: ldloc.s V_4
+   IL_0164: ldc.i4.s 100
+   IL_0166: blt IL_0255: ldloca.s V_0
+   IL_016B: ldc.i4.0 
+   IL_016C: stloc.s V_6
+   IL_016E: br.s IL_017d: ldloc.s V_4
+   IL_0170: ldloc.s V_4
+   IL_0172: ldc.i4.s 100
+   IL_0174: sub 
+   IL_0175: stloc.s V_4
+   IL_0177: ldloc.s V_6
+   IL_0179: ldc.i4.1 
+   IL_017A: add 
+   IL_017B: stloc.s V_6
+   IL_017D: ldloc.s V_4
+   IL_017F: ldc.i4.s 100
+   IL_0181: bge.s IL_0170: ldloc.s V_4
+   IL_0183: ldsflda Terraria.Main::tile
+   IL_0188: ldloc.3 
+   IL_0189: ldarg.1 
+   IL_018A: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_018F: stloc.2 
+   IL_0190: ldloca.s V_2
+   IL_0192: call Terraria.Tile::get_frameY()
+   IL_0197: ldind.i2 
+   IL_0198: ldc.i4.s 18
+   IL_019A: div 
+   IL_019B: dup 
+   IL_019C: brtrue.s IL_01c4: dup
+   IL_019E: ldarg.0 
+   IL_019F: ldarg.1 
+   IL_01A0: call Terraria.WorldGen::GetItemSource_FromTileBreak(Int32,Int32)
+   IL_01A5: ldarg.0 
+   IL_01A6: ldc.i4.s 16
+   IL_01A8: mul 
+   IL_01A9: ldarg.1 
+   IL_01AA: ldc.i4.s 16
+   IL_01AC: mul 
+   IL_01AD: ldc.i4.s 16
+   IL_01AF: ldc.i4.s 16
+   IL_01B1: ldsfld Terraria.Item::headType
+   IL_01B6: ldloc.s V_6
+   IL_01B8: ldelem.i4 
+   IL_01B9: ldc.i4.1 
+   IL_01BA: ldc.i4.0 
+   IL_01BB: ldc.i4.0 
+   IL_01BC: ldc.i4.0 
+   IL_01BD: ldc.i4.0 
+   IL_01BE: call Terraria.Item::NewItem(IEntitySource,Int32,Int32,Int32,Int32,Int32,Int32,Boolean,Int32,Boolean,Boolean)
+   IL_01C3: pop 
+   IL_01C4: dup 
+   IL_01C5: ldc.i4.1 
+   IL_01C6: bne.un.s IL_01ee: ldc.i4.2
+   IL_01C8: ldarg.0 
+   IL_01C9: ldarg.1 
+   IL_01CA: call Terraria.WorldGen::GetItemSource_FromTileBreak(Int32,Int32)
+   IL_01CF: ldarg.0 
+   IL_01D0: ldc.i4.s 16
+   IL_01D2: mul 
+   IL_01D3: ldarg.1 
+   IL_01D4: ldc.i4.s 16
+   IL_01D6: mul 
+   IL_01D7: ldc.i4.s 16
+   IL_01D9: ldc.i4.s 16
+   IL_01DB: ldsfld Terraria.Item::bodyType
+   IL_01E0: ldloc.s V_6
+   IL_01E2: ldelem.i4 
+   IL_01E3: ldc.i4.1 
+   IL_01E4: ldc.i4.0 
+   IL_01E5: ldc.i4.0 
+   IL_01E6: ldc.i4.0 
+   IL_01E7: ldc.i4.0 
+   IL_01E8: call Terraria.Item::NewItem(IEntitySource,Int32,Int32,Int32,Int32,Int32,Int32,Boolean,Int32,Boolean,Boolean)
+   IL_01ED: pop 
+   IL_01EE: ldc.i4.2 
+   IL_01EF: bne.un.s IL_0217: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_01F1: ldarg.0 
+   IL_01F2: ldarg.1 
+   IL_01F3: call Terraria.WorldGen::GetItemSource_FromTileBreak(Int32,Int32)
+   IL_01F8: ldarg.0 
+   IL_01F9: ldc.i4.s 16
+   IL_01FB: mul 
+   IL_01FC: ldarg.1 
+   IL_01FD: ldc.i4.s 16
+   IL_01FF: mul 
+   IL_0200: ldc.i4.s 16
+   IL_0202: ldc.i4.s 16
+   IL_0204: ldsfld Terraria.Item::legType
+   IL_0209: ldloc.s V_6
+   IL_020B: ldelem.i4 
+   IL_020C: ldc.i4.1 
+   IL_020D: ldc.i4.0 
+   IL_020E: ldc.i4.0 
+   IL_020F: ldc.i4.0 
+   IL_0210: ldc.i4.0 
+   IL_0211: call Terraria.Item::NewItem(IEntitySource,Int32,Int32,Int32,Int32,Int32,Int32,Boolean,Int32,Boolean,Boolean)
+   IL_0216: pop 
+   IL_0217: ldsflda Terraria.Main::tile
+   IL_021C: ldloc.3 
+   IL_021D: ldarg.1 
+   IL_021E: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0223: stloc.2 
+   IL_0224: ldloca.s V_2
+   IL_0226: call Terraria.Tile::get_frameX()
+   IL_022B: ldind.i2 
+   IL_022C: stloc.s V_4
+   IL_022E: br.s IL_0237: ldloc.s V_4
+   IL_0230: ldloc.s V_4
+   IL_0232: ldc.i4.s 100
+   IL_0234: sub 
+   IL_0235: stloc.s V_4
+   IL_0237: ldloc.s V_4
+   IL_0239: ldc.i4.s 100
+   IL_023B: bge.s IL_0230: ldloc.s V_4
+   IL_023D: ldsflda Terraria.Main::tile
+   IL_0242: ldloc.3 
+   IL_0243: ldarg.1 
+   IL_0244: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0249: stloc.2 
+   IL_024A: ldloca.s V_2
+   IL_024C: call Terraria.Tile::get_frameX()
+   IL_0251: ldloc.s V_4
+   IL_0253: conv.i2 
+   IL_0254: stind.i2 
+   IL_0255: ldloca.s V_0
+   IL_0257: call Terraria.Tile::get_type()
+   IL_025C: ldind.u2 
+   IL_025D: ldc.i4 334
+   IL_0262: bne.un IL_0447: ldloca.s V_0
+   IL_0267: ldarg.0 
+   IL_0268: stloc.s V_7
+   IL_026A: ldloca.s V_0
+   IL_026C: call Terraria.Tile::get_frameX()
+   IL_0271: ldind.i2 
+   IL_0272: stloc.s V_8
+   IL_0274: ldloca.s V_0
+   IL_0276: call Terraria.Tile::get_frameX()
+   IL_027B: ldind.i2 
+   IL_027C: stloc.s V_9
+   IL_027E: ldc.i4.0 
+   IL_027F: stloc.s V_10
+   IL_0281: br.s IL_0293: ldloc.s V_9
+   IL_0283: ldloc.s V_9
+   IL_0285: ldc.i4 5000
+   IL_028A: sub 
+   IL_028B: stloc.s V_9
+   IL_028D: ldloc.s V_10
+   IL_028F: ldc.i4.1 
+   IL_0290: add 
+   IL_0291: stloc.s V_10
+   IL_0293: ldloc.s V_9
+   IL_0295: ldc.i4 5000
+   IL_029A: bge.s IL_0283: ldloc.s V_9
+   IL_029C: ldloc.s V_10
+   IL_029E: brfalse.s IL_02a9: ldloc.s V_9
+   IL_02A0: ldloc.s V_10
+   IL_02A2: ldc.i4.1 
+   IL_02A3: sub 
+   IL_02A4: ldc.i4.s 18
+   IL_02A6: mul 
+   IL_02A7: stloc.s V_9
+   IL_02A9: ldloc.s V_9
+   IL_02AB: ldc.i4.s 54
+   IL_02AD: rem 
+   IL_02AE: stloc.s V_9
+   IL_02B0: ldloc.s V_9
+   IL_02B2: ldc.i4.s 18
+   IL_02B4: bne.un.s IL_02d5: ldloc.s V_9
+   IL_02B6: ldsflda Terraria.Main::tile
+   IL_02BB: ldarg.0 
+   IL_02BC: ldc.i4.1 
+   IL_02BD: sub 
+   IL_02BE: ldarg.1 
+   IL_02BF: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_02C4: stloc.2 
+   IL_02C5: ldloca.s V_2
+   IL_02C7: call Terraria.Tile::get_frameX()
+   IL_02CC: ldind.i2 
+   IL_02CD: stloc.s V_8
+   IL_02CF: ldloc.s V_7
+   IL_02D1: ldc.i4.1 
+   IL_02D2: sub 
+   IL_02D3: stloc.s V_7
+   IL_02D5: ldloc.s V_9
+   IL_02D7: ldc.i4.s 36
+   IL_02D9: bne.un.s IL_02fa: ldloc.s V_8
+   IL_02DB: ldsflda Terraria.Main::tile
+   IL_02E0: ldarg.0 
+   IL_02E1: ldc.i4.2 
+   IL_02E2: sub 
+   IL_02E3: ldarg.1 
+   IL_02E4: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_02E9: stloc.2 
+   IL_02EA: ldloca.s V_2
+   IL_02EC: call Terraria.Tile::get_frameX()
+   IL_02F1: ldind.i2 
+   IL_02F2: stloc.s V_8
+   IL_02F4: ldloc.s V_7
+   IL_02F6: ldc.i4.2 
+   IL_02F7: sub 
+   IL_02F8: stloc.s V_7
+   IL_02FA: ldloc.s V_8
+   IL_02FC: ldc.i4 5000
+   IL_0301: blt IL_0447: ldloca.s V_0
+   IL_0306: ldloc.s V_8
+   IL_0308: ldc.i4 5000
+   IL_030D: rem 
+   IL_030E: stloc.s V_11
+   IL_0310: ldloc.s V_11
+   IL_0312: ldc.i4.s 100
+   IL_0314: sub 
+   IL_0315: stloc.s V_11
+   IL_0317: ldsflda Terraria.Main::tile
+   IL_031C: ldloc.s V_7
+   IL_031E: ldc.i4.1 
+   IL_031F: add 
+   IL_0320: ldarg.1 
+   IL_0321: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0326: stloc.2 
+   IL_0327: ldloca.s V_2
+   IL_0329: call Terraria.Tile::get_frameX()
+   IL_032E: ldind.i2 
+   IL_032F: stloc.s V_12
+   IL_0331: ldloc.s V_12
+   IL_0333: ldc.i4 25000
+   IL_0338: blt.s IL_0344: ldloc.s V_12
+   IL_033A: ldloc.s V_12
+   IL_033C: ldc.i4 25000
+   IL_0341: sub 
+   IL_0342: br.s IL_034c: stloc.s V_12
+   IL_0344: ldloc.s V_12
+   IL_0346: ldc.i4 10000
+   IL_034B: sub 
+   IL_034C: stloc.s V_12
+   IL_034E: ldsfld Terraria.Main::netMode
+   IL_0353: ldc.i4.1 
+   IL_0354: beq.s IL_03cd: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0356: newobj Terraria.Item::.ctor()
+   IL_035B: stloc.s V_14
+   IL_035D: ldloc.s V_14
+   IL_035F: ldloc.s V_11
+   IL_0361: callvirt Terraria.Item::netDefaults(Int32)
+   IL_0366: ldloc.s V_14
+   IL_0368: ldloc.s V_12
+   IL_036A: callvirt Terraria.Item::Prefix(Int32)
+   IL_036F: pop 
+   IL_0370: ldarg.0 
+   IL_0371: ldarg.1 
+   IL_0372: call Terraria.WorldGen::GetItemSource_FromTileBreak(Int32,Int32)
+   IL_0377: ldarg.0 
+   IL_0378: ldc.i4.s 16
+   IL_037A: mul 
+   IL_037B: ldarg.1 
+   IL_037C: ldc.i4.s 16
+   IL_037E: mul 
+   IL_037F: ldc.i4.s 16
+   IL_0381: ldc.i4.s 16
+   IL_0383: ldloc.s V_11
+   IL_0385: ldc.i4.1 
+   IL_0386: ldc.i4.1 
+   IL_0387: ldc.i4.0 
+   IL_0388: ldc.i4.0 
+   IL_0389: ldc.i4.0 
+   IL_038A: call Terraria.Item::NewItem(IEntitySource,Int32,Int32,Int32,Int32,Int32,Int32,Boolean,Int32,Boolean,Boolean)
+   IL_038F: stloc.s V_15
+   IL_0391: ldloc.s V_14
+   IL_0393: ldsfld Terraria.Main::item
+   IL_0398: ldloc.s V_15
+   IL_039A: ldelem.ref 
+   IL_039B: ldfld Terraria.Entity::position
+   IL_03A0: stfld Terraria.Entity::position
+   IL_03A5: ldsfld Terraria.Main::item
+   IL_03AA: ldloc.s V_15
+   IL_03AC: ldloc.s V_14
+   IL_03AE: stelem.ref 
+   IL_03AF: ldc.i4.s 21
+   IL_03B1: ldc.i4.m1 
+   IL_03B2: ldc.i4.m1 
+   IL_03B3: ldnull 
+   IL_03B4: ldloc.s V_15
+   IL_03B6: ldc.r4 0
+   IL_03BB: ldc.r4 0
+   IL_03C0: ldc.r4 0
+   IL_03C5: ldc.i4.0 
+   IL_03C6: ldc.i4.0 
+   IL_03C7: ldc.i4.0 
+   IL_03C8: call Terraria.NetMessage::SendData(Int32,Int32,Int32,NetworkText,Int32,Single,Single,Single,Int32,Int32,Int32)
+   IL_03CD: ldsflda Terraria.Main::tile
+   IL_03D2: ldloc.s V_7
+   IL_03D4: ldarg.1 
+   IL_03D5: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_03DA: stloc.2 
+   IL_03DB: ldloca.s V_2
+   IL_03DD: call Terraria.Tile::get_frameX()
+   IL_03E2: ldind.i2 
+   IL_03E3: stloc.s V_8
+   IL_03E5: ldc.i4.0 
+   IL_03E6: stloc.s V_13
+   IL_03E8: br.s IL_03fa: ldloc.s V_8
+   IL_03EA: ldloc.s V_8
+   IL_03EC: ldc.i4 5000
+   IL_03F1: sub 
+   IL_03F2: stloc.s V_8
+   IL_03F4: ldloc.s V_13
+   IL_03F6: ldc.i4.1 
+   IL_03F7: add 
+   IL_03F8: stloc.s V_13
+   IL_03FA: ldloc.s V_8
+   IL_03FC: ldc.i4 5000
+   IL_0401: bge.s IL_03ea: ldloc.s V_8
+   IL_0403: ldloc.s V_13
+   IL_0405: brfalse.s IL_0410: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0407: ldloc.s V_13
+   IL_0409: ldc.i4.1 
+   IL_040A: sub 
+   IL_040B: ldc.i4.s 18
+   IL_040D: mul 
+   IL_040E: stloc.s V_8
+   IL_0410: ldsflda Terraria.Main::tile
+   IL_0415: ldloc.s V_7
+   IL_0417: ldarg.1 
+   IL_0418: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_041D: stloc.2 
+   IL_041E: ldloca.s V_2
+   IL_0420: call Terraria.Tile::get_frameX()
+   IL_0425: ldloc.s V_8
+   IL_0427: conv.i2 
+   IL_0428: stind.i2 
+   IL_0429: ldsflda Terraria.Main::tile
+   IL_042E: ldloc.s V_7
+   IL_0430: ldc.i4.1 
+   IL_0431: add 
+   IL_0432: ldarg.1 
+   IL_0433: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_0438: stloc.2 
+   IL_0439: ldloca.s V_2
+   IL_043B: call Terraria.Tile::get_frameX()
+   IL_0440: ldloc.s V_8
+   IL_0442: ldc.i4.s 18
+   IL_0444: add 
+   IL_0445: conv.i2 
+   IL_0446: stind.i2 
+   IL_0447: ldloca.s V_0
+   IL_0449: call Terraria.Tile::get_type()
+   IL_044E: ldind.u2 
+   IL_044F: ldc.i4 395
+   IL_0454: bne.un.s IL_04ce: ldloca.s V_0
+   IL_0456: ldarg.0 
+   IL_0457: ldloca.s V_0
+   IL_0459: call Terraria.Tile::get_frameX()
+   IL_045E: ldind.i2 
+   IL_045F: ldc.i4.s 36
+   IL_0461: rem 
+   IL_0462: ldc.i4.s 18
+   IL_0464: div 
+   IL_0465: sub 
+   IL_0466: ldarg.1 
+   IL_0467: ldloca.s V_0
+   IL_0469: call Terraria.Tile::get_frameY()
+   IL_046E: ldind.i2 
+   IL_046F: ldc.i4.s 36
+   IL_0471: rem 
+   IL_0472: ldc.i4.s 18
+   IL_0474: div 
+   IL_0475: sub 
+   IL_0476: call Terraria.GameContent.Tile_Entities.TEItemFrame::Find(Int32,Int32)
+   IL_047B: stloc.s V_16
+   IL_047D: ldloc.s V_16
+   IL_047F: ldc.i4.m1 
+   IL_0480: beq.s IL_04ce: ldloca.s V_0
+   IL_0482: ldsfld Terraria.DataStructures.TileEntity::ByID
+   IL_0487: ldloc.s V_16
+   IL_0489: callvirt System.Collections.Generic.Dictionary`2<System.Int32,Terraria.DataStructures.TileEntity>::get_Item(!0)
+   IL_048E: castclass Terraria.GameContent.Tile_Entities.TEItemFrame
+   IL_0493: ldfld Terraria.GameContent.Tile_Entities.TEItemFrame::item
+   IL_0498: ldfld Terraria.Item::stack
+   IL_049D: ldc.i4.0 
+   IL_049E: ble.s IL_04ce: ldloca.s V_0
+   IL_04A0: ldsfld Terraria.DataStructures.TileEntity::ByID
+   IL_04A5: ldloc.s V_16
+   IL_04A7: callvirt System.Collections.Generic.Dictionary`2<System.Int32,Terraria.DataStructures.TileEntity>::get_Item(!0)
+   IL_04AC: castclass Terraria.GameContent.Tile_Entities.TEItemFrame
+   IL_04B1: callvirt Terraria.GameContent.Tile_Entities.TEItemFrame::DropItem()
+   IL_04B6: ldsfld Terraria.Main::netMode
+   IL_04BB: ldc.i4.2 
+   IL_04BC: beq.s IL_04cd: ret
+   IL_04BE: call Terraria.Main::get_LocalPlayer()
+   IL_04C3: ldc.i4 395
+   IL_04C8: callvirt Terraria.Player::InterruptItemUsageIfOverTile(Int32)
+   IL_04CD: ret 
+   IL_04CE: ldloca.s V_0
+   IL_04D0: call Terraria.Tile::get_type()
+   IL_04D5: ldind.u2 
+   IL_04D6: ldc.i4 471
+   IL_04DB: bne.un.s IL_0555: ldloca.s V_0
+   IL_04DD: ldarg.0 
+   IL_04DE: ldloca.s V_0
+   IL_04E0: call Terraria.Tile::get_frameX()
+   IL_04E5: ldind.i2 
+   IL_04E6: ldc.i4.s 54
+   IL_04E8: rem 
+   IL_04E9: ldc.i4.s 18
+   IL_04EB: div 
+   IL_04EC: sub 
+   IL_04ED: ldarg.1 
+   IL_04EE: ldloca.s V_0
+   IL_04F0: call Terraria.Tile::get_frameY()
+   IL_04F5: ldind.i2 
+   IL_04F6: ldc.i4.s 54
+   IL_04F8: rem 
+   IL_04F9: ldc.i4.s 18
+   IL_04FB: div 
+   IL_04FC: sub 
+   IL_04FD: call Terraria.GameContent.Tile_Entities.TEWeaponsRack::Find(Int32,Int32)
+   IL_0502: stloc.s V_17
+   IL_0504: ldloc.s V_17
+   IL_0506: ldc.i4.m1 
+   IL_0507: beq.s IL_0555: ldloca.s V_0
+   IL_0509: ldsfld Terraria.DataStructures.TileEntity::ByID
+   IL_050E: ldloc.s V_17
+   IL_0510: callvirt System.Collections.Generic.Dictionary`2<System.Int32,Terraria.DataStructures.TileEntity>::get_Item(!0)
+   IL_0515: castclass Terraria.GameContent.Tile_Entities.TEWeaponsRack
+   IL_051A: ldfld Terraria.GameContent.Tile_Entities.TEWeaponsRack::item
+   IL_051F: ldfld Terraria.Item::stack
+   IL_0524: ldc.i4.0 
+   IL_0525: ble.s IL_0555: ldloca.s V_0
+   IL_0527: ldsfld Terraria.DataStructures.TileEntity::ByID
+   IL_052C: ldloc.s V_17
+   IL_052E: callvirt System.Collections.Generic.Dictionary`2<System.Int32,Terraria.DataStructures.TileEntity>::get_Item(!0)
+   IL_0533: castclass Terraria.GameContent.Tile_Entities.TEWeaponsRack
+   IL_0538: callvirt Terraria.GameContent.Tile_Entities.TEWeaponsRack::DropItem()
+   IL_053D: ldsfld Terraria.Main::netMode
+   IL_0542: ldc.i4.2 
+   IL_0543: beq.s IL_0554: ret
+   IL_0545: call Terraria.Main::get_LocalPlayer()
+   IL_054A: ldc.i4 471
+   IL_054F: callvirt Terraria.Player::InterruptItemUsageIfOverTile(Int32)
+   IL_0554: ret 
+   IL_0555: ldloca.s V_0
+   IL_0557: call Terraria.Tile::get_type()
+   IL_055C: ldind.u2 
+   IL_055D: ldc.i4 520
+   IL_0562: bne.un.s IL_05be: ldloca.s V_0
+   IL_0564: ldarg.0 
+   IL_0565: ldarg.1 
+   IL_0566: call Terraria.GameContent.Tile_Entities.TEFoodPlatter::Find(Int32,Int32)
+   IL_056B: stloc.s V_18
+   IL_056D: ldloc.s V_18
+   IL_056F: ldc.i4.m1 
+   IL_0570: beq.s IL_05be: ldloca.s V_0
+   IL_0572: ldsfld Terraria.DataStructures.TileEntity::ByID
+   IL_0577: ldloc.s V_18
+   IL_0579: callvirt System.Collections.Generic.Dictionary`2<System.Int32,Terraria.DataStructures.TileEntity>::get_Item(!0)
+   IL_057E: castclass Terraria.GameContent.Tile_Entities.TEFoodPlatter
+   IL_0583: ldfld Terraria.GameContent.Tile_Entities.TEFoodPlatter::item
+   IL_0588: ldfld Terraria.Item::stack
+   IL_058D: ldc.i4.0 
+   IL_058E: ble.s IL_05be: ldloca.s V_0
+   IL_0590: ldsfld Terraria.DataStructures.TileEntity::ByID
+   IL_0595: ldloc.s V_18
+   IL_0597: callvirt System.Collections.Generic.Dictionary`2<System.Int32,Terraria.DataStructures.TileEntity>::get_Item(!0)
+   IL_059C: castclass Terraria.GameContent.Tile_Entities.TEFoodPlatter
+   IL_05A1: callvirt Terraria.GameContent.Tile_Entities.TEFoodPlatter::DropItem()
+   IL_05A6: ldsfld Terraria.Main::netMode
+   IL_05AB: ldc.i4.2 
+   IL_05AC: beq.s IL_05bd: ret
+   IL_05AE: call Terraria.Main::get_LocalPlayer()
+   IL_05B3: ldc.i4 520
+   IL_05B8: callvirt Terraria.Player::InterruptItemUsageIfOverTile(Int32)
+   IL_05BD: ret 
+   IL_05BE: ldloca.s V_0
+   IL_05C0: call Terraria.Tile::get_type()
+   IL_05C5: ldind.u2 
+   IL_05C6: ldc.i4 470
+   IL_05CB: bne.un.s IL_05d8: ldloca.s V_0
+   IL_05CD: ldarg.0 
+   IL_05CE: ldarg.1 
+   IL_05CF: call Terraria.WorldGen::CheckTileBreakability2_ShouldTileSurvive(Int32,Int32)
+   IL_05D4: ldarg.2 
+   IL_05D5: or 
+   IL_05D6: brtrue.s IL_05f2: ret
+   IL_05D8: ldloca.s V_0
+   IL_05DA: call Terraria.Tile::get_type()
+   IL_05DF: ldind.u2 
+   IL_05E0: ldc.i4 475
+   IL_05E5: bne.un.s IL_05f3: ldarg.2
+   IL_05E7: ldarg.0 
+   IL_05E8: ldarg.1 
+   IL_05E9: call Terraria.WorldGen::CheckTileBreakability2_ShouldTileSurvive(Int32,Int32)
+   IL_05EE: ldarg.2 
+   IL_05EF: or 
+   IL_05F0: brfalse.s IL_05f3: ldarg.2
+   IL_05F2: ret 
+   IL_05F3: ldarg.2 
+   IL_05F4: ldloc.0 
+   IL_05F5: ldarg.0 
+   IL_05F6: ldarg.1 
+   IL_05F7: call Terraria.WorldGen::KillTile_GetTileDustAmount(Boolean,Tile,Int32,Int32)
+   IL_05FC: stloc.1 
+   IL_05FD: ldc.i4.0 
+   IL_05FE: stloc.s V_19
+   IL_0600: br.s IL_0611: ldloc.s V_19
+   IL_0602: ldarg.0 
+   IL_0603: ldarg.1 
+   IL_0604: ldloc.0 
+   IL_0605: call Terraria.WorldGen::KillTile_MakeTileDust(Int32,Int32,Tile)
+   IL_060A: pop 
+   IL_060B: ldloc.s V_19
+   IL_060D: ldc.i4.1 
+   IL_060E: add 
+   IL_060F: stloc.s V_19
+   IL_0611: ldloc.s V_19
+   IL_0613: ldloc.1 
+   IL_0614: blt.s IL_0602: ldarg.0
+   IL_0616: ldarg.3 
+   IL_0617: brfalse.s IL_061a: ldarg.0
+   IL_0619: ret 
+   IL_061A: ldarg.0 
+   IL_061B: ldarg.1 
+   IL_061C: ldloc.0 
+   IL_061D: ldarg.2 
+   IL_061E: call Terraria.WorldGen::AttemptFossilShattering(Int32,Int32,Tile,Boolean)
+   IL_0623: ldarg.2 
+   IL_0624: brfalse IL_0736: ldsfld System.Boolean Terraria.Main::getGoodWorld
+   IL_0629: ldsfld Terraria.Main::netMode
+   IL_062E: ldc.i4.1 
+   IL_062F: beq.s IL_0648: ldloca.s V_0
+   IL_0631: ldsfld Terraria.ID.TileID/Sets::IsShakeable
+   IL_0636: ldloca.s V_0
+   IL_0638: call Terraria.Tile::get_type()
+   IL_063D: ldind.u2 
+   IL_063E: ldelem.u1 
+   IL_063F: brfalse.s IL_0648: ldloca.s V_0
+   IL_0641: ldarg.0 
+   IL_0642: ldarg.1 
+   IL_0643: call Terraria.WorldGen::ShakeTree(Int32,Int32)
+   IL_0648: ldloca.s V_0
+   IL_064A: call Terraria.Tile::get_type()
+   IL_064F: ldind.u2 
+   IL_0650: ldc.i4.2 
+   IL_0651: beq.s IL_0698: ldloca.s V_0
+   IL_0653: ldloca.s V_0
+   IL_0655: call Terraria.Tile::get_type()
+   IL_065A: ldind.u2 
+   IL_065B: ldc.i4.s 23
+   IL_065D: beq.s IL_0698: ldloca.s V_0
+   IL_065F: ldloca.s V_0
+   IL_0661: call Terraria.Tile::get_type()
+   IL_0666: ldind.u2 
+   IL_0667: ldc.i4.s 109
+   IL_0669: beq.s IL_0698: ldloca.s V_0
+   IL_066B: ldloca.s V_0
+   IL_066D: call Terraria.Tile::get_type()
+   IL_0672: ldind.u2 
+   IL_0673: ldc.i4 199
+   IL_0678: beq.s IL_0698: ldloca.s V_0
+   IL_067A: ldloca.s V_0
+   IL_067C: call Terraria.Tile::get_type()
+   IL_0681: ldind.u2 
+   IL_0682: ldc.i4 477
+   IL_0687: beq.s IL_0698: ldloca.s V_0
+   IL_0689: ldloca.s V_0
+   IL_068B: call Terraria.Tile::get_type()
+   IL_0690: ldind.u2 
+   IL_0691: ldc.i4 492
+   IL_0696: bne.un.s IL_06a1: ldloca.s V_0
+   IL_0698: ldloca.s V_0
+   IL_069A: call Terraria.Tile::get_type()
+   IL_069F: ldc.i4.0 
+   IL_06A0: stind.i2 
+   IL_06A1: ldloca.s V_0
+   IL_06A3: call Terraria.Tile::get_type()
+   IL_06A8: ldind.u2 
+   IL_06A9: ldc.i4 633
+   IL_06AE: bne.un.s IL_06ba: ldloca.s V_0
+   IL_06B0: ldloca.s V_0
+   IL_06B2: call Terraria.Tile::get_type()
+   IL_06B7: ldc.i4.s 57
+   IL_06B9: stind.i2 
+   IL_06BA: ldloca.s V_0
+   IL_06BC: call Terraria.Tile::get_type()
+   IL_06C1: ldind.u2 
+   IL_06C2: ldc.i4.s 60
+   IL_06C4: beq.s IL_06f0: ldloca.s V_0
+   IL_06C6: ldloca.s V_0
+   IL_06C8: call Terraria.Tile::get_type()
+   IL_06CD: ldind.u2 
+   IL_06CE: ldc.i4 661
+   IL_06D3: beq.s IL_06f0: ldloca.s V_0
+   IL_06D5: ldloca.s V_0
+   IL_06D7: call Terraria.Tile::get_type()
+   IL_06DC: ldind.u2 
+   IL_06DD: ldc.i4 662
+   IL_06E2: beq.s IL_06f0: ldloca.s V_0
+   IL_06E4: ldloca.s V_0
+   IL_06E6: call Terraria.Tile::get_type()
+   IL_06EB: ldind.u2 
+   IL_06EC: ldc.i4.s 70
+   IL_06EE: bne.un.s IL_06fa: ldsfld System.Boolean[] Terraria.Main::tileMoss
+   IL_06F0: ldloca.s V_0
+   IL_06F2: call Terraria.Tile::get_type()
+   IL_06F7: ldc.i4.s 59
+   IL_06F9: stind.i2 
+   IL_06FA: ldsfld Terraria.Main::tileMoss
+   IL_06FF: ldloca.s V_0
+   IL_0701: call Terraria.Tile::get_type()
+   IL_0706: ldind.u2 
+   IL_0707: ldelem.u1 
+   IL_0708: brfalse.s IL_0713: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::tileMossBrick
+   IL_070A: ldloca.s V_0
+   IL_070C: call Terraria.Tile::get_type()
+   IL_0711: ldc.i4.1 
+   IL_0712: stind.i2 
+   IL_0713: ldsfld Terraria.ID.TileID/Sets::tileMossBrick
+   IL_0718: ldloca.s V_0
+   IL_071A: call Terraria.Tile::get_type()
+   IL_071F: ldind.u2 
+   IL_0720: ldelem.u1 
+   IL_0721: brfalse.s IL_072d: ldarg.0
+   IL_0723: ldloca.s V_0
+   IL_0725: call Terraria.Tile::get_type()
+   IL_072A: ldc.i4.s 38
+   IL_072C: stind.i2 
+   IL_072D: ldarg.0 
+   IL_072E: ldarg.1 
+   IL_072F: ldc.i4.1 
+   IL_0730: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_0735: ret 
+   IL_0736: ldsfld Terraria.Main::getGoodWorld
+   IL_073B: brfalse IL_08c9: ldsfld System.Int32 Terraria.Main::netMode
+   IL_0740: ldsfld Terraria.Main::netMode
+   IL_0745: ldc.i4.1 
+   IL_0746: beq IL_08c9: ldsfld System.Int32 Terraria.Main::netMode
+   IL_074B: ldloca.s V_0
+   IL_074D: call Terraria.Tile::get_type()
+   IL_0752: ldind.u2 
+   IL_0753: ldc.i4.s 57
+   IL_0755: bne.un IL_08c9: ldsfld System.Int32 Terraria.Main::netMode
+   IL_075A: ldc.i4.0 
+   IL_075B: stloc.s V_20
+   IL_075D: br IL_08c1: ldloc.s V_20
+   IL_0762: ldc.i4.2 
+   IL_0763: stloc.s V_21
+   IL_0765: ldarg.0 
+   IL_0766: stloc.s V_22
+   IL_0768: ldarg.1 
+   IL_0769: stloc.s V_23
+   IL_076B: ldloc.s V_20
+   IL_076D: switch Mono.Cecil.Cil.Instruction[]
+   IL_0792: br.s IL_07ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0794: ldloc.s V_22
+   IL_0796: ldc.i4.1 
+   IL_0797: sub 
+   IL_0798: stloc.s V_22
+   IL_079A: br.s IL_07ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_079C: ldloc.s V_22
+   IL_079E: ldc.i4.1 
+   IL_079F: add 
+   IL_07A0: stloc.s V_22
+   IL_07A2: br.s IL_07ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_07A4: ldloc.s V_23
+   IL_07A6: ldc.i4.1 
+   IL_07A7: sub 
+   IL_07A8: stloc.s V_23
+   IL_07AA: br.s IL_07ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_07AC: ldloc.s V_23
+   IL_07AE: ldc.i4.1 
+   IL_07AF: add 
+   IL_07B0: stloc.s V_23
+   IL_07B2: br.s IL_07ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_07B4: ldloc.s V_22
+   IL_07B6: ldc.i4.1 
+   IL_07B7: sub 
+   IL_07B8: stloc.s V_22
+   IL_07BA: ldloc.s V_23
+   IL_07BC: ldc.i4.1 
+   IL_07BD: sub 
+   IL_07BE: stloc.s V_23
+   IL_07C0: br.s IL_07ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_07C2: ldloc.s V_22
+   IL_07C4: ldc.i4.1 
+   IL_07C5: add 
+   IL_07C6: stloc.s V_22
+   IL_07C8: ldloc.s V_23
+   IL_07CA: ldc.i4.1 
+   IL_07CB: sub 
+   IL_07CC: stloc.s V_23
+   IL_07CE: br.s IL_07ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_07D0: ldloc.s V_22
+   IL_07D2: ldc.i4.1 
+   IL_07D3: sub 
+   IL_07D4: stloc.s V_22
+   IL_07D6: ldloc.s V_23
+   IL_07D8: ldc.i4.1 
+   IL_07D9: add 
+   IL_07DA: stloc.s V_23
+   IL_07DC: br.s IL_07ea: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_07DE: ldloc.s V_22
+   IL_07E0: ldc.i4.1 
+   IL_07E1: add 
+   IL_07E2: stloc.s V_22
+   IL_07E4: ldloc.s V_23
+   IL_07E6: ldc.i4.1 
+   IL_07E7: add 
+   IL_07E8: stloc.s V_23
+   IL_07EA: ldsflda Terraria.Main::tile
+   IL_07EF: ldloc.s V_22
+   IL_07F1: ldloc.s V_23
+   IL_07F3: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_07F8: stloc.s V_24
+   IL_07FA: ldloca.s V_24
+   IL_07FC: call Terraria.Tile::active()
+   IL_0801: brfalse IL_08bb: ldloc.s V_20
+   IL_0806: call Terraria.WorldGen::get_genRand()
+   IL_080B: ldloc.s V_21
+   IL_080D: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0812: brtrue IL_08bb: ldloc.s V_20
+   IL_0817: ldloca.s V_24
+   IL_0819: call Terraria.Tile::get_type()
+   IL_081E: ldind.u2 
+   IL_081F: ldc.i4.s 57
+   IL_0821: bne.un IL_08bb: ldloc.s V_20
+   IL_0826: ldloc.s V_22
+   IL_0828: ldloc.s V_23
+   IL_082A: ldc.i4.1 
+   IL_082B: add 
+   IL_082C: ldc.i4.0 
+   IL_082D: call Terraria.WorldGen::SolidTile(Int32,Int32,Boolean)
+   IL_0832: brtrue IL_08bb: ldloc.s V_20
+   IL_0837: ldloc.s V_22
+   IL_0839: ldloc.s V_23
+   IL_083B: ldc.i4.0 
+   IL_083C: ldc.i4.0 
+   IL_083D: ldc.i4.1 
+   IL_083E: call Terraria.WorldGen::KillTile(Int32,Int32,Boolean,Boolean,Boolean)
+   IL_0843: ldsfld Terraria.Main::netMode
+   IL_0848: ldc.i4.2 
+   IL_0849: bne.un.s IL_0866: ldloc.s V_22
+   IL_084B: ldc.i4.s 17
+   IL_084D: ldc.i4.m1 
+   IL_084E: ldc.i4.m1 
+   IL_084F: ldnull 
+   IL_0850: ldc.i4.s 20
+   IL_0852: ldloc.s V_22
+   IL_0854: conv.r4 
+   IL_0855: ldloc.s V_23
+   IL_0857: conv.r4 
+   IL_0858: ldc.r4 0
+   IL_085D: ldc.i4.0 
+   IL_085E: ldc.i4.0 
+   IL_085F: ldc.i4.0 
+   IL_0860: call Terraria.NetMessage::TrySendData(Int32,Int32,Int32,NetworkText,Int32,Single,Single,Single,Int32,Int32,Int32)
+   IL_0865: pop 
+   IL_0866: ldloc.s V_22
+   IL_0868: ldloc.s V_23
+   IL_086A: call Terraria.WorldGen::GetProjectileSource_TileBreak(Int32,Int32)
+   IL_086F: ldloc.s V_22
+   IL_0871: ldc.i4.s 16
+   IL_0873: mul 
+   IL_0874: ldc.i4.8 
+   IL_0875: add 
+   IL_0876: conv.r4 
+   IL_0877: ldloc.s V_23
+   IL_0879: ldc.i4.s 16
+   IL_087B: mul 
+   IL_087C: ldc.i4.8 
+   IL_087D: add 
+   IL_087E: conv.r4 
+   IL_087F: ldc.r4 0
+   IL_0884: ldc.r4 0.41
+   IL_0889: ldc.i4.s 40
+   IL_088B: ldc.i4.s 15
+   IL_088D: ldc.r4 0
+   IL_0892: ldsfld Terraria.Main::myPlayer
+   IL_0897: ldc.r4 0
+   IL_089C: ldc.r4 0
+   IL_08A1: ldc.r4 0
+   IL_08A6: call Terraria.Projectile::NewProjectile(IEntitySource,Single,Single,Single,Single,Int32,Int32,Single,Int32,Single,Single,Single)
+   IL_08AB: stloc.s V_25
+   IL_08AD: ldsfld Terraria.Main::projectile
+   IL_08B2: ldloc.s V_25
+   IL_08B4: ldelem.ref 
+   IL_08B5: ldc.i4.1 
+   IL_08B6: stfld Terraria.Projectile::netUpdate
+   IL_08BB: ldloc.s V_20
+   IL_08BD: ldc.i4.1 
+   IL_08BE: add 
+   IL_08BF: stloc.s V_20
+   IL_08C1: ldloc.s V_20
+   IL_08C3: ldc.i4.8 
+   IL_08C4: blt IL_0762: ldc.i4.2
+   IL_08C9: ldsfld Terraria.Main::netMode
+   IL_08CE: ldc.i4.1 
+   IL_08CF: beq IL_0ad5: ldarg.0
+   IL_08D4: ldloca.s V_0
+   IL_08D6: call Terraria.Tile::get_type()
+   IL_08DB: ldind.u2 
+   IL_08DC: ldc.i4 481
+   IL_08E1: blt IL_0ad5: ldarg.0
+   IL_08E6: ldloca.s V_0
+   IL_08E8: call Terraria.Tile::get_type()
+   IL_08ED: ldind.u2 
+   IL_08EE: ldc.i4 483
+   IL_08F3: bgt IL_0ad5: ldarg.0
+   IL_08F8: ldc.i4.0 
+   IL_08F9: stloc.s V_29
+   IL_08FB: br IL_0a10: ldloc.s V_29
+   IL_0900: ldc.i4.6 
+   IL_0901: stloc.s V_30
+   IL_0903: ldarg.0 
+   IL_0904: stloc.s V_31
+   IL_0906: ldarg.1 
+   IL_0907: stloc.s V_32
+   IL_0909: ldloc.s V_29
+   IL_090B: switch Mono.Cecil.Cil.Instruction[]
+   IL_0930: br.s IL_098e: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0932: ldloc.s V_31
+   IL_0934: ldc.i4.1 
+   IL_0935: sub 
+   IL_0936: stloc.s V_31
+   IL_0938: br.s IL_098e: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_093A: ldloc.s V_31
+   IL_093C: ldc.i4.1 
+   IL_093D: add 
+   IL_093E: stloc.s V_31
+   IL_0940: br.s IL_098e: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0942: ldloc.s V_32
+   IL_0944: ldc.i4.1 
+   IL_0945: sub 
+   IL_0946: stloc.s V_32
+   IL_0948: ldloc.s V_30
+   IL_094A: ldc.i4.2 
+   IL_094B: div 
+   IL_094C: stloc.s V_30
+   IL_094E: br.s IL_098e: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0950: ldloc.s V_32
+   IL_0952: ldc.i4.1 
+   IL_0953: add 
+   IL_0954: stloc.s V_32
+   IL_0956: br.s IL_098e: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0958: ldloc.s V_31
+   IL_095A: ldc.i4.1 
+   IL_095B: sub 
+   IL_095C: stloc.s V_31
+   IL_095E: ldloc.s V_32
+   IL_0960: ldc.i4.1 
+   IL_0961: sub 
+   IL_0962: stloc.s V_32
+   IL_0964: br.s IL_098e: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0966: ldloc.s V_31
+   IL_0968: ldc.i4.1 
+   IL_0969: add 
+   IL_096A: stloc.s V_31
+   IL_096C: ldloc.s V_32
+   IL_096E: ldc.i4.1 
+   IL_096F: sub 
+   IL_0970: stloc.s V_32
+   IL_0972: br.s IL_098e: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0974: ldloc.s V_31
+   IL_0976: ldc.i4.1 
+   IL_0977: sub 
+   IL_0978: stloc.s V_31
+   IL_097A: ldloc.s V_32
+   IL_097C: ldc.i4.1 
+   IL_097D: add 
+   IL_097E: stloc.s V_32
+   IL_0980: br.s IL_098e: ldsflda Terraria.Tilemap Terraria.Main::tile
+   IL_0982: ldloc.s V_31
+   IL_0984: ldc.i4.1 
+   IL_0985: add 
+   IL_0986: stloc.s V_31
+   IL_0988: ldloc.s V_32
+   IL_098A: ldc.i4.1 
+   IL_098B: add 
+   IL_098C: stloc.s V_32
+   IL_098E: ldsflda Terraria.Main::tile
+   IL_0993: ldloc.s V_31
+   IL_0995: ldloc.s V_32
+   IL_0997: call Terraria.Tilemap::get_Item(Int32,Int32)
+   IL_099C: stloc.s V_33
+   IL_099E: ldloca.s V_33
+   IL_09A0: call Terraria.Tile::active()
+   IL_09A5: brfalse.s IL_0a0a: ldloc.s V_29
+   IL_09A7: call Terraria.WorldGen::get_genRand()
+   IL_09AC: ldloc.s V_30
+   IL_09AE: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_09B3: brtrue.s IL_0a0a: ldloc.s V_29
+   IL_09B5: ldloca.s V_33
+   IL_09B7: call Terraria.Tile::get_type()
+   IL_09BC: ldind.u2 
+   IL_09BD: ldc.i4 481
+   IL_09C2: blt.s IL_0a0a: ldloc.s V_29
+   IL_09C4: ldloca.s V_33
+   IL_09C6: call Terraria.Tile::get_type()
+   IL_09CB: ldind.u2 
+   IL_09CC: ldc.i4 483
+   IL_09D1: bgt.s IL_0a0a: ldloc.s V_29
+   IL_09D3: ldloca.s V_0
+   IL_09D5: ldc.i4.0 
+   IL_09D6: call Terraria.Tile::active(Boolean)
+   IL_09DB: ldloc.s V_31
+   IL_09DD: ldloc.s V_32
+   IL_09DF: ldc.i4.0 
+   IL_09E0: ldc.i4.0 
+   IL_09E1: ldc.i4.1 
+   IL_09E2: call Terraria.WorldGen::KillTile(Int32,Int32,Boolean,Boolean,Boolean)
+   IL_09E7: ldsfld Terraria.Main::netMode
+   IL_09EC: ldc.i4.2 
+   IL_09ED: bne.un.s IL_0a0a: ldloc.s V_29
+   IL_09EF: ldc.i4.s 17
+   IL_09F1: ldc.i4.m1 
+   IL_09F2: ldc.i4.m1 
+   IL_09F3: ldnull 
+   IL_09F4: ldc.i4.s 20
+   IL_09F6: ldloc.s V_31
+   IL_09F8: conv.r4 
+   IL_09F9: ldloc.s V_32
+   IL_09FB: conv.r4 
+   IL_09FC: ldc.r4 0
+   IL_0A01: ldc.i4.0 
+   IL_0A02: ldc.i4.0 
+   IL_0A03: ldc.i4.0 
+   IL_0A04: call Terraria.NetMessage::TrySendData(Int32,Int32,Int32,NetworkText,Int32,Single,Single,Single,Int32,Int32,Int32)
+   IL_0A09: pop 
+   IL_0A0A: ldloc.s V_29
+   IL_0A0C: ldc.i4.1 
+   IL_0A0D: add 
+   IL_0A0E: stloc.s V_29
+   IL_0A10: ldloc.s V_29
+   IL_0A12: ldc.i4.8 
+   IL_0A13: blt IL_0900: ldc.i4.6
+   IL_0A18: ldloca.s V_0
+   IL_0A1A: call Terraria.Tile::get_type()
+   IL_0A1F: ldind.u2 
+   IL_0A20: ldc.i4 481
+   IL_0A25: sub 
+   IL_0A26: ldc.i4 736
+   IL_0A2B: add 
+   IL_0A2C: stloc.s V_26
+   IL_0A2E: ldc.i4.s 20
+   IL_0A30: stloc.s V_27
+   IL_0A32: ldarg.0 
+   IL_0A33: ldarg.1 
+   IL_0A34: call Terraria.WorldGen::GetProjectileSource_TileBreak(Int32,Int32)
+   IL_0A39: stloc.s V_28
+   IL_0A3B: ldsfld Terraria.Main::netMode
+   IL_0A40: brtrue.s IL_0a81: ldsfld System.Int32 Terraria.Main::netMode
+   IL_0A42: ldloc.s V_28
+   IL_0A44: ldarg.0 
+   IL_0A45: ldc.i4.s 16
+   IL_0A47: mul 
+   IL_0A48: ldc.i4.8 
+   IL_0A49: add 
+   IL_0A4A: conv.r4 
+   IL_0A4B: ldarg.1 
+   IL_0A4C: ldc.i4.s 16
+   IL_0A4E: mul 
+   IL_0A4F: ldc.i4.8 
+   IL_0A50: add 
+   IL_0A51: conv.r4 
+   IL_0A52: ldc.r4 0
+   IL_0A57: ldc.r4 0.41
+   IL_0A5C: ldloc.s V_26
+   IL_0A5E: ldloc.s V_27
+   IL_0A60: ldc.r4 0
+   IL_0A65: ldsfld Terraria.Main::myPlayer
+   IL_0A6A: ldc.r4 0
+   IL_0A6F: ldc.r4 0
+   IL_0A74: ldc.r4 0
+   IL_0A79: call Terraria.Projectile::NewProjectile(IEntitySource,Single,Single,Single,Single,Int32,Int32,Single,Int32,Single,Single,Single)
+   IL_0A7E: pop 
+   IL_0A7F: br.s IL_0ad5: ldarg.0
+   IL_0A81: ldsfld Terraria.Main::netMode
+   IL_0A86: ldc.i4.2 
+   IL_0A87: bne.un.s IL_0ad5: ldarg.0
+   IL_0A89: ldloc.s V_28
+   IL_0A8B: ldarg.0 
+   IL_0A8C: ldc.i4.s 16
+   IL_0A8E: mul 
+   IL_0A8F: ldc.i4.8 
+   IL_0A90: add 
+   IL_0A91: conv.r4 
+   IL_0A92: ldarg.1 
+   IL_0A93: ldc.i4.s 16
+   IL_0A95: mul 
+   IL_0A96: ldc.i4.8 
+   IL_0A97: add 
+   IL_0A98: conv.r4 
+   IL_0A99: ldc.r4 0
+   IL_0A9E: ldc.r4 0.41
+   IL_0AA3: ldloc.s V_26
+   IL_0AA5: ldloc.s V_27
+   IL_0AA7: ldc.r4 0
+   IL_0AAC: ldsfld Terraria.Main::myPlayer
+   IL_0AB1: ldc.r4 0
+   IL_0AB6: ldc.r4 0
+   IL_0ABB: ldc.r4 0
+   IL_0AC0: call Terraria.Projectile::NewProjectile(IEntitySource,Single,Single,Single,Single,Int32,Int32,Single,Int32,Single,Single,Single)
+   IL_0AC5: stloc.s V_34
+   IL_0AC7: ldsfld Terraria.Main::projectile
+   IL_0ACC: ldloc.s V_34
+   IL_0ACE: ldelem.ref 
+   IL_0ACF: ldc.i4.1 
+   IL_0AD0: stfld Terraria.Projectile::netUpdate
+   IL_0AD5: ldarg.0 
+   IL_0AD6: ldarg.1 
+   IL_0AD7: call Terraria.WorldGen::CheckTileBreakability2_ShouldTileSurvive(Int32,Int32)
+   IL_0ADC: brfalse.s IL_0adf: ldloca.s V_0
+   IL_0ADE: ret 
+   IL_0ADF: ldloca.s V_0
+   IL_0AE1: call Terraria.Tile::get_type()
+   IL_0AE6: ldind.u2 
+   IL_0AE7: ldc.i4.s 51
+   IL_0AE9: bne.un.s IL_0b07: ldarg.s noItem
+   IL_0AEB: ldloca.s V_0
+   IL_0AED: call Terraria.Tile::get_wall()
+   IL_0AF2: ldind.u2 
+   IL_0AF3: ldc.i4.s 62
+   IL_0AF5: bne.un.s IL_0b07: ldarg.s noItem
+   IL_0AF7: call Terraria.WorldGen::get_genRand()
+   IL_0AFC: ldc.i4.4 
+   IL_0AFD: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0B02: brfalse.s IL_0b07: ldarg.s noItem
+   IL_0B04: ldc.i4.1 
+   IL_0B05: starg.s noItem
+   IL_0B07: ldarg.s noItem
+   IL_0B09: brtrue.s IL_0b2c: ldloca.s V_0
+   IL_0B0B: ldsfld Terraria.WorldGen::stopDrops
+   IL_0B10: brtrue.s IL_0b2c: ldloca.s V_0
+   IL_0B12: ldsfld Terraria.Main::netMode
+   IL_0B17: ldc.i4.1 
+   IL_0B18: beq.s IL_0b2c: ldloca.s V_0
+   IL_0B1A: ldarg.0 
+   IL_0B1B: ldarg.1 
+   IL_0B1C: ldloc.0 
+   IL_0B1D: call Terraria.WorldGen::KillTile_DropBait(Int32,Int32,Tile)
+   IL_0B22: ldarg.0 
+   IL_0B23: ldarg.1 
+   IL_0B24: ldloc.0 
+   IL_0B25: ldc.i4.0 
+   IL_0B26: ldc.i4.0 
+   IL_0B27: call Terraria.WorldGen::KillTile_DropItems(Int32,Int32,Tile,Boolean,Boolean)
+   IL_0B2C: ldloca.s V_0
+   IL_0B2E: call Terraria.Tile::get_type()
+   IL_0B33: ldind.u2 
+   IL_0B34: ldc.i4 520
+   IL_0B39: bne.un.s IL_0b42: ldloca.s V_0
+   IL_0B3B: ldarg.0 
+   IL_0B3C: ldarg.1 
+   IL_0B3D: call Terraria.GameContent.Tile_Entities.TEFoodPlatter::Kill(Int32,Int32)
+   IL_0B42: ldloca.s V_0
+   IL_0B44: call Terraria.Tile::get_type()
+   IL_0B49: ldind.u2 
+   IL_0B4A: ldc.i4 423
+   IL_0B4F: bne.un.s IL_0b58: ldsfld System.Int32 Terraria.Main::netMode
+   IL_0B51: ldarg.0 
+   IL_0B52: ldarg.1 
+   IL_0B53: call Terraria.GameContent.Tile_Entities.TELogicSensor::Kill(Int32,Int32)
+   IL_0B58: ldsfld Terraria.Main::netMode
+   IL_0B5D: ldc.i4.2 
+   IL_0B5E: beq.s IL_0b78: ldloca.s V_0
+   IL_0B60: ldsfld Terraria.Main::player
+   IL_0B65: ldsfld Terraria.Main::myPlayer
+   IL_0B6A: ldelem.ref 
+   IL_0B6B: ldloca.s V_0
+   IL_0B6D: call Terraria.Tile::get_type()
+   IL_0B72: ldind.u2 
+   IL_0B73: call Terraria.GameContent.Achievements.AchievementsHelper::NotifyTileDestroyed(Player,UInt16)
+   IL_0B78: ldloca.s V_0
+   IL_0B7A: ldc.i4.0 
+   IL_0B7B: call Terraria.Tile::active(Boolean)
+   IL_0B80: ldloca.s V_0
+   IL_0B82: ldc.i4.0 
+   IL_0B83: call Terraria.Tile::halfBrick(Boolean)
+   IL_0B88: ldloca.s V_0
+   IL_0B8A: call Terraria.Tile::get_frameX()
+   IL_0B8F: ldc.i4.m1 
+   IL_0B90: stind.i2 
+   IL_0B91: ldloca.s V_0
+   IL_0B93: call Terraria.Tile::get_frameY()
+   IL_0B98: ldc.i4.m1 
+   IL_0B99: stind.i2 
+   IL_0B9A: ldloca.s V_0
+   IL_0B9C: call Terraria.Tile::ClearBlockPaintAndCoating()
+   IL_0BA1: ldloca.s V_0
+   IL_0BA3: ldc.i4.0 
+   IL_0BA4: call Terraria.Tile::frameNumber(Byte)
+   IL_0BA9: ldsfld Terraria.Main::netMode
+   IL_0BAE: ldc.i4.1 
+   IL_0BAF: beq.s IL_0c14: ldloca.s V_0
+   IL_0BB1: ldloca.s V_0
+   IL_0BB3: call Terraria.Tile::get_type()
+   IL_0BB8: ldind.u2 
+   IL_0BB9: ldc.i4.s 58
+   IL_0BBB: bne.un.s IL_0bdc: ldloca.s V_0
+   IL_0BBD: ldarg.1 
+   IL_0BBE: call Terraria.Main::get_UnderworldLayer()
+   IL_0BC3: ble.s IL_0bdc: ldloca.s V_0
+   IL_0BC5: ldloca.s V_0
+   IL_0BC7: ldc.i4.1 
+   IL_0BC8: call Terraria.Tile::lava(Boolean)
+   IL_0BCD: ldloca.s V_0
+   IL_0BCF: call Terraria.Tile::get_liquid()
+   IL_0BD4: ldc.i4 128
+   IL_0BD9: stind.i1 
+   IL_0BDA: br.s IL_0c14: ldloca.s V_0
+   IL_0BDC: ldloca.s V_0
+   IL_0BDE: call Terraria.Tile::get_type()
+   IL_0BE3: ldind.u2 
+   IL_0BE4: ldc.i4 230
+   IL_0BE9: bne.un.s IL_0c14: ldloca.s V_0
+   IL_0BEB: ldsfld Terraria.Main::getGoodWorld
+   IL_0BF0: brfalse.s IL_0c14: ldloca.s V_0
+   IL_0BF2: call Terraria.WorldGen::get_genRand()
+   IL_0BF7: ldc.i4.2 
+   IL_0BF8: callvirt Terraria.Utilities.UnifiedRandom::Next(Int32)
+   IL_0BFD: brtrue.s IL_0c14: ldloca.s V_0
+   IL_0BFF: ldloca.s V_0
+   IL_0C01: ldc.i4.1 
+   IL_0C02: call Terraria.Tile::lava(Boolean)
+   IL_0C07: ldloca.s V_0
+   IL_0C09: call Terraria.Tile::get_liquid()
+   IL_0C0E: ldc.i4 128
+   IL_0C13: stind.i1 
+   IL_0C14: ldloca.s V_0
+   IL_0C16: call Terraria.Tile::get_type()
+   IL_0C1B: ldind.u2 
+   IL_0C1C: ldc.i4 419
+   IL_0C21: bne.un.s IL_0c2e: ldsfld System.Boolean[] Terraria.ID.TileID/Sets::BlocksWaterDrawingBehindSelf
+   IL_0C23: ldarg.0 
+   IL_0C24: ldarg.1 
+   IL_0C25: ldc.i4.1 
+   IL_0C26: add 
+   IL_0C27: call Terraria.Wiring::PokeLogicGate(Int32,Int32)
+   IL_0C2C: br.s IL_0c46: ldloca.s V_0
+   IL_0C2E: ldsfld Terraria.ID.TileID/Sets::BlocksWaterDrawingBehindSelf
+   IL_0C33: ldloca.s V_0
+   IL_0C35: call Terraria.Tile::get_type()
+   IL_0C3A: ldind.u2 
+   IL_0C3B: ldelem.u1 
+   IL_0C3C: brfalse.s IL_0c46: ldloca.s V_0
+   IL_0C3E: ldarg.0 
+   IL_0C3F: ldarg.1 
+   IL_0C40: ldc.i4.1 
+   IL_0C41: call Terraria.WorldGen::SquareWallFrame(Int32,Int32,Boolean)
+   IL_0C46: ldloca.s V_0
+   IL_0C48: call Terraria.Tile::get_type()
+   IL_0C4D: ldc.i4.0 
+   IL_0C4E: stind.i2 
+   IL_0C4F: ldloca.s V_0
+   IL_0C51: ldc.i4.0 
+   IL_0C52: call Terraria.Tile::inActive(Boolean)
+   IL_0C57: ldarg.0 
+   IL_0C58: ldarg.1 
+   IL_0C59: ldc.i4.1 
+   IL_0C5A: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_0C5F: br.s IL_0cb3: ldsfld System.Boolean Terraria.WorldGen::destroyObject
+   IL_0C61: ldsfld Terraria.WorldGen::ExploitDestroyQueue
+   IL_0C66: callvirt System.Collections.Generic.Queue`1<Microsoft.Xna.Framework.Point>::Dequeue()
+   IL_0C6B: stloc.s V_35
+   IL_0C6D: ldloc.s V_35
+   IL_0C6F: ldfld Microsoft.Xna.Framework.Point::X
+   IL_0C74: ldloc.s V_35
+   IL_0C76: ldfld Microsoft.Xna.Framework.Point::Y
+   IL_0C7B: call Terraria.Framing::GetTileSafely(Int32,Int32)
+   IL_0C80: stloc.2 
+   IL_0C81: ldloca.s V_2
+   IL_0C83: call Terraria.Tile::active()
+   IL_0C88: brfalse.s IL_0cb3: ldsfld System.Boolean Terraria.WorldGen::destroyObject
+   IL_0C8A: ldloc.s V_35
+   IL_0C8C: ldfld Microsoft.Xna.Framework.Point::X
+   IL_0C91: ldloc.s V_35
+   IL_0C93: ldfld Microsoft.Xna.Framework.Point::Y
+   IL_0C98: ldc.i4.1 
+   IL_0C99: call Terraria.WorldGen::SquareTileFrame(Int32,Int32,Boolean)
+   IL_0C9E: ldc.i4.m1 
+   IL_0C9F: ldloc.s V_35
+   IL_0CA1: ldfld Microsoft.Xna.Framework.Point::X
+   IL_0CA6: ldloc.s V_35
+   IL_0CA8: ldfld Microsoft.Xna.Framework.Point::Y
+   IL_0CAD: ldc.i4.0 
+   IL_0CAE: call Terraria.NetMessage::SendTileSquare(Int32,Int32,Int32,TileChangeType)
+   IL_0CB3: ldsfld Terraria.WorldGen::destroyObject
+   IL_0CB8: brtrue.s IL_0cc7: ret
+   IL_0CBA: ldsfld Terraria.WorldGen::ExploitDestroyQueue
+   IL_0CBF: callvirt System.Collections.Generic.Queue`1<Microsoft.Xna.Framework.Point>::get_Count()
+   IL_0CC4: ldc.i4.0 
+   IL_0CC5: bgt.s IL_0c61: ldsfld System.Collections.Generic.Queue`1<Microsoft.Xna.Framework.Point> Terraria.WorldGen::ExploitDestroyQueue
+   IL_0CC7: ret 
+
+### Terraria.ModLoader.ModNPC::get_SceneEffectPriority
+   IL_0000: ldarg.0 
+   IL_0001: ldfld Terraria.ModLoader.ModNPC::<SceneEffectPriority>k__BackingField
+   IL_0006: ret 
+
+### Terraria.ModLoader.ModTile::KillTile
+   IL_0000: ret 
+
+### Terraria.ModLoader.TileLoader::KillTile
+   LOCAL Terraria.ModLoader.TileLoader/DelegateKillTile[] 0
+   LOCAL System.Int32 1
+   IL_0000: ldarg.2 
+   IL_0001: call Terraria.ModLoader.TileLoader::GetTile(Int32)
+   IL_0006: dup 
+   IL_0007: brtrue.s IL_000c: ldarg.0
+   IL_0009: pop 
+   IL_000A: br.s IL_0018: ldsfld Terraria.ModLoader.TileLoader/DelegateKillTile[] Terraria.ModLoader.TileLoader::HookKillTile
+   IL_000C: ldarg.0 
+   IL_000D: ldarg.1 
+   IL_000E: ldarg.3 
+   IL_000F: ldarg.s effectOnly
+   IL_0011: ldarg.s noItem
+   IL_0013: callvirt Terraria.ModLoader.ModTile::KillTile(Int32,Int32,Boolean&,Boolean&,Boolean&)
+   IL_0018: ldsfld Terraria.ModLoader.TileLoader::HookKillTile
+   IL_001D: stloc.0 
+   IL_001E: ldc.i4.0 
+   IL_001F: stloc.1 
+   IL_0020: br.s IL_0036: ldloc.1
+   IL_0022: ldloc.0 
+   IL_0023: ldloc.1 
+   IL_0024: ldelem.ref 
+   IL_0025: ldarg.0 
+   IL_0026: ldarg.1 
+   IL_0027: ldarg.2 
+   IL_0028: ldarg.3 
+   IL_0029: ldarg.s effectOnly
+   IL_002B: ldarg.s noItem
+   IL_002D: callvirt Terraria.ModLoader.TileLoader/DelegateKillTile::Invoke(Int32,Int32,Int32,Boolean&,Boolean&,Boolean&)
+   IL_0032: ldloc.1 
+   IL_0033: ldc.i4.1 
+   IL_0034: add 
+   IL_0035: stloc.1 
+   IL_0036: ldloc.1 
+   IL_0037: ldloc.0 
+   IL_0038: ldlen 
+   IL_0039: conv.i4 
+   IL_003A: blt.s IL_0022: ldloc.0
+   IL_003C: ret 

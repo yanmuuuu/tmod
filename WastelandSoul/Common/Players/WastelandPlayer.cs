@@ -148,5 +148,34 @@ namespace WastelandSoul.Common.Players
 			givenCompanionCore = tag.GetBool("givenCore");
 			soulFragmentsDelivered = tag.GetInt("souls");
 		}
+
+		/// <summary>
+		/// 联机同步用：这几个标志都是**服务端说了算**的（客户端改了会被服务器的旧值覆盖回去），
+		/// 所以要先把客户端的当前值抄给"服务器状态副本"，让服务器看得出差异。
+		/// </summary>
+		public override void CopyClientState(ModPlayer targetCopy)
+		{
+			WastelandPlayer clone = (WastelandPlayer)targetCopy;
+
+			clone.metCompanion = metCompanion;
+			clone.knowsWatchmanProtocol = knowsWatchmanProtocol;
+			clone.heardFirstMemory = heardFirstMemory;
+			clone.givenCompanionCore = givenCompanionCore;
+			clone.soulFragmentsDelivered = soulFragmentsDelivered;
+		}
+
+		/// <summary>比对副本，发现差异就把这名玩家的个人进度发给服务端。</summary>
+		public override void SendClientChanges(ModPlayer clientPlayer)
+		{
+			WastelandPlayer clone = (WastelandPlayer)clientPlayer;
+
+			if (clone.metCompanion != metCompanion
+				|| clone.knowsWatchmanProtocol != knowsWatchmanProtocol
+				|| clone.heardFirstMemory != heardFirstMemory
+				|| clone.givenCompanionCore != givenCompanionCore
+				|| clone.soulFragmentsDelivered != soulFragmentsDelivered) {
+				SyncPlayer(toWho: -1, fromWho: Main.myPlayer, newPlayer: false);
+			}
+		}
 	}
 }

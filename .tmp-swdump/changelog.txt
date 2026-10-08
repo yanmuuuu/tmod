@@ -1,0 +1,3 @@
+Clients will no longer begin reconnecting before player saving finishes.
+- Fixes all other clients becoming invisible to that client if saving took so long that they connected before it completed, and a rare instance of minimap corruption.
+- For unknown reasons (allegedly a vanilla bug), players with massive amounts of minimap files tied with them experience significant save delays. If your player has been used across many different worlds, clear their associated minimap folder to speed up saving!

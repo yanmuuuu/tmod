@@ -9,6 +9,7 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using WastelandSoul.Common.Systems;
 using WastelandSoul.Content.Items.Bags;
+using WastelandSoul.Content.Items.Decor;
 using WastelandSoul.Content.Projectiles.FireplaceBoss;
 using WastelandSoul.Content.Projectiles.Vfx;
 
@@ -338,6 +339,8 @@ namespace WastelandSoul.Content.NPCs.Bosses.FireplaceGuardian
 		public override void ModifyNPCLoot(NPCLoot npcLoot)
 		{
 			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FireplaceBag>(), 1));
+			// 10% 奖杯（与原版 Boss 掉落奖杯的做法一致）
+			npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FireplaceGuardianTrophy>(), 10));
 		}
 
 		public override void OnKill()

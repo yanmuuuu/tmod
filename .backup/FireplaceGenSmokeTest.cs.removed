@@ -1,0 +1,116 @@
+using System;
+using SubworldLibrary;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using WastelandSoul.Content.Subworlds;
+
+namespace WastelandSoul.Common.Systems
+{
+	/// <summary>
+	/// 壁炉**子世界生成**的冒烟测试（只在无头服务端 + 环境变量开关下跑）。
+	///
+	/// <para/>为什么需要：子世界只在**真正进入**时才生成，而 `ws_pipeline.ps1` 的两条加载自检
+	/// 都停在"Choose World"，覆盖不到世界生成 —— 玩家进门如果生成抛异常，
+	/// 看到的就是"一片空世界"，日志里那条异常还很容易被忽略。
+	///
+	/// <para/>它做两件事：
+	/// <list type="number">
+	/// <item>进世界几秒后调用 <c>SubworldSystem.Enter&lt;FireplaceSubworld&gt;()</c>（**走真实路径**）；</item>
+	/// <item>进了子世界之后数一遍关键方块、打印出生点 / worldSurface，然后退出进程。</item>
+	/// </list>
+	///
+	/// <para/>用法（只在一次性测试世界上跑，会写坏当前世界）：
+	/// <code>
+	/// set WS_FIREPLACE_GENTEST=1
+	/// dotnet tModLoader.dll -server -world &lt;临时世界&gt; -autocreate 1 -tmlsavedirectory &lt;临时存档目录&gt;
+	/// </code>
+	/// </summary>
+	public class FireplaceGenSmokeTest : ModSystem
+	{
+		private const string FlagName = "WS_FIREPLACE_GENTEST";
+
+		private int timer;
+		private bool requested;
+		private bool reported;
+
+		public override void PostUpdateWorld()
+		{
+			if (!Main.dedServ || Environment.GetEnvironmentVariable(FlagName) != "1") {
+				return;
+			}
+
+			timer++;
+
+			// 1) 进世界 5 秒后请求进入壁炉
+			if (!requested && timer == 300) {
+				requested = true;
+				Mod.Logger.Info("[壁炉自检] 请求进入壁炉子世界（走 SubworldSystem.Enter，真实路径）");
+
+				try {
+					SubworldSystem.Enter<FireplaceSubworld>();
+				} catch (Exception exception) {
+					Mod.Logger.Error("[壁炉自检] Enter 抛异常", exception);
+					Environment.Exit(4);
+				}
+			}
+
+			// 2) 1500 tick 内没进子世界 → 判定失败并退出
+			if (requested && !reported && timer > 1800) {
+				bool active = SubworldSystem.IsActive<FireplaceSubworld>();
+				Mod.Logger.Error("[壁炉自检] 超时：1500 tick 后仍未进入子世界（IsActive=" + active + "）");
+				Environment.Exit(5);
+			}
+
+			// 3) 进了子世界：等 300 tick 让它生成完，然后统计
+			if (!requested || reported || !SubworldSystem.IsActive<FireplaceSubworld>() || timer < 2100) {
+				return;
+			}
+
+			reported = true;
+
+			int alloy = ModContent.TileType<Content.Tiles.YugangAlloy>();
+			int trim = ModContent.TileType<Content.Tiles.YugangTrim>();
+			int alloyCount = 0;
+			int trimCount = 0;
+			int ashCount = 0;
+			int solidCount = 0;
+
+			for (int x = 0; x < Main.maxTilesX; x++) {
+				for (int y = 0; y < Main.maxTilesY; y++) {
+					if (!Main.tile[x, y].HasTile) {
+						continue;
+					}
+
+					solidCount++;
+					ushort type = Main.tile[x, y].TileType;
+
+					if (type == alloy) {
+						alloyCount++;
+					}
+					else if (type == trim) {
+						trimCount++;
+					}
+					else if (type == TileID.Ash || type == TileID.AshGrass) {
+						ashCount++;
+					}
+				}
+			}
+
+			int spawnSolid = WorldGen.InWorld(Main.spawnTileX, Main.spawnTileY)
+				&& Main.tile[Main.spawnTileX, Main.spawnTileY].HasTile ? 1 : 0;
+
+			Mod.Logger.Info(string.Format(
+				"[壁炉自检] 结果: 世界 {0}x{1}；实体格 {2}，其中瑜钢合金 {3} / 压条 {4} / 灰烬 {5}；"
+				+ "worldSurface={6} rockLayer={7} 出生点=({8},{9}) 脚下是实体={10}",
+				Main.maxTilesX, Main.maxTilesY, solidCount, alloyCount, trimCount, ashCount,
+				Main.worldSurface, Main.rockLayer, Main.spawnTileX, Main.spawnTileY, spawnSolid));
+
+			bool ok = alloyCount > 3000 && ashCount > 5000 && solidCount > 50000;
+
+			Mod.Logger.Info("[壁炉自检] 判定: " + (ok ? "生成正常" : "生成结果异常（数量太少）"));
+
+			Environment.Exit(ok ? 0 : 6);
+		}
+	}
+}

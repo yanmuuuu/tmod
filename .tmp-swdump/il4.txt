@@ -1,0 +1,140 @@
+﻿### SubworldLibrary.SubworldSystem::ExitWorldCallBack
+   IL_0000: ldsfld Terraria.Main::netMode
+   IL_0005: stloc.0 
+   IL_0006: ldloc.0 
+   IL_0007: brtrue.s IL_0041: ldsfld SubworldLibrary.Subworld SubworldLibrary.SubworldSystem::cache
+   IL_0009: call Terraria.IO.WorldFile::CacheSaveTime()
+   IL_000E: ldsfld SubworldLibrary.SubworldSystem::copiedData
+   IL_0013: brtrue.s IL_001f: ldsfld SubworldLibrary.Subworld SubworldLibrary.SubworldSystem::cache
+   IL_0015: newobj Terraria.ModLoader.IO.TagCompound::.ctor()
+   IL_001A: stsfld SubworldLibrary.SubworldSystem::copiedData
+   IL_001F: ldsfld SubworldLibrary.SubworldSystem::cache
+   IL_0024: brfalse.s IL_003a: call System.Void SubworldLibrary.SubworldSystem::CopyMainWorldData()
+   IL_0026: ldsfld SubworldLibrary.SubworldSystem::cache
+   IL_002B: callvirt SubworldLibrary.Subworld::CopySubworldData()
+   IL_0030: ldsfld SubworldLibrary.SubworldSystem::cache
+   IL_0035: callvirt SubworldLibrary.Subworld::OnExit()
+   IL_003A: call SubworldLibrary.SubworldSystem::CopyMainWorldData()
+   IL_003F: br.s IL_0051: ldc.i4.m1
+   IL_0041: ldsfld SubworldLibrary.SubworldSystem::cache
+   IL_0046: dup 
+   IL_0047: brtrue.s IL_004c: callvirt System.Void SubworldLibrary.Subworld::OnExit()
+   IL_0049: pop 
+   IL_004A: br.s IL_0051: ldc.i4.m1
+   IL_004C: callvirt SubworldLibrary.Subworld::OnExit()
+   IL_0051: ldc.i4.m1 
+   IL_0052: stsfld Terraria.Main::invasionProgress
+   IL_0057: ldc.i4.0 
+   IL_0058: stsfld Terraria.Main::invasionProgressDisplayLeft
+   IL_005D: ldc.r4 0
+   IL_0062: stsfld Terraria.Main::invasionProgressAlpha
+   IL_0067: ldc.i4.0 
+   IL_0068: stsfld Terraria.Main::invasionProgressIcon
+   IL_006D: ldc.i4.0 
+   IL_006E: stsfld SubworldLibrary.SubworldSystem::noReturn
+   IL_0073: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_0078: brfalse.s IL_008c: ldc.i4.0
+   IL_007A: ldc.i4.1 
+   IL_007B: stsfld SubworldLibrary.SubworldSystem::hideUnderworld
+   IL_0080: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_0085: callvirt SubworldLibrary.Subworld::OnEnter()
+   IL_008A: br.s IL_0092: call System.Void Terraria.Audio.SoundEngine::StopTrackedSounds()
+   IL_008C: ldc.i4.0 
+   IL_008D: stsfld SubworldLibrary.SubworldSystem::hideUnderworld
+   IL_0092: call Terraria.Audio.SoundEngine::StopTrackedSounds()
+   IL_0097: call Terraria.Graphics.Capture.CaptureInterface::ResetFocus()
+   IL_009C: ldsfld Terraria.Main::ActivePlayerFileData
+   IL_00A1: callvirt Terraria.IO.PlayerFileData::StopPlayTimer()
+   IL_00A6: ldsfld Terraria.Main::ActivePlayerFileData
+   IL_00AB: ldc.i4.0 
+   IL_00AC: call Terraria.Player::SavePlayer(PlayerFileData,Boolean)
+   IL_00B1: call Terraria.Player::ClearPlayerTempInfo()
+   IL_00B6: call Terraria.Rain::ClearRain()
+   IL_00BB: ldloc.0 
+   IL_00BC: ldc.i4.1 
+   IL_00BD: beq.s IL_00c6: ldarg.0
+   IL_00BF: call Terraria.IO.WorldFile::SaveWorld()
+   IL_00C4: br.s IL_00d5: call System.Void Terraria.ModLoader.SystemLoader::OnWorldUnload()
+   IL_00C6: ldarg.0 
+   IL_00C7: brtrue.s IL_00d5: call System.Void Terraria.ModLoader.SystemLoader::OnWorldUnload()
+   IL_00C9: ldc.i4.1 
+   IL_00CA: stsfld Terraria.Netplay::Disconnect
+   IL_00CF: ldc.i4.0 
+   IL_00D0: stsfld Terraria.Main::netMode
+   IL_00D5: call Terraria.ModLoader.SystemLoader::OnWorldUnload()
+   IL_00DA: ldc.i4.0 
+   IL_00DB: stsfld Terraria.Main::fastForwardTimeToDawn
+   IL_00E0: ldc.i4.0 
+   IL_00E1: stsfld Terraria.Main::fastForwardTimeToDusk
+   IL_00E6: call Terraria.Main::UpdateTimeRate()
+   IL_00EB: ldarg.0 
+   IL_00EC: brtrue.s IL_0104: ldc.i4.1
+   IL_00EE: ldloc.0 
+   IL_00EF: ldc.i4.1 
+   IL_00F0: beq.s IL_00f7: ldnull
+   IL_00F2: call SubworldLibrary.SubworldSystem::CacheWorldData()
+   IL_00F7: ldnull 
+   IL_00F8: stsfld SubworldLibrary.SubworldSystem::cache
+   IL_00FD: ldc.i4.0 
+   IL_00FE: stsfld Terraria.Main::menuMode
+   IL_0103: ret 
+   IL_0104: ldc.i4.1 
+   IL_0105: stsfld Terraria.WorldGen::noMapUpdate
+   IL_010A: ldsfld SubworldLibrary.SubworldSystem::cache
+   IL_010F: brfalse.s IL_0150: ldc.i4.0
+   IL_0111: ldsfld SubworldLibrary.SubworldSystem::cache
+   IL_0116: callvirt SubworldLibrary.Subworld::get_NoPlayerSaving()
+   IL_011B: brfalse.s IL_0150: ldc.i4.0
+   IL_011D: ldsfld Terraria.Main::ActivePlayerFileData
+   IL_0122: callvirt Terraria.IO.FileData::get_Path()
+   IL_0127: ldsfld Terraria.Main::ActivePlayerFileData
+   IL_012C: callvirt Terraria.IO.FileData::get_IsCloudSave()
+   IL_0131: call Terraria.Player::GetFileData(String,Boolean)
+   IL_0136: stloc.1 
+   IL_0137: ldloc.1 
+   IL_0138: brfalse.s IL_0150: ldc.i4.0
+   IL_013A: ldloc.1 
+   IL_013B: callvirt Terraria.IO.PlayerFileData::get_Player()
+   IL_0140: ldsfld Terraria.Main::myPlayer
+   IL_0145: stfld Terraria.Entity::whoAmI
+   IL_014A: ldloc.1 
+   IL_014B: callvirt Terraria.IO.FileData::SetAsActive()
+   IL_0150: ldc.i4.0 
+   IL_0151: stloc.2 
+   IL_0152: br.s IL_016d: ldloc.2
+   IL_0154: ldloc.2 
+   IL_0155: ldsfld Terraria.Main::myPlayer
+   IL_015A: beq.s IL_0169: ldloc.2
+   IL_015C: ldsfld Terraria.Main::player
+   IL_0161: ldloc.2 
+   IL_0162: ldelem.ref 
+   IL_0163: ldc.i4.0 
+   IL_0164: stfld Terraria.Entity::active
+   IL_0169: ldloc.2 
+   IL_016A: ldc.i4.1 
+   IL_016B: add 
+   IL_016C: stloc.2 
+   IL_016D: ldloc.2 
+   IL_016E: ldc.i4 255
+   IL_0173: blt.s IL_0154: ldloc.2
+   IL_0175: ldloc.0 
+   IL_0176: ldc.i4.1 
+   IL_0177: beq.s IL_017f: call !!0 Terraria.ModLoader.ModContent::GetInstance<SubworldLibrary.SubworldLibrary>()
+   IL_0179: call SubworldLibrary.SubworldSystem::LoadWorld()
+   IL_017E: ret 
+   IL_017F: call Terraria.ModLoader.ModContent::GetInstance()
+   IL_0184: ldc.i4 256
+   IL_0189: callvirt Terraria.ModLoader.Mod::GetPacket(Int32)
+   IL_018E: dup 
+   IL_018F: ldarg.0 
+   IL_0190: unbox.any System.Int32
+   IL_0195: ldc.i4 98304
+   IL_019A: add 
+   IL_019B: ldc.i4 65536
+   IL_01A0: rem 
+   IL_01A1: conv.u2 
+   IL_01A2: callvirt System.IO.BinaryWriter::Write(UInt16)
+   IL_01A7: ldc.i4.m1 
+   IL_01A8: ldc.i4.m1 
+   IL_01A9: callvirt Terraria.ModLoader.ModPacket::Send(Int32,Int32)
+   IL_01AE: ret 

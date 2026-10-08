@@ -1,0 +1,6 @@
+TYPE Terraria.Projectile : Terraria.Entity
+   M Void AI_192_GetJuminoFall(Projectile proj, Single& timeSinceFall, Single& fall)
+   M Void AI_061_FishingBobber()
+   M Single AI_061_FishingBobber_GetWaterLine(Int32 X, Int32 Y)
+   M Void AI_061_FishingBobber_DoASplash()
+   M Void AI_061_FishingBobber_GiveItemToPlayer(Player thePlayer, Int32 itemType)

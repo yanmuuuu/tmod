@@ -1,0 +1,52 @@
+TYPE Terraria.ModLoader.ModSceneEffect : Terraria.ModLoader.ModType
+   M Void Register()
+   M Void RegisterSceneEffect(ModSceneEffect modSceneEffect)
+   M Single GetWeight(Player player)
+   M Single GetCorrWeight(Player player)
+   M Boolean IsSceneEffectActive(Player player)
+   M Void SpecialVisuals(Player player, Boolean isActive)
+   M Void MapBackgroundColor(Color& color)
+   M Void .ctor()
+TYPE Terraria.ModLoader.MusicLoader : System.Object
+   M Int32 GetMusicSlot(Mod mod, String musicPath)
+   M Int32 GetMusicSlot(String musicPath)
+   M Boolean MusicExists(Mod mod, String musicPath)
+   M Boolean MusicExists(String musicPath)
+   M IAudioTrack GetMusic(Mod mod, String musicPath)
+   M IAudioTrack GetMusic(String musicPath)
+   M Void AddMusic(Mod mod, String musicPath)
+   M Void AddMusicBox(Mod mod, Int32 musicSlot, Int32 itemType, Int32 tileType, Int32 tileFrameY)
+   M Void AutoloadMusic(Mod mod)
+   M Int32 ReserveMusicID()
+   M IAudioTrack LoadMusic(String path, String extension)
+   M Void CloseModStreams(Mod mod)
+   M Void CloseStream(String musicPath)
+   M Void Terraria.ModLoader.ILoader.ResizeArrays()
+   M Void Terraria.ModLoader.ILoader.Unload()
+   M Void .ctor()
+   M Void .cctor()
+TYPE Terraria.ModLoader.SceneEffectLoader`1 : Terraria.ModLoader.Loader`1<T>
+   M Void ChooseStyle(Int32& style, SceneEffectPriority& priority)
+   M Void .ctor()
+TYPE Terraria.ModLoader.SceneEffectLoader : Terraria.ModLoader.Loader`1<Terraria.ModLoader.ModSceneEffect>
+   M Void .ctor()
+   M Void UpdateSceneEffect(Player player)
+   M Void UpdateMusic(Int32& music, SceneEffectPriority& priority)
+TYPE Terraria.ModLoader.SceneEffectLoader/SceneEffectInstance : System.Object
+   M Void .ctor()
+TYPE Terraria.ModLoader.SceneEffectLoader/SceneEffectInstance/PrioritizedPair : System.ValueType
+   M Void .cctor()
+TYPE Terraria.ModLoader.SceneEffectLoader/AtmosWeight : System.ValueType
+   M Void .ctor(Single weight, ModSceneEffect type)
+   M Int32 InvertedCompare(AtmosWeight a, AtmosWeight b)
+TYPE Terraria.ModLoader.SceneEffectLoader/<>O : System.Object
+ENUM Terraria.ModLoader.SceneEffectPriority
+   None = 0
+   BiomeLow = 1
+   BiomeMedium = 2
+   BiomeHigh = 3
+   Environment = 4
+   Event = 5
+   BossLow = 6
+   BossMedium = 7
+   BossHigh = 8

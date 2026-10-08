@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
+using WastelandSoul.Common.Players;
 using WastelandSoul.Common.Systems;
 
 namespace WastelandSoul.Content.Tiles
@@ -60,10 +61,20 @@ namespace WastelandSoul.Content.Tiles
 
 		public override bool RightClick(int i, int j)
 		{
+			bool alreadyRestored = WastelandStorySystem.firstMemoryRestored;
+
 			WastelandStorySystem.MarkDataTerminalRead();
 
-			if (!Main.dedServ && Main.LocalPlayer.whoAmI == Main.myPlayer && !WastelandStorySystem.firstMemoryRestored) {
-				Main.NewText(Language.GetTextValue("Mods.WastelandSoul.Messages.TerminalTalkToHer"), new Color(160, 200, 230));
+			if (!Main.dedServ && Main.LocalPlayer.whoAmI == Main.myPlayer && WastelandStorySystem.firstMemoryRestored) {
+				// 第一段记忆就是在这一刻由终端放出来的 —— 把「个人进度」三个标志接上。
+				WastelandPlayer modPlayer = Main.LocalPlayer.GetModPlayer<WastelandPlayer>();
+
+				modPlayer.heardFirstMemory = true;
+				modPlayer.knowsWatchmanProtocol = true;
+
+				if (!alreadyRestored) {
+					Main.NewText(Language.GetTextValue("Mods.WastelandSoul.Messages.TerminalTalkToHer"), new Color(160, 200, 230));
+				}
 			}
 
 			return true;

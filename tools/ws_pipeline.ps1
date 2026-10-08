@@ -167,6 +167,15 @@ RunChecker "$PSScriptRoot\check_batch_usage.py"  'check_batch_usage'
 # there throws ThreadStateException in the CLIENT and gets the whole mod disabled.
 # The -server load test below can NOT catch that (Main.dedServ short-circuits it).
 RunChecker "$PSScriptRoot\check_load_thread_safety.py" 'check_load_thread_safety'
+# 【玩家的硬性要求，跨分支永久生效】不许把"自动挂在所有弹幕/NPC 上的线状特效"
+# 加回来（弹幕拖尾、氛围闪电、光束上叠白线都算）—— 影响视线，已经加回来两次
+RunChecker "$PSScriptRoot\check_no_auto_trails.py" 'check_no_auto_trails'
+# 【批次 28 的教训】改地形的全局系统必须有子世界守卫：壁炉门系统曾在子世界里继续按主世界
+# 坐标"放门"，每秒啃掉 81x4 格，把堡垒和塔顶一层层吃掉
+RunChecker "$PSScriptRoot\check_subworld_scope.py" 'check_subworld_scope'
+# 壁炉世界生成的布局不变量：世界生成只在玩家真正进门时才跑，加载自检覆盖不到，
+# 所以把"结构之间该有的几何关系"在静态这一层卡住
+RunChecker "$PSScriptRoot\check_fireplace_layout.py" 'check_fireplace_layout'
 RunChecker "$PSScriptRoot\check_localization.py" 'check_localization'
 # item tooltips must not repeat crafting information (station/recipe) - the crafting
 # UI already shows it; BossChecklist SpawnInfo is intentionally exempt

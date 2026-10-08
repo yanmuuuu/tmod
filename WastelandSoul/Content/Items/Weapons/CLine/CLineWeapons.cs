@@ -6,12 +6,27 @@ using WastelandSoul.Content.Items.Weapons;
 namespace WastelandSoul.Content.Items.Weapons.CLine
 {
 	/// <summary>
+	/// C 线武器的装配形态。
+	/// <para/>⚠️ 这里以前是**字符串**（<c>"melee"</c> / <c>"magic"</c> …），拼错一个字母就会静默落进
+	/// <c>default</c> 分支、退化成「手写的一套参数」而且**不报任何错**（审计发现的隐患）。
+	/// 改成枚举之后，写错名字是**编译错误**，不可能再静默降级。
+	/// </summary>
+	public enum CLineKind
+	{
+		Melee,
+		Magic,
+		Ranged,
+		Summon,
+		Rogue
+	}
+
+	/// <summary>
 	/// 小怪小概率掉落的不可制作武器。弹幕复用对应 Boss 的 A 线，数值略低于可制作版，
 	/// 这样幸运掉落能提前用，但不会盖过 Boss 武器。
 	/// </summary>
 	public abstract class CLineWeapon : WastelandClassWeapon
 	{
-		protected abstract string Kind { get; }
+		protected abstract CLineKind Kind { get; }
 
 		protected abstract int Mana { get; }
 
@@ -22,19 +37,33 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 			base.SetDefaults();
 
 			switch (Kind) {
-				case "melee":
+				case CLineKind.Melee:
 					WastelandWeaponKit.Melee(Item);
 					break;
-				case "magic":
+				case CLineKind.Magic:
 					WastelandWeaponKit.Magic(Item, Mana);
 					break;
-				case "ranged":
+				case CLineKind.Ranged:
 					WastelandWeaponKit.Ranged(Item);
 					break;
-				case "summon":
+				case CLineKind.Summon:
 					WastelandWeaponKit.Summon(Item, SummonBuff, Mana);
 					break;
+				case CLineKind.Rogue:
+					// 保持旧 default 分支的行为：C 线盗贼武器是**掉落的单件**，
+					// 不套用 A 线那套「可堆叠 999 + 投出即消耗」的消耗品参数，
+					// 免得玩家顺手捡到的唯一一把被一次投掷用掉。
+					Item.useStyle = Terraria.ID.ItemUseStyleID.Swing;
+					Item.noMelee = true;
+					Item.noUseGraphic = true;
+					Item.consumable = false;
+					Item.maxStack = 1;
+					Item.autoReuse = true;
+					Item.UseSound = Terraria.ID.SoundID.Item1;
+					break;
 				default:
+					// 枚举写错是编译错误，这里只兜住「以后新增了枚举值却忘了加分支」的情况。
+					Mod.Logger.Warn($"CLineWeapon: 未处理的装配形态 {Kind}（{GetType().Name}），已退化成手写实现");
 					Item.useStyle = Terraria.ID.ItemUseStyleID.Swing;
 					Item.noMelee = true;
 					Item.noUseGraphic = true;
@@ -49,7 +78,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class ScavengerCWarrior : CLineWeapon
 	{
-		protected override string Kind => "melee";
+		protected override CLineKind Kind => CLineKind.Melee;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Melee;
@@ -61,7 +90,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class ScavengerCMage : CLineWeapon
 	{
-		protected override string Kind => "magic";
+		protected override CLineKind Kind => CLineKind.Magic;
 		protected override int Mana => 6;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Magic;
@@ -73,7 +102,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class ScavengerCRanger : CLineWeapon
 	{
-		protected override string Kind => "ranged";
+		protected override CLineKind Kind => CLineKind.Ranged;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Ranged;
@@ -85,7 +114,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class ScavengerCSummoner : CLineWeapon
 	{
-		protected override string Kind => "summon";
+		protected override CLineKind Kind => CLineKind.Summon;
 		protected override int Mana => 8;
 		protected override int SummonBuff => ModContent.BuffType<Content.Projectiles.Scavenger.ScavengerDroneBuff>();
 		protected override DamageClass Class => DamageClass.Summon;
@@ -97,7 +126,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class ScavengerCRogue : CLineWeapon
 	{
-		protected override string Kind => "rogue";
+		protected override CLineKind Kind => CLineKind.Rogue;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Throwing;
@@ -109,7 +138,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class ArchivistCWarrior : CLineWeapon
 	{
-		protected override string Kind => "melee";
+		protected override CLineKind Kind => CLineKind.Melee;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Melee;
@@ -121,7 +150,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class ArchivistCMage : CLineWeapon
 	{
-		protected override string Kind => "magic";
+		protected override CLineKind Kind => CLineKind.Magic;
 		protected override int Mana => 8;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Magic;
@@ -133,7 +162,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class ArchivistCRanger : CLineWeapon
 	{
-		protected override string Kind => "ranged";
+		protected override CLineKind Kind => CLineKind.Ranged;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Ranged;
@@ -145,7 +174,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class ArchivistCSummoner : CLineWeapon
 	{
-		protected override string Kind => "summon";
+		protected override CLineKind Kind => CLineKind.Summon;
 		protected override int Mana => 10;
 		protected override int SummonBuff => ModContent.BuffType<Content.Projectiles.Archivist.ArchivistFamiliarBuff>();
 		protected override DamageClass Class => DamageClass.Summon;
@@ -157,7 +186,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class ArchivistCRogue : CLineWeapon
 	{
-		protected override string Kind => "rogue";
+		protected override CLineKind Kind => CLineKind.Rogue;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Throwing;
@@ -169,7 +198,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class AshHeartCWarrior : CLineWeapon
 	{
-		protected override string Kind => "melee";
+		protected override CLineKind Kind => CLineKind.Melee;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Melee;
@@ -181,7 +210,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class AshHeartCMage : CLineWeapon
 	{
-		protected override string Kind => "magic";
+		protected override CLineKind Kind => CLineKind.Magic;
 		protected override int Mana => 12;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Magic;
@@ -193,7 +222,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class AshHeartCRanger : CLineWeapon
 	{
-		protected override string Kind => "ranged";
+		protected override CLineKind Kind => CLineKind.Ranged;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Ranged;
@@ -205,7 +234,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class AshHeartCSummoner : CLineWeapon
 	{
-		protected override string Kind => "summon";
+		protected override CLineKind Kind => CLineKind.Summon;
 		protected override int Mana => 12;
 		protected override int SummonBuff => ModContent.BuffType<Content.Projectiles.LateBosses.AshHeartEmberBuff>();
 		protected override DamageClass Class => DamageClass.Summon;
@@ -217,7 +246,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class AshHeartCRogue : CLineWeapon
 	{
-		protected override string Kind => "rogue";
+		protected override CLineKind Kind => CLineKind.Rogue;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Throwing;
@@ -229,7 +258,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class FireplaceCWarrior : CLineWeapon
 	{
-		protected override string Kind => "melee";
+		protected override CLineKind Kind => CLineKind.Melee;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Melee;
@@ -241,7 +270,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class FireplaceCMage : CLineWeapon
 	{
-		protected override string Kind => "magic";
+		protected override CLineKind Kind => CLineKind.Magic;
 		protected override int Mana => 14;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Magic;
@@ -253,7 +282,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class FireplaceCRanger : CLineWeapon
 	{
-		protected override string Kind => "ranged";
+		protected override CLineKind Kind => CLineKind.Ranged;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Ranged;
@@ -265,7 +294,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class FireplaceCSummoner : CLineWeapon
 	{
-		protected override string Kind => "summon";
+		protected override CLineKind Kind => CLineKind.Summon;
 		protected override int Mana => 16;
 		protected override int SummonBuff => ModContent.BuffType<Content.Projectiles.LateBosses.FireplaceSentryBuff>();
 		protected override DamageClass Class => DamageClass.Summon;
@@ -277,7 +306,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 
 	public class FireplaceCRogue : CLineWeapon
 	{
-		protected override string Kind => "rogue";
+		protected override CLineKind Kind => CLineKind.Rogue;
 		protected override int Mana => 0;
 		protected override int SummonBuff => 0;
 		protected override DamageClass Class => DamageClass.Throwing;

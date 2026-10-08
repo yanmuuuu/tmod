@@ -1,0 +1,24 @@
+TYPE Terraria.ModLoader.ModBackgroundStyle : Terraria.ModLoader.ModType
+   M Void .ctor()
+TYPE Terraria.ModLoader.ModUndergroundBackgroundStyle : Terraria.ModLoader.ModBackgroundStyle
+   M Void Register()
+   M Void SetupContent()
+   M Void FillTextureArray(Int32[] textureSlots)
+   M Void .ctor()
+TYPE Terraria.ModLoader.ModSurfaceBackgroundStyle : Terraria.ModLoader.ModBackgroundStyle
+   M Void Register()
+   M Void SetupContent()
+   M Void ModifyFarFades(Single[] fades, Single transitionSpeed)
+   M Int32 ChooseFarTexture()
+   M Int32 ChooseMiddleTexture()
+   M Boolean PreDrawCloseBackground(SpriteBatch spriteBatch)
+   M Int32 ChooseCloseTexture(Single& scale, Double& parallax, Single& a, Single& b)
+   M Void .ctor()
+TYPE Terraria.ModLoader.GlobalBackgroundStyle : Terraria.ModLoader.ModType
+   M Void Register()
+   M Void SetupContent()
+   M Void ChooseUndergroundBackgroundStyle(Int32& style)
+   M Void ChooseSurfaceBackgroundStyle(Int32& style)
+   M Void FillUndergroundTextureArray(Int32 style, Int32[] textureSlots)
+   M Void ModifyFarSurfaceFades(Int32 style, Single[] fades, Single transitionSpeed)
+   M Void .ctor()

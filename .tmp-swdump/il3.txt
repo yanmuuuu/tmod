@@ -1,0 +1,147 @@
+﻿### SubworldLibrary.SubworldLibrary::ResizeSubworld
+   IL_0000: ldsfld Terraria.Main::maxTilesX
+   IL_0005: ldc.i4 8400
+   IL_000A: ble.s IL_0014: ldsfld System.Int32 Terraria.Main::maxTilesY
+   IL_000C: ldsfld Terraria.Main::maxTilesX
+   IL_0011: ldarg.0 
+   IL_0012: bgt.s IL_0029: ldsfld System.Int32 Terraria.Main::maxTilesX
+   IL_0014: ldsfld Terraria.Main::maxTilesY
+   IL_0019: ldc.i4 2400
+   IL_001E: ble.s IL_0028: ret
+   IL_0020: ldsfld Terraria.Main::maxTilesY
+   IL_0025: ldarg.1 
+   IL_0026: bgt.s IL_0029: ldsfld System.Int32 Terraria.Main::maxTilesX
+   IL_0028: ret 
+   IL_0029: ldsfld Terraria.Main::maxTilesX
+   IL_002E: ldc.i4.1 
+   IL_002F: add 
+   IL_0030: ldc.i4 8401
+   IL_0035: ldc.i4 65535
+   IL_003A: call System.Math::Clamp(Int32,Int32,Int32)
+   IL_003F: conv.u2 
+   IL_0040: stloc.0 
+   IL_0041: ldsfld Terraria.Main::maxTilesY
+   IL_0046: ldc.i4.1 
+   IL_0047: add 
+   IL_0048: ldc.i4 2401
+   IL_004D: ldc.i4 65535
+   IL_0052: call System.Math::Clamp(Int32,Int32,Int32)
+   IL_0057: conv.u2 
+   IL_0058: stloc.1 
+   IL_0059: ldloc.0 
+   IL_005A: ldc.i4 65535
+   IL_005F: bne.un.s IL_006b: ldloc.1
+   IL_0061: ldc.i4 65534
+   IL_0066: stsfld Terraria.Main::maxTilesX
+   IL_006B: ldloc.1 
+   IL_006C: ldc.i4 65535
+   IL_0071: bne.un.s IL_007d: ldtoken Terraria.Tilemap
+   IL_0073: ldc.i4 65534
+   IL_0078: stsfld Terraria.Main::maxTilesY
+   IL_007D: ldtoken Terraria.Tilemap
+   IL_0082: call System.Type::GetTypeFromHandle(RuntimeTypeHandle)
+   IL_0087: ldc.i4.s 36
+   IL_0089: ldnull 
+   IL_008A: ldc.i4.2 
+   IL_008B: newarr System.Object
+   IL_0090: dup 
+   IL_0091: ldc.i4.0 
+   IL_0092: ldloc.0 
+   IL_0093: box System.UInt16
+   IL_0098: stelem.ref 
+   IL_0099: dup 
+   IL_009A: ldc.i4.1 
+   IL_009B: ldloc.1 
+   IL_009C: box System.UInt16
+   IL_00A1: stelem.ref 
+   IL_00A2: ldnull 
+   IL_00A3: call System.Activator::CreateInstance(Type,BindingFlags,Binder,Object[],CultureInfo)
+   IL_00A8: unbox.any Terraria.Tilemap
+   IL_00AD: stsfld Terraria.Main::tile
+   IL_00B2: ldloc.0 
+   IL_00B3: ldloc.1 
+   IL_00B4: newobj Terraria.Map.WorldMap::.ctor(Int32,Int32)
+   IL_00B9: stsfld Terraria.Main::Map
+   IL_00BE: ldloc.0 
+   IL_00BF: ldc.i4 1678
+   IL_00C4: add 
+   IL_00C5: ldc.i4 1680
+   IL_00CA: div 
+   IL_00CB: stsfld Terraria.Main::mapTargetX
+   IL_00D0: ldloc.1 
+   IL_00D1: ldc.i4 1198
+   IL_00D6: add 
+   IL_00D7: ldc.i4 1200
+   IL_00DC: div 
+   IL_00DD: stsfld Terraria.Main::mapTargetY
+   IL_00E2: ldsfld Terraria.Main::instance
+   IL_00E7: ldsfld Terraria.Main::mapTargetX
+   IL_00EC: ldsfld Terraria.Main::mapTargetY
+   IL_00F1: newobj Microsoft.Xna.Framework.Graphics.RenderTarget2D[0...,0...]::.ctor(Int32,Int32)
+   IL_00F6: stfld Terraria.Main::mapTarget
+   IL_00FB: ldsfld Terraria.Main::mapTargetX
+   IL_0100: ldsfld Terraria.Main::mapTargetY
+   IL_0105: newobj System.Boolean[0...,0...]::.ctor(Int32,Int32)
+   IL_010A: stsfld Terraria.Main::initMap
+   IL_010F: ldsfld Terraria.Main::mapTargetX
+   IL_0114: ldsfld Terraria.Main::mapTargetY
+   IL_0119: newobj System.Boolean[0...,0...]::.ctor(Int32,Int32)
+   IL_011E: stsfld Terraria.Main::mapWasContentLost
+   IL_0123: ret 
+### SubworldLibrary.SubworldLibrary::EraseSubworlds
+   IL_0000: ldsfld Terraria.Main::WorldList
+   IL_0005: ldarg.0 
+   IL_0006: callvirt System.Collections.Generic.List`1<Terraria.IO.WorldFileData>::get_Item(Int32)
+   IL_000B: stloc.0 
+   IL_000C: ldloc.0 
+   IL_000D: callvirt Terraria.IO.FileData::get_IsCloudSave()
+   IL_0012: brtrue.s IL_001b: ldsfld System.String Terraria.Main::CloudWorldPath
+   IL_0014: ldsfld Terraria.Main::WorldPath
+   IL_0019: br.s IL_0020: ldloc.0
+   IL_001B: ldsfld Terraria.Main::CloudWorldPath
+   IL_0020: ldloc.0 
+   IL_0021: ldflda Terraria.IO.WorldFileData::UniqueId
+   IL_0026: constrained. System.Guid
+   IL_002C: callvirt System.Object::ToString()
+   IL_0031: call System.IO.Path::Combine(String,String)
+   IL_0036: stloc.1 
+   IL_0037: ldloc.1 
+   IL_0038: ldloc.0 
+   IL_0039: callvirt Terraria.IO.FileData::get_IsCloudSave()
+   IL_003E: call Terraria.Utilities.FileUtilities::Exists(String,Boolean)
+   IL_0043: brfalse.s IL_0052: ret
+   IL_0045: ldloc.1 
+   IL_0046: ldloc.0 
+   IL_0047: callvirt Terraria.IO.FileData::get_IsCloudSave()
+   IL_004C: ldc.i4.0 
+   IL_004D: call Terraria.Utilities.FileUtilities::Delete(String,Boolean,Boolean)
+   IL_0052: ret 
+### SubworldLibrary.SubworldSystem::OnEnterWorld
+   IL_0000: ldsfld Terraria.Main::netMode
+   IL_0005: ldc.i4.1 
+   IL_0006: bne.un.s IL_0028: ldsfld SubworldLibrary.Subworld SubworldLibrary.SubworldSystem::current
+   IL_0008: ldsfld SubworldLibrary.SubworldSystem::cache
+   IL_000D: dup 
+   IL_000E: brtrue.s IL_0013: callvirt System.Void SubworldLibrary.Subworld::OnUnload()
+   IL_0010: pop 
+   IL_0011: br.s IL_0018: ldsfld SubworldLibrary.Subworld SubworldLibrary.SubworldSystem::current
+   IL_0013: callvirt SubworldLibrary.Subworld::OnUnload()
+   IL_0018: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_001D: dup 
+   IL_001E: brtrue.s IL_0023: callvirt System.Void SubworldLibrary.Subworld::OnLoad()
+   IL_0020: pop 
+   IL_0021: br.s IL_0028: ldsfld SubworldLibrary.Subworld SubworldLibrary.SubworldSystem::current
+   IL_0023: callvirt SubworldLibrary.Subworld::OnLoad()
+   IL_0028: ldsfld SubworldLibrary.SubworldSystem::current
+   IL_002D: stsfld SubworldLibrary.SubworldSystem::cache
+   IL_0032: ret 
+### SubworldLibrary.SubworldSystem::SpawnPlayer
+   IL_0000: call Terraria.Main::get_LocalPlayer()
+   IL_0005: ldc.i4.1 
+   IL_0006: callvirt Terraria.Player::Spawn(PlayerSpawnContext)
+   IL_000B: call Terraria.IO.WorldFile::SetOngoingToTemps()
+   IL_0010: ldc.i4.1 
+   IL_0011: stsfld Terraria.Main::resetClouds
+   IL_0016: ldc.i4.0 
+   IL_0017: stsfld Terraria.Main::gameMenu
+   IL_001C: ret 

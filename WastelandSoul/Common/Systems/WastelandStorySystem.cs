@@ -51,6 +51,16 @@ namespace WastelandSoul.Common.Systems
 		public static int GateY;
 		public static bool GatePlaced;
 
+		/// <summary>
+		/// 本存档**已经做过**「首次进壁炉自动重载」这件事。
+		///
+		/// <para/>为什么需要它：SubworldLibrary 首次**生成**子世界那一次，客户端不会像读档那样
+		/// 再刷新一遍，玩家第一眼看到的是空世界，必须出去再进一次才显示。
+		/// <see cref="FireplaceEntrySystem"/> 会替玩家把这一次重载自动做掉 —— 而"只做一次"就靠这个旗标。
+		/// 它随存档保存、也随 <see cref="Sync"/> 联机同步，所以重进存档、联机都一样不会重复触发。
+		/// </summary>
+		public static bool fireplaceSeen;
+
 		public static CompanionStage CompanionMemoryStage
 		{
 			get
@@ -98,6 +108,7 @@ namespace WastelandSoul.Common.Systems
 			GatePlaced = false;
 			GateX = 0;
 			GateY = 0;
+			fireplaceSeen = false;
 
 			Content.NPCs.Bosses.Scavenger.ScavengerContext.Clear();
 			Content.NPCs.Bosses.Archivist.ArchivistContext.Clear();
@@ -123,6 +134,7 @@ namespace WastelandSoul.Common.Systems
 			tag["gatePlaced"] = GatePlaced;
 			tag["gateX"] = GateX;
 			tag["gateY"] = GateY;
+			tag["fireplaceSeen"] = fireplaceSeen;
 
 			if (!string.IsNullOrEmpty(companionName)) {
 				tag["companionName"] = companionName;
@@ -147,6 +159,7 @@ namespace WastelandSoul.Common.Systems
 			GatePlaced = tag.GetBool("gatePlaced");
 			GateX = tag.GetInt("gateX");
 			GateY = tag.GetInt("gateY");
+			fireplaceSeen = tag.GetBool("fireplaceSeen");
 			companionName = tag.GetString("companionName") ?? string.Empty;
 		}
 
@@ -162,6 +175,13 @@ namespace WastelandSoul.Common.Systems
 
 		public override void PostUpdateWorld()
 		{
+			// 兜底 / 老存档迁移：第一段记忆现在由「读壁炉数据终端」触发（见 MarkDataTerminalRead）。
+			// 旧存档里终端读过、但记忆还停在「交付清道夫碎片」那条路上的，这里直接补上，
+			// 免得玩家的主线永远卡在旧路径。
+			if (dataTerminalRead && !firstMemoryRestored) {
+				RestoreFirstMemory();
+			}
+
 			if (codaPlayed || endingChoice == EndingNone || !NPC.downedMoonlord) {
 				return;
 			}
@@ -196,6 +216,7 @@ namespace WastelandSoul.Common.Systems
 			writer.Write(GatePlaced);
 			writer.Write(GateX);
 			writer.Write(GateY);
+			writer.Write(fireplaceSeen);
 			writer.Write(companionName ?? string.Empty);
 		}
 
@@ -217,6 +238,7 @@ namespace WastelandSoul.Common.Systems
 			GatePlaced = reader.ReadBoolean();
 			GateX = reader.ReadInt32();
 			GateY = reader.ReadInt32();
+			fireplaceSeen = reader.ReadBoolean();
 			companionName = reader.ReadString();
 		}
 
@@ -303,6 +325,33 @@ namespace WastelandSoul.Common.Systems
 
 			dataTerminalRead = true;
 			Announce("Mods.WastelandSoul.Messages.TerminalRead", new Color(150, 200, 230));
+
+			// 主线改动：第一段记忆改由「读壁炉里的数据终端」这一刻触发。
+			// 旧路径（击败清道夫后把灵魂碎片·其一交给智械人）已废弃；
+			// 碎片交付只保留给第二段及以后的记忆。
+			bool alreadyRestored = firstMemoryRestored;
+
+			RestoreFirstMemory();
+
+			// RestoreFirstMemory 会自己 Sync；只有它提前返回（记忆早就恢复过）时才需要在这里补发，
+			// 否则终端标志会漏同步。
+			if (alreadyRestored) {
+				Sync();
+			}
+		}
+
+		/// <summary>
+		/// 记下"本存档已经替玩家补过首次进壁炉的重载"。
+		/// <para/>⚠️ 调用方要在**动手之前**调它（见 <see cref="FireplaceEntrySystem"/>）：
+		/// 宁可这次重载失败，也不能因为失败而反复把玩家踢出世界。
+		/// </summary>
+		public static void MarkFireplaceSeen()
+		{
+			if (fireplaceSeen) {
+				return;
+			}
+
+			fireplaceSeen = true;
 			Sync();
 		}
 
@@ -325,6 +374,8 @@ namespace WastelandSoul.Common.Systems
 
 			firstMemoryRestored = true;
 			Announce("Mods.WastelandSoul.Messages.FirstMemoryRestored", new Color(180, 200, 255));
+			// 记忆本体现在在「读终端」这一刻放出来（原先是在对话里由她当面读）
+			Announce("Mods.WastelandSoul.Dialogue.MechanicalCompanion.MemoryFirst", new Color(180, 200, 255));
 			Sync();
 		}
 

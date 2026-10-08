@@ -57,6 +57,11 @@ namespace WastelandSoul.Common
 			"Messages.TerminalTalkToHer",
 			"Messages.GatePlaced",
 			"Messages.FireplaceEnterFailed",
+			"Messages.FireplaceForming",
+
+			// ---- 灵魂碎片交付（每个世界只给一次 / 交给她就被消耗）----
+			"Messages.SoulFragmentHandedIn",
+			"Messages.SoulFragmentSupplemented",
 
 			"Conditions.AfterScavenger",
 			"Conditions.AfterArchivist",
@@ -132,7 +137,9 @@ namespace WastelandSoul.Common
 			DialoguePrefix + "MemorySecondNeedFragment",
 			DialoguePrefix + "MemoryRecovered2",
 			DialoguePrefix + "MemoryUnstable",
-			DialoguePrefix + "MemoryRecovered"
+			DialoguePrefix + "MemoryRecovered",
+			// 补交：这段记忆早就恢复过（例如第一段是数据终端触发的），碎片照样消耗、不重播剧情
+			DialoguePrefix + "MemorySupplemented"
 		};
 	}
 }
