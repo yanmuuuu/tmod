@@ -1,0 +1,49 @@
+Items: {
+	SignalCleaver: {
+		DisplayName: 锈颚砍刀
+		Tooltip: 热边的废铁板。挥出去会甩出一片烧着的碎片
+	}
+
+	SignalCodex: {
+		DisplayName: 提灯法典
+		Tooltip: 打出一颗会拐向敌人的冷青灯火
+	}
+
+	SignalNailgun: {
+		DisplayName: 线圈钉枪
+		Tooltip: 发射铁钉，钉上去时迸一截短电弧
+	}
+
+	SignalEmberFan: {
+		DisplayName: 余烬扇
+		Tooltip: 一次甩出三片烧着的扇叶
+	}
+
+	SignalWispStaff: {
+		DisplayName: 信号灯芯杖
+		Tooltip: 召出一盏会自己找人的小灯
+	}
+
+	SignalRigHelm: {
+		DisplayName: 信号甲头盔
+		Tooltip: 锈铁兜帽，眼前一道青缝
+	}
+
+	SignalRigPlate: {
+		DisplayName: 信号甲胸甲
+		Tooltip: 焊上去的废铁，胸口一条冷电缆
+		SetBonus: 甲壳在响。走得稍快一点，身边跟着一颗光点
+	}
+
+	SignalRigGreaves: {
+		DisplayName: 信号甲护腿
+		Tooltip: 胫甲上的青纹还留着电
+	}
+}
+
+Buffs: {
+	SignalWispBuff: {
+		DisplayName: 信号灯芯
+		Description: 一盏灯在替你看着
+	}
+}

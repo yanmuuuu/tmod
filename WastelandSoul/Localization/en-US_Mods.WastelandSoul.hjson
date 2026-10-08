@@ -1218,6 +1218,47 @@ Items: {
 		DisplayName: Fireplace Guardian Banner
 		Tooltip: The colours of the Fireplace's last guard.
 	}
+
+	SignalCleaver: {
+		DisplayName: Rustjaw Cleaver
+		Tooltip: A hot-edged slab of scrap. The swing throws a burning shard
+	}
+
+	SignalCodex: {
+		DisplayName: Lantern Codex
+		Tooltip: Throws a cold lantern-light that bends toward enemies
+	}
+
+	SignalNailgun: {
+		DisplayName: Coil Nailgun
+		Tooltip: Fires nails. They spark when they land
+	}
+
+	SignalEmberFan: {
+		DisplayName: Ember Fan
+		Tooltip: Throws three burning blades at once
+	}
+
+	SignalWispStaff: {
+		DisplayName: Signal Wisp Staff
+		Tooltip: Summons a small lantern that hunts for you
+	}
+
+	SignalRigHelm: {
+		DisplayName: Signal Rig Helm
+		Tooltip: A rusted hood with a cyan slit
+	}
+
+	SignalRigPlate: {
+		DisplayName: Signal Rig Plate
+		Tooltip: Welded scrap, one cold cable down the chest
+		SetBonus: The rig hums. You move a little faster, and a mote follows you
+	}
+
+	SignalRigGreaves: {
+		DisplayName: Signal Rig Greaves
+		Tooltip: Shin stripes that still hold a charge
+	}
 }
 
 Projectiles: {
@@ -1343,6 +1384,11 @@ Conditions: {
 }
 
 Buffs: {
+	SignalWispBuff: {
+		DisplayName: Signal Wisp
+		Description: A lantern is keeping watch
+	}
+
 	Pollution: {
 		DisplayName: Pollution
 		Description: The polluted air is corroding your body
