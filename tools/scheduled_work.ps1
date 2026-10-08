@@ -31,7 +31,30 @@ while (Test-Peak (Get-Date)) {
     Start-Sleep -Seconds $PollSeconds
 }
 
-Write-Log ('window open at {0} - running pipeline' -f (Get-Date -Format 'HH:mm:ss'))
+Write-Log ('window open at {0} - probing build first' -f (Get-Date -Format 'HH:mm:ss'))
+
+# 探测编译：只有干净才继续（避免撞上代理的在制品）
+$probeMods = Join-Path 'E:\开发\.tml-build-w17' 'Mods'
+New-Item -ItemType Directory -Force $probeMods | Out-Null
+
+foreach ($name in @('InnoVault.tmod', 'WastelandSoulCN.tmod')) {
+    $src = Join-Path 'E:\开发\.tml-build\Mods' $name
+    $dst = Join-Path $probeMods $name
+
+    if ((Test-Path $src) -and -not (Test-Path $dst)) {
+        Copy-Item $src $dst -Force -ErrorAction SilentlyContinue
+    }
+}
+
+$probe = & dotnet 'e:\steam\steamapps\common\tModLoader\tModLoader.dll' -build 'E:\开发\WastelandSoul' -tmlsavedirectory 'E:\开发\.tml-build-w17' 2>&1
+$probeLine = ($probe | Select-String -Pattern 'Compilation finished' | Select-Object -Last 1)
+
+if (-not ($probeLine -match '0 errors and 0 warnings')) {
+    Write-Log ('in-progress tree (build not clean): {0} - skip this round.' -f $probeLine)
+    exit 0
+}
+
+Write-Log 'tree compiles clean - running full pipeline'
 
 $pipeline = & powershell -NoProfile -ExecutionPolicy Bypass -File 'E:\开发\tools\ws_pipeline.ps1' -WaitForGame 900 2>&1
 $result = ($pipeline | Select-String -Pattern 'PIPELINE RESULT' | Select-Object -Last 1)

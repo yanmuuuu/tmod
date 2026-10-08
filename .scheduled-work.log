@@ -1,1 +1,17 @@
 ﻿[2026/10/08 15:03:41] scheduled_work started; waiting for an allowed window (avoid 08-12 and 14-18).
+[2026/10/08 18:03:41] window open at 18:03:41 - running pipeline
+  [OK]   both mods added and loaded to "Choose World" with no errors
+
+=== 5. install into game Mods folder ===
+  [OK]   WastelandSoul.tmod  13173083 bytes  14:36:15  (sha256 8E1C190A)
+  [OK]   WastelandSoulCN.tmod  46300 bytes  18:03:42  (sha256 64AF8AF2)
+  [OK]   restored WastelandSoulCN zh-Hans source from the pre-load snapshot
+
+=== 6. re-sync localisation after the load test ===
+  [OK]   sync_cn_translation (post-load)
+  [OK]   check_cn_parity (post-load)
+
+PIPELINE RESULT: FAILED -> build:WastelandSoul, check:check_localization, check:test_quote_detection, check:verify_batch16
+[2026/10/08 18:03:54] pipeline done: PIPELINE RESULT: FAILED -> build:WastelandSoul, check:check_localization, check:test_quote_detection, check:verify_batch16
+已生成：E:\开发\验收报告.md
+[2026/10/08 18:03:55] handoff report refreshed; scheduled_work finished.

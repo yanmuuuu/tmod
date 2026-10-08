@@ -119,39 +119,6 @@ namespace WastelandSoul.Content.Projectiles.AshHeart
 		}
 	}
 
-	/// <summary>盗贼：灰烬裂片。旋转、下坠、穿透 3。</summary>
-	public class AshHeartRogueProjectile : ModProjectile
-	{
-		public override void SetDefaults()
-		{
-			Projectile.width = 14;
-			Projectile.height = 14;
-			Projectile.friendly = true;
-			Projectile.penetrate = 3;
-			Projectile.timeLeft = 240;
-			Projectile.tileCollide = true;
-			Projectile.ignoreWater = true;
-			Projectile.light = 0.4f;
-			Projectile.aiStyle = 0;
-		}
-
-		public override void AI()
-		{
-			Projectile.rotation += 0.45f * Projectile.direction;
-			Projectile.velocity.Y += 0.12f;
-
-			if (Projectile.velocity.Y > 12f) {
-				Projectile.velocity.Y = 12f;
-			}
-
-			if (Main.rand.NextBool(4)) {
-				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
-				dust.noGravity = true;
-				dust.scale = 0.7f;
-			}
-		}
-	}
-
 	// ---------------------------- B 线：继承 A 线做强化 ----------------------------
 
 	/// <summary>专属·余烬巨刃波：更大、穿透 4、活更久。</summary>
@@ -193,19 +160,6 @@ namespace WastelandSoul.Content.Projectiles.AshHeart
 			Projectile.penetrate = 2;
 			Projectile.extraUpdates = 2;
 			Projectile.light = 0.8f;
-		}
-	}
-
-	/// <summary>专属·灰烬裂片·强：更大、穿透 5、活更久。</summary>
-	public class AshHeartRogueProjectileEX : AshHeartRogueProjectile
-	{
-		public override void SetDefaults()
-		{
-			base.SetDefaults();
-			Projectile.width = 18;
-			Projectile.height = 18;
-			Projectile.penetrate = 5;
-			Projectile.timeLeft = 300;
 		}
 	}
 }

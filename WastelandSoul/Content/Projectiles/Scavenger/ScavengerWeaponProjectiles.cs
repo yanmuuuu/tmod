@@ -102,38 +102,4 @@ namespace WastelandSoul.Content.Projectiles.Scavenger
 			}
 		}
 	}
-
-	/// <summary>盗贼：旋转废料裂片。轻微下坠、能穿几个敌人。</summary>
-	public class ScavengerCaltrop : ModProjectile
-	{
-		public override void SetDefaults()
-		{
-			Projectile.width = 12;
-			Projectile.height = 12;
-			Projectile.friendly = true;
-			Projectile.penetrate = 3;
-			Projectile.timeLeft = 240;
-			Projectile.tileCollide = true;
-			Projectile.ignoreWater = true;
-			Projectile.aiStyle = 0;
-		}
-
-		public override void AI()
-		{
-			Projectile.rotation += 0.42f * Projectile.direction;
-
-			// 轻微下坠，落地后弹一下
-			Projectile.velocity.Y += 0.14f;
-
-			if (Projectile.velocity.Y > 12f) {
-				Projectile.velocity.Y = 12f;
-			}
-
-			if (Main.rand.NextBool(5)) {
-				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
-				dust.noGravity = true;
-				dust.scale = 0.7f;
-			}
-		}
-	}
 }

@@ -6,7 +6,7 @@ namespace WastelandSoul.Content.Items.Materials
 {
 	/// <summary>
 	/// 精钢：精钢碎块经熔炉重熔后的产物。
-	/// <para/>材料链第二环：五职业精钢套装（开发优先级 3）的合成材料。
+	/// <para/>材料链第二环：四职业精钢套装（开发优先级 3）的合成材料。
 	/// </summary>
 	public class SalvagedSteelBar : ModItem
 	{

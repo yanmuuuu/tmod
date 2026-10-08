@@ -59,6 +59,13 @@ namespace WastelandSoul.Common
 			"Messages.FireplaceEnterFailed",
 			"Messages.FireplaceForming",
 
+			// ---- 壁炉门联机进出（服务端权威，见 FireplaceTravelNet）----
+			"Messages.FireplaceEntering",
+			"Messages.FireplaceNotOpen",
+			"Messages.FireplaceTooFar",
+			"Messages.FireplaceTravelBusy",
+			"Messages.FireplaceFormed",
+
 			// ---- 灵魂碎片交付（每个世界只给一次 / 交给她就被消耗）----
 			"Messages.SoulFragmentHandedIn",
 			"Messages.SoulFragmentSupplemented",

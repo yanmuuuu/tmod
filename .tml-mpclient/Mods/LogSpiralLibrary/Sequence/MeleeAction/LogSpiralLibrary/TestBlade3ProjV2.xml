@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Sequence name="TestBlade3ProjV2" AuthorName="LSL" Description="Auto Spawn By LogSpiralLibrary." FileName="TestBlade3ProjV2" DisplayName="TestBlade3ProjV2" ModName="LogSpiralLibrary" createTime="638597057332249561" lastModifyDate="638597057332249591" passWord="" Finished="True">
+  <Group>
+    <Wraper condition="Always">
+      <Action mode="0" Cycle="1" ModifyData="(1.00,1.00,1.00,1.00,0,1.00)" name="LogSpiralLibrary/SwooshInfo" />
+    </Wraper>
+  </Group>
+</Sequence>

@@ -1,0 +1,71 @@
+{
+  "byFuncData": {
+    "Hue": {},
+    "Saturation": {},
+    "Luminosity": {}
+  },
+  "rgbData": {
+    "Red": {
+      "Offset": 0.731,
+      "Amplitude": 0.358,
+      "Frequency": 1.077,
+      "Phase": 0.965
+    },
+    "Green": {
+      "Offset": 1.098,
+      "Amplitude": 1.09,
+      "Frequency": 0.36,
+      "Phase": 2.265
+    },
+    "Blue": {
+      "Offset": 0.192,
+      "Amplitude": 0.657,
+      "Frequency": 0.328,
+      "Phase": 0.837
+    },
+    "Global": {
+      "Amplitude": 1.0,
+      "Frequency": 1.0
+    }
+  },
+  "hslData": {
+    "Hue": {
+      "Offset": 0.5,
+      "Amplitude": 0.5,
+      "Frequency": 1.0
+    },
+    "Saturation": {
+      "Offset": 0.5,
+      "Amplitude": 0.5,
+      "Frequency": 1.0
+    },
+    "Luminosity": {
+      "Offset": 0.5,
+      "Amplitude": 0.5,
+      "Frequency": 1.0
+    }
+  },
+  "designateData": {
+    "Colors": [
+      {
+        "Color": "0, 0, 255, 255"
+      },
+      {
+        "Color": "0, 128, 0, 255",
+        "Position": 0.5
+      },
+      {
+        "Color": "255, 255, 0, 255",
+        "Position": 1.0
+      }
+    ]
+  },
+  "distortConfigs": {
+    "Available": true
+  },
+  "maskConfigs": {},
+  "dyeConfigs": {},
+  "bloomConfigs": {
+    "Available": true
+  }
+}

@@ -219,8 +219,7 @@ namespace WastelandSoul.Content.NPCs.Wildlife
 				ModContent.ItemType<ScavengerCWarrior>(),
 				ModContent.ItemType<ScavengerCMage>(),
 				ModContent.ItemType<ScavengerCRanger>(),
-				ModContent.ItemType<ScavengerCSummoner>(),
-				ModContent.ItemType<ScavengerCRogue>()
+				ModContent.ItemType<ScavengerCSummoner>()
 			};
 		}
 
@@ -230,8 +229,7 @@ namespace WastelandSoul.Content.NPCs.Wildlife
 				ModContent.ItemType<ArchivistCWarrior>(),
 				ModContent.ItemType<ArchivistCMage>(),
 				ModContent.ItemType<ArchivistCRanger>(),
-				ModContent.ItemType<ArchivistCSummoner>(),
-				ModContent.ItemType<ArchivistCRogue>()
+				ModContent.ItemType<ArchivistCSummoner>()
 			};
 		}
 
@@ -241,8 +239,7 @@ namespace WastelandSoul.Content.NPCs.Wildlife
 				ModContent.ItemType<AshHeartCWarrior>(),
 				ModContent.ItemType<AshHeartCMage>(),
 				ModContent.ItemType<AshHeartCRanger>(),
-				ModContent.ItemType<AshHeartCSummoner>(),
-				ModContent.ItemType<AshHeartCRogue>()
+				ModContent.ItemType<AshHeartCSummoner>()
 			};
 		}
 	}

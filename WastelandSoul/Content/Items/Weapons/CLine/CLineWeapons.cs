@@ -16,8 +16,7 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 		Melee,
 		Magic,
 		Ranged,
-		Summon,
-		Rogue
+		Summon
 	}
 
 	/// <summary>
@@ -48,18 +47,6 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 					break;
 				case CLineKind.Summon:
 					WastelandWeaponKit.Summon(Item, SummonBuff, Mana);
-					break;
-				case CLineKind.Rogue:
-					// 保持旧 default 分支的行为：C 线盗贼武器是**掉落的单件**，
-					// 不套用 A 线那套「可堆叠 999 + 投出即消耗」的消耗品参数，
-					// 免得玩家顺手捡到的唯一一把被一次投掷用掉。
-					Item.useStyle = Terraria.ID.ItemUseStyleID.Swing;
-					Item.noMelee = true;
-					Item.noUseGraphic = true;
-					Item.consumable = false;
-					Item.maxStack = 1;
-					Item.autoReuse = true;
-					Item.UseSound = Terraria.ID.SoundID.Item1;
 					break;
 				default:
 					// 枚举写错是编译错误，这里只兜住「以后新增了枚举值却忘了加分支」的情况。
@@ -124,18 +111,6 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 		protected override int ShootType => ModContent.ProjectileType<Content.Projectiles.Scavenger.ScavengerDroneMinion>();
 	}
 
-	public class ScavengerCRogue : CLineWeapon
-	{
-		protected override CLineKind Kind => CLineKind.Rogue;
-		protected override int Mana => 0;
-		protected override int SummonBuff => 0;
-		protected override DamageClass Class => DamageClass.Throwing;
-		protected override int Damage => 14;
-		protected override int UseTime => 20;
-		protected override int Rarity => WastelandRarityTiers.Early;
-		protected override int ShootType => ModContent.ProjectileType<Content.Projectiles.Scavenger.ScavengerCaltrop>();
-	}
-
 	public class ArchivistCWarrior : CLineWeapon
 	{
 		protected override CLineKind Kind => CLineKind.Melee;
@@ -182,18 +157,6 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 		protected override int UseTime => 34;
 		protected override int Rarity => WastelandRarityTiers.EarlyLate;
 		protected override int ShootType => ModContent.ProjectileType<Content.Projectiles.Archivist.ArchivistFamiliarMinion>();
-	}
-
-	public class ArchivistCRogue : CLineWeapon
-	{
-		protected override CLineKind Kind => CLineKind.Rogue;
-		protected override int Mana => 0;
-		protected override int SummonBuff => 0;
-		protected override DamageClass Class => DamageClass.Throwing;
-		protected override int Damage => 25;
-		protected override int UseTime => 20;
-		protected override int Rarity => WastelandRarityTiers.EarlyLate;
-		protected override int ShootType => ModContent.ProjectileType<Content.Projectiles.Archivist.ArchivistBoneBoomerang>();
 	}
 
 	public class AshHeartCWarrior : CLineWeapon
@@ -244,18 +207,6 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 		protected override int ShootType => ModContent.ProjectileType<Content.Projectiles.LateBosses.AshHeartEmberMinion>();
 	}
 
-	public class AshHeartCRogue : CLineWeapon
-	{
-		protected override CLineKind Kind => CLineKind.Rogue;
-		protected override int Mana => 0;
-		protected override int SummonBuff => 0;
-		protected override DamageClass Class => DamageClass.Throwing;
-		protected override int Damage => 55;
-		protected override int UseTime => 18;
-		protected override int Rarity => WastelandRarityTiers.MidLate;
-		protected override int ShootType => ModContent.ProjectileType<Content.Projectiles.AshHeart.AshHeartRogueProjectile>();
-	}
-
 	public class FireplaceCWarrior : CLineWeapon
 	{
 		protected override CLineKind Kind => CLineKind.Melee;
@@ -302,17 +253,5 @@ namespace WastelandSoul.Content.Items.Weapons.CLine
 		protected override int UseTime => 24;
 		protected override int Rarity => WastelandRarityTiers.Late;
 		protected override int ShootType => ModContent.ProjectileType<Content.Projectiles.LateBosses.FireplaceSentryMinion>();
-	}
-
-	public class FireplaceCRogue : CLineWeapon
-	{
-		protected override CLineKind Kind => CLineKind.Rogue;
-		protected override int Mana => 0;
-		protected override int SummonBuff => 0;
-		protected override DamageClass Class => DamageClass.Throwing;
-		protected override int Damage => 72;
-		protected override int UseTime => 16;
-		protected override int Rarity => WastelandRarityTiers.Late;
-		protected override int ShootType => ModContent.ProjectileType<Content.Projectiles.Fireplace.FireplaceRogueProjectile>();
 	}
 }

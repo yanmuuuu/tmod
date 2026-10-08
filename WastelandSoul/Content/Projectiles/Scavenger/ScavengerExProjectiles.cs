@@ -46,17 +46,4 @@ namespace WastelandSoul.Content.Projectiles.Scavenger
 			Projectile.light = 0.5f;
 		}
 	}
-
-	/// <summary>专属·旋转裂片：更大、穿透 5、活得更久。</summary>
-	public class ScavengerCaltropEX : ScavengerCaltrop
-	{
-		public override void SetDefaults()
-		{
-			base.SetDefaults();
-			Projectile.width = 16;
-			Projectile.height = 16;
-			Projectile.penetrate = 5;
-			Projectile.timeLeft = 300;
-		}
-	}
 }

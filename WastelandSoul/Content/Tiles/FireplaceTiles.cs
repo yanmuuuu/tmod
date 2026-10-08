@@ -33,7 +33,9 @@ namespace WastelandSoul.Content.Tiles
 
 		public override bool RightClick(int i, int j)
 		{
-			FireplaceTravel.Enter();
+			// 单人 = 原来那条直接进入的反射路径；联机 = 只发请求，由服务端权威移动
+			// （SubworldLibrary 的 BeginEntering 在 netMode == 2 直接 return，客户端自己进不去）。
+			FireplaceTravelNet.RequestEnter();
 			return true;
 		}
 	}
@@ -96,7 +98,9 @@ namespace WastelandSoul.Content.Tiles
 
 		public override bool RightClick(int i, int j)
 		{
-			FireplaceTravel.Exit();
+			// 同上：联机下返回也必须由服务端执行（客户端的 MovePlayerToMainWorld
+			// 只在"自己就是子世界服务端"时才有效，联机里那是另一个进程）。
+			FireplaceTravelNet.RequestExit();
 			return true;
 		}
 	}

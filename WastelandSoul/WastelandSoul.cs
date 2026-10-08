@@ -34,6 +34,21 @@ namespace WastelandSoul
 			Content.NPCs.Bosses.FireplaceGuardian.FireplaceGuardianContext.Clear();
 		}
 
+		/// <summary>
+		/// 模组包的**唯一**入口（tModLoader 在 <c>ModNet.HandleModPacket</c> 里调它）。
+		///
+		/// <para/>⚠️ tModLoader 会自己核对"读完的字节数 == 本模组这一段负载的字节数"，
+		/// 不相等就抛 <c>IOException: Read underflow N of M bytes caused by WastelandSoul in HandlePacket</c>
+		/// —— 玩家实测的联机崩溃就是这里抛出来的（根因见 <see cref="Common.Systems.WastelandNet"/>）。
+		/// 所以：
+		/// <list type="bullet">
+		/// <item>所有读都必须走 <c>Common.Systems.NetReader</c>（显式宽度 + 有界，读不够就记日志返回，不抛异常）；</item>
+		/// <item>所有写都必须走 <c>Common.Systems.NetWriter</c>（显式宽度，不再靠重载决议猜）；</item>
+		/// <item>⚠️ tModLoader 的 <c>Mod.HandlePacket</c> 只给 <c>(reader, whoAmI)</c> 两个参数，
+		/// **拿不到** <c>ModNet.HandleModPacket</c> 里那个 <c>length</c>（那是 internal），
+		/// 所以最外层不传字节预算（= 不预判），由 <c>NetReader</c> 在真正读不到时兜底。</item>
+		/// </list>
+		/// </summary>
 		public override void HandlePacket(BinaryReader reader, int whoAmI)
 		{
 			Common.Systems.WastelandStorySystem.ReceivePacket(reader, whoAmI);

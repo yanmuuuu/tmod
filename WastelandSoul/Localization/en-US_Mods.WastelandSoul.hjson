@@ -161,22 +161,6 @@ Items: {
 		Tooltip: ""
 	}
 
-	SalvagedSteelRogueMask: {
-		DisplayName: Salvaged Steel Rogue Mask
-		Tooltip: ""
-	}
-
-	SalvagedSteelRogueVest: {
-		DisplayName: Salvaged Steel Rogue Vest
-		SetBonus: +10% throwing damage and +10% movement speed
-		Tooltip: ""
-	}
-
-	SalvagedSteelRogueLeggings: {
-		DisplayName: Salvaged Steel Rogue Leggings
-		Tooltip: ""
-	}
-
 	SalvagedSteelChunk: {
 		DisplayName: Salvaged Steel Chunk
 		Tooltip:
@@ -322,15 +306,6 @@ Items: {
 			'''
 	}
 
-	ScavengerRogueWeapon: {
-		DisplayName: Scavenger Scrap Knife
-		Tooltip:
-			'''
-			Salvaged from the Scavenger's wreck - crude, but it works.
-			Throwable - stacks up to 999
-			'''
-	}
-
 	ScavengerWarriorWeaponEX: {
 		DisplayName: Scavenger Scrap Cleaver MK-II
 		Tooltip:
@@ -364,15 +339,6 @@ Items: {
 			'''
 			Salvaged from the Scavenger's wreck - crude, but it works.
 			Summons a minion
-			'''
-	}
-
-	ScavengerRogueWeaponEX: {
-		DisplayName: Scavenger Scrap Knife MK-II
-		Tooltip:
-			'''
-			Salvaged from the Scavenger's wreck - crude, but it works.
-			Throwable - stacks up to 999
 			'''
 	}
 
@@ -412,15 +378,6 @@ Items: {
 			'''
 	}
 
-	ArchivistRogueWeapon: {
-		DisplayName: Archivist Bone Boomerang
-		Tooltip:
-			'''
-			Archived bone and cold blue light - the Watchman's audit log made manifest.
-			Throwable - stacks up to 999
-			'''
-	}
-
 	ArchivistWarriorWeaponEX: {
 		DisplayName: Archivist Boneblade MK-II
 		Tooltip:
@@ -454,15 +411,6 @@ Items: {
 			'''
 			Archived bone and cold blue light - the Watchman's audit log made manifest.
 			Summons a minion
-			'''
-	}
-
-	ArchivistRogueWeaponEX: {
-		DisplayName: Archivist Bone Boomerang MK-II
-		Tooltip:
-			'''
-			Archived bone and cold blue light - the Watchman's audit log made manifest.
-			Throwable - stacks up to 999
 			'''
 	}
 
@@ -502,15 +450,6 @@ Items: {
 			'''
 	}
 
-	AshHeartRogueWeapon: {
-		DisplayName: Ash Heart Shard
-		Tooltip:
-			'''
-			Forged from the Ash Heart's ember - it still smoulders.
-			Throwable - stacks up to 999
-			'''
-	}
-
 	AshHeartWarriorWeaponEx: {
 		DisplayName: Ash Heart Greatblade MK-II
 		Tooltip:
@@ -544,15 +483,6 @@ Items: {
 			'''
 			Forged from the Ash Heart's ember - it still smoulders.
 			Summons a minion
-			'''
-	}
-
-	AshHeartRogueWeaponEx: {
-		DisplayName: Ash Heart Shard MK-II
-		Tooltip:
-			'''
-			Forged from the Ash Heart's ember - it still smoulders.
-			Throwable - stacks up to 999
 			'''
 	}
 
@@ -592,15 +522,6 @@ Items: {
 			'''
 	}
 
-	FireplaceRogueWeapon: {
-		DisplayName: Fireplace Guardian Glaive
-		Tooltip:
-			'''
-			Fireplace-grade alloy. The last line of the old world's defence.
-			Throwable - stacks up to 999
-			'''
-	}
-
 	FireplaceWarriorWeaponEx: {
 		DisplayName: Fireplace Guardian Greatblade MK-II
 		Tooltip:
@@ -634,15 +555,6 @@ Items: {
 			'''
 			Fireplace-grade alloy. The last line of the old world's defence.
 			Summons a minion
-			'''
-	}
-
-	FireplaceRogueWeaponEx: {
-		DisplayName: Fireplace Guardian Glaive MK-II
-		Tooltip:
-			'''
-			Fireplace-grade alloy. The last line of the old world's defence.
-			Throwable - stacks up to 999
 			'''
 	}
 
@@ -701,11 +613,6 @@ Items: {
 		Tooltip: One extra minion slot, bolted on.
 	}
 
-	ScavengerRogueCharm: {
-		DisplayName: Scavenger Rogue Charm
-		Tooltip: Thrown damage and lighter steps.
-	}
-
 	ArchivistWarriorCharm: {
 		DisplayName: Archivist Warrior Charm
 		Tooltip: Melee damage and critical chance, indexed.
@@ -724,11 +631,6 @@ Items: {
 	ArchivistSummonerCharm: {
 		DisplayName: Archivist Summoner Charm
 		Tooltip: Summon damage, filed and returned.
-	}
-
-	ArchivistRogueCharm: {
-		DisplayName: Archivist Rogue Charm
-		Tooltip: Thrown damage and critical chance.
 	}
 
 	AshHeartWarriorCharm: {
@@ -751,11 +653,6 @@ Items: {
 		Tooltip: Summon damage and one more minion.
 	}
 
-	AshHeartRogueCharm: {
-		DisplayName: Ash Heart Rogue Charm
-		Tooltip: Thrown damage. Hits sometimes set the target alight.
-	}
-
 	FireplaceWarriorCharm: {
 		DisplayName: Fireplace Warrior Charm
 		Tooltip: Melee damage and swing speed from the last lock.
@@ -774,11 +671,6 @@ Items: {
 	FireplaceSummonerCharm: {
 		DisplayName: Fireplace Summoner Charm
 		Tooltip: Summon damage and one more minion.
-	}
-
-	FireplaceRogueCharm: {
-		DisplayName: Fireplace Rogue Charm
-		Tooltip: Thrown damage and a quicker stride.
 	}
 
 	ScavengerCWarrior: {
@@ -801,11 +693,6 @@ Items: {
 		Tooltip: Calls a small salvage drone. It is not the repair kind.
 	}
 
-	ScavengerCRogue: {
-		DisplayName: Scrap Caltrop
-		Tooltip: A spinning scrap of metal that does not ask to be picked back up.
-	}
-
 	ArchivistCWarrior: {
 		DisplayName: Index Blade
 		Tooltip: A short bone-white arc, torn out of a moth's wings.
@@ -824,11 +711,6 @@ Items: {
 	ArchivistCSummoner: {
 		DisplayName: Familiar Splinter
 		Tooltip: A cracked staff that still remembers one familiar.
-	}
-
-	ArchivistCRogue: {
-		DisplayName: Returning Bone
-		Tooltip: It goes out, then it comes back.
 	}
 
 	AshHeartCWarrior: {
@@ -851,11 +733,6 @@ Items: {
 		Tooltip: Calls a cinder that used to be part of the Heart.
 	}
 
-	AshHeartCRogue: {
-		DisplayName: Ash Splinter
-		Tooltip: A thrown splinter that keeps burning after it leaves the hand.
-	}
-
 	FireplaceCWarrior: {
 		DisplayName: Hearth Blade
 		Tooltip: Cold metal with a furnace edge. A warden dropped it.
@@ -874,11 +751,6 @@ Items: {
 	FireplaceCSummoner: {
 		DisplayName: Sentry Wick
 		Tooltip: Calls a floating sentry that still knows the hearth.
-	}
-
-	FireplaceCRogue: {
-		DisplayName: Returning Razor
-		Tooltip: A cold razor that flies out and comes home.
 	}
 
 	RustedGear: {
@@ -952,21 +824,6 @@ Items: {
 		Tooltip: Two acid globs per volley, and they pierce
 	}
 
-	RustShuriken: {
-		DisplayName: Rust Shuriken
-		Tooltip: Cuts through up to three enemies before falling
-	}
-
-	ScrapGrenade: {
-		DisplayName: Scrap Grenade
-		Tooltip: Bounces once, then tears a hole in the crowd
-	}
-
-	RustShurikenEX: {
-		DisplayName: Rust Shuriken MK-II
-		Tooltip: Throws three spinning blades in a fan
-	}
-
 	ScrapGreatsword: {
 		DisplayName: Scrap Greatsword
 		Tooltip: Slow and heavy, it drags a shockwave along the ground
@@ -1002,19 +859,9 @@ Items: {
 		Tooltip: A walking bulwark that slams and shells your enemies
 	}
 
-	ScrapBuzzsaw: {
-		DisplayName: Scrap Buzzsaw
-		Tooltip: Sticks to the ground and grinds whatever walks over it
-	}
-
-	ScrapChakram: {
-		DisplayName: Scrap Chakram
-		Tooltip: A returning ring that tears through a crowd twice
-	}
-
 	ScavengerGraceHood: {
 		DisplayName: Scavenger's Grace Hood
-		Tooltip: 5% ranged and thrown damage
+		Tooltip: 5% ranged damage
 	}
 
 	ScavengerGraceJacket: {
@@ -1312,34 +1159,19 @@ Items: {
 		Tooltip: Calls two ash-heart gears that circle you, setting fire to whatever they touch, and lob homing embers. Also wraps you in a gear shield - 5 defense, no knockback, 8% less damage taken
 	}
 
-	RustedGearShuriken: {
-		DisplayName: Rusted Gear Shuriken
-		Tooltip: One gear you never lose. It flies out for half a second, then cuts its way back through everything on the return trip
-	}
-
-	SalvagedSteelChakram: {
-		DisplayName: Salvaged Steel Chakram
-		Tooltip: The same return trip, except every impact bursts into a ring of saw teeth. Thrown forever - it is never used up
-	}
-
-	AshHeartCinderRing: {
-		DisplayName: Ash Heart Cinder Ring
-		Tooltip: Flies out, then hangs in the air cutting for a moment - igniting and stripping armor - before coming home. Every hit sheds a homing ember
-	}
-
 	ScavengerChip: {
 		DisplayName: Scavenger Chip
-		Tooltip: 8% more summon and throwing damage, and it pulls loose items and hearts to you from much further away
+		Tooltip: 8% more summon damage, and it pulls loose items and hearts to you from much further away
 	}
 
 	ReinforcedScavengerChip: {
 		DisplayName: Reinforced Scavenger Chip
-		Tooltip: 12% more summon and throwing damage, 10% faster throwing, coins and mana stars fly to you as well, and you take 5% less damage
+		Tooltip: 12% more summon damage, coins and mana stars fly to you as well, and you take 5% less damage
 	}
 
 	WastelandOverlordCore: {
 		DisplayName: Wasteland Overlord Core
-		Tooltip: 15% more summon damage, 18% more throwing damage, 15% faster throwing, one extra minion slot, 8% less damage taken and a little more luck
+		Tooltip: 15% more summon damage, one extra minion slot, 8% less damage taken and a little more luck
 	}
 
 	ScavengerTrophy: {
@@ -1395,8 +1227,6 @@ Projectiles: {
 	ScavengerArmSweep.DisplayName: Servo Arm
 	ArchivistBoneArc.DisplayName: Archivist Bone Arc
 	ArchivistBoneArcEX.DisplayName: Archivist Bone Arc E X
-	ArchivistBoneBoomerang.DisplayName: Archivist Bone Boomerang
-	ArchivistBoneBoomerangEX.DisplayName: Archivist Bone Boomerang E X
 	ArchivistBoneShard.DisplayName: Archivist Bone Shard
 	ArchivistBoneShardEX.DisplayName: Archivist Bone Shard E X
 	ArchivistIndexPage.DisplayName: Archivist Index Page
@@ -1405,8 +1235,6 @@ Projectiles: {
 	ArchivistArchivePage.DisplayName: Archivist Archive Page
 	ArchivistBarrageSheet.DisplayName: Archivist Barrage Sheet
 	ArchivistSeal.DisplayName: Archivist Seal
-	ScavengerCaltrop.DisplayName: Scavenger Caltrop
-	ScavengerCaltropEX.DisplayName: Scavenger Caltrop E X
 	ScavengerPistolRound.DisplayName: Scavenger Pistol Round
 	ScavengerRifleRoundEX.DisplayName: Scavenger Rifle Round E X
 	ScavengerScrapShard.DisplayName: Scavenger Scrap Shard
@@ -1421,16 +1249,12 @@ Projectiles: {
 	AshHeartMageProjectileEX.DisplayName: Ash Heart Mage Projectile E X
 	AshHeartRangerProjectile.DisplayName: Ash Heart Ranger Projectile
 	AshHeartRangerProjectileEX.DisplayName: Ash Heart Ranger Projectile E X
-	AshHeartRogueProjectile.DisplayName: Ash Heart Rogue Projectile
-	AshHeartRogueProjectileEX.DisplayName: Ash Heart Rogue Projectile E X
 	AshHeartWarriorProjectile.DisplayName: Ash Heart Warrior Projectile
 	AshHeartWarriorProjectileEX.DisplayName: Ash Heart Warrior Projectile E X
 	FireplaceMageProjectile.DisplayName: Fireplace Mage Projectile
 	FireplaceMageProjectileEX.DisplayName: Fireplace Mage Projectile E X
 	FireplaceRangerProjectile.DisplayName: Fireplace Ranger Projectile
 	FireplaceRangerProjectileEX.DisplayName: Fireplace Ranger Projectile E X
-	FireplaceRogueProjectile.DisplayName: Fireplace Rogue Projectile
-	FireplaceRogueProjectileEX.DisplayName: Fireplace Rogue Projectile E X
 	FireplaceWarriorProjectile.DisplayName: Fireplace Warrior Projectile
 	FireplaceWarriorProjectileEX.DisplayName: Fireplace Warrior Projectile E X
 	AshHeartEmberMinion.DisplayName: Ash Heart Ember Minion
@@ -1464,10 +1288,6 @@ Projectiles: {
 	RustSpitterShot.DisplayName: Spit Glob
 	RustSpitterEX.DisplayName: Rust Spitter MK-II
 	RustSpitterShotEX.DisplayName: Spit Glob MK-II
-	RustShurikenProj.DisplayName: Rust Shuriken
-	RustShurikenProjEX.DisplayName: Rust Shuriken MK-II
-	ScrapGrenadeProj.DisplayName: Scrap Grenade
-	ScrapGrenadeBlast.DisplayName: Scrap Blast
 	ScrapShockwave.DisplayName: Scrap Shockwave
 	RebarBoomerangProj.DisplayName: Rebar Boomerang
 	ScrapNova.DisplayName: Scrap Nova
@@ -1477,8 +1297,6 @@ Projectiles: {
 	ScrapRailSlugEX.DisplayName: Rail Slug MK-II
 	ScrapWarden.DisplayName: Scrap Warden
 	ScrapWardenShot.DisplayName: Warden Shell
-	ScrapBuzzsawProj.DisplayName: Scrap Buzzsaw
-	ScrapChakramProj.DisplayName: Scrap Chakram
 	GearReboundShard.DisplayName: Rebound Ember
 	GearColdPulse.DisplayName: Cold Vent
 	ScrapNailProjectile.DisplayName: Scrap Nail
@@ -1498,11 +1316,6 @@ Projectiles: {
 	SalvagedSteelBolt.DisplayName: Steel Bolt
 	AshHeartOrbitSentry.DisplayName: Ash Heart Orbit Sentry
 	AshHeartGearEmber.DisplayName: Gear Ember
-	RustedGearBoomerang.DisplayName: Rusted Gear Shuriken
-	SalvagedSteelChakramProj.DisplayName: Salvaged Steel Chakram
-	ChakramShatterBlast.DisplayName: Sawtooth Burst
-	AshHeartCinderRingProj.DisplayName: Ash Heart Cinder Ring
-	CinderRingEmber.DisplayName: Cinder Ember
 }
 
 Tiles: {
@@ -1695,8 +1508,13 @@ Messages: {
 	CodaRefuse: The Moon Lord falls. The stars go out on schedule. Her name does not.
 	EnteredFireplace: The air changes. You are inside the Fireplace.
 	TerminalTalkToHer: The terminal has read you a broken log. Bring it back to her.
-	GatePlaced: A warm door has opened near where you woke. The Fireplace is listening.
+	GatePlaced: A warm door has opened at the sea's edge on both sides of the world. The Fireplace is listening.
 	FireplaceEnterFailed: The door is here, but the way through did not open. Subworld Library has to be enabled.
+	FireplaceEntering: The door takes your request. The server is checking it...
+	FireplaceNotOpen: The Fireplace door is still sealed. Nothing answers your knock yet.
+	FireplaceTooFar: You are not standing close enough to the door. Step up to it and try again.
+	FireplaceTravelBusy: The way is already moving. Wait a breath, then try again.
+	FireplaceFormed: The Fireplace has finished taking shape.
 	FireplaceForming: The Fireplace is still settling into shape...
 	GearMorrowSaved: The box in your pocket goes cold - that blow never happened.
 	MapHint1: The map says: follow the rust. Every road that still has signs on it leads to a machine that is still awake.

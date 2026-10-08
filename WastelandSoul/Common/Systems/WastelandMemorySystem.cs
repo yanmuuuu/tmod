@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using WastelandSoul.Common.Bosses;
@@ -202,7 +204,248 @@ namespace WastelandSoul.Common.Systems
 		{
 			int bossIndex = NextCarriedFragmentIndex(player);
 
-			return bossIndex > 0 && TryHandIn(player, bossIndex) ? 1 : 0;
+			if (bossIndex <= 0) {
+				return 0;
+			}
+
+			// 联机：走与对话按钮同一条服务端权威路径（客户端只发请求）。
+			if (Main.netMode == NetmodeID.MultiplayerClient) {
+				WastelandStorySystem.RequestFragmentDelivery(bossIndex, FragmentSource(player, bossIndex));
+				return 1;
+			}
+
+			return TryHandIn(player, bossIndex) ? 1 : 0;
+		}
+
+		// ==================== 联机：交付的服务端权威流程 ====================
+		//
+		// 分工（本轮联机适配）：
+		//   客户端：只发「我要交付第 N 枚，它在 source 号容器里」请求（WastelandStorySystem.
+		//           RequestFragmentDelivery），本地既不扣物品也不推进任何进度；
+		//   服务端：校验 → 扣物品 → 推进记忆 → Sync() → 回执；
+		//   客户端收到回执：把**自己那份镜像**按同样的位置扣掉（服务端的背包副本只是镜像，
+		//           两边必须一起减，否则客户端 UI 会留着一个已经交掉的碎片）。
+
+		/// <summary>碎片不在身上。</summary>
+		public const int SourceNone = 0;
+
+		/// <summary>碎片在**主背包**里（原版唯一会同步到服务端的容器）。</summary>
+		public const int SourceInventory = 1;
+
+		/// <summary>猪猪存钱罐。</summary>
+		public const int SourceBank1 = 2;
+
+		/// <summary>保险箱。</summary>
+		public const int SourceBank2 = 3;
+
+		/// <summary>护卫熔炉。</summary>
+		public const int SourceBank3 = 4;
+
+		/// <summary>虚空仓库。</summary>
+		public const int SourceBank4 = 5;
+
+		/// <summary>
+		/// 这枚碎片现在在**哪一类容器**里（<see cref="SourceNone"/> = 身上没有）。
+		///
+		/// <para/>顺序必须与 <see cref="ConsumeSoulFragment"/> / <see cref="ConsumeFromSource"/> 一致：
+		/// 主背包优先，然后才是银行 —— 两边（服务端与客户端）算出来的位置才一样。
+		/// </summary>
+		public static int FragmentSource(Player player, int bossIndex)
+		{
+			int itemType = SoulFragmentTypeForBoss(bossIndex);
+
+			if (player == null || itemType <= 0) {
+				return SourceNone;
+			}
+
+			if (player.HasItem(itemType)) {
+				return SourceInventory;
+			}
+
+			if (ChestHasItem(player.bank, itemType)) {
+				return SourceBank1;
+			}
+
+			if (ChestHasItem(player.bank2, itemType)) {
+				return SourceBank2;
+			}
+
+			if (ChestHasItem(player.bank3, itemType)) {
+				return SourceBank3;
+			}
+
+			if (ChestHasItem(player.bank4, itemType)) {
+				return SourceBank4;
+			}
+
+			return SourceNone;
+		}
+
+		/// <summary>从**指定那一类**容器里扣掉一枚碎片。</summary>
+		public static bool ConsumeFromSource(Player player, int itemType, int source)
+		{
+			if (player == null || itemType <= 0) {
+				return false;
+			}
+
+			switch (source) {
+				case SourceInventory:
+					return player.ConsumeItem(itemType);
+
+				case SourceBank1:
+					return ConsumeFromChest(player.bank, itemType);
+
+				case SourceBank2:
+					return ConsumeFromChest(player.bank2, itemType);
+
+				case SourceBank3:
+					return ConsumeFromChest(player.bank3, itemType);
+
+				case SourceBank4:
+					return ConsumeFromChest(player.bank4, itemType);
+
+				default:
+					return false;
+			}
+		}
+
+		/// <summary>
+		/// **服务端**处理客户端的「交付第 bossIndex 枚碎片」请求：校验 → 扣物品 → 推进记忆 → 回执。
+		///
+		/// <para/>⚠️ 银行那条路的局限（原版机制决定，不是偷懒）：猪猪 / 保险箱 / 护卫熔炉 / 虚空仓库
+		/// **根本不随网络同步**（原版只有 <c>Player.inventory</c> 会发 <c>MessageID.PlayerInventorySlot</c>），
+		/// 服务端上 <c>player.bank*</c> 永远是空的 —— 也就是说服务端**没法**校验、也没法扣银行里的碎片。
+		/// 所以：
+		/// <list type="bullet">
+		/// <item>主背包（<see cref="SourceInventory"/>）：真校验（这一格必须是那枚碎片）+ 服务端扣；</item>
+		/// <item>银行（<see cref="SourceBank1"/>~<see cref="SourceBank4"/>）：只接受客户端自证，
+		/// 扣物品由客户端收到回执后自己做。信任级别与改之前的"客户端自己扣"相同，
+		/// 换来的是"碎片放银行里也能交"这条与单机一致的体验（玩家要求双端体验一致）。</item>
+		/// </list>
+		/// </summary>
+		public static void HandleDeliveryRequest(Player player, int bossIndex, int source)
+		{
+			if (player == null || !player.active) {
+				return;
+			}
+
+			if (bossIndex < 1 || bossIndex > TotalMemories) {
+				return;
+			}
+
+			int itemType = SoulFragmentTypeForBoss(bossIndex);
+
+			if (itemType <= 0 || source < SourceInventory || source > SourceBank4) {
+				return;
+			}
+
+			bool alreadyRecovered = MemoryAlreadyRecovered(player, bossIndex);
+
+			if (source == SourceInventory && !player.ConsumeItem(itemType)) {
+				return;   // 校验失败：服务端这一份里没有这枚碎片 —— 直接拒绝，什么都不做
+			}
+
+			ApplyDelivery(player, bossIndex, alreadyRecovered);
+			SendDeliveryAck(player, bossIndex, source, alreadyRecovered);
+		}
+
+		/// <summary>推进这次交付该推进的东西（个人进度 + 世界级的四段记忆）。</summary>
+		private static void ApplyDelivery(Player player, int bossIndex, bool alreadyRecovered)
+		{
+			Common.Players.WastelandPlayer modPlayer = player.GetModPlayer<Common.Players.WastelandPlayer>();
+
+			if (bossIndex == 1) {
+				// 第一段记忆本来还有一条「读壁炉数据终端」的路，终端会把这两个个人标志接上；
+				// 直接交碎片这条路也补上，免得同一个剧情节点两套状态。
+				modPlayer.heardFirstMemory = true;
+				modPlayer.knowsWatchmanProtocol = true;
+			}
+
+			if (modPlayer.soulFragmentsDelivered < bossIndex) {
+				modPlayer.soulFragmentsDelivered = bossIndex;
+			}
+
+			// 记忆早就恢复过（例如第一段是壁炉数据终端触发的）时也照样消耗碎片，
+			// 但**不重播**那段剧情 —— 与 TryHandIn 的语义完全一致。
+			if (!alreadyRecovered) {
+				RestoreMemory(bossIndex);
+			}
+		}
+
+		/// <summary>把回执发给**发起交付的那名客户端**。</summary>
+		private static void SendDeliveryAck(Player player, int bossIndex, int source, bool alreadyRecovered)
+		{
+			if (Main.netMode != NetmodeID.Server) {
+				return;
+			}
+
+			ModPacket packet = WastelandNet.NewPacket();
+
+			if (packet == null) {
+				return;
+			}
+
+			// 字段表（与 ReceiveDeliveryAck 逐字段对应）：kind(1) + byte + byte + bool = 4 字节
+			NetWriter writer = new NetWriter(packet);
+			writer.WriteByte(WastelandStorySystem.PacketKindFragmentDelivered);
+			writer.WriteByte((byte)bossIndex);
+			writer.WriteByte((byte)source);
+			writer.WriteBool(alreadyRecovered);
+
+			WastelandNet.AssertBytes("碎片交付回执", WastelandStorySystem.PacketKindFragmentDelivered, 4, writer.Count);
+
+			packet.Send(player.whoAmI, -1);
+		}
+
+		/// <summary>
+		/// **客户端**收到交付回执：把本机这份镜像按服务端说的位置扣掉一枚，
+		/// 接上个人进度标志，并给出与单机一致的提示语（世界进度已经由服务端 Sync 过来了）。
+		///
+		/// <para/>⚠️ 走 <see cref="NetReader"/> 的有界读取：字节不够只会记一条 WARN 并返回，
+		/// 绝不会抛 <c>IOException</c> 把 tModLoader 的 <c>HandlePacket</c> 打崩。
+		/// </summary>
+		public static void ReceiveDeliveryAck(NetReader reader)
+		{
+			if (!reader.TryReadByte("ack.bossIndex", out byte bossIndexRaw)
+				|| !reader.TryReadByte("ack.source", out byte sourceRaw)
+				|| !reader.TryReadBool("ack.alreadyRecovered", out bool alreadyRecovered)) {
+				return;
+			}
+
+			int bossIndex = bossIndexRaw;
+			int source = sourceRaw;
+
+			if (Main.netMode != NetmodeID.MultiplayerClient || bossIndex < 1 || bossIndex > TotalMemories) {
+				return;
+			}
+
+			if (Main.myPlayer < 0 || Main.myPlayer >= Main.maxPlayers) {
+				return;
+			}
+
+			Player player = Main.LocalPlayer;
+			int itemType = SoulFragmentTypeForBoss(bossIndex);
+
+			if (!ConsumeFromSource(player, itemType, source)) {
+				// 兜底：服务端说的位置本机找不到（玩家在这 1 个来回里把碎片挪了位置），
+				// 就按老顺序再找一遍，保证"交出去的那一枚"真的从身上消失。
+				ConsumeSoulFragment(player, itemType);
+			}
+
+			Common.Players.WastelandPlayer modPlayer = player.GetModPlayer<Common.Players.WastelandPlayer>();
+
+			if (bossIndex == 1) {
+				modPlayer.heardFirstMemory = true;
+				modPlayer.knowsWatchmanProtocol = true;
+			}
+
+			if (modPlayer.soulFragmentsDelivered < bossIndex) {
+				modPlayer.soulFragmentsDelivered = bossIndex;
+			}
+
+			AnnounceTo(player, alreadyRecovered
+				? "Mods.WastelandSoul.Messages.SoulFragmentSupplemented"
+				: "Mods.WastelandSoul.Messages.SoulFragmentHandedIn");
 		}
 
 		/// <summary>推进到第 bossIndex 段记忆（就是 WastelandStorySystem 里那几个 Restore）。</summary>

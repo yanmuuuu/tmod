@@ -1,0 +1,2 @@
+False
+CoolerItemVisualEffect/StormySlash_Presets

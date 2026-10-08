@@ -92,6 +92,11 @@ namespace WastelandSoul.Content.NPCs.Town
 		/// 「到达」：把她送到指定位置（默认玩家身边）。消耗不消耗智械核心由调用方决定。
 		/// <para/>两条入口共用：用「智械核心」直接召唤（主路径）、在遗迹躯体上右键（保底路径）。
 		/// <para/>返回 false 表示没能召唤（她已经在了），调用方**不要**消耗核心。
+		///
+		/// <para/>联机适配：生成 NPC 与 <c>companionAwakened</c> 都是**世界级**的事，
+		/// 客户端这一侧只发请求包（<see cref="WastelandStorySystem.RequestCompanionSummon"/>），
+		/// 由服务端在 <see cref="SummonOnServer"/> 里权威生成。返回值仍然照旧 ——
+		/// 调用方据此消耗"智械核心"，而背包是玩家自己的数据，客户端自己扣是对的。
 		/// </summary>
 		public static bool TrySummon(Player player, Vector2? position = null, IEntitySource source = null)
 		{
@@ -106,30 +111,52 @@ namespace WastelandSoul.Content.NPCs.Town
 				return false;
 			}
 
+			Vector2 spot = position ?? new Vector2(player.Center.X, player.Center.Y - 48);
+
+			if (Main.netMode == NetmodeID.MultiplayerClient) {
+				// （联机里客户端连 NPC 都生成不了 —— 这里以前只是把世界标志推给服务端，
+				//   她本人却永远不会出现。现在两边都交给服务端。）
+				WastelandStorySystem.RequestCompanionSummon(spot);
+				return true;
+			}
+
+			SummonOnServer(spot, source);
+			return true;
+		}
+
+		/// <summary>
+		/// **服务端 / 单机**的权威生成：定名 → 置世界标志 → 生成 NPC → 公告。
+		///
+		/// <para/>联机时由 <see cref="WastelandStorySystem.StoryRequest.CompanionSummon"/> 请求包驱动
+		/// （落点由发起的那名客户端算好一起发来，服务端只负责"生成"这件需要权威的事）。
+		/// 幂等：她已经在（或本存档已经唤醒过）时什么都不做 —— 请求重复到达也不会冒出第二个。
+		/// </summary>
+		public static void SummonOnServer(Vector2 spot, IEntitySource source = null)
+		{
+			int type = ModContent.NPCType<MechanicalCompanion>();
+
+			if (WastelandStorySystem.companionAwakened || NPC.AnyNPCs(type)) {
+				return;
+			}
+
 			string name = string.IsNullOrEmpty(WastelandStorySystem.companionName)
 				? PickName()
 				: WastelandStorySystem.companionName;
 
 			WastelandStorySystem.MarkCompanionArrived(name);
 
-			if (Main.netMode != NetmodeID.MultiplayerClient) {
-				Vector2 spot = position ?? new Vector2(player.Center.X, player.Center.Y - 48);
+			int index = NPC.NewNPC(source ?? new EntitySource_SpawnNPC(),
+				(int)spot.X, (int)spot.Y, type);
 
-				int index = NPC.NewNPC(source ?? new EntitySource_SpawnNPC(),
-					(int)spot.X, (int)spot.Y, type);
-
-				if (index >= 0 && index < Main.maxNPCs) {
-					Main.npc[index].GivenName = name;
-					Main.npc[index].netUpdate = true;
-				}
+			if (index >= 0 && index < Main.maxNPCs) {
+				Main.npc[index].GivenName = name;
+				Main.npc[index].netUpdate = true;
 			}
 
-			if (!Main.dedServ) {
-				Main.NewText(Language.GetTextValue("Mods.WastelandSoul.Messages.CompanionArrived", name),
-					new Color(226, 200, 120));
-			}
-
-			return true;
+			// 服务端广播 / 单机本地显示：原来这条提示只在"按下去的那个人"屏幕上出现，
+			// 联机里队友看不到她到了。
+			WastelandStorySystem.AnnounceFormat("Mods.WastelandSoul.Messages.CompanionArrived",
+				new Color(226, 200, 120), name);
 		}
 
 		// ==================== 偶尔的小动作（低头 / 抬头） ====================
@@ -306,16 +333,13 @@ namespace WastelandSoul.Content.NPCs.Town
 			NPCShop npcShop = new NPCShop(Type, "Chips")
 				.Add(Priced<Content.Items.Accessories.ScavengerRangerCharm>(8))
 				.Add(Priced<Content.Items.Accessories.ScavengerSummonerCharm>(8))
-				.Add(Priced<Content.Items.Accessories.ScavengerRogueCharm>(8))
 				.Add(Priced<Content.Items.Accessories.ArchivistWarriorCharm>(16), new Condition("Mods.WastelandSoul.Conditions.AfterScavenger", () => WastelandStorySystem.scavengerDefeated))
 				.Add(Priced<Content.Items.Accessories.ArchivistMageCharm>(16), new Condition("Mods.WastelandSoul.Conditions.AfterScavenger", () => WastelandStorySystem.scavengerDefeated))
-				.Add(Priced<Content.Items.Accessories.ArchivistRogueCharm>(16), new Condition("Mods.WastelandSoul.Conditions.AfterScavenger", () => WastelandStorySystem.scavengerDefeated))
 				.Add(Priced<Content.Items.Accessories.AshHeartMageCharm>(28), new Condition("Mods.WastelandSoul.Conditions.AfterArchivist", () => WastelandStorySystem.archivistDefeated))
 				.Add(Priced<Content.Items.Accessories.AshHeartRangerCharm>(28), new Condition("Mods.WastelandSoul.Conditions.AfterArchivist", () => WastelandStorySystem.archivistDefeated))
 				.Add(Priced<Content.Items.Accessories.AshHeartSummonerCharm>(28), new Condition("Mods.WastelandSoul.Conditions.AfterArchivist", () => WastelandStorySystem.archivistDefeated))
 				.Add(Priced<Content.Items.Accessories.FireplaceWarriorCharm>(48), new Condition("Mods.WastelandSoul.Conditions.AfterAshHeart", () => WastelandStorySystem.ashHeartDefeated))
-				.Add(Priced<Content.Items.Accessories.FireplaceSummonerCharm>(48), new Condition("Mods.WastelandSoul.Conditions.AfterAshHeart", () => WastelandStorySystem.ashHeartDefeated))
-				.Add(Priced<Content.Items.Accessories.FireplaceRogueCharm>(48), new Condition("Mods.WastelandSoul.Conditions.AfterAshHeart", () => WastelandStorySystem.ashHeartDefeated));
+				.Add(Priced<Content.Items.Accessories.FireplaceSummonerCharm>(48), new Condition("Mods.WastelandSoul.Conditions.AfterAshHeart", () => WastelandStorySystem.ashHeartDefeated));
 			npcShop.Register();
 		}
 
@@ -402,6 +426,12 @@ namespace WastelandSoul.Content.NPCs.Town
 		/// <para/>四段共用一个入口（<see cref="WastelandMemorySystem.TryHandIn"/>）：
 		/// 记忆还没恢复的那枚推进剧情；已经恢复过的那枚当**补交**处理 ——
 		/// 碎片被消耗掉、给她一句「已归档」，但**不重播**那段记忆。
+		///
+		/// <para/>联机适配：交付的权威在**服务端**（客户端只发「我要交付第 N 枚」请求，
+		/// 见 <see cref="WastelandStorySystem.RequestFragmentDelivery"/>）。
+		/// 单人路径完全没变，仍然是这里直接调 <see cref="WastelandMemorySystem.TryHandIn"/>。
+		/// 台词用**本地状态**（<c>alreadyRecovered</c>）提前算好 —— 与改之前给玩家看到的
+		/// 回复完全一致；真正扣物品 / 推进记忆由服务端做，回执回来时客户端再扣掉自己那份镜像。
 		/// </summary>
 		private string GetMemoryDialogue()
 		{
@@ -414,7 +444,12 @@ namespace WastelandSoul.Content.NPCs.Town
 
 			bool alreadyRecovered = WastelandMemorySystem.MemoryAlreadyRecovered(player, bossIndex);
 
-			if (!WastelandMemorySystem.TryHandIn(player, bossIndex)) {
+			if (Main.netMode == NetmodeID.MultiplayerClient) {
+				WastelandStorySystem.RequestFragmentDelivery(
+					bossIndex,
+					WastelandMemorySystem.FragmentSource(player, bossIndex));
+			}
+			else if (!WastelandMemorySystem.TryHandIn(player, bossIndex)) {
 				return Language.GetTextValue(DialogueKey + "MemoryBlank");
 			}
 

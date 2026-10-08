@@ -13,7 +13,7 @@ namespace WastelandSoul.Content.Items.Armor
 	// 三套新防具（装备扩充包）。
 	//
 	// 与已有的「精钢套装」区分开：
-	//   · 精钢套装是**五职业各自一套**（战士/法师/射手/召唤/盗贼），走的是 Boss1 后的职业分化；
+	//   · 精钢套装是**四职业各自一套**（战士/法师/射手/召唤），走的是 Boss1 后的职业分化；
 	//   · 这三套是**不分职业的三档过渡/补强装**，套装加成都是"生存 + 一个招牌机制"，
 	//     任何 build 都能穿，不会和精钢的职业套抢位置。
 	//
@@ -43,7 +43,6 @@ namespace WastelandSoul.Content.Items.Armor
 		public override void UpdateEquip(Player player)
 		{
 			player.GetDamage(DamageClass.Ranged) += 0.05f;
-			player.GetDamage(DamageClass.Throwing) += 0.05f;
 		}
 	}
 

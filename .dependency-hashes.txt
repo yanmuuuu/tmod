@@ -1,0 +1,5 @@
+依赖模组哈希基线（开工前）
+InnoVault.tmod  BB304F00F2FE746B  1172337 字节
+SubworldLibrary.tmod  D45218BC3381B3FE  60266 字节
+WastelandSoul.tmod  8E1C190AB0D5CE33  13173083 字节
+WastelandSoulCN.tmod  BF368352A8628160  46303 字节

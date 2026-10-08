@@ -147,7 +147,7 @@ namespace WastelandSoul.Common.ItemBases
 	/// </summary>
 	public abstract class WastelandClassWeapon : ModItem
 	{
-		/// <summary>职业伤害类型（DamageClass.Melee / Magic / Ranged / Summon / Throwing）。</summary>
+		/// <summary>职业伤害类型（DamageClass.Melee / Magic / Ranged / Summon）。</summary>
 		protected abstract DamageClass Class { get; }
 
 		/// <summary>基础伤害。</summary>

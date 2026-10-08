@@ -1,0 +1,2144 @@
+{
+ "files": [
+  {
+   "path": "WastelandSoul.cs",
+   "classes": [
+    "WastelandSoul"
+   ],
+   "lines": 42
+  },
+  {
+   "path": "Common\\WastelandText.cs",
+   "classes": [
+    "WastelandText"
+   ],
+   "lines": 152
+  },
+  {
+   "path": "Common\\Bosses\\WastelandBossRegistry.cs",
+   "classes": [
+    "WastelandBossEntry",
+    "WastelandBossRegistry"
+   ],
+   "lines": 182
+  },
+  {
+   "path": "Common\\Configs\\WastelandConfig.cs",
+   "classes": [
+    "WastelandConfig"
+   ],
+   "lines": 33
+  },
+  {
+   "path": "Common\\Configs\\WastelandVisualConfig.cs",
+   "classes": [
+    "WastelandVisualConfig"
+   ],
+   "lines": 44
+  },
+  {
+   "path": "Common\\Effects\\WastelandEffectLayer.cs",
+   "classes": [
+    "WastelandEffectColors"
+   ],
+   "lines": 45
+  },
+  {
+   "path": "Common\\Effects\\WastelandFx.cs",
+   "classes": [
+    "WastelandFxSystem"
+   ],
+   "lines": 337
+  },
+  {
+   "path": "Common\\ItemBases\\WastelandBossBag.cs",
+   "classes": [
+    "WastelandBossBag",
+    "WastelandPrefixTiers",
+    "WastelandSoulHelper"
+   ],
+   "lines": 159
+  },
+  {
+   "path": "Common\\ItemBases\\WastelandCraftingStations.cs",
+   "classes": [
+    "WastelandCraftingStations"
+   ],
+   "lines": 32
+  },
+  {
+   "path": "Common\\ItemBases\\WastelandItemBases.cs",
+   "classes": [
+    "WastelandMaterial",
+    "WastelandSummonItem",
+    "WastelandClassWeapon",
+    "WastelandAccessory",
+    "WastelandRarityTiers",
+    "SoulFragment"
+   ],
+   "lines": 283
+  },
+  {
+   "path": "Common\\Models\\Wasteland3DPreview.cs",
+   "classes": [
+    "Wasteland3DProbeAssets",
+    "Wasteland3DProbeSystem"
+   ],
+   "lines": 227
+  },
+  {
+   "path": "Common\\Models\\WastelandArmor3DVisuals.cs",
+   "classes": [
+    "WastelandArmor3DAssets",
+    "Armor3DTuning",
+    "WastelandArmor3DSystem"
+   ],
+   "lines": 490
+  },
+  {
+   "path": "Common\\Players\\WastelandGearPlayer.cs",
+   "classes": [
+    "WastelandGearPlayer"
+   ],
+   "lines": 441
+  },
+  {
+   "path": "Common\\Players\\WastelandPlayer.cs",
+   "classes": [
+    "WastelandPlayer"
+   ],
+   "lines": 251
+  },
+  {
+   "path": "Common\\Players\\WastelandTreePlayer.cs",
+   "classes": [
+    "WastelandTreePlayer"
+   ],
+   "lines": 38
+  },
+  {
+   "path": "Common\\Players\\WastelandUpgradePlayer.cs",
+   "classes": [
+    "WastelandUpgradePlayer"
+   ],
+   "lines": 81
+  },
+  {
+   "path": "Common\\Systems\\BossChecklistIntegrationSystem.cs",
+   "classes": [
+    "BossChecklistIntegrationSystem"
+   ],
+   "lines": 130
+  },
+  {
+   "path": "Common\\Systems\\ChipCurrencySystem.cs",
+   "classes": [
+    "ChipCurrencySystem"
+   ],
+   "lines": 25
+  },
+  {
+   "path": "Common\\Systems\\ElvenRuinSystem.cs",
+   "classes": [
+    "ElvenRuinSystem"
+   ],
+   "lines": 120
+  },
+  {
+   "path": "Common\\Systems\\FireplaceEntrySystem.cs",
+   "classes": [
+    "FireplaceEntrySystem"
+   ],
+   "lines": 297
+  },
+  {
+   "path": "Common\\Systems\\FireplaceGateSystem.cs",
+   "classes": [
+    "FireplaceGateSystem",
+    "FireplaceTravel"
+   ],
+   "lines": 395
+  },
+  {
+   "path": "Common\\Systems\\FireplaceTravelNet.cs",
+   "classes": [
+    "FireplaceTravelNet",
+    "TravelProtocol"
+   ],
+   "lines": 892
+  },
+  {
+   "path": "Common\\Systems\\ScavengerInvasionSystem.cs",
+   "classes": [
+    "ScavengerInvasionSystem"
+   ],
+   "lines": 203
+  },
+  {
+   "path": "Common\\Systems\\WastelandMemorySystem.cs",
+   "classes": [
+    "WastelandMemorySystem"
+   ],
+   "lines": 547
+  },
+  {
+   "path": "Common\\Systems\\WastelandStorySystem.cs",
+   "classes": [
+    "CompanionStage",
+    "WastelandStorySystem",
+    "StoryRequest"
+   ],
+   "lines": 784
+  },
+  {
+   "path": "Content\\Backgrounds\\FireplaceBackgroundGlobalStyle.cs",
+   "classes": [
+    "FireplaceBackgroundGlobalStyle"
+   ],
+   "lines": 67
+  },
+  {
+   "path": "Content\\Backgrounds\\FireplaceStarfieldBackground.cs",
+   "classes": [
+    "FireplaceStarfieldBackground"
+   ],
+   "lines": 92
+  },
+  {
+   "path": "Content\\Backgrounds\\FireplaceStarfieldSceneEffect.cs",
+   "classes": [
+    "FireplaceStarfieldSceneEffect"
+   ],
+   "lines": 81
+  },
+  {
+   "path": "Content\\Backgrounds\\FireplaceStarfieldUnderground.cs",
+   "classes": [
+    "FireplaceStarfieldUnderground"
+   ],
+   "lines": 60
+  },
+  {
+   "path": "Content\\Buffs\\GasPoison.cs",
+   "classes": [
+    "GasPoison"
+   ],
+   "lines": 50
+  },
+  {
+   "path": "Content\\Buffs\\Pollution.cs",
+   "classes": [
+    "Pollution"
+   ],
+   "lines": 28
+  },
+  {
+   "path": "Content\\Buffs\\ScrapShield.cs",
+   "classes": [
+    "ScrapShield"
+   ],
+   "lines": 27
+  },
+  {
+   "path": "Content\\Buffs\\WastelandConsumableBuffs.cs",
+   "classes": [
+    "GasFilterBuff",
+    "MinersSolutionBuff",
+    "ColdSpotlightBuff",
+    "NaniteSalveBuff",
+    "BeastWhistleBuff",
+    "AshenRationBuff"
+   ],
+   "lines": 165
+  },
+  {
+   "path": "Content\\Items\\Accessories\\GasMask.cs",
+   "classes": [
+    "GasMask"
+   ],
+   "lines": 36
+  },
+  {
+   "path": "Content\\Items\\Accessories\\WastelandCharms.cs",
+   "classes": [
+    "WastelandAccessoryCatalog",
+    "ScavengerWarriorCharm",
+    "ScavengerMageCharm",
+    "ScavengerRangerCharm",
+    "ScavengerSummonerCharm",
+    "ScavengerRogueCharm",
+    "ArchivistWarriorCharm",
+    "ArchivistMageCharm",
+    "ArchivistRangerCharm",
+    "ArchivistSummonerCharm",
+    "ArchivistRogueCharm",
+    "AshHeartWarriorCharm",
+    "AshHeartMageCharm",
+    "AshHeartRangerCharm",
+    "AshHeartSummonerCharm",
+    "AshHeartRogueCharm",
+    "FireplaceWarriorCharm",
+    "FireplaceMageCharm",
+    "FireplaceRangerCharm",
+    "FireplaceSummonerCharm",
+    "FireplaceRogueCharm"
+   ],
+   "lines": 319
+  },
+  {
+   "path": "Content\\Items\\Accessories\\Gear\\WastelandGearAccessories.cs",
+   "classes": [
+    "ScavengerHarness",
+    "FilteredRebreather",
+    "WastelandCompass",
+    "AbyssBreather",
+    "CinderstepBoots",
+    "EmberglassLens",
+    "ConsecratedCore",
+    "AshEchoCharm",
+    "HearthBeacon",
+    "HearthAegis",
+    "HearthMirror",
+    "MorrowFragment"
+   ],
+   "lines": 422
+  },
+  {
+   "path": "Content\\Items\\Ammo\\WastelandAmmo.cs",
+   "classes": [
+    "WastelandAmmo",
+    "ScrapNail",
+    "ColdlightRound",
+    "EmberShell",
+    "TornPage"
+   ],
+   "lines": 192
+  },
+  {
+   "path": "Content\\Items\\Armor\\SalvagedSteelArmor.cs",
+   "classes": [
+    "SalvagedSteelArmor",
+    "SalvagedSteelWarriorHelm",
+    "SalvagedSteelWarriorPlate",
+    "SalvagedSteelWarriorGreaves",
+    "SalvagedSteelMageHood",
+    "SalvagedSteelMageRobe",
+    "SalvagedSteelMageLeggings",
+    "SalvagedSteelRangerVisor",
+    "SalvagedSteelRangerVest",
+    "SalvagedSteelRangerLeggings",
+    "SalvagedSteelSummonerCowl",
+    "SalvagedSteelSummonerTunic",
+    "SalvagedSteelSummonerLeggings",
+    "SalvagedSteelRogueMask",
+    "SalvagedSteelRogueVest",
+    "SalvagedSteelRogueLeggings"
+   ],
+   "lines": 296
+  },
+  {
+   "path": "Content\\Items\\Armor\\WastelandArmorSets.cs",
+   "classes": [
+    "ScavengerGraceHood",
+    "ScavengerGraceJacket",
+    "ScavengerGraceBoots",
+    "AshHeartMask",
+    "AshHeartPlate",
+    "AshHeartGreaves",
+    "HearthGuardVisor",
+    "HearthGuardCuirass",
+    "HearthGuardGreaves",
+    "WastelandArmorPiece",
+    "ScavengerGracePiece",
+    "AshHeartPiece",
+    "HearthGuardPiece"
+   ],
+   "lines": 368
+  },
+  {
+   "path": "Content\\Items\\Bags\\BossBags.cs",
+   "classes": [
+    "ScavengerBag",
+    "ArchivistBag",
+    "AshHeartBag",
+    "FireplaceBag"
+   ],
+   "lines": 68
+  },
+  {
+   "path": "Content\\Items\\Consumables\\WastelandConsumables.cs",
+   "classes": [
+    "WastelandPotion",
+    "GasFilterPotion",
+    "MinersSolution",
+    "ColdSpotlight",
+    "NaniteSalve",
+    "BeastWhistle",
+    "AshenRation"
+   ],
+   "lines": 226
+  },
+  {
+   "path": "Content\\Items\\Decor\\BossBannerItems.cs",
+   "classes": [
+    "ScavengerBanner",
+    "ArchivistBanner",
+    "AshHeartBanner",
+    "FireplaceGuardianBanner"
+   ],
+   "lines": 141
+  },
+  {
+   "path": "Content\\Items\\Decor\\BossTrophyItems.cs",
+   "classes": [
+    "ScavengerTrophy",
+    "ArchivistTrophy",
+    "AshHeartTrophy",
+    "FireplaceGuardianTrophy",
+    "ScrapReaperTrophy"
+   ],
+   "lines": 124
+  },
+  {
+   "path": "Content\\Items\\Info\\WastelandExploration.cs",
+   "classes": [
+    "WastelandMap",
+    "ScrapCache"
+   ],
+   "lines": 227
+  },
+  {
+   "path": "Content\\Items\\Materials\\ArchivistFragment.cs",
+   "classes": [
+    "ArchivistFragment"
+   ],
+   "lines": 20
+  },
+  {
+   "path": "Content\\Items\\Materials\\AshHeartAlloyBar.cs",
+   "classes": [
+    "AshHeartAlloyBar"
+   ],
+   "lines": 29
+  },
+  {
+   "path": "Content\\Items\\Materials\\AshHeartFragment.cs",
+   "classes": [
+    "AshHeartFragment"
+   ],
+   "lines": 20
+  },
+  {
+   "path": "Content\\Items\\Materials\\Chip.cs",
+   "classes": [
+    "Chip"
+   ],
+   "lines": 16
+  },
+  {
+   "path": "Content\\Items\\Materials\\FireplaceAlloyBar.cs",
+   "classes": [
+    "FireplaceAlloyBar"
+   ],
+   "lines": 29
+  },
+  {
+   "path": "Content\\Items\\Materials\\FireplaceFragment.cs",
+   "classes": [
+    "FireplaceFragment"
+   ],
+   "lines": 20
+  },
+  {
+   "path": "Content\\Items\\Materials\\RustedGear.cs",
+   "classes": [
+    "RustedGear"
+   ],
+   "lines": 21
+  },
+  {
+   "path": "Content\\Items\\Materials\\SalvagedSteelBar.cs",
+   "classes": [
+    "SalvagedSteelBar"
+   ],
+   "lines": 32
+  },
+  {
+   "path": "Content\\Items\\Materials\\SalvagedSteelChunk.cs",
+   "classes": [
+    "SalvagedSteelChunk"
+   ],
+   "lines": 22
+  },
+  {
+   "path": "Content\\Items\\Materials\\ScavengerFragment.cs",
+   "classes": [
+    "ScavengerFragment"
+   ],
+   "lines": 22
+  },
+  {
+   "path": "Content\\Items\\Materials\\WastelandCraftMaterials.cs",
+   "classes": [
+    "Coke",
+    "CircuitBoard",
+    "Coolant",
+    "AshCrystal",
+    "SalvagedSteelBundle"
+   ],
+   "lines": 89
+  },
+  {
+   "path": "Content\\Items\\Soul\\SoulFragmentRegistry.cs",
+   "classes": [
+    "SoulFragmentRegistry"
+   ],
+   "lines": 20
+  },
+  {
+   "path": "Content\\Items\\Soul\\SoulFragments.cs",
+   "classes": [
+    "SoulFragmentScavenger",
+    "SoulFragmentSecond",
+    "SoulFragmentThird",
+    "SoulFragmentFourth"
+   ],
+   "lines": 39
+  },
+  {
+   "path": "Content\\Items\\Story\\CompanionCore.cs",
+   "classes": [
+    "CompanionCore"
+   ],
+   "lines": 60
+  },
+  {
+   "path": "Content\\Items\\Story\\EndingRelics.cs",
+   "classes": [
+    "DawnSeal",
+    "UnburnedName"
+   ],
+   "lines": 38
+  },
+  {
+   "path": "Content\\Items\\Summons\\ArchivistEcho.cs",
+   "classes": [
+    "ArchivistEcho"
+   ],
+   "lines": 28
+  },
+  {
+   "path": "Content\\Items\\Summons\\AshHeartEmber.cs",
+   "classes": [
+    "AshHeartEmber"
+   ],
+   "lines": 29
+  },
+  {
+   "path": "Content\\Items\\Summons\\FireplaceKey.cs",
+   "classes": [
+    "FireplaceKey"
+   ],
+   "lines": 29
+  },
+  {
+   "path": "Content\\Items\\Summons\\ScavengerSignalSensor.cs",
+   "classes": [
+    "ScavengerSignalSensor"
+   ],
+   "lines": 94
+  },
+  {
+   "path": "Content\\Items\\Summons\\WastelandSummonExpansion.cs",
+   "classes": [
+    "ScavengerBeacon",
+    "AuditRequest",
+    "EmberFuse"
+   ],
+   "lines": 89
+  },
+  {
+   "path": "Content\\Items\\UpgradeTrees\\AccessoryUpgradeTree.cs",
+   "classes": [
+    "ReinforcedFilterMask",
+    "AshHeartPurifierMask"
+   ],
+   "lines": 93
+  },
+  {
+   "path": "Content\\Items\\UpgradeTrees\\AccessoryUpgradeTreeRogue.cs",
+   "classes": [
+    "ScavengerChip",
+    "ReinforcedScavengerChip",
+    "WastelandOverlordCore"
+   ],
+   "lines": 134
+  },
+  {
+   "path": "Content\\Items\\UpgradeTrees\\ArmorUpgradeTree.cs",
+   "classes": [
+    "AshAlloyWarriorHelm",
+    "AshAlloyWarriorPlate",
+    "AshAlloyWarriorGreaves",
+    "HearthAlloyWarriorHelm",
+    "HearthAlloyWarriorPlate",
+    "HearthAlloyWarriorGreaves",
+    "AshAlloyWarriorPiece",
+    "HearthAlloyWarriorPiece"
+   ],
+   "lines": 260
+  },
+  {
+   "path": "Content\\Items\\UpgradeTrees\\BladeUpgradeTree.cs",
+   "classes": [
+    "SalvagedSteelSaber",
+    "ArchivistVerdictBlade"
+   ],
+   "lines": 99
+  },
+  {
+   "path": "Content\\Items\\UpgradeTrees\\MagicUpgradeTree.cs",
+   "classes": [
+    "SalvagedSteelArcWand",
+    "HearthGuardFrostCodex"
+   ],
+   "lines": 124
+  },
+  {
+   "path": "Content\\Items\\UpgradeTrees\\RangedUpgradeTree.cs",
+   "classes": [
+    "SalvagedSteelScattergun",
+    "AshHeartFlechette"
+   ],
+   "lines": 111
+  },
+  {
+   "path": "Content\\Items\\UpgradeTrees\\RogueUpgradeTree.cs",
+   "classes": [
+    "RogueTreeKit",
+    "RustedGearShuriken",
+    "SalvagedSteelChakram",
+    "AshHeartCinderRing"
+   ],
+   "lines": 157
+  },
+  {
+   "path": "Content\\Items\\UpgradeTrees\\SummonerUpgradeTree.cs",
+   "classes": [
+    "RustedGearWhistle",
+    "SalvagedSteelGearWhistle",
+    "AshHeartGearWhistle"
+   ],
+   "lines": 137
+  },
+  {
+   "path": "Content\\Items\\Weapons\\WastelandWeaponKit.cs",
+   "classes": [
+    "WastelandWeaponKit"
+   ],
+   "lines": 74
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerMageWeapon.cs",
+   "classes": [
+    "ScavengerMageWeapon"
+   ],
+   "lines": 54
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerMageWeaponEX.cs",
+   "classes": [
+    "ScavengerMageWeaponEX"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerRangerWeapon.cs",
+   "classes": [
+    "ScavengerRangerWeapon"
+   ],
+   "lines": 54
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerRangerWeaponEX.cs",
+   "classes": [
+    "ScavengerRangerWeaponEX"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerRogueWeapon.cs",
+   "classes": [
+    "ScavengerRogueWeapon"
+   ],
+   "lines": 54
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerRogueWeaponEX.cs",
+   "classes": [
+    "ScavengerRogueWeaponEX"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerSummonerWeapon.cs",
+   "classes": [
+    "ScavengerSummonerWeapon"
+   ],
+   "lines": 52
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerSummonerWeaponEX.cs",
+   "classes": [
+    "ScavengerSummonerWeaponEX"
+   ],
+   "lines": 32
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerWarriorWeapon.cs",
+   "classes": [
+    "ScavengerWarriorWeapon"
+   ],
+   "lines": 54
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerWarriorWeaponEX.cs",
+   "classes": [
+    "ScavengerWarriorWeaponEX"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistMageWeapon.cs",
+   "classes": [
+    "ArchivistMageWeapon"
+   ],
+   "lines": 43
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistMageWeaponEX.cs",
+   "classes": [
+    "ArchivistMageWeaponEX"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistRangerWeapon.cs",
+   "classes": [
+    "ArchivistRangerWeapon"
+   ],
+   "lines": 43
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistRangerWeaponEX.cs",
+   "classes": [
+    "ArchivistRangerWeaponEX"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistRogueWeapon.cs",
+   "classes": [
+    "ArchivistRogueWeapon"
+   ],
+   "lines": 43
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistRogueWeaponEX.cs",
+   "classes": [
+    "ArchivistRogueWeaponEX"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistSummonerWeapon.cs",
+   "classes": [
+    "ArchivistSummonerWeapon"
+   ],
+   "lines": 50
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistSummonerWeaponEX.cs",
+   "classes": [
+    "ArchivistSummonerWeaponEX"
+   ],
+   "lines": 32
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistWarriorWeapon.cs",
+   "classes": [
+    "ArchivistWarriorWeapon"
+   ],
+   "lines": 43
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistWarriorWeaponEX.cs",
+   "classes": [
+    "ArchivistWarriorWeaponEX"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartMageWeapon.cs",
+   "classes": [
+    "AshHeartMageWeapon"
+   ],
+   "lines": 44
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartMageWeaponEx.cs",
+   "classes": [
+    "AshHeartMageWeaponEx"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartRangerWeapon.cs",
+   "classes": [
+    "AshHeartRangerWeapon"
+   ],
+   "lines": 44
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartRangerWeaponEx.cs",
+   "classes": [
+    "AshHeartRangerWeaponEx"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartRogueWeapon.cs",
+   "classes": [
+    "AshHeartRogueWeapon"
+   ],
+   "lines": 44
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartRogueWeaponEx.cs",
+   "classes": [
+    "AshHeartRogueWeaponEx"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartSummonerWeapon.cs",
+   "classes": [
+    "AshHeartSummonerWeapon"
+   ],
+   "lines": 42
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartSummonerWeaponEx.cs",
+   "classes": [
+    "AshHeartSummonerWeaponEx"
+   ],
+   "lines": 32
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartWarriorWeapon.cs",
+   "classes": [
+    "AshHeartWarriorWeapon"
+   ],
+   "lines": 44
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartWarriorWeaponEx.cs",
+   "classes": [
+    "AshHeartWarriorWeaponEx"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceMageWeapon.cs",
+   "classes": [
+    "FireplaceMageWeapon"
+   ],
+   "lines": 44
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceMageWeaponEx.cs",
+   "classes": [
+    "FireplaceMageWeaponEx"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceRangerWeapon.cs",
+   "classes": [
+    "FireplaceRangerWeapon"
+   ],
+   "lines": 44
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceRangerWeaponEx.cs",
+   "classes": [
+    "FireplaceRangerWeaponEx"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceRogueWeapon.cs",
+   "classes": [
+    "FireplaceRogueWeapon"
+   ],
+   "lines": 44
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceRogueWeaponEx.cs",
+   "classes": [
+    "FireplaceRogueWeaponEx"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceSummonerWeapon.cs",
+   "classes": [
+    "FireplaceSummonerWeapon"
+   ],
+   "lines": 42
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceSummonerWeaponEx.cs",
+   "classes": [
+    "FireplaceSummonerWeaponEx"
+   ],
+   "lines": 32
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceWarriorWeapon.cs",
+   "classes": [
+    "FireplaceWarriorWeapon"
+   ],
+   "lines": 44
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceWarriorWeaponEx.cs",
+   "classes": [
+    "FireplaceWarriorWeaponEx"
+   ],
+   "lines": 34
+  },
+  {
+   "path": "Content\\Items\\Weapons\\CLine\\CLineWeapons.cs",
+   "classes": [
+    "CLineKind",
+    "CLineWeapon",
+    "ScavengerCWarrior",
+    "ScavengerCMage",
+    "ScavengerCRanger",
+    "ScavengerCSummoner",
+    "ScavengerCRogue",
+    "ArchivistCWarrior",
+    "ArchivistCMage",
+    "ArchivistCRanger",
+    "ArchivistCSummoner",
+    "ArchivistCRogue",
+    "AshHeartCWarrior",
+    "AshHeartCMage",
+    "AshHeartCRanger",
+    "AshHeartCSummoner",
+    "AshHeartCRogue",
+    "FireplaceCWarrior",
+    "FireplaceCMage",
+    "FireplaceCRanger",
+    "FireplaceCSummoner",
+    "FireplaceCRogue"
+   ],
+   "lines": 318
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Rust\\RustMagicWeapons.cs",
+   "classes": [
+    "RustBoltWand",
+    "RustAcidTome",
+    "RustBoltWandEX"
+   ],
+   "lines": 143
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Rust\\RustMeleeWeapons.cs",
+   "classes": [
+    "RustCleaver",
+    "ScrapYoyo",
+    "RustCleaverEX"
+   ],
+   "lines": 141
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Rust\\RustPackLoot.cs",
+   "classes": [
+    "RustPackLootNPC"
+   ],
+   "lines": 44
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Rust\\RustRangedWeapons.cs",
+   "classes": [
+    "ScrapShotgun",
+    "RustNailgun",
+    "ScrapShotgunEX"
+   ],
+   "lines": 166
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Rust\\RustRogueWeapons.cs",
+   "classes": [
+    "RustShuriken",
+    "ScrapGrenade",
+    "RustShurikenEX"
+   ],
+   "lines": 154
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Rust\\RustSummonWeapons.cs",
+   "classes": [
+    "RustDroneStaff",
+    "RustSpitterStaff",
+    "RustSpitterStaffEX"
+   ],
+   "lines": 136
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Scrap\\ScrapMagicWeapons.cs",
+   "classes": [
+    "ScrapNovaStaff",
+    "ScrapNovaStaffEX"
+   ],
+   "lines": 88
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Scrap\\ScrapMeleeWeapons.cs",
+   "classes": [
+    "ScrapGreatsword",
+    "RebarBoomerang"
+   ],
+   "lines": 107
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Scrap\\ScrapRangedWeapons.cs",
+   "classes": [
+    "ScrapRailgun",
+    "ScrapRailgunEX"
+   ],
+   "lines": 104
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Scrap\\ScrapRogueWeapons.cs",
+   "classes": [
+    "ScrapBuzzsaw",
+    "ScrapChakram"
+   ],
+   "lines": 78
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Scrap\\ScrapSummonWeapons.cs",
+   "classes": [
+    "ScrapWardenStaff"
+   ],
+   "lines": 42
+  },
+  {
+   "path": "Content\\Items\\Weapons\\Wildlife\\ScrapReaperBlade.cs",
+   "classes": [
+    "ScrapReaperBlade"
+   ],
+   "lines": 48
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\Archivist\\Archivist.cs",
+   "classes": [
+    "Archivist"
+   ],
+   "lines": 595
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\Archivist\\ArchivistContext.cs",
+   "classes": [
+    "ArchivistContext"
+   ],
+   "lines": 92
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\Archivist\\ArchivistStates.cs",
+   "classes": [
+    "ArchivistIdleState",
+    "ArchivistPhaseTwoState",
+    "ArchivistPhaseThreeState",
+    "ArchivistIndexBeamState",
+    "ArchivistPageVolleyState",
+    "ArchivistBarrageWallState",
+    "ArchivistSealLungeState",
+    "ArchivistOverwriteState",
+    "ArchivistSuppressionState"
+   ],
+   "lines": 368
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\AshHeart\\AshHeart.cs",
+   "classes": [
+    "AshHeart"
+   ],
+   "lines": 370
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\AshHeart\\AshHeartContext.cs",
+   "classes": [
+    "AshHeartContext"
+   ],
+   "lines": 58
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\AshHeart\\AshHeartStates.cs",
+   "classes": [
+    "AshHeartIdleState",
+    "AshHeartPhaseTwoState",
+    "AshHeartPhaseThreeState",
+    "AshHeartVolleyState",
+    "AshHeartPoolState",
+    "AshHeartRainState",
+    "AshHeartPulseState"
+   ],
+   "lines": 187
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\AshHeart\\AshWisp.cs",
+   "classes": [
+    "AshWisp"
+   ],
+   "lines": 96
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\FireplaceGuardian\\FireplaceGuardian.cs",
+   "classes": [
+    "FireplaceGuardian"
+   ],
+   "lines": 362
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\FireplaceGuardian\\FireplaceGuardianContext.cs",
+   "classes": [
+    "FireplaceGuardianContext"
+   ],
+   "lines": 58
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\FireplaceGuardian\\FireplaceGuardianStates.cs",
+   "classes": [
+    "FireplaceGuardianIdleState",
+    "FireplaceGuardianPhaseTwoState",
+    "FireplaceGuardianPhaseThreeState",
+    "FireplaceGuardianBoltState",
+    "FireplaceGuardianSlamState",
+    "FireplaceGuardianRingState",
+    "FireplaceGuardianWallState"
+   ],
+   "lines": 200
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\Scavenger\\Scavenger.cs",
+   "classes": [
+    "Scavenger"
+   ],
+   "lines": 730
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\Scavenger\\ScavengerContext.cs",
+   "classes": [
+    "ScavengerContext"
+   ],
+   "lines": 73
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\Scavenger\\ScavengerRepairDrone.cs",
+   "classes": [
+    "ScavengerRepairDrone"
+   ],
+   "lines": 131
+  },
+  {
+   "path": "Content\\NPCs\\Bosses\\Scavenger\\ScavengerStates.cs",
+   "classes": [
+    "ScavengerIdleState",
+    "ScavengerPhaseTwoState",
+    "ScavengerPhaseThreeState",
+    "ScavengerSweepWindupState",
+    "ScavengerSweepingState",
+    "ScavengerBurstWindupState",
+    "ScavengerChargeWindupState",
+    "ScavengerChargingState",
+    "ScavengerSelfDestructState",
+    "ScavengerSlamWindupState",
+    "ScavengerSlamState"
+   ],
+   "lines": 278
+  },
+  {
+   "path": "Content\\NPCs\\Town\\MechanicalCompanion.cs",
+   "classes": [
+    "MechanicalCompanion"
+   ],
+   "lines": 506
+  },
+  {
+   "path": "Content\\NPCs\\Wildlife\\EraMobs.cs",
+   "classes": [
+    "EraMob",
+    "ScrapCrawler",
+    "IndexMoth",
+    "AshStalker",
+    "HearthWarden"
+   ],
+   "lines": 228
+  },
+  {
+   "path": "Content\\NPCs\\Wildlife\\WildlifeCaveMobs.cs",
+   "classes": [
+    "CaveCrawler",
+    "AshTickBat"
+   ],
+   "lines": 301
+  },
+  {
+   "path": "Content\\NPCs\\Wildlife\\WildlifeDayMobs.cs",
+   "classes": [
+    "WildlifeAI",
+    "ScrapLeaper",
+    "RustCharger",
+    "GaleWisp",
+    "SpitterFly"
+   ],
+   "lines": 907
+  },
+  {
+   "path": "Content\\NPCs\\Wildlife\\WildlifeHardmodeMobs.cs",
+   "classes": [
+    "PollutionSlime",
+    "GearSwarmHive",
+    "GearSwarm",
+    "CinderMender",
+    "ScrapReaper"
+   ],
+   "lines": 984
+  },
+  {
+   "path": "Content\\Projectiles\\CompanionSpark.cs",
+   "classes": [
+    "CompanionSpark"
+   ],
+   "lines": 37
+  },
+  {
+   "path": "Content\\Projectiles\\PollutionHoming.cs",
+   "classes": [
+    "PollutionHoming"
+   ],
+   "lines": 99
+  },
+  {
+   "path": "Content\\Projectiles\\PollutionZone.cs",
+   "classes": [
+    "PollutionZone"
+   ],
+   "lines": 73
+  },
+  {
+   "path": "Content\\Projectiles\\ScavengerArmSweep.cs",
+   "classes": [
+    "ScavengerArmSweep"
+   ],
+   "lines": 61
+  },
+  {
+   "path": "Content\\Projectiles\\ScavengerBullet.cs",
+   "classes": [
+    "ScavengerBullet"
+   ],
+   "lines": 81
+  },
+  {
+   "path": "Content\\Projectiles\\Archivist\\ArchivistArchivePage.cs",
+   "classes": [
+    "ArchivistArchivePage"
+   ],
+   "lines": 91
+  },
+  {
+   "path": "Content\\Projectiles\\Archivist\\ArchivistBarrageSheet.cs",
+   "classes": [
+    "ArchivistBarrageSheet"
+   ],
+   "lines": 58
+  },
+  {
+   "path": "Content\\Projectiles\\Archivist\\ArchivistExProjectiles.cs",
+   "classes": [
+    "ArchivistBoneArcEX",
+    "ArchivistIndexPageEX",
+    "ArchivistBoneShardEX",
+    "ArchivistBoneBoomerangEX"
+   ],
+   "lines": 60
+  },
+  {
+   "path": "Content\\Projectiles\\Archivist\\ArchivistIndexBeam.cs",
+   "classes": [
+    "ArchivistIndexBeam"
+   ],
+   "lines": 201
+  },
+  {
+   "path": "Content\\Projectiles\\Archivist\\ArchivistMinions.cs",
+   "classes": [
+    "ArchivistFamiliarMinion",
+    "ArchivistFamiliarBuff",
+    "ArchivistFamiliarMinionEX",
+    "ArchivistFamiliarBuffEX"
+   ],
+   "lines": 93
+  },
+  {
+   "path": "Content\\Projectiles\\Archivist\\ArchivistSeal.cs",
+   "classes": [
+    "ArchivistSeal"
+   ],
+   "lines": 95
+  },
+  {
+   "path": "Content\\Projectiles\\Archivist\\ArchivistWeaponProjectiles.cs",
+   "classes": [
+    "ArchivistBoneArc",
+    "ArchivistIndexPage",
+    "ArchivistBoneShard",
+    "ArchivistBoneBoomerang"
+   ],
+   "lines": 172
+  },
+  {
+   "path": "Content\\Projectiles\\AshHeart\\AshHeartWeaponProjectiles.cs",
+   "classes": [
+    "AshHeartWarriorProjectile",
+    "AshHeartMageProjectile",
+    "AshHeartRangerProjectile",
+    "AshHeartRogueProjectile",
+    "AshHeartWarriorProjectileEX",
+    "AshHeartMageProjectileEX",
+    "AshHeartRangerProjectileEX",
+    "AshHeartRogueProjectileEX"
+   ],
+   "lines": 211
+  },
+  {
+   "path": "Content\\Projectiles\\AshHeartBoss\\AshHeartBossProjectiles.cs",
+   "classes": [
+    "AshEmberOrb",
+    "AshPool",
+    "AshCinder",
+    "AshPulse"
+   ],
+   "lines": 219
+  },
+  {
+   "path": "Content\\Projectiles\\Fireplace\\FireplaceWeaponProjectiles.cs",
+   "classes": [
+    "FireplaceWarriorProjectile",
+    "FireplaceMageProjectile",
+    "FireplaceRangerProjectile",
+    "FireplaceRogueProjectile",
+    "FireplaceWarriorProjectileEX",
+    "FireplaceMageProjectileEX",
+    "FireplaceRangerProjectileEX",
+    "FireplaceRogueProjectileEX"
+   ],
+   "lines": 208
+  },
+  {
+   "path": "Content\\Projectiles\\FireplaceBoss\\FireplaceBossProjectiles.cs",
+   "classes": [
+    "HearthBolt",
+    "HearthRingShard",
+    "HearthWall"
+   ],
+   "lines": 105
+  },
+  {
+   "path": "Content\\Projectiles\\Gear\\GearProjectiles.cs",
+   "classes": [
+    "GearReboundShard",
+    "GearColdPulse"
+   ],
+   "lines": 133
+  },
+  {
+   "path": "Content\\Projectiles\\LateBosses\\LateBossMinions.cs",
+   "classes": [
+    "AshHeartEmberMinion",
+    "AshHeartEmberBuff",
+    "AshHeartEmberMinionEX",
+    "AshHeartEmberBuffEX",
+    "FireplaceSentryMinion",
+    "FireplaceSentryBuff",
+    "FireplaceSentryMinionEX",
+    "FireplaceSentryBuffEX"
+   ],
+   "lines": 170
+  },
+  {
+   "path": "Content\\Projectiles\\Ranged\\WastelandAmmoProjectiles.cs",
+   "classes": [
+    "ScrapNailProjectile",
+    "ColdlightProjectile",
+    "EmberShellProjectile",
+    "TornPageProjectile"
+   ],
+   "lines": 232
+  },
+  {
+   "path": "Content\\Projectiles\\Rust\\RustMagicProjectiles.cs",
+   "classes": [
+    "RustBolt",
+    "RustBoltEX",
+    "RustAcidSpray"
+   ],
+   "lines": 165
+  },
+  {
+   "path": "Content\\Projectiles\\Rust\\RustMeleeProjectiles.cs",
+   "classes": [
+    "RustShardSlash",
+    "RustShardSlashEX",
+    "ScrapYoyoProjectile"
+   ],
+   "lines": 119
+  },
+  {
+   "path": "Content\\Projectiles\\Rust\\RustMinions.cs",
+   "classes": [
+    "PackMinionBase",
+    "RustDrone",
+    "RustDroneBuff",
+    "RustSpitter",
+    "RustSpitterBuff",
+    "RustSpitterShot",
+    "RustSpitterEX",
+    "RustSpitterBuffEX",
+    "RustSpitterShotEX"
+   ],
+   "lines": 386
+  },
+  {
+   "path": "Content\\Projectiles\\Rust\\RustRangedProjectiles.cs",
+   "classes": [
+    "ScrapPellet",
+    "ScrapPelletEX",
+    "RustNail"
+   ],
+   "lines": 125
+  },
+  {
+   "path": "Content\\Projectiles\\Rust\\RustRogueProjectiles.cs",
+   "classes": [
+    "RustShurikenProj",
+    "RustShurikenProjEX",
+    "ScrapGrenadeProj",
+    "ScrapGrenadeBlast"
+   ],
+   "lines": 213
+  },
+  {
+   "path": "Content\\Projectiles\\Scavenger\\ScavengerExProjectiles.cs",
+   "classes": [
+    "ScavengerScrapShardEX",
+    "ScavengerSparkEX",
+    "ScavengerRifleRoundEX",
+    "ScavengerCaltropEX"
+   ],
+   "lines": 62
+  },
+  {
+   "path": "Content\\Projectiles\\Scavenger\\ScavengerMinions.cs",
+   "classes": [
+    "WastelandMinionBase",
+    "ScavengerDroneMinion",
+    "ScavengerDroneBuff",
+    "ScavengerDroneMinionEX",
+    "ScavengerDroneBuffEX"
+   ],
+   "lines": 206
+  },
+  {
+   "path": "Content\\Projectiles\\Scavenger\\ScavengerWeaponProjectiles.cs",
+   "classes": [
+    "ScavengerScrapShard",
+    "ScavengerSpark",
+    "ScavengerPistolRound",
+    "ScavengerCaltrop"
+   ],
+   "lines": 139
+  },
+  {
+   "path": "Content\\Projectiles\\Scrap\\ScrapMagicProjectiles.cs",
+   "classes": [
+    "ScrapNova",
+    "ScrapNovaEX",
+    "ScrapNovaFragment"
+   ],
+   "lines": 172
+  },
+  {
+   "path": "Content\\Projectiles\\Scrap\\ScrapMeleeProjectiles.cs",
+   "classes": [
+    "ScrapShockwave",
+    "RebarBoomerangProj"
+   ],
+   "lines": 122
+  },
+  {
+   "path": "Content\\Projectiles\\Scrap\\ScrapMinions.cs",
+   "classes": [
+    "ScrapWarden",
+    "ScrapWardenBuff",
+    "ScrapWardenShot"
+   ],
+   "lines": 103
+  },
+  {
+   "path": "Content\\Projectiles\\Scrap\\ScrapRangedProjectiles.cs",
+   "classes": [
+    "ScrapRailSlug",
+    "ScrapRailSlugEX"
+   ],
+   "lines": 85
+  },
+  {
+   "path": "Content\\Projectiles\\Scrap\\ScrapRogueProjectiles.cs",
+   "classes": [
+    "ScrapBuzzsawProj",
+    "ScrapChakramProj"
+   ],
+   "lines": 98
+  },
+  {
+   "path": "Content\\Projectiles\\UpgradeTrees\\BladeUpgradeProjectiles.cs",
+   "classes": [
+    "SteelEdgeShard",
+    "VerdictWave",
+    "VerdictFragment",
+    "UpgradeTreeAim"
+   ],
+   "lines": 179
+  },
+  {
+   "path": "Content\\Projectiles\\UpgradeTrees\\MagicUpgradeProjectiles.cs",
+   "classes": [
+    "SteelArcBolt",
+    "FrostLance"
+   ],
+   "lines": 92
+  },
+  {
+   "path": "Content\\Projectiles\\UpgradeTrees\\RangedUpgradeProjectiles.cs",
+   "classes": [
+    "SteelBuckshot",
+    "EmberFlechette"
+   ],
+   "lines": 83
+  },
+  {
+   "path": "Content\\Projectiles\\UpgradeTrees\\RogueUpgradeProjectiles.cs",
+   "classes": [
+    "RustedGearBoomerang",
+    "SalvagedSteelChakramProj",
+    "ChakramShatterBlast",
+    "AshHeartCinderRingProj",
+    "CinderRingEmber"
+   ],
+   "lines": 331
+  },
+  {
+   "path": "Content\\Projectiles\\UpgradeTrees\\SummonerUpgradeMinions.cs",
+   "classes": [
+    "GearMinionBase",
+    "RustedGearSentry",
+    "RustedGearSentryBuff",
+    "SalvagedSteelCharger",
+    "SalvagedSteelSniper",
+    "SalvagedSteelGearBuff",
+    "SalvagedSteelBolt",
+    "AshHeartOrbitSentry",
+    "AshHeartGearBuff",
+    "AshHeartGearEmber",
+    "GearTreeAim"
+   ],
+   "lines": 564
+  },
+  {
+   "path": "Content\\Projectiles\\Vfx\\WastelandSpark.cs",
+   "classes": [
+    "WastelandSpark"
+   ],
+   "lines": 67
+  },
+  {
+   "path": "Content\\Projectiles\\Wildlife\\ReaperProjectiles.cs",
+   "classes": [
+    "ReaperScrapShot",
+    "ReaperShockwave",
+    "ReaperFriendlyScrap"
+   ],
+   "lines": 184
+  },
+  {
+   "path": "Content\\Projectiles\\Wildlife\\SpitterGlob.cs",
+   "classes": [
+    "SpitterGlob"
+   ],
+   "lines": 64
+  },
+  {
+   "path": "Content\\Subworlds\\FireplaceAtmosphere.cs",
+   "classes": [
+    "FireplaceAtmospherePlayer"
+   ],
+   "lines": 130
+  },
+  {
+   "path": "Content\\Subworlds\\FireplaceBuildings.cs",
+   "classes": [
+    "FireplaceBuildings"
+   ],
+   "lines": 693
+  },
+  {
+   "path": "Content\\Subworlds\\FireplaceGenLog.cs",
+   "classes": [
+    "FireplaceGenLog"
+   ],
+   "lines": 42
+  },
+  {
+   "path": "Content\\Subworlds\\FireplaceLayout.cs",
+   "classes": [
+    "FireplaceLayout"
+   ],
+   "lines": 252
+  },
+  {
+   "path": "Content\\Subworlds\\FireplaceSubworld.cs",
+   "classes": [
+    "FireplaceSubworld"
+   ],
+   "lines": 117
+  },
+  {
+   "path": "Content\\Subworlds\\FireplaceTerrain.cs",
+   "classes": [
+    "FireplaceTerrain"
+   ],
+   "lines": 516
+  },
+  {
+   "path": "Content\\Subworlds\\FireplaceVault.cs",
+   "classes": [
+    "FireplaceVault"
+   ],
+   "lines": 772
+  },
+  {
+   "path": "Content\\Subworlds\\WorldPaint.cs",
+   "classes": [
+    "WorldPaint"
+   ],
+   "lines": 349
+  },
+  {
+   "path": "Content\\Tiles\\BossBanners.cs",
+   "classes": [
+    "ScavengerBanner",
+    "ArchivistBanner",
+    "AshHeartBanner",
+    "FireplaceGuardianBanner"
+   ],
+   "lines": 85
+  },
+  {
+   "path": "Content\\Tiles\\BossTrophies.cs",
+   "classes": [
+    "ScavengerTrophy",
+    "ArchivistTrophy",
+    "AshHeartTrophy",
+    "FireplaceGuardianTrophy",
+    "ScrapReaperTrophy"
+   ],
+   "lines": 107
+  },
+  {
+   "path": "Content\\Tiles\\ElvenFrame.cs",
+   "classes": [
+    "ElvenFrame"
+   ],
+   "lines": 76
+  },
+  {
+   "path": "Content\\Tiles\\FireplaceTiles.cs",
+   "classes": [
+    "FireplaceGate",
+    "FireplaceTerminal",
+    "FireplaceExit"
+   ],
+   "lines": 107
+  },
+  {
+   "path": "Content\\Tiles\\YugangTiles.cs",
+   "classes": [
+    "YugangAlloy",
+    "YugangTrim"
+   ],
+   "lines": 76
+  }
+ ],
+ "pngs": [
+  "icon.png",
+  "icon_small.png",
+  "Assets\\Models\\MechanicalCompanion.png",
+  "Assets\\Models\\SalvagedSteelChestplate.png",
+  "Assets\\Models\\SalvagedSteelGreaves.png",
+  "Assets\\Models\\SalvagedSteelHelmet.png",
+  "Assets\\Models\\Wasteland3DProbe.png",
+  "Backgrounds\\FireplaceStarfieldClose.png",
+  "Backgrounds\\FireplaceStarfieldFar.png",
+  "Backgrounds\\FireplaceStarfieldMiddle.png",
+  "Backgrounds\\FireplaceStarfieldUG0.png",
+  "Backgrounds\\FireplaceStarfieldUG1.png",
+  "Backgrounds\\FireplaceStarfieldUG2.png",
+  "Backgrounds\\FireplaceStarfieldUG3.png",
+  "Content\\Buffs\\AshenRationBuff.png",
+  "Content\\Buffs\\BeastWhistleBuff.png",
+  "Content\\Buffs\\ColdSpotlightBuff.png",
+  "Content\\Buffs\\GasFilterBuff.png",
+  "Content\\Buffs\\GasPoison.png",
+  "Content\\Buffs\\MinersSolutionBuff.png",
+  "Content\\Buffs\\NaniteSalveBuff.png",
+  "Content\\Buffs\\Pollution.png",
+  "Content\\Buffs\\ScrapShield.png",
+  "Content\\Items\\Accessories\\ArchivistMageCharm.png",
+  "Content\\Items\\Accessories\\ArchivistRangerCharm.png",
+  "Content\\Items\\Accessories\\ArchivistRogueCharm.png",
+  "Content\\Items\\Accessories\\ArchivistSummonerCharm.png",
+  "Content\\Items\\Accessories\\ArchivistWarriorCharm.png",
+  "Content\\Items\\Accessories\\AshHeartMageCharm.png",
+  "Content\\Items\\Accessories\\AshHeartRangerCharm.png",
+  "Content\\Items\\Accessories\\AshHeartRogueCharm.png",
+  "Content\\Items\\Accessories\\AshHeartSummonerCharm.png",
+  "Content\\Items\\Accessories\\AshHeartWarriorCharm.png",
+  "Content\\Items\\Accessories\\FireplaceMageCharm.png",
+  "Content\\Items\\Accessories\\FireplaceRangerCharm.png",
+  "Content\\Items\\Accessories\\FireplaceRogueCharm.png",
+  "Content\\Items\\Accessories\\FireplaceSummonerCharm.png",
+  "Content\\Items\\Accessories\\FireplaceWarriorCharm.png",
+  "Content\\Items\\Accessories\\GasMask.png",
+  "Content\\Items\\Accessories\\ScavengerMageCharm.png",
+  "Content\\Items\\Accessories\\ScavengerRangerCharm.png",
+  "Content\\Items\\Accessories\\ScavengerRogueCharm.png",
+  "Content\\Items\\Accessories\\ScavengerSummonerCharm.png",
+  "Content\\Items\\Accessories\\ScavengerWarriorCharm.png",
+  "Content\\Items\\Accessories\\Gear\\AbyssBreather.png",
+  "Content\\Items\\Accessories\\Gear\\AshEchoCharm.png",
+  "Content\\Items\\Accessories\\Gear\\CinderstepBoots.png",
+  "Content\\Items\\Accessories\\Gear\\ConsecratedCore.png",
+  "Content\\Items\\Accessories\\Gear\\EmberglassLens.png",
+  "Content\\Items\\Accessories\\Gear\\FilteredRebreather.png",
+  "Content\\Items\\Accessories\\Gear\\HearthAegis.png",
+  "Content\\Items\\Accessories\\Gear\\HearthBeacon.png",
+  "Content\\Items\\Accessories\\Gear\\HearthMirror.png",
+  "Content\\Items\\Accessories\\Gear\\MorrowFragment.png",
+  "Content\\Items\\Accessories\\Gear\\ScavengerHarness.png",
+  "Content\\Items\\Accessories\\Gear\\WastelandCompass.png",
+  "Content\\Items\\Ammo\\ColdlightRound.png",
+  "Content\\Items\\Ammo\\EmberShell.png",
+  "Content\\Items\\Ammo\\ScrapNail.png",
+  "Content\\Items\\Ammo\\TornPage.png",
+  "Content\\Items\\Armor\\AshHeartGreaves.png",
+  "Content\\Items\\Armor\\AshHeartGreaves_Legs.png",
+  "Content\\Items\\Armor\\AshHeartMask.png",
+  "Content\\Items\\Armor\\AshHeartMask_Head.png",
+  "Content\\Items\\Armor\\AshHeartPlate.png",
+  "Content\\Items\\Armor\\AshHeartPlate_Body.png",
+  "Content\\Items\\Armor\\HearthGuardCuirass.png",
+  "Content\\Items\\Armor\\HearthGuardCuirass_Body.png",
+  "Content\\Items\\Armor\\HearthGuardGreaves.png",
+  "Content\\Items\\Armor\\HearthGuardGreaves_Legs.png",
+  "Content\\Items\\Armor\\HearthGuardVisor.png",
+  "Content\\Items\\Armor\\HearthGuardVisor_Head.png",
+  "Content\\Items\\Armor\\SalvagedSteelMageHood.png",
+  "Content\\Items\\Armor\\SalvagedSteelMageHood_Head.png",
+  "Content\\Items\\Armor\\SalvagedSteelMageLeggings.png",
+  "Content\\Items\\Armor\\SalvagedSteelMageLeggings_Legs.png",
+  "Content\\Items\\Armor\\SalvagedSteelMageRobe.png",
+  "Content\\Items\\Armor\\SalvagedSteelMageRobe_Body.png",
+  "Content\\Items\\Armor\\SalvagedSteelRangerLeggings.png",
+  "Content\\Items\\Armor\\SalvagedSteelRangerLeggings_Legs.png",
+  "Content\\Items\\Armor\\SalvagedSteelRangerVest.png",
+  "Content\\Items\\Armor\\SalvagedSteelRangerVest_Body.png",
+  "Content\\Items\\Armor\\SalvagedSteelRangerVisor.png",
+  "Content\\Items\\Armor\\SalvagedSteelRangerVisor_Head.png",
+  "Content\\Items\\Armor\\SalvagedSteelRogueLeggings.png",
+  "Content\\Items\\Armor\\SalvagedSteelRogueLeggings_Legs.png",
+  "Content\\Items\\Armor\\SalvagedSteelRogueMask.png",
+  "Content\\Items\\Armor\\SalvagedSteelRogueMask_Head.png",
+  "Content\\Items\\Armor\\SalvagedSteelRogueVest.png",
+  "Content\\Items\\Armor\\SalvagedSteelRogueVest_Body.png",
+  "Content\\Items\\Armor\\SalvagedSteelSummonerCowl.png",
+  "Content\\Items\\Armor\\SalvagedSteelSummonerCowl_Head.png",
+  "Content\\Items\\Armor\\SalvagedSteelSummonerLeggings.png",
+  "Content\\Items\\Armor\\SalvagedSteelSummonerLeggings_Legs.png",
+  "Content\\Items\\Armor\\SalvagedSteelSummonerTunic.png",
+  "Content\\Items\\Armor\\SalvagedSteelSummonerTunic_Body.png",
+  "Content\\Items\\Armor\\SalvagedSteelWarriorGreaves.png",
+  "Content\\Items\\Armor\\SalvagedSteelWarriorGreaves_Legs.png",
+  "Content\\Items\\Armor\\SalvagedSteelWarriorHelm.png",
+  "Content\\Items\\Armor\\SalvagedSteelWarriorHelm_Head.png",
+  "Content\\Items\\Armor\\SalvagedSteelWarriorPlate.png",
+  "Content\\Items\\Armor\\SalvagedSteelWarriorPlate_Body.png",
+  "Content\\Items\\Armor\\ScavengerGraceBoots.png",
+  "Content\\Items\\Armor\\ScavengerGraceBoots_Legs.png",
+  "Content\\Items\\Armor\\ScavengerGraceHood.png",
+  "Content\\Items\\Armor\\ScavengerGraceHood_Head.png",
+  "Content\\Items\\Armor\\ScavengerGraceJacket.png",
+  "Content\\Items\\Armor\\ScavengerGraceJacket_Body.png",
+  "Content\\Items\\Bags\\ArchivistBag.png",
+  "Content\\Items\\Bags\\AshHeartBag.png",
+  "Content\\Items\\Bags\\FireplaceBag.png",
+  "Content\\Items\\Bags\\ScavengerBag.png",
+  "Content\\Items\\Consumables\\AshenRation.png",
+  "Content\\Items\\Consumables\\BeastWhistle.png",
+  "Content\\Items\\Consumables\\ColdSpotlight.png",
+  "Content\\Items\\Consumables\\GasFilterPotion.png",
+  "Content\\Items\\Consumables\\MinersSolution.png",
+  "Content\\Items\\Consumables\\NaniteSalve.png",
+  "Content\\Items\\Decor\\ArchivistBanner.png",
+  "Content\\Items\\Decor\\ArchivistTrophy.png",
+  "Content\\Items\\Decor\\AshHeartBanner.png",
+  "Content\\Items\\Decor\\AshHeartTrophy.png",
+  "Content\\Items\\Decor\\FireplaceGuardianBanner.png",
+  "Content\\Items\\Decor\\FireplaceGuardianTrophy.png",
+  "Content\\Items\\Decor\\ScavengerBanner.png",
+  "Content\\Items\\Decor\\ScavengerTrophy.png",
+  "Content\\Items\\Decor\\ScrapReaperTrophy.png",
+  "Content\\Items\\Info\\ScrapCache.png",
+  "Content\\Items\\Info\\WastelandMap.png",
+  "Content\\Items\\Materials\\ArchivistFragment.png",
+  "Content\\Items\\Materials\\AshCrystal.png",
+  "Content\\Items\\Materials\\AshHeartAlloyBar.png",
+  "Content\\Items\\Materials\\AshHeartFragment.png",
+  "Content\\Items\\Materials\\Chip.png",
+  "Content\\Items\\Materials\\CircuitBoard.png",
+  "Content\\Items\\Materials\\Coke.png",
+  "Content\\Items\\Materials\\Coolant.png",
+  "Content\\Items\\Materials\\FireplaceAlloyBar.png",
+  "Content\\Items\\Materials\\FireplaceFragment.png",
+  "Content\\Items\\Materials\\RustedGear.png",
+  "Content\\Items\\Materials\\SalvagedSteelBar.png",
+  "Content\\Items\\Materials\\SalvagedSteelBundle.png",
+  "Content\\Items\\Materials\\SalvagedSteelChunk.png",
+  "Content\\Items\\Materials\\ScavengerFragment.png",
+  "Content\\Items\\Soul\\SoulFragmentFourth.png",
+  "Content\\Items\\Soul\\SoulFragmentScavenger.png",
+  "Content\\Items\\Soul\\SoulFragmentSecond.png",
+  "Content\\Items\\Soul\\SoulFragmentThird.png",
+  "Content\\Items\\Story\\CompanionCore.png",
+  "Content\\Items\\Story\\DawnSeal.png",
+  "Content\\Items\\Story\\UnburnedName.png",
+  "Content\\Items\\Summons\\ArchivistEcho.png",
+  "Content\\Items\\Summons\\AshHeartEmber.png",
+  "Content\\Items\\Summons\\AuditRequest.png",
+  "Content\\Items\\Summons\\EmberFuse.png",
+  "Content\\Items\\Summons\\FireplaceKey.png",
+  "Content\\Items\\Summons\\ScavengerBeacon.png",
+  "Content\\Items\\Summons\\ScavengerSignalSensor.png",
+  "Content\\Items\\UpgradeTrees\\ArchivistVerdictBlade.png",
+  "Content\\Items\\UpgradeTrees\\AshAlloyWarriorGreaves.png",
+  "Content\\Items\\UpgradeTrees\\AshAlloyWarriorGreaves_Legs.png",
+  "Content\\Items\\UpgradeTrees\\AshAlloyWarriorHelm.png",
+  "Content\\Items\\UpgradeTrees\\AshAlloyWarriorHelm_Head.png",
+  "Content\\Items\\UpgradeTrees\\AshAlloyWarriorPlate.png",
+  "Content\\Items\\UpgradeTrees\\AshAlloyWarriorPlate_Body.png",
+  "Content\\Items\\UpgradeTrees\\AshHeartCinderRing.png",
+  "Content\\Items\\UpgradeTrees\\AshHeartFlechette.png",
+  "Content\\Items\\UpgradeTrees\\AshHeartGearWhistle.png",
+  "Content\\Items\\UpgradeTrees\\AshHeartPurifierMask.png",
+  "Content\\Items\\UpgradeTrees\\HearthAlloyWarriorGreaves.png",
+  "Content\\Items\\UpgradeTrees\\HearthAlloyWarriorGreaves_Legs.png",
+  "Content\\Items\\UpgradeTrees\\HearthAlloyWarriorHelm.png",
+  "Content\\Items\\UpgradeTrees\\HearthAlloyWarriorHelm_Head.png",
+  "Content\\Items\\UpgradeTrees\\HearthAlloyWarriorPlate.png",
+  "Content\\Items\\UpgradeTrees\\HearthAlloyWarriorPlate_Body.png",
+  "Content\\Items\\UpgradeTrees\\HearthGuardFrostCodex.png",
+  "Content\\Items\\UpgradeTrees\\ReinforcedFilterMask.png",
+  "Content\\Items\\UpgradeTrees\\ReinforcedScavengerChip.png",
+  "Content\\Items\\UpgradeTrees\\RustedGearShuriken.png",
+  "Content\\Items\\UpgradeTrees\\RustedGearWhistle.png",
+  "Content\\Items\\UpgradeTrees\\SalvagedSteelArcWand.png",
+  "Content\\Items\\UpgradeTrees\\SalvagedSteelChakram.png",
+  "Content\\Items\\UpgradeTrees\\SalvagedSteelGearWhistle.png",
+  "Content\\Items\\UpgradeTrees\\SalvagedSteelSaber.png",
+  "Content\\Items\\UpgradeTrees\\SalvagedSteelScattergun.png",
+  "Content\\Items\\UpgradeTrees\\ScavengerChip.png",
+  "Content\\Items\\UpgradeTrees\\WastelandOverlordCore.png",
+  "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerMageWeapon.png",
+  "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerMageWeaponEX.png",
+  "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerRangerWeapon.png",
+  "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerRangerWeaponEX.png",
+  "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerRogueWeapon.png",
+  "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerRogueWeaponEX.png",
+  "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerSummonerWeapon.png",
+  "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerSummonerWeaponEX.png",
+  "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerWarriorWeapon.png",
+  "Content\\Items\\Weapons\\Boss1Scavenger\\ScavengerWarriorWeaponEX.png",
+  "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistMageWeapon.png",
+  "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistMageWeaponEX.png",
+  "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistRangerWeapon.png",
+  "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistRangerWeaponEX.png",
+  "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistRogueWeapon.png",
+  "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistRogueWeaponEX.png",
+  "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistSummonerWeapon.png",
+  "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistSummonerWeaponEX.png",
+  "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistWarriorWeapon.png",
+  "Content\\Items\\Weapons\\Boss2Archivist\\ArchivistWarriorWeaponEX.png",
+  "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartMageWeapon.png",
+  "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartMageWeaponEx.png",
+  "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartRangerWeapon.png",
+  "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartRangerWeaponEx.png",
+  "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartRogueWeapon.png",
+  "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartRogueWeaponEx.png",
+  "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartSummonerWeapon.png",
+  "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartSummonerWeaponEx.png",
+  "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartWarriorWeapon.png",
+  "Content\\Items\\Weapons\\Boss3AshHeart\\AshHeartWarriorWeaponEx.png",
+  "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceMageWeapon.png",
+  "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceMageWeaponEx.png",
+  "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceRangerWeapon.png",
+  "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceRangerWeaponEx.png",
+  "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceRogueWeapon.png",
+  "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceRogueWeaponEx.png",
+  "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceSummonerWeapon.png",
+  "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceSummonerWeaponEx.png",
+  "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceWarriorWeapon.png",
+  "Content\\Items\\Weapons\\Boss4Fireplace\\FireplaceWarriorWeaponEx.png",
+  "Content\\Items\\Weapons\\CLine\\ArchivistCMage.png",
+  "Content\\Items\\Weapons\\CLine\\ArchivistCRanger.png",
+  "Content\\Items\\Weapons\\CLine\\ArchivistCRogue.png",
+  "Content\\Items\\Weapons\\CLine\\ArchivistCSummoner.png",
+  "Content\\Items\\Weapons\\CLine\\ArchivistCWarrior.png",
+  "Content\\Items\\Weapons\\CLine\\AshHeartCMage.png",
+  "Content\\Items\\Weapons\\CLine\\AshHeartCRanger.png",
+  "Content\\Items\\Weapons\\CLine\\AshHeartCRogue.png",
+  "Content\\Items\\Weapons\\CLine\\AshHeartCSummoner.png",
+  "Content\\Items\\Weapons\\CLine\\AshHeartCWarrior.png",
+  "Content\\Items\\Weapons\\CLine\\FireplaceCMage.png",
+  "Content\\Items\\Weapons\\CLine\\FireplaceCRanger.png",
+  "Content\\Items\\Weapons\\CLine\\FireplaceCRogue.png",
+  "Content\\Items\\Weapons\\CLine\\FireplaceCSummoner.png",
+  "Content\\Items\\Weapons\\CLine\\FireplaceCWarrior.png",
+  "Content\\Items\\Weapons\\CLine\\ScavengerCMage.png",
+  "Content\\Items\\Weapons\\CLine\\ScavengerCRanger.png",
+  "Content\\Items\\Weapons\\CLine\\ScavengerCRogue.png",
+  "Content\\Items\\Weapons\\CLine\\ScavengerCSummoner.png",
+  "Content\\Items\\Weapons\\CLine\\ScavengerCWarrior.png",
+  "Content\\Items\\Weapons\\Rust\\RustAcidTome.png",
+  "Content\\Items\\Weapons\\Rust\\RustBoltWand.png",
+  "Content\\Items\\Weapons\\Rust\\RustBoltWandEX.png",
+  "Content\\Items\\Weapons\\Rust\\RustCleaver.png",
+  "Content\\Items\\Weapons\\Rust\\RustCleaverEX.png",
+  "Content\\Items\\Weapons\\Rust\\RustDroneStaff.png",
+  "Content\\Items\\Weapons\\Rust\\RustNailgun.png",
+  "Content\\Items\\Weapons\\Rust\\RustShuriken.png",
+  "Content\\Items\\Weapons\\Rust\\RustShurikenEX.png",
+  "Content\\Items\\Weapons\\Rust\\RustSpitterStaff.png",
+  "Content\\Items\\Weapons\\Rust\\RustSpitterStaffEX.png",
+  "Content\\Items\\Weapons\\Rust\\ScrapGrenade.png",
+  "Content\\Items\\Weapons\\Rust\\ScrapShotgun.png",
+  "Content\\Items\\Weapons\\Rust\\ScrapShotgunEX.png",
+  "Content\\Items\\Weapons\\Rust\\ScrapYoyo.png",
+  "Content\\Items\\Weapons\\Scrap\\RebarBoomerang.png",
+  "Content\\Items\\Weapons\\Scrap\\ScrapBuzzsaw.png",
+  "Content\\Items\\Weapons\\Scrap\\ScrapChakram.png",
+  "Content\\Items\\Weapons\\Scrap\\ScrapGreatsword.png",
+  "Content\\Items\\Weapons\\Scrap\\ScrapNovaStaff.png",
+  "Content\\Items\\Weapons\\Scrap\\ScrapNovaStaffEX.png",
+  "Content\\Items\\Weapons\\Scrap\\ScrapRailgun.png",
+  "Content\\Items\\Weapons\\Scrap\\ScrapRailgunEX.png",
+  "Content\\Items\\Weapons\\Scrap\\ScrapWardenStaff.png",
+  "Content\\Items\\Weapons\\Wildlife\\ScrapReaperBlade.png",
+  "Content\\NPCs\\Bosses\\Archivist\\Archivist.png",
+  "Content\\NPCs\\Bosses\\Archivist\\Archivist_Head_Boss.png",
+  "Content\\NPCs\\Bosses\\AshHeart\\AshHeart.png",
+  "Content\\NPCs\\Bosses\\AshHeart\\AshHeart_Head_Boss.png",
+  "Content\\NPCs\\Bosses\\AshHeart\\AshWisp.png",
+  "Content\\NPCs\\Bosses\\FireplaceGuardian\\FireplaceGuardian.png",
+  "Content\\NPCs\\Bosses\\FireplaceGuardian\\FireplaceGuardian_Head_Boss.png",
+  "Content\\NPCs\\Bosses\\Scavenger\\Scavenger.png",
+  "Content\\NPCs\\Bosses\\Scavenger\\ScavengerRepairDrone.png",
+  "Content\\NPCs\\Bosses\\Scavenger\\Scavenger_Head_Boss.png",
+  "Content\\NPCs\\Town\\MechanicalCompanion.png",
+  "Content\\NPCs\\Town\\MechanicalCompanion_Head.png",
+  "Content\\NPCs\\Wildlife\\AshStalker.png",
+  "Content\\NPCs\\Wildlife\\AshTickBat.png",
+  "Content\\NPCs\\Wildlife\\CaveCrawler.png",
+  "Content\\NPCs\\Wildlife\\CinderMender.png",
+  "Content\\NPCs\\Wildlife\\GaleWisp.png",
+  "Content\\NPCs\\Wildlife\\GearSwarm.png",
+  "Content\\NPCs\\Wildlife\\GearSwarmHive.png",
+  "Content\\NPCs\\Wildlife\\HearthWarden.png",
+  "Content\\NPCs\\Wildlife\\IndexMoth.png",
+  "Content\\NPCs\\Wildlife\\PollutionSlime.png",
+  "Content\\NPCs\\Wildlife\\RustCharger.png",
+  "Content\\NPCs\\Wildlife\\ScrapCrawler.png",
+  "Content\\NPCs\\Wildlife\\ScrapLeaper.png",
+  "Content\\NPCs\\Wildlife\\ScrapReaper.png",
+  "Content\\NPCs\\Wildlife\\SpitterFly.png",
+  "Content\\Projectiles\\CompanionSpark.png",
+  "Content\\Projectiles\\PollutionHoming.png",
+  "Content\\Projectiles\\PollutionZone.png",
+  "Content\\Projectiles\\ScavengerArmSweep.png",
+  "Content\\Projectiles\\ScavengerBullet.png",
+  "Content\\Projectiles\\Archivist\\ArchivistArchivePage.png",
+  "Content\\Projectiles\\Archivist\\ArchivistBarrageSheet.png",
+  "Content\\Projectiles\\Archivist\\ArchivistBoneArc.png",
+  "Content\\Projectiles\\Archivist\\ArchivistBoneArcEX.png",
+  "Content\\Projectiles\\Archivist\\ArchivistBoneBoomerang.png",
+  "Content\\Projectiles\\Archivist\\ArchivistBoneBoomerangEX.png",
+  "Content\\Projectiles\\Archivist\\ArchivistBoneShard.png",
+  "Content\\Projectiles\\Archivist\\ArchivistBoneShardEX.png",
+  "Content\\Projectiles\\Archivist\\ArchivistFamiliarBuff.png",
+  "Content\\Projectiles\\Archivist\\ArchivistFamiliarBuffEX.png",
+  "Content\\Projectiles\\Archivist\\ArchivistFamiliarMinion.png",
+  "Content\\Projectiles\\Archivist\\ArchivistFamiliarMinionEX.png",
+  "Content\\Projectiles\\Archivist\\ArchivistIndexBeam.png",
+  "Content\\Projectiles\\Archivist\\ArchivistIndexPage.png",
+  "Content\\Projectiles\\Archivist\\ArchivistIndexPageEX.png",
+  "Content\\Projectiles\\Archivist\\ArchivistSeal.png",
+  "Content\\Projectiles\\AshHeart\\AshHeartMageProjectile.png",
+  "Content\\Projectiles\\AshHeart\\AshHeartMageProjectileEX.png",
+  "Content\\Projectiles\\AshHeart\\AshHeartRangerProjectile.png",
+  "Content\\Projectiles\\AshHeart\\AshHeartRangerProjectileEX.png",
+  "Content\\Projectiles\\AshHeart\\AshHeartRogueProjectile.png",
+  "Content\\Projectiles\\AshHeart\\AshHeartRogueProjectileEX.png",
+  "Content\\Projectiles\\AshHeart\\AshHeartWarriorProjectile.png",
+  "Content\\Projectiles\\AshHeart\\AshHeartWarriorProjectileEX.png",
+  "Content\\Projectiles\\AshHeartBoss\\AshCinder.png",
+  "Content\\Projectiles\\AshHeartBoss\\AshEmberOrb.png",
+  "Content\\Projectiles\\AshHeartBoss\\AshPool.png",
+  "Content\\Projectiles\\AshHeartBoss\\AshPulse.png",
+  "Content\\Projectiles\\Fireplace\\FireplaceMageProjectile.png",
+  "Content\\Projectiles\\Fireplace\\FireplaceMageProjectileEX.png",
+  "Content\\Projectiles\\Fireplace\\FireplaceRangerProjectile.png",
+  "Content\\Projectiles\\Fireplace\\FireplaceRangerProjectileEX.png",
+  "Content\\Projectiles\\Fireplace\\FireplaceRogueProjectile.png",
+  "Content\\Projectiles\\Fireplace\\FireplaceRogueProjectileEX.png",
+  "Content\\Projectiles\\Fireplace\\FireplaceWarriorProjectile.png",
+  "Content\\Projectiles\\Fireplace\\FireplaceWarriorProjectileEX.png",
+  "Content\\Projectiles\\FireplaceBoss\\HearthBolt.png",
+  "Content\\Projectiles\\FireplaceBoss\\HearthRingShard.png",
+  "Content\\Projectiles\\FireplaceBoss\\HearthWall.png",
+  "Content\\Projectiles\\Gear\\GearColdPulse.png",
+  "Content\\Projectiles\\Gear\\GearReboundShard.png",
+  "Content\\Projectiles\\LateBosses\\AshHeartEmberBuff.png",
+  "Content\\Projectiles\\LateBosses\\AshHeartEmberBuffEX.png",
+  "Content\\Projectiles\\LateBosses\\AshHeartEmberMinion.png",
+  "Content\\Projectiles\\LateBosses\\AshHeartEmberMinionEX.png",
+  "Content\\Projectiles\\LateBosses\\FireplaceSentryBuff.png",
+  "Content\\Projectiles\\LateBosses\\FireplaceSentryBuffEX.png",
+  "Content\\Projectiles\\LateBosses\\FireplaceSentryMinion.png",
+  "Content\\Projectiles\\LateBosses\\FireplaceSentryMinionEX.png",
+  "Content\\Projectiles\\Ranged\\ColdlightProjectile.png",
+  "Content\\Projectiles\\Ranged\\EmberShellProjectile.png",
+  "Content\\Projectiles\\Ranged\\ScrapNailProjectile.png",
+  "Content\\Projectiles\\Ranged\\TornPageProjectile.png",
+  "Content\\Projectiles\\Rust\\RustAcidSpray.png",
+  "Content\\Projectiles\\Rust\\RustBolt.png",
+  "Content\\Projectiles\\Rust\\RustBoltEX.png",
+  "Content\\Projectiles\\Rust\\RustDrone.png",
+  "Content\\Projectiles\\Rust\\RustDroneBuff.png",
+  "Content\\Projectiles\\Rust\\RustNail.png",
+  "Content\\Projectiles\\Rust\\RustShardSlash.png",
+  "Content\\Projectiles\\Rust\\RustShardSlashEX.png",
+  "Content\\Projectiles\\Rust\\RustShurikenProj.png",
+  "Content\\Projectiles\\Rust\\RustShurikenProjEX.png",
+  "Content\\Projectiles\\Rust\\RustSpitter.png",
+  "Content\\Projectiles\\Rust\\RustSpitterBuff.png",
+  "Content\\Projectiles\\Rust\\RustSpitterBuffEX.png",
+  "Content\\Projectiles\\Rust\\RustSpitterEX.png",
+  "Content\\Projectiles\\Rust\\RustSpitterShot.png",
+  "Content\\Projectiles\\Rust\\RustSpitterShotEX.png",
+  "Content\\Projectiles\\Rust\\ScrapGrenadeBlast.png",
+  "Content\\Projectiles\\Rust\\ScrapGrenadeProj.png",
+  "Content\\Projectiles\\Rust\\ScrapPellet.png",
+  "Content\\Projectiles\\Rust\\ScrapPelletEX.png",
+  "Content\\Projectiles\\Rust\\ScrapYoyoProjectile.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerCaltrop.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerCaltropEX.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerDroneBuff.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerDroneBuffEX.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerDroneMinion.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerDroneMinionEX.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerPistolRound.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerRifleRoundEX.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerScrapShard.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerScrapShardEX.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerSpark.png",
+  "Content\\Projectiles\\Scavenger\\ScavengerSparkEX.png",
+  "Content\\Projectiles\\Scrap\\RebarBoomerangProj.png",
+  "Content\\Projectiles\\Scrap\\ScrapBuzzsawProj.png",
+  "Content\\Projectiles\\Scrap\\ScrapChakramProj.png",
+  "Content\\Projectiles\\Scrap\\ScrapNova.png",
+  "Content\\Projectiles\\Scrap\\ScrapNovaEX.png",
+  "Content\\Projectiles\\Scrap\\ScrapNovaFragment.png",
+  "Content\\Projectiles\\Scrap\\ScrapRailSlug.png",
+  "Content\\Projectiles\\Scrap\\ScrapRailSlugEX.png",
+  "Content\\Projectiles\\Scrap\\ScrapShockwave.png",
+  "Content\\Projectiles\\Scrap\\ScrapWarden.png",
+  "Content\\Projectiles\\Scrap\\ScrapWardenBuff.png",
+  "Content\\Projectiles\\Scrap\\ScrapWardenShot.png",
+  "Content\\Projectiles\\UpgradeTrees\\AshHeartCinderRingProj.png",
+  "Content\\Projectiles\\UpgradeTrees\\AshHeartGearBuff.png",
+  "Content\\Projectiles\\UpgradeTrees\\AshHeartGearEmber.png",
+  "Content\\Projectiles\\UpgradeTrees\\AshHeartOrbitSentry.png",
+  "Content\\Projectiles\\UpgradeTrees\\ChakramShatterBlast.png",
+  "Content\\Projectiles\\UpgradeTrees\\CinderRingEmber.png",
+  "Content\\Projectiles\\UpgradeTrees\\EmberFlechette.png",
+  "Content\\Projectiles\\UpgradeTrees\\FrostLance.png",
+  "Content\\Projectiles\\UpgradeTrees\\RustedGearBoomerang.png",
+  "Content\\Projectiles\\UpgradeTrees\\RustedGearSentry.png",
+  "Content\\Projectiles\\UpgradeTrees\\RustedGearSentryBuff.png",
+  "Content\\Projectiles\\UpgradeTrees\\SalvagedSteelBolt.png",
+  "Content\\Projectiles\\UpgradeTrees\\SalvagedSteelChakramProj.png",
+  "Content\\Projectiles\\UpgradeTrees\\SalvagedSteelCharger.png",
+  "Content\\Projectiles\\UpgradeTrees\\SalvagedSteelGearBuff.png",
+  "Content\\Projectiles\\UpgradeTrees\\SalvagedSteelSniper.png",
+  "Content\\Projectiles\\UpgradeTrees\\SteelArcBolt.png",
+  "Content\\Projectiles\\UpgradeTrees\\SteelBuckshot.png",
+  "Content\\Projectiles\\UpgradeTrees\\SteelEdgeShard.png",
+  "Content\\Projectiles\\UpgradeTrees\\VerdictFragment.png",
+  "Content\\Projectiles\\UpgradeTrees\\VerdictWave.png",
+  "Content\\Projectiles\\Vfx\\WastelandSpark.png",
+  "Content\\Projectiles\\Wildlife\\ReaperFriendlyScrap.png",
+  "Content\\Projectiles\\Wildlife\\ReaperScrapShot.png",
+  "Content\\Projectiles\\Wildlife\\ReaperShockwave.png",
+  "Content\\Projectiles\\Wildlife\\SpitterGlob.png",
+  "Content\\Tiles\\ArchivistBanner.png",
+  "Content\\Tiles\\ArchivistTrophy.png",
+  "Content\\Tiles\\AshHeartBanner.png",
+  "Content\\Tiles\\AshHeartTrophy.png",
+  "Content\\Tiles\\ElvenFrame.png",
+  "Content\\Tiles\\FireplaceExit.png",
+  "Content\\Tiles\\FireplaceGate.png",
+  "Content\\Tiles\\FireplaceGuardianBanner.png",
+  "Content\\Tiles\\FireplaceGuardianTrophy.png",
+  "Content\\Tiles\\FireplaceTerminal.png",
+  "Content\\Tiles\\ScavengerBanner.png",
+  "Content\\Tiles\\ScavengerTrophy.png",
+  "Content\\Tiles\\ScrapReaperTrophy.png",
+  "Content\\Tiles\\YugangAlloy.png",
+  "Content\\Tiles\\YugangTrim.png"
+ ]
+}

@@ -136,19 +136,6 @@ Items: {
 		DisplayName: 精钢召唤师护腿
 		Tooltip: ""
 	}
-	SalvagedSteelRogueMask: {
-		DisplayName: 精钢盗贼面罩
-		Tooltip: ""
-	}
-	SalvagedSteelRogueVest: {
-		DisplayName: 精钢盗贼背心
-		SetBonus: 投掷伤害 +10%、移动速度 +10%
-		Tooltip: ""
-	}
-	SalvagedSteelRogueLeggings: {
-		DisplayName: 精钢盗贼护腿
-		Tooltip: ""
-	}
 	SalvagedSteelChunk: {
 		DisplayName: 精钢碎块
 		Tooltip:
@@ -277,14 +264,6 @@ Items: {
 			召唤一个仆从
 			'''
 	}
-	ScavengerRogueWeapon: {
-		DisplayName: 清道夫废料飞刀
-		Tooltip:
-			'''
-			从清道夫残骸里拆出来的——粗糙，但能用
-			可投掷 - 最多堆叠 999
-			'''
-	}
 	ScavengerWarriorWeaponEX: {
 		DisplayName: 清道夫废料砍刀 MK-II
 		Tooltip:
@@ -315,14 +294,6 @@ Items: {
 			'''
 			从清道夫残骸里拆出来的——粗糙，但能用
 			召唤一个仆从
-			'''
-	}
-	ScavengerRogueWeaponEX: {
-		DisplayName: 清道夫废料飞刀 MK-II
-		Tooltip:
-			'''
-			从清道夫残骸里拆出来的——粗糙，但能用
-			可投掷 - 最多堆叠 999
 			'''
 	}
 	ArchivistWarriorWeapon: {
@@ -357,14 +328,6 @@ Items: {
 			召唤一个仆从
 			'''
 	}
-	ArchivistRogueWeapon: {
-		DisplayName: 归档者骨镖
-		Tooltip:
-			'''
-			归档的骨白与冷蓝光——守望者审计日志的具现
-			可投掷 - 最多堆叠 999
-			'''
-	}
 	ArchivistWarriorWeaponEX: {
 		DisplayName: 归档者骨刃 MK-II
 		Tooltip:
@@ -395,14 +358,6 @@ Items: {
 			'''
 			归档的骨白与冷蓝光——守望者审计日志的具现
 			召唤一个仆从
-			'''
-	}
-	ArchivistRogueWeaponEX: {
-		DisplayName: 归档者骨镖 MK-II
-		Tooltip:
-			'''
-			归档的骨白与冷蓝光——守望者审计日志的具现
-			可投掷 - 最多堆叠 999
 			'''
 	}
 	AshHeartWarriorWeapon: {
@@ -437,14 +392,6 @@ Items: {
 			召唤一个仆从
 			'''
 	}
-	AshHeartRogueWeapon: {
-		DisplayName: 灰烬之心裂片
-		Tooltip:
-			'''
-			以灰烬之心的余烬锻成——它还在阴燃
-			可投掷 - 最多堆叠 999
-			'''
-	}
 	AshHeartWarriorWeaponEx: {
 		DisplayName: 灰烬之心大剑 MK-II
 		Tooltip:
@@ -475,14 +422,6 @@ Items: {
 			'''
 			以灰烬之心的余烬锻成——它还在阴燃
 			召唤一个仆从
-			'''
-	}
-	AshHeartRogueWeaponEx: {
-		DisplayName: 灰烬之心裂片 MK-II
-		Tooltip:
-			'''
-			以灰烬之心的余烬锻成——它还在阴燃
-			可投掷 - 最多堆叠 999
 			'''
 	}
 	FireplaceWarriorWeapon: {
@@ -517,14 +456,6 @@ Items: {
 			召唤一个仆从
 			'''
 	}
-	FireplaceRogueWeapon: {
-		DisplayName: 壁炉守卫长刃
-		Tooltip:
-			'''
-			壁炉级合金。旧世界防线的最后一环
-			可投掷 - 最多堆叠 999
-			'''
-	}
 	FireplaceWarriorWeaponEx: {
 		DisplayName: 壁炉守卫大剑 MK-II
 		Tooltip:
@@ -555,14 +486,6 @@ Items: {
 			'''
 			壁炉级合金。旧世界防线的最后一环
 			召唤一个仆从
-			'''
-	}
-	FireplaceRogueWeaponEx: {
-		DisplayName: 壁炉守卫长刃 MK-II
-		Tooltip:
-			'''
-			壁炉级合金。旧世界防线的最后一环
-			可投掷 - 最多堆叠 999
 			'''
 	}
 	ArchivistBag: {
@@ -609,10 +532,6 @@ Items: {
 		DisplayName: 清道夫的召唤饰品
 		Tooltip: 额外一个仆从栏位。
 	}
-	ScavengerRogueCharm: {
-		DisplayName: 清道夫的盗贼饰品
-		Tooltip: 投掷伤害，脚步更轻。
-	}
 	ArchivistWarriorCharm: {
 		DisplayName: 归档者的战士饰品
 		Tooltip: 近战伤害和暴击，已经编过目。
@@ -628,10 +547,6 @@ Items: {
 	ArchivistSummonerCharm: {
 		DisplayName: 归档者的召唤饰品
 		Tooltip: 召唤伤害，归档之后又送了回来。
-	}
-	ArchivistRogueCharm: {
-		DisplayName: 归档者的盗贼饰品
-		Tooltip: 投掷伤害和暴击。
 	}
 	AshHeartWarriorCharm: {
 		DisplayName: 灰烬之心的战士饰品
@@ -649,10 +564,6 @@ Items: {
 		DisplayName: 灰烬之心的召唤饰品
 		Tooltip: 召唤伤害，再加一个仆从栏位。
 	}
-	AshHeartRogueCharm: {
-		DisplayName: 灰烬之心的盗贼饰品
-		Tooltip: 投掷伤害。命中时有几率点燃目标。
-	}
 	FireplaceWarriorCharm: {
 		DisplayName: 壁炉守卫的战士饰品
 		Tooltip: 来自最后一把锁的近战伤害和挥砍速度。
@@ -668,10 +579,6 @@ Items: {
 	FireplaceSummonerCharm: {
 		DisplayName: 壁炉守卫的召唤饰品
 		Tooltip: 召唤伤害，再加一个仆从栏位。
-	}
-	FireplaceRogueCharm: {
-		DisplayName: 壁炉守卫的盗贼饰品
-		Tooltip: 投掷伤害，步伐更快。
 	}
 	ScavengerCWarrior: {
 		DisplayName: 废料砍刀
@@ -689,10 +596,6 @@ Items: {
 		DisplayName: 废料无人机杖
 		Tooltip: 召一台小小的回收无人机。它不负责维修。
 	}
-	ScavengerCRogue: {
-		DisplayName: 废料裂片
-		Tooltip: 一块旋转的废金属，扔出去就不用捡。
-	}
 	ArchivistCWarrior: {
 		DisplayName: 索引刃
 		Tooltip: 从蛾翅上撕下来的一小段骨白弧光。
@@ -708,10 +611,6 @@ Items: {
 	ArchivistCSummoner: {
 		DisplayName: 使魔残杖
 		Tooltip: 一根裂开的杖，还记得一只使魔。
-	}
-	ArchivistCRogue: {
-		DisplayName: 归骨
-		Tooltip: 飞出去，再飞回来。
 	}
 	AshHeartCWarrior: {
 		DisplayName: 余烬刃
@@ -729,10 +628,6 @@ Items: {
 		DisplayName: 余烬残壳杖
 		Tooltip: 召一簇曾经属于那颗心的余烬。
 	}
-	AshHeartCRogue: {
-		DisplayName: 灰烬裂片
-		Tooltip: 离手之后还在烧的投掷碎片。
-	}
 	FireplaceCWarrior: {
 		DisplayName: 炉心刃
 		Tooltip: 冷金属，刃口是炉火。炉卫掉的。
@@ -748,10 +643,6 @@ Items: {
 	FireplaceCSummoner: {
 		DisplayName: 哨焰
 		Tooltip: 召一只还认得壁炉的浮游哨。
-	}
-	FireplaceCRogue: {
-		DisplayName: 归刃
-		Tooltip: 一把冷剃刀，飞出去，再回家。
 	}
 	RustedGear: {
 		DisplayName: 锈蚀齿轮
@@ -810,18 +701,6 @@ Items: {
 		DisplayName: 锈蚀吐酸法杖 MK-II
 		Tooltip: 每轮两团酸液，而且能贯穿
 	}
-	RustShuriken: {
-		DisplayName: 锈蚀手里剑
-		Tooltip: 最多切开三个敌人后落地
-	}
-	ScrapGrenade: {
-		DisplayName: 废料手雷
-		Tooltip: 弹跳一次，然后在怪堆里炸开一个窟窿
-	}
-	RustShurikenEX: {
-		DisplayName: 锈蚀手里剑 MK-II
-		Tooltip: 一次扇形抛出三枚旋转刀刃
-	}
 	ScrapGreatsword: {
 		DisplayName: 废料巨剑
 		Tooltip: 又慢又重，会沿地面拖出一道冲击波
@@ -850,17 +729,9 @@ Items: {
 		DisplayName: 废料典狱官法杖
 		Tooltip: 一具会走路的壁垒，替你砸击并炮轰敌人
 	}
-	ScrapBuzzsaw: {
-		DisplayName: 废料圆锯
-		Tooltip: 钉在地上，谁踩上去就锯谁
-	}
-	ScrapChakram: {
-		DisplayName: 废料环刃
-		Tooltip: 一枚会回旋的环刃，两次切开怪群
-	}
 	ScavengerGraceHood: {
 		DisplayName: 清道夫之惠兜帽
-		Tooltip: 远程与投掷伤害 +5%
+		Tooltip: 远程伤害 +5%
 	}
 	ScavengerGraceJacket: {
 		DisplayName: 清道夫之惠外套
@@ -1099,29 +970,17 @@ Items: {
 		DisplayName: 灰烬之心齿灵哨
 		Tooltip: 召来两只绕着主人转的灰烬齿灵，碰到什么就点燃什么，还会投出会追踪的余烬弹。同时在你身上罩一层齿轮护盾：防御 +5、免疫击退、伤害减免 8%
 	}
-	RustedGearShuriken: {
-		DisplayName: 锈蚀齿轮镖
-		Tooltip: 一枚永远丢不掉的齿轮。飞出去半秒，回程时再把路上的东西切一遍
-	}
-	SalvagedSteelChakram: {
-		DisplayName: 精钢锯齿环
-		Tooltip: 同样的去而复返，但每次命中都会炸开一圈锯齿。可以一直丢，不会被消耗
-	}
-	AshHeartCinderRing: {
-		DisplayName: 灰烬之心余烬环
-		Tooltip: 飞出去后在原地悬停切割片刻，沿途点燃并削去护甲，然后回手。每次命中都会溅出一枚追踪余烬
-	}
 	ScavengerChip: {
 		DisplayName: 拾荒者芯片
-		Tooltip: 召唤与投掷伤害 +8%，并把掉落的物品与红心从更远处吸过来
+		Tooltip: 召唤伤害 +8%，被丢下的物品和红心会从更远处飞向你
 	}
 	ReinforcedScavengerChip: {
 		DisplayName: 强化拾荒者芯片
-		Tooltip: 召唤与投掷伤害 +12%，投掷速度 +10%，金币与魔力星也会飞向你，受到的伤害降低 5%
+		Tooltip: 召唤伤害 +12%，金币和魔力星也会飞向你，受到的伤害降低 5%
 	}
 	WastelandOverlordCore: {
 		DisplayName: 废土主宰核心
-		Tooltip: 召唤伤害 +15%，投掷伤害 +18% 且投掷速度 +15%，仆从栏位 +1，受到的伤害降低 8%，幸运也更高一点
+		Tooltip: 召唤伤害 +15%，仆从栏位 +1，受到的伤害降低 8%，幸运也更高一点
 	}
 	ScavengerTrophy: {
 		DisplayName: 清道夫奖杯
@@ -1167,8 +1026,6 @@ Projectiles: {
 	ScavengerArmSweep.DisplayName: 伺服机械臂
 	ArchivistBoneArc.DisplayName: 骨白弧光
 	ArchivistBoneArcEX.DisplayName: 骨白弧光 EX
-	ArchivistBoneBoomerang.DisplayName: 回旋骨镖
-	ArchivistBoneBoomerangEX.DisplayName: 回旋骨镖 EX
 	ArchivistBoneShard.DisplayName: 骨片
 	ArchivistBoneShardEX.DisplayName: 骨片 EX
 	ArchivistIndexPage.DisplayName: 索引页
@@ -1177,8 +1034,6 @@ Projectiles: {
 	ArchivistArchivePage.DisplayName: 档案页
 	ArchivistBarrageSheet.DisplayName: 弹幕纸页
 	ArchivistSeal.DisplayName: 归档封印
-	ScavengerCaltrop.DisplayName: 旋转裂片
-	ScavengerCaltropEX.DisplayName: 旋转裂片 EX
 	ScavengerPistolRound.DisplayName: 废料手枪弹
 	ScavengerRifleRoundEX.DisplayName: 重步枪弹 EX
 	ScavengerScrapShard.DisplayName: 废料碎片
@@ -1193,16 +1048,12 @@ Projectiles: {
 	AshHeartMageProjectileEX.DisplayName: 灰烬心核 EX
 	AshHeartRangerProjectile.DisplayName: 燃灰弹
 	AshHeartRangerProjectileEX.DisplayName: 燃灰弹 EX
-	AshHeartRogueProjectile.DisplayName: 灰烬裂片
-	AshHeartRogueProjectileEX.DisplayName: 灰烬裂片 EX
 	AshHeartWarriorProjectile.DisplayName: 余烬剑气
 	AshHeartWarriorProjectileEX.DisplayName: 余烬剑气 EX
 	FireplaceMageProjectile.DisplayName: 冷光弹
 	FireplaceMageProjectileEX.DisplayName: 冷光弹 EX
 	FireplaceRangerProjectile.DisplayName: 高速钉弹
 	FireplaceRangerProjectileEX.DisplayName: 高速钉弹 EX
-	FireplaceRogueProjectile.DisplayName: 回旋刃
-	FireplaceRogueProjectileEX.DisplayName: 回旋刃 EX
 	FireplaceWarriorProjectile.DisplayName: 重击冲击波
 	FireplaceWarriorProjectileEX.DisplayName: 重击冲击波 EX
 	AshHeartEmberMinion.DisplayName: 余烬残影
@@ -1236,10 +1087,6 @@ Projectiles: {
 	RustSpitterShot.DisplayName: 酸液团
 	RustSpitterEX.DisplayName: 锈蚀吐酸者 MK-II
 	RustSpitterShotEX.DisplayName: 酸液团 MK-II
-	RustShurikenProj.DisplayName: 锈蚀手里剑
-	RustShurikenProjEX.DisplayName: 锈蚀手里剑 MK-II
-	ScrapGrenadeProj.DisplayName: 废料手雷
-	ScrapGrenadeBlast.DisplayName: 废料爆裂
 	ScrapShockwave.DisplayName: 废料冲击波
 	RebarBoomerangProj.DisplayName: 钢筋回旋镖
 	ScrapNova.DisplayName: 废料新星
@@ -1249,8 +1096,6 @@ Projectiles: {
 	ScrapRailSlugEX.DisplayName: 磁轨弹丸 MK-II
 	ScrapWarden.DisplayName: 废料典狱官
 	ScrapWardenShot.DisplayName: 典狱官炮弹
-	ScrapBuzzsawProj.DisplayName: 废料圆锯
-	ScrapChakramProj.DisplayName: 废料环刃
 	GearReboundShard.DisplayName: 回弹余烬
 	GearColdPulse.DisplayName: 冷焰喷发
 	ScrapNailProjectile.DisplayName: 废料钉
@@ -1270,11 +1115,6 @@ Projectiles: {
 	SalvagedSteelBolt.DisplayName: 精钢钢钉
 	AshHeartOrbitSentry.DisplayName: 灰烬环绕齿灵
 	AshHeartGearEmber.DisplayName: 齿轮余烬
-	RustedGearBoomerang.DisplayName: 锈蚀齿轮镖
-	SalvagedSteelChakramProj.DisplayName: 精钢锯齿环
-	ChakramShatterBlast.DisplayName: 锯齿爆裂
-	AshHeartCinderRingProj.DisplayName: 灰烬之心余烬环
-	CinderRingEmber.DisplayName: 余烬
 }
 Tiles: {
 	ElvenFrame.MapEntry: 精灵族躯体
@@ -1440,8 +1280,13 @@ Messages: {
 	CodaRefuse: 月亮领主倒下了。星星照旧熄灭。她的名字没有。
 	EnteredFireplace: 门在你身后合上。
 	TerminalTalkToHer: 那段日志是她的，不是你的。去找她——这段记忆该由她亲耳听见。
-	GatePlaced: 你醒来的地方附近开了一扇暖门。壁炉在听。
+	GatePlaced: 世界两侧的海面上各开了一扇暖门。壁炉在听。
 	FireplaceEnterFailed: 门在这里，可路没有打开。需要启用 Subworld Library。
+	FireplaceEntering: 门收下了你的请求，服务端正在确认……
+	FireplaceNotOpen: 壁炉的门还封着。你敲了，但里面没有人应。
+	FireplaceTooFar: 你离那扇门太远了。走近一点再试。
+	FireplaceTravelBusy: 路已经在动了。缓一口气再试。
+	FireplaceFormed: 壁炉成型完成了。
 	FireplaceForming: 壁炉正在成型……请稍候
 	GearMorrowSaved: 兜里的盒子忽然变冷 —— 那一击从未发生。
 	MapHint1: 地图上说：沿着锈迹走。凡是还立着路牌的路，都通向一台还没睡着的机器。

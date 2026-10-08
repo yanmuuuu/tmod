@@ -12,7 +12,7 @@ namespace WastelandSoul.Content.Items.Weapons.Rust
 	/// <list type="bullet">
 	/// <item>**只追加**掉落规则（npcLoot.Add），绝不删除或改动手上已有的规则；</item>
 	/// <item>掉落概率都很低（3%~8%），不抢走各时期专属武器（CLine 系列）的位置；</item>
-	/// <item>掉落专属的两件（<see cref="ScrapWardenStaff"/>、<see cref="ScrapBuzzsaw"/>）没有配方，靠这里获得。</item>
+	/// <item>掉落专属的 <see cref="ScrapWardenStaff"/> 没有配方，靠这里获得。</item>
 	/// </list>
 	/// 时期对应：废料爬行者=清道夫时期；索引蛾=归档者时期；灰烬潜行者/炉卫=困难模式之后（只放少量收集向掉落）。
 	/// </summary>
@@ -23,15 +23,12 @@ namespace WastelandSoul.Content.Items.Weapons.Rust
 			// 清道夫时期（地表白天）：锈蚀线的强化版作为稀有掉落
 			if (npc.type == ModContent.NPCType<ScrapCrawler>()) {
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RustCleaverEX>(), 25));
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RustShurikenEX>(), 20, 25, 45));
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RustSpitterStaffEX>(), 33));
 			}
 
 			// 归档者时期（地下泥土层）：废铁重工线的掉落专属 + 少量强化件
 			if (npc.type == ModContent.NPCType<IndexMoth>()) {
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScrapBuzzsaw>(), 20, 15, 30));
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScrapWardenStaff>(), 18));
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ScrapChakram>(), 12, 25, 40));
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<RustBoltWandEX>(), 25));
 			}
 

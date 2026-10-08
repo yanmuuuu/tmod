@@ -42,10 +42,15 @@ namespace WastelandSoul.Common.Systems
 	/// 也绝不会再来第二次；最坏情况只是退回"玩家自己出去再进一次"的老样子。</item>
 	/// </list>
 	///
-	/// <para/>=== 只在单人（netMode 0）生效 ===
-	/// 联机时客户端是**重连到子世界专用服务端**拿世界的（SubworldLibrary 的 subserver 机制），
-	/// 走的是普通联机进世界流程，不存在"生成完不刷新"这条路径；在客户端上再踢一次反而会把玩家
-	/// 从队友身边挤走。所以这里只在 <see cref="NetmodeID.SinglePlayer"/> 下动手。
+	/// <para/>=== 分工（本轮联机适配之后） ===
+	/// <list type="bullet">
+	/// <item><b>单人</b>（<c>netMode == 0</c>）：状态机照旧在这里跑，行为与本轮之前**完全一致**
+	/// （进门 1.5 秒后自动"出去再进来"，只做一次）。</item>
+	/// <item><b>联机</b>：单人那套**不跑** —— 客户端在联机里既不生成世界也搬不动自己。
+	/// 这里只留一个"观察"（<see cref="ObserveFreshInMultiplayer"/>），真有需要时请求服务端做一次成型，
+	/// 由 <see cref="FireplaceTravelNet"/> 执行；而且服务端有世界级的"已成型"标志
+	/// （<see cref="FireplaceTravelNet.MassFormed"/>，随存档保存 + 同步）把关，每存档只做一次。</item>
+	/// </list>
 	/// </summary>
 	public class FireplaceEntrySystem : ModSystem
 	{
@@ -97,7 +102,12 @@ namespace WastelandSoul.Common.Systems
 		private int grace;
 		private int attempts;
 
-		/// <summary>本机是不是"单人"这一侧（见类注释：联机不做这件事）。</summary>
+		/// <summary>联机下"这一趟是不是本机新生成"的观察是否已经做完（每个世界只观察一次）。</summary>
+		private bool clientSawFresh;
+
+		/// <summary>
+		/// 本机是不是"单人"这一侧（单人的自动重载状态机只在这里跑，行为与本轮之前完全一致）。
+		/// </summary>
 		private static bool RunsHere()
 		{
 			return !Main.dedServ && Main.netMode == NetmodeID.SinglePlayer;
@@ -120,6 +130,8 @@ namespace WastelandSoul.Common.Systems
 		public override void PostUpdateWorld()
 		{
 			if (!RunsHere()) {
+				// 联机这一侧不做单人的"出去再进来"（理由见 <see cref="ObserveFreshInMultiplayer"/>）。
+				ObserveFreshInMultiplayer();
 				return;
 			}
 
@@ -140,6 +152,48 @@ namespace WastelandSoul.Common.Systems
 					StepReturning();
 					return;
 			}
+		}
+
+		/// <summary>
+		/// 联机下**唯一**要做的事：看一眼"这趟进门的时候，本机是不是在本次新生成世界"。
+		///
+		/// <para/>=== 为什么联机不需要单人那套"出去再进来"（本轮 Cecil 核对的事实） ===
+		/// <list type="bullet">
+		/// <item><c>SubworldSystem.LoadWorld()</c> 在 <c>netMode == 1</c>（客户端）时**只**做
+		/// <c>current = 目标子世界 / menuMode = 10 / gameMenu = true</c>，然后
+		/// <c>ExitWorldCallBack</c> 里的 <c>if (netMode != 1) LoadWorld();</c> 会把真正的
+		/// 读档 / 生成整段跳过 —— 也就是说**联机客户端根本不本地生成世界**，
+		/// 世界完全由子世界服务端（<c>Process.Start(tModLoader.dll -server -subworld N)</c>
+		/// 起的独立进程）生成好之后通过网络发过来；</item>
+		/// <item>子世界服务端的生成是**同步**的：<c>LoadSubworld()</c> 把六个 <c>GenPass</c>
+		/// 全部跑完，才轮到 <c>LoadWorld()</c> 末尾 <c>QueueMainThreadAction(SpawnPlayer)</c>。
+		/// 所以客户端不可能像单机那样"在生成一半的时候看到空世界"，
+		/// 单机那次"新生成不刷新、得出去再进一次"的路径在联机里**不存在**。</item>
+		/// </list>
+		/// 结论：联机默认什么都不做（白做一次"移出→移入"要多付两次加载时间，还会连累队友）。
+		/// 只留一条**窄路**兜底：万一本机真的观察到 <see cref="FireplaceSubworld.GeneratedFresh"/>
+		/// （例如以后前置改了行为、或者客户端真的在本地生成过世界），才请求服务端做一次成型，
+		/// 而且服务端那一侧还有"本存档只做一次"的世界级标志把关（见
+		/// <see cref="FireplaceTravelNet.MassFormed"/>）。
+		/// </summary>
+		private void ObserveFreshInMultiplayer()
+		{
+			if (Main.dedServ || Main.netMode != NetmodeID.MultiplayerClient || clientSawFresh) {
+				return;
+			}
+
+			if (!InFireplace()) {
+				return;
+			}
+
+			clientSawFresh = true;
+
+			if (!FireplaceSubworld.GeneratedFresh) {
+				return;
+			}
+
+			Mod.Logger.Info("FireplaceEntrySystem: 联机下本机观察到「本次进门是新生成」，向服务端请求一次成型");
+			FireplaceTravelNet.ClientObservedFreshFireplace();
 		}
 
 		/// <summary>人在壁炉里、而且是新生成的一次 → 置位 + 报信 + 进倒计时。</summary>

@@ -65,8 +65,7 @@ namespace WastelandSoul.Content.NPCs.Wildlife
 			ModContent.ItemType<ScavengerCWarrior>(),
 			ModContent.ItemType<ScavengerCMage>(),
 			ModContent.ItemType<ScavengerCRanger>(),
-			ModContent.ItemType<ScavengerCSummoner>(),
-			ModContent.ItemType<ScavengerCRogue>()
+			ModContent.ItemType<ScavengerCSummoner>()
 		};
 
 		public override void SetDefaults()
@@ -103,8 +102,7 @@ namespace WastelandSoul.Content.NPCs.Wildlife
 			ModContent.ItemType<ArchivistCWarrior>(),
 			ModContent.ItemType<ArchivistCMage>(),
 			ModContent.ItemType<ArchivistCRanger>(),
-			ModContent.ItemType<ArchivistCSummoner>(),
-			ModContent.ItemType<ArchivistCRogue>()
+			ModContent.ItemType<ArchivistCSummoner>()
 		};
 
 		public override void SetDefaults()
@@ -142,8 +140,7 @@ namespace WastelandSoul.Content.NPCs.Wildlife
 			ModContent.ItemType<AshHeartCWarrior>(),
 			ModContent.ItemType<AshHeartCMage>(),
 			ModContent.ItemType<AshHeartCRanger>(),
-			ModContent.ItemType<AshHeartCSummoner>(),
-			ModContent.ItemType<AshHeartCRogue>()
+			ModContent.ItemType<AshHeartCSummoner>()
 		};
 
 		public override void SetDefaults()
@@ -185,8 +182,7 @@ namespace WastelandSoul.Content.NPCs.Wildlife
 			ModContent.ItemType<FireplaceCWarrior>(),
 			ModContent.ItemType<FireplaceCMage>(),
 			ModContent.ItemType<FireplaceCRanger>(),
-			ModContent.ItemType<FireplaceCSummoner>(),
-			ModContent.ItemType<FireplaceCRogue>()
+			ModContent.ItemType<FireplaceCSummoner>()
 		};
 
 		public override void SetDefaults()

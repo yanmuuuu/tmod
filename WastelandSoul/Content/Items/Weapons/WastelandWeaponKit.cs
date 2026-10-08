@@ -58,17 +58,5 @@ namespace WastelandSoul.Content.Items.Weapons
 			item.buffTime = 3600;
 			item.UseSound = SoundID.Item44;
 		}
-
-		/// <summary>盗贼：投掷类，可堆叠 999、投出后消耗，形态沿用 Swing + 隐藏手持贴图。</summary>
-		public static void Rogue(Item item)
-		{
-			item.useStyle = ItemUseStyleID.Swing;
-			item.noMelee = true;
-			item.noUseGraphic = true;
-			item.autoReuse = true;
-			item.maxStack = 999;
-			item.consumable = true;
-			item.UseSound = SoundID.Item19;
-		}
 	}
 }

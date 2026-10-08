@@ -1,0 +1,23 @@
+=== Boss1 清道夫 ===
+  战士   ScavengerWarriorWeapon                 CN=清道夫废料砍刀
+  射手   ScavengerRangerWeapon                  CN=清道夫废料手枪
+  法师   ScavengerMageWeapon                    CN=清道夫电火花棒
+  召唤   ScavengerSummonerWeapon                CN=清道夫无人机信标
+
+=== Boss2 归档者 ===
+  战士   ArchivistWarriorWeapon                 CN=归档者骨刃
+  射手   ArchivistRangerWeapon                  CN=归档者骨制散射枪
+  法师   ArchivistMageWeapon                    CN=归档者索引法典
+  召唤   ArchivistSummonerWeapon                CN=归档者使魔法杖
+
+=== Boss3 灰烬之心 ===
+  战士   AshHeartWarriorWeapon                  CN=灰烬之心大剑
+  射手   AshHeartRangerWeapon                   CN=灰烬之心余烬步枪
+  法师   AshHeartMageWeapon                     CN=灰烬之心核心法杖
+  召唤   AshHeartSummonerWeapon                 CN=灰烬之心燃烬法杖
+
+=== Boss4 壁炉守卫 ===
+  战士   FireplaceWarriorWeapon                 CN=壁炉守卫大剑
+  射手   FireplaceRangerWeapon                  CN=壁炉守卫步枪
+  法师   FireplaceMageWeapon                    CN=壁炉守卫权杖
+  召唤   FireplaceSummonerWeapon                CN=壁炉守卫信标

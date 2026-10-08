@@ -30,7 +30,7 @@ namespace WastelandSoul.Common.ItemBases
 		protected abstract List<(int Type, int Min, int Max)> Materials { get; }
 
 		/// <summary>
-		/// **袋子专属武器池**（该 Boss 的五职业专属武器）。
+		/// **袋子专属武器池**（该 Boss 的四职业专属武器）。
 		/// <para/>默认**自动收集**：扫描本模组所有 <see cref="WastelandClassWeapon"/> 子类中
 		/// 「命名空间属于本 Boss 子目录」且「类名以 EX 结尾」的物品
 		/// （子目录名由 <see cref="WastelandBossRegistry"/> 推导，如 Boss1Scavenger）。

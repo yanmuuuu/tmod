@@ -104,51 +104,6 @@ namespace WastelandSoul.Content.Projectiles.Fireplace
 		}
 	}
 
-	/// <summary>盗贼：回旋刃。飞出约半秒后折返并回收（沿用归档者骨镖的写法）。</summary>
-	public class FireplaceRogueProjectile : ModProjectile
-	{
-		private const int OutTicks = 28;
-
-		public override void SetDefaults()
-		{
-			Projectile.width = 20;
-			Projectile.height = 20;
-			Projectile.friendly = true;
-			Projectile.penetrate = 4;
-			Projectile.timeLeft = 300;
-			Projectile.tileCollide = false;
-			Projectile.ignoreWater = true;
-			Projectile.light = 0.4f;
-			Projectile.aiStyle = 0;
-		}
-
-		public override void AI()
-		{
-			Projectile.rotation += 0.42f * Projectile.direction;
-			Projectile.ai[0] += 1f;
-
-			if (Projectile.ai[0] < OutTicks) {
-				Projectile.velocity *= 0.985f;
-			} else {
-				Player owner = Main.player[Projectile.owner];
-				Vector2 toOwner = owner.MountedCenter - Projectile.Center;
-
-				Projectile.velocity = Vector2.Normalize(toOwner) * 12f;
-
-				if (toOwner.Length() < 40f) {
-					Projectile.Kill();
-					return;
-				}
-			}
-
-			if (Main.rand.NextBool(3)) {
-				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Silver);
-				dust.noGravity = true;
-				dust.scale = 0.8f;
-			}
-		}
-	}
-
 	// ---------------------------- B 线：继承 A 线做强化 ----------------------------
 
 	/// <summary>专属·重型冲击波：更大、穿透 6、活更久。</summary>
@@ -190,19 +145,6 @@ namespace WastelandSoul.Content.Projectiles.Fireplace
 			Projectile.penetrate = 2;
 			Projectile.extraUpdates = 2;
 			Projectile.light = 0.7f;
-		}
-	}
-
-	/// <summary>专属·回旋重刃：更大、穿透 6、活更久。</summary>
-	public class FireplaceRogueProjectileEX : FireplaceRogueProjectile
-	{
-		public override void SetDefaults()
-		{
-			base.SetDefaults();
-			Projectile.width = 26;
-			Projectile.height = 26;
-			Projectile.penetrate = 6;
-			Projectile.timeLeft = 360;
 		}
 	}
 }

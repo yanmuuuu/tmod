@@ -44,17 +44,4 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 			Projectile.timeLeft = 200;
 		}
 	}
-
-	/// <summary>专属·封存骨标：穿透 6、活得更久（折返行为自动继承）。</summary>
-	public class ArchivistBoneBoomerangEX : ArchivistBoneBoomerang
-	{
-		public override void SetDefaults()
-		{
-			base.SetDefaults();
-			Projectile.width = 22;
-			Projectile.height = 22;
-			Projectile.penetrate = 6;
-			Projectile.timeLeft = 360;
-		}
-	}
 }
