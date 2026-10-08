@@ -1,6 +1,8 @@
 using InnoVault.StateMachines;
+using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.ID;
+using WastelandSoul.Common.Effects;
 
 namespace WastelandSoul.Content.NPCs.Bosses.AshHeart
 {
@@ -89,6 +91,12 @@ namespace WastelandSoul.Content.NPCs.Bosses.AshHeart
 			}
 
 			int count = (int)ctx.Npc.ai[0] >= 2 ? 7 : (int)ctx.Npc.ai[0] == 1 ? 5 : 4;
+
+			if (!Terraria.Main.dedServ) {
+				WastelandFxSystem.Embers(ctx.Npc.Center, 8, new Color(255, 146, 48));
+				WastelandFxSystem.Flash(ctx.Npc.Center, new Color(255, 186, 90), 1.05f);
+			}
+
 			AshHeart.ThrowOrbs(ctx, count, 7.5f);
 			return new AshHeartIdleState();
 		}
@@ -146,6 +154,11 @@ namespace WastelandSoul.Content.NPCs.Bosses.AshHeart
 
 			if (!firedAshHeartRain && Timer >= AshHeart.RainWindup) {
 				firedAshHeartRain = true;
+
+				if (!Terraria.Main.dedServ) {
+					WastelandFxSystem.Embers(ctx.Npc.Center, 6, new Color(255, 140, 48));
+				}
+
 				AshHeart.SpawnRain(ctx);
 			}
 

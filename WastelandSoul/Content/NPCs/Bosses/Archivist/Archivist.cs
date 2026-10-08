@@ -7,6 +7,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 using WastelandSoul.Common.Systems;
 using WastelandSoul.Content.Items.Bags;
 using WastelandSoul.Content.Items.Decor;
@@ -531,6 +532,9 @@ namespace WastelandSoul.Content.NPCs.Bosses.Archivist
 				Dust.NewDust(npc.position, npc.width, npc.height, DustID.BlueTorch, velocity.X, velocity.Y, 100, default, 1.4f);
 				Dust.NewDust(npc.position, npc.width, npc.height, DustID.Bone, velocity.X, velocity.Y, 100, default, 1.2f);
 			}
+
+			WastelandFxSystem.Impact(npc.Center, new Color(176, 204, 255), 1.15f);
+			WastelandFxSystem.Flakes(npc.Center, 10, new Color(224, 230, 236));
 		}
 
 		/// <summary>纸页翻动 / 索引刷新的音效。</summary>
