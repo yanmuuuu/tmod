@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 
 namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 {
@@ -38,6 +39,9 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Silver);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
+				}
 				dust.scale = 0.8f;
 				dust.velocity *= 0.25f;
 			}
@@ -81,6 +85,9 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 			if (Main.rand.NextBool(2)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
+				}
 				dust.scale = 0.95f;
 				dust.velocity *= 0.3f;
 			}
@@ -142,6 +149,9 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 				if (Main.rand.NextBool(5)) {
 					Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 					dust.noGravity = true;
+					if (!Main.dedServ) {
+						WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
+					}
 					dust.scale = 0.7f;
 					dust.velocity *= 0.2f;
 				}

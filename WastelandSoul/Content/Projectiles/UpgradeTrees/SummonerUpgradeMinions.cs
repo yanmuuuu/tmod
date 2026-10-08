@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 using WastelandSoul.Common.Players;
 
 namespace WastelandSoul.Content.Projectiles.UpgradeTrees
@@ -221,6 +222,9 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 			if (Main.rand.NextBool(7)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
+				}
 				dust.scale = 0.6f;
 				dust.velocity *= 0.2f;
 			}
@@ -289,6 +293,9 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 			if (Main.rand.NextBool(7)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Silver);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
+				}
 				dust.scale = 0.6f;
 				dust.velocity *= 0.2f;
 			}
@@ -362,6 +369,9 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Silver);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
+				}
 				dust.scale = 0.6f;
 				dust.velocity *= 0.2f;
 			}
@@ -450,6 +460,9 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
+				}
 				dust.scale = 0.7f;
 				dust.velocity *= 0.2f;
 			}
@@ -522,6 +535,9 @@ namespace WastelandSoul.Content.Projectiles.UpgradeTrees
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(200, 170, 120), 0.4f, 8);
+				}
 				dust.scale = 0.8f;
 				dust.velocity *= 0.2f;
 			}

@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 using ArchivistNpc = WastelandSoul.Content.NPCs.Bosses.Archivist.Archivist;
 
 namespace WastelandSoul.Content.Projectiles.Archivist
@@ -83,6 +84,9 @@ namespace WastelandSoul.Content.Projectiles.Archivist
 
 				Dust dust = Dust.NewDustDirect(position, 4, 4, holding ? DustID.BlueTorch : DustID.Bone, velocity.X, velocity.Y);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(176, 204, 255), 0.4f, 8);
+				}
 				dust.scale = holding ? 1.1f : 0.8f;
 			}
 		}

@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 
 namespace WastelandSoul.Content.Projectiles.Rust
 {
@@ -187,6 +188,9 @@ namespace WastelandSoul.Content.Projectiles.Rust
 			if (Main.rand.NextBool(7)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
+				}
 				dust.scale = 0.6f;
 				dust.velocity *= 0.2f;
 			}
@@ -278,6 +282,9 @@ namespace WastelandSoul.Content.Projectiles.Rust
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenMoss);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
+				}
 				dust.scale = 0.7f;
 				dust.velocity *= 0.2f;
 			}
@@ -373,6 +380,9 @@ namespace WastelandSoul.Content.Projectiles.Rust
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.GreenMoss);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(210, 140, 70), 0.4f, 8);
+				}
 				dust.scale = 0.8f;
 				dust.velocity *= 0.2f;
 			}

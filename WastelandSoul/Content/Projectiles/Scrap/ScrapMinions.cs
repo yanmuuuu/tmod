@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 using WastelandSoul.Content.Projectiles.Rust;
 
 namespace WastelandSoul.Content.Projectiles.Scrap
@@ -44,6 +45,9 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 			if (Main.rand.NextBool(6)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
+				}
 				dust.scale = 0.7f;
 				dust.velocity *= 0.2f;
 			}
@@ -95,6 +99,9 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Electric);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
+				}
 				dust.scale = 0.8f;
 				dust.velocity *= 0.2f;
 			}

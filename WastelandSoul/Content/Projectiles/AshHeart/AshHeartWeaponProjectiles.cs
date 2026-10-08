@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 
 namespace WastelandSoul.Content.Projectiles.AshHeart
 {
@@ -37,6 +38,9 @@ namespace WastelandSoul.Content.Projectiles.AshHeart
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(255, 140, 50), 0.4f, 8);
+				}
 				dust.scale = 0.9f;
 			}
 		}
@@ -75,6 +79,9 @@ namespace WastelandSoul.Content.Projectiles.AshHeart
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(255, 140, 50), 0.4f, 8);
+				}
 				dust.scale = 1.1f;
 			}
 		}
@@ -109,6 +116,9 @@ namespace WastelandSoul.Content.Projectiles.AshHeart
 			if (Main.rand.NextBool(2)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.FireworkFountain_Red);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(255, 140, 50), 0.4f, 8);
+				}
 				dust.scale = 0.8f;
 			}
 		}

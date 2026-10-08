@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 
 namespace WastelandSoul.Content.Projectiles.Fireplace
 {
@@ -37,6 +38,9 @@ namespace WastelandSoul.Content.Projectiles.Fireplace
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Silver);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(160, 214, 255), 0.4f, 8);
+				}
 				dust.scale = 0.9f;
 			}
 		}
@@ -65,6 +69,9 @@ namespace WastelandSoul.Content.Projectiles.Fireplace
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverCoin);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(160, 214, 255), 0.4f, 8);
+				}
 				dust.scale = 0.8f;
 			}
 		}
@@ -99,6 +106,9 @@ namespace WastelandSoul.Content.Projectiles.Fireplace
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Silver);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(160, 214, 255), 0.4f, 8);
+				}
 				dust.scale = 0.7f;
 			}
 		}

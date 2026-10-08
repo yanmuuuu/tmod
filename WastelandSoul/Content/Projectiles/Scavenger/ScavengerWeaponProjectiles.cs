@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 
 namespace WastelandSoul.Content.Projectiles.Scavenger
 {
@@ -34,6 +35,9 @@ namespace WastelandSoul.Content.Projectiles.Scavenger
 			if (Main.rand.NextBool(4)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(190, 160, 110), 0.4f, 8);
+				}
 				dust.scale = 0.8f;
 			}
 		}
@@ -62,6 +66,9 @@ namespace WastelandSoul.Content.Projectiles.Scavenger
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Electric);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(190, 160, 110), 0.4f, 8);
+				}
 				dust.scale = 0.9f;
 			}
 		}
@@ -98,6 +105,9 @@ namespace WastelandSoul.Content.Projectiles.Scavenger
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(190, 160, 110), 0.4f, 8);
+				}
 				dust.scale = 0.7f;
 			}
 		}

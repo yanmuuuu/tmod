@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 using WastelandSoul.Content.Buffs;
 
 namespace WastelandSoul.Content.Projectiles.Wildlife
@@ -35,6 +36,9 @@ namespace WastelandSoul.Content.Projectiles.Wildlife
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke);
 				dust.velocity *= 0.25f;
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(150, 200, 90), 0.4f, 8);
+				}
 				dust.scale = 0.85f;
 				dust.color = new Color(140, 180, 90);
 			}

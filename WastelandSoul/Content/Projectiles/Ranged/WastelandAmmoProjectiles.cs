@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 
 namespace WastelandSoul.Content.Projectiles.Ranged
 {
@@ -45,6 +46,9 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Iron);
 				dust.velocity = -Projectile.velocity * 0.08f;
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
+				}
 				dust.scale = 0.6f;
 			}
 		}
@@ -92,6 +96,9 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.IceTorch);
 				dust.velocity = -Projectile.velocity * 0.15f;
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
+				}
 				dust.scale = 0.9f;
 				dust.alpha = 40;
 			}
@@ -112,6 +119,9 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.IceTorch);
 				dust.velocity *= 1.4f;
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
+				}
 				dust.scale = 1.1f;
 			}
 
@@ -151,6 +161,9 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.velocity = -Projectile.velocity * 0.2f;
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
+				}
 				dust.scale = 1.1f;
 			}
 		}
@@ -170,6 +183,9 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Torch);
 				dust.velocity *= 1.6f;
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
+				}
 				dust.scale = 1.2f;
 			}
 
@@ -209,6 +225,9 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.velocity *= 0.3f;
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
+				}
 				dust.scale = 0.7f;
 				dust.color = new Color(226, 214, 180);
 			}
@@ -224,6 +243,9 @@ namespace WastelandSoul.Content.Projectiles.Ranged
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.velocity *= 1.2f;
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(230, 200, 90), 0.4f, 8);
+				}
 				dust.scale = 0.9f;
 				dust.color = new Color(226, 214, 180);
 			}

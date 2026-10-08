@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 
 namespace WastelandSoul.Content.Projectiles.Scrap
 {
@@ -45,6 +46,9 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 			if (Main.rand.NextBool(2)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
+				}
 				dust.scale = 1.0f;
 				dust.velocity *= 0.3f;
 			}
@@ -77,6 +81,9 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 			for (int i = 0; i < 14; i++) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
+				}
 				dust.scale = 1.1f;
 				dust.velocity *= 1.8f;
 			}
@@ -104,6 +111,9 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.SilverFlame);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
+				}
 				dust.scale = 0.9f;
 				dust.velocity *= 0.3f;
 			}
@@ -141,6 +151,9 @@ namespace WastelandSoul.Content.Projectiles.Scrap
 			if (Main.rand.NextBool(3)) {
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.PurpleTorch);
 				dust.noGravity = true;
+				if (!Main.dedServ) {
+					WastelandFxSystem.Glow(Projectile.Center, new Color(180, 190, 210), 0.4f, 8);
+				}
 				dust.scale = 0.8f;
 				dust.velocity *= 0.2f;
 			}
