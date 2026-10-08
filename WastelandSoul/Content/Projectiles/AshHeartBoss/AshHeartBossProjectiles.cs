@@ -99,6 +99,11 @@ namespace WastelandSoul.Content.Projectiles.AshHeartBoss
 				Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, DustID.Smoke);
 				dust.velocity.Y = -0.6f;
 				dust.noGravity = true;
+
+				if (Main.rand.NextBool(2)) {
+					Vector2 drift = new Vector2(Main.rand.NextFloat(-0.4f, 0.4f), Main.rand.NextFloat(-0.8f, -0.15f));
+					Common.Effects.WastelandFxSystem.Smoke(Projectile.Center, drift, new Color(96, 78, 68), 0.75f, 28);
+				}
 			}
 		}
 
@@ -203,6 +208,12 @@ namespace WastelandSoul.Content.Projectiles.AshHeartBoss
 					Dust dust = Dust.NewDustPerfect(spot, DustID.Torch);
 					dust.noGravity = true;
 					dust.scale = 1.4f;
+				}
+
+				if (Main.GameUpdateCount % 2u == 0u) {
+					float angle = Main.rand.NextFloat(MathHelper.TwoPi);
+					Vector2 spot = Projectile.Center + angle.ToRotationVector2() * radius;
+					Common.Effects.WastelandFxSystem.Ember(spot, angle.ToRotationVector2() * Main.rand.NextFloat(0.6f, 1.8f), new Color(255, 150, 60), 0.85f, 18);
 				}
 			}
 

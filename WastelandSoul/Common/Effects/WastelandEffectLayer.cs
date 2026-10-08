@@ -18,7 +18,7 @@ namespace WastelandSoul.Common.Effects
 	// PreDraw/PostDraw 或 AI 里，用明确的颜色、短时长、别横跨屏幕。
 	// ====================================================================================
 
-	/// <summary>四职业配色（按 DamageClass 区分），供具体招式取用。</summary>
+	/// <summary>五职业配色（按 DamageClass 区分），供具体招式取用。</summary>
 	public static class WastelandEffectColors
 	{
 		public static Color For(DamageClass damageClass)
@@ -34,6 +34,9 @@ namespace WastelandSoul.Common.Effects
 			}
 			if (damageClass == DamageClass.Summon) {
 				return new Color(120, 220, 190);     // 召唤师：青绿
+			}
+			if (damageClass == DamageClass.Throwing) {
+				return new Color(206, 110, 180);     // 盗贼：紫红
 			}
 
 			return new Color(200, 200, 200);

@@ -8,6 +8,7 @@ using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using WastelandSoul.Common.Effects;
 using WastelandSoul.Common.Systems;
 using WastelandSoul.Content.Items.Decor;
 using WastelandSoul.Content.Items.Materials;
@@ -334,6 +335,19 @@ namespace WastelandSoul.Content.NPCs.Bosses.Scavenger
 				Vector2 velocity = Main.rand.NextVector2Circular(4f, 4f);
 				Dust.NewDust(npc.position, npc.width, npc.height, DustID.Smoke, velocity.X, velocity.Y, 100, default, 1.6f);
 				Dust.NewDust(npc.position, npc.width, npc.height, DustID.Torch, velocity.X, velocity.Y, 100, default, 1.2f);
+			}
+
+			WastelandFxSystem.Impact(npc.Center, new Color(255, 168, 70), 1.2f);
+
+			for (int i = 0; i < 4; i++) {
+				Vector2 drift = Main.rand.NextVector2Circular(0.9f, 0.4f);
+				drift.Y -= 0.55f;
+				WastelandFxSystem.Smoke(npc.Center, drift, new Color(86, 82, 76), Main.rand.NextFloat(0.8f, 1.3f), Main.rand.Next(26, 40));
+			}
+
+			for (int i = 0; i < 2; i++) {
+				Vector2 end = npc.Center + Main.rand.NextVector2Circular(72f, 36f);
+				WastelandFxSystem.Bolt(npc.Center, end, new Color(150, 220, 255));
 			}
 		}
 

@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
@@ -57,10 +58,22 @@ namespace WastelandSoul.Content.Projectiles.Vfx
 				_ => new Color(190, 176, 150)
 			};
 
-			WastelandFxSystem.Burst(center, count, color, speed);
+			float power = MathHelper.Clamp(0.85f + speed * 0.12f, 0.8f, 1.7f);
+			WastelandFxSystem.Impact(center, color, power);
 
 			if (palette == 1) {
-				WastelandFxSystem.Embers(center, count / 2, color);
+				WastelandFxSystem.Embers(center, Math.Max(4, count / 3), color);
+				WastelandFxSystem.Smoke(center, new Vector2(0f, -0.7f), new Color(84, 68, 60), 1.15f, 34);
+			}
+			else if (palette == 2) {
+				WastelandFxSystem.Ring(center, color, 22f, 96f + speed * 16f, 24);
+				WastelandFxSystem.Motes(center, 52f, 6, color);
+			}
+			else if (palette == 3) {
+				WastelandFxSystem.Flakes(center, Math.Max(6, count / 2), new Color(220, 228, 236));
+			}
+			else {
+				WastelandFxSystem.Smoke(center, new Vector2(0f, -0.35f), new Color(116, 110, 102), 1f, 28);
 			}
 		}
 	}

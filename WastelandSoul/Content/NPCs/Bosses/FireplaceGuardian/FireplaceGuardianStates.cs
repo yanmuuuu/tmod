@@ -1,6 +1,8 @@
 using InnoVault.StateMachines;
+using Microsoft.Xna.Framework;
 using Terraria.Audio;
 using Terraria.ID;
+using WastelandSoul.Common.Effects;
 
 namespace WastelandSoul.Content.NPCs.Bosses.FireplaceGuardian
 {
@@ -125,6 +127,7 @@ namespace WastelandSoul.Content.NPCs.Bosses.FireplaceGuardian
 
 				if (!Terraria.Main.dedServ) {
 					SoundEngine.PlaySound(SoundID.Item14, ctx.Npc.Center);
+					WastelandFxSystem.Impact(ctx.Npc.Center, new Color(176, 220, 255), 1.15f);
 				}
 			}
 
@@ -159,6 +162,8 @@ namespace WastelandSoul.Content.NPCs.Bosses.FireplaceGuardian
 				FireplaceGuardian.SpawnRing(ctx);
 				if (!Terraria.Main.dedServ) {
 					SoundEngine.PlaySound(SoundID.Item28, ctx.Npc.Center);
+					WastelandFxSystem.Flash(ctx.Npc.Center, new Color(210, 236, 255), 1.45f);
+					WastelandFxSystem.Ring(ctx.Npc.Center, new Color(160, 214, 255), 18f, 150f, 22);
 				}
 			}
 
@@ -191,6 +196,8 @@ namespace WastelandSoul.Content.NPCs.Bosses.FireplaceGuardian
 
 				if (!Terraria.Main.dedServ) {
 					SoundEngine.PlaySound(SoundID.Item74, ctx.Npc.Center);
+					WastelandFxSystem.Flash(ctx.Npc.Center, new Color(186, 220, 255), 1.25f);
+					WastelandFxSystem.Motes(ctx.Npc.Center, 64f, 8, new Color(170, 214, 255));
 				}
 			}
 
