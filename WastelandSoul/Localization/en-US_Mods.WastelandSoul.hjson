@@ -1259,6 +1259,31 @@ Items: {
 		DisplayName: Signal Rig Greaves
 		Tooltip: Shin stripes that still hold a charge
 	}
+
+	RiftCleaver: {
+		DisplayName: Rift Cleaver
+		Tooltip: A split blade. The swing tears a rift that collapses
+	}
+
+	OrbitScepter: {
+		DisplayName: Orbit Scepter
+		Tooltip: Throws a star that folds into a rift
+	}
+
+	StarstringBow: {
+		DisplayName: Starstring Bow
+		Tooltip: Converts arrows. They open a rift where they land
+	}
+
+	GapChakram: {
+		DisplayName: Gap Chakram
+		Tooltip: A broken ring that collapses at the end of its flight
+	}
+
+	VoidSeed: {
+		DisplayName: Void Seed
+		Tooltip: Summons a seed that tears small rifts
+	}
 }
 
 Projectiles: {
@@ -1387,6 +1412,11 @@ Buffs: {
 	SignalWispBuff: {
 		DisplayName: Signal Wisp
 		Description: A lantern is keeping watch
+	}
+
+	VoidSeedBuff: {
+		DisplayName: Void Seed
+		Description: A seed is tearing small rifts
 	}
 
 	Pollution: {

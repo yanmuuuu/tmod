@@ -39,11 +39,41 @@ Items: {
 		DisplayName: 信号甲护腿
 		Tooltip: 胫甲上的青纹还留着电
 	}
+
+	RiftCleaver: {
+		DisplayName: 星隙弯刃
+		Tooltip: 裂开的刃。挥出去会撕开一道随后坍缩的裂缝
+	}
+
+	OrbitScepter: {
+		DisplayName: 轨环权杖
+		Tooltip: 打出一颗星，星会折成一道裂隙
+	}
+
+	StarstringBow: {
+		DisplayName: 星弦弓
+		Tooltip: 箭会在落点撕开裂缝
+	}
+
+	GapChakram: {
+		DisplayName: 缺环轮
+		Tooltip: 缺了一角的环，飞到尽头才坍缩
+	}
+
+	VoidSeed: {
+		DisplayName: 虚空种
+		Tooltip: 召出一颗会撕开小裂缝的种子
+	}
 }
 
 Buffs: {
 	SignalWispBuff: {
 		DisplayName: 信号灯芯
 		Description: 一盏灯在替你看着
+	}
+
+	VoidSeedBuff: {
+		DisplayName: 虚空种
+		Description: 一颗种子正在撕开小裂缝
 	}
 }
